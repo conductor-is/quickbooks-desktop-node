@@ -1,13 +1,23 @@
-// eslint-disable-next-line consistent-default-export-name/default-export-match-filename, consistent-default-export-name/default-import-match-filename, import/no-extraneous-dependencies -- We must name the file `jest.config`, which we cannot use as a name for an import or export.
-import baseChildConfig from "@conductor/client-node/../../../jest.config.base";
+import type { JestConfigWithTsJest } from 'ts-jest';
 
-// Object must be cloned.
-const config = {
-  ...baseChildConfig,
-  // Run before each test suite after the test framework has been installed in
-  // the environment (making Jest globals, `jest`, and `expect` accessible) but
-  // before the test code itself.
-  setupFilesAfterEnv: ["<rootDir>/src/utils/test/jestSetupAfterEnv.ts"],
+const config: JestConfigWithTsJest = {
+  preset: 'ts-jest/presets/default-esm',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
+  },
+  moduleNameMapper: {
+    '^conductor-node$': '<rootDir>/src/index.ts',
+    '^conductor-node/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
+    '^conductor-node/(.*)$': '<rootDir>/src/$1',
+  },
+  modulePathIgnorePatterns: [
+    '<rootDir>/ecosystem-tests/',
+    '<rootDir>/dist/',
+    '<rootDir>/deno/',
+    '<rootDir>/deno_tests/',
+  ],
+  testPathIgnorePatterns: ['scripts'],
 };
 
 export default config;
