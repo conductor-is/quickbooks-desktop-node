@@ -9,8 +9,11 @@ The REST API documentation can be found on [docs.conductor.is](https://docs.cond
 ## Installation
 
 ```sh
-npm install conductor-node
+npm install git+ssh://git@github.com:conductor-is/quickbooks-desktop-node.git
 ```
+
+> [!NOTE]
+> Once this package is [published to npm](https://app.stainlessapi.com/docs/guides/publish), this will become: `npm install conductor-node`
 
 ## Usage
 
