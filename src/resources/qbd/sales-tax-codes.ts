@@ -301,6 +301,9 @@ export interface SalesTaxCodeListParams {
    *
    * **IMPORTANT**: If you include this parameter, QuickBooks will ignore all other
    * query parameters for this request.
+   *
+   * **NOTE**: If any of the values you specify in this parameter are not found, the
+   * request will return an error.
    */
   ids?: Array<string>;
 
@@ -344,6 +347,9 @@ export interface SalesTaxCodeListParams {
    *
    * **IMPORTANT**: If you include this parameter, QuickBooks will ignore all other
    * query parameters for this request.
+   *
+   * **NOTE**: If any of the values you specify in this parameter are not found, the
+   * request will return an error.
    */
   names?: Array<string>;
 
