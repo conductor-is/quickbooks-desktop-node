@@ -1,20 +1,39 @@
 {
-  "extends": "../../tsconfig.json",
+  "include": ["src", "tests", "examples"],
+  "exclude": ["src/_shims/**/*-deno.ts"],
   "compilerOptions": {
-    // Override root config to output transpiled code.
-    "noEmit": false,
-    // Output `.d.ts` files for TypeScript to use with the transpiled JS files.
-    "declaration": true,
-    "outDir": "./dist/",
-    // Use `.` instead of `./src/` because we import `package.json` from the
-    // root directory to get the package name and version.
-    //
-    // We could leave this value undefined and let `tsc` determine the root
-    // directory, but we do not want the root directory to suddenly change and
-    // break several of our `scripts` in `package.json`. Instead, we want `tsc`
-    // to report an error so we know to update our hard-coded paths.
-    "rootDir": "."
-  },
-  // Needed to exclude `jest.config.ts`.
-  "include": ["./src/**/*"]
+    "target": "es2020",
+    "lib": ["es2020"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "conductor-node/_shims/auto/*": ["src/_shims/auto/*-node"],
+      "conductor-node/*": ["src/*"],
+      "conductor-node": ["src/index.ts"]
+    },
+    "noEmit": true,
+
+    "resolveJsonModule": true,
+
+    "forceConsistentCasingInFileNames": true,
+
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "alwaysStrict": true,
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+		"isolatedModules": false,
+
+    "skipLibCheck": true
+  }
 }
