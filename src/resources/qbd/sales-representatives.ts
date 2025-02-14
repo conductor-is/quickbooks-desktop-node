@@ -241,6 +241,9 @@ export interface SalesRepresentativeListParams {
    *
    * **IMPORTANT**: If you include this parameter, QuickBooks will ignore all other
    * query parameters for this request.
+   *
+   * **NOTE**: If any of the values you specify in this parameter are not found, the
+   * request will fail.
    */
   ids?: Array<string>;
 
@@ -285,6 +288,9 @@ export interface SalesRepresentativeListParams {
    *
    * **IMPORTANT**: If you include this parameter, QuickBooks will ignore all other
    * query parameters for this request.
+   *
+   * **NOTE**: If any of the values you specify in this parameter are not found, the
+   * request will fail.
    */
   names?: Array<string>;
 
