@@ -6,7 +6,7 @@
       <img alt="Conductor logo" src="https://github.com/conductor-is/quickbooks-desktop-api/assets/170023/d67464b8-53a7-4d33-afeb-05a2efde1fa8" width="325">
     </picture>
   </a>
-  <h3>QuickBooks Desktop/Enterprise real-time API for Python, Node.js, and REST</h3>
+  <h3>QuickBooks Desktop/Enterprise real-time API for Node.js, Python, and REST</h3>
   <a href="https://docs.conductor.is/quickstart">Quickstart</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://conductor.is">Website</a>
@@ -17,7 +17,7 @@
   <br />
   <br />
   <a href="https://npmjs.com/package/conductor-node"><img src="https://img.shields.io/npm/dm/conductor-node.svg?logo=npm" alt="NPM download count"></a>
-  <a href="https://npmjs.org/package/conductor-node"><img src="https://img.shields.io/npm/v/conductor-node.svg?logo=npm" alt="Package version"></a>
+  <a href="https://npmjs.org/package/conductor-node"><img src="https://img.shields.io/npm/v/conductor-node.svg?logo=npm" alt="NPM version"></a>
   <a href="https://npmjs.org/package/conductor-node"><img src="https://img.shields.io/bundlephobia/minzip/conductor-node" alt="NPM bundle size"></a>
   <img src="https://img.shields.io/badge/coverage-100%25-brightgreen" alt="Code coverage">
   <a href="LICENSE"><img src="https://img.shields.io/npm/l/conductor-node.svg?color=blue&logo=github" alt="License" /></a>
@@ -28,7 +28,13 @@
 
 ⭐ **Follow our [Quickstart guide](https://docs.conductor.is/quickstart) to get started.**
 
-This repository is for the Node.js (TypeScript/JavaScript) library. For Python, see [conductor-python](https://github.com/conductor-is/quickbooks-desktop-python).
+This repository contains the official Conductor **Node.js** library, which provides convenient access to our QuickBooks Desktop API from any server-side TypeScript or JavaScript application.
+
+- For Python, see [conductor-python](https://github.com/conductor-is/quickbooks-desktop-python).
+
+## Documentation
+
+The REST API documentation can be found on [docs.conductor.is](https://docs.conductor.is/qbd-api). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
@@ -36,10 +42,9 @@ This repository is for the Node.js (TypeScript/JavaScript) library. For Python, 
 npm install conductor-node@beta
 ```
 
-This version of the library is in beta, but it **_is_ stable and ready for production use**. We merely have a few more endpoints to migrate before prompting all existing users to update.
-
-> [!NOTE]
-> If migrating from the old `conductor-node` package, see the [migration guide](https://docs.conductor.is/qbd-api/upgrade-node).
+> **Note:** Though this version of the Node.js SDK uses an NPM `@beta` tag, it **_is_ stable and ready for production use**! We merely have a few more endpoints to migrate before prompting all existing users to update. **Any new Conductor users should absolutely use the beta version**!
+>
+> If you're migrating from the old `conductor-node` package, see the [migration guide](https://docs.conductor.is/qbd-api/upgrade-node).
 
 ## Key features
 
