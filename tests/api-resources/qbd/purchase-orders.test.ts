@@ -11,7 +11,7 @@ const client = new Conductor({
 describe('resource purchaseOrders', () => {
   test('create: only required params', async () => {
     const responsePromise = client.qbd.purchaseOrders.create({
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -25,13 +25,13 @@ describe('resource purchaseOrders', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.qbd.purchaseOrders.create({
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       classId: '80000001-1234567890',
       documentTemplateId: '80000001-1234567890',
-      dueDate: '2019-12-27',
+      dueDate: '2021-10-31',
       exchangeRate: 1.2345,
-      expectedDate: '2019-12-27',
+      expectedDate: '2024-01-01',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       inventorySiteId: '80000001-1234567890',
       isQueuedForEmail: true,
@@ -60,7 +60,7 @@ describe('resource purchaseOrders', () => {
           quantity: 5,
           rate: '10.00',
           salesTaxCodeId: '80000001-1234567890',
-          serviceDate: '2019-12-27',
+          serviceDate: '2024-03-15',
           sku: 'MPN-123456',
           unitOfMeasure: 'Each',
         },
@@ -142,9 +142,9 @@ describe('resource purchaseOrders', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
       classId: '80000001-1234567890',
       documentTemplateId: '80000001-1234567890',
-      dueDate: '2019-12-27',
+      dueDate: '2021-10-31',
       exchangeRate: 1.2345,
-      expectedDate: '2019-12-27',
+      expectedDate: '2024-01-01',
       inventorySiteId: '80000001-1234567890',
       isManuallyClosed: true,
       isQueuedForEmail: true,
@@ -170,7 +170,7 @@ describe('resource purchaseOrders', () => {
               quantity: 5,
               rate: '10.00',
               salesTaxCodeId: '80000001-1234567890',
-              serviceDate: '2019-12-27',
+              serviceDate: '2024-03-15',
               sku: 'MPN-123456',
               unitOfMeasure: 'Each',
             },
@@ -197,7 +197,7 @@ describe('resource purchaseOrders', () => {
           quantity: 5,
           rate: '10.00',
           salesTaxCodeId: '80000001-1234567890',
-          serviceDate: '2019-12-27',
+          serviceDate: '2024-03-15',
           sku: 'MPN-123456',
           unitOfMeasure: 'Each',
         },
@@ -223,7 +223,7 @@ describe('resource purchaseOrders', () => {
       shippingMethodId: '80000001-1234567890',
       shipToEntityId: '80000001-1234567890',
       termsId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       vendorAddress: {
         city: 'San Francisco',
         country: 'United States',
@@ -268,10 +268,10 @@ describe('resource purchaseOrders', () => {
       refNumbers: ['PURCHASE ORDER-1234'],
       refNumberStartsWith: 'PO',
       refNumberTo: 'PO-9999',
-      transactionDateFrom: '2019-12-27',
-      transactionDateTo: '2019-12-27',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      transactionDateFrom: '2021-01-01',
+      transactionDateTo: '2021-02-01',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
       vendorIds: ['80000001-1234567890'],
     });
   });

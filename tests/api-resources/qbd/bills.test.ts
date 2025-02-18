@@ -11,7 +11,7 @@ const client = new Conductor({
 describe('resource bills', () => {
   test('create: only required params', async () => {
     const responsePromise = client.qbd.bills.create({
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -26,10 +26,10 @@ describe('resource bills', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.qbd.bills.create({
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      dueDate: '2019-12-27',
+      dueDate: '2021-10-31',
       exchangeRate: 1.2345,
       expenseLines: [
         {
@@ -64,7 +64,7 @@ describe('resource bills', () => {
           customerId: '80000001-1234567890',
           customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
           description: 'High-quality widget with custom engraving',
-          expirationDate: '2019-12-27',
+          expirationDate: '2025-12-31',
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',
           itemId: '80000001-1234567890',
@@ -141,7 +141,7 @@ describe('resource bills', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
       clearExpenseLines: false,
       clearItemLines: false,
-      dueDate: '2019-12-27',
+      dueDate: '2021-10-31',
       exchangeRate: 1.2345,
       expenseLines: [
         {
@@ -169,7 +169,7 @@ describe('resource bills', () => {
               cost: '1000.00',
               customerId: '80000001-1234567890',
               description: 'High-quality widget with custom engraving',
-              expirationDate: '2019-12-27',
+              expirationDate: '2025-12-31',
               inventorySiteId: '80000001-1234567890',
               inventorySiteLocationId: '80000001-1234567890',
               itemId: '80000001-1234567890',
@@ -197,7 +197,7 @@ describe('resource bills', () => {
           cost: '1000.00',
           customerId: '80000001-1234567890',
           description: 'High-quality widget with custom engraving',
-          expirationDate: '2019-12-27',
+          expirationDate: '2025-12-31',
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',
           itemId: '80000001-1234567890',
@@ -216,7 +216,7 @@ describe('resource bills', () => {
       refNumber: 'BILL-1234',
       salesTaxCodeId: '80000001-1234567890',
       termsId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       vendorAddress: {
         city: 'San Francisco',
         country: 'United States',
@@ -261,10 +261,10 @@ describe('resource bills', () => {
       refNumbers: ['BILL-1234'],
       refNumberStartsWith: 'BILL',
       refNumberTo: 'BILL-9999',
-      transactionDateFrom: '2019-12-27',
-      transactionDateTo: '2019-12-27',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      transactionDateFrom: '2021-01-01',
+      transactionDateTo: '2021-02-01',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
       vendorIds: ['80000001-1234567890'],
     });
   });

@@ -12,7 +12,7 @@ describe('resource creditMemos', () => {
   test('create: only required params', async () => {
     const responsePromise = client.qbd.creditMemos.create({
       customerId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -27,7 +27,7 @@ describe('resource creditMemos', () => {
   test('create: required and optional params', async () => {
     const response = await client.qbd.creditMemos.create({
       customerId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       billingAddress: {
         city: 'San Francisco',
@@ -44,7 +44,7 @@ describe('resource creditMemos', () => {
       classId: '80000001-1234567890',
       customerMessageId: '80000001-1234567890',
       documentTemplateId: '80000001-1234567890',
-      dueDate: '2019-12-27',
+      dueDate: '2021-10-31',
       exchangeRate: 1.2345,
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       isPending: false,
@@ -79,7 +79,7 @@ describe('resource creditMemos', () => {
           ratePercent: '10.5',
           salesTaxCodeId: '80000001-1234567890',
           serialNumber: 'SN1234567890',
-          serviceDate: '2019-12-27',
+          serviceDate: '2024-03-15',
           unitOfMeasure: 'Each',
         },
       ],
@@ -104,7 +104,7 @@ describe('resource creditMemos', () => {
         postalCode: '94110',
         state: 'CA',
       },
-      shippingDate: '2019-12-27',
+      shippingDate: '2021-10-01',
       shippingMethodId: '80000001-1234567890',
       termsId: '80000001-1234567890',
     });
@@ -163,7 +163,7 @@ describe('resource creditMemos', () => {
       customerId: '80000001-1234567890',
       customerMessageId: '80000001-1234567890',
       documentTemplateId: '80000001-1234567890',
-      dueDate: '2019-12-27',
+      dueDate: '2021-10-31',
       exchangeRate: 1.2345,
       isPending: false,
       isQueuedForEmail: true,
@@ -192,7 +192,7 @@ describe('resource creditMemos', () => {
               ratePercent: '10.5',
               salesTaxCodeId: '80000001-1234567890',
               serialNumber: 'SN1234567890',
-              serviceDate: '2019-12-27',
+              serviceDate: '2024-03-15',
               unitOfMeasure: 'Each',
             },
           ],
@@ -221,7 +221,7 @@ describe('resource creditMemos', () => {
           ratePercent: '10.5',
           salesTaxCodeId: '80000001-1234567890',
           serialNumber: 'SN1234567890',
-          serviceDate: '2019-12-27',
+          serviceDate: '2024-03-15',
           unitOfMeasure: 'Each',
         },
       ],
@@ -246,10 +246,10 @@ describe('resource creditMemos', () => {
         postalCode: '94110',
         state: 'CA',
       },
-      shippingDate: '2019-12-27',
+      shippingDate: '2021-10-01',
       shippingMethodId: '80000001-1234567890',
       termsId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
     });
   });
 
@@ -281,10 +281,10 @@ describe('resource creditMemos', () => {
       refNumbers: ['CREDIT MEMO-1234'],
       refNumberStartsWith: 'CM',
       refNumberTo: 'CM-9999',
-      transactionDateFrom: '2019-12-27',
-      transactionDateTo: '2019-12-27',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      transactionDateFrom: '2021-01-01',
+      transactionDateTo: '2021-02-01',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
     });
   });
 

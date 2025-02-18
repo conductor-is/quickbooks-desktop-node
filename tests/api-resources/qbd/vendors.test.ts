@@ -78,7 +78,7 @@ describe('resource vendors', () => {
       nameOnCheck: 'Acme Supplies Ltd.',
       note: 'Preferred vendor for office supplies.',
       openingBalance: '1000.00',
-      openingBalanceDate: '2019-12-27',
+      openingBalanceDate: '2023-01-01',
       phone: '+1-555-123-4567',
       purchaseTaxAccountId: '80000001-1234567890',
       reportingPeriod: 'monthly',
@@ -253,8 +253,8 @@ describe('resource vendors', () => {
       totalBalanceGreaterThanOrEqualTo: '123.45',
       totalBalanceLessThan: '123.45',
       totalBalanceLessThanOrEqualTo: '123.45',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
     });
   });
 });

@@ -12,7 +12,7 @@ describe('resource estimates', () => {
   test('create: only required params', async () => {
     const responsePromise = client.qbd.estimates.create({
       customerId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -27,7 +27,7 @@ describe('resource estimates', () => {
   test('create: required and optional params', async () => {
     const response = await client.qbd.estimates.create({
       customerId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       billingAddress: {
         city: 'San Francisco',
@@ -44,7 +44,7 @@ describe('resource estimates', () => {
       classId: '80000001-1234567890',
       customerMessageId: '80000001-1234567890',
       documentTemplateId: '80000001-1234567890',
-      dueDate: '2019-12-27',
+      dueDate: '2021-10-31',
       exchangeRate: 1.2345,
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       isActive: true,
@@ -160,7 +160,7 @@ describe('resource estimates', () => {
       customerId: '80000001-1234567890',
       customerMessageId: '80000001-1234567890',
       documentTemplateId: '80000001-1234567890',
-      dueDate: '2019-12-27',
+      dueDate: '2021-10-31',
       exchangeRate: 1.2345,
       isActive: true,
       isQueuedForEmail: true,
@@ -240,7 +240,7 @@ describe('resource estimates', () => {
         state: 'CA',
       },
       termsId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
     });
   });
 
@@ -272,10 +272,10 @@ describe('resource estimates', () => {
       refNumbers: ['ESTIMATE-1234'],
       refNumberStartsWith: 'EST',
       refNumberTo: 'EST-9999',
-      transactionDateFrom: '2019-12-27',
-      transactionDateTo: '2019-12-27',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      transactionDateFrom: '2021-01-01',
+      transactionDateTo: '2021-02-01',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
     });
   });
 
