@@ -36,7 +36,7 @@ describe('resource inventoryItems', () => {
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
       classId: '80000001-1234567890',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
-      inventoryDate: '2019-12-27',
+      inventoryDate: '2021-01-01',
       isActive: true,
       maximumQuantityOnHand: 200,
       parentId: '80000001-1234567890',
@@ -142,8 +142,8 @@ describe('resource inventoryItems', () => {
       nameStartsWith: 'ABC',
       nameTo: 'Z',
       status: 'active',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
     });
   });
 });

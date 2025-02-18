@@ -11,7 +11,7 @@ const client = new Conductor({
 describe('resource vendorCredits', () => {
   test('create: only required params', async () => {
     const responsePromise = client.qbd.vendorCredits.create({
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -26,7 +26,7 @@ describe('resource vendorCredits', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.qbd.vendorCredits.create({
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       exchangeRate: 1.2345,
@@ -63,7 +63,7 @@ describe('resource vendorCredits', () => {
           customerId: '80000001-1234567890',
           customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
           description: 'High-quality widget with custom engraving',
-          expirationDate: '2019-12-27',
+          expirationDate: '2025-12-31',
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',
           itemId: '80000001-1234567890',
@@ -153,7 +153,7 @@ describe('resource vendorCredits', () => {
               cost: '1000.00',
               customerId: '80000001-1234567890',
               description: 'High-quality widget with custom engraving',
-              expirationDate: '2019-12-27',
+              expirationDate: '2025-12-31',
               inventorySiteId: '80000001-1234567890',
               inventorySiteLocationId: '80000001-1234567890',
               itemId: '80000001-1234567890',
@@ -181,7 +181,7 @@ describe('resource vendorCredits', () => {
           cost: '1000.00',
           customerId: '80000001-1234567890',
           description: 'High-quality widget with custom engraving',
-          expirationDate: '2019-12-27',
+          expirationDate: '2025-12-31',
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',
           itemId: '80000001-1234567890',
@@ -199,7 +199,7 @@ describe('resource vendorCredits', () => {
       payablesAccountId: '80000001-1234567890',
       refNumber: 'VCREDIT-1234',
       salesTaxCodeId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
     });
   });
@@ -231,10 +231,10 @@ describe('resource vendorCredits', () => {
       refNumbers: ['VENDOR CREDIT-1234'],
       refNumberStartsWith: 'VCREDIT',
       refNumberTo: 'VCREDIT-9999',
-      transactionDateFrom: '2019-12-27',
-      transactionDateTo: '2019-12-27',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      transactionDateFrom: '2021-01-01',
+      transactionDateTo: '2021-02-01',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
       vendorIds: ['80000001-1234567890'],
     });
   });
