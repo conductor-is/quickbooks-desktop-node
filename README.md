@@ -64,12 +64,12 @@ The full API of this library can be found with code samples at [docs.conductor.i
 ```js
 import Conductor from 'conductor-node';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
-  const page = await client.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' });
+  const page = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' });
   const invoice = page.data[0];
 
   console.log(invoice.id);
@@ -86,13 +86,13 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Conductor from 'conductor-node';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
   const params: Conductor.Qbd.InvoiceListParams = { conductorEndUserId: 'YOUR_END_USER_ID' };
-  const [invoice]: [Conductor.Qbd.Invoice] = await client.qbd.invoices.list(params);
+  const [invoice]: [Conductor.Qbd.Invoice] = await conductor.qbd.invoices.list(params);
 }
 
 main();
@@ -109,7 +109,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const page = await client.qbd.invoices
+  const page = await conductor.qbd.invoices
     .list({ conductorEndUserId: 'YOUR_END_USER_ID' })
     .catch(async (err) => {
       if (err instanceof Conductor.APIError) {
@@ -149,12 +149,12 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new Conductor({
+const conductor = new Conductor({
   maxRetries: 0, // default is 2
 });
 
 // Or, configure per-request:
-await client.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }, {
+await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }, {
   maxRetries: 5,
 });
 ```
@@ -166,12 +166,12 @@ Requests time out after 2 minutes by default. You can configure this with a `tim
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new Conductor({
+const conductor = new Conductor({
   timeout: 20 * 1000, // 20 seconds (default is 2 minutes)
 });
 
 // Override per-request:
-await client.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }, {
+await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -189,7 +189,7 @@ You can use the `for await … of` syntax to iterate through items across all pa
 async function fetchAllQbdInvoices(params) {
   const allQbdInvoices = [];
   // Automatically fetches more pages as needed.
-  for await (const invoice of client.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' })) {
+  for await (const invoice of conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' })) {
     allQbdInvoices.push(invoice);
   }
   return allQbdInvoices;
@@ -199,7 +199,7 @@ async function fetchAllQbdInvoices(params) {
 Alternatively, you can request a single page at a time:
 
 ```ts
-let page = await client.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' });
+let page = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' });
 for (const invoice of page.data) {
   console.log(invoice);
 }
@@ -221,13 +221,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const client = new Conductor();
+const conductor = new Conductor();
 
-const response = await client.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }).asResponse();
+const response = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }).asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: page, response: raw } = await client.qbd.invoices
+const { data: page, response: raw } = await conductor.qbd.invoices
   .list({ conductorEndUserId: 'YOUR_END_USER_ID' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
@@ -243,11 +243,11 @@ endpoints, params, or response properties, the library can still be used.
 
 #### Undocumented endpoints
 
-To make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.
+To make requests to undocumented endpoints, you can use `conductor.get`, `conductor.post`, and other HTTP verbs.
 Options on the client, such as retries, will be respected when making these requests.
 
 ```ts
-await client.post('/some/path', {
+await conductor.post('/some/path', {
   body: { some_prop: 'foo' },
   query: { some_query_arg: 'bar' },
 });
@@ -260,7 +260,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.foo.create({
+conductor.foo.create({
   foo: 'my_param',
   bar: 12,
   // @ts-expect-error baz is not yet public
@@ -307,7 +307,7 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 import { fetch } from 'undici'; // as one example
 import Conductor from 'conductor-node';
 
-const client = new Conductor({
+const conductor = new Conductor({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
     console.log('About to make a request', url, init);
     const response = await fetch(url, init);
@@ -332,12 +332,12 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const client = new Conductor({
+const conductor = new Conductor({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
 // Override per-request:
-await client.qbd.invoices.list(
+await conductor.qbd.invoices.list(
   { conductorEndUserId: 'YOUR_END_USER_ID' },
   {
     httpAgent: new http.Agent({ keepAlive: false }),
