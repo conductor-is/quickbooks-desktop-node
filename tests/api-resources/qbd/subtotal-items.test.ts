@@ -102,8 +102,8 @@ describe('resource subtotalItems', () => {
       nameStartsWith: 'ABC',
       nameTo: 'Z',
       status: 'active',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
     });
   });
 });

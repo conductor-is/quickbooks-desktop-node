@@ -13,7 +13,7 @@ describe('resource billCreditCardPayments', () => {
     const responsePromise = client.qbd.billCreditCardPayments.create({
       applyToTransactions: [{ transactionId: '123ABC-1234567890' }],
       creditCardAccountId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -45,7 +45,7 @@ describe('resource billCreditCardPayments', () => {
         },
       ],
       creditCardAccountId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       exchangeRate: 1.2345,
@@ -103,10 +103,10 @@ describe('resource billCreditCardPayments', () => {
       refNumbers: ['BILL CREDIT CARD PAYMENT-1234'],
       refNumberStartsWith: 'CARD',
       refNumberTo: 'CARD-9999',
-      transactionDateFrom: '2019-12-27',
-      transactionDateTo: '2019-12-27',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      transactionDateFrom: '2021-01-01',
+      transactionDateTo: '2021-02-01',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
       vendorIds: ['80000001-1234567890'],
     });
   });

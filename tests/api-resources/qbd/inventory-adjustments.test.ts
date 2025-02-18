@@ -12,7 +12,7 @@ describe('resource inventoryAdjustments', () => {
   test('create: only required params', async () => {
     const responsePromise = client.qbd.inventoryAdjustments.create({
       accountId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -27,7 +27,7 @@ describe('resource inventoryAdjustments', () => {
   test('create: required and optional params', async () => {
     const response = await client.qbd.inventoryAdjustments.create({
       accountId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       classId: '80000001-1234567890',
       customerId: '80000001-1234567890',
@@ -37,12 +37,12 @@ describe('resource inventoryAdjustments', () => {
         {
           adjustLotNumber: {
             adjustCount: 2,
-            expirationDate: '2019-12-27',
+            expirationDate: '2025-12-31',
             inventorySiteLocationId: '80000001-1234567890',
             lotNumber: 'LOT2023-001',
           },
           adjustQuantity: {
-            expirationDate: '2019-12-27',
+            expirationDate: '2025-12-31',
             inventorySiteLocationId: '80000001-1234567890',
             lotNumber: 'LOT2023-001',
             newQuantity: 10,
@@ -51,7 +51,7 @@ describe('resource inventoryAdjustments', () => {
           },
           adjustSerialNumber: {
             addSerialNumber: '123456',
-            expirationDate: '2019-12-27',
+            expirationDate: '2025-12-31',
             inventorySiteLocationId: '80000001-1234567890',
             removeSerialNumber: '123456',
           },
@@ -109,7 +109,7 @@ describe('resource inventoryAdjustments', () => {
         {
           id: '456DEF-1234567890',
           adjustCount: 2,
-          expirationDate: '2019-12-27',
+          expirationDate: '2025-12-31',
           inventorySiteLocationId: '80000001-1234567890',
           itemId: '80000001-1234567890',
           lotNumber: 'LOT2023-001',
@@ -120,7 +120,7 @@ describe('resource inventoryAdjustments', () => {
       ],
       memo: 'Adjusted quantity due to physical count discrepancy',
       refNumber: 'INVADJ-1234',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
     });
   });
 
@@ -152,10 +152,10 @@ describe('resource inventoryAdjustments', () => {
       refNumbers: ['INVENTORY ADJUSTMENT-1234'],
       refNumberStartsWith: 'INVADJ',
       refNumberTo: 'INVADJ-9999',
-      transactionDateFrom: '2019-12-27',
-      transactionDateTo: '2019-12-27',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      transactionDateFrom: '2021-01-01',
+      transactionDateTo: '2021-02-01',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
     });
   });
 
