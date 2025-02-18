@@ -13,7 +13,7 @@ describe('resource receivePayments', () => {
     const responsePromise = client.qbd.receivePayments.create({
       customerId: '80000001-1234567890',
       totalAmount: '1000.00',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -29,7 +29,7 @@ describe('resource receivePayments', () => {
     const response = await client.qbd.receivePayments.create({
       customerId: '80000001-1234567890',
       totalAmount: '1000.00',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       applyToTransactions: [
         {
@@ -65,7 +65,7 @@ describe('resource receivePayments', () => {
           paymentStatus: 'completed',
           statusCode: 0,
           statusMessage: 'Success',
-          transactionAuthorizedAt: 'transactionAuthorizedAt',
+          transactionAuthorizedAt: '2024-01-01T12:34:56Z',
           authorizationCode: '1234567890',
           avsStreetStatus: 'fail',
           avsZipStatus: 'fail',
@@ -166,7 +166,7 @@ describe('resource receivePayments', () => {
           statusCode: 0,
           statusMessage: 'Success',
           transactionAuthorizationStamp: 2,
-          transactionAuthorizedAt: 'transactionAuthorizedAt',
+          transactionAuthorizedAt: '2024-01-01T12:34:56Z',
         },
       },
       customerId: '80000001-1234567890',
@@ -177,7 +177,7 @@ describe('resource receivePayments', () => {
       receivablesAccountId: '80000001-1234567890',
       refNumber: 'PAYMENT-1234',
       totalAmount: '1000.00',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
     });
   });
 
@@ -208,10 +208,10 @@ describe('resource receivePayments', () => {
       refNumbers: ['RECEIVE-PAYMENT-1234'],
       refNumberStartsWith: 'PAYMENT',
       refNumberTo: 'PAYMENT-9999',
-      transactionDateFrom: '2019-12-27',
-      transactionDateTo: '2019-12-27',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      transactionDateFrom: '2021-01-01',
+      transactionDateTo: '2021-02-01',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
     });
   });
 

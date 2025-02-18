@@ -14,7 +14,7 @@ describe('resource transfers', () => {
       amount: '1000.00',
       sourceAccountId: '80000001-1234567890',
       targetAccountId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -31,7 +31,7 @@ describe('resource transfers', () => {
       amount: '1000.00',
       sourceAccountId: '80000001-1234567890',
       targetAccountId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       classId: '80000001-1234567890',
       memo: 'Monthly transfer to savings',
@@ -80,7 +80,7 @@ describe('resource transfers', () => {
       memo: 'Monthly transfer to savings',
       sourceAccountId: '80000001-1234567890',
       targetAccountId: '80000001-1234567890',
-      transactionDate: '2019-12-27',
+      transactionDate: '2021-10-01',
     });
   });
 
@@ -101,10 +101,10 @@ describe('resource transfers', () => {
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['123ABC-1234567890'],
       limit: 150,
-      transactionDateFrom: '2019-12-27',
-      transactionDateTo: '2019-12-27',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      transactionDateFrom: '2021-01-01',
+      transactionDateTo: '2021-02-01',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
     });
   });
 });

@@ -36,7 +36,7 @@ describe('resource accounts', () => {
         'Accounts-payable are the amounts owed to suppliers for goods and services purchased on credit.',
       isActive: true,
       openingBalance: '1000.00',
-      openingBalanceDate: '2019-12-27',
+      openingBalanceDate: '2023-01-01',
       parentId: '80000001-1234567890',
       salesTaxCodeId: '80000001-1234567890',
       taxLineId: 123,
@@ -89,7 +89,7 @@ describe('resource accounts', () => {
       isActive: true,
       name: 'Accounts-Payable',
       openingBalance: '1000.00',
-      openingBalanceDate: '2019-12-27',
+      openingBalanceDate: '2023-01-01',
       parentId: '80000001-1234567890',
       salesTaxCodeId: '80000001-1234567890',
       taxLineId: 123,
@@ -121,8 +121,8 @@ describe('resource accounts', () => {
       nameStartsWith: 'ABC',
       nameTo: 'Z',
       status: 'active',
-      updatedAfter: 'updatedAfter',
-      updatedBefore: 'updatedBefore',
+      updatedAfter: '2021-01-01T12:34:56',
+      updatedBefore: '2021-02-01T12:34:56',
     });
   });
 });
