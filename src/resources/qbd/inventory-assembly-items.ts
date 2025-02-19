@@ -229,7 +229,7 @@ export interface InventoryAssemblyItem {
    * The number of units of this inventory assembly item that have been ordered from
    * vendors (as recorded in purchase orders) but not yet received.
    */
-  quantityOnOrder: number | null;
+  quantityOnPurchaseOrder: number | null;
 
   /**
    * The number of units of this inventory assembly item that have been sold (as
