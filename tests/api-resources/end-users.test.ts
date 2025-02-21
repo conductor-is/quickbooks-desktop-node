@@ -86,10 +86,8 @@ describe('resource endUsers', () => {
     ).rejects.toThrow(Conductor.NotFoundError);
   });
 
-  test('passthrough: only required params', async () => {
-    const responsePromise = client.endUsers.passthrough('end_usr_1234567abcdefg', 'quickbooks_desktop', {
-      foo: 'bar',
-    });
+  test('passthrough', async () => {
+    const responsePromise = client.endUsers.passthrough('end_usr_1234567abcdefg', 'quickbooks_desktop');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -99,10 +97,25 @@ describe('resource endUsers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('passthrough: required and optional params', async () => {
-    const response = await client.endUsers.passthrough('end_usr_1234567abcdefg', 'quickbooks_desktop', {
-      foo: 'bar',
-    });
+  test('passthrough: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.endUsers.passthrough('end_usr_1234567abcdefg', 'quickbooks_desktop', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Conductor.NotFoundError);
+  });
+
+  test('passthrough: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.endUsers.passthrough(
+        'end_usr_1234567abcdefg',
+        'quickbooks_desktop',
+        { foo: 'bar' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Conductor.NotFoundError);
   });
 
   test('ping', async () => {
