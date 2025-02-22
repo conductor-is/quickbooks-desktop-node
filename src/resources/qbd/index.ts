@@ -316,6 +316,17 @@ export {
   type SubtotalItemListParams,
 } from './subtotal-items';
 export {
+  TimeTrackingActivitiesCursorPage,
+  TimeTrackingActivities,
+  type TimeTrackingActivity,
+  type TimeTrackingActivityDeleteResponse,
+  type TimeTrackingActivityCreateParams,
+  type TimeTrackingActivityRetrieveParams,
+  type TimeTrackingActivityUpdateParams,
+  type TimeTrackingActivityListParams,
+  type TimeTrackingActivityDeleteParams,
+} from './time-tracking-activities';
+export {
   TransfersCursorPage,
   Transfers,
   type Transfer,
