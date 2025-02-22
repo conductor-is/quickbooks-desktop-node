@@ -347,6 +347,18 @@ import {
   SubtotalItems,
   SubtotalItemsCursorPage,
 } from './subtotal-items';
+import * as TimeTrackingActivitiesAPI from './time-tracking-activities';
+import {
+  TimeTrackingActivities,
+  TimeTrackingActivitiesCursorPage,
+  TimeTrackingActivity,
+  TimeTrackingActivityCreateParams,
+  TimeTrackingActivityDeleteParams,
+  TimeTrackingActivityDeleteResponse,
+  TimeTrackingActivityListParams,
+  TimeTrackingActivityRetrieveParams,
+  TimeTrackingActivityUpdateParams,
+} from './time-tracking-activities';
 import * as TransfersAPI from './transfers';
 import {
   Transfer,
@@ -427,6 +439,8 @@ export class Qbd extends APIResource {
   serviceItems: ServiceItemsAPI.ServiceItems = new ServiceItemsAPI.ServiceItems(this._client);
   standardTerms: StandardTermsAPI.StandardTerms = new StandardTermsAPI.StandardTerms(this._client);
   subtotalItems: SubtotalItemsAPI.SubtotalItems = new SubtotalItemsAPI.SubtotalItems(this._client);
+  timeTrackingActivities: TimeTrackingActivitiesAPI.TimeTrackingActivities =
+    new TimeTrackingActivitiesAPI.TimeTrackingActivities(this._client);
   transfers: TransfersAPI.Transfers = new TransfersAPI.Transfers(this._client);
   vendorCredits: VendorCreditsAPI.VendorCredits = new VendorCreditsAPI.VendorCredits(this._client);
   vendors: VendorsAPI.Vendors = new VendorsAPI.Vendors(this._client);
@@ -488,6 +502,8 @@ Qbd.ServiceItemsCursorPage = ServiceItemsCursorPage;
 Qbd.StandardTerms = StandardTerms;
 Qbd.SubtotalItems = SubtotalItems;
 Qbd.SubtotalItemsCursorPage = SubtotalItemsCursorPage;
+Qbd.TimeTrackingActivities = TimeTrackingActivities;
+Qbd.TimeTrackingActivitiesCursorPage = TimeTrackingActivitiesCursorPage;
 Qbd.Transfers = Transfers;
 Qbd.TransfersCursorPage = TransfersCursorPage;
 Qbd.VendorCredits = VendorCredits;
@@ -840,6 +856,18 @@ export declare namespace Qbd {
     type SubtotalItemRetrieveParams as SubtotalItemRetrieveParams,
     type SubtotalItemUpdateParams as SubtotalItemUpdateParams,
     type SubtotalItemListParams as SubtotalItemListParams,
+  };
+
+  export {
+    TimeTrackingActivities as TimeTrackingActivities,
+    type TimeTrackingActivity as TimeTrackingActivity,
+    type TimeTrackingActivityDeleteResponse as TimeTrackingActivityDeleteResponse,
+    TimeTrackingActivitiesCursorPage as TimeTrackingActivitiesCursorPage,
+    type TimeTrackingActivityCreateParams as TimeTrackingActivityCreateParams,
+    type TimeTrackingActivityRetrieveParams as TimeTrackingActivityRetrieveParams,
+    type TimeTrackingActivityUpdateParams as TimeTrackingActivityUpdateParams,
+    type TimeTrackingActivityListParams as TimeTrackingActivityListParams,
+    type TimeTrackingActivityDeleteParams as TimeTrackingActivityDeleteParams,
   };
 
   export {

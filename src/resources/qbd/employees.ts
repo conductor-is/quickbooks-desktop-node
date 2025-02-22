@@ -779,23 +779,30 @@ export namespace Employee {
       accrualStartDate: string | null;
 
       /**
-       * The number of sick hours the employee will accrue per accrual period.
+       * The number of sick hours the employee will accrue per accrual period, in ISO
+       * 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is
+       * represented as PT1H30M.
        */
       hoursAccruedPerPeriod: string | null;
 
       /**
-       * The total number of sick hours currently available for the employee to use.
-       * Defaults to 0.
+       * The total number of sick hours currently available for the employee to use, in
+       * ISO 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30
+       * minutes is represented as PT1H30M. Defaults to 0.
        */
       hoursAvailable: string | null;
 
       /**
-       * The number of sick hours the employee has used.
+       * The number of sick hours the employee has used, in ISO 8601 format for time
+       * intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented as
+       * PT1H30M.
        */
       hoursUsed: string | null;
 
       /**
-       * The maximum number of sick hours the employee can accrue.
+       * The maximum number of sick hours the employee can accrue, in ISO 8601 format for
+       * time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented as
+       * PT1H30M.
        */
       maximumHours: string | null;
 
@@ -823,23 +830,30 @@ export namespace Employee {
       accrualStartDate: string | null;
 
       /**
-       * The number of vacation hours the employee will accrue per accrual period.
+       * The number of vacation hours the employee will accrue per accrual period, in ISO
+       * 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is
+       * represented as PT1H30M.
        */
       hoursAccruedPerPeriod: string | null;
 
       /**
-       * The total number of vacation hours currently available for the employee to use.
-       * Defaults to 0.
+       * The total number of vacation hours currently available for the employee to use,
+       * in ISO 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30
+       * minutes is represented as PT1H30M. Defaults to 0.
        */
       hoursAvailable: string | null;
 
       /**
-       * The number of vacation hours the employee has used.
+       * The number of vacation hours the employee has used, in ISO 8601 format for time
+       * intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented as
+       * PT1H30M.
        */
       hoursUsed: string | null;
 
       /**
-       * The maximum number of vacation hours the employee can accrue.
+       * The maximum number of vacation hours the employee can accrue, in ISO 8601 format
+       * for time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented
+       * as PT1H30M.
        */
       maximumHours: string | null;
 
@@ -1448,23 +1462,30 @@ export namespace EmployeeCreateParams {
       accrualStartDate?: string;
 
       /**
-       * The number of sick hours the employee will accrue per accrual period.
+       * The number of sick hours the employee will accrue per accrual period, in ISO
+       * 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is
+       * represented as PT1H30M.
        */
       hoursAccruedPerPeriod?: string;
 
       /**
-       * The total number of sick hours currently available for the employee to use.
-       * Defaults to 0.
+       * The total number of sick hours currently available for the employee to use, in
+       * ISO 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30
+       * minutes is represented as PT1H30M. Defaults to 0.
        */
       hoursAvailable?: string;
 
       /**
-       * The number of sick hours the employee has used.
+       * The number of sick hours the employee has used, in ISO 8601 format for time
+       * intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented as
+       * PT1H30M.
        */
       hoursUsed?: string;
 
       /**
-       * The maximum number of sick hours the employee can accrue.
+       * The maximum number of sick hours the employee can accrue, in ISO 8601 format for
+       * time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented as
+       * PT1H30M.
        */
       maximumHours?: string;
 
@@ -1492,23 +1513,30 @@ export namespace EmployeeCreateParams {
       accrualStartDate?: string;
 
       /**
-       * The number of vacation hours the employee will accrue per accrual period.
+       * The number of vacation hours the employee will accrue per accrual period, in ISO
+       * 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is
+       * represented as PT1H30M.
        */
       hoursAccruedPerPeriod?: string;
 
       /**
-       * The total number of vacation hours currently available for the employee to use.
-       * Defaults to 0.
+       * The total number of vacation hours currently available for the employee to use,
+       * in ISO 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30
+       * minutes is represented as PT1H30M. Defaults to 0.
        */
       hoursAvailable?: string;
 
       /**
-       * The number of vacation hours the employee has used.
+       * The number of vacation hours the employee has used, in ISO 8601 format for time
+       * intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented as
+       * PT1H30M.
        */
       hoursUsed?: string;
 
       /**
-       * The maximum number of vacation hours the employee can accrue.
+       * The maximum number of vacation hours the employee can accrue, in ISO 8601 format
+       * for time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented
+       * as PT1H30M.
        */
       maximumHours?: string;
 
@@ -2095,23 +2123,30 @@ export namespace EmployeeUpdateParams {
       accrualStartDate?: string;
 
       /**
-       * The number of sick hours the employee will accrue per accrual period.
+       * The number of sick hours the employee will accrue per accrual period, in ISO
+       * 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is
+       * represented as PT1H30M.
        */
       hoursAccruedPerPeriod?: string;
 
       /**
-       * The total number of sick hours currently available for the employee to use.
-       * Defaults to 0.
+       * The total number of sick hours currently available for the employee to use, in
+       * ISO 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30
+       * minutes is represented as PT1H30M. Defaults to 0.
        */
       hoursAvailable?: string;
 
       /**
-       * The number of sick hours the employee has used.
+       * The number of sick hours the employee has used, in ISO 8601 format for time
+       * intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented as
+       * PT1H30M.
        */
       hoursUsed?: string;
 
       /**
-       * The maximum number of sick hours the employee can accrue.
+       * The maximum number of sick hours the employee can accrue, in ISO 8601 format for
+       * time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented as
+       * PT1H30M.
        */
       maximumHours?: string;
 
@@ -2139,23 +2174,30 @@ export namespace EmployeeUpdateParams {
       accrualStartDate?: string;
 
       /**
-       * The number of vacation hours the employee will accrue per accrual period.
+       * The number of vacation hours the employee will accrue per accrual period, in ISO
+       * 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is
+       * represented as PT1H30M.
        */
       hoursAccruedPerPeriod?: string;
 
       /**
-       * The total number of vacation hours currently available for the employee to use.
-       * Defaults to 0.
+       * The total number of vacation hours currently available for the employee to use,
+       * in ISO 8601 format for time intervals (PTnHnMnS). For example, 1 hour and 30
+       * minutes is represented as PT1H30M. Defaults to 0.
        */
       hoursAvailable?: string;
 
       /**
-       * The number of vacation hours the employee has used.
+       * The number of vacation hours the employee has used, in ISO 8601 format for time
+       * intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented as
+       * PT1H30M.
        */
       hoursUsed?: string;
 
       /**
-       * The maximum number of vacation hours the employee can accrue.
+       * The maximum number of vacation hours the employee can accrue, in ISO 8601 format
+       * for time intervals (PTnHnMnS). For example, 1 hour and 30 minutes is represented
+       * as PT1H30M.
        */
       maximumHours?: string;
 
