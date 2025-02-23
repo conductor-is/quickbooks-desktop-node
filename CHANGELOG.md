@@ -1,5 +1,21 @@
 # Changelog
 
+## 12.0.0-beta.5 (2025-02-23)
+
+Full Changelog: [v12.0.0-beta.4...v12.0.0-beta.5](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.4...v12.0.0-beta.5)
+
+### Features
+
+* **api:** api update ([#39](https://github.com/conductor-is/quickbooks-desktop-node/issues/39)) ([2b02cbc](https://github.com/conductor-is/quickbooks-desktop-node/commit/2b02cbc118423a1e65e254eaab43c2cfa8750826))
+* **api:** api update ([#42](https://github.com/conductor-is/quickbooks-desktop-node/issues/42)) ([f4724e0](https://github.com/conductor-is/quickbooks-desktop-node/commit/f4724e09acfcb2567a63510bd6e0b348599aa7f4))
+* **api:** api update ([#43](https://github.com/conductor-is/quickbooks-desktop-node/issues/43)) ([886e7ad](https://github.com/conductor-is/quickbooks-desktop-node/commit/886e7ada0c9f6163dd61386b509bf2e7e8ee228d))
+* **api:** api update ([#44](https://github.com/conductor-is/quickbooks-desktop-node/issues/44)) ([31e96e5](https://github.com/conductor-is/quickbooks-desktop-node/commit/31e96e50ab6042840c48c51d1f88844f8f4e78a2))
+
+
+### Chores
+
+* **internal:** fix devcontainers setup ([#41](https://github.com/conductor-is/quickbooks-desktop-node/issues/41)) ([5a94758](https://github.com/conductor-is/quickbooks-desktop-node/commit/5a9475838ba0e5550e2bac06cd5085c2b89f024d))
+
 ## 12.0.0-beta.4 (2025-02-21)
 
 Full Changelog: [v12.0.0-beta.3...v12.0.0-beta.4](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.3...v12.0.0-beta.4)
