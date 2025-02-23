@@ -133,7 +133,7 @@ export interface TimeTrackingActivity {
    * not display seconds.
    *
    * **IMPORTANT**: This field is required for updating time tracking activities,
-   * even if the field is not being updated, because of a bug in QuickBooks itself.
+   * even if the field is not being modified, because of a bug in QuickBooks itself.
    */
   duration: string;
 
@@ -353,7 +353,7 @@ export interface TimeTrackingActivityCreateParams {
    * not display seconds.
    *
    * **IMPORTANT**: This field is required for updating time tracking activities,
-   * even if the field is not being updated, because of a bug in QuickBooks itself.
+   * even if the field is not being modified, because of a bug in QuickBooks itself.
    */
   duration: string;
 
@@ -454,7 +454,7 @@ export interface TimeTrackingActivityUpdateParams {
    * not display seconds.
    *
    * **IMPORTANT**: This field is required for updating time tracking activities,
-   * even if the field is not being updated, because of a bug in QuickBooks itself.
+   * even if the field is not being modified, because of a bug in QuickBooks itself.
    */
   duration: string;
 
@@ -465,7 +465,7 @@ export interface TimeTrackingActivityUpdateParams {
    * with this time tracking activity.
    *
    * **IMPORTANT**: This field is required for updating time tracking activities,
-   * even if the field is not being updated, because of a bug in QuickBooks itself.
+   * even if the field is not being modified, because of a bug in QuickBooks itself.
    */
   entityId: string;
 
