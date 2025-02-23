@@ -12,13 +12,6 @@ export class AuthSessions extends APIResource {
   create(body: AuthSessionCreateParams, options?: Core.RequestOptions): Core.APIPromise<AuthSession> {
     return this._client.post('/auth-sessions', { body, ...options });
   }
-
-  /**
-   * Retrieves the details of an AuthSession that has previously been created.
-   */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AuthSession> {
-    return this._client.get(`/auth-sessions/${id}`, options);
-  }
 }
 
 export interface AuthSession {
