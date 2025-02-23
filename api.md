@@ -7,7 +7,6 @@ Types:
 Methods:
 
 - <code title="post /auth-sessions">client.authSessions.<a href="./src/resources/auth-sessions.ts">create</a>({ ...params }) -> AuthSession</code>
-- <code title="get /auth-sessions/{id}">client.authSessions.<a href="./src/resources/auth-sessions.ts">retrieve</a>(id) -> AuthSession</code>
 
 # EndUsers
 
