@@ -132,8 +132,8 @@ export interface TimeTrackingActivity {
    * activity, they are not returned in responses since QuickBooks Desktop's UI does
    * not display seconds.
    *
-   * **NOTE**: This field is required for updating time tracking activities, even if
-   * the field is not being updated, because of a bug in QuickBooks itself.
+   * **IMPORTANT**: This field is required for updating time tracking activities,
+   * even if the field is not being updated, because of a bug in QuickBooks itself.
    */
   duration: string;
 
@@ -352,8 +352,8 @@ export interface TimeTrackingActivityCreateParams {
    * activity, they are not returned in responses since QuickBooks Desktop's UI does
    * not display seconds.
    *
-   * **NOTE**: This field is required for updating time tracking activities, even if
-   * the field is not being updated, because of a bug in QuickBooks itself.
+   * **IMPORTANT**: This field is required for updating time tracking activities,
+   * even if the field is not being updated, because of a bug in QuickBooks itself.
    */
   duration: string;
 
@@ -453,8 +453,8 @@ export interface TimeTrackingActivityUpdateParams {
    * activity, they are not returned in responses since QuickBooks Desktop's UI does
    * not display seconds.
    *
-   * **NOTE**: This field is required for updating time tracking activities, even if
-   * the field is not being updated, because of a bug in QuickBooks itself.
+   * **IMPORTANT**: This field is required for updating time tracking activities,
+   * even if the field is not being updated, because of a bug in QuickBooks itself.
    */
   duration: string;
 
@@ -464,8 +464,8 @@ export interface TimeTrackingActivityUpdateParams {
    * a customer - use the `customer` field to associate a customer or customer-job
    * with this time tracking activity.
    *
-   * **NOTE**: This field is required for updating time tracking activities, even if
-   * the field is not being updated, because of a bug in QuickBooks itself.
+   * **IMPORTANT**: This field is required for updating time tracking activities,
+   * even if the field is not being updated, because of a bug in QuickBooks itself.
    */
   entityId: string;
 
