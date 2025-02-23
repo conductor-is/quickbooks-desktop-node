@@ -63,6 +63,7 @@ describe('resource timeTrackingActivities', () => {
   test('update: only required params', async () => {
     const responsePromise = client.qbd.timeTrackingActivities.update('123ABC-1234567890', {
       duration: 'PT1H30M',
+      entityId: '80000001-1234567890',
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -78,12 +79,12 @@ describe('resource timeTrackingActivities', () => {
   test('update: required and optional params', async () => {
     const response = await client.qbd.timeTrackingActivities.update('123ABC-1234567890', {
       duration: 'PT1H30M',
+      entityId: '80000001-1234567890',
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       billingStatus: 'billable',
       classId: '80000001-1234567890',
       customerId: '80000001-1234567890',
-      entityId: '80000001-1234567890',
       note: 'Project planning meeting with client.',
       payrollWageItemId: '80000001-1234567890',
       serviceItemId: '80000001-1234567890',
