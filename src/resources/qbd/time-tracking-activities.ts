@@ -131,6 +131,9 @@ export interface TimeTrackingActivity {
    * **NOTE**: Although seconds can be specified when creating a time tracking
    * activity, they are not returned in responses since QuickBooks Desktop's UI does
    * not display seconds.
+   *
+   * **NOTE**: This field is required for every update request, even if it is not
+   * being updated, because of a bug in QuickBooks itself.
    */
   duration: string;
 
@@ -348,6 +351,9 @@ export interface TimeTrackingActivityCreateParams {
    * **NOTE**: Although seconds can be specified when creating a time tracking
    * activity, they are not returned in responses since QuickBooks Desktop's UI does
    * not display seconds.
+   *
+   * **NOTE**: This field is required for every update request, even if it is not
+   * being updated, because of a bug in QuickBooks itself.
    */
   duration: string;
 
@@ -439,6 +445,20 @@ export interface TimeTrackingActivityRetrieveParams {
 
 export interface TimeTrackingActivityUpdateParams {
   /**
+   * Body param: The time spent performing the service during this time tracking
+   * activity, in ISO 8601 format for time intervals (PTnHnMnS). For example, 1 hour
+   * and 30 minutes is represented as PT1H30M.
+   *
+   * **NOTE**: Although seconds can be specified when creating a time tracking
+   * activity, they are not returned in responses since QuickBooks Desktop's UI does
+   * not display seconds.
+   *
+   * **NOTE**: This field is required for every update request, even if it is not
+   * being updated, because of a bug in QuickBooks itself.
+   */
+  duration: string;
+
+  /**
    * Body param: The current QuickBooks-assigned revision number of the time tracking
    * activity object you are updating, which you can get by fetching the object
    * first. Provide the most recent `revisionNumber` to ensure you're working with
@@ -473,17 +493,6 @@ export interface TimeTrackingActivityUpdateParams {
    * `billingStatus` is set to "billable", this field is required.
    */
   customerId?: string;
-
-  /**
-   * Body param: The time spent performing the service during this time tracking
-   * activity, in ISO 8601 format for time intervals (PTnHnMnS). For example, 1 hour
-   * and 30 minutes is represented as PT1H30M.
-   *
-   * **NOTE**: Although seconds can be specified when creating a time tracking
-   * activity, they are not returned in responses since QuickBooks Desktop's UI does
-   * not display seconds.
-   */
-  duration?: string;
 
   /**
    * Body param: The employee, vendor, or person on QuickBooks's “Other Names” list
