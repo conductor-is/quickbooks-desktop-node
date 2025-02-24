@@ -109,9 +109,9 @@ describe('resource timeTrackingActivities', () => {
     const response = await client.qbd.timeTrackingActivities.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      entityIds: ['80000001-1234567890'],
       ids: ['123ABC-1234567890'],
       limit: 150,
-      timeTrackingEntityIds: ['80000001-1234567890'],
       transactionDateFrom: '2021-01-01',
       transactionDateTo: '2021-02-01',
       updatedAfter: '2021-01-01T12:34:56',
