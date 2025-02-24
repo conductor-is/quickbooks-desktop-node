@@ -5,28 +5,28 @@ import * as Core from '../core';
 
 export class EndUsers extends APIResource {
   /**
-   * Creates an EndUser.
+   * Creates an end-user.
    */
   create(body: EndUserCreateParams, options?: Core.RequestOptions): Core.APIPromise<EndUser> {
     return this._client.post('/end-users', { body, ...options });
   }
 
   /**
-   * Retrieves an EndUser object.
+   * Retrieves an end-user object.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EndUser> {
     return this._client.get(`/end-users/${id}`, options);
   }
 
   /**
-   * Returns a list of your EndUsers.
+   * Returns a list of your end-users.
    */
   list(options?: Core.RequestOptions): Core.APIPromise<EndUserListResponse> {
     return this._client.get('/end-users', options);
   }
 
   /**
-   * Permanently deletes an EndUser object and all of its connections.
+   * Permanently deletes an end-user object and all of its connections.
    */
   delete(id: string, options?: Core.RequestOptions): Core.APIPromise<EndUserDeleteResponse> {
     return this._client.delete(`/end-users/${id}`, options);
@@ -46,7 +46,7 @@ export class EndUsers extends APIResource {
   }
 
   /**
-   * Checks whether the specified IntegrationConnection can connect and process
+   * Checks whether the specified integration connection can connect and process
    * requests end-to-end. This is useful for showing a "connection status" indicator
    * in your app.
    */
@@ -61,29 +61,29 @@ export class EndUsers extends APIResource {
 
 export interface EndUser {
   /**
-   * The unique identifier for this EndUser. You must save this value to your
+   * The unique identifier for this end-user. You must save this value to your
    * database because it is how you identify which of your users to receive your API
    * requests.
    */
   id: string;
 
   /**
-   * The EndUser's company name that will be shown elsewhere in Conductor.
+   * The end-user's company name that will be shown elsewhere in Conductor.
    */
   companyName: string;
 
   /**
-   * The date and time when this EndUser record was created.
+   * The date and time when this end-user record was created.
    */
   createdAt: string;
 
   /**
-   * The EndUser's email address for identification purposes.
+   * The end-user's email address for identification purposes.
    */
   email: string;
 
   /**
-   * The EndUser's IntegrationConnections.
+   * The end-user's integration connections.
    */
   integrationConnections: Array<EndUser.IntegrationConnection>;
 
@@ -93,7 +93,7 @@ export interface EndUser {
   objectType: 'end_user';
 
   /**
-   * The EndUser's unique identifier from your system. Maps users between your
+   * The end-user's unique identifier from your system. Maps users between your
    * database and Conductor.
    */
   sourceId: string;
@@ -102,12 +102,12 @@ export interface EndUser {
 export namespace EndUser {
   export interface IntegrationConnection {
     /**
-     * The unique identifier for this IntegrationConnection.
+     * The unique identifier for this integration connection.
      */
     id: string;
 
     /**
-     * The date and time when this IntegrationConnection record was created.
+     * The date and time when this integration connection record was created.
      */
     createdAt: string;
 
@@ -117,14 +117,14 @@ export namespace EndUser {
     integrationSlug: 'quickbooks_desktop';
 
     /**
-     * The date and time of your last API request to this IntegrationConnection.
+     * The date and time of your last API request to this integration connection.
      */
     lastRequestAt: string | null;
 
     /**
-     * The date and time of your last _successful_ API request to this
-     * IntegrationConnection. A successful request means the integration fully
-     * processed and returned a response without any errors end-to-end.
+     * The date and time of your last _successful_ API request to this integration
+     * connection. A successful request means the integration fully processed and
+     * returned a response without any errors end-to-end.
      */
     lastSuccessfulRequestAt: string | null;
 
@@ -137,7 +137,7 @@ export namespace EndUser {
 
 export interface EndUserListResponse {
   /**
-   * The array of EndUsers.
+   * The array of end-users.
    */
   data: Array<EndUser>;
 
@@ -154,12 +154,12 @@ export interface EndUserListResponse {
 
 export interface EndUserDeleteResponse {
   /**
-   * The ID of the deleted EndUser.
+   * The ID of the deleted end-user.
    */
   id: string;
 
   /**
-   * Indicates whether the EndUser was deleted.
+   * Indicates whether the end-user was deleted.
    */
   deleted: boolean;
 
