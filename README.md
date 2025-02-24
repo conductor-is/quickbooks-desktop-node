@@ -34,7 +34,7 @@ This repository contains the official Conductor **Node.js** library, which provi
 
 ## Documentation
 
-The REST API documentation can be found on [docs.conductor.is](https://docs.conductor.is/qbd-api). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.conductor.is](https://docs.conductor.is/api-ref). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
