@@ -118,8 +118,8 @@ export interface TimeTrackingActivity {
   createdAt: string;
 
   /**
-   * The customer or customer-job to which this time could be billed. If
-   * `billingStatus` is set to "billable", this field is required.
+   * The customer or customer-job to which this time tracking activity could be
+   * billed. If `billingStatus` is set to "billable", this field is required.
    */
   customer: TimeTrackingActivity.Customer | null;
 
@@ -230,8 +230,8 @@ export namespace TimeTrackingActivity {
   }
 
   /**
-   * The customer or customer-job to which this time could be billed. If
-   * `billingStatus` is set to "billable", this field is required.
+   * The customer or customer-job to which this time tracking activity could be
+   * billed. If `billingStatus` is set to "billable", this field is required.
    */
   export interface Customer {
     /**
@@ -394,8 +394,9 @@ export interface TimeTrackingActivityCreateParams {
   classId?: string;
 
   /**
-   * Body param: The customer or customer-job to which this time could be billed. If
-   * `billingStatus` is set to "billable", this field is required.
+   * Body param: The customer or customer-job to which this time tracking activity
+   * could be billed. If `billingStatus` is set to "billable", this field is
+   * required.
    */
   customerId?: string;
 
@@ -500,8 +501,9 @@ export interface TimeTrackingActivityUpdateParams {
   classId?: string;
 
   /**
-   * Body param: The customer or customer-job to which this time could be billed. If
-   * `billingStatus` is set to "billable", this field is required.
+   * Body param: The customer or customer-job to which this time tracking activity
+   * could be billed. If `billingStatus` is set to "billable", this field is
+   * required.
    */
   customerId?: string;
 
