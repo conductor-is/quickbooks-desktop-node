@@ -5,8 +5,8 @@ import * as Core from '../core';
 
 export class AuthSessions extends APIResource {
   /**
-   * To launch the authentication flow, create an AuthSession and pass the returned
-   * session’s `authFlowUrl` to the client for your end-user to visit in their
+   * To launch the authentication flow, create an auth session and pass the returned
+   * session's `authFlowUrl` to the client for your end-user to visit in their
    * browser.
    */
   create(body: AuthSessionCreateParams, options?: Core.RequestOptions): Core.APIPromise<AuthSession> {
@@ -16,13 +16,13 @@ export class AuthSessions extends APIResource {
 
 export interface AuthSession {
   /**
-   * The unique identifier for this AuthSession.
+   * The unique identifier for this auth session.
    */
   id: string;
 
   /**
    * The URL of the authentication flow that you will pass to your client for your
-   * user to set up their IntegrationConnection.
+   * user to set up their integration connection.
    */
   authFlowUrl: string;
 
@@ -32,19 +32,19 @@ export interface AuthSession {
   clientSecret: string;
 
   /**
-   * The date and time when this AuthSession record was created.
+   * The date and time when this auth session record was created.
    */
   createdAt: string;
 
   /**
-   * The ID of the EndUser for whom to create an IntegrationConnection.
+   * The ID of the end-user for whom to create an integration connection.
    */
   endUserId: string;
 
   /**
-   * The date and time when this AuthSession expires. By default, this value is 30
+   * The date and time when this auth session expires. By default, this value is 30
    * minutes from creation. You can extend this time by setting `linkExpiryMins` when
-   * [creating the AuthSession](/apis/auth-sessions/create).
+   * creating the auth session.
    */
   expiresAt: string;
 
@@ -63,18 +63,18 @@ export interface AuthSession {
 
 export interface AuthSessionCreateParams {
   /**
-   * The ID of the EndUser for whom to create the IntegrationConnection.
+   * The ID of the end-user for whom to create the integration connection.
    */
   endUserId: string;
 
   /**
-   * Your Conductor publishable key, which we use to create the session’s
+   * Your Conductor publishable key, which we use to create the auth session's
    * `authFlowUrl`.
    */
   publishableKey: string;
 
   /**
-   * The number of minutes after which the AuthSession will expire. Must be at least
+   * The number of minutes after which the auth session will expire. Must be at least
    * 15 minutes and no more than 7 days. If not provided, defaults to 30 minutes.
    */
   linkExpiryMins?: number;
