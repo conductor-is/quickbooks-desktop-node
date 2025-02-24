@@ -545,6 +545,12 @@ export interface TimeTrackingActivityListParams extends CursorPageParams {
   conductorEndUserId: string;
 
   /**
+   * Query param: Filter for time tracking activities tracking the time of these
+   * employees, vendors, or persons on QuickBooks's "Other Names" list.
+   */
+  entityIds?: Array<string>;
+
+  /**
    * Query param: Filter for specific time tracking activities by their
    * QuickBooks-assigned unique identifier(s).
    *
@@ -555,12 +561,6 @@ export interface TimeTrackingActivityListParams extends CursorPageParams {
    * request will return an error.
    */
   ids?: Array<string>;
-
-  /**
-   * Query param: Filter for time tracking activities tracking the time of these
-   * employees, vendors, or persons on QuickBooks's "Other Names" list.
-   */
-  timeTrackingEntityIds?: Array<string>;
 
   /**
    * Query param: Filter for time tracking activities created on or after this date,
