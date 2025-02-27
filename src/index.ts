@@ -16,10 +16,9 @@ import {
   EndUserListResponse,
   EndUserPassthroughParams,
   EndUserPassthroughResponse,
-  EndUserPingResponse,
   EndUsers,
 } from './resources/end-users';
-import { Qbd } from './resources/qbd/qbd';
+import { Qbd, QbdHealthCheckParams, QbdHealthCheckResponse } from './resources/qbd/qbd';
 
 export interface ClientOptions {
   /**
@@ -199,12 +198,15 @@ export declare namespace Conductor {
     type EndUserListResponse as EndUserListResponse,
     type EndUserDeleteResponse as EndUserDeleteResponse,
     type EndUserPassthroughResponse as EndUserPassthroughResponse,
-    type EndUserPingResponse as EndUserPingResponse,
     type EndUserCreateParams as EndUserCreateParams,
     type EndUserPassthroughParams as EndUserPassthroughParams,
   };
 
-  export { Qbd as Qbd };
+  export {
+    Qbd as Qbd,
+    type QbdHealthCheckResponse as QbdHealthCheckResponse,
+    type QbdHealthCheckParams as QbdHealthCheckParams,
+  };
 }
 
 export { toFile, fileFromPath } from './uploads';

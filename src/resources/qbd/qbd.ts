@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import * as Core from '../../core';
 import * as AccountsAPI from './accounts';
 import {
   Account,
@@ -444,6 +445,39 @@ export class Qbd extends APIResource {
   transfers: TransfersAPI.Transfers = new TransfersAPI.Transfers(this._client);
   vendorCredits: VendorCreditsAPI.VendorCredits = new VendorCreditsAPI.VendorCredits(this._client);
   vendors: VendorsAPI.Vendors = new VendorsAPI.Vendors(this._client);
+
+  /**
+   * Checks whether the specified QuickBooks Desktop connection is active and can
+   * process requests end-to-end. This is useful for showing a "connection status"
+   * indicator in your app. As with any request to QuickBooks Desktop, the health
+   * check may fail if QuickBooks Desktop is not running, the wrong company file is
+   * open, or if a modal dialog is open. Timeout is 60 seconds.
+   */
+  healthCheck(
+    params: QbdHealthCheckParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<QbdHealthCheckResponse> {
+    const { conductorEndUserId } = params;
+    return this._client.get('/quickbooks-desktop/health-check', {
+      ...options,
+      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+    });
+  }
+}
+
+export interface QbdHealthCheckResponse {
+  /**
+   * The time, in milliseconds, that it took to perform the health check.
+   */
+  duration: number;
+}
+
+export interface QbdHealthCheckParams {
+  /**
+   * The ID of the EndUser to receive this request (e.g.,
+   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   */
+  conductorEndUserId: string;
 }
 
 Qbd.Accounts = Accounts;
@@ -512,6 +546,11 @@ Qbd.Vendors = Vendors;
 Qbd.VendorsCursorPage = VendorsCursorPage;
 
 export declare namespace Qbd {
+  export {
+    type QbdHealthCheckResponse as QbdHealthCheckResponse,
+    type QbdHealthCheckParams as QbdHealthCheckParams,
+  };
+
   export {
     Accounts as Accounts,
     type Account as Account,
