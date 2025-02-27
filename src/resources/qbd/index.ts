@@ -228,7 +228,7 @@ export {
   type PurchaseOrderListParams,
   type PurchaseOrderDeleteParams,
 } from './purchase-orders';
-export { Qbd } from './qbd';
+export { Qbd, type QbdHealthCheckResponse, type QbdHealthCheckParams } from './qbd';
 export {
   ReceivePaymentsCursorPage,
   ReceivePayments,

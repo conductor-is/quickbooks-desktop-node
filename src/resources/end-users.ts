@@ -44,19 +44,6 @@ export class EndUsers extends APIResource {
   ): Core.APIPromise<EndUserPassthroughResponse> {
     return this._client.post(`/end-users/${id}/passthrough/${integrationSlug}`, { body, ...options });
   }
-
-  /**
-   * Checks whether the specified integration connection can connect and process
-   * requests end-to-end. This is useful for showing a "connection status" indicator
-   * in your app.
-   */
-  ping(
-    id: string,
-    integrationSlug: 'quickbooks_desktop',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EndUserPingResponse> {
-    return this._client.get(`/end-users/${id}/ping/${integrationSlug}`, options);
-  }
 }
 
 export interface EndUser {
@@ -174,13 +161,6 @@ export interface EndUserDeleteResponse {
  */
 export type EndUserPassthroughResponse = Record<string, unknown>;
 
-export interface EndUserPingResponse {
-  /**
-   * The time, in milliseconds, that it took to ping the connection.
-   */
-  duration: number;
-}
-
 export interface EndUserCreateParams {
   /**
    * The end-user's company name that will be shown elsewhere in Conductor.
@@ -209,7 +189,6 @@ export declare namespace EndUsers {
     type EndUserListResponse as EndUserListResponse,
     type EndUserDeleteResponse as EndUserDeleteResponse,
     type EndUserPassthroughResponse as EndUserPassthroughResponse,
-    type EndUserPingResponse as EndUserPingResponse,
     type EndUserCreateParams as EndUserCreateParams,
     type EndUserPassthroughParams as EndUserPassthroughParams,
   };
