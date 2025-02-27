@@ -7,8 +7,7 @@ export {
   type EndUserListResponse,
   type EndUserDeleteResponse,
   type EndUserPassthroughResponse,
-  type EndUserPingResponse,
   type EndUserCreateParams,
   type EndUserPassthroughParams,
 } from './end-users';
-export { Qbd } from './qbd/qbd';
+export { Qbd, type QbdHealthCheckResponse, type QbdHealthCheckParams } from './qbd/qbd';
