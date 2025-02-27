@@ -16,7 +16,6 @@ Types:
 - <code><a href="./src/resources/end-users.ts">EndUserListResponse</a></code>
 - <code><a href="./src/resources/end-users.ts">EndUserDeleteResponse</a></code>
 - <code><a href="./src/resources/end-users.ts">EndUserPassthroughResponse</a></code>
-- <code><a href="./src/resources/end-users.ts">EndUserPingResponse</a></code>
 
 Methods:
 
@@ -25,9 +24,16 @@ Methods:
 - <code title="get /end-users">client.endUsers.<a href="./src/resources/end-users.ts">list</a>() -> EndUserListResponse</code>
 - <code title="delete /end-users/{id}">client.endUsers.<a href="./src/resources/end-users.ts">delete</a>(id) -> EndUserDeleteResponse</code>
 - <code title="post /end-users/{id}/passthrough/{integrationSlug}">client.endUsers.<a href="./src/resources/end-users.ts">passthrough</a>(id, integrationSlug, { ...params }) -> EndUserPassthroughResponse</code>
-- <code title="get /end-users/{id}/ping/{integrationSlug}">client.endUsers.<a href="./src/resources/end-users.ts">ping</a>(id, integrationSlug) -> EndUserPingResponse</code>
 
 # Qbd
+
+Types:
+
+- <code><a href="./src/resources/qbd/qbd.ts">QbdHealthCheckResponse</a></code>
+
+Methods:
+
+- <code title="get /quickbooks-desktop/health-check">client.qbd.<a href="./src/resources/qbd/qbd.ts">healthCheck</a>({ ...params }) -> QbdHealthCheckResponse</code>
 
 ## Accounts
 
