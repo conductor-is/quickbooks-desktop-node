@@ -450,7 +450,7 @@ export class Qbd extends APIResource {
    * Checks whether the specified QuickBooks Desktop connection is active and can
    * process requests end-to-end. This is useful for showing a "connection status"
    * indicator in your app. As with any request to QuickBooks Desktop, the health
-   * check may fail if QuickBooks Desktop is not running, the wrong company file is
+   * check may fail if the application is not running, the wrong company file is
    * open, or if a modal dialog is open. Timeout is 60 seconds.
    */
   healthCheck(
