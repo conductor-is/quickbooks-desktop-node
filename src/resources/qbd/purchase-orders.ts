@@ -2990,14 +2990,14 @@ export interface PurchaseOrderListParams extends CursorPageParams {
   refNumberTo?: string;
 
   /**
-   * Query param: Filter for purchase orders created on or after this date, in ISO
-   * 8601 format (YYYY-MM-DD).
+   * Query param: Filter for purchase orders whose `date` field is on or after this
+   * date, in ISO 8601 format (YYYY-MM-DD).
    */
   transactionDateFrom?: string;
 
   /**
-   * Query param: Filter for purchase orders created on or before this date, in ISO
-   * 8601 format (YYYY-MM-DD).
+   * Query param: Filter for purchase orders whose `date` field is on or before this
+   * date, in ISO 8601 format (YYYY-MM-DD).
    */
   transactionDateTo?: string;
 
