@@ -1,5 +1,24 @@
 # Changelog
 
+## 12.0.0-beta.11 (2025-03-05)
+
+Full Changelog: [v12.0.0-beta.10...v12.0.0-beta.11](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.10...v12.0.0-beta.11)
+
+### Features
+
+* **api:** api update ([#67](https://github.com/conductor-is/quickbooks-desktop-node/issues/67)) ([57eff6f](https://github.com/conductor-is/quickbooks-desktop-node/commit/57eff6f2f1f50dd239dff2caab088acb0904a670))
+* **api:** api update ([#68](https://github.com/conductor-is/quickbooks-desktop-node/issues/68)) ([89a10fe](https://github.com/conductor-is/quickbooks-desktop-node/commit/89a10fe7257d423bbf291580ad4e5ec7a3ae1efb))
+* **api:** api update ([#69](https://github.com/conductor-is/quickbooks-desktop-node/issues/69)) ([ee19438](https://github.com/conductor-is/quickbooks-desktop-node/commit/ee194388b3e9a79007de8608d6d78fa15677949f))
+* **api:** api update ([#70](https://github.com/conductor-is/quickbooks-desktop-node/issues/70)) ([5f8eb11](https://github.com/conductor-is/quickbooks-desktop-node/commit/5f8eb11599684f962bd9f596727c552667d7dfbc))
+* **api:** api update ([#71](https://github.com/conductor-is/quickbooks-desktop-node/issues/71)) ([3366574](https://github.com/conductor-is/quickbooks-desktop-node/commit/33665749f70db71a6b2b99b9d8385e1fdff024ed))
+* **api:** api update ([#72](https://github.com/conductor-is/quickbooks-desktop-node/issues/72)) ([593e339](https://github.com/conductor-is/quickbooks-desktop-node/commit/593e3392ec9f411ef5018d7630da24667dab0918))
+* **api:** api update ([#73](https://github.com/conductor-is/quickbooks-desktop-node/issues/73)) ([865944c](https://github.com/conductor-is/quickbooks-desktop-node/commit/865944c917d89a7379f19ee8dbfdd49c80761c3c))
+
+
+### Chores
+
+* **internal:** codegen related update ([#65](https://github.com/conductor-is/quickbooks-desktop-node/issues/65)) ([67a702f](https://github.com/conductor-is/quickbooks-desktop-node/commit/67a702f1ba6d1603db597e7e4df094ee7042f75d))
+
 ## 12.0.0-beta.10 (2025-02-27)
 
 Full Changelog: [v12.0.0-beta.9...v12.0.0-beta.10](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.9...v12.0.0-beta.10)
