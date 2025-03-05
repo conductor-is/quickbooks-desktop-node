@@ -327,6 +327,13 @@ export {
   type TimeTrackingActivityDeleteParams,
 } from './time-tracking-activities';
 export {
+  TransactionsCursorPage,
+  Transactions,
+  type Transaction,
+  type TransactionRetrieveParams,
+  type TransactionListParams,
+} from './transactions';
+export {
   TransfersCursorPage,
   Transfers,
   type Transfer,
