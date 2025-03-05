@@ -106,7 +106,19 @@ export interface Transaction {
   transactionDate: string;
 
   /**
-   * The type of transaction for this transaction.
+   * The QuickBooks-assigned unique identifier of this transaction (if this is a
+   * transaction line object, this field will be `null`).
+   */
+  transactionId: string | null;
+
+  /**
+   * The QuickBooks-assigned unique identifier of this transaction line (if this is a
+   * transaction object, this field will be `null`).
+   */
+  transactionLineId: string | null;
+
+  /**
+   * The type of transaction.
    */
   transactionType:
     | 'ar_refund_credit_card'
@@ -143,18 +155,6 @@ export interface Transaction {
    * in QuickBooks.
    */
   updatedAt: string;
-
-  /**
-   * The QuickBooks-assigned unique identifier of this transaction (if this is a
-   * transaction line object, this field will be `null`).
-   */
-  transactionId?: string;
-
-  /**
-   * The QuickBooks-assigned unique identifier of this transaction line (if this is a
-   * transaction object, this field will be `null`).
-   */
-  transactionLineId?: string;
 }
 
 export namespace Transaction {
