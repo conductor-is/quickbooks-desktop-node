@@ -360,6 +360,14 @@ import {
   TimeTrackingActivityRetrieveParams,
   TimeTrackingActivityUpdateParams,
 } from './time-tracking-activities';
+import * as TransactionsAPI from './transactions';
+import {
+  Transaction,
+  TransactionListParams,
+  TransactionRetrieveParams,
+  Transactions,
+  TransactionsCursorPage,
+} from './transactions';
 import * as TransfersAPI from './transfers';
 import {
   Transfer,
@@ -442,6 +450,7 @@ export class Qbd extends APIResource {
   subtotalItems: SubtotalItemsAPI.SubtotalItems = new SubtotalItemsAPI.SubtotalItems(this._client);
   timeTrackingActivities: TimeTrackingActivitiesAPI.TimeTrackingActivities =
     new TimeTrackingActivitiesAPI.TimeTrackingActivities(this._client);
+  transactions: TransactionsAPI.Transactions = new TransactionsAPI.Transactions(this._client);
   transfers: TransfersAPI.Transfers = new TransfersAPI.Transfers(this._client);
   vendorCredits: VendorCreditsAPI.VendorCredits = new VendorCreditsAPI.VendorCredits(this._client);
   vendors: VendorsAPI.Vendors = new VendorsAPI.Vendors(this._client);
@@ -544,6 +553,8 @@ Qbd.SubtotalItems = SubtotalItems;
 Qbd.SubtotalItemsCursorPage = SubtotalItemsCursorPage;
 Qbd.TimeTrackingActivities = TimeTrackingActivities;
 Qbd.TimeTrackingActivitiesCursorPage = TimeTrackingActivitiesCursorPage;
+Qbd.Transactions = Transactions;
+Qbd.TransactionsCursorPage = TransactionsCursorPage;
 Qbd.Transfers = Transfers;
 Qbd.TransfersCursorPage = TransfersCursorPage;
 Qbd.VendorCredits = VendorCredits;
@@ -913,6 +924,14 @@ export declare namespace Qbd {
     type TimeTrackingActivityUpdateParams as TimeTrackingActivityUpdateParams,
     type TimeTrackingActivityListParams as TimeTrackingActivityListParams,
     type TimeTrackingActivityDeleteParams as TimeTrackingActivityDeleteParams,
+  };
+
+  export {
+    Transactions as Transactions,
+    type Transaction as Transaction,
+    TransactionsCursorPage as TransactionsCursorPage,
+    type TransactionRetrieveParams as TransactionRetrieveParams,
+    type TransactionListParams as TransactionListParams,
   };
 
   export {

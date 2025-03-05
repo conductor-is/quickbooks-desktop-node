@@ -108,7 +108,7 @@ export interface Employee {
 
   /**
    * The employee's billing rate, used to override service item rates in time
-   * tracking transactions.
+   * tracking activities.
    */
   billingRate: Employee.BillingRate | null;
 
@@ -513,7 +513,7 @@ export namespace Employee {
 
   /**
    * The employee's billing rate, used to override service item rates in time
-   * tracking transactions.
+   * tracking activities.
    */
   export interface BillingRate {
     /**
@@ -931,7 +931,7 @@ export interface EmployeeCreateParams {
 
   /**
    * Body param: The employee's billing rate, used to override service item rates in
-   * time tracking transactions.
+   * time tracking activities.
    */
   billingRateId?: string;
 
@@ -1610,7 +1610,7 @@ export interface EmployeeUpdateParams {
 
   /**
    * Body param: The employee's billing rate, used to override service item rates in
-   * time tracking transactions.
+   * time tracking activities.
    */
   billingRateId?: string;
 

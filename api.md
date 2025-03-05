@@ -500,6 +500,17 @@ Methods:
 - <code title="get /quickbooks-desktop/time-tracking-activities">client.qbd.timeTrackingActivities.<a href="./src/resources/qbd/time-tracking-activities.ts">list</a>({ ...params }) -> TimeTrackingActivitiesCursorPage</code>
 - <code title="delete /quickbooks-desktop/time-tracking-activities/{id}">client.qbd.timeTrackingActivities.<a href="./src/resources/qbd/time-tracking-activities.ts">delete</a>(id, { ...params }) -> TimeTrackingActivityDeleteResponse</code>
 
+## Transactions
+
+Types:
+
+- <code><a href="./src/resources/qbd/transactions.ts">Transaction</a></code>
+
+Methods:
+
+- <code title="get /quickbooks-desktop/transactions/{id}">client.qbd.transactions.<a href="./src/resources/qbd/transactions.ts">retrieve</a>(id, { ...params }) -> Transaction</code>
+- <code title="get /quickbooks-desktop/transactions">client.qbd.transactions.<a href="./src/resources/qbd/transactions.ts">list</a>({ ...params }) -> TransactionsCursorPage</code>
+
 ## Transfers
 
 Types:
