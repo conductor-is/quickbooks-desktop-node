@@ -106,7 +106,7 @@ export interface Vendor {
 
   /**
    * The vendor's billing rate, used to override service item rates in time tracking
-   * transactions.
+   * activities.
    */
   billingRate: Vendor.BillingRate | null;
 
@@ -524,7 +524,7 @@ export namespace Vendor {
 
   /**
    * The vendor's billing rate, used to override service item rates in time tracking
-   * transactions.
+   * activities.
    */
   export interface BillingRate {
     /**
@@ -889,7 +889,7 @@ export interface VendorCreateParams {
 
   /**
    * Body param: The vendor's billing rate, used to override service item rates in
-   * time tracking transactions.
+   * time tracking activities.
    */
   billingRateId?: string;
 
@@ -1407,7 +1407,7 @@ export interface VendorUpdateParams {
 
   /**
    * Body param: The vendor's billing rate, used to override service item rates in
-   * time tracking transactions.
+   * time tracking activities.
    */
   billingRateId?: string;
 
