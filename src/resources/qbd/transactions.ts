@@ -25,9 +25,8 @@ export class Transactions extends APIResource {
    * endpoint only returns fields common to all transaction types, such as ID, type,
    * dates, account, and reference numbers. For more details specific to that
    * transaction type, make a subsequent call to the relevant transaction-specific
-   * endpoint (such as invoices, bills, etc.).
-   *
-   * **NOTE:** This endpoint does not support time tracking activities.
+   * endpoint (such as invoices, bills, etc.) NOTE: This endpoint does not support
+   * time tracking activities.
    */
   list(
     params: TransactionListParams,
@@ -277,16 +276,16 @@ export interface TransactionListParams extends CursorPageParams {
    * Query param: Filter for specific transactions by their QuickBooks-assigned
    * unique identifier(s).
    *
-   * **NOTE**: You cannot supply the ID of a time tracking activity to this request.
-   * If you do, you get an error stating that no such record could be found, even
-   * though the transaction is in QuickBooks. This limitation is enforced by
-   * QuickBooks.
-   *
    * **IMPORTANT**: If you include this parameter, QuickBooks will ignore all other
    * query parameters for this request.
    *
    * **NOTE**: If any of the values you specify in this parameter are not found, the
    * request will return an error.
+   *
+   * **NOTE**: You cannot supply the ID of a time tracking activity to this request.
+   * If you do, you get an error stating that no such record could be found, even
+   * though the transaction is in QuickBooks. This limitation is enforced by
+   * QuickBooks.
    */
   ids?: Array<string>;
 
