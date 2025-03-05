@@ -106,14 +106,16 @@ export interface Transaction {
   transactionDate: string;
 
   /**
-   * The QuickBooks-assigned unique identifier of this transaction. **NOTE:** If this
-   * is a transaction line object, this field will be `null`.
+   * The QuickBooks-assigned unique identifier of this transaction. **NOTE:** If
+   * `null`, this is a transaction line object and `transactionLineId` will be
+   * defined instead.
    */
   transactionId: string | null;
 
   /**
    * The QuickBooks-assigned unique identifier of this transaction line. **NOTE:** If
-   * this is a transaction object, this field will be `null`.
+   * `null`, this is a transaction object and `transactionId` will be defined
+   * instead.
    */
   transactionLineId: string | null;
 
