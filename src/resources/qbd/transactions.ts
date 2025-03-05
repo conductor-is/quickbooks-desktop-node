@@ -21,7 +21,7 @@ export class Transactions extends APIResource {
   }
 
   /**
-   * Search across all transaction types. Unlike transaction-specific queries, this
+   * Searches across all transaction types. Unlike transaction-specific queries, this
    * endpoint only returns fields common to all transaction types, such as ID, type,
    * dates, account, and reference numbers. For more details specific to that
    * transaction type, make a subsequent call to the relevant transaction-specific
@@ -106,14 +106,14 @@ export interface Transaction {
   transactionDate: string;
 
   /**
-   * The QuickBooks-assigned unique identifier of this transaction (if this is a
-   * transaction line object, this field will be `null`).
+   * The QuickBooks-assigned unique identifier of this transaction. **NOTE:** If this
+   * is a transaction line object, this field will be `null`.
    */
   transactionId: string | null;
 
   /**
-   * The QuickBooks-assigned unique identifier of this transaction line (if this is a
-   * transaction object, this field will be `null`).
+   * The QuickBooks-assigned unique identifier of this transaction line. **NOTE:** If
+   * this is a transaction object, this field will be `null`.
    */
   transactionLineId: string | null;
 
