@@ -25,9 +25,8 @@ export class Transactions extends APIResource {
    * endpoint only returns fields common to all transaction types, such as ID, type,
    * dates, account, and reference numbers. For more details specific to that
    * transaction type, make a subsequent call to the relevant transaction-specific
-   * endpoint (such as invoices, bills, etc.)
-   *
-   * NOTE: This endpoint does not support time tracking activities.
+   * endpoint (such as invoices, bills, etc.). NOTE: This endpoint does not support
+   * time tracking activities.
    */
   list(
     params: TransactionListParams,
