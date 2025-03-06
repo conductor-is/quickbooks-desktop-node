@@ -52,7 +52,7 @@ export interface Transaction {
   /**
    * The monetary amount of this transaction, represented as a decimal string.
    */
-  amount: string | null;
+  amount: string;
 
   /**
    * The monetary amount of this transaction converted to the home currency of the
