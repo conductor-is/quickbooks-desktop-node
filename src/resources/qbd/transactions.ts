@@ -284,9 +284,8 @@ export interface TransactionListParams extends CursorPageParams {
    * request will return an error.
    *
    * **NOTE**: You cannot supply the ID of a time tracking activity to this request.
-   * If you do, you get an error stating that no such record could be found, even
-   * though the transaction is in QuickBooks. This limitation is enforced by
-   * QuickBooks.
+   * If you do, QuickBooks will return an error stating that no such record could be
+   * found, even though the transaction exists.
    */
   ids?: Array<string>;
 

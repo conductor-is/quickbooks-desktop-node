@@ -53,7 +53,7 @@ export class CursorPage<Item> extends AbstractPage<Item> implements CursorPageRe
 
     return {
       params: {
-        cursor: cursor,
+        cursor,
       },
     };
   }
