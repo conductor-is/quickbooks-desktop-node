@@ -1,5 +1,22 @@
 # Changelog
 
+## 12.0.0-beta.14 (2025-03-12)
+
+Full Changelog: [v12.0.0-beta.13...v12.0.0-beta.14](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.13...v12.0.0-beta.14)
+
+### Features
+
+* add SKIP_BREW env var to ./scripts/bootstrap ([#87](https://github.com/conductor-is/quickbooks-desktop-node/issues/87)) ([e98884e](https://github.com/conductor-is/quickbooks-desktop-node/commit/e98884ed6ef44f24e40d434a5e762ccf10f2421d))
+* **api:** api update ([#83](https://github.com/conductor-is/quickbooks-desktop-node/issues/83)) ([89f3a70](https://github.com/conductor-is/quickbooks-desktop-node/commit/89f3a7075b22c248de31e89475827398a7b223dd))
+* **api:** api update ([#86](https://github.com/conductor-is/quickbooks-desktop-node/issues/86)) ([9d5acc7](https://github.com/conductor-is/quickbooks-desktop-node/commit/9d5acc7a1f7ac06a3c39197d02e156a0c5f8ebcd))
+* **api:** api update ([#89](https://github.com/conductor-is/quickbooks-desktop-node/issues/89)) ([472234a](https://github.com/conductor-is/quickbooks-desktop-node/commit/472234a01ef2d0fdde92204933d22904158b7758))
+* **client:** accept RFC6838 JSON content types ([#88](https://github.com/conductor-is/quickbooks-desktop-node/issues/88)) ([ce6ae46](https://github.com/conductor-is/quickbooks-desktop-node/commit/ce6ae4679fb078601f989f94788e78fd000d5585))
+
+
+### Chores
+
+* **internal:** codegen related update ([#85](https://github.com/conductor-is/quickbooks-desktop-node/issues/85)) ([ef8af4e](https://github.com/conductor-is/quickbooks-desktop-node/commit/ef8af4ea23c8a637a969c94432ccc9552208f323))
+
 ## 12.0.0-beta.13 (2025-03-06)
 
 Full Changelog: [v12.0.0-beta.12...v12.0.0-beta.13](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.12...v12.0.0-beta.13)
