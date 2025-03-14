@@ -1,5 +1,18 @@
 # Changelog
 
+## 12.0.0-beta.15 (2025-03-14)
+
+Full Changelog: [v12.0.0-beta.14...v12.0.0-beta.15](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.14...v12.0.0-beta.15)
+
+### Bug Fixes
+
+* **exports:** ensure resource imports don't require /index ([#93](https://github.com/conductor-is/quickbooks-desktop-node/issues/93)) ([d5a7a04](https://github.com/conductor-is/quickbooks-desktop-node/commit/d5a7a049695f5d02ecd205c0579ad88c9726d680))
+
+
+### Chores
+
+* **internal:** remove extra empty newlines ([#91](https://github.com/conductor-is/quickbooks-desktop-node/issues/91)) ([3829e01](https://github.com/conductor-is/quickbooks-desktop-node/commit/3829e0110f527a7f1ebf7248b4066af098369126))
+
 ## 12.0.0-beta.14 (2025-03-12)
 
 Full Changelog: [v12.0.0-beta.13...v12.0.0-beta.14](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.13...v12.0.0-beta.14)
