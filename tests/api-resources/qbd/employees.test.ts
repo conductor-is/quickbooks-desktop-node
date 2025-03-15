@@ -172,6 +172,7 @@ describe('resource employees', () => {
       },
       employeePayroll: {
         classId: '80000001-1234567890',
+        deleteAllEarnings: false,
         earnings: [{ payrollWageItemId: '80000001-1234567890', rate: '10.00', ratePercent: '10.5' }],
         payPeriod: 'biweekly',
         sickHours: {
