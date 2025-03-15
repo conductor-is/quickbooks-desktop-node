@@ -2059,7 +2059,19 @@ export namespace EmployeeUpdateParams {
     classId?: string;
 
     /**
+     * When `true`, deletes all earnings records for this employee.
+     */
+    deleteAllEarnings?: boolean;
+
+    /**
      * The employee's earnings.
+     *
+     * **IMPORTANT**: When updating employees, if you include any earnings records in
+     * your update request, QuickBooks will delete all existing earnings records for
+     * this employee and replace them with the new records you provide. If you do not
+     * include any earnings records, the existing earnings records will remain
+     * unchanged. To delete all earnings records without adding new ones, set the
+     * `deleteAllEarnings` field to `true`.
      */
     earnings?: Array<EmployeePayroll.Earning>;
 
