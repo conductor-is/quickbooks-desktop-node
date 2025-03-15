@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.0.0-beta.16 (2025-03-15)
+
+Full Changelog: [v12.0.0-beta.15...v12.0.0-beta.16](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.15...v12.0.0-beta.16)
+
+### Features
+
+* **api:** api update ([#95](https://github.com/conductor-is/quickbooks-desktop-node/issues/95)) ([616aa58](https://github.com/conductor-is/quickbooks-desktop-node/commit/616aa58a0e1745b446048ac66974675efbf3df95))
+
 ## 12.0.0-beta.15 (2025-03-14)
 
 Full Changelog: [v12.0.0-beta.14...v12.0.0-beta.15](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.14...v12.0.0-beta.15)
