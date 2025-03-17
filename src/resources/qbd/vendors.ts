@@ -457,7 +457,7 @@ export namespace Vendor {
     /**
      * The date this note was last updated, in ISO 8601 format (YYYY-MM-DD).
      */
-    date: string;
+    date: string | null;
 
     /**
      * The text of this note.
@@ -1711,7 +1711,7 @@ export namespace VendorUpdateParams {
     /**
      * The text of this note.
      */
-    note?: string;
+    note: string;
   }
 
   /**
