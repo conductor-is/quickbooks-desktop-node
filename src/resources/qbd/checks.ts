@@ -89,7 +89,7 @@ export interface Check {
    * equals the sum of the amounts in the check's expense lines, item lines, and item
    * group lines.
    */
-  amount: string | null;
+  amount: string;
 
   /**
    * The monetary amount of this check converted to the home currency of the
