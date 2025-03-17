@@ -195,7 +195,7 @@ export interface ReceivePayment {
    * The total monetary amount of this receive-payment, represented as a decimal
    * string.
    */
-  totalAmount: string | null;
+  totalAmount: string;
 
   /**
    * The total monetary amount of this receive-payment converted to the home currency
