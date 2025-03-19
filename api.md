@@ -124,14 +124,6 @@ Methods:
 
 ## Company
 
-Types:
-
-- <code><a href="./src/resources/qbd/company.ts">Company</a></code>
-
-Methods:
-
-- <code title="get /quickbooks-desktop/company">client.qbd.company.<a href="./src/resources/qbd/company.ts">retrieve</a>({ ...params }) -> Company</code>
-
 ## CreditCardCharges
 
 Types:

@@ -70,7 +70,7 @@ import {
   Classes,
 } from './classes';
 import * as CompanyAPI from './company';
-import { Company, CompanyResource, CompanyRetrieveParams } from './company';
+import { Company } from './company';
 import * as CreditCardChargesAPI from './credit-card-charges';
 import {
   CreditCardCharge,
@@ -413,7 +413,7 @@ export class Qbd extends APIResource {
   bills: BillsAPI.Bills = new BillsAPI.Bills(this._client);
   checks: ChecksAPI.Checks = new ChecksAPI.Checks(this._client);
   classes: ClassesAPI.Classes = new ClassesAPI.Classes(this._client);
-  company: CompanyAPI.CompanyResource = new CompanyAPI.CompanyResource(this._client);
+  company: CompanyAPI.Company = new CompanyAPI.Company(this._client);
   creditCardCharges: CreditCardChargesAPI.CreditCardCharges = new CreditCardChargesAPI.CreditCardCharges(
     this._client,
   );
@@ -508,7 +508,7 @@ Qbd.BillsCursorPage = BillsCursorPage;
 Qbd.Checks = Checks;
 Qbd.ChecksCursorPage = ChecksCursorPage;
 Qbd.Classes = Classes;
-Qbd.CompanyResource = CompanyResource;
+Qbd.Company = Company;
 Qbd.CreditCardCharges = CreditCardCharges;
 Qbd.CreditCardChargesCursorPage = CreditCardChargesCursorPage;
 Qbd.CreditCardCredits = CreditCardCredits;
@@ -639,11 +639,7 @@ export declare namespace Qbd {
     type ClassListParams as ClassListParams,
   };
 
-  export {
-    CompanyResource as CompanyResource,
-    type Company as Company,
-    type CompanyRetrieveParams as CompanyRetrieveParams,
-  };
+  export { Company as Company };
 
   export {
     CreditCardCharges as CreditCardCharges,
