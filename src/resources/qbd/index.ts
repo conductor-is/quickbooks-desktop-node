@@ -61,7 +61,6 @@ export {
   type ClassUpdateParams,
   type ClassListParams,
 } from './classes';
-export { Company } from './company';
 export {
   CreditCardChargesCursorPage,
   CreditCardCharges,
