@@ -447,7 +447,7 @@ export namespace Company {
       name: string;
 
       /**
-       * The status of this company's Intuit services, for example, Intuit Payroll, QBMS.
+       * The status of this service's subscription.
        */
       serviceStatus: 'active' | 'expired' | 'never' | 'pending' | 'suspended' | 'terminated' | 'trial' | null;
     }
