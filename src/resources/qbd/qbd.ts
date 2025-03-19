@@ -69,6 +69,8 @@ import {
   ClassUpdateParams,
   Classes,
 } from './classes';
+import * as CompanyAPI from './company';
+import { Company } from './company';
 import * as CreditCardChargesAPI from './credit-card-charges';
 import {
   CreditCardCharge,
@@ -411,6 +413,7 @@ export class Qbd extends APIResource {
   bills: BillsAPI.Bills = new BillsAPI.Bills(this._client);
   checks: ChecksAPI.Checks = new ChecksAPI.Checks(this._client);
   classes: ClassesAPI.Classes = new ClassesAPI.Classes(this._client);
+  company: CompanyAPI.Company = new CompanyAPI.Company(this._client);
   creditCardCharges: CreditCardChargesAPI.CreditCardCharges = new CreditCardChargesAPI.CreditCardCharges(
     this._client,
   );
@@ -505,6 +508,7 @@ Qbd.BillsCursorPage = BillsCursorPage;
 Qbd.Checks = Checks;
 Qbd.ChecksCursorPage = ChecksCursorPage;
 Qbd.Classes = Classes;
+Qbd.Company = Company;
 Qbd.CreditCardCharges = CreditCardCharges;
 Qbd.CreditCardChargesCursorPage = CreditCardChargesCursorPage;
 Qbd.CreditCardCredits = CreditCardCredits;
@@ -634,6 +638,8 @@ export declare namespace Qbd {
     type ClassUpdateParams as ClassUpdateParams,
     type ClassListParams as ClassListParams,
   };
+
+  export { Company as Company };
 
   export {
     CreditCardCharges as CreditCardCharges,
