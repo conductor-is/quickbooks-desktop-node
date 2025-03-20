@@ -62,6 +62,13 @@ export {
   type ClassListParams,
 } from './classes';
 export {
+  CompanyResource,
+  type Company,
+  type Preferences,
+  type CompanyInfoParams,
+  type CompanyPreferencesParams,
+} from './company';
+export {
   CreditCardChargesCursorPage,
   CreditCardCharges,
   type CreditCardCharge,
