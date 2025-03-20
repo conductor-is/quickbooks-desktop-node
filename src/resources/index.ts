@@ -10,12 +10,4 @@ export {
   type EndUserCreateParams,
   type EndUserPassthroughParams,
 } from './end-users';
-export {
-  Qbd,
-  type CompanyInfo,
-  type CompanyPreferences,
-  type QbdHealthCheckResponse,
-  type QbdHealthCheckParams,
-  type QbdRetrieveCompanyInfoParams,
-  type QbdRetrieveCompanyPreferencesParams,
-} from './qbd/qbd';
+export { Qbd, type QbdHealthCheckResponse, type QbdHealthCheckParams } from './qbd/qbd';

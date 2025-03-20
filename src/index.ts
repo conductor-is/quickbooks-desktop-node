@@ -18,15 +18,7 @@ import {
   EndUserPassthroughResponse,
   EndUsers,
 } from './resources/end-users';
-import {
-  CompanyInfo,
-  CompanyPreferences,
-  Qbd,
-  QbdHealthCheckParams,
-  QbdHealthCheckResponse,
-  QbdRetrieveCompanyInfoParams,
-  QbdRetrieveCompanyPreferencesParams,
-} from './resources/qbd/qbd';
+import { Qbd, QbdHealthCheckParams, QbdHealthCheckResponse } from './resources/qbd/qbd';
 
 export interface ClientOptions {
   /**
@@ -212,12 +204,8 @@ export declare namespace Conductor {
 
   export {
     Qbd as Qbd,
-    type CompanyInfo as CompanyInfo,
-    type CompanyPreferences as CompanyPreferences,
     type QbdHealthCheckResponse as QbdHealthCheckResponse,
     type QbdHealthCheckParams as QbdHealthCheckParams,
-    type QbdRetrieveCompanyInfoParams as QbdRetrieveCompanyInfoParams,
-    type QbdRetrieveCompanyPreferencesParams as QbdRetrieveCompanyPreferencesParams,
   };
 }
 
