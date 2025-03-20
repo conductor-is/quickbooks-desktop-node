@@ -8,9 +8,9 @@ const client = new Conductor({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource qbd', () => {
-  test('healthCheck: only required params', async () => {
-    const responsePromise = client.qbd.healthCheck({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+describe('resource preferences', () => {
+  test('retrieve: only required params', async () => {
+    const responsePromise = client.qbd.preferences.retrieve({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,7 +20,7 @@ describe('resource qbd', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('healthCheck: required and optional params', async () => {
-    const response = await client.qbd.healthCheck({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+  test('retrieve: required and optional params', async () => {
+    const response = await client.qbd.preferences.retrieve({ conductorEndUserId: 'end_usr_1234567abcdefg' });
   });
 });
