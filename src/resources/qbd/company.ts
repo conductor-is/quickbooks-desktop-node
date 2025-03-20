@@ -432,7 +432,7 @@ export namespace Company {
   export namespace SubscribedServices {
     export interface Service {
       /**
-       * The provider of this subscribed service, such as Intuit.
+       * The domain of this subscribed service
        */
       domain: string | null;
 
