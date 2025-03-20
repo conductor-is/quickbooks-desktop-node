@@ -3,23 +3,23 @@
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
 
-export class CompanyInfoResource extends APIResource {
+export class CompanyResource extends APIResource {
   /**
    * Returns detailed information about the connected QuickBooks company file,
    * including company address, legal name, preferences, and subscribed services.
    * Note that company information cannot be modified through the API, only through
    * the QuickBooks Desktop user interface.
    */
-  retrieve(params: CompanyInfoRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<CompanyInfo> {
+  retrieve(params: CompanyRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Company> {
     const { conductorEndUserId } = params;
-    return this._client.get('/quickbooks-desktop/company-info', {
+    return this._client.get('/quickbooks-desktop/company', {
       ...options,
       headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
     });
   }
 }
 
-export interface CompanyInfo {
+export interface Company {
   /**
    * Information about the accountant's copy for this company file. An accountant's
    * copy allows an accountant to make changes while the business continues normal
@@ -29,19 +29,19 @@ export interface CompanyInfo {
    * dated on or before the dividing date, cannot add subaccounts to existing
    * accounts, and cannot edit, merge, or make existing accounts inactive.
    */
-  accountantCopy: CompanyInfo.AccountantCopy | null;
+  accountantCopy: Company.AccountantCopy | null;
 
   /**
    * The company's address, used on its invoices, checks, and other forms (along with
    * `companyName`). This is different from the company's legal address used on tax
    * forms and pay stubs (along with `legalCompanyName`).
    */
-  address: CompanyInfo.Address | null;
+  address: Company.Address | null;
 
   /**
    * The address where this company receives mail from its customers.
    */
-  addressForCustomer: CompanyInfo.AddressForCustomer | null;
+  addressForCustomer: Company.AddressForCustomer | null;
 
   /**
    * The name of the QuickBooks user's business associated with this company. This
@@ -60,7 +60,7 @@ export interface CompanyInfo {
    * The custom fields for the company object, added as user-defined data extensions,
    * not included in the standard QuickBooks object.
    */
-  customFields: Array<CompanyInfo.CustomField>;
+  customFields: Array<Company.CustomField>;
 
   /**
    * The company's Employer Identification Number.
@@ -126,7 +126,7 @@ export interface CompanyInfo {
    * `legalCompanyName`). This is different from the company's `address` used on
    * invoices, checks, and other forms (along with `companyName`).
    */
-  legalAddress: CompanyInfo.LegalAddress | null;
+  legalAddress: Company.LegalAddress | null;
 
   /**
    * The legal name of this company's business, as specified in QuickBooks. This
@@ -151,7 +151,7 @@ export interface CompanyInfo {
    * The Intuit services that this company is or has been subscribed to, such as
    * Intuit Payroll.
    */
-  subscribedServices: CompanyInfo.SubscribedServices | null;
+  subscribedServices: Company.SubscribedServices | null;
 
   /**
    * The tax form that the QuickBooks user expects to file for this company's taxes.
@@ -176,7 +176,7 @@ export interface CompanyInfo {
   website: string | null;
 }
 
-export namespace CompanyInfo {
+export namespace Company {
   /**
    * Information about the accountant's copy for this company file. An accountant's
    * copy allows an accountant to make changes while the business continues normal
@@ -453,7 +453,7 @@ export namespace CompanyInfo {
   }
 }
 
-export interface CompanyInfoRetrieveParams {
+export interface CompanyRetrieveParams {
   /**
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
@@ -461,6 +461,6 @@ export interface CompanyInfoRetrieveParams {
   conductorEndUserId: string;
 }
 
-export declare namespace CompanyInfoResource {
-  export { type CompanyInfo as CompanyInfo, type CompanyInfoRetrieveParams as CompanyInfoRetrieveParams };
+export declare namespace CompanyResource {
+  export { type Company as Company, type CompanyRetrieveParams as CompanyRetrieveParams };
 }
