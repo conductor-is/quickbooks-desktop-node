@@ -217,6 +217,7 @@ export {
   type PayrollWageItemRetrieveParams,
   type PayrollWageItemListParams,
 } from './payroll-wage-items';
+export { Preferences, type PreferenceRetrieveParams } from './preferences';
 export {
   PurchaseOrdersCursorPage,
   PurchaseOrders,
@@ -228,15 +229,7 @@ export {
   type PurchaseOrderListParams,
   type PurchaseOrderDeleteParams,
 } from './purchase-orders';
-export {
-  Qbd,
-  type CompanyInfo,
-  type CompanyPreferences,
-  type QbdHealthCheckResponse,
-  type QbdHealthCheckParams,
-  type QbdRetrieveCompanyInfoParams,
-  type QbdRetrieveCompanyPreferencesParams,
-} from './qbd';
+export { Qbd, type QbdHealthCheckResponse, type QbdHealthCheckParams } from './qbd';
 export {
   ReceivePaymentsCursorPage,
   ReceivePayments,
