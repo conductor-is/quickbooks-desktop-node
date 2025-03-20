@@ -122,15 +122,15 @@ Methods:
 - <code title="post /quickbooks-desktop/classes/{id}">client.qbd.classes.<a href="./src/resources/qbd/classes.ts">update</a>(id, { ...params }) -> Class</code>
 - <code title="get /quickbooks-desktop/classes">client.qbd.classes.<a href="./src/resources/qbd/classes.ts">list</a>({ ...params }) -> ClassListResponse</code>
 
-## CompanyInfo
+## Company
 
 Types:
 
-- <code><a href="./src/resources/qbd/company-info.ts">CompanyInfo</a></code>
+- <code><a href="./src/resources/qbd/company.ts">Company</a></code>
 
 Methods:
 
-- <code title="get /quickbooks-desktop/company-info">client.qbd.companyInfo.<a href="./src/resources/qbd/company-info.ts">retrieve</a>({ ...params }) -> CompanyInfo</code>
+- <code title="get /quickbooks-desktop/company">client.qbd.company.<a href="./src/resources/qbd/company.ts">retrieve</a>({ ...params }) -> Company</code>
 
 ## CreditCardCharges
 

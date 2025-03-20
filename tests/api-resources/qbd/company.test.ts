@@ -8,9 +8,9 @@ const client = new Conductor({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource companyInfo', () => {
+describe('resource company', () => {
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.companyInfo.retrieve({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+    const responsePromise = client.qbd.company.retrieve({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,6 +21,6 @@ describe('resource companyInfo', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.companyInfo.retrieve({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+    const response = await client.qbd.company.retrieve({ conductorEndUserId: 'end_usr_1234567abcdefg' });
   });
 });
