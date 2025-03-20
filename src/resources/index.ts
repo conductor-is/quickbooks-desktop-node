@@ -12,8 +12,10 @@ export {
 } from './end-users';
 export {
   Qbd,
-  type Company,
-  type Preferences,
+  type CompanyInfo,
+  type CompanyPreferences,
   type QbdHealthCheckResponse,
   type QbdHealthCheckParams,
+  type QbdRetrieveCompanyInfoParams,
+  type QbdRetrieveCompanyPreferencesParams,
 } from './qbd/qbd';

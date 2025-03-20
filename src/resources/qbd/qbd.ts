@@ -473,9 +473,42 @@ export class Qbd extends APIResource {
       headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
     });
   }
+
+  /**
+   * Returns detailed information about the connected QuickBooks company file,
+   * including company address, legal name, preferences, and subscribed services.
+   * Note that company information cannot be modified through the API, only through
+   * the QuickBooks Desktop user interface.
+   */
+  retrieveCompanyInfo(
+    params: QbdRetrieveCompanyInfoParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<CompanyInfo> {
+    const { conductorEndUserId } = params;
+    return this._client.get('/quickbooks-desktop/company-info', {
+      ...options,
+      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+    });
+  }
+
+  /**
+   * Returns the preferences that the QuickBooks administrator has set for all users
+   * of the connected company file. Note that preferences cannot be modified through
+   * the API, only through the QuickBooks Desktop user interface.
+   */
+  retrieveCompanyPreferences(
+    params: QbdRetrieveCompanyPreferencesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<CompanyPreferences> {
+    const { conductorEndUserId } = params;
+    return this._client.get('/quickbooks-desktop/company-preferences', {
+      ...options,
+      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+    });
+  }
 }
 
-export interface Company {
+export interface CompanyInfo {
   /**
    * Information about the accountant's copy for this company file. An accountant's
    * copy allows an accountant to make changes while the business continues normal
@@ -485,19 +518,19 @@ export interface Company {
    * dated on or before the dividing date, cannot add subaccounts to existing
    * accounts, and cannot edit, merge, or make existing accounts inactive.
    */
-  accountantCopy: Company.AccountantCopy | null;
+  accountantCopy: CompanyInfo.AccountantCopy | null;
 
   /**
    * The company's address, used on its invoices, checks, and other forms (along with
    * `companyName`). This is different from the company's legal address used on tax
    * forms and pay stubs (along with `legalCompanyName`).
    */
-  address: Company.Address | null;
+  address: CompanyInfo.Address | null;
 
   /**
    * The address where this company receives mail from its customers.
    */
-  addressForCustomer: Company.AddressForCustomer | null;
+  addressForCustomer: CompanyInfo.AddressForCustomer | null;
 
   /**
    * The name of the QuickBooks user's business associated with this company. This
@@ -516,7 +549,7 @@ export interface Company {
    * The custom fields for the company object, added as user-defined data extensions,
    * not included in the standard QuickBooks object.
    */
-  customFields: Array<Company.CustomField>;
+  customFields: Array<CompanyInfo.CustomField>;
 
   /**
    * The company's Employer Identification Number.
@@ -582,7 +615,7 @@ export interface Company {
    * `legalCompanyName`). This is different from the company's `address` used on
    * invoices, checks, and other forms (along with `companyName`).
    */
-  legalAddress: Company.LegalAddress | null;
+  legalAddress: CompanyInfo.LegalAddress | null;
 
   /**
    * The legal name of this company's business, as specified in QuickBooks. This
@@ -607,7 +640,7 @@ export interface Company {
    * The Intuit services that this company is or has been subscribed to, such as
    * Intuit Payroll.
    */
-  subscribedServices: Company.SubscribedServices | null;
+  subscribedServices: CompanyInfo.SubscribedServices | null;
 
   /**
    * The tax form that the QuickBooks user expects to file for this company's taxes.
@@ -632,7 +665,7 @@ export interface Company {
   website: string | null;
 }
 
-export namespace Company {
+export namespace CompanyInfo {
   /**
    * Information about the accountant's copy for this company file. An accountant's
    * copy allows an accountant to make changes while the business continues normal
@@ -909,74 +942,74 @@ export namespace Company {
   }
 }
 
-export interface Preferences {
+export interface CompanyPreferences {
   /**
    * The accounting preferences for this company file.
    */
-  accounting: Preferences.Accounting;
+  accounting: CompanyPreferences.Accounting;
 
   /**
    * The current application access rights for this company file.
    */
-  appAccessRights: Preferences.AppAccessRights;
+  appAccessRights: CompanyPreferences.AppAccessRights;
 
   /**
    * The finance charge preferences for this company file. These settings determine
    * how late payment charges are calculated and applied to customer accounts.
    */
-  financeCharges: Preferences.FinanceCharges;
+  financeCharges: CompanyPreferences.FinanceCharges;
 
   /**
    * The item inventory preferences for this company file.
    */
-  itemsAndInventory: Preferences.ItemsAndInventory | null;
+  itemsAndInventory: CompanyPreferences.ItemsAndInventory | null;
 
   /**
    * The jobs and estimates preferences for this company file.
    */
-  jobsAndEstimates: Preferences.JobsAndEstimates;
+  jobsAndEstimates: CompanyPreferences.JobsAndEstimates;
 
   /**
    * The multi-currency preferences for this company file.
    */
-  multiCurrency: Preferences.MultiCurrency | null;
+  multiCurrency: CompanyPreferences.MultiCurrency | null;
 
   /**
    * The multi-location inventory preferences for this company file.
    */
-  multiLocationInventory: Preferences.MultiLocationInventory | null;
+  multiLocationInventory: CompanyPreferences.MultiLocationInventory | null;
 
   /**
    * The purchases and vendors preferences for this company file.
    */
-  purchasesAndVendors: Preferences.PurchasesAndVendors;
+  purchasesAndVendors: CompanyPreferences.PurchasesAndVendors;
 
   /**
    * The reporting preferences for this company file.
    */
-  reports: Preferences.Reports;
+  reports: CompanyPreferences.Reports;
 
   /**
    * The sales and customers preferences for this company file.
    */
-  salesAndCustomers: Preferences.SalesAndCustomers;
+  salesAndCustomers: CompanyPreferences.SalesAndCustomers;
 
   /**
    * The sales-tax preferences for this company file. If sales tax is turned off in
    * the user interface (that is, if "No" is selected for "Do You Charge Sales Tax?"
    * in the sales tax preferences), then this field will be `null`.
    */
-  salesTax: Preferences.SalesTax | null;
+  salesTax: CompanyPreferences.SalesTax | null;
 
   /**
    * The time-tracking preferences for this company file. If time tracking is turned
    * off in the user interface (that is, if "No" is selected for "Do You Track Time?"
    * in the time tracking preferences), then this field will be `null`.
    */
-  timeTracking: Preferences.TimeTracking | null;
+  timeTracking: CompanyPreferences.TimeTracking | null;
 }
 
-export namespace Preferences {
+export namespace CompanyPreferences {
   /**
    * The accounting preferences for this company file.
    */
@@ -1582,6 +1615,22 @@ export interface QbdHealthCheckParams {
   conductorEndUserId: string;
 }
 
+export interface QbdRetrieveCompanyInfoParams {
+  /**
+   * The ID of the EndUser to receive this request (e.g.,
+   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   */
+  conductorEndUserId: string;
+}
+
+export interface QbdRetrieveCompanyPreferencesParams {
+  /**
+   * The ID of the EndUser to receive this request (e.g.,
+   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   */
+  conductorEndUserId: string;
+}
+
 Qbd.Accounts = Accounts;
 Qbd.BillCheckPayments = BillCheckPayments;
 Qbd.BillCheckPaymentsCursorPage = BillCheckPaymentsCursorPage;
@@ -1651,10 +1700,12 @@ Qbd.VendorsCursorPage = VendorsCursorPage;
 
 export declare namespace Qbd {
   export {
-    type Company as Company,
-    type Preferences as Preferences,
+    type CompanyInfo as CompanyInfo,
+    type CompanyPreferences as CompanyPreferences,
     type QbdHealthCheckResponse as QbdHealthCheckResponse,
     type QbdHealthCheckParams as QbdHealthCheckParams,
+    type QbdRetrieveCompanyInfoParams as QbdRetrieveCompanyInfoParams,
+    type QbdRetrieveCompanyPreferencesParams as QbdRetrieveCompanyPreferencesParams,
   };
 
   export {
