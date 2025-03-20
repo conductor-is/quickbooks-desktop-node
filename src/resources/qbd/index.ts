@@ -61,7 +61,6 @@ export {
   type ClassUpdateParams,
   type ClassListParams,
 } from './classes';
-export { CompanyResource, type Company, type CompanyRetrieveParams } from './company';
 export {
   CreditCardChargesCursorPage,
   CreditCardCharges,
