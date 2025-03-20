@@ -29,23 +29,13 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/qbd/qbd.ts">Company</a></code>
+- <code><a href="./src/resources/qbd/qbd.ts">Preferences</a></code>
 - <code><a href="./src/resources/qbd/qbd.ts">QbdHealthCheckResponse</a></code>
 
 Methods:
 
 - <code title="get /quickbooks-desktop/health-check">client.qbd.<a href="./src/resources/qbd/qbd.ts">healthCheck</a>({ ...params }) -> QbdHealthCheckResponse</code>
-
-## Company
-
-Types:
-
-- <code><a href="./src/resources/qbd/company.ts">Company</a></code>
-- <code><a href="./src/resources/qbd/company.ts">Preferences</a></code>
-
-Methods:
-
-- <code title="get /quickbooks-desktop/company/info">client.qbd.company.<a href="./src/resources/qbd/company.ts">info</a>({ ...params }) -> Company</code>
-- <code title="get /quickbooks-desktop/company/preferences">client.qbd.company.<a href="./src/resources/qbd/company.ts">preferences</a>({ ...params }) -> Preferences</code>
 
 ## Accounts
 
