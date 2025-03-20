@@ -69,6 +69,14 @@ import {
   ClassUpdateParams,
   Classes,
 } from './classes';
+import * as CompanyAPI from './company';
+import {
+  Company,
+  CompanyInfoParams,
+  CompanyPreferencesParams,
+  CompanyResource,
+  Preferences,
+} from './company';
 import * as CreditCardChargesAPI from './credit-card-charges';
 import {
   CreditCardCharge,
@@ -402,6 +410,7 @@ import {
 } from './vendors';
 
 export class Qbd extends APIResource {
+  company: CompanyAPI.CompanyResource = new CompanyAPI.CompanyResource(this._client);
   accounts: AccountsAPI.Accounts = new AccountsAPI.Accounts(this._client);
   billCheckPayments: BillCheckPaymentsAPI.BillCheckPayments = new BillCheckPaymentsAPI.BillCheckPayments(
     this._client,
@@ -495,6 +504,7 @@ export interface QbdHealthCheckParams {
   conductorEndUserId: string;
 }
 
+Qbd.CompanyResource = CompanyResource;
 Qbd.Accounts = Accounts;
 Qbd.BillCheckPayments = BillCheckPayments;
 Qbd.BillCheckPaymentsCursorPage = BillCheckPaymentsCursorPage;
@@ -566,6 +576,14 @@ export declare namespace Qbd {
   export {
     type QbdHealthCheckResponse as QbdHealthCheckResponse,
     type QbdHealthCheckParams as QbdHealthCheckParams,
+  };
+
+  export {
+    CompanyResource as CompanyResource,
+    type Company as Company,
+    type Preferences as Preferences,
+    type CompanyInfoParams as CompanyInfoParams,
+    type CompanyPreferencesParams as CompanyPreferencesParams,
   };
 
   export {
