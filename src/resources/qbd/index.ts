@@ -62,13 +62,6 @@ export {
   type ClassListParams,
 } from './classes';
 export {
-  CompanyResource,
-  type Company,
-  type Preferences,
-  type CompanyInfoParams,
-  type CompanyPreferencesParams,
-} from './company';
-export {
   CreditCardChargesCursorPage,
   CreditCardCharges,
   type CreditCardCharge,
@@ -235,7 +228,13 @@ export {
   type PurchaseOrderListParams,
   type PurchaseOrderDeleteParams,
 } from './purchase-orders';
-export { Qbd, type QbdHealthCheckResponse, type QbdHealthCheckParams } from './qbd';
+export {
+  Qbd,
+  type Company,
+  type Preferences,
+  type QbdHealthCheckResponse,
+  type QbdHealthCheckParams,
+} from './qbd';
 export {
   ReceivePaymentsCursorPage,
   ReceivePayments,
