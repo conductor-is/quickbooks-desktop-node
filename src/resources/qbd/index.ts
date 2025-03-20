@@ -230,10 +230,12 @@ export {
 } from './purchase-orders';
 export {
   Qbd,
-  type Company,
-  type Preferences,
+  type CompanyInfo,
+  type CompanyPreferences,
   type QbdHealthCheckResponse,
   type QbdHealthCheckParams,
+  type QbdRetrieveCompanyInfoParams,
+  type QbdRetrieveCompanyPreferencesParams,
 } from './qbd';
 export {
   ReceivePaymentsCursorPage,
