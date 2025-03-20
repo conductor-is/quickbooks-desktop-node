@@ -1,5 +1,35 @@
 # Changelog
 
+## 12.0.0-beta.18 (2025-03-20)
+
+Full Changelog: [v12.0.0-beta.17...v12.0.0-beta.18](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.17...v12.0.0-beta.18)
+
+### Features
+
+* **api:** api update ([#101](https://github.com/conductor-is/quickbooks-desktop-node/issues/101)) ([370b88a](https://github.com/conductor-is/quickbooks-desktop-node/commit/370b88aa793ef9e9ee88c22777859eeb061806db))
+* **api:** api update ([#103](https://github.com/conductor-is/quickbooks-desktop-node/issues/103)) ([9389a16](https://github.com/conductor-is/quickbooks-desktop-node/commit/9389a1686ff4a08b81f578627c7ddcf623f8a999))
+* **api:** api update ([#104](https://github.com/conductor-is/quickbooks-desktop-node/issues/104)) ([f1b266f](https://github.com/conductor-is/quickbooks-desktop-node/commit/f1b266fc5bb1d01f89d215502bb7293800379ed7))
+* **api:** api update ([#105](https://github.com/conductor-is/quickbooks-desktop-node/issues/105)) ([2f45315](https://github.com/conductor-is/quickbooks-desktop-node/commit/2f45315667957c9df8fb9cd9f2dd20fe610499db))
+* **api:** api update ([#106](https://github.com/conductor-is/quickbooks-desktop-node/issues/106)) ([3f4e8a3](https://github.com/conductor-is/quickbooks-desktop-node/commit/3f4e8a384bebc48647db28eec1c56dbf79ac72d2))
+* **api:** api update ([#107](https://github.com/conductor-is/quickbooks-desktop-node/issues/107)) ([ebfb468](https://github.com/conductor-is/quickbooks-desktop-node/commit/ebfb468119faf4d8d4737936e3c56415d965f9f8))
+* **api:** api update ([#108](https://github.com/conductor-is/quickbooks-desktop-node/issues/108)) ([a6ea6e1](https://github.com/conductor-is/quickbooks-desktop-node/commit/a6ea6e1ca29a589f5e1c18ff9f201b19619a922d))
+* **api:** api update ([#109](https://github.com/conductor-is/quickbooks-desktop-node/issues/109)) ([53fb55e](https://github.com/conductor-is/quickbooks-desktop-node/commit/53fb55e0754f8162e619533b9b47f6e3cd528a64))
+* **api:** api update ([#110](https://github.com/conductor-is/quickbooks-desktop-node/issues/110)) ([25fb3a5](https://github.com/conductor-is/quickbooks-desktop-node/commit/25fb3a57ba09a6d7052a93fa93d0bb01200ceea0))
+* **api:** api update ([#111](https://github.com/conductor-is/quickbooks-desktop-node/issues/111)) ([537ef68](https://github.com/conductor-is/quickbooks-desktop-node/commit/537ef680b0d331c0c364bba67949ef392d50f519))
+* **api:** api update ([#112](https://github.com/conductor-is/quickbooks-desktop-node/issues/112)) ([7fe413c](https://github.com/conductor-is/quickbooks-desktop-node/commit/7fe413c4af22e638beefa3e0a3b4b74874326f8f))
+* **api:** api update ([#113](https://github.com/conductor-is/quickbooks-desktop-node/issues/113)) ([a8b0491](https://github.com/conductor-is/quickbooks-desktop-node/commit/a8b04917eadc1e2d0d6d148df2a2f5a487bc951a))
+* **api:** api update ([#114](https://github.com/conductor-is/quickbooks-desktop-node/issues/114)) ([52a1b76](https://github.com/conductor-is/quickbooks-desktop-node/commit/52a1b76782e2320c4a117874e70a816c99e11f14))
+* **api:** api update ([#117](https://github.com/conductor-is/quickbooks-desktop-node/issues/117)) ([cd716db](https://github.com/conductor-is/quickbooks-desktop-node/commit/cd716db68fdf0731a2148d6e530433fc741e2df2))
+* **api:** api update ([#118](https://github.com/conductor-is/quickbooks-desktop-node/issues/118)) ([7316e07](https://github.com/conductor-is/quickbooks-desktop-node/commit/7316e071f6946ab2f347c57d12c5768b03a08046))
+* **api:** api update ([#119](https://github.com/conductor-is/quickbooks-desktop-node/issues/119)) ([00ec6c5](https://github.com/conductor-is/quickbooks-desktop-node/commit/00ec6c5aa74a6f5e3dfdbf4396c25942f8d90ce3))
+* **api:** api update ([#120](https://github.com/conductor-is/quickbooks-desktop-node/issues/120)) ([ac07ada](https://github.com/conductor-is/quickbooks-desktop-node/commit/ac07ada847306773b7928e9075e1c0f6a06124c4))
+
+
+### Chores
+
+* **exports:** cleaner resource index imports ([#115](https://github.com/conductor-is/quickbooks-desktop-node/issues/115)) ([39278ad](https://github.com/conductor-is/quickbooks-desktop-node/commit/39278ade488ea141215ff99a39dd638c6ec39bc2))
+* **exports:** stop using path fallbacks ([#116](https://github.com/conductor-is/quickbooks-desktop-node/issues/116)) ([2c8f7ee](https://github.com/conductor-is/quickbooks-desktop-node/commit/2c8f7ee968174a1adf8067e7f2f76a6cc5894509))
+
 ## 12.0.0-beta.17 (2025-03-17)
 
 Full Changelog: [v12.0.0-beta.16...v12.0.0-beta.17](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.16...v12.0.0-beta.17)
