@@ -7,7 +7,7 @@ export class AuthSessions extends APIResource {
   /**
    * To launch the authentication flow, create an auth session and pass the returned
    * session's `authFlowUrl` to the client for your end-user to visit in their
-   * browser.
+   * browser. Demo: https://connect.conductor.is/qbd/demo
    */
   create(body: AuthSessionCreateParams, options?: Core.RequestOptions): Core.APIPromise<AuthSession> {
     return this._client.post('/auth-sessions', { body, ...options });
