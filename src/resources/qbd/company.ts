@@ -468,65 +468,65 @@ export namespace Company {
 
 export interface Preferences {
   /**
-   * The accounting preferences for this preferences.
+   * The accounting preferences for this company file.
    */
   accounting: Preferences.Accounting;
 
   /**
-   * The current application access rights for this preferences.
+   * The current application access rights for this company file.
    */
   appAccessRights: Preferences.AppAccessRights;
 
   /**
-   * The finance charge preferences for this preferences. These settings determine
+   * The finance charge preferences for this company file. These settings determine
    * how late payment charges are calculated and applied to customer accounts.
    */
   financeCharges: Preferences.FinanceCharges;
 
   /**
-   * The item inventory preferences for this preferences.
+   * The item inventory preferences for this company file.
    */
   itemsAndInventory: Preferences.ItemsAndInventory | null;
 
   /**
-   * The jobs and estimates preferences for this preferences.
+   * The jobs and estimates preferences for this company file.
    */
   jobsAndEstimates: Preferences.JobsAndEstimates;
 
   /**
-   * The multi-currency preferences for this preferences.
+   * The multi-currency preferences for this company file.
    */
   multiCurrency: Preferences.MultiCurrency | null;
 
   /**
-   * The multi-location inventory preferences for this preferences.
+   * The multi-location inventory preferences for this company file.
    */
   multiLocationInventory: Preferences.MultiLocationInventory | null;
 
   /**
-   * The purchases and vendors preferences for this preferences.
+   * The purchases and vendors preferences for this company file.
    */
   purchasesAndVendors: Preferences.PurchasesAndVendors;
 
   /**
-   * The reporting preferences for this preferences.
+   * The reporting preferences for this company file.
    */
   reports: Preferences.Reports;
 
   /**
-   * The sales and customers preferences for this preferences.
+   * The sales and customers preferences for this company file.
    */
   salesAndCustomers: Preferences.SalesAndCustomers;
 
   /**
-   * The sales-tax preferences for this preferences. If sales tax is turned off in
+   * The sales-tax preferences for this company file. If sales tax is turned off in
    * the user interface (that is, if "No" is selected for "Do You Charge Sales Tax?"
    * in the sales tax preferences), then this field will be `null`.
    */
   salesTax: Preferences.SalesTax | null;
 
   /**
-   * The time-tracking preferences for this preferences. If time tracking is turned
+   * The time-tracking preferences for this company file. If time tracking is turned
    * off in the user interface (that is, if "No" is selected for "Do You Track Time?"
    * in the time tracking preferences), then this field will be `null`.
    */
@@ -535,7 +535,7 @@ export interface Preferences {
 
 export namespace Preferences {
   /**
-   * The accounting preferences for this preferences.
+   * The accounting preferences for this company file.
    */
   export interface Accounting {
     /**
@@ -588,7 +588,7 @@ export namespace Preferences {
   }
 
   /**
-   * The current application access rights for this preferences.
+   * The current application access rights for this company file.
    */
   export interface AppAccessRights {
     /**
@@ -610,7 +610,7 @@ export namespace Preferences {
   }
 
   /**
-   * The finance charge preferences for this preferences. These settings determine
+   * The finance charge preferences for this company file. These settings determine
    * how late payment charges are calculated and applied to customer accounts.
    */
   export interface FinanceCharges {
@@ -682,7 +682,7 @@ export namespace Preferences {
   }
 
   /**
-   * The item inventory preferences for this preferences.
+   * The item inventory preferences for this company file.
    */
   export interface ItemsAndInventory {
     /**
@@ -751,7 +751,7 @@ export namespace Preferences {
   }
 
   /**
-   * The jobs and estimates preferences for this preferences.
+   * The jobs and estimates preferences for this company file.
    */
   export interface JobsAndEstimates {
     /**
@@ -774,7 +774,7 @@ export namespace Preferences {
   }
 
   /**
-   * The multi-currency preferences for this preferences.
+   * The multi-currency preferences for this company file.
    */
   export interface MultiCurrency {
     /**
@@ -825,7 +825,7 @@ export namespace Preferences {
   }
 
   /**
-   * The multi-location inventory preferences for this preferences.
+   * The multi-location inventory preferences for this company file.
    */
   export interface MultiLocationInventory {
     /**
@@ -842,7 +842,7 @@ export namespace Preferences {
   }
 
   /**
-   * The purchases and vendors preferences for this preferences.
+   * The purchases and vendors preferences for this company file.
    */
   export interface PurchasesAndVendors {
     /**
@@ -890,7 +890,7 @@ export namespace Preferences {
   }
 
   /**
-   * The reporting preferences for this preferences.
+   * The reporting preferences for this company file.
    */
   export interface Reports {
     /**
@@ -912,7 +912,7 @@ export namespace Preferences {
   }
 
   /**
-   * The sales and customers preferences for this preferences.
+   * The sales and customers preferences for this company file.
    */
   export interface SalesAndCustomers {
     /**
@@ -1005,7 +1005,7 @@ export namespace Preferences {
   }
 
   /**
-   * The sales-tax preferences for this preferences. If sales tax is turned off in
+   * The sales-tax preferences for this company file. If sales tax is turned off in
    * the user interface (that is, if "No" is selected for "Do You Charge Sales Tax?"
    * in the sales tax preferences), then this field will be `null`.
    */
@@ -1107,7 +1107,7 @@ export namespace Preferences {
   }
 
   /**
-   * The time-tracking preferences for this preferences. If time tracking is turned
+   * The time-tracking preferences for this company file. If time tracking is turned
    * off in the user interface (that is, if "No" is selected for "Do You Track Time?"
    * in the time tracking preferences), then this field will be `null`.
    */
