@@ -220,6 +220,15 @@ export {
 } from './payroll-wage-items';
 export { Preferences, type PreferenceRetrieveParams } from './preferences';
 export {
+  PriceLevels,
+  type PriceLevel,
+  type PriceLevelListResponse,
+  type PriceLevelCreateParams,
+  type PriceLevelRetrieveParams,
+  type PriceLevelUpdateParams,
+  type PriceLevelListParams,
+} from './price-levels';
+export {
   PurchaseOrdersCursorPage,
   PurchaseOrders,
   type PurchaseOrder,
