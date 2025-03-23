@@ -365,6 +365,20 @@ Methods:
 
 - <code title="get /quickbooks-desktop/preferences">client.qbd.preferences.<a href="./src/resources/qbd/preferences.ts">retrieve</a>({ ...params }) -> Preferences</code>
 
+## PriceLevels
+
+Types:
+
+- <code><a href="./src/resources/qbd/price-levels.ts">PriceLevel</a></code>
+- <code><a href="./src/resources/qbd/price-levels.ts">PriceLevelListResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/price-levels">client.qbd.priceLevels.<a href="./src/resources/qbd/price-levels.ts">create</a>({ ...params }) -> PriceLevel</code>
+- <code title="get /quickbooks-desktop/price-levels/{id}">client.qbd.priceLevels.<a href="./src/resources/qbd/price-levels.ts">retrieve</a>(id, { ...params }) -> PriceLevel</code>
+- <code title="post /quickbooks-desktop/price-levels/{id}">client.qbd.priceLevels.<a href="./src/resources/qbd/price-levels.ts">update</a>(id, { ...params }) -> PriceLevel</code>
+- <code title="get /quickbooks-desktop/price-levels">client.qbd.priceLevels.<a href="./src/resources/qbd/price-levels.ts">list</a>({ ...params }) -> PriceLevelListResponse</code>
+
 ## PurchaseOrders
 
 Types:
