@@ -245,6 +245,16 @@ import {
 } from './payroll-wage-items';
 import * as PreferencesAPI from './preferences';
 import { PreferenceRetrieveParams, Preferences } from './preferences';
+import * as PriceLevelsAPI from './price-levels';
+import {
+  PriceLevel,
+  PriceLevelCreateParams,
+  PriceLevelListParams,
+  PriceLevelListResponse,
+  PriceLevelRetrieveParams,
+  PriceLevelUpdateParams,
+  PriceLevels,
+} from './price-levels';
 import * as PurchaseOrdersAPI from './purchase-orders';
 import {
   PurchaseOrder,
@@ -443,6 +453,7 @@ export class Qbd extends APIResource {
     this._client,
   );
   preferences: PreferencesAPI.Preferences = new PreferencesAPI.Preferences(this._client);
+  priceLevels: PriceLevelsAPI.PriceLevels = new PriceLevelsAPI.PriceLevels(this._client);
   purchaseOrders: PurchaseOrdersAPI.PurchaseOrders = new PurchaseOrdersAPI.PurchaseOrders(this._client);
   receivePayments: ReceivePaymentsAPI.ReceivePayments = new ReceivePaymentsAPI.ReceivePayments(this._client);
   salesOrders: SalesOrdersAPI.SalesOrders = new SalesOrdersAPI.SalesOrders(this._client);
@@ -541,6 +552,7 @@ Qbd.NonInventoryItems = NonInventoryItems;
 Qbd.NonInventoryItemsCursorPage = NonInventoryItemsCursorPage;
 Qbd.PayrollWageItems = PayrollWageItems;
 Qbd.PayrollWageItemsCursorPage = PayrollWageItemsCursorPage;
+Qbd.PriceLevels = PriceLevels;
 Qbd.PurchaseOrders = PurchaseOrders;
 Qbd.PurchaseOrdersCursorPage = PurchaseOrdersCursorPage;
 Qbd.ReceivePayments = ReceivePayments;
@@ -821,6 +833,16 @@ export declare namespace Qbd {
   };
 
   export { type Preferences as Preferences, type PreferenceRetrieveParams as PreferenceRetrieveParams };
+
+  export {
+    PriceLevels as PriceLevels,
+    type PriceLevel as PriceLevel,
+    type PriceLevelListResponse as PriceLevelListResponse,
+    type PriceLevelCreateParams as PriceLevelCreateParams,
+    type PriceLevelRetrieveParams as PriceLevelRetrieveParams,
+    type PriceLevelUpdateParams as PriceLevelUpdateParams,
+    type PriceLevelListParams as PriceLevelListParams,
+  };
 
   export {
     PurchaseOrders as PurchaseOrders,
