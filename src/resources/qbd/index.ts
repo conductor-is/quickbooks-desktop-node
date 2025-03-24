@@ -191,6 +191,17 @@ export {
   type InvoiceDeleteParams,
 } from './invoices';
 export {
+  ItemReceiptsCursorPage,
+  ItemReceipts,
+  type ItemReceipt,
+  type ItemReceiptDeleteResponse,
+  type ItemReceiptCreateParams,
+  type ItemReceiptRetrieveParams,
+  type ItemReceiptUpdateParams,
+  type ItemReceiptListParams,
+  type ItemReceiptDeleteParams,
+} from './item-receipts';
+export {
   JournalEntriesCursorPage,
   JournalEntries,
   type JournalEntry,

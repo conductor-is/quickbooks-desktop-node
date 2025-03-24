@@ -212,6 +212,18 @@ import {
   Invoices,
   InvoicesCursorPage,
 } from './invoices';
+import * as ItemReceiptsAPI from './item-receipts';
+import {
+  ItemReceipt,
+  ItemReceiptCreateParams,
+  ItemReceiptDeleteParams,
+  ItemReceiptDeleteResponse,
+  ItemReceiptListParams,
+  ItemReceiptRetrieveParams,
+  ItemReceiptUpdateParams,
+  ItemReceipts,
+  ItemReceiptsCursorPage,
+} from './item-receipts';
 import * as JournalEntriesAPI from './journal-entries';
 import {
   JournalEntries,
@@ -445,6 +457,7 @@ export class Qbd extends APIResource {
   inventoryItems: InventoryItemsAPI.InventoryItems = new InventoryItemsAPI.InventoryItems(this._client);
   inventorySites: InventorySitesAPI.InventorySites = new InventorySitesAPI.InventorySites(this._client);
   invoices: InvoicesAPI.Invoices = new InvoicesAPI.Invoices(this._client);
+  itemReceipts: ItemReceiptsAPI.ItemReceipts = new ItemReceiptsAPI.ItemReceipts(this._client);
   journalEntries: JournalEntriesAPI.JournalEntries = new JournalEntriesAPI.JournalEntries(this._client);
   nonInventoryItems: NonInventoryItemsAPI.NonInventoryItems = new NonInventoryItemsAPI.NonInventoryItems(
     this._client,
@@ -546,6 +559,8 @@ Qbd.InventoryItemsCursorPage = InventoryItemsCursorPage;
 Qbd.InventorySites = InventorySites;
 Qbd.Invoices = Invoices;
 Qbd.InvoicesCursorPage = InvoicesCursorPage;
+Qbd.ItemReceipts = ItemReceipts;
+Qbd.ItemReceiptsCursorPage = ItemReceiptsCursorPage;
 Qbd.JournalEntries = JournalEntries;
 Qbd.JournalEntriesCursorPage = JournalEntriesCursorPage;
 Qbd.NonInventoryItems = NonInventoryItems;
@@ -799,6 +814,18 @@ export declare namespace Qbd {
     type InvoiceUpdateParams as InvoiceUpdateParams,
     type InvoiceListParams as InvoiceListParams,
     type InvoiceDeleteParams as InvoiceDeleteParams,
+  };
+
+  export {
+    ItemReceipts as ItemReceipts,
+    type ItemReceipt as ItemReceipt,
+    type ItemReceiptDeleteResponse as ItemReceiptDeleteResponse,
+    ItemReceiptsCursorPage as ItemReceiptsCursorPage,
+    type ItemReceiptCreateParams as ItemReceiptCreateParams,
+    type ItemReceiptRetrieveParams as ItemReceiptRetrieveParams,
+    type ItemReceiptUpdateParams as ItemReceiptUpdateParams,
+    type ItemReceiptListParams as ItemReceiptListParams,
+    type ItemReceiptDeleteParams as ItemReceiptDeleteParams,
   };
 
   export {
