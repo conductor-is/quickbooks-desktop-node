@@ -315,6 +315,21 @@ Methods:
 - <code title="get /quickbooks-desktop/invoices">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">list</a>({ ...params }) -> InvoicesCursorPage</code>
 - <code title="delete /quickbooks-desktop/invoices/{id}">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">delete</a>(id, { ...params }) -> InvoiceDeleteResponse</code>
 
+## ItemReceipts
+
+Types:
+
+- <code><a href="./src/resources/qbd/item-receipts.ts">ItemReceipt</a></code>
+- <code><a href="./src/resources/qbd/item-receipts.ts">ItemReceiptDeleteResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/item-receipts">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">create</a>({ ...params }) -> ItemReceipt</code>
+- <code title="get /quickbooks-desktop/item-receipts/{id}">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">retrieve</a>(id, { ...params }) -> ItemReceipt</code>
+- <code title="post /quickbooks-desktop/item-receipts/{id}">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">update</a>(id, { ...params }) -> ItemReceipt</code>
+- <code title="get /quickbooks-desktop/item-receipts">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">list</a>({ ...params }) -> ItemReceiptsCursorPage</code>
+- <code title="delete /quickbooks-desktop/item-receipts/{id}">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">delete</a>(id, { ...params }) -> ItemReceiptDeleteResponse</code>
+
 ## JournalEntries
 
 Types:
