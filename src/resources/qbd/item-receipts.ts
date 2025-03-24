@@ -4,13 +4,13 @@ import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import { CursorPage, type CursorPageParams } from '../../pagination';
 
-export class Bills extends APIResource {
+export class ItemReceipts extends APIResource {
   /**
-   * Creates a new bill.
+   * Creates a new item receipt.
    */
-  create(params: BillCreateParams, options?: Core.RequestOptions): Core.APIPromise<Bill> {
+  create(params: ItemReceiptCreateParams, options?: Core.RequestOptions): Core.APIPromise<ItemReceipt> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post('/quickbooks-desktop/bills', {
+    return this._client.post('/quickbooks-desktop/item-receipts', {
       body,
       ...options,
       headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
@@ -18,22 +18,30 @@ export class Bills extends APIResource {
   }
 
   /**
-   * Retrieves a bill by ID.
+   * Retrieves an item receipt by ID.
    */
-  retrieve(id: string, params: BillRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Bill> {
+  retrieve(
+    id: string,
+    params: ItemReceiptRetrieveParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ItemReceipt> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/bills/${id}`, {
+    return this._client.get(`/quickbooks-desktop/item-receipts/${id}`, {
       ...options,
       headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
     });
   }
 
   /**
-   * Updates an existing bill.
+   * Updates an existing item receipt.
    */
-  update(id: string, params: BillUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Bill> {
+  update(
+    id: string,
+    params: ItemReceiptUpdateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ItemReceipt> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/bills/${id}`, {
+    return this._client.post(`/quickbooks-desktop/item-receipts/${id}`, {
       body,
       ...options,
       headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
@@ -41,12 +49,15 @@ export class Bills extends APIResource {
   }
 
   /**
-   * Returns a list of bills. Use the `cursor` parameter to paginate through the
-   * results.
+   * Returns a list of item receipts. Use the `cursor` parameter to paginate through
+   * the results.
    */
-  list(params: BillListParams, options?: Core.RequestOptions): Core.PagePromise<BillsCursorPage, Bill> {
+  list(
+    params: ItemReceiptListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ItemReceiptsCursorPage, ItemReceipt> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/bills', BillsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/item-receipts', ItemReceiptsCursorPage, {
       query,
       ...options,
       headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
@@ -54,79 +65,62 @@ export class Bills extends APIResource {
   }
 
   /**
-   * Permanently deletes a a bill. The deletion will fail if the bill is currently in
-   * use or has any linked transactions that are in use.
+   * Permanently deletes a an item receipt. The deletion will fail if the item
+   * receipt is currently in use or has any linked transactions that are in use.
    */
   delete(
     id: string,
-    params: BillDeleteParams,
+    params: ItemReceiptDeleteParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<BillDeleteResponse> {
+  ): Core.APIPromise<ItemReceiptDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/bills/${id}`, {
+    return this._client.delete(`/quickbooks-desktop/item-receipts/${id}`, {
       ...options,
       headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
     });
   }
 }
 
-export class BillsCursorPage extends CursorPage<Bill> {}
+export class ItemReceiptsCursorPage extends CursorPage<ItemReceipt> {}
 
-export interface Bill {
+export interface ItemReceipt {
   /**
-   * The unique identifier assigned by QuickBooks to this bill. This ID is unique
-   * across all transaction types.
+   * The unique identifier assigned by QuickBooks to this item receipt. This ID is
+   * unique across all transaction types.
    */
   id: string;
 
   /**
-   * The total monetary amount due for this bill, represented as a decimal string.
-   * This equals the sum of the amounts in the bill's expense lines, item lines, and
-   * item group lines. It also equals `openAmount` plus any credits or discounts.
-   */
-  amountDue: string | null;
-
-  /**
-   * The monetary amount due for this bill converted to the home currency of the
-   * QuickBooks company file. Represented as a decimal string.
-   */
-  amountDueInHomeCurrency: string | null;
-
-  /**
-   * The date and time when this bill was created, in ISO 8601 format
+   * The date and time when this item receipt was created, in ISO 8601 format
    * (YYYY-MM-DDThh:mm:ss±hh:mm). The time zone is the same as the user's time zone
    * in QuickBooks.
    */
   createdAt: string;
 
   /**
-   * The bill's currency. For built-in currencies, the name and code are standard
-   * international values. For user-defined currencies, all values are editable.
+   * The item receipt's currency. For built-in currencies, the name and code are
+   * standard international values. For user-defined currencies, all values are
+   * editable.
    */
-  currency: Bill.Currency | null;
+  currency: ItemReceipt.Currency | null;
 
   /**
-   * The custom fields for the bill object, added as user-defined data extensions,
-   * not included in the standard QuickBooks object.
+   * The custom fields for the item receipt object, added as user-defined data
+   * extensions, not included in the standard QuickBooks object.
    */
-  customFields: Array<Bill.CustomField>;
+  customFields: Array<ItemReceipt.CustomField>;
 
   /**
-   * The date by which this bill must be paid, in ISO 8601 format (YYYY-MM-DD).
-   */
-  dueDate: string | null;
-
-  /**
-   * The market exchange rate between this bill's currency and the home currency in
-   * QuickBooks at the time of this transaction. Represented as a decimal value
-   * (e.g., 1.2345 for 1 EUR = 1.2345 USD if USD is the home currency).
+   * The market exchange rate between this item receipt's currency and the home
+   * currency in QuickBooks at the time of this transaction. Represented as a decimal
+   * value (e.g., 1.2345 for 1 EUR = 1.2345 USD if USD is the home currency).
    */
   exchangeRate: number | null;
 
   /**
-   * The bill's expense lines, each representing one line in this expense.
+   * The item receipt's expense lines, each representing one line in this expense.
    */
-  expenseLines: Array<Bill.ExpenseLine>;
+  expenseLines: Array<ItemReceipt.ExpenseLine>;
 
   /**
    * A globally unique identifier (GUID) you, the developer, can provide for tracking
@@ -136,126 +130,116 @@ export interface Bill {
   externalId: string | null;
 
   /**
-   * Indicates whether this bill has been paid in full. When `true`, `openAmount`
-   * will be 0.
+   * The item receipt's item group lines, each representing a predefined set of items
+   * bundled together because they are commonly purchased together or grouped for
+   * faster entry.
    */
-  isPaid: boolean | null;
+  itemLineGroups: Array<ItemReceipt.ItemLineGroup>;
 
   /**
-   * Indicates whether this bill has not been completed or is in a draft version.
+   * The item receipt's item lines, each representing the purchase of a specific item
+   * or service.
    */
-  isPending: boolean | null;
+  itemLines: Array<ItemReceipt.ItemLine>;
 
   /**
-   * The bill's item group lines, each representing a predefined set of items bundled
-   * together because they are commonly purchased together or grouped for faster
-   * entry.
+   * The liability account used to track the amount owed for this item receipt.
    */
-  itemLineGroups: Array<Bill.ItemLineGroup>;
+  liabilityAccount: ItemReceipt.LiabilityAccount;
 
   /**
-   * The bill's item lines, each representing the purchase of a specific item or
-   * service.
-   */
-  itemLines: Array<Bill.ItemLine>;
-
-  /**
-   * The bill's linked transactions, such as payments applied, credits used, or
-   * associated purchase orders.
+   * The item receipt's linked transactions, such as payments applied, credits used,
+   * or associated purchase orders.
    *
    * **IMPORTANT**: You must specify the parameter `includeLinkedTransactions` when
-   * fetching a list of bills to receive this field because it is not returned by
-   * default.
+   * fetching a list of item receipts to receive this field because it is not
+   * returned by default.
    */
-  linkedTransactions: Array<Bill.LinkedTransaction>;
+  linkedTransactions: Array<ItemReceipt.LinkedTransaction>;
 
   /**
-   * A memo or note for this bill that appears in the Accounts-Payable register and
-   * in reports that include this bill.
+   * A memo or note for this item receipt.
    */
   memo: string | null;
 
   /**
-   * The type of object. This value is always `"qbd_bill"`.
+   * The type of object. This value is always `"qbd_item_receipt"`.
    */
-  objectType: 'qbd_bill';
+  objectType: 'qbd_item_receipt';
 
   /**
-   * The remaining amount still owed on this bill, represented as a decimal string.
-   * This equals the bill's amount minus any credits or discounts.
-   */
-  openAmount: string;
-
-  /**
-   * The Accounts-Payable (A/P) account to which this bill is assigned, used to track
-   * the amount owed. If not specified, QuickBooks Desktop will use its default A/P
-   * account.
+   * The Accounts-Payable (A/P) account to which this item receipt is assigned, used
+   * to track the amount owed. If not specified, QuickBooks Desktop will use its
+   * default A/P account.
    *
-   * **IMPORTANT**: If this bill is linked to other transactions, this A/P account
-   * must match the `payablesAccount` used in those other transactions.
+   * **IMPORTANT**: If this item receipt is linked to other transactions, this A/P
+   * account must match the `payablesAccount` used in those other transactions.
    */
-  payablesAccount: Bill.PayablesAccount | null;
+  payablesAccount: ItemReceipt.PayablesAccount | null;
 
   /**
-   * The case-sensitive user-defined reference number for this bill, which can be
-   * used to identify the transaction in QuickBooks. This value is not required to be
-   * unique and can be arbitrarily changed by the QuickBooks user.
+   * The case-sensitive user-defined reference number for this item receipt, which
+   * can be used to identify the transaction in QuickBooks. This value is not
+   * required to be unique and can be arbitrarily changed by the QuickBooks user.
    */
   refNumber: string | null;
 
   /**
-   * The current QuickBooks-assigned revision number of this bill object, which
-   * changes each time the object is modified. When updating this object, you must
-   * provide the most recent `revisionNumber` to ensure you're working with the
+   * The current QuickBooks-assigned revision number of this item receipt object,
+   * which changes each time the object is modified. When updating this object, you
+   * must provide the most recent `revisionNumber` to ensure you're working with the
    * latest data; otherwise, the update will return an error.
    */
   revisionNumber: string;
 
   /**
-   * The sales-tax code for this bill, determining whether it is taxable or
+   * The sales-tax code for this item receipt, determining whether it is taxable or
    * non-taxable. If set, this overrides any sales-tax codes defined on the vendor.
-   * This can be overridden on the bill's individual lines.
+   * This can be overridden on the item receipt's individual lines.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
    * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
    * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
    * non-taxable code to all sales.
    */
-  salesTaxCode: Bill.SalesTaxCode | null;
+  salesTaxCode: ItemReceipt.SalesTaxCode | null;
 
   /**
-   * The bill's payment terms, defining when payment is due and any applicable
-   * discounts.
+   * The total monetary amount of this item receipt, equivalent to the sum of the
+   * amounts in `expenseLines`, `itemLines`, and `itemGroupLines`, represented as a
+   * decimal string.
    */
-  terms: Bill.Terms | null;
+  totalAmount: string;
 
   /**
-   * The date of this bill, in ISO 8601 format (YYYY-MM-DD).
+   * The total monetary amount of this item receipt converted to the home currency of
+   * the QuickBooks company file. Represented as a decimal string.
+   */
+  totalAmountInHomeCurrency: string | null;
+
+  /**
+   * The date of this item receipt, in ISO 8601 format (YYYY-MM-DD).
    */
   transactionDate: string;
 
   /**
-   * The date and time when this bill was last updated, in ISO 8601 format
+   * The date and time when this item receipt was last updated, in ISO 8601 format
    * (YYYY-MM-DDThh:mm:ss±hh:mm). The time zone is the same as the user's time zone
    * in QuickBooks.
    */
   updatedAt: string;
 
   /**
-   * The vendor who sent this bill for goods or services purchased.
+   * The vendor who sent this item receipt for goods or services purchased.
    */
-  vendor: Bill.Vendor;
-
-  /**
-   * The address of the vendor who sent this bill.
-   */
-  vendorAddress: Bill.VendorAddress | null;
+  vendor: ItemReceipt.Vendor;
 }
 
-export namespace Bill {
+export namespace ItemReceipt {
   /**
-   * The bill's currency. For built-in currencies, the name and code are standard
-   * international values. For user-defined currencies, all values are editable.
+   * The item receipt's currency. For built-in currencies, the name and code are
+   * standard international values. For user-defined currencies, all values are
+   * editable.
    */
   export interface Currency {
     /**
@@ -1406,6 +1390,25 @@ export namespace Bill {
     }
   }
 
+  /**
+   * The liability account used to track the amount owed for this item receipt.
+   */
+  export interface LiabilityAccount {
+    /**
+     * The unique identifier assigned by QuickBooks to this object. This ID is unique
+     * across all objects of the same type, but not across different QuickBooks object
+     * types.
+     */
+    id: string | null;
+
+    /**
+     * The fully-qualified unique name for this object, formed by combining the names
+     * of its parent objects with its own `name`, separated by colons. Not
+     * case-sensitive.
+     */
+    fullName: string | null;
+  }
+
   export interface LinkedTransaction {
     /**
      * The unique identifier assigned by QuickBooks to this linked transaction. This ID
@@ -1477,12 +1480,12 @@ export namespace Bill {
   }
 
   /**
-   * The Accounts-Payable (A/P) account to which this bill is assigned, used to track
-   * the amount owed. If not specified, QuickBooks Desktop will use its default A/P
-   * account.
+   * The Accounts-Payable (A/P) account to which this item receipt is assigned, used
+   * to track the amount owed. If not specified, QuickBooks Desktop will use its
+   * default A/P account.
    *
-   * **IMPORTANT**: If this bill is linked to other transactions, this A/P account
-   * must match the `payablesAccount` used in those other transactions.
+   * **IMPORTANT**: If this item receipt is linked to other transactions, this A/P
+   * account must match the `payablesAccount` used in those other transactions.
    */
   export interface PayablesAccount {
     /**
@@ -1501,9 +1504,9 @@ export namespace Bill {
   }
 
   /**
-   * The sales-tax code for this bill, determining whether it is taxable or
+   * The sales-tax code for this item receipt, determining whether it is taxable or
    * non-taxable. If set, this overrides any sales-tax codes defined on the vendor.
-   * This can be overridden on the bill's individual lines.
+   * This can be overridden on the item receipt's individual lines.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
    * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
@@ -1527,27 +1530,7 @@ export namespace Bill {
   }
 
   /**
-   * The bill's payment terms, defining when payment is due and any applicable
-   * discounts.
-   */
-  export interface Terms {
-    /**
-     * The unique identifier assigned by QuickBooks to this object. This ID is unique
-     * across all objects of the same type, but not across different QuickBooks object
-     * types.
-     */
-    id: string | null;
-
-    /**
-     * The fully-qualified unique name for this object, formed by combining the names
-     * of its parent objects with its own `name`, separated by colons. Not
-     * case-sensitive.
-     */
-    fullName: string | null;
-  }
-
-  /**
-   * The vendor who sent this bill for goods or services purchased.
+   * The vendor who sent this item receipt for goods or services purchased.
    */
   export interface Vendor {
     /**
@@ -1564,95 +1547,39 @@ export namespace Bill {
      */
     fullName: string | null;
   }
-
-  /**
-   * The address of the vendor who sent this bill.
-   */
-  export interface VendorAddress {
-    /**
-     * The city, district, suburb, town, or village name of the address.
-     */
-    city: string | null;
-
-    /**
-     * The country name of the address.
-     */
-    country: string | null;
-
-    /**
-     * The first line of the address (e.g., street, PO Box, or company name).
-     */
-    line1: string | null;
-
-    /**
-     * The second line of the address, if needed (e.g., apartment, suite, unit, or
-     * building).
-     */
-    line2: string | null;
-
-    /**
-     * The third line of the address, if needed.
-     */
-    line3: string | null;
-
-    /**
-     * The fourth line of the address, if needed.
-     */
-    line4: string | null;
-
-    /**
-     * The fifth line of the address, if needed.
-     */
-    line5: string | null;
-
-    /**
-     * A note written at the bottom of the address in the form in which it appears,
-     * such as the invoice form.
-     */
-    note: string | null;
-
-    /**
-     * The postal code or ZIP code of the address.
-     */
-    postalCode: string | null;
-
-    /**
-     * The state, county, province, or region name of the address.
-     */
-    state: string | null;
-  }
 }
 
-export interface BillDeleteResponse {
+export interface ItemReceiptDeleteResponse {
   /**
-   * The QuickBooks-assigned unique identifier of the deleted bill.
+   * The QuickBooks-assigned unique identifier of the deleted item receipt.
    */
   id: string;
 
   /**
-   * Indicates whether the bill was deleted.
+   * Indicates whether the item receipt was deleted.
    */
   deleted: boolean;
 
   /**
-   * The type of object. This value is always `"qbd_bill"`.
+   * The type of object. This value is always `"qbd_item_receipt"`.
    */
-  objectType: 'qbd_bill';
+  objectType: 'qbd_item_receipt';
 
   /**
-   * The case-sensitive user-defined reference number of the deleted bill.
+   * The case-sensitive user-defined reference number of the deleted item receipt.
    */
   refNumber: string | null;
 }
 
-export interface BillCreateParams {
+export interface ItemReceiptCreateParams {
   /**
-   * Body param: The date of this bill, in ISO 8601 format (YYYY-MM-DD).
+   * Body param: The date of this item receipt, in ISO 8601 format (YYYY-MM-DD).
    */
   transactionDate: string;
 
   /**
-   * Body param: The vendor who sent this bill for goods or services purchased.
+   * Body param: The vendor who sent this item receipt for goods or services
+   * purchased.
    */
   vendorId: string;
 
@@ -1663,23 +1590,18 @@ export interface BillCreateParams {
   conductorEndUserId: string;
 
   /**
-   * Body param: The date by which this bill must be paid, in ISO 8601 format
-   * (YYYY-MM-DD).
-   */
-  dueDate?: string;
-
-  /**
-   * Body param: The market exchange rate between this bill's currency and the home
-   * currency in QuickBooks at the time of this transaction. Represented as a decimal
-   * value (e.g., 1.2345 for 1 EUR = 1.2345 USD if USD is the home currency).
+   * Body param: The market exchange rate between this item receipt's currency and
+   * the home currency in QuickBooks at the time of this transaction. Represented as
+   * a decimal value (e.g., 1.2345 for 1 EUR = 1.2345 USD if USD is the home
+   * currency).
    */
   exchangeRate?: number;
 
   /**
-   * Body param: The bill's expense lines, each representing one line in this
+   * Body param: The item receipt's expense lines, each representing one line in this
    * expense.
    */
-  expenseLines?: Array<BillCreateParams.ExpenseLine>;
+  expenseLines?: Array<ItemReceiptCreateParams.ExpenseLine>;
 
   /**
    * Body param: A globally unique identifier (GUID) you, the developer, can provide
@@ -1692,28 +1614,28 @@ export interface BillCreateParams {
   externalId?: string;
 
   /**
-   * Body param: The bill's item group lines, each representing a predefined set of
-   * items bundled together because they are commonly purchased together or grouped
-   * for faster entry.
+   * Body param: The item receipt's item group lines, each representing a predefined
+   * set of items bundled together because they are commonly purchased together or
+   * grouped for faster entry.
    */
-  itemLineGroups?: Array<BillCreateParams.ItemLineGroup>;
+  itemLineGroups?: Array<ItemReceiptCreateParams.ItemLineGroup>;
 
   /**
-   * Body param: The bill's item lines, each representing the purchase of a specific
-   * item or service.
+   * Body param: The item receipt's item lines, each representing the purchase of a
+   * specific item or service.
    */
-  itemLines?: Array<BillCreateParams.ItemLine>;
+  itemLines?: Array<ItemReceiptCreateParams.ItemLine>;
 
   /**
-   * Body param: IDs of existing purchase orders that you wish to link to this bill.
-   * Note that this links entire transactions, not individual transaction lines. If
-   * you want to link individual lines in a transaction, instead use the field
-   * `linkToTransactionLine` on this bill's lines, if available.
+   * Body param: IDs of existing purchase orders that you wish to link to this item
+   * receipt. Note that this links entire transactions, not individual transaction
+   * lines. If you want to link individual lines in a transaction, instead use the
+   * field `linkToTransactionLine` on this item receipt's lines, if available.
    *
-   * Transactions can only be linked when creating this bill and cannot be unlinked
-   * later.
+   * Transactions can only be linked when creating this item receipt and cannot be
+   * unlinked later.
    *
-   * You can use both `linkToTransactionIds` (on this bill) and
+   * You can use both `linkToTransactionIds` (on this item receipt) and
    * `linkToTransactionLine` (on its transaction lines) as long as they do NOT link
    * to the same transaction (otherwise, QuickBooks will return an error). QuickBooks
    * will also return an error if you attempt to link a transaction that is empty or
@@ -1721,42 +1643,41 @@ export interface BillCreateParams {
    *
    * **IMPORTANT**: By default, QuickBooks will not return any information about the
    * linked transactions in this endpoint's response even when this request is
-   * successful. To see the transactions linked via this field, refetch the bill and
-   * check the `linkedTransactions` response field. If fetching a list of bills, you
-   * must also specify the parameter `includeLinkedTransactions=true` to see the
-   * `linkedTransactions` response field.
+   * successful. To see the transactions linked via this field, refetch the item
+   * receipt and check the `linkedTransactions` response field. If fetching a list of
+   * item receipts, you must also specify the parameter
+   * `includeLinkedTransactions=true` to see the `linkedTransactions` response field.
    */
   linkToTransactionIds?: Array<string>;
 
   /**
-   * Body param: A memo or note for this bill that appears in the Accounts-Payable
-   * register and in reports that include this bill.
+   * Body param: A memo or note for this item receipt.
    */
   memo?: string;
 
   /**
-   * Body param: The Accounts-Payable (A/P) account to which this bill is assigned,
-   * used to track the amount owed. If not specified, QuickBooks Desktop will use its
-   * default A/P account.
+   * Body param: The Accounts-Payable (A/P) account to which this item receipt is
+   * assigned, used to track the amount owed. If not specified, QuickBooks Desktop
+   * will use its default A/P account.
    *
-   * **IMPORTANT**: If this bill is linked to other transactions, this A/P account
-   * must match the `payablesAccount` used in those other transactions.
+   * **IMPORTANT**: If this item receipt is linked to other transactions, this A/P
+   * account must match the `payablesAccount` used in those other transactions.
    */
   payablesAccountId?: string;
 
   /**
-   * Body param: The case-sensitive user-defined reference number for this bill,
-   * which can be used to identify the transaction in QuickBooks. This value is not
-   * required to be unique and can be arbitrarily changed by the QuickBooks user.
-   * When left blank in this create request, this field will be left blank in
+   * Body param: The case-sensitive user-defined reference number for this item
+   * receipt, which can be used to identify the transaction in QuickBooks. This value
+   * is not required to be unique and can be arbitrarily changed by the QuickBooks
+   * user. When left blank in this create request, this field will be left blank in
    * QuickBooks (i.e., it does _not_ auto-increment).
    */
   refNumber?: string;
 
   /**
-   * Body param: The sales-tax code for this bill, determining whether it is taxable
-   * or non-taxable. If set, this overrides any sales-tax codes defined on the
-   * vendor. This can be overridden on the bill's individual lines.
+   * Body param: The sales-tax code for this item receipt, determining whether it is
+   * taxable or non-taxable. If set, this overrides any sales-tax codes defined on
+   * the vendor. This can be overridden on the item receipt's individual lines.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
    * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
@@ -1764,20 +1685,9 @@ export interface BillCreateParams {
    * non-taxable code to all sales.
    */
   salesTaxCodeId?: string;
-
-  /**
-   * Body param: The bill's payment terms, defining when payment is due and any
-   * applicable discounts.
-   */
-  termsId?: string;
-
-  /**
-   * Body param: The address of the vendor who sent this bill.
-   */
-  vendorAddress?: BillCreateParams.VendorAddress;
 }
 
-export namespace BillCreateParams {
+export namespace ItemReceiptCreateParams {
   export interface ExpenseLine {
     /**
      * The expense account being debited (increased) for this expense line. The
@@ -2168,82 +2078,9 @@ export namespace BillCreateParams {
       transactionLineId: string;
     }
   }
-
-  /**
-   * The address of the vendor who sent this bill.
-   */
-  export interface VendorAddress {
-    /**
-     * The city, district, suburb, town, or village name of the address.
-     *
-     * Maximum length: 31 characters.
-     */
-    city?: string;
-
-    /**
-     * The country name of the address.
-     */
-    country?: string;
-
-    /**
-     * The first line of the address (e.g., street, PO Box, or company name).
-     *
-     * Maximum length: 41 characters.
-     */
-    line1?: string;
-
-    /**
-     * The second line of the address, if needed (e.g., apartment, suite, unit, or
-     * building).
-     *
-     * Maximum length: 41 characters.
-     */
-    line2?: string;
-
-    /**
-     * The third line of the address, if needed.
-     *
-     * Maximum length: 41 characters.
-     */
-    line3?: string;
-
-    /**
-     * The fourth line of the address, if needed.
-     *
-     * Maximum length: 41 characters.
-     */
-    line4?: string;
-
-    /**
-     * The fifth line of the address, if needed.
-     *
-     * Maximum length: 41 characters.
-     */
-    line5?: string;
-
-    /**
-     * A note written at the bottom of the address in the form in which it appears,
-     * such as the invoice form.
-     */
-    note?: string;
-
-    /**
-     * The postal code or ZIP code of the address.
-     *
-     * Maximum length: 13 characters.
-     */
-    postalCode?: string;
-
-    /**
-     * The state, county, province, or region name of the address.
-     *
-     * Maximum length: 21 characters.
-     */
-    state?: string;
-  }
 }
 
-export interface BillRetrieveParams {
+export interface ItemReceiptRetrieveParams {
   /**
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
@@ -2251,11 +2088,11 @@ export interface BillRetrieveParams {
   conductorEndUserId: string;
 }
 
-export interface BillUpdateParams {
+export interface ItemReceiptUpdateParams {
   /**
-   * Body param: The current QuickBooks-assigned revision number of the bill object
-   * you are updating, which you can get by fetching the object first. Provide the
-   * most recent `revisionNumber` to ensure you're working with the latest data;
+   * Body param: The current QuickBooks-assigned revision number of the item receipt
+   * object you are updating, which you can get by fetching the object first. Provide
+   * the most recent `revisionNumber` to ensure you're working with the latest data;
    * otherwise, the update will return an error.
    */
   revisionNumber: string;
@@ -2268,58 +2105,54 @@ export interface BillUpdateParams {
 
   /**
    * Body param: When `true`, removes all existing expense lines associated with this
-   * bill. To modify or add individual expense lines, use the field `expenseLines`
-   * instead.
+   * item receipt. To modify or add individual expense lines, use the field
+   * `expenseLines` instead.
    */
   clearExpenseLines?: boolean;
 
   /**
    * Body param: When `true`, removes all existing item lines associated with this
-   * bill. To modify or add individual item lines, use the field `itemLines` instead.
+   * item receipt. To modify or add individual item lines, use the field `itemLines`
+   * instead.
    */
   clearItemLines?: boolean;
 
   /**
-   * Body param: The date by which this bill must be paid, in ISO 8601 format
-   * (YYYY-MM-DD).
-   */
-  dueDate?: string;
-
-  /**
-   * Body param: The market exchange rate between this bill's currency and the home
-   * currency in QuickBooks at the time of this transaction. Represented as a decimal
-   * value (e.g., 1.2345 for 1 EUR = 1.2345 USD if USD is the home currency).
+   * Body param: The market exchange rate between this item receipt's currency and
+   * the home currency in QuickBooks at the time of this transaction. Represented as
+   * a decimal value (e.g., 1.2345 for 1 EUR = 1.2345 USD if USD is the home
+   * currency).
    */
   exchangeRate?: number;
 
   /**
-   * Body param: The bill's expense lines, each representing one line in this
+   * Body param: The item receipt's expense lines, each representing one line in this
    * expense.
    *
    * **IMPORTANT**:
    *
    * 1. Including this array in your update request will **REPLACE** all existing
-   *    expense lines for the bill with this array. To keep any existing expense
-   *    lines, you must include them in this array even if they have not changed.
-   *    **Any expense lines not included will be removed.**
+   *    expense lines for the item receipt with this array. To keep any existing
+   *    expense lines, you must include them in this array even if they have not
+   *    changed. **Any expense lines not included will be removed.**
    *
    * 2. To add a new expense line, include it here with the `id` field set to `-1`.
    *
    * 3. If you do not wish to modify any expense lines, omit this field entirely to
    *    keep them unchanged.
    */
-  expenseLines?: Array<BillUpdateParams.ExpenseLine>;
+  expenseLines?: Array<ItemReceiptUpdateParams.ExpenseLine>;
 
   /**
-   * Body param: The bill's item group lines, each representing a predefined set of
-   * items bundled together because they are commonly purchased together or grouped
-   * for faster entry.
+   * Body param: The item receipt's item group lines, each representing a predefined
+   * set of items bundled together because they are commonly purchased together or
+   * grouped for faster entry.
    *
    * **IMPORTANT**:
    *
    * 1. Including this array in your update request will **REPLACE** all existing
-   *    item group lines for the bill with this array. To keep any existing item
-   *    group lines, you must include them in this array even if they have not
+   *    item group lines for the item receipt with this array. To keep any existing
+   *    item group lines, you must include them in this array even if they have not
    *    changed. **Any item group lines not included will be removed.**
    *
    * 2. To add a new item group line, include it here with the `id` field set to
@@ -2328,53 +2161,53 @@ export interface BillUpdateParams {
    * 3. If you do not wish to modify any item group lines, omit this field entirely
    *    to keep them unchanged.
    */
-  itemLineGroups?: Array<BillUpdateParams.ItemLineGroup>;
+  itemLineGroups?: Array<ItemReceiptUpdateParams.ItemLineGroup>;
 
   /**
-   * Body param: The bill's item lines, each representing the purchase of a specific
-   * item or service.
+   * Body param: The item receipt's item lines, each representing the purchase of a
+   * specific item or service.
    *
    * **IMPORTANT**:
    *
    * 1. Including this array in your update request will **REPLACE** all existing
-   *    item lines for the bill with this array. To keep any existing item lines, you
-   *    must include them in this array even if they have not changed. **Any item
-   *    lines not included will be removed.**
+   *    item lines for the item receipt with this array. To keep any existing item
+   *    lines, you must include them in this array even if they have not changed.
+   *    **Any item lines not included will be removed.**
    *
    * 2. To add a new item line, include it here with the `id` field set to `-1`.
    *
    * 3. If you do not wish to modify any item lines, omit this field entirely to keep
    *    them unchanged.
    */
-  itemLines?: Array<BillUpdateParams.ItemLine>;
+  itemLines?: Array<ItemReceiptUpdateParams.ItemLine>;
 
   /**
-   * Body param: A memo or note for this bill that appears in the Accounts-Payable
-   * register and in reports that include this bill.
+   * Body param: A memo or note for this item receipt.
    */
   memo?: string;
 
   /**
-   * Body param: The Accounts-Payable (A/P) account to which this bill is assigned,
-   * used to track the amount owed. If not specified, QuickBooks Desktop will use its
-   * default A/P account.
+   * Body param: The Accounts-Payable (A/P) account to which this item receipt is
+   * assigned, used to track the amount owed. If not specified, QuickBooks Desktop
+   * will use its default A/P account.
    *
-   * **IMPORTANT**: If this bill is linked to other transactions, this A/P account
-   * must match the `payablesAccount` used in those other transactions.
+   * **IMPORTANT**: If this item receipt is linked to other transactions, this A/P
+   * account must match the `payablesAccount` used in those other transactions.
    */
   payablesAccountId?: string;
 
   /**
-   * Body param: The case-sensitive user-defined reference number for this bill,
-   * which can be used to identify the transaction in QuickBooks. This value is not
-   * required to be unique and can be arbitrarily changed by the QuickBooks user.
+   * Body param: The case-sensitive user-defined reference number for this item
+   * receipt, which can be used to identify the transaction in QuickBooks. This value
+   * is not required to be unique and can be arbitrarily changed by the QuickBooks
+   * user.
    */
   refNumber?: string;
 
   /**
-   * Body param: The sales-tax code for this bill, determining whether it is taxable
-   * or non-taxable. If set, this overrides any sales-tax codes defined on the
-   * vendor. This can be overridden on the bill's individual lines.
+   * Body param: The sales-tax code for this item receipt, determining whether it is
+   * taxable or non-taxable. If set, this overrides any sales-tax codes defined on
+   * the vendor. This can be overridden on the item receipt's individual lines.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
    * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
@@ -2384,28 +2217,18 @@ export interface BillUpdateParams {
   salesTaxCodeId?: string;
 
   /**
-   * Body param: The bill's payment terms, defining when payment is due and any
-   * applicable discounts.
-   */
-  termsId?: string;
-
-  /**
-   * Body param: The date of this bill, in ISO 8601 format (YYYY-MM-DD).
+   * Body param: The date of this item receipt, in ISO 8601 format (YYYY-MM-DD).
    */
   transactionDate?: string;
 
   /**
-   * Body param: The address of the vendor who sent this bill.
-   */
-  vendorAddress?: BillUpdateParams.VendorAddress;
-
-  /**
-   * Body param: The vendor who sent this bill for goods or services purchased.
+   * Body param: The vendor who sent this item receipt for goods or services
+   * purchased.
    */
   vendorId?: string;
 }
 
-export namespace BillUpdateParams {
+export namespace ItemReceiptUpdateParams {
   export interface ExpenseLine {
     /**
      * The QuickBooks-assigned unique identifier of an existing expense line you wish
@@ -2812,82 +2635,9 @@ export namespace BillUpdateParams {
      */
     unitOfMeasure?: string;
   }
-
-  /**
-   * The address of the vendor who sent this bill.
-   */
-  export interface VendorAddress {
-    /**
-     * The city, district, suburb, town, or village name of the address.
-     *
-     * Maximum length: 31 characters.
-     */
-    city?: string;
-
-    /**
-     * The country name of the address.
-     */
-    country?: string;
-
-    /**
-     * The first line of the address (e.g., street, PO Box, or company name).
-     *
-     * Maximum length: 41 characters.
-     */
-    line1?: string;
-
-    /**
-     * The second line of the address, if needed (e.g., apartment, suite, unit, or
-     * building).
-     *
-     * Maximum length: 41 characters.
-     */
-    line2?: string;
-
-    /**
-     * The third line of the address, if needed.
-     *
-     * Maximum length: 41 characters.
-     */
-    line3?: string;
-
-    /**
-     * The fourth line of the address, if needed.
-     *
-     * Maximum length: 41 characters.
-     */
-    line4?: string;
-
-    /**
-     * The fifth line of the address, if needed.
-     *
-     * Maximum length: 41 characters.
-     */
-    line5?: string;
-
-    /**
-     * A note written at the bottom of the address in the form in which it appears,
-     * such as the invoice form.
-     */
-    note?: string;
-
-    /**
-     * The postal code or ZIP code of the address.
-     *
-     * Maximum length: 13 characters.
-     */
-    postalCode?: string;
-
-    /**
-     * The state, county, province, or region name of the address.
-     *
-     * Maximum length: 21 characters.
-     */
-    state?: string;
-  }
 }
 
-export interface BillListParams extends CursorPageParams {
+export interface ItemReceiptListParams extends CursorPageParams {
   /**
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
@@ -2895,18 +2645,18 @@ export interface BillListParams extends CursorPageParams {
   conductorEndUserId: string;
 
   /**
-   * Query param: Filter for bills associated with these accounts.
+   * Query param: Filter for item receipts associated with these accounts.
    */
   accountIds?: Array<string>;
 
   /**
-   * Query param: Filter for bills in these currencies.
+   * Query param: Filter for item receipts in these currencies.
    */
   currencyIds?: Array<string>;
 
   /**
-   * Query param: Filter for specific bills by their QuickBooks-assigned unique
-   * identifier(s).
+   * Query param: Filter for specific item receipts by their QuickBooks-assigned
+   * unique identifier(s).
    *
    * **IMPORTANT**: If you include this parameter, QuickBooks will ignore all other
    * query parameters for this request.
@@ -2923,41 +2673,36 @@ export interface BillListParams extends CursorPageParams {
 
   /**
    * Query param: Whether to include linked transactions in the response. Defaults to
-   * `false`. For example, a payment linked to the corresponding bill.
+   * `false`. For example, a payment linked to the corresponding item receipt.
    */
   includeLinkedTransactions?: boolean;
 
   /**
-   * Query param: Filter for bills that are paid, not paid, or both.
-   */
-  paymentStatus?: 'all' | 'paid' | 'not_paid';
-
-  /**
-   * Query param: Filter for bills whose `refNumber` contains this substring. NOTE:
-   * If you use this parameter, you cannot also use `refNumberStartsWith` or
+   * Query param: Filter for item receipts whose `refNumber` contains this substring.
+   * NOTE: If you use this parameter, you cannot also use `refNumberStartsWith` or
    * `refNumberEndsWith`.
    */
   refNumberContains?: string;
 
   /**
-   * Query param: Filter for bills whose `refNumber` ends with this substring. NOTE:
-   * If you use this parameter, you cannot also use `refNumberContains` or
-   * `refNumberStartsWith`.
+   * Query param: Filter for item receipts whose `refNumber` ends with this
+   * substring. NOTE: If you use this parameter, you cannot also use
+   * `refNumberContains` or `refNumberStartsWith`.
    */
   refNumberEndsWith?: string;
 
   /**
-   * Query param: Filter for bills whose `refNumber` is greater than or equal to this
-   * value. If omitted, the range will begin with the first number of the list. Uses
-   * a numerical comparison for values that contain only digits; otherwise, uses a
-   * lexicographical comparison.
+   * Query param: Filter for item receipts whose `refNumber` is greater than or equal
+   * to this value. If omitted, the range will begin with the first number of the
+   * list. Uses a numerical comparison for values that contain only digits;
+   * otherwise, uses a lexicographical comparison.
    */
   refNumberFrom?: string;
 
   /**
-   * Query param: Filter for specific bills by their ref-number(s), case-sensitive.
-   * In QuickBooks, ref-numbers are not required to be unique and can be arbitrarily
-   * changed by the QuickBooks user.
+   * Query param: Filter for specific item receipts by their ref-number(s),
+   * case-sensitive. In QuickBooks, ref-numbers are not required to be unique and can
+   * be arbitrarily changed by the QuickBooks user.
    *
    * **IMPORTANT**: If you include this parameter, QuickBooks will ignore all other
    * query parameters for this request.
@@ -2968,53 +2713,53 @@ export interface BillListParams extends CursorPageParams {
   refNumbers?: Array<string>;
 
   /**
-   * Query param: Filter for bills whose `refNumber` starts with this substring.
-   * NOTE: If you use this parameter, you cannot also use `refNumberContains` or
-   * `refNumberEndsWith`.
+   * Query param: Filter for item receipts whose `refNumber` starts with this
+   * substring. NOTE: If you use this parameter, you cannot also use
+   * `refNumberContains` or `refNumberEndsWith`.
    */
   refNumberStartsWith?: string;
 
   /**
-   * Query param: Filter for bills whose `refNumber` is less than or equal to this
-   * value. If omitted, the range will end with the last number of the list. Uses a
-   * numerical comparison for values that contain only digits; otherwise, uses a
-   * lexicographical comparison.
+   * Query param: Filter for item receipts whose `refNumber` is less than or equal to
+   * this value. If omitted, the range will end with the last number of the list.
+   * Uses a numerical comparison for values that contain only digits; otherwise, uses
+   * a lexicographical comparison.
    */
   refNumberTo?: string;
 
   /**
-   * Query param: Filter for bills whose `date` field is on or after this date, in
-   * ISO 8601 format (YYYY-MM-DD).
+   * Query param: Filter for item receipts whose `date` field is on or after this
+   * date, in ISO 8601 format (YYYY-MM-DD).
    */
   transactionDateFrom?: string;
 
   /**
-   * Query param: Filter for bills whose `date` field is on or before this date, in
-   * ISO 8601 format (YYYY-MM-DD).
+   * Query param: Filter for item receipts whose `date` field is on or before this
+   * date, in ISO 8601 format (YYYY-MM-DD).
    */
   transactionDateTo?: string;
 
   /**
-   * Query param: Filter for bills updated on or after this date and time, in ISO
-   * 8601 format (YYYY-MM-DDTHH:mm:ss). If you only provide a date (YYYY-MM-DD), the
-   * time is assumed to be 00:00:00 of that day.
+   * Query param: Filter for item receipts updated on or after this date and time, in
+   * ISO 8601 format (YYYY-MM-DDTHH:mm:ss). If you only provide a date (YYYY-MM-DD),
+   * the time is assumed to be 00:00:00 of that day.
    */
   updatedAfter?: string;
 
   /**
-   * Query param: Filter for bills updated on or before this date and time, in ISO
-   * 8601 format (YYYY-MM-DDTHH:mm:ss). If you only provide a date (YYYY-MM-DD), the
-   * time is assumed to be 23:59:59 of that day.
+   * Query param: Filter for item receipts updated on or before this date and time,
+   * in ISO 8601 format (YYYY-MM-DDTHH:mm:ss). If you only provide a date
+   * (YYYY-MM-DD), the time is assumed to be 23:59:59 of that day.
    */
   updatedBefore?: string;
 
   /**
-   * Query param: Filter for bills received from these vendors.
+   * Query param: Filter for item receipts received from these vendors.
    */
   vendorIds?: Array<string>;
 }
 
-export interface BillDeleteParams {
+export interface ItemReceiptDeleteParams {
   /**
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
@@ -3022,17 +2767,17 @@ export interface BillDeleteParams {
   conductorEndUserId: string;
 }
 
-Bills.BillsCursorPage = BillsCursorPage;
+ItemReceipts.ItemReceiptsCursorPage = ItemReceiptsCursorPage;
 
-export declare namespace Bills {
+export declare namespace ItemReceipts {
   export {
-    type Bill as Bill,
-    type BillDeleteResponse as BillDeleteResponse,
-    BillsCursorPage as BillsCursorPage,
-    type BillCreateParams as BillCreateParams,
-    type BillRetrieveParams as BillRetrieveParams,
-    type BillUpdateParams as BillUpdateParams,
-    type BillListParams as BillListParams,
-    type BillDeleteParams as BillDeleteParams,
+    type ItemReceipt as ItemReceipt,
+    type ItemReceiptDeleteResponse as ItemReceiptDeleteResponse,
+    ItemReceiptsCursorPage as ItemReceiptsCursorPage,
+    type ItemReceiptCreateParams as ItemReceiptCreateParams,
+    type ItemReceiptRetrieveParams as ItemReceiptRetrieveParams,
+    type ItemReceiptUpdateParams as ItemReceiptUpdateParams,
+    type ItemReceiptListParams as ItemReceiptListParams,
+    type ItemReceiptDeleteParams as ItemReceiptDeleteParams,
   };
 }
