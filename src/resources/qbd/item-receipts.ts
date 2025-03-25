@@ -145,7 +145,7 @@ export interface ItemReceipt {
   /**
    * The liability account used to track the amount owed for this item receipt.
    */
-  liabilityAccount: ItemReceipt.LiabilityAccount;
+  liabilityAccount: ItemReceipt.LiabilityAccount | null;
 
   /**
    * The item receipt's linked transactions, such as payments applied, credits used,
