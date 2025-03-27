@@ -1,6 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
+  AccountTaxLines,
+  type AccountTaxLine,
+  type AccountTaxLineListResponse,
+  type AccountTaxLineListParams,
+} from './account-tax-lines';
+export {
   Accounts,
   type Account,
   type AccountListResponse,
