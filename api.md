@@ -35,6 +35,17 @@ Methods:
 
 - <code title="get /quickbooks-desktop/health-check">client.qbd.<a href="./src/resources/qbd/qbd.ts">healthCheck</a>({ ...params }) -> QbdHealthCheckResponse</code>
 
+## AccountTaxLines
+
+Types:
+
+- <code><a href="./src/resources/qbd/account-tax-lines.ts">AccountTaxLine</a></code>
+- <code><a href="./src/resources/qbd/account-tax-lines.ts">AccountTaxLineListResponse</a></code>
+
+Methods:
+
+- <code title="get /quickbooks-desktop/account-tax-lines">client.qbd.accountTaxLines.<a href="./src/resources/qbd/account-tax-lines.ts">list</a>({ ...params }) -> AccountTaxLineListResponse</code>
+
 ## Accounts
 
 Types:
