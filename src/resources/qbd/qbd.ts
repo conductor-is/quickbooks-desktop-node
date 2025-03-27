@@ -2,6 +2,13 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
+import * as AccountTaxLinesAPI from './account-tax-lines';
+import {
+  AccountTaxLine,
+  AccountTaxLineListParams,
+  AccountTaxLineListResponse,
+  AccountTaxLines,
+} from './account-tax-lines';
 import * as AccountsAPI from './accounts';
 import {
   Account,
@@ -428,6 +435,7 @@ import {
 } from './vendors';
 
 export class Qbd extends APIResource {
+  accountTaxLines: AccountTaxLinesAPI.AccountTaxLines = new AccountTaxLinesAPI.AccountTaxLines(this._client);
   accounts: AccountsAPI.Accounts = new AccountsAPI.Accounts(this._client);
   billCheckPayments: BillCheckPaymentsAPI.BillCheckPayments = new BillCheckPaymentsAPI.BillCheckPayments(
     this._client,
@@ -525,6 +533,7 @@ export interface QbdHealthCheckParams {
   conductorEndUserId: string;
 }
 
+Qbd.AccountTaxLines = AccountTaxLines;
 Qbd.Accounts = Accounts;
 Qbd.BillCheckPayments = BillCheckPayments;
 Qbd.BillCheckPaymentsCursorPage = BillCheckPaymentsCursorPage;
@@ -600,6 +609,13 @@ export declare namespace Qbd {
   export {
     type QbdHealthCheckResponse as QbdHealthCheckResponse,
     type QbdHealthCheckParams as QbdHealthCheckParams,
+  };
+
+  export {
+    AccountTaxLines as AccountTaxLines,
+    type AccountTaxLine as AccountTaxLine,
+    type AccountTaxLineListResponse as AccountTaxLineListResponse,
+    type AccountTaxLineListParams as AccountTaxLineListParams,
   };
 
   export {

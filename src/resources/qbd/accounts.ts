@@ -381,7 +381,9 @@ export namespace Account {
    */
   export interface TaxLineDetails {
     /**
-     * The identifier of the tax line associated with this account.
+     * The identifier of the tax line associated with this account. You can see a list
+     * of all available values for this field by calling the endpoint for account tax
+     * lines.
      */
     taxLineId: number;
 
@@ -521,7 +523,9 @@ export interface AccountCreateParams {
   salesTaxCodeId?: string;
 
   /**
-   * Body param: The identifier of the tax line associated with this account.
+   * Body param: The identifier of the tax line associated with this account. You can
+   * see a list of all available values for this field by calling the endpoint for
+   * account tax lines.
    */
   taxLineId?: number;
 }
@@ -653,7 +657,9 @@ export interface AccountUpdateParams {
   salesTaxCodeId?: string;
 
   /**
-   * Body param: The identifier of the tax line associated with this account.
+   * Body param: The identifier of the tax line associated with this account. You can
+   * see a list of all available values for this field by calling the endpoint for
+   * account tax lines.
    */
   taxLineId?: number;
 }
