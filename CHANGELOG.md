@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.0.0-beta.24 (2025-03-28)
+
+Full Changelog: [v12.0.0-beta.23...v12.0.0-beta.24](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.23...v12.0.0-beta.24)
+
+### Bug Fixes
+
+* **internal:** work around https://github.com/vercel/next.js/issues/76881 ([#138](https://github.com/conductor-is/quickbooks-desktop-node/issues/138)) ([28de41a](https://github.com/conductor-is/quickbooks-desktop-node/commit/28de41a915e9ed3ff9e01de6f51120c68cadf50b))
+
 ## 12.0.0-beta.23 (2025-03-27)
 
 Full Changelog: [v12.0.0-beta.22...v12.0.0-beta.23](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.22...v12.0.0-beta.23)
