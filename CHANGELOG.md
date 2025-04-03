@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.0.1 (2025-04-03)
+
+Full Changelog: [v12.0.0...v12.0.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0...v12.0.1)
+
+### Documentation
+
+* update migration note in README ([7061f8f](https://github.com/conductor-is/quickbooks-desktop-node/commit/7061f8fa032fd1beada1f9a6608596d293f85cf3))
+
 ## 12.0.0 (2025-04-03)
 
 Full Changelog: [v12.0.0-beta.24...v12.0.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0-beta.24...v12.0.0)
