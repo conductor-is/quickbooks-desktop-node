@@ -42,7 +42,8 @@ The REST API documentation can be found on [docs.conductor.is](https://docs.cond
 npm install conductor-node
 ```
 
-If you're migrating from the old `conductor-node` package, see the [migration guide](https://docs.conductor.is/qbd-api/upgrade-node).
+> [!IMPORTANT]
+> If you're migrating from the old `conductor-node` package (v11 or earlier), please see the [upgrade guide](https://docs.conductor.is/qbd-api/upgrade-node).
 
 ## Key features
 
