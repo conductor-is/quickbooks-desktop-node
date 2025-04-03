@@ -39,12 +39,10 @@ The REST API documentation can be found on [docs.conductor.is](https://docs.cond
 ## Installation
 
 ```sh
-npm install conductor-node@beta
+npm install conductor-node
 ```
 
-> **Note:** Though this version of the Node.js SDK uses an NPM `@beta` tag, it **_is_ stable and ready for production use**! We merely have a few more endpoints to migrate before prompting all existing users to update. **Any new Conductor users should absolutely use the beta version**!
->
-> If you're migrating from the old `conductor-node` package, see the [migration guide](https://docs.conductor.is/qbd-api/upgrade-node).
+If you're migrating from the old `conductor-node` package, see the [migration guide](https://docs.conductor.is/qbd-api/upgrade-node).
 
 ## Key features
 
