@@ -169,6 +169,8 @@ export interface SalesRepresentativeCreateParams {
 
   /**
    * Body param: The initials of this sales representative's name.
+   *
+   * Maximum length: 5 characters.
    */
   initial: string;
 
@@ -217,6 +219,8 @@ export interface SalesRepresentativeUpdateParams {
 
   /**
    * Body param: The initials of this sales representative's name.
+   *
+   * Maximum length: 5 characters.
    */
   initial?: string;
 
