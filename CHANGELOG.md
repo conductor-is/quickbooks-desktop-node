@@ -1,5 +1,20 @@
 # Changelog
 
+## 12.0.2 (2025-04-05)
+
+Full Changelog: [v12.0.1...v12.0.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.1...v12.0.2)
+
+### Bug Fixes
+
+* **api:** improve type resolution when importing as a package ([#150](https://github.com/conductor-is/quickbooks-desktop-node/issues/150)) ([310dcea](https://github.com/conductor-is/quickbooks-desktop-node/commit/310dcea025e50e810e5429ca2668ee253a8bdc9b))
+* **mcp:** remove unused tools.ts ([#151](https://github.com/conductor-is/quickbooks-desktop-node/issues/151)) ([8e0710f](https://github.com/conductor-is/quickbooks-desktop-node/commit/8e0710fa839a67d551a70192d478cb2839639029))
+
+
+### Chores
+
+* **internal:** add aliases for Record and Array ([#149](https://github.com/conductor-is/quickbooks-desktop-node/issues/149)) ([c33b1e1](https://github.com/conductor-is/quickbooks-desktop-node/commit/c33b1e112787c0e814927c05d458a0107abb6499))
+* **internal:** codegen related update ([#147](https://github.com/conductor-is/quickbooks-desktop-node/issues/147)) ([b6512ac](https://github.com/conductor-is/quickbooks-desktop-node/commit/b6512acb7ef3523ec8af64366387c54d2fcb92af))
+
 ## 12.0.1 (2025-04-03)
 
 Full Changelog: [v12.0.0...v12.0.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0...v12.0.1)
