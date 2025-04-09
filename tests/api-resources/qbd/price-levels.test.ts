@@ -33,7 +33,7 @@ describe('resource priceLevels', () => {
       perItemPriceLevels: [
         {
           adjustPercentage: '-10.0',
-          adjustRelativeTo: 'cost',
+          adjustRelativeTo: 'standard_price',
           customPrice: '19.99',
           customPricePercent: '15.0',
           itemId: '80000001-1234567890',
@@ -86,7 +86,7 @@ describe('resource priceLevels', () => {
       perItemPriceLevels: [
         {
           adjustPercentage: '-10.0',
-          adjustRelativeTo: 'cost',
+          adjustRelativeTo: 'standard_price',
           customPrice: '19.99',
           customPricePercent: '15.0',
           itemId: '80000001-1234567890',

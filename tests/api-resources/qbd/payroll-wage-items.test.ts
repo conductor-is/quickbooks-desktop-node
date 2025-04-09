@@ -13,7 +13,7 @@ describe('resource payrollWageItems', () => {
     const responsePromise = client.qbd.payrollWageItems.create({
       expenseAccountId: '80000001-1234567890',
       name: 'Regular Pay',
-      wageType: 'bonus',
+      wageType: 'hourly_regular',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -29,7 +29,7 @@ describe('resource payrollWageItems', () => {
     const response = await client.qbd.payrollWageItems.create({
       expenseAccountId: '80000001-1234567890',
       name: 'Regular Pay',
-      wageType: 'bonus',
+      wageType: 'hourly_regular',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       isActive: true,
     });
