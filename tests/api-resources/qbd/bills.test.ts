@@ -254,7 +254,7 @@ describe('resource bills', () => {
       includeLineItems: true,
       includeLinkedTransactions: false,
       limit: 150,
-      paymentStatus: 'all',
+      paymentStatus: 'paid',
       refNumberContains: 'BILL-1234',
       refNumberEndsWith: '1234',
       refNumberFrom: 'BILL-0001',

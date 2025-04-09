@@ -11,7 +11,7 @@ const client = new Conductor({
 describe('resource accounts', () => {
   test('create: only required params', async () => {
     const responsePromise = client.qbd.accounts.create({
-      accountType: 'accounts_payable',
+      accountType: 'bank',
       name: 'Accounts-Payable',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -26,7 +26,7 @@ describe('resource accounts', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.qbd.accounts.create({
-      accountType: 'accounts_payable',
+      accountType: 'bank',
       name: 'Accounts-Payable',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountNumber: '1010',
@@ -81,7 +81,7 @@ describe('resource accounts', () => {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountNumber: '1010',
-      accountType: 'accounts_payable',
+      accountType: 'bank',
       bankAccountNumber: '123456789',
       currencyId: '80000001-1234567890',
       description:
@@ -110,7 +110,7 @@ describe('resource accounts', () => {
   test('list: required and optional params', async () => {
     const response = await client.qbd.accounts.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      accountType: 'accounts_payable',
+      accountType: 'income',
       currencyIds: ['80000001-1234567890'],
       fullNames: ['Corporate:Accounts-Payable'],
       ids: ['80000001-1234567890'],

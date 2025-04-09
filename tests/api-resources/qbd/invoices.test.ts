@@ -298,7 +298,7 @@ describe('resource invoices', () => {
       includeLineItems: true,
       includeLinkedTransactions: false,
       limit: 150,
-      paymentStatus: 'all',
+      paymentStatus: 'paid',
       refNumberContains: 'INV-1234',
       refNumberEndsWith: '1234',
       refNumberFrom: 'INV-0001',
