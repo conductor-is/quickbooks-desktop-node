@@ -1,5 +1,24 @@
 # Changelog
 
+## 12.0.2 (2025-04-15)
+
+Full Changelog: [v12.0.1...v12.0.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.1...v12.0.2)
+
+### Bug Fixes
+
+* **api:** improve type resolution when importing as a package ([#150](https://github.com/conductor-is/quickbooks-desktop-node/issues/150)) ([310dcea](https://github.com/conductor-is/quickbooks-desktop-node/commit/310dcea025e50e810e5429ca2668ee253a8bdc9b))
+* **mcp:** remove unused tools.ts ([#151](https://github.com/conductor-is/quickbooks-desktop-node/issues/151)) ([8e0710f](https://github.com/conductor-is/quickbooks-desktop-node/commit/8e0710fa839a67d551a70192d478cb2839639029))
+
+
+### Chores
+
+* **client:** minor internal fixes ([f153ff1](https://github.com/conductor-is/quickbooks-desktop-node/commit/f153ff1db61cc2f8c9abe68535f58980f6aeaf01))
+* **internal:** add aliases for Record and Array ([#149](https://github.com/conductor-is/quickbooks-desktop-node/issues/149)) ([c33b1e1](https://github.com/conductor-is/quickbooks-desktop-node/commit/c33b1e112787c0e814927c05d458a0107abb6499))
+* **internal:** codegen related update ([#147](https://github.com/conductor-is/quickbooks-desktop-node/issues/147)) ([b6512ac](https://github.com/conductor-is/quickbooks-desktop-node/commit/b6512acb7ef3523ec8af64366387c54d2fcb92af))
+* **internal:** reduce CI branch coverage ([8b848c1](https://github.com/conductor-is/quickbooks-desktop-node/commit/8b848c16a8ff197621c4165f0d851d6a40cf54da))
+* **internal:** upload builds and expand CI branch coverage ([a1133a2](https://github.com/conductor-is/quickbooks-desktop-node/commit/a1133a29c60d7d954b756b80a0c3ffbf4331b9fb))
+* **tests:** improve enum examples ([#152](https://github.com/conductor-is/quickbooks-desktop-node/issues/152)) ([0f6c39e](https://github.com/conductor-is/quickbooks-desktop-node/commit/0f6c39e589cd20e8f1ab33f9eb21bbeb636067ce))
+
 ## 12.0.1 (2025-04-03)
 
 Full Changelog: [v12.0.0...v12.0.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.0.0...v12.0.1)
