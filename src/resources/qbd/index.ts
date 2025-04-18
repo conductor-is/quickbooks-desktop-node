@@ -197,6 +197,15 @@ export {
   type InvoiceDeleteParams,
 } from './invoices';
 export {
+  ItemGroupsCursorPage,
+  ItemGroups,
+  type ItemGroup,
+  type ItemGroupCreateParams,
+  type ItemGroupRetrieveParams,
+  type ItemGroupUpdateParams,
+  type ItemGroupListParams,
+} from './item-groups';
+export {
   ItemReceiptsCursorPage,
   ItemReceipts,
   type ItemReceipt,

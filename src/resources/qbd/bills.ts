@@ -151,7 +151,7 @@ export interface Bill {
    * together because they are commonly purchased together or grouped for faster
    * entry.
    */
-  itemLineGroups: Array<Bill.ItemLineGroup>;
+  itemGroupLines: Array<Bill.ItemGroupLine>;
 
   /**
    * The bill's item lines, each representing the purchase of a specific item or
@@ -539,54 +539,54 @@ export namespace Bill {
     }
   }
 
-  export interface ItemLineGroup {
+  export interface ItemGroupLine {
     /**
-     * The unique identifier assigned by QuickBooks to this item line group. This ID is
+     * The unique identifier assigned by QuickBooks to this item group line. This ID is
      * unique across all transaction line types.
      */
     id: string;
 
     /**
-     * The custom fields for the item line group object, added as user-defined data
+     * The custom fields for the item group line object, added as user-defined data
      * extensions, not included in the standard QuickBooks object.
      */
-    customFields: Array<ItemLineGroup.CustomField>;
+    customFields: Array<ItemGroupLine.CustomField>;
 
     /**
-     * A description of this item line group.
+     * A description of this item group line.
      */
     description: string | null;
 
     /**
-     * The item line group's item group, representing a predefined set of items bundled
+     * The item group line's item group, representing a predefined set of items bundled
      * because they are commonly purchased together or grouped for faster entry.
      */
-    itemGroup: ItemLineGroup.ItemGroup;
+    itemGroup: ItemGroupLine.ItemGroup;
 
     /**
-     * The item line group's item lines, each representing the purchase of a specific
+     * The item group line's item lines, each representing the purchase of a specific
      * item or service.
      */
-    itemLines: Array<ItemLineGroup.ItemLine>;
+    itemLines: Array<ItemGroupLine.ItemLine>;
 
     /**
-     * The type of object. This value is always `"qbd_item_line_group"`.
+     * The type of object. This value is always `"qbd_item_group_line"`.
      */
-    objectType: 'qbd_item_line_group';
+    objectType: 'qbd_item_group_line';
 
     /**
-     * Specifies an alternative unit-of-measure set when updating this item line
-     * group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to
+     * Specifies an alternative unit-of-measure set when updating this item group
+     * line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to
      * select units from a different set than the item's default unit-of-measure set,
      * which remains unchanged on the item itself. The override applies only to this
      * specific line. For example, you can sell an item typically measured in volume
      * units using weight units in a specific transaction by specifying a different
      * unit-of-measure set with this field.
      */
-    overrideUnitOfMeasureSet: ItemLineGroup.OverrideUnitOfMeasureSet | null;
+    overrideUnitOfMeasureSet: ItemGroupLine.OverrideUnitOfMeasureSet | null;
 
     /**
-     * The quantity of the item group associated with this item line group. This field
+     * The quantity of the item group associated with this item group line. This field
      * cannot be cleared.
      *
      * **NOTE**: Do not use this field if the associated item group is a discount item
@@ -595,19 +595,19 @@ export namespace Bill {
     quantity: number | null;
 
     /**
-     * The total monetary amount of this item line group, equivalent to the sum of the
+     * The total monetary amount of this item group line, equivalent to the sum of the
      * amounts in `lines`, represented as a decimal string.
      */
     totalAmount: string;
 
     /**
-     * The unit-of-measure used for the `quantity` in this item line group. Must be a
+     * The unit-of-measure used for the `quantity` in this item group line. Must be a
      * valid unit within the item's available units of measure.
      */
     unitOfMeasure: string | null;
   }
 
-  export namespace ItemLineGroup {
+  export namespace ItemGroupLine {
     export interface CustomField {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
@@ -647,7 +647,7 @@ export namespace Bill {
     }
 
     /**
-     * The item line group's item group, representing a predefined set of items bundled
+     * The item group line's item group, representing a predefined set of items bundled
      * because they are commonly purchased together or grouped for faster entry.
      */
     export interface ItemGroup {
@@ -1024,8 +1024,8 @@ export namespace Bill {
     }
 
     /**
-     * Specifies an alternative unit-of-measure set when updating this item line
-     * group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to
+     * Specifies an alternative unit-of-measure set when updating this item group
+     * line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to
      * select units from a different set than the item's default unit-of-measure set,
      * which remains unchanged on the item itself. The override applies only to this
      * specific line. For example, you can sell an item typically measured in volume
@@ -1696,7 +1696,7 @@ export interface BillCreateParams {
    * items bundled together because they are commonly purchased together or grouped
    * for faster entry.
    */
-  itemLineGroups?: Array<BillCreateParams.ItemLineGroup>;
+  itemGroupLines?: Array<BillCreateParams.ItemGroupLine>;
 
   /**
    * Body param: The bill's item lines, each representing the purchase of a specific
@@ -1870,33 +1870,33 @@ export namespace BillCreateParams {
     }
   }
 
-  export interface ItemLineGroup {
+  export interface ItemGroupLine {
     /**
-     * The item line group's item group, representing a predefined set of items bundled
+     * The item group line's item group, representing a predefined set of items bundled
      * because they are commonly purchased together or grouped for faster entry.
      */
     itemGroupId: string;
 
     /**
-     * The custom fields for the item line group object, added as user-defined data
+     * The custom fields for the item group line object, added as user-defined data
      * extensions, not included in the standard QuickBooks object.
      */
-    customFields?: Array<ItemLineGroup.CustomField>;
+    customFields?: Array<ItemGroupLine.CustomField>;
 
     /**
      * The site location where inventory for the item group associated with this item
-     * line group is stored.
+     * group line is stored.
      */
     inventorySiteId?: string;
 
     /**
      * The specific location (e.g., bin or shelf) within the inventory site where the
-     * item group associated with this item line group is stored.
+     * item group associated with this item group line is stored.
      */
     inventorySiteLocationId?: string;
 
     /**
-     * The quantity of the item group associated with this item line group. This field
+     * The quantity of the item group associated with this item group line. This field
      * cannot be cleared.
      *
      * **NOTE**: Do not use this field if the associated item group is a discount item
@@ -1905,13 +1905,13 @@ export namespace BillCreateParams {
     quantity?: number;
 
     /**
-     * The unit-of-measure used for the `quantity` in this item line group. Must be a
+     * The unit-of-measure used for the `quantity` in this item group line. Must be a
      * valid unit within the item's available units of measure.
      */
     unitOfMeasure?: string;
   }
 
-  export namespace ItemLineGroup {
+  export namespace ItemGroupLine {
     export interface CustomField {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
@@ -2328,7 +2328,7 @@ export interface BillUpdateParams {
    * 3. If you do not wish to modify any item group lines, omit this field entirely
    *    to keep them unchanged.
    */
-  itemLineGroups?: Array<BillUpdateParams.ItemLineGroup>;
+  itemGroupLines?: Array<BillUpdateParams.ItemGroupLine>;
 
   /**
    * Body param: The bill's item lines, each representing the purchase of a specific
@@ -2473,29 +2473,29 @@ export namespace BillUpdateParams {
     salesTaxCodeId?: string;
   }
 
-  export interface ItemLineGroup {
+  export interface ItemGroupLine {
     /**
-     * The QuickBooks-assigned unique identifier of an existing item line group you
+     * The QuickBooks-assigned unique identifier of an existing item group line you
      * wish to retain or update.
      *
-     * **IMPORTANT**: Set this field to `-1` for new item line groups you wish to add.
+     * **IMPORTANT**: Set this field to `-1` for new item group lines you wish to add.
      */
     id: string;
 
     /**
-     * The item line group's item group, representing a predefined set of items bundled
+     * The item group line's item group, representing a predefined set of items bundled
      * because they are commonly purchased together or grouped for faster entry.
      */
     itemGroupId?: string;
 
     /**
-     * The item line group's item lines, each representing the purchase of a specific
+     * The item group line's item lines, each representing the purchase of a specific
      * item or service.
      *
      * **IMPORTANT**:
      *
      * 1. Including this array in your update request will **REPLACE** all existing
-     *    item lines for the item line group with this array. To keep any existing item
+     *    item lines for the item group line with this array. To keep any existing item
      *    lines, you must include them in this array even if they have not changed.
      *    **Any item lines not included will be removed.**
      *
@@ -2504,11 +2504,11 @@ export namespace BillUpdateParams {
      * 3. If you do not wish to modify any item lines, omit this field entirely to keep
      *    them unchanged.
      */
-    itemLines?: Array<ItemLineGroup.ItemLine>;
+    itemLines?: Array<ItemGroupLine.ItemLine>;
 
     /**
-     * Specifies an alternative unit-of-measure set when updating this item line
-     * group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to
+     * Specifies an alternative unit-of-measure set when updating this item group
+     * line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to
      * select units from a different set than the item's default unit-of-measure set,
      * which remains unchanged on the item itself. The override applies only to this
      * specific line. For example, you can sell an item typically measured in volume
@@ -2518,7 +2518,7 @@ export namespace BillUpdateParams {
     overrideUnitOfMeasureSetId?: string;
 
     /**
-     * The quantity of the item group associated with this item line group. This field
+     * The quantity of the item group associated with this item group line. This field
      * cannot be cleared.
      *
      * **NOTE**: Do not use this field if the associated item group is a discount item
@@ -2527,13 +2527,13 @@ export namespace BillUpdateParams {
     quantity?: number;
 
     /**
-     * The unit-of-measure used for the `quantity` in this item line group. Must be a
+     * The unit-of-measure used for the `quantity` in this item group line. Must be a
      * valid unit within the item's available units of measure.
      */
     unitOfMeasure?: string;
   }
 
-  export namespace ItemLineGroup {
+  export namespace ItemGroupLine {
     export interface ItemLine {
       /**
        * The QuickBooks-assigned unique identifier of an existing item line you wish to
