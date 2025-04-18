@@ -219,6 +219,16 @@ import {
   Invoices,
   InvoicesCursorPage,
 } from './invoices';
+import * as ItemGroupsAPI from './item-groups';
+import {
+  ItemGroup,
+  ItemGroupCreateParams,
+  ItemGroupListParams,
+  ItemGroupRetrieveParams,
+  ItemGroupUpdateParams,
+  ItemGroups,
+  ItemGroupsCursorPage,
+} from './item-groups';
 import * as ItemReceiptsAPI from './item-receipts';
 import {
   ItemReceipt,
@@ -465,6 +475,7 @@ export class Qbd extends APIResource {
   inventoryItems: InventoryItemsAPI.InventoryItems = new InventoryItemsAPI.InventoryItems(this._client);
   inventorySites: InventorySitesAPI.InventorySites = new InventorySitesAPI.InventorySites(this._client);
   invoices: InvoicesAPI.Invoices = new InvoicesAPI.Invoices(this._client);
+  itemGroups: ItemGroupsAPI.ItemGroups = new ItemGroupsAPI.ItemGroups(this._client);
   itemReceipts: ItemReceiptsAPI.ItemReceipts = new ItemReceiptsAPI.ItemReceipts(this._client);
   journalEntries: JournalEntriesAPI.JournalEntries = new JournalEntriesAPI.JournalEntries(this._client);
   nonInventoryItems: NonInventoryItemsAPI.NonInventoryItems = new NonInventoryItemsAPI.NonInventoryItems(
@@ -568,6 +579,8 @@ Qbd.InventoryItemsCursorPage = InventoryItemsCursorPage;
 Qbd.InventorySites = InventorySites;
 Qbd.Invoices = Invoices;
 Qbd.InvoicesCursorPage = InvoicesCursorPage;
+Qbd.ItemGroups = ItemGroups;
+Qbd.ItemGroupsCursorPage = ItemGroupsCursorPage;
 Qbd.ItemReceipts = ItemReceipts;
 Qbd.ItemReceiptsCursorPage = ItemReceiptsCursorPage;
 Qbd.JournalEntries = JournalEntries;
@@ -830,6 +843,16 @@ export declare namespace Qbd {
     type InvoiceUpdateParams as InvoiceUpdateParams,
     type InvoiceListParams as InvoiceListParams,
     type InvoiceDeleteParams as InvoiceDeleteParams,
+  };
+
+  export {
+    ItemGroups as ItemGroups,
+    type ItemGroup as ItemGroup,
+    ItemGroupsCursorPage as ItemGroupsCursorPage,
+    type ItemGroupCreateParams as ItemGroupCreateParams,
+    type ItemGroupRetrieveParams as ItemGroupRetrieveParams,
+    type ItemGroupUpdateParams as ItemGroupUpdateParams,
+    type ItemGroupListParams as ItemGroupListParams,
   };
 
   export {

@@ -326,6 +326,19 @@ Methods:
 - <code title="get /quickbooks-desktop/invoices">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">list</a>({ ...params }) -> InvoicesCursorPage</code>
 - <code title="delete /quickbooks-desktop/invoices/{id}">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">delete</a>(id, { ...params }) -> InvoiceDeleteResponse</code>
 
+## ItemGroups
+
+Types:
+
+- <code><a href="./src/resources/qbd/item-groups.ts">ItemGroup</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/item-groups">client.qbd.itemGroups.<a href="./src/resources/qbd/item-groups.ts">create</a>({ ...params }) -> ItemGroup</code>
+- <code title="get /quickbooks-desktop/item-groups/{id}">client.qbd.itemGroups.<a href="./src/resources/qbd/item-groups.ts">retrieve</a>(id, { ...params }) -> ItemGroup</code>
+- <code title="post /quickbooks-desktop/item-groups/{id}">client.qbd.itemGroups.<a href="./src/resources/qbd/item-groups.ts">update</a>(id, { ...params }) -> ItemGroup</code>
+- <code title="get /quickbooks-desktop/item-groups">client.qbd.itemGroups.<a href="./src/resources/qbd/item-groups.ts">list</a>({ ...params }) -> ItemGroupsCursorPage</code>
+
 ## ItemReceipts
 
 Types:

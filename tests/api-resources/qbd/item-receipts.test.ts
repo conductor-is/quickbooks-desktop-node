@@ -44,7 +44,7 @@ describe('resource itemReceipts', () => {
         },
       ],
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
-      itemLineGroups: [
+      itemGroupLines: [
         {
           itemGroupId: '80000001-1234567890',
           customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
@@ -141,7 +141,7 @@ describe('resource itemReceipts', () => {
           salesTaxCodeId: '80000001-1234567890',
         },
       ],
-      itemLineGroups: [
+      itemGroupLines: [
         {
           id: '456DEF-1234567890',
           itemGroupId: '80000001-1234567890',
