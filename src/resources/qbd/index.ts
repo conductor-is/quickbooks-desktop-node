@@ -217,6 +217,13 @@ export {
   type ItemReceiptDeleteParams,
 } from './item-receipts';
 export {
+  ItemSitesCursorPage,
+  ItemSites,
+  type ItemSite,
+  type ItemSiteRetrieveParams,
+  type ItemSiteListParams,
+} from './item-sites';
+export {
   JournalEntriesCursorPage,
   JournalEntries,
   type JournalEntry,

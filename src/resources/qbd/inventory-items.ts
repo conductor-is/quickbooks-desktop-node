@@ -200,9 +200,10 @@ export interface InventoryItem {
   purchaseTaxCode: InventoryItem.PurchaseTaxCode | null;
 
   /**
-   * The current quantity of this inventory item available in inventory. To change
-   * the `quantityOnHand` for an inventory item, you must create an
-   * inventory-adjustment instead of updating this inventory item directly.
+   * The number of units of this inventory item currently in inventory.
+   * `quantityOnHand` multiplied by `averageCost` equals `totalValue` for inventory
+   * item lists. To change the `quantityOnHand` for an inventory item, you must use
+   * an inventory-adjustment instead of updating the inventory item directly.
    */
   quantityOnHand: number | null;
 
@@ -618,9 +619,10 @@ export interface InventoryItemCreateParams {
   purchaseTaxCodeId?: string;
 
   /**
-   * Body param: The current quantity of this inventory item available in inventory.
-   * To change the `quantityOnHand` for an inventory item, you must create an
-   * inventory-adjustment instead of updating this inventory item directly.
+   * Body param: The number of units of this inventory item currently in inventory.
+   * `quantityOnHand` multiplied by `averageCost` equals `totalValue` for inventory
+   * item lists. To change the `quantityOnHand` for an inventory item, you must use
+   * an inventory-adjustment instead of updating the inventory item directly.
    */
   quantityOnHand?: number;
 
