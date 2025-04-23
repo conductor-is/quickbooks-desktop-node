@@ -241,6 +241,14 @@ import {
   ItemReceipts,
   ItemReceiptsCursorPage,
 } from './item-receipts';
+import * as ItemSitesAPI from './item-sites';
+import {
+  ItemSite,
+  ItemSiteListParams,
+  ItemSiteRetrieveParams,
+  ItemSites,
+  ItemSitesCursorPage,
+} from './item-sites';
 import * as JournalEntriesAPI from './journal-entries';
 import {
   JournalEntries,
@@ -477,6 +485,7 @@ export class Qbd extends APIResource {
   invoices: InvoicesAPI.Invoices = new InvoicesAPI.Invoices(this._client);
   itemGroups: ItemGroupsAPI.ItemGroups = new ItemGroupsAPI.ItemGroups(this._client);
   itemReceipts: ItemReceiptsAPI.ItemReceipts = new ItemReceiptsAPI.ItemReceipts(this._client);
+  itemSites: ItemSitesAPI.ItemSites = new ItemSitesAPI.ItemSites(this._client);
   journalEntries: JournalEntriesAPI.JournalEntries = new JournalEntriesAPI.JournalEntries(this._client);
   nonInventoryItems: NonInventoryItemsAPI.NonInventoryItems = new NonInventoryItemsAPI.NonInventoryItems(
     this._client,
@@ -583,6 +592,8 @@ Qbd.ItemGroups = ItemGroups;
 Qbd.ItemGroupsCursorPage = ItemGroupsCursorPage;
 Qbd.ItemReceipts = ItemReceipts;
 Qbd.ItemReceiptsCursorPage = ItemReceiptsCursorPage;
+Qbd.ItemSites = ItemSites;
+Qbd.ItemSitesCursorPage = ItemSitesCursorPage;
 Qbd.JournalEntries = JournalEntries;
 Qbd.JournalEntriesCursorPage = JournalEntriesCursorPage;
 Qbd.NonInventoryItems = NonInventoryItems;
@@ -865,6 +876,14 @@ export declare namespace Qbd {
     type ItemReceiptUpdateParams as ItemReceiptUpdateParams,
     type ItemReceiptListParams as ItemReceiptListParams,
     type ItemReceiptDeleteParams as ItemReceiptDeleteParams,
+  };
+
+  export {
+    ItemSites as ItemSites,
+    type ItemSite as ItemSite,
+    ItemSitesCursorPage as ItemSitesCursorPage,
+    type ItemSiteRetrieveParams as ItemSiteRetrieveParams,
+    type ItemSiteListParams as ItemSiteListParams,
   };
 
   export {

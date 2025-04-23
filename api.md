@@ -354,6 +354,17 @@ Methods:
 - <code title="get /quickbooks-desktop/item-receipts">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">list</a>({ ...params }) -> ItemReceiptsCursorPage</code>
 - <code title="delete /quickbooks-desktop/item-receipts/{id}">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">delete</a>(id, { ...params }) -> ItemReceiptDeleteResponse</code>
 
+## ItemSites
+
+Types:
+
+- <code><a href="./src/resources/qbd/item-sites.ts">ItemSite</a></code>
+
+Methods:
+
+- <code title="get /quickbooks-desktop/item-sites/{id}">client.qbd.itemSites.<a href="./src/resources/qbd/item-sites.ts">retrieve</a>(id, { ...params }) -> ItemSite</code>
+- <code title="get /quickbooks-desktop/item-sites">client.qbd.itemSites.<a href="./src/resources/qbd/item-sites.ts">list</a>({ ...params }) -> ItemSitesCursorPage</code>
+
 ## JournalEntries
 
 Types:
