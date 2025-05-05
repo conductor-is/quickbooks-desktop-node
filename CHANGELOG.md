@@ -1,5 +1,25 @@
 # Changelog
 
+## 12.3.0 (2025-05-05)
+
+Full Changelog: [v12.2.0...v12.3.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.2.0...v12.3.0)
+
+### Features
+
+* **api:** api update ([208ef03](https://github.com/conductor-is/quickbooks-desktop-node/commit/208ef037d3ace5e942abc9867ce085425fe7c345))
+
+
+### Chores
+
+* **ci:** add timeout thresholds for CI jobs ([37df6af](https://github.com/conductor-is/quickbooks-desktop-node/commit/37df6af010bb35c044ede41a75516672130e5afb))
+* **ci:** only use depot for staging repos ([8ec95c0](https://github.com/conductor-is/quickbooks-desktop-node/commit/8ec95c04d01d933b9cbe500f8f1760fc7236c1f5))
+* **internal:** codegen related update ([2defb28](https://github.com/conductor-is/quickbooks-desktop-node/commit/2defb2820fae0a40471305f5a707322ff4e6fba0))
+
+
+### Documentation
+
+* **readme:** fix typo ([21ab326](https://github.com/conductor-is/quickbooks-desktop-node/commit/21ab326aabf848ac936e8ead821f6e1f0f0d49a8))
+
 ## 12.2.0 (2025-04-23)
 
 Full Changelog: [v12.1.0...v12.2.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.1.0...v12.2.0)
