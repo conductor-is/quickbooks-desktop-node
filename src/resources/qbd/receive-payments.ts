@@ -485,7 +485,7 @@ export namespace ReceivePayment {
       /**
        * The cardholder's name on the card.
        */
-      name: string;
+      name: string | null;
 
       /**
        * The credit card number. Must be masked with lower case "x" and no dashes.
