@@ -73,7 +73,7 @@ export interface PayrollWageItem {
    * The expense account used to track wage expenses paid through this payroll wage
    * item.
    */
-  expenseAccount: PayrollWageItem.ExpenseAccount;
+  expenseAccount: PayrollWageItem.ExpenseAccount | null;
 
   /**
    * Indicates whether this payroll wage item is active. Inactive objects are
