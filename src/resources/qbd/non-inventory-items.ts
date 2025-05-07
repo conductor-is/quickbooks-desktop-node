@@ -7,6 +7,15 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class NonInventoryItems extends APIResource {
   /**
    * Creates a new non-inventory item.
+   *
+   * @example
+   * ```ts
+   * const nonInventoryItem =
+   *   await client.qbd.nonInventoryItems.create({
+   *     name: 'Printer Ink Cartridge',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(
     params: NonInventoryItemCreateParams,
@@ -22,6 +31,15 @@ export class NonInventoryItems extends APIResource {
 
   /**
    * Retrieves a non-inventory item by ID.
+   *
+   * @example
+   * ```ts
+   * const nonInventoryItem =
+   *   await client.qbd.nonInventoryItems.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -37,6 +55,18 @@ export class NonInventoryItems extends APIResource {
 
   /**
    * Updates an existing non-inventory item.
+   *
+   * @example
+   * ```ts
+   * const nonInventoryItem =
+   *   await client.qbd.nonInventoryItems.update(
+   *     '80000001-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
+   * ```
    */
   update(
     id: string,
@@ -54,6 +84,16 @@ export class NonInventoryItems extends APIResource {
   /**
    * Returns a list of non-inventory items. Use the `cursor` parameter to paginate
    * through the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const nonInventoryItem of client.qbd.nonInventoryItems.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: NonInventoryItemListParams,

@@ -7,6 +7,14 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class Transactions extends APIResource {
   /**
    * Retrieves a transaction by ID.
+   *
+   * @example
+   * ```ts
+   * const transaction = await client.qbd.transactions.retrieve(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -27,6 +35,16 @@ export class Transactions extends APIResource {
    * transaction type, make a subsequent call to the relevant transaction-specific
    * endpoint (such as invoices, bills, etc.). NOTE: This endpoint does not support
    * time tracking activities.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const transaction of client.qbd.transactions.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: TransactionListParams,

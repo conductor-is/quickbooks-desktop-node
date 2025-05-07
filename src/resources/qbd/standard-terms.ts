@@ -6,6 +6,14 @@ import * as Core from '../../core';
 export class StandardTerms extends APIResource {
   /**
    * Creates a new standard term.
+   *
+   * @example
+   * ```ts
+   * const standardTerm = await client.qbd.standardTerms.create({
+   *   name: 'Net 30',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: StandardTermCreateParams, options?: Core.RequestOptions): Core.APIPromise<StandardTerm> {
     const { conductorEndUserId, ...body } = params;
@@ -18,6 +26,15 @@ export class StandardTerms extends APIResource {
 
   /**
    * Retrieves a standard term by ID.
+   *
+   * @example
+   * ```ts
+   * const standardTerm =
+   *   await client.qbd.standardTerms.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -35,6 +52,13 @@ export class StandardTerms extends APIResource {
    * Returns a list of standard terms. NOTE: QuickBooks Desktop does not support
    * pagination for standard terms; hence, there is no `cursor` parameter. Users
    * typically have few standard terms.
+   *
+   * @example
+   * ```ts
+   * const standardTerms = await client.qbd.standardTerms.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   list(
     params: StandardTermListParams,

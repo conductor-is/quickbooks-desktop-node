@@ -7,6 +7,15 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class Checks extends APIResource {
   /**
    * Creates a new check.
+   *
+   * @example
+   * ```ts
+   * const check = await client.qbd.checks.create({
+   *   bankAccountId: '80000001-1234567890',
+   *   transactionDate: '2021-10-01',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: CheckCreateParams, options?: Core.RequestOptions): Core.APIPromise<Check> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +28,14 @@ export class Checks extends APIResource {
 
   /**
    * Retrieves a check by ID.
+   *
+   * @example
+   * ```ts
+   * const check = await client.qbd.checks.retrieve(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(id: string, params: CheckRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Check> {
     const { conductorEndUserId } = params;
@@ -30,6 +47,17 @@ export class Checks extends APIResource {
 
   /**
    * Updates an existing check.
+   *
+   * @example
+   * ```ts
+   * const check = await client.qbd.checks.update(
+   *   '123ABC-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(id: string, params: CheckUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Check> {
     const { conductorEndUserId, ...body } = params;
@@ -43,6 +71,16 @@ export class Checks extends APIResource {
   /**
    * Returns a list of checks. Use the `cursor` parameter to paginate through the
    * results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const check of client.qbd.checks.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(params: CheckListParams, options?: Core.RequestOptions): Core.PagePromise<ChecksCursorPage, Check> {
     const { conductorEndUserId, ...query } = params;
@@ -56,6 +94,14 @@ export class Checks extends APIResource {
   /**
    * Permanently deletes a a check. The deletion will fail if the check is currently
    * in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const check = await client.qbd.checks.delete(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   delete(
     id: string,

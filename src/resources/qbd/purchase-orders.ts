@@ -7,6 +7,15 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class PurchaseOrders extends APIResource {
   /**
    * Creates a new purchase order.
+   *
+   * @example
+   * ```ts
+   * const purchaseOrder =
+   *   await client.qbd.purchaseOrders.create({
+   *     transactionDate: '2021-10-01',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(params: PurchaseOrderCreateParams, options?: Core.RequestOptions): Core.APIPromise<PurchaseOrder> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +28,15 @@ export class PurchaseOrders extends APIResource {
 
   /**
    * Retrieves a purchase order by ID.
+   *
+   * @example
+   * ```ts
+   * const purchaseOrder =
+   *   await client.qbd.purchaseOrders.retrieve(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +52,18 @@ export class PurchaseOrders extends APIResource {
 
   /**
    * Updates an existing purchase order.
+   *
+   * @example
+   * ```ts
+   * const purchaseOrder =
+   *   await client.qbd.purchaseOrders.update(
+   *     '123ABC-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +81,16 @@ export class PurchaseOrders extends APIResource {
   /**
    * Returns a list of purchase orders. Use the `cursor` parameter to paginate
    * through the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const purchaseOrder of client.qbd.purchaseOrders.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: PurchaseOrderListParams,
@@ -67,6 +107,15 @@ export class PurchaseOrders extends APIResource {
   /**
    * Permanently deletes a a purchase order. The deletion will fail if the purchase
    * order is currently in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const purchaseOrder =
+   *   await client.qbd.purchaseOrders.delete(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   delete(
     id: string,

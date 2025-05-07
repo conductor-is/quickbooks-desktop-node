@@ -7,6 +7,17 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class PayrollWageItems extends APIResource {
   /**
    * Creates a new payroll wage item.
+   *
+   * @example
+   * ```ts
+   * const payrollWageItem =
+   *   await client.qbd.payrollWageItems.create({
+   *     expenseAccountId: '80000001-1234567890',
+   *     name: 'Regular Pay',
+   *     wageType: 'hourly_regular',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(
     params: PayrollWageItemCreateParams,
@@ -22,6 +33,15 @@ export class PayrollWageItems extends APIResource {
 
   /**
    * Retrieves a payroll wage item by ID.
+   *
+   * @example
+   * ```ts
+   * const payrollWageItem =
+   *   await client.qbd.payrollWageItems.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -38,6 +58,16 @@ export class PayrollWageItems extends APIResource {
   /**
    * Returns a list of payroll wage items. Use the `cursor` parameter to paginate
    * through the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const payrollWageItem of client.qbd.payrollWageItems.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: PayrollWageItemListParams,

@@ -6,6 +6,14 @@ import * as Core from '../../core';
 export class Classes extends APIResource {
   /**
    * Creates a new class.
+   *
+   * @example
+   * ```ts
+   * const _class = await client.qbd.classes.create({
+   *   name: 'Marketing',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: ClassCreateParams, options?: Core.RequestOptions): Core.APIPromise<Class> {
     const { conductorEndUserId, ...body } = params;
@@ -18,6 +26,14 @@ export class Classes extends APIResource {
 
   /**
    * Retrieves a class by ID.
+   *
+   * @example
+   * ```ts
+   * const _class = await client.qbd.classes.retrieve(
+   *   '80000001-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(id: string, params: ClassRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Class> {
     const { conductorEndUserId } = params;
@@ -29,6 +45,17 @@ export class Classes extends APIResource {
 
   /**
    * Updates an existing class.
+   *
+   * @example
+   * ```ts
+   * const _class = await client.qbd.classes.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(id: string, params: ClassUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Class> {
     const { conductorEndUserId, ...body } = params;
@@ -43,6 +70,13 @@ export class Classes extends APIResource {
    * Returns a list of classes. NOTE: QuickBooks Desktop does not support pagination
    * for classes; hence, there is no `cursor` parameter. Users typically have few
    * classes.
+   *
+   * @example
+   * ```ts
+   * const classes = await client.qbd.classes.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   list(params: ClassListParams, options?: Core.RequestOptions): Core.APIPromise<ClassListResponse> {
     const { conductorEndUserId, ...query } = params;

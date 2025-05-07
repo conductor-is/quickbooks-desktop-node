@@ -7,6 +7,15 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class Estimates extends APIResource {
   /**
    * Creates a new estimate.
+   *
+   * @example
+   * ```ts
+   * const estimate = await client.qbd.estimates.create({
+   *   customerId: '80000001-1234567890',
+   *   transactionDate: '2021-10-01',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: EstimateCreateParams, options?: Core.RequestOptions): Core.APIPromise<Estimate> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +28,14 @@ export class Estimates extends APIResource {
 
   /**
    * Retrieves an estimate by ID.
+   *
+   * @example
+   * ```ts
+   * const estimate = await client.qbd.estimates.retrieve(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +51,17 @@ export class Estimates extends APIResource {
 
   /**
    * Updates an existing estimate.
+   *
+   * @example
+   * ```ts
+   * const estimate = await client.qbd.estimates.update(
+   *   '123ABC-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(id: string, params: EstimateUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Estimate> {
     const { conductorEndUserId, ...body } = params;
@@ -47,6 +75,16 @@ export class Estimates extends APIResource {
   /**
    * Returns a list of estimates. Use the `cursor` parameter to paginate through the
    * results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const estimate of client.qbd.estimates.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: EstimateListParams,
@@ -63,6 +101,14 @@ export class Estimates extends APIResource {
   /**
    * Permanently deletes a an estimate. The deletion will fail if the estimate is
    * currently in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const estimate = await client.qbd.estimates.delete(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   delete(
     id: string,

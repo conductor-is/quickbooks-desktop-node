@@ -7,6 +7,17 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class TimeTrackingActivities extends APIResource {
   /**
    * Creates a new time tracking activity.
+   *
+   * @example
+   * ```ts
+   * const timeTrackingActivity =
+   *   await client.qbd.timeTrackingActivities.create({
+   *     duration: 'PT1H30M',
+   *     entityId: '80000001-1234567890',
+   *     transactionDate: '2021-10-01',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(
     params: TimeTrackingActivityCreateParams,
@@ -22,6 +33,15 @@ export class TimeTrackingActivities extends APIResource {
 
   /**
    * Retrieves a time tracking activity by ID.
+   *
+   * @example
+   * ```ts
+   * const timeTrackingActivity =
+   *   await client.qbd.timeTrackingActivities.retrieve(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -37,6 +57,20 @@ export class TimeTrackingActivities extends APIResource {
 
   /**
    * Updates an existing time tracking activity.
+   *
+   * @example
+   * ```ts
+   * const timeTrackingActivity =
+   *   await client.qbd.timeTrackingActivities.update(
+   *     '123ABC-1234567890',
+   *     {
+   *       duration: 'PT1H30M',
+   *       entityId: '80000001-1234567890',
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
+   * ```
    */
   update(
     id: string,
@@ -54,6 +88,16 @@ export class TimeTrackingActivities extends APIResource {
   /**
    * Returns a list of time tracking activities. Use the `cursor` parameter to
    * paginate through the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const timeTrackingActivity of client.qbd.timeTrackingActivities.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: TimeTrackingActivityListParams,
@@ -71,6 +115,15 @@ export class TimeTrackingActivities extends APIResource {
    * Permanently deletes a a time tracking activity. The deletion will fail if the
    * time tracking activity is currently in use or has any linked transactions that
    * are in use.
+   *
+   * @example
+   * ```ts
+   * const timeTrackingActivity =
+   *   await client.qbd.timeTrackingActivities.delete(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   delete(
     id: string,

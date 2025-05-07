@@ -7,6 +7,15 @@ import * as Core from '../core';
 export class EndUsers extends APIResource {
   /**
    * Creates an end-user.
+   *
+   * @example
+   * ```ts
+   * const endUser = await client.endUsers.create({
+   *   companyName: 'Acme Inc.',
+   *   email: 'alice@acme.com',
+   *   sourceId: '12345678-abcd-abcd-example-1234567890ab',
+   * });
+   * ```
    */
   create(body: EndUserCreateParams, options?: Core.RequestOptions): Core.APIPromise<EndUser> {
     return this._client.post('/end-users', { body, ...options });
@@ -14,6 +23,13 @@ export class EndUsers extends APIResource {
 
   /**
    * Retrieves an end-user object.
+   *
+   * @example
+   * ```ts
+   * const endUser = await client.endUsers.retrieve(
+   *   'end_usr_1234567abcdefg',
+   * );
+   * ```
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EndUser> {
     return this._client.get(`/end-users/${id}`, options);
@@ -21,6 +37,11 @@ export class EndUsers extends APIResource {
 
   /**
    * Returns a list of your end-users.
+   *
+   * @example
+   * ```ts
+   * const endUsers = await client.endUsers.list();
+   * ```
    */
   list(options?: Core.RequestOptions): Core.APIPromise<EndUserListResponse> {
     return this._client.get('/end-users', options);
@@ -28,6 +49,13 @@ export class EndUsers extends APIResource {
 
   /**
    * Permanently deletes an end-user object and all of its connections.
+   *
+   * @example
+   * ```ts
+   * const endUser = await client.endUsers.delete(
+   *   'end_usr_1234567abcdefg',
+   * );
+   * ```
    */
   delete(id: string, options?: Core.RequestOptions): Core.APIPromise<EndUserDeleteResponse> {
     return this._client.delete(`/end-users/${id}`, options);
@@ -36,6 +64,15 @@ export class EndUsers extends APIResource {
   /**
    * Sends a request directly to the specified integration connection (e.g.,
    * QuickBooks Desktop) on behalf of the end-user.
+   *
+   * @example
+   * ```ts
+   * const response = await client.endUsers.passthrough(
+   *   'end_usr_1234567abcdefg',
+   *   'quickbooks_desktop',
+   *   { foo: 'bar' },
+   * );
+   * ```
    */
   passthrough(
     id: string,

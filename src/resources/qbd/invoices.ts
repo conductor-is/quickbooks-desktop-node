@@ -7,6 +7,15 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class Invoices extends APIResource {
   /**
    * Creates a new invoice.
+   *
+   * @example
+   * ```ts
+   * const invoice = await client.qbd.invoices.create({
+   *   customerId: '80000001-1234567890',
+   *   transactionDate: '2021-10-01',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: InvoiceCreateParams, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +28,14 @@ export class Invoices extends APIResource {
 
   /**
    * Retrieves an invoice by ID.
+   *
+   * @example
+   * ```ts
+   * const invoice = await client.qbd.invoices.retrieve(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +51,17 @@ export class Invoices extends APIResource {
 
   /**
    * Updates an existing invoice.
+   *
+   * @example
+   * ```ts
+   * const invoice = await client.qbd.invoices.update(
+   *   '123ABC-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(id: string, params: InvoiceUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
     const { conductorEndUserId, ...body } = params;
@@ -47,6 +75,16 @@ export class Invoices extends APIResource {
   /**
    * Returns a list of invoices. Use the `cursor` parameter to paginate through the
    * results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const invoice of client.qbd.invoices.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: InvoiceListParams,
@@ -63,6 +101,14 @@ export class Invoices extends APIResource {
   /**
    * Permanently deletes a an invoice. The deletion will fail if the invoice is
    * currently in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const invoice = await client.qbd.invoices.delete(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   delete(
     id: string,

@@ -7,6 +7,18 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class InventoryAssemblyItems extends APIResource {
   /**
    * Creates a new inventory assembly item.
+   *
+   * @example
+   * ```ts
+   * const inventoryAssemblyItem =
+   *   await client.qbd.inventoryAssemblyItems.create({
+   *     assetAccountId: '80000001-1234567890',
+   *     cogsAccountId: '80000001-1234567890',
+   *     incomeAccountId: '80000001-1234567890',
+   *     name: 'Deluxe Kit',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(
     params: InventoryAssemblyItemCreateParams,
@@ -22,6 +34,15 @@ export class InventoryAssemblyItems extends APIResource {
 
   /**
    * Retrieves an inventory assembly item by ID.
+   *
+   * @example
+   * ```ts
+   * const inventoryAssemblyItem =
+   *   await client.qbd.inventoryAssemblyItems.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -37,6 +58,18 @@ export class InventoryAssemblyItems extends APIResource {
 
   /**
    * Updates an existing inventory assembly item.
+   *
+   * @example
+   * ```ts
+   * const inventoryAssemblyItem =
+   *   await client.qbd.inventoryAssemblyItems.update(
+   *     '80000001-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
+   * ```
    */
   update(
     id: string,
@@ -54,6 +87,16 @@ export class InventoryAssemblyItems extends APIResource {
   /**
    * Returns a list of inventory assembly items. Use the `cursor` parameter to
    * paginate through the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const inventoryAssemblyItem of client.qbd.inventoryAssemblyItems.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: InventoryAssemblyItemListParams,

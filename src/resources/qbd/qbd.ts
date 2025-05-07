@@ -520,6 +520,13 @@ export class Qbd extends APIResource {
    * will be returned. As with any request to QuickBooks Desktop, the health check
    * may fail if the application is not running, the wrong company file is open, or
    * if a modal dialog is open. Timeout is 60 seconds.
+   *
+   * @example
+   * ```ts
+   * const response = await client.qbd.healthCheck({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   healthCheck(
     params: QbdHealthCheckParams,

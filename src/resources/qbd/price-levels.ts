@@ -6,6 +6,14 @@ import * as Core from '../../core';
 export class PriceLevels extends APIResource {
   /**
    * Creates a new price level.
+   *
+   * @example
+   * ```ts
+   * const priceLevel = await client.qbd.priceLevels.create({
+   *   name: 'Wholesale 20% Discount',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: PriceLevelCreateParams, options?: Core.RequestOptions): Core.APIPromise<PriceLevel> {
     const { conductorEndUserId, ...body } = params;
@@ -18,6 +26,14 @@ export class PriceLevels extends APIResource {
 
   /**
    * Retrieves a price level by ID.
+   *
+   * @example
+   * ```ts
+   * const priceLevel = await client.qbd.priceLevels.retrieve(
+   *   '80000001-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -33,6 +49,17 @@ export class PriceLevels extends APIResource {
 
   /**
    * Updates an existing price level.
+   *
+   * @example
+   * ```ts
+   * const priceLevel = await client.qbd.priceLevels.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +78,13 @@ export class PriceLevels extends APIResource {
    * Returns a list of price levels. NOTE: QuickBooks Desktop does not support
    * pagination for price levels; hence, there is no `cursor` parameter. Users
    * typically have few price levels.
+   *
+   * @example
+   * ```ts
+   * const priceLevels = await client.qbd.priceLevels.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   list(params: PriceLevelListParams, options?: Core.RequestOptions): Core.APIPromise<PriceLevelListResponse> {
     const { conductorEndUserId, ...query } = params;

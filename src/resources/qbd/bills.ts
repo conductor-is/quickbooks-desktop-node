@@ -7,6 +7,15 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class Bills extends APIResource {
   /**
    * Creates a new bill.
+   *
+   * @example
+   * ```ts
+   * const bill = await client.qbd.bills.create({
+   *   transactionDate: '2021-10-01',
+   *   vendorId: '80000001-1234567890',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: BillCreateParams, options?: Core.RequestOptions): Core.APIPromise<Bill> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +28,14 @@ export class Bills extends APIResource {
 
   /**
    * Retrieves a bill by ID.
+   *
+   * @example
+   * ```ts
+   * const bill = await client.qbd.bills.retrieve(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(id: string, params: BillRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Bill> {
     const { conductorEndUserId } = params;
@@ -30,6 +47,17 @@ export class Bills extends APIResource {
 
   /**
    * Updates an existing bill.
+   *
+   * @example
+   * ```ts
+   * const bill = await client.qbd.bills.update(
+   *   '123ABC-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(id: string, params: BillUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Bill> {
     const { conductorEndUserId, ...body } = params;
@@ -43,6 +71,16 @@ export class Bills extends APIResource {
   /**
    * Returns a list of bills. Use the `cursor` parameter to paginate through the
    * results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const bill of client.qbd.bills.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(params: BillListParams, options?: Core.RequestOptions): Core.PagePromise<BillsCursorPage, Bill> {
     const { conductorEndUserId, ...query } = params;
@@ -56,6 +94,14 @@ export class Bills extends APIResource {
   /**
    * Permanently deletes a a bill. The deletion will fail if the bill is currently in
    * use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const bill = await client.qbd.bills.delete(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   delete(
     id: string,

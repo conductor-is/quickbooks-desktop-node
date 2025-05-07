@@ -7,6 +7,15 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class VendorCredits extends APIResource {
   /**
    * Creates a new vendor credit.
+   *
+   * @example
+   * ```ts
+   * const vendorCredit = await client.qbd.vendorCredits.create({
+   *   transactionDate: '2021-10-01',
+   *   vendorId: '80000001-1234567890',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: VendorCreditCreateParams, options?: Core.RequestOptions): Core.APIPromise<VendorCredit> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +28,15 @@ export class VendorCredits extends APIResource {
 
   /**
    * Retrieves a vendor credit by ID.
+   *
+   * @example
+   * ```ts
+   * const vendorCredit =
+   *   await client.qbd.vendorCredits.retrieve(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +52,17 @@ export class VendorCredits extends APIResource {
 
   /**
    * Updates an existing vendor credit.
+   *
+   * @example
+   * ```ts
+   * const vendorCredit = await client.qbd.vendorCredits.update(
+   *   '123ABC-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +80,16 @@ export class VendorCredits extends APIResource {
   /**
    * Returns a list of vendor credits. Use the `cursor` parameter to paginate through
    * the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const vendorCredit of client.qbd.vendorCredits.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: VendorCreditListParams,
@@ -67,6 +106,14 @@ export class VendorCredits extends APIResource {
   /**
    * Permanently deletes a a vendor credit. The deletion will fail if the vendor
    * credit is currently in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const vendorCredit = await client.qbd.vendorCredits.delete(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   delete(
     id: string,

@@ -7,6 +7,20 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class BillCheckPayments extends APIResource {
   /**
    * Creates a new bill check payment.
+   *
+   * @example
+   * ```ts
+   * const billCheckPayment =
+   *   await client.qbd.billCheckPayments.create({
+   *     applyToTransactions: [
+   *       { transactionId: '123ABC-1234567890' },
+   *     ],
+   *     bankAccountId: '80000001-1234567890',
+   *     transactionDate: '2021-10-01',
+   *     vendorId: '80000001-1234567890',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(
     params: BillCheckPaymentCreateParams,
@@ -22,6 +36,15 @@ export class BillCheckPayments extends APIResource {
 
   /**
    * Retrieves a bill check payment by ID.
+   *
+   * @example
+   * ```ts
+   * const billCheckPayment =
+   *   await client.qbd.billCheckPayments.retrieve(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -37,6 +60,18 @@ export class BillCheckPayments extends APIResource {
 
   /**
    * Updates an existing bill check payment.
+   *
+   * @example
+   * ```ts
+   * const billCheckPayment =
+   *   await client.qbd.billCheckPayments.update(
+   *     '123ABC-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
+   * ```
    */
   update(
     id: string,
@@ -54,6 +89,16 @@ export class BillCheckPayments extends APIResource {
   /**
    * Returns a list of bill check payments. Use the `cursor` parameter to paginate
    * through the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const billCheckPayment of client.qbd.billCheckPayments.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: BillCheckPaymentListParams,
@@ -71,6 +116,15 @@ export class BillCheckPayments extends APIResource {
    * Permanently deletes a a bill check payment. The deletion will fail if the bill
    * check payment is currently in use or has any linked transactions that are in
    * use.
+   *
+   * @example
+   * ```ts
+   * const billCheckPayment =
+   *   await client.qbd.billCheckPayments.delete(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   delete(
     id: string,

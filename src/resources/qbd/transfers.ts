@@ -7,6 +7,17 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class Transfers extends APIResource {
   /**
    * Creates a new transfer.
+   *
+   * @example
+   * ```ts
+   * const transfer = await client.qbd.transfers.create({
+   *   amount: '1000.00',
+   *   sourceAccountId: '80000001-1234567890',
+   *   targetAccountId: '80000001-1234567890',
+   *   transactionDate: '2021-10-01',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: TransferCreateParams, options?: Core.RequestOptions): Core.APIPromise<Transfer> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +30,14 @@ export class Transfers extends APIResource {
 
   /**
    * Retrieves a transfer by ID.
+   *
+   * @example
+   * ```ts
+   * const transfer = await client.qbd.transfers.retrieve(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +53,17 @@ export class Transfers extends APIResource {
 
   /**
    * Updates an existing transfer.
+   *
+   * @example
+   * ```ts
+   * const transfer = await client.qbd.transfers.update(
+   *   '123ABC-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(id: string, params: TransferUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Transfer> {
     const { conductorEndUserId, ...body } = params;
@@ -47,6 +77,16 @@ export class Transfers extends APIResource {
   /**
    * Returns a list of transfers. Use the `cursor` parameter to paginate through the
    * results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const transfer of client.qbd.transfers.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: TransferListParams,
