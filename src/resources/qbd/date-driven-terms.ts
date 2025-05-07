@@ -6,6 +6,16 @@ import * as Core from '../../core';
 export class DateDrivenTerms extends APIResource {
   /**
    * Creates a new date-driven term.
+   *
+   * @example
+   * ```ts
+   * const dateDrivenTerm =
+   *   await client.qbd.dateDrivenTerms.create({
+   *     dueDayOfMonth: 15,
+   *     name: '2% 5th Net 25th',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(params: DateDrivenTermCreateParams, options?: Core.RequestOptions): Core.APIPromise<DateDrivenTerm> {
     const { conductorEndUserId, ...body } = params;
@@ -18,6 +28,15 @@ export class DateDrivenTerms extends APIResource {
 
   /**
    * Retrieves a date-driven term by ID.
+   *
+   * @example
+   * ```ts
+   * const dateDrivenTerm =
+   *   await client.qbd.dateDrivenTerms.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -35,6 +54,14 @@ export class DateDrivenTerms extends APIResource {
    * Returns a list of date-driven terms. NOTE: QuickBooks Desktop does not support
    * pagination for date-driven terms; hence, there is no `cursor` parameter. Users
    * typically have few date-driven terms.
+   *
+   * @example
+   * ```ts
+   * const dateDrivenTerms =
+   *   await client.qbd.dateDrivenTerms.list({
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   list(
     params: DateDrivenTermListParams,

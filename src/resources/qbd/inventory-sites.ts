@@ -6,6 +6,15 @@ import * as Core from '../../core';
 export class InventorySites extends APIResource {
   /**
    * Creates a new inventory site.
+   *
+   * @example
+   * ```ts
+   * const inventorySite =
+   *   await client.qbd.inventorySites.create({
+   *     name: 'Stockroom',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(params: InventorySiteCreateParams, options?: Core.RequestOptions): Core.APIPromise<InventorySite> {
     const { conductorEndUserId, ...body } = params;
@@ -18,6 +27,15 @@ export class InventorySites extends APIResource {
 
   /**
    * Retrieves an inventory site by ID.
+   *
+   * @example
+   * ```ts
+   * const inventorySite =
+   *   await client.qbd.inventorySites.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -33,6 +51,18 @@ export class InventorySites extends APIResource {
 
   /**
    * Updates an existing inventory site.
+   *
+   * @example
+   * ```ts
+   * const inventorySite =
+   *   await client.qbd.inventorySites.update(
+   *     '80000001-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +81,13 @@ export class InventorySites extends APIResource {
    * Returns a list of inventory sites. NOTE: QuickBooks Desktop does not support
    * pagination for inventory sites; hence, there is no `cursor` parameter. Users
    * typically have few inventory sites.
+   *
+   * @example
+   * ```ts
+   * const inventorySites = await client.qbd.inventorySites.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   list(
     params: InventorySiteListParams,

@@ -6,6 +6,16 @@ import * as Core from '../../core';
 export class SalesRepresentatives extends APIResource {
   /**
    * Creates a new sales representative.
+   *
+   * @example
+   * ```ts
+   * const salesRepresentative =
+   *   await client.qbd.salesRepresentatives.create({
+   *     entityId: '80000001-1234567890',
+   *     initial: 'JD',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(
     params: SalesRepresentativeCreateParams,
@@ -21,6 +31,15 @@ export class SalesRepresentatives extends APIResource {
 
   /**
    * Retrieves a sales representative by ID.
+   *
+   * @example
+   * ```ts
+   * const salesRepresentative =
+   *   await client.qbd.salesRepresentatives.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -36,6 +55,18 @@ export class SalesRepresentatives extends APIResource {
 
   /**
    * Updates an existing sales representative.
+   *
+   * @example
+   * ```ts
+   * const salesRepresentative =
+   *   await client.qbd.salesRepresentatives.update(
+   *     '80000001-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
+   * ```
    */
   update(
     id: string,
@@ -54,6 +85,14 @@ export class SalesRepresentatives extends APIResource {
    * Returns a list of sales representatives. NOTE: QuickBooks Desktop does not
    * support pagination for sales representatives; hence, there is no `cursor`
    * parameter. Users typically have few sales representatives.
+   *
+   * @example
+   * ```ts
+   * const salesRepresentatives =
+   *   await client.qbd.salesRepresentatives.list({
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   list(
     params: SalesRepresentativeListParams,

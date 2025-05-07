@@ -7,6 +7,15 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class ItemGroups extends APIResource {
   /**
    * Creates a new item group.
+   *
+   * @example
+   * ```ts
+   * const itemGroup = await client.qbd.itemGroups.create({
+   *   name: 'Office Supplies Bundle',
+   *   shouldPrintItemsInGroup: true,
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: ItemGroupCreateParams, options?: Core.RequestOptions): Core.APIPromise<ItemGroup> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +28,14 @@ export class ItemGroups extends APIResource {
 
   /**
    * Retrieves an item group by ID.
+   *
+   * @example
+   * ```ts
+   * const itemGroup = await client.qbd.itemGroups.retrieve(
+   *   '80000001-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +51,17 @@ export class ItemGroups extends APIResource {
 
   /**
    * Updates an existing item group.
+   *
+   * @example
+   * ```ts
+   * const itemGroup = await client.qbd.itemGroups.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +79,16 @@ export class ItemGroups extends APIResource {
   /**
    * Returns a list of item groups. Use the `cursor` parameter to paginate through
    * the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const itemGroup of client.qbd.itemGroups.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: ItemGroupListParams,

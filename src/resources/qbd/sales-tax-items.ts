@@ -7,6 +7,14 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class SalesTaxItems extends APIResource {
   /**
    * Creates a new sales-tax item.
+   *
+   * @example
+   * ```ts
+   * const salesTaxItem = await client.qbd.salesTaxItems.create({
+   *   name: 'Standard Tax',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: SalesTaxItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<SalesTaxItem> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +27,15 @@ export class SalesTaxItems extends APIResource {
 
   /**
    * Retrieves a sales-tax item by ID.
+   *
+   * @example
+   * ```ts
+   * const salesTaxItem =
+   *   await client.qbd.salesTaxItems.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +51,17 @@ export class SalesTaxItems extends APIResource {
 
   /**
    * Updates an existing sales-tax item.
+   *
+   * @example
+   * ```ts
+   * const salesTaxItem = await client.qbd.salesTaxItems.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +79,16 @@ export class SalesTaxItems extends APIResource {
   /**
    * Returns a list of sales-tax items. Use the `cursor` parameter to paginate
    * through the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const salesTaxItem of client.qbd.salesTaxItems.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: SalesTaxItemListParams,

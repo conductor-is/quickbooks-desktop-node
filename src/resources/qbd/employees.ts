@@ -7,6 +7,13 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class Employees extends APIResource {
   /**
    * Creates a new employee.
+   *
+   * @example
+   * ```ts
+   * const employee = await client.qbd.employees.create({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: EmployeeCreateParams, options?: Core.RequestOptions): Core.APIPromise<Employee> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +26,14 @@ export class Employees extends APIResource {
 
   /**
    * Retrieves an employee by ID.
+   *
+   * @example
+   * ```ts
+   * const employee = await client.qbd.employees.retrieve(
+   *   '80000001-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +49,17 @@ export class Employees extends APIResource {
 
   /**
    * Updates an existing employee.
+   *
+   * @example
+   * ```ts
+   * const employee = await client.qbd.employees.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(id: string, params: EmployeeUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Employee> {
     const { conductorEndUserId, ...body } = params;
@@ -47,6 +73,16 @@ export class Employees extends APIResource {
   /**
    * Returns a list of employees. Use the `cursor` parameter to paginate through the
    * results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const employee of client.qbd.employees.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: EmployeeListParams,

@@ -7,6 +7,15 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class DiscountItems extends APIResource {
   /**
    * Creates a new discount item.
+   *
+   * @example
+   * ```ts
+   * const discountItem = await client.qbd.discountItems.create({
+   *   accountId: '80000001-1234567890',
+   *   name: '10% labor discount',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: DiscountItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<DiscountItem> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +28,15 @@ export class DiscountItems extends APIResource {
 
   /**
    * Retrieves a discount item by ID.
+   *
+   * @example
+   * ```ts
+   * const discountItem =
+   *   await client.qbd.discountItems.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +52,17 @@ export class DiscountItems extends APIResource {
 
   /**
    * Updates an existing discount item.
+   *
+   * @example
+   * ```ts
+   * const discountItem = await client.qbd.discountItems.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +80,16 @@ export class DiscountItems extends APIResource {
   /**
    * Returns a list of discount items. Use the `cursor` parameter to paginate through
    * the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const discountItem of client.qbd.discountItems.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: DiscountItemListParams,

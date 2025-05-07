@@ -8,6 +8,13 @@ export class Preferences extends APIResource {
    * Returns the preferences that the QuickBooks administrator has set for all users
    * of the connected company file. Note that preferences cannot be modified through
    * the API, only through the QuickBooks Desktop user interface.
+   *
+   * @example
+   * ```ts
+   * const preferences = await client.qbd.preferences.retrieve({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   retrieve(params: PreferenceRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Preferences> {
     const { conductorEndUserId } = params;

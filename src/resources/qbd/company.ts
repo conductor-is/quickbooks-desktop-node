@@ -9,6 +9,13 @@ export class CompanyResource extends APIResource {
    * including company address, legal name, preferences, and subscribed services.
    * Note that company information cannot be modified through the API, only through
    * the QuickBooks Desktop user interface.
+   *
+   * @example
+   * ```ts
+   * const company = await client.qbd.company.retrieve({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   retrieve(params: CompanyRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Company> {
     const { conductorEndUserId } = params;

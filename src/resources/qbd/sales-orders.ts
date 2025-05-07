@@ -7,6 +7,15 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class SalesOrders extends APIResource {
   /**
    * Creates a new sales order.
+   *
+   * @example
+   * ```ts
+   * const salesOrder = await client.qbd.salesOrders.create({
+   *   customerId: '80000001-1234567890',
+   *   transactionDate: '2021-10-01',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: SalesOrderCreateParams, options?: Core.RequestOptions): Core.APIPromise<SalesOrder> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +28,14 @@ export class SalesOrders extends APIResource {
 
   /**
    * Retrieves a sales order by ID.
+   *
+   * @example
+   * ```ts
+   * const salesOrder = await client.qbd.salesOrders.retrieve(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +51,17 @@ export class SalesOrders extends APIResource {
 
   /**
    * Updates an existing sales order.
+   *
+   * @example
+   * ```ts
+   * const salesOrder = await client.qbd.salesOrders.update(
+   *   '123ABC-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +79,16 @@ export class SalesOrders extends APIResource {
   /**
    * Returns a list of sales orders. Use the `cursor` parameter to paginate through
    * the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const salesOrder of client.qbd.salesOrders.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: SalesOrderListParams,
@@ -67,6 +105,14 @@ export class SalesOrders extends APIResource {
   /**
    * Permanently deletes a a sales order. The deletion will fail if the sales order
    * is currently in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const salesOrder = await client.qbd.salesOrders.delete(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   delete(
     id: string,

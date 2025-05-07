@@ -7,6 +7,14 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class ServiceItems extends APIResource {
   /**
    * Creates a new service item.
+   *
+   * @example
+   * ```ts
+   * const serviceItem = await client.qbd.serviceItems.create({
+   *   name: 'Web-Design',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: ServiceItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<ServiceItem> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +27,14 @@ export class ServiceItems extends APIResource {
 
   /**
    * Retrieves a service item by ID.
+   *
+   * @example
+   * ```ts
+   * const serviceItem = await client.qbd.serviceItems.retrieve(
+   *   '80000001-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +50,17 @@ export class ServiceItems extends APIResource {
 
   /**
    * Updates an existing service item.
+   *
+   * @example
+   * ```ts
+   * const serviceItem = await client.qbd.serviceItems.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +78,16 @@ export class ServiceItems extends APIResource {
   /**
    * Returns a list of service items. Use the `cursor` parameter to paginate through
    * the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const serviceItem of client.qbd.serviceItems.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: ServiceItemListParams,
