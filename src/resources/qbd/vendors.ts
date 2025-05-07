@@ -7,6 +7,14 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class Vendors extends APIResource {
   /**
    * Creates a new vendor.
+   *
+   * @example
+   * ```ts
+   * const vendor = await client.qbd.vendors.create({
+   *   name: 'Acme Supplies Inc.',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: VendorCreateParams, options?: Core.RequestOptions): Core.APIPromise<Vendor> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +27,14 @@ export class Vendors extends APIResource {
 
   /**
    * Retrieves a vendor by ID.
+   *
+   * @example
+   * ```ts
+   * const vendor = await client.qbd.vendors.retrieve(
+   *   '80000001-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(id: string, params: VendorRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Vendor> {
     const { conductorEndUserId } = params;
@@ -30,6 +46,17 @@ export class Vendors extends APIResource {
 
   /**
    * Updates an existing vendor.
+   *
+   * @example
+   * ```ts
+   * const vendor = await client.qbd.vendors.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(id: string, params: VendorUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Vendor> {
     const { conductorEndUserId, ...body } = params;
@@ -43,6 +70,16 @@ export class Vendors extends APIResource {
   /**
    * Returns a list of vendors. Use the `cursor` parameter to paginate through the
    * results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const vendor of client.qbd.vendors.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(params: VendorListParams, options?: Core.RequestOptions): Core.PagePromise<VendorsCursorPage, Vendor> {
     const { conductorEndUserId, ...query } = params;

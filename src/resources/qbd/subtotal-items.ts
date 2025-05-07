@@ -7,6 +7,14 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class SubtotalItems extends APIResource {
   /**
    * Creates a new subtotal item.
+   *
+   * @example
+   * ```ts
+   * const subtotalItem = await client.qbd.subtotalItems.create({
+   *   name: 'Labor subtotal',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: SubtotalItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<SubtotalItem> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +27,15 @@ export class SubtotalItems extends APIResource {
 
   /**
    * Retrieves a subtotal item by ID.
+   *
+   * @example
+   * ```ts
+   * const subtotalItem =
+   *   await client.qbd.subtotalItems.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +51,17 @@ export class SubtotalItems extends APIResource {
 
   /**
    * Updates an existing subtotal item.
+   *
+   * @example
+   * ```ts
+   * const subtotalItem = await client.qbd.subtotalItems.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +79,16 @@ export class SubtotalItems extends APIResource {
   /**
    * Returns a list of subtotal items. Use the `cursor` parameter to paginate through
    * the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const subtotalItem of client.qbd.subtotalItems.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: SubtotalItemListParams,

@@ -7,6 +7,16 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class JournalEntries extends APIResource {
   /**
    * Creates a new journal entry.
+   *
+   * @example
+   * ```ts
+   * const journalEntry = await client.qbd.journalEntries.create(
+   *   {
+   *     transactionDate: '2021-10-01',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   create(params: JournalEntryCreateParams, options?: Core.RequestOptions): Core.APIPromise<JournalEntry> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +29,15 @@ export class JournalEntries extends APIResource {
 
   /**
    * Retrieves a journal entry by ID.
+   *
+   * @example
+   * ```ts
+   * const journalEntry =
+   *   await client.qbd.journalEntries.retrieve(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +53,17 @@ export class JournalEntries extends APIResource {
 
   /**
    * Updates an existing journal entry.
+   *
+   * @example
+   * ```ts
+   * const journalEntry = await client.qbd.journalEntries.update(
+   *   '123ABC-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +81,16 @@ export class JournalEntries extends APIResource {
   /**
    * Returns a list of journal entries. Use the `cursor` parameter to paginate
    * through the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const journalEntry of client.qbd.journalEntries.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: JournalEntryListParams,
@@ -67,6 +107,14 @@ export class JournalEntries extends APIResource {
   /**
    * Permanently deletes a a journal entry. The deletion will fail if the journal
    * entry is currently in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const journalEntry = await client.qbd.journalEntries.delete(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   delete(
     id: string,

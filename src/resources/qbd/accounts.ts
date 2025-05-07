@@ -6,6 +6,15 @@ import * as Core from '../../core';
 export class Accounts extends APIResource {
   /**
    * Creates a new financial account.
+   *
+   * @example
+   * ```ts
+   * const account = await client.qbd.accounts.create({
+   *   accountType: 'bank',
+   *   name: 'Accounts-Payable',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: AccountCreateParams, options?: Core.RequestOptions): Core.APIPromise<Account> {
     const { conductorEndUserId, ...body } = params;
@@ -18,6 +27,14 @@ export class Accounts extends APIResource {
 
   /**
    * Retrieves an account by ID.
+   *
+   * @example
+   * ```ts
+   * const account = await client.qbd.accounts.retrieve(
+   *   '80000001-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -33,6 +50,17 @@ export class Accounts extends APIResource {
 
   /**
    * Updates an existing financial account.
+   *
+   * @example
+   * ```ts
+   * const account = await client.qbd.accounts.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(id: string, params: AccountUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Account> {
     const { conductorEndUserId, ...body } = params;
@@ -47,6 +75,13 @@ export class Accounts extends APIResource {
    * Returns a list of accounts. NOTE: QuickBooks Desktop does not support pagination
    * for accounts; hence, there is no `cursor` parameter. Users typically have few
    * accounts.
+   *
+   * @example
+   * ```ts
+   * const accounts = await client.qbd.accounts.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   list(params: AccountListParams, options?: Core.RequestOptions): Core.APIPromise<AccountListResponse> {
     const { conductorEndUserId, ...query } = params;

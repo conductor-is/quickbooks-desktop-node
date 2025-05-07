@@ -7,6 +7,20 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class BillCreditCardPayments extends APIResource {
   /**
    * Creates a new bill credit card payment.
+   *
+   * @example
+   * ```ts
+   * const billCreditCardPayment =
+   *   await client.qbd.billCreditCardPayments.create({
+   *     applyToTransactions: [
+   *       { transactionId: '123ABC-1234567890' },
+   *     ],
+   *     creditCardAccountId: '80000001-1234567890',
+   *     transactionDate: '2021-10-01',
+   *     vendorId: '80000001-1234567890',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(
     params: BillCreditCardPaymentCreateParams,
@@ -22,6 +36,15 @@ export class BillCreditCardPayments extends APIResource {
 
   /**
    * Retrieves a bill credit card payment by ID.
+   *
+   * @example
+   * ```ts
+   * const billCreditCardPayment =
+   *   await client.qbd.billCreditCardPayments.retrieve(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -38,6 +61,16 @@ export class BillCreditCardPayments extends APIResource {
   /**
    * Returns a list of bill credit card payments. Use the `cursor` parameter to
    * paginate through the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const billCreditCardPayment of client.qbd.billCreditCardPayments.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: BillCreditCardPaymentListParams,
@@ -55,6 +88,15 @@ export class BillCreditCardPayments extends APIResource {
    * Permanently deletes a a bill credit card payment. The deletion will fail if the
    * bill credit card payment is currently in use or has any linked transactions that
    * are in use.
+   *
+   * @example
+   * ```ts
+   * const billCreditCardPayment =
+   *   await client.qbd.billCreditCardPayments.delete(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   delete(
     id: string,

@@ -7,6 +7,14 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class Customers extends APIResource {
   /**
    * Creates a new customer.
+   *
+   * @example
+   * ```ts
+   * const customer = await client.qbd.customers.create({
+   *   name: 'Website Redesign Project',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: CustomerCreateParams, options?: Core.RequestOptions): Core.APIPromise<Customer> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +27,14 @@ export class Customers extends APIResource {
 
   /**
    * Retrieves a customer by ID.
+   *
+   * @example
+   * ```ts
+   * const customer = await client.qbd.customers.retrieve(
+   *   '80000001-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +50,17 @@ export class Customers extends APIResource {
 
   /**
    * Updates an existing customer.
+   *
+   * @example
+   * ```ts
+   * const customer = await client.qbd.customers.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(id: string, params: CustomerUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Customer> {
     const { conductorEndUserId, ...body } = params;
@@ -47,6 +74,16 @@ export class Customers extends APIResource {
   /**
    * Returns a list of customers. Use the `cursor` parameter to paginate through the
    * results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const customer of client.qbd.customers.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: CustomerListParams,

@@ -6,6 +6,16 @@ import * as Core from '../../core';
 export class InventoryAdjustments extends APIResource {
   /**
    * Creates a new inventory adjustment.
+   *
+   * @example
+   * ```ts
+   * const inventoryAdjustment =
+   *   await client.qbd.inventoryAdjustments.create({
+   *     accountId: '80000001-1234567890',
+   *     transactionDate: '2021-10-01',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(
     params: InventoryAdjustmentCreateParams,
@@ -21,6 +31,15 @@ export class InventoryAdjustments extends APIResource {
 
   /**
    * Retrieves an inventory adjustment by ID.
+   *
+   * @example
+   * ```ts
+   * const inventoryAdjustment =
+   *   await client.qbd.inventoryAdjustments.retrieve(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -36,6 +55,18 @@ export class InventoryAdjustments extends APIResource {
 
   /**
    * Updates an existing inventory adjustment.
+   *
+   * @example
+   * ```ts
+   * const inventoryAdjustment =
+   *   await client.qbd.inventoryAdjustments.update(
+   *     '123ABC-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
+   * ```
    */
   update(
     id: string,
@@ -54,6 +85,14 @@ export class InventoryAdjustments extends APIResource {
    * Returns a list of inventory adjustments. NOTE: QuickBooks Desktop does not
    * support pagination for inventory adjustments; hence, there is no `cursor`
    * parameter. Users typically have few inventory adjustments.
+   *
+   * @example
+   * ```ts
+   * const inventoryAdjustments =
+   *   await client.qbd.inventoryAdjustments.list({
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   list(
     params: InventoryAdjustmentListParams,
@@ -71,6 +110,15 @@ export class InventoryAdjustments extends APIResource {
    * Permanently deletes a an inventory adjustment. The deletion will fail if the
    * inventory adjustment is currently in use or has any linked transactions that are
    * in use.
+   *
+   * @example
+   * ```ts
+   * const inventoryAdjustment =
+   *   await client.qbd.inventoryAdjustments.delete(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   delete(
     id: string,

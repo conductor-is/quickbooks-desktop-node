@@ -7,6 +7,14 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class ItemSites extends APIResource {
   /**
    * Retrieves an item site by ID.
+   *
+   * @example
+   * ```ts
+   * const itemSite = await client.qbd.itemSites.retrieve(
+   *   '80000001-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -23,6 +31,16 @@ export class ItemSites extends APIResource {
   /**
    * Returns a list of item sites. Use the `cursor` parameter to paginate through the
    * results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const itemSite of client.qbd.itemSites.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: ItemSiteListParams,

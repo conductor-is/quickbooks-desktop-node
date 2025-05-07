@@ -7,6 +7,15 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class ItemReceipts extends APIResource {
   /**
    * Creates a new item receipt.
+   *
+   * @example
+   * ```ts
+   * const itemReceipt = await client.qbd.itemReceipts.create({
+   *   transactionDate: '2021-10-01',
+   *   vendorId: '80000001-1234567890',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: ItemReceiptCreateParams, options?: Core.RequestOptions): Core.APIPromise<ItemReceipt> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +28,14 @@ export class ItemReceipts extends APIResource {
 
   /**
    * Retrieves an item receipt by ID.
+   *
+   * @example
+   * ```ts
+   * const itemReceipt = await client.qbd.itemReceipts.retrieve(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +51,17 @@ export class ItemReceipts extends APIResource {
 
   /**
    * Updates an existing item receipt.
+   *
+   * @example
+   * ```ts
+   * const itemReceipt = await client.qbd.itemReceipts.update(
+   *   '123ABC-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +79,16 @@ export class ItemReceipts extends APIResource {
   /**
    * Returns a list of item receipts. Use the `cursor` parameter to paginate through
    * the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const itemReceipt of client.qbd.itemReceipts.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: ItemReceiptListParams,
@@ -67,6 +105,14 @@ export class ItemReceipts extends APIResource {
   /**
    * Permanently deletes a an item receipt. The deletion will fail if the item
    * receipt is currently in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const itemReceipt = await client.qbd.itemReceipts.delete(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
    */
   delete(
     id: string,

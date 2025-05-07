@@ -6,6 +6,15 @@ import * as Core from '../../core';
 export class SalesTaxCodes extends APIResource {
   /**
    * Creates a new sales-tax code.
+   *
+   * @example
+   * ```ts
+   * const salesTaxCode = await client.qbd.salesTaxCodes.create({
+   *   isTaxable: true,
+   *   name: 'Tax',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   create(params: SalesTaxCodeCreateParams, options?: Core.RequestOptions): Core.APIPromise<SalesTaxCode> {
     const { conductorEndUserId, ...body } = params;
@@ -18,6 +27,15 @@ export class SalesTaxCodes extends APIResource {
 
   /**
    * Retrieves a sales-tax code by ID.
+   *
+   * @example
+   * ```ts
+   * const salesTaxCode =
+   *   await client.qbd.salesTaxCodes.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -33,6 +51,17 @@ export class SalesTaxCodes extends APIResource {
 
   /**
    * Updates an existing sales-tax code.
+   *
+   * @example
+   * ```ts
+   * const salesTaxCode = await client.qbd.salesTaxCodes.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +80,13 @@ export class SalesTaxCodes extends APIResource {
    * Returns a list of sales-tax codes. NOTE: QuickBooks Desktop does not support
    * pagination for sales-tax codes; hence, there is no `cursor` parameter. Users
    * typically have few sales-tax codes.
+   *
+   * @example
+   * ```ts
+   * const salesTaxCodes = await client.qbd.salesTaxCodes.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
+   * ```
    */
   list(
     params: SalesTaxCodeListParams,

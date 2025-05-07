@@ -7,6 +7,18 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class InventoryItems extends APIResource {
   /**
    * Creates a new inventory item.
+   *
+   * @example
+   * ```ts
+   * const inventoryItem =
+   *   await client.qbd.inventoryItems.create({
+   *     assetAccountId: '80000001-1234567890',
+   *     cogsAccountId: '80000001-1234567890',
+   *     incomeAccountId: '80000001-1234567890',
+   *     name: 'Cabinet',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(params: InventoryItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<InventoryItem> {
     const { conductorEndUserId, ...body } = params;
@@ -19,6 +31,15 @@ export class InventoryItems extends APIResource {
 
   /**
    * Retrieves an inventory item by ID.
+   *
+   * @example
+   * ```ts
+   * const inventoryItem =
+   *   await client.qbd.inventoryItems.retrieve(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -34,6 +55,18 @@ export class InventoryItems extends APIResource {
 
   /**
    * Updates an existing inventory item.
+   *
+   * @example
+   * ```ts
+   * const inventoryItem =
+   *   await client.qbd.inventoryItems.update(
+   *     '80000001-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
+   * ```
    */
   update(
     id: string,
@@ -51,6 +84,16 @@ export class InventoryItems extends APIResource {
   /**
    * Returns a list of inventory items. Use the `cursor` parameter to paginate
    * through the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const inventoryItem of client.qbd.inventoryItems.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: InventoryItemListParams,

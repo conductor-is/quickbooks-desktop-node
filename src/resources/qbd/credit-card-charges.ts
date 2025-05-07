@@ -7,6 +7,16 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class CreditCardCharges extends APIResource {
   /**
    * Creates a new credit card charge for the specified account.
+   *
+   * @example
+   * ```ts
+   * const creditCardCharge =
+   *   await client.qbd.creditCardCharges.create({
+   *     accountId: '80000001-1234567890',
+   *     transactionDate: '2021-10-01',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
+   * ```
    */
   create(
     params: CreditCardChargeCreateParams,
@@ -22,6 +32,15 @@ export class CreditCardCharges extends APIResource {
 
   /**
    * Retrieves a credit card charge by ID.
+   *
+   * @example
+   * ```ts
+   * const creditCardCharge =
+   *   await client.qbd.creditCardCharges.retrieve(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -37,6 +56,18 @@ export class CreditCardCharges extends APIResource {
 
   /**
    * Updates an existing credit card charge.
+   *
+   * @example
+   * ```ts
+   * const creditCardCharge =
+   *   await client.qbd.creditCardCharges.update(
+   *     '123ABC-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
+   * ```
    */
   update(
     id: string,
@@ -54,6 +85,16 @@ export class CreditCardCharges extends APIResource {
   /**
    * Returns a list of credit card charges. Use the `cursor` parameter to paginate
    * through the results.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const creditCardCharge of client.qbd.creditCardCharges.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     params: CreditCardChargeListParams,
@@ -70,6 +111,15 @@ export class CreditCardCharges extends APIResource {
   /**
    * Permanently deletes a a credit card charge. The deletion will fail if the credit
    * card charge is currently in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const creditCardCharge =
+   *   await client.qbd.creditCardCharges.delete(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
    */
   delete(
     id: string,
