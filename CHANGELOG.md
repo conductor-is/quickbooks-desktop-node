@@ -1,5 +1,18 @@
 # Changelog
 
+## 12.5.1 (2025-05-07)
+
+Full Changelog: [v12.5.0...v12.5.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.5.0...v12.5.1)
+
+### Chores
+
+* **ci:** bump node version for release workflows ([6e37f80](https://github.com/conductor-is/quickbooks-desktop-node/commit/6e37f8029c7922b4a49f4bb19967d587d9227e2a))
+
+
+### Documentation
+
+* add examples to tsdocs ([b012bf4](https://github.com/conductor-is/quickbooks-desktop-node/commit/b012bf49747351a33fa348ea601119e6f9dfacd1))
+
 ## 12.5.0 (2025-05-07)
 
 Full Changelog: [v12.4.0...v12.5.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.4.0...v12.5.0)
