@@ -481,7 +481,7 @@ export namespace Vendor {
       /**
        * The value of the contact field.
        */
-      value: string;
+      value: string | null;
     }
   }
 
@@ -629,7 +629,7 @@ export namespace Vendor {
     /**
      * The value of the contact field.
      */
-    value: string;
+    value: string | null;
   }
 
   export interface CustomField {
