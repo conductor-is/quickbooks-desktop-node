@@ -271,6 +271,15 @@ import {
   NonInventoryItems,
   NonInventoryItemsCursorPage,
 } from './non-inventory-items';
+import * as PaymentMethodsAPI from './payment-methods';
+import {
+  PaymentMethod,
+  PaymentMethodCreateParams,
+  PaymentMethodListParams,
+  PaymentMethodRetrieveParams,
+  PaymentMethods,
+  PaymentMethodsCursorPage,
+} from './payment-methods';
 import * as PayrollWageItemsAPI from './payroll-wage-items';
 import {
   PayrollWageItem,
@@ -490,6 +499,7 @@ export class Qbd extends APIResource {
   nonInventoryItems: NonInventoryItemsAPI.NonInventoryItems = new NonInventoryItemsAPI.NonInventoryItems(
     this._client,
   );
+  paymentMethods: PaymentMethodsAPI.PaymentMethods = new PaymentMethodsAPI.PaymentMethods(this._client);
   payrollWageItems: PayrollWageItemsAPI.PayrollWageItems = new PayrollWageItemsAPI.PayrollWageItems(
     this._client,
   );
@@ -605,6 +615,8 @@ Qbd.JournalEntries = JournalEntries;
 Qbd.JournalEntriesCursorPage = JournalEntriesCursorPage;
 Qbd.NonInventoryItems = NonInventoryItems;
 Qbd.NonInventoryItemsCursorPage = NonInventoryItemsCursorPage;
+Qbd.PaymentMethods = PaymentMethods;
+Qbd.PaymentMethodsCursorPage = PaymentMethodsCursorPage;
 Qbd.PayrollWageItems = PayrollWageItems;
 Qbd.PayrollWageItemsCursorPage = PayrollWageItemsCursorPage;
 Qbd.PriceLevels = PriceLevels;
@@ -913,6 +925,15 @@ export declare namespace Qbd {
     type NonInventoryItemRetrieveParams as NonInventoryItemRetrieveParams,
     type NonInventoryItemUpdateParams as NonInventoryItemUpdateParams,
     type NonInventoryItemListParams as NonInventoryItemListParams,
+  };
+
+  export {
+    PaymentMethods as PaymentMethods,
+    type PaymentMethod as PaymentMethod,
+    PaymentMethodsCursorPage as PaymentMethodsCursorPage,
+    type PaymentMethodCreateParams as PaymentMethodCreateParams,
+    type PaymentMethodRetrieveParams as PaymentMethodRetrieveParams,
+    type PaymentMethodListParams as PaymentMethodListParams,
   };
 
   export {
