@@ -244,6 +244,14 @@ export {
   type NonInventoryItemListParams,
 } from './non-inventory-items';
 export {
+  PaymentMethodsCursorPage,
+  PaymentMethods,
+  type PaymentMethod,
+  type PaymentMethodCreateParams,
+  type PaymentMethodRetrieveParams,
+  type PaymentMethodListParams,
+} from './payment-methods';
+export {
   PayrollWageItemsCursorPage,
   PayrollWageItems,
   type PayrollWageItem,
