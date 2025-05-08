@@ -546,7 +546,7 @@ export namespace Customer {
       /**
        * The value of the contact field.
        */
-      value: string;
+      value: string | null;
     }
   }
 
@@ -779,7 +779,7 @@ export namespace Customer {
     /**
      * The value of the contact field.
      */
-    value: string;
+    value: string | null;
   }
 
   /**

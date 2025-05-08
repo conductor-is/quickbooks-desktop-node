@@ -523,7 +523,7 @@ export namespace Employee {
     /**
      * The value of the contact field.
      */
-    value: string;
+    value: string | null;
   }
 
   export interface CustomField {
@@ -608,7 +608,7 @@ export namespace Employee {
       /**
        * The value of the contact field.
        */
-      value: string;
+      value: string | null;
     }
 
     /**
@@ -639,7 +639,7 @@ export namespace Employee {
       /**
        * The value of the contact field.
        */
-      value: string;
+      value: string | null;
     }
   }
 
