@@ -393,17 +393,32 @@ Methods:
 - <code title="post /quickbooks-desktop/non-inventory-items/{id}">client.qbd.nonInventoryItems.<a href="./src/resources/qbd/non-inventory-items.ts">update</a>(id, { ...params }) -> NonInventoryItem</code>
 - <code title="get /quickbooks-desktop/non-inventory-items">client.qbd.nonInventoryItems.<a href="./src/resources/qbd/non-inventory-items.ts">list</a>({ ...params }) -> NonInventoryItemsCursorPage</code>
 
+## OtherNames
+
+Types:
+
+- <code><a href="./src/resources/qbd/other-names.ts">OtherName</a></code>
+- <code><a href="./src/resources/qbd/other-names.ts">OtherNameListResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/other-names">client.qbd.otherNames.<a href="./src/resources/qbd/other-names.ts">create</a>({ ...params }) -> OtherName</code>
+- <code title="get /quickbooks-desktop/other-names/{id}">client.qbd.otherNames.<a href="./src/resources/qbd/other-names.ts">retrieve</a>(id, { ...params }) -> OtherName</code>
+- <code title="post /quickbooks-desktop/other-names/{id}">client.qbd.otherNames.<a href="./src/resources/qbd/other-names.ts">update</a>(id, { ...params }) -> OtherName</code>
+- <code title="get /quickbooks-desktop/other-names">client.qbd.otherNames.<a href="./src/resources/qbd/other-names.ts">list</a>({ ...params }) -> OtherNameListResponse</code>
+
 ## PaymentMethods
 
 Types:
 
 - <code><a href="./src/resources/qbd/payment-methods.ts">PaymentMethod</a></code>
+- <code><a href="./src/resources/qbd/payment-methods.ts">PaymentMethodListResponse</a></code>
 
 Methods:
 
 - <code title="post /quickbooks-desktop/payment-methods">client.qbd.paymentMethods.<a href="./src/resources/qbd/payment-methods.ts">create</a>({ ...params }) -> PaymentMethod</code>
 - <code title="get /quickbooks-desktop/payment-methods/{id}">client.qbd.paymentMethods.<a href="./src/resources/qbd/payment-methods.ts">retrieve</a>(id, { ...params }) -> PaymentMethod</code>
-- <code title="get /quickbooks-desktop/payment-methods">client.qbd.paymentMethods.<a href="./src/resources/qbd/payment-methods.ts">list</a>({ ...params }) -> PaymentMethodsCursorPage</code>
+- <code title="get /quickbooks-desktop/payment-methods">client.qbd.paymentMethods.<a href="./src/resources/qbd/payment-methods.ts">list</a>({ ...params }) -> PaymentMethodListResponse</code>
 
 ## PayrollWageItems
 

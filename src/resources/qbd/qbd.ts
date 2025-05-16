@@ -271,14 +271,24 @@ import {
   NonInventoryItems,
   NonInventoryItemsCursorPage,
 } from './non-inventory-items';
+import * as OtherNamesAPI from './other-names';
+import {
+  OtherName,
+  OtherNameCreateParams,
+  OtherNameListParams,
+  OtherNameListResponse,
+  OtherNameRetrieveParams,
+  OtherNameUpdateParams,
+  OtherNames,
+} from './other-names';
 import * as PaymentMethodsAPI from './payment-methods';
 import {
   PaymentMethod,
   PaymentMethodCreateParams,
   PaymentMethodListParams,
+  PaymentMethodListResponse,
   PaymentMethodRetrieveParams,
   PaymentMethods,
-  PaymentMethodsCursorPage,
 } from './payment-methods';
 import * as PayrollWageItemsAPI from './payroll-wage-items';
 import {
@@ -499,6 +509,7 @@ export class Qbd extends APIResource {
   nonInventoryItems: NonInventoryItemsAPI.NonInventoryItems = new NonInventoryItemsAPI.NonInventoryItems(
     this._client,
   );
+  otherNames: OtherNamesAPI.OtherNames = new OtherNamesAPI.OtherNames(this._client);
   paymentMethods: PaymentMethodsAPI.PaymentMethods = new PaymentMethodsAPI.PaymentMethods(this._client);
   payrollWageItems: PayrollWageItemsAPI.PayrollWageItems = new PayrollWageItemsAPI.PayrollWageItems(
     this._client,
@@ -615,8 +626,8 @@ Qbd.JournalEntries = JournalEntries;
 Qbd.JournalEntriesCursorPage = JournalEntriesCursorPage;
 Qbd.NonInventoryItems = NonInventoryItems;
 Qbd.NonInventoryItemsCursorPage = NonInventoryItemsCursorPage;
+Qbd.OtherNames = OtherNames;
 Qbd.PaymentMethods = PaymentMethods;
-Qbd.PaymentMethodsCursorPage = PaymentMethodsCursorPage;
 Qbd.PayrollWageItems = PayrollWageItems;
 Qbd.PayrollWageItemsCursorPage = PayrollWageItemsCursorPage;
 Qbd.PriceLevels = PriceLevels;
@@ -928,9 +939,19 @@ export declare namespace Qbd {
   };
 
   export {
+    OtherNames as OtherNames,
+    type OtherName as OtherName,
+    type OtherNameListResponse as OtherNameListResponse,
+    type OtherNameCreateParams as OtherNameCreateParams,
+    type OtherNameRetrieveParams as OtherNameRetrieveParams,
+    type OtherNameUpdateParams as OtherNameUpdateParams,
+    type OtherNameListParams as OtherNameListParams,
+  };
+
+  export {
     PaymentMethods as PaymentMethods,
     type PaymentMethod as PaymentMethod,
-    PaymentMethodsCursorPage as PaymentMethodsCursorPage,
+    type PaymentMethodListResponse as PaymentMethodListResponse,
     type PaymentMethodCreateParams as PaymentMethodCreateParams,
     type PaymentMethodRetrieveParams as PaymentMethodRetrieveParams,
     type PaymentMethodListParams as PaymentMethodListParams,
