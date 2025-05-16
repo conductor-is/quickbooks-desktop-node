@@ -244,9 +244,18 @@ export {
   type NonInventoryItemListParams,
 } from './non-inventory-items';
 export {
-  PaymentMethodsCursorPage,
+  OtherNames,
+  type OtherName,
+  type OtherNameListResponse,
+  type OtherNameCreateParams,
+  type OtherNameRetrieveParams,
+  type OtherNameUpdateParams,
+  type OtherNameListParams,
+} from './other-names';
+export {
   PaymentMethods,
   type PaymentMethod,
+  type PaymentMethodListResponse,
   type PaymentMethodCreateParams,
   type PaymentMethodRetrieveParams,
   type PaymentMethodListParams,

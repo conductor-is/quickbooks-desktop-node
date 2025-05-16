@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class PaymentMethods extends APIResource {
   /**
@@ -52,33 +51,29 @@ export class PaymentMethods extends APIResource {
   }
 
   /**
-   * Returns a list of payment methods. Use the `cursor` parameter to paginate
-   * through the results.
+   * Returns a list of payment methods. NOTE: QuickBooks Desktop does not support
+   * pagination for payment methods; hence, there is no `cursor` parameter. Users
+   * typically have few payment methods.
    *
    * @example
    * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const paymentMethod of client.qbd.paymentMethods.list(
+   * const paymentMethods = await client.qbd.paymentMethods.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
-   * )) {
-   *   // ...
-   * }
+   * );
    * ```
    */
   list(
     params: PaymentMethodListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<PaymentMethodsCursorPage, PaymentMethod> {
+  ): Core.APIPromise<PaymentMethodListResponse> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/payment-methods', PaymentMethodsCursorPage, {
+    return this._client.get('/quickbooks-desktop/payment-methods', {
       query,
       ...options,
       headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
     });
   }
 }
-
-export class PaymentMethodsCursorPage extends CursorPage<PaymentMethod> {}
 
 export interface PaymentMethod {
   /**
@@ -148,6 +143,23 @@ export interface PaymentMethod {
   updatedAt: string;
 }
 
+export interface PaymentMethodListResponse {
+  /**
+   * The array of payment methods.
+   */
+  data: Array<PaymentMethod>;
+
+  /**
+   * The type of object. This value is always `"list"`.
+   */
+  objectType: 'list';
+
+  /**
+   * The endpoint URL where this list can be accessed.
+   */
+  url: string;
+}
+
 export interface PaymentMethodCreateParams {
   /**
    * Body param: The case-insensitive unique name of this payment method, unique
@@ -198,7 +210,7 @@ export interface PaymentMethodRetrieveParams {
   conductorEndUserId: string;
 }
 
-export interface PaymentMethodListParams extends CursorPageParams {
+export interface PaymentMethodListParams {
   /**
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
@@ -216,6 +228,20 @@ export interface PaymentMethodListParams extends CursorPageParams {
    * request will return an error.
    */
   ids?: Array<string>;
+
+  /**
+   * Query param: The maximum number of objects to return.
+   *
+   * **IMPORTANT**: QuickBooks Desktop does not support cursor-based pagination for
+   * payment methods. This parameter will limit the response size, but you cannot
+   * fetch subsequent results using a cursor. For pagination, use the name-range
+   * parameters instead (e.g., `nameFrom=A&nameTo=B`).
+   *
+   * When this parameter is omitted, the endpoint returns all payment methods without
+   * limit, unlike paginated endpoints which default to 150 records. This is
+   * acceptable because payment methods typically have low record counts.
+   */
+  limit?: number;
 
   /**
    * Query param: Filter for payment methods whose `name` contains this substring,
@@ -298,12 +324,10 @@ export interface PaymentMethodListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-PaymentMethods.PaymentMethodsCursorPage = PaymentMethodsCursorPage;
-
 export declare namespace PaymentMethods {
   export {
     type PaymentMethod as PaymentMethod,
-    PaymentMethodsCursorPage as PaymentMethodsCursorPage,
+    type PaymentMethodListResponse as PaymentMethodListResponse,
     type PaymentMethodCreateParams as PaymentMethodCreateParams,
     type PaymentMethodRetrieveParams as PaymentMethodRetrieveParams,
     type PaymentMethodListParams as PaymentMethodListParams,
