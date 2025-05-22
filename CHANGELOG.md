@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.8.1 (2025-05-22)
+
+Full Changelog: [v12.8.0...v12.8.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.8.0...v12.8.1)
+
+### Chores
+
+* **docs:** grammar improvements ([9bee3cb](https://github.com/conductor-is/quickbooks-desktop-node/commit/9bee3cb5a034e7ecd7591147e98f3b87b040213c))
+
 ## 12.8.0 (2025-05-16)
 
 Full Changelog: [v12.7.0...v12.8.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.7.0...v12.8.0)
