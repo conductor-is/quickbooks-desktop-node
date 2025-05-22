@@ -16,13 +16,13 @@ before making any information public.
 ## Reporting Non-SDK Related Security Issues
 
 If you encounter security issues that are not directly related to SDKs but pertain to the services
-or products provided by Conductor please follow the respective company's security reporting guidelines.
+or products provided by Conductor, please follow the respective company's security reporting guidelines.
 
 ### Conductor Terms and Policies
 
 Our Security Policy can be found at [Security Policy URL](https://conductor.is/privacy).
 
-Please contact support@conductor.is for any questions or concerns regarding security of our services.
+Please contact support@conductor.is for any questions or concerns regarding the security of our services.
 
 https://conductor.is/terms
 
