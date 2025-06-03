@@ -1,5 +1,20 @@
 # Changelog
 
+## 12.8.1 (2025-06-03)
+
+Full Changelog: [v12.8.0...v12.8.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.8.0...v12.8.1)
+
+### Chores
+
+* configure new SDK language ([d234759](https://github.com/conductor-is/quickbooks-desktop-node/commit/d23475905e81078975eeaff672679256b904c632))
+* **docs:** grammar improvements ([9bee3cb](https://github.com/conductor-is/quickbooks-desktop-node/commit/9bee3cb5a034e7ecd7591147e98f3b87b040213c))
+* improve publish-npm script --latest tag logic ([ac1f4d7](https://github.com/conductor-is/quickbooks-desktop-node/commit/ac1f4d73e44a970360a0a5a24993719a90e958a4))
+
+
+### Documentation
+
+* **pagination:** improve naming ([e1acccb](https://github.com/conductor-is/quickbooks-desktop-node/commit/e1acccbecbb0a602a6291be5beff32f93238d704))
+
 ## 12.8.0 (2025-05-16)
 
 Full Changelog: [v12.7.0...v12.8.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.7.0...v12.8.0)
