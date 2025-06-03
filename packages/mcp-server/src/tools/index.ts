@@ -1,0 +1,467 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import Conductor from 'conductor-node';
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+
+import create_auth_sessions from './auth-sessions/create-auth-sessions';
+import create_end_users from './end-users/create-end-users';
+import retrieve_end_users from './end-users/retrieve-end-users';
+import list_end_users from './end-users/list-end-users';
+import delete_end_users from './end-users/delete-end-users';
+import passthrough_end_users from './end-users/passthrough-end-users';
+import health_check_qbd from './qbd/health-check-qbd';
+import list_qbd_account_tax_lines from './qbd/account-tax-lines/list-qbd-account-tax-lines';
+import create_qbd_accounts from './qbd/accounts/create-qbd-accounts';
+import retrieve_qbd_accounts from './qbd/accounts/retrieve-qbd-accounts';
+import update_qbd_accounts from './qbd/accounts/update-qbd-accounts';
+import list_qbd_accounts from './qbd/accounts/list-qbd-accounts';
+import create_qbd_bill_check_payments from './qbd/bill-check-payments/create-qbd-bill-check-payments';
+import retrieve_qbd_bill_check_payments from './qbd/bill-check-payments/retrieve-qbd-bill-check-payments';
+import update_qbd_bill_check_payments from './qbd/bill-check-payments/update-qbd-bill-check-payments';
+import list_qbd_bill_check_payments from './qbd/bill-check-payments/list-qbd-bill-check-payments';
+import delete_qbd_bill_check_payments from './qbd/bill-check-payments/delete-qbd-bill-check-payments';
+import create_qbd_bill_credit_card_payments from './qbd/bill-credit-card-payments/create-qbd-bill-credit-card-payments';
+import retrieve_qbd_bill_credit_card_payments from './qbd/bill-credit-card-payments/retrieve-qbd-bill-credit-card-payments';
+import list_qbd_bill_credit_card_payments from './qbd/bill-credit-card-payments/list-qbd-bill-credit-card-payments';
+import delete_qbd_bill_credit_card_payments from './qbd/bill-credit-card-payments/delete-qbd-bill-credit-card-payments';
+import create_qbd_bills from './qbd/bills/create-qbd-bills';
+import retrieve_qbd_bills from './qbd/bills/retrieve-qbd-bills';
+import update_qbd_bills from './qbd/bills/update-qbd-bills';
+import list_qbd_bills from './qbd/bills/list-qbd-bills';
+import delete_qbd_bills from './qbd/bills/delete-qbd-bills';
+import create_qbd_checks from './qbd/checks/create-qbd-checks';
+import retrieve_qbd_checks from './qbd/checks/retrieve-qbd-checks';
+import update_qbd_checks from './qbd/checks/update-qbd-checks';
+import list_qbd_checks from './qbd/checks/list-qbd-checks';
+import delete_qbd_checks from './qbd/checks/delete-qbd-checks';
+import create_qbd_classes from './qbd/classes/create-qbd-classes';
+import retrieve_qbd_classes from './qbd/classes/retrieve-qbd-classes';
+import update_qbd_classes from './qbd/classes/update-qbd-classes';
+import list_qbd_classes from './qbd/classes/list-qbd-classes';
+import retrieve_qbd_company from './qbd/company/retrieve-qbd-company';
+import create_qbd_credit_card_charges from './qbd/credit-card-charges/create-qbd-credit-card-charges';
+import retrieve_qbd_credit_card_charges from './qbd/credit-card-charges/retrieve-qbd-credit-card-charges';
+import update_qbd_credit_card_charges from './qbd/credit-card-charges/update-qbd-credit-card-charges';
+import list_qbd_credit_card_charges from './qbd/credit-card-charges/list-qbd-credit-card-charges';
+import delete_qbd_credit_card_charges from './qbd/credit-card-charges/delete-qbd-credit-card-charges';
+import create_qbd_credit_card_credits from './qbd/credit-card-credits/create-qbd-credit-card-credits';
+import retrieve_qbd_credit_card_credits from './qbd/credit-card-credits/retrieve-qbd-credit-card-credits';
+import update_qbd_credit_card_credits from './qbd/credit-card-credits/update-qbd-credit-card-credits';
+import list_qbd_credit_card_credits from './qbd/credit-card-credits/list-qbd-credit-card-credits';
+import delete_qbd_credit_card_credits from './qbd/credit-card-credits/delete-qbd-credit-card-credits';
+import create_qbd_credit_memos from './qbd/credit-memos/create-qbd-credit-memos';
+import retrieve_qbd_credit_memos from './qbd/credit-memos/retrieve-qbd-credit-memos';
+import update_qbd_credit_memos from './qbd/credit-memos/update-qbd-credit-memos';
+import list_qbd_credit_memos from './qbd/credit-memos/list-qbd-credit-memos';
+import delete_qbd_credit_memos from './qbd/credit-memos/delete-qbd-credit-memos';
+import create_qbd_customers from './qbd/customers/create-qbd-customers';
+import retrieve_qbd_customers from './qbd/customers/retrieve-qbd-customers';
+import update_qbd_customers from './qbd/customers/update-qbd-customers';
+import list_qbd_customers from './qbd/customers/list-qbd-customers';
+import create_qbd_date_driven_terms from './qbd/date-driven-terms/create-qbd-date-driven-terms';
+import retrieve_qbd_date_driven_terms from './qbd/date-driven-terms/retrieve-qbd-date-driven-terms';
+import list_qbd_date_driven_terms from './qbd/date-driven-terms/list-qbd-date-driven-terms';
+import create_qbd_discount_items from './qbd/discount-items/create-qbd-discount-items';
+import retrieve_qbd_discount_items from './qbd/discount-items/retrieve-qbd-discount-items';
+import update_qbd_discount_items from './qbd/discount-items/update-qbd-discount-items';
+import list_qbd_discount_items from './qbd/discount-items/list-qbd-discount-items';
+import create_qbd_employees from './qbd/employees/create-qbd-employees';
+import retrieve_qbd_employees from './qbd/employees/retrieve-qbd-employees';
+import update_qbd_employees from './qbd/employees/update-qbd-employees';
+import list_qbd_employees from './qbd/employees/list-qbd-employees';
+import create_qbd_estimates from './qbd/estimates/create-qbd-estimates';
+import retrieve_qbd_estimates from './qbd/estimates/retrieve-qbd-estimates';
+import update_qbd_estimates from './qbd/estimates/update-qbd-estimates';
+import list_qbd_estimates from './qbd/estimates/list-qbd-estimates';
+import delete_qbd_estimates from './qbd/estimates/delete-qbd-estimates';
+import create_qbd_inventory_adjustments from './qbd/inventory-adjustments/create-qbd-inventory-adjustments';
+import retrieve_qbd_inventory_adjustments from './qbd/inventory-adjustments/retrieve-qbd-inventory-adjustments';
+import update_qbd_inventory_adjustments from './qbd/inventory-adjustments/update-qbd-inventory-adjustments';
+import list_qbd_inventory_adjustments from './qbd/inventory-adjustments/list-qbd-inventory-adjustments';
+import delete_qbd_inventory_adjustments from './qbd/inventory-adjustments/delete-qbd-inventory-adjustments';
+import create_qbd_inventory_assembly_items from './qbd/inventory-assembly-items/create-qbd-inventory-assembly-items';
+import retrieve_qbd_inventory_assembly_items from './qbd/inventory-assembly-items/retrieve-qbd-inventory-assembly-items';
+import update_qbd_inventory_assembly_items from './qbd/inventory-assembly-items/update-qbd-inventory-assembly-items';
+import list_qbd_inventory_assembly_items from './qbd/inventory-assembly-items/list-qbd-inventory-assembly-items';
+import create_qbd_inventory_items from './qbd/inventory-items/create-qbd-inventory-items';
+import retrieve_qbd_inventory_items from './qbd/inventory-items/retrieve-qbd-inventory-items';
+import update_qbd_inventory_items from './qbd/inventory-items/update-qbd-inventory-items';
+import list_qbd_inventory_items from './qbd/inventory-items/list-qbd-inventory-items';
+import create_qbd_inventory_sites from './qbd/inventory-sites/create-qbd-inventory-sites';
+import retrieve_qbd_inventory_sites from './qbd/inventory-sites/retrieve-qbd-inventory-sites';
+import update_qbd_inventory_sites from './qbd/inventory-sites/update-qbd-inventory-sites';
+import list_qbd_inventory_sites from './qbd/inventory-sites/list-qbd-inventory-sites';
+import create_qbd_invoices from './qbd/invoices/create-qbd-invoices';
+import retrieve_qbd_invoices from './qbd/invoices/retrieve-qbd-invoices';
+import update_qbd_invoices from './qbd/invoices/update-qbd-invoices';
+import list_qbd_invoices from './qbd/invoices/list-qbd-invoices';
+import delete_qbd_invoices from './qbd/invoices/delete-qbd-invoices';
+import create_qbd_item_groups from './qbd/item-groups/create-qbd-item-groups';
+import retrieve_qbd_item_groups from './qbd/item-groups/retrieve-qbd-item-groups';
+import update_qbd_item_groups from './qbd/item-groups/update-qbd-item-groups';
+import list_qbd_item_groups from './qbd/item-groups/list-qbd-item-groups';
+import create_qbd_item_receipts from './qbd/item-receipts/create-qbd-item-receipts';
+import retrieve_qbd_item_receipts from './qbd/item-receipts/retrieve-qbd-item-receipts';
+import update_qbd_item_receipts from './qbd/item-receipts/update-qbd-item-receipts';
+import list_qbd_item_receipts from './qbd/item-receipts/list-qbd-item-receipts';
+import delete_qbd_item_receipts from './qbd/item-receipts/delete-qbd-item-receipts';
+import retrieve_qbd_item_sites from './qbd/item-sites/retrieve-qbd-item-sites';
+import list_qbd_item_sites from './qbd/item-sites/list-qbd-item-sites';
+import create_qbd_journal_entries from './qbd/journal-entries/create-qbd-journal-entries';
+import retrieve_qbd_journal_entries from './qbd/journal-entries/retrieve-qbd-journal-entries';
+import update_qbd_journal_entries from './qbd/journal-entries/update-qbd-journal-entries';
+import list_qbd_journal_entries from './qbd/journal-entries/list-qbd-journal-entries';
+import delete_qbd_journal_entries from './qbd/journal-entries/delete-qbd-journal-entries';
+import create_qbd_non_inventory_items from './qbd/non-inventory-items/create-qbd-non-inventory-items';
+import retrieve_qbd_non_inventory_items from './qbd/non-inventory-items/retrieve-qbd-non-inventory-items';
+import update_qbd_non_inventory_items from './qbd/non-inventory-items/update-qbd-non-inventory-items';
+import list_qbd_non_inventory_items from './qbd/non-inventory-items/list-qbd-non-inventory-items';
+import create_qbd_other_names from './qbd/other-names/create-qbd-other-names';
+import retrieve_qbd_other_names from './qbd/other-names/retrieve-qbd-other-names';
+import update_qbd_other_names from './qbd/other-names/update-qbd-other-names';
+import list_qbd_other_names from './qbd/other-names/list-qbd-other-names';
+import create_qbd_payment_methods from './qbd/payment-methods/create-qbd-payment-methods';
+import retrieve_qbd_payment_methods from './qbd/payment-methods/retrieve-qbd-payment-methods';
+import list_qbd_payment_methods from './qbd/payment-methods/list-qbd-payment-methods';
+import create_qbd_payroll_wage_items from './qbd/payroll-wage-items/create-qbd-payroll-wage-items';
+import retrieve_qbd_payroll_wage_items from './qbd/payroll-wage-items/retrieve-qbd-payroll-wage-items';
+import list_qbd_payroll_wage_items from './qbd/payroll-wage-items/list-qbd-payroll-wage-items';
+import retrieve_qbd_preferences from './qbd/preferences/retrieve-qbd-preferences';
+import create_qbd_price_levels from './qbd/price-levels/create-qbd-price-levels';
+import retrieve_qbd_price_levels from './qbd/price-levels/retrieve-qbd-price-levels';
+import update_qbd_price_levels from './qbd/price-levels/update-qbd-price-levels';
+import list_qbd_price_levels from './qbd/price-levels/list-qbd-price-levels';
+import create_qbd_purchase_orders from './qbd/purchase-orders/create-qbd-purchase-orders';
+import retrieve_qbd_purchase_orders from './qbd/purchase-orders/retrieve-qbd-purchase-orders';
+import update_qbd_purchase_orders from './qbd/purchase-orders/update-qbd-purchase-orders';
+import list_qbd_purchase_orders from './qbd/purchase-orders/list-qbd-purchase-orders';
+import delete_qbd_purchase_orders from './qbd/purchase-orders/delete-qbd-purchase-orders';
+import create_qbd_receive_payments from './qbd/receive-payments/create-qbd-receive-payments';
+import retrieve_qbd_receive_payments from './qbd/receive-payments/retrieve-qbd-receive-payments';
+import update_qbd_receive_payments from './qbd/receive-payments/update-qbd-receive-payments';
+import list_qbd_receive_payments from './qbd/receive-payments/list-qbd-receive-payments';
+import delete_qbd_receive_payments from './qbd/receive-payments/delete-qbd-receive-payments';
+import create_qbd_sales_orders from './qbd/sales-orders/create-qbd-sales-orders';
+import retrieve_qbd_sales_orders from './qbd/sales-orders/retrieve-qbd-sales-orders';
+import update_qbd_sales_orders from './qbd/sales-orders/update-qbd-sales-orders';
+import list_qbd_sales_orders from './qbd/sales-orders/list-qbd-sales-orders';
+import delete_qbd_sales_orders from './qbd/sales-orders/delete-qbd-sales-orders';
+import create_qbd_sales_receipts from './qbd/sales-receipts/create-qbd-sales-receipts';
+import retrieve_qbd_sales_receipts from './qbd/sales-receipts/retrieve-qbd-sales-receipts';
+import update_qbd_sales_receipts from './qbd/sales-receipts/update-qbd-sales-receipts';
+import list_qbd_sales_receipts from './qbd/sales-receipts/list-qbd-sales-receipts';
+import delete_qbd_sales_receipts from './qbd/sales-receipts/delete-qbd-sales-receipts';
+import create_qbd_sales_representatives from './qbd/sales-representatives/create-qbd-sales-representatives';
+import retrieve_qbd_sales_representatives from './qbd/sales-representatives/retrieve-qbd-sales-representatives';
+import update_qbd_sales_representatives from './qbd/sales-representatives/update-qbd-sales-representatives';
+import list_qbd_sales_representatives from './qbd/sales-representatives/list-qbd-sales-representatives';
+import create_qbd_sales_tax_codes from './qbd/sales-tax-codes/create-qbd-sales-tax-codes';
+import retrieve_qbd_sales_tax_codes from './qbd/sales-tax-codes/retrieve-qbd-sales-tax-codes';
+import update_qbd_sales_tax_codes from './qbd/sales-tax-codes/update-qbd-sales-tax-codes';
+import list_qbd_sales_tax_codes from './qbd/sales-tax-codes/list-qbd-sales-tax-codes';
+import create_qbd_sales_tax_items from './qbd/sales-tax-items/create-qbd-sales-tax-items';
+import retrieve_qbd_sales_tax_items from './qbd/sales-tax-items/retrieve-qbd-sales-tax-items';
+import update_qbd_sales_tax_items from './qbd/sales-tax-items/update-qbd-sales-tax-items';
+import list_qbd_sales_tax_items from './qbd/sales-tax-items/list-qbd-sales-tax-items';
+import create_qbd_service_items from './qbd/service-items/create-qbd-service-items';
+import retrieve_qbd_service_items from './qbd/service-items/retrieve-qbd-service-items';
+import update_qbd_service_items from './qbd/service-items/update-qbd-service-items';
+import list_qbd_service_items from './qbd/service-items/list-qbd-service-items';
+import create_qbd_standard_terms from './qbd/standard-terms/create-qbd-standard-terms';
+import retrieve_qbd_standard_terms from './qbd/standard-terms/retrieve-qbd-standard-terms';
+import list_qbd_standard_terms from './qbd/standard-terms/list-qbd-standard-terms';
+import create_qbd_subtotal_items from './qbd/subtotal-items/create-qbd-subtotal-items';
+import retrieve_qbd_subtotal_items from './qbd/subtotal-items/retrieve-qbd-subtotal-items';
+import update_qbd_subtotal_items from './qbd/subtotal-items/update-qbd-subtotal-items';
+import list_qbd_subtotal_items from './qbd/subtotal-items/list-qbd-subtotal-items';
+import create_qbd_time_tracking_activities from './qbd/time-tracking-activities/create-qbd-time-tracking-activities';
+import retrieve_qbd_time_tracking_activities from './qbd/time-tracking-activities/retrieve-qbd-time-tracking-activities';
+import update_qbd_time_tracking_activities from './qbd/time-tracking-activities/update-qbd-time-tracking-activities';
+import list_qbd_time_tracking_activities from './qbd/time-tracking-activities/list-qbd-time-tracking-activities';
+import delete_qbd_time_tracking_activities from './qbd/time-tracking-activities/delete-qbd-time-tracking-activities';
+import retrieve_qbd_transactions from './qbd/transactions/retrieve-qbd-transactions';
+import list_qbd_transactions from './qbd/transactions/list-qbd-transactions';
+import create_qbd_transfers from './qbd/transfers/create-qbd-transfers';
+import retrieve_qbd_transfers from './qbd/transfers/retrieve-qbd-transfers';
+import update_qbd_transfers from './qbd/transfers/update-qbd-transfers';
+import list_qbd_transfers from './qbd/transfers/list-qbd-transfers';
+import create_qbd_vendor_credits from './qbd/vendor-credits/create-qbd-vendor-credits';
+import retrieve_qbd_vendor_credits from './qbd/vendor-credits/retrieve-qbd-vendor-credits';
+import update_qbd_vendor_credits from './qbd/vendor-credits/update-qbd-vendor-credits';
+import list_qbd_vendor_credits from './qbd/vendor-credits/list-qbd-vendor-credits';
+import delete_qbd_vendor_credits from './qbd/vendor-credits/delete-qbd-vendor-credits';
+import create_qbd_vendors from './qbd/vendors/create-qbd-vendors';
+import retrieve_qbd_vendors from './qbd/vendors/retrieve-qbd-vendors';
+import update_qbd_vendors from './qbd/vendors/update-qbd-vendors';
+import list_qbd_vendors from './qbd/vendors/list-qbd-vendors';
+
+export type HandlerFunction = (client: Conductor, args: Record<string, unknown> | undefined) => Promise<any>;
+
+export type Metadata = {
+  resource: string;
+  operation: 'read' | 'write';
+  tags: string[];
+
+  httpMethod?: string;
+  httpPath?: string;
+  operationId?: string;
+};
+
+export type Endpoint = {
+  metadata: Metadata;
+  tool: Tool;
+  handler: HandlerFunction;
+};
+
+export const endpoints: Endpoint[] = [];
+
+function addEndpoint(endpoint: Endpoint) {
+  endpoints.push(endpoint);
+}
+
+addEndpoint(create_auth_sessions);
+addEndpoint(create_end_users);
+addEndpoint(retrieve_end_users);
+addEndpoint(list_end_users);
+addEndpoint(delete_end_users);
+addEndpoint(passthrough_end_users);
+addEndpoint(health_check_qbd);
+addEndpoint(list_qbd_account_tax_lines);
+addEndpoint(create_qbd_accounts);
+addEndpoint(retrieve_qbd_accounts);
+addEndpoint(update_qbd_accounts);
+addEndpoint(list_qbd_accounts);
+addEndpoint(create_qbd_bill_check_payments);
+addEndpoint(retrieve_qbd_bill_check_payments);
+addEndpoint(update_qbd_bill_check_payments);
+addEndpoint(list_qbd_bill_check_payments);
+addEndpoint(delete_qbd_bill_check_payments);
+addEndpoint(create_qbd_bill_credit_card_payments);
+addEndpoint(retrieve_qbd_bill_credit_card_payments);
+addEndpoint(list_qbd_bill_credit_card_payments);
+addEndpoint(delete_qbd_bill_credit_card_payments);
+addEndpoint(create_qbd_bills);
+addEndpoint(retrieve_qbd_bills);
+addEndpoint(update_qbd_bills);
+addEndpoint(list_qbd_bills);
+addEndpoint(delete_qbd_bills);
+addEndpoint(create_qbd_checks);
+addEndpoint(retrieve_qbd_checks);
+addEndpoint(update_qbd_checks);
+addEndpoint(list_qbd_checks);
+addEndpoint(delete_qbd_checks);
+addEndpoint(create_qbd_classes);
+addEndpoint(retrieve_qbd_classes);
+addEndpoint(update_qbd_classes);
+addEndpoint(list_qbd_classes);
+addEndpoint(retrieve_qbd_company);
+addEndpoint(create_qbd_credit_card_charges);
+addEndpoint(retrieve_qbd_credit_card_charges);
+addEndpoint(update_qbd_credit_card_charges);
+addEndpoint(list_qbd_credit_card_charges);
+addEndpoint(delete_qbd_credit_card_charges);
+addEndpoint(create_qbd_credit_card_credits);
+addEndpoint(retrieve_qbd_credit_card_credits);
+addEndpoint(update_qbd_credit_card_credits);
+addEndpoint(list_qbd_credit_card_credits);
+addEndpoint(delete_qbd_credit_card_credits);
+addEndpoint(create_qbd_credit_memos);
+addEndpoint(retrieve_qbd_credit_memos);
+addEndpoint(update_qbd_credit_memos);
+addEndpoint(list_qbd_credit_memos);
+addEndpoint(delete_qbd_credit_memos);
+addEndpoint(create_qbd_customers);
+addEndpoint(retrieve_qbd_customers);
+addEndpoint(update_qbd_customers);
+addEndpoint(list_qbd_customers);
+addEndpoint(create_qbd_date_driven_terms);
+addEndpoint(retrieve_qbd_date_driven_terms);
+addEndpoint(list_qbd_date_driven_terms);
+addEndpoint(create_qbd_discount_items);
+addEndpoint(retrieve_qbd_discount_items);
+addEndpoint(update_qbd_discount_items);
+addEndpoint(list_qbd_discount_items);
+addEndpoint(create_qbd_employees);
+addEndpoint(retrieve_qbd_employees);
+addEndpoint(update_qbd_employees);
+addEndpoint(list_qbd_employees);
+addEndpoint(create_qbd_estimates);
+addEndpoint(retrieve_qbd_estimates);
+addEndpoint(update_qbd_estimates);
+addEndpoint(list_qbd_estimates);
+addEndpoint(delete_qbd_estimates);
+addEndpoint(create_qbd_inventory_adjustments);
+addEndpoint(retrieve_qbd_inventory_adjustments);
+addEndpoint(update_qbd_inventory_adjustments);
+addEndpoint(list_qbd_inventory_adjustments);
+addEndpoint(delete_qbd_inventory_adjustments);
+addEndpoint(create_qbd_inventory_assembly_items);
+addEndpoint(retrieve_qbd_inventory_assembly_items);
+addEndpoint(update_qbd_inventory_assembly_items);
+addEndpoint(list_qbd_inventory_assembly_items);
+addEndpoint(create_qbd_inventory_items);
+addEndpoint(retrieve_qbd_inventory_items);
+addEndpoint(update_qbd_inventory_items);
+addEndpoint(list_qbd_inventory_items);
+addEndpoint(create_qbd_inventory_sites);
+addEndpoint(retrieve_qbd_inventory_sites);
+addEndpoint(update_qbd_inventory_sites);
+addEndpoint(list_qbd_inventory_sites);
+addEndpoint(create_qbd_invoices);
+addEndpoint(retrieve_qbd_invoices);
+addEndpoint(update_qbd_invoices);
+addEndpoint(list_qbd_invoices);
+addEndpoint(delete_qbd_invoices);
+addEndpoint(create_qbd_item_groups);
+addEndpoint(retrieve_qbd_item_groups);
+addEndpoint(update_qbd_item_groups);
+addEndpoint(list_qbd_item_groups);
+addEndpoint(create_qbd_item_receipts);
+addEndpoint(retrieve_qbd_item_receipts);
+addEndpoint(update_qbd_item_receipts);
+addEndpoint(list_qbd_item_receipts);
+addEndpoint(delete_qbd_item_receipts);
+addEndpoint(retrieve_qbd_item_sites);
+addEndpoint(list_qbd_item_sites);
+addEndpoint(create_qbd_journal_entries);
+addEndpoint(retrieve_qbd_journal_entries);
+addEndpoint(update_qbd_journal_entries);
+addEndpoint(list_qbd_journal_entries);
+addEndpoint(delete_qbd_journal_entries);
+addEndpoint(create_qbd_non_inventory_items);
+addEndpoint(retrieve_qbd_non_inventory_items);
+addEndpoint(update_qbd_non_inventory_items);
+addEndpoint(list_qbd_non_inventory_items);
+addEndpoint(create_qbd_other_names);
+addEndpoint(retrieve_qbd_other_names);
+addEndpoint(update_qbd_other_names);
+addEndpoint(list_qbd_other_names);
+addEndpoint(create_qbd_payment_methods);
+addEndpoint(retrieve_qbd_payment_methods);
+addEndpoint(list_qbd_payment_methods);
+addEndpoint(create_qbd_payroll_wage_items);
+addEndpoint(retrieve_qbd_payroll_wage_items);
+addEndpoint(list_qbd_payroll_wage_items);
+addEndpoint(retrieve_qbd_preferences);
+addEndpoint(create_qbd_price_levels);
+addEndpoint(retrieve_qbd_price_levels);
+addEndpoint(update_qbd_price_levels);
+addEndpoint(list_qbd_price_levels);
+addEndpoint(create_qbd_purchase_orders);
+addEndpoint(retrieve_qbd_purchase_orders);
+addEndpoint(update_qbd_purchase_orders);
+addEndpoint(list_qbd_purchase_orders);
+addEndpoint(delete_qbd_purchase_orders);
+addEndpoint(create_qbd_receive_payments);
+addEndpoint(retrieve_qbd_receive_payments);
+addEndpoint(update_qbd_receive_payments);
+addEndpoint(list_qbd_receive_payments);
+addEndpoint(delete_qbd_receive_payments);
+addEndpoint(create_qbd_sales_orders);
+addEndpoint(retrieve_qbd_sales_orders);
+addEndpoint(update_qbd_sales_orders);
+addEndpoint(list_qbd_sales_orders);
+addEndpoint(delete_qbd_sales_orders);
+addEndpoint(create_qbd_sales_receipts);
+addEndpoint(retrieve_qbd_sales_receipts);
+addEndpoint(update_qbd_sales_receipts);
+addEndpoint(list_qbd_sales_receipts);
+addEndpoint(delete_qbd_sales_receipts);
+addEndpoint(create_qbd_sales_representatives);
+addEndpoint(retrieve_qbd_sales_representatives);
+addEndpoint(update_qbd_sales_representatives);
+addEndpoint(list_qbd_sales_representatives);
+addEndpoint(create_qbd_sales_tax_codes);
+addEndpoint(retrieve_qbd_sales_tax_codes);
+addEndpoint(update_qbd_sales_tax_codes);
+addEndpoint(list_qbd_sales_tax_codes);
+addEndpoint(create_qbd_sales_tax_items);
+addEndpoint(retrieve_qbd_sales_tax_items);
+addEndpoint(update_qbd_sales_tax_items);
+addEndpoint(list_qbd_sales_tax_items);
+addEndpoint(create_qbd_service_items);
+addEndpoint(retrieve_qbd_service_items);
+addEndpoint(update_qbd_service_items);
+addEndpoint(list_qbd_service_items);
+addEndpoint(create_qbd_standard_terms);
+addEndpoint(retrieve_qbd_standard_terms);
+addEndpoint(list_qbd_standard_terms);
+addEndpoint(create_qbd_subtotal_items);
+addEndpoint(retrieve_qbd_subtotal_items);
+addEndpoint(update_qbd_subtotal_items);
+addEndpoint(list_qbd_subtotal_items);
+addEndpoint(create_qbd_time_tracking_activities);
+addEndpoint(retrieve_qbd_time_tracking_activities);
+addEndpoint(update_qbd_time_tracking_activities);
+addEndpoint(list_qbd_time_tracking_activities);
+addEndpoint(delete_qbd_time_tracking_activities);
+addEndpoint(retrieve_qbd_transactions);
+addEndpoint(list_qbd_transactions);
+addEndpoint(create_qbd_transfers);
+addEndpoint(retrieve_qbd_transfers);
+addEndpoint(update_qbd_transfers);
+addEndpoint(list_qbd_transfers);
+addEndpoint(create_qbd_vendor_credits);
+addEndpoint(retrieve_qbd_vendor_credits);
+addEndpoint(update_qbd_vendor_credits);
+addEndpoint(list_qbd_vendor_credits);
+addEndpoint(delete_qbd_vendor_credits);
+addEndpoint(create_qbd_vendors);
+addEndpoint(retrieve_qbd_vendors);
+addEndpoint(update_qbd_vendors);
+addEndpoint(list_qbd_vendors);
+
+export type Filter = {
+  type: 'resource' | 'operation' | 'tag' | 'tool';
+  op: 'include' | 'exclude';
+  value: string;
+};
+
+export function query(filters: Filter[], endpoints: Endpoint[]): Endpoint[] {
+  const allExcludes = filters.length > 0 && filters.every((filter) => filter.op === 'exclude');
+  const unmatchedFilters = new Set(filters);
+
+  const filtered = endpoints.filter((endpoint: Endpoint) => {
+    let included = false || allExcludes;
+
+    for (const filter of filters) {
+      if (match(filter, endpoint)) {
+        unmatchedFilters.delete(filter);
+        included = filter.op === 'include';
+      }
+    }
+
+    return included;
+  });
+
+  // Check if any filters didn't match
+  if (unmatchedFilters.size > 0) {
+    throw new Error(
+      `The following filters did not match any endpoints: ${[...unmatchedFilters]
+        .map((f) => `${f.type}=${f.value}`)
+        .join(', ')}`,
+    );
+  }
+
+  return filtered;
+}
+
+function match({ type, value }: Filter, endpoint: Endpoint): boolean {
+  switch (type) {
+    case 'resource': {
+      const regexStr = '^' + normalizeResource(value).replace(/\*/g, '.*') + '$';
+      const regex = new RegExp(regexStr);
+      return regex.test(normalizeResource(endpoint.metadata.resource));
+    }
+    case 'operation':
+      return endpoint.metadata.operation === value;
+    case 'tag':
+      return endpoint.metadata.tags.includes(value);
+    case 'tool':
+      return endpoint.tool.name === value;
+  }
+}
+
+function normalizeResource(resource: string): string {
+  return resource.toLowerCase().replace(/[^a-z.*\-_]*/g, '');
+}

@@ -1,0 +1,39 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../../';
+import Conductor from 'conductor-node';
+
+export const metadata: Metadata = {
+  resource: 'qbd.payroll_wage_items',
+  operation: 'read',
+  tags: [],
+  httpMethod: 'get',
+  httpPath: '/quickbooks-desktop/payroll-wage-items/{id}',
+};
+
+export const tool: Tool = {
+  name: 'retrieve_qbd_payroll_wage_items',
+  description: 'Retrieves a payroll wage item by ID.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      id: {
+        type: 'string',
+        description: 'The QuickBooks-assigned unique identifier of the payroll wage item to retrieve.',
+      },
+      'Conductor-End-User-Id': {
+        type: 'string',
+        description:
+          'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
+      },
+    },
+  },
+};
+
+export const handler = (client: Conductor, args: Record<string, unknown> | undefined) => {
+  const { id, ...body } = args as any;
+  return client.qbd.payrollWageItems.retrieve(id, body);
+};
+
+export default { metadata, tool, handler };
