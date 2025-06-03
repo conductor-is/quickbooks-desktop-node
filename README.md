@@ -190,13 +190,13 @@ List methods in the Conductor API are paginated.
 You can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
-async function fetchAllQbdInvoices(params) {
-  const allQbdInvoices = [];
+async function fetchAllInvoices(params) {
+  const allInvoices = [];
   // Automatically fetches more pages as needed.
   for await (const invoice of conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' })) {
-    allQbdInvoices.push(invoice);
+    allInvoices.push(invoice);
   }
-  return allQbdInvoices;
+  return allInvoices;
 }
 ```
 
