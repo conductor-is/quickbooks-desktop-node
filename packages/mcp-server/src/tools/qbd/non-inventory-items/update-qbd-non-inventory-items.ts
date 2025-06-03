@@ -1,0 +1,190 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../../';
+import Conductor from 'conductor-node';
+
+export const metadata: Metadata = {
+  resource: 'qbd.non_inventory_items',
+  operation: 'write',
+  tags: [],
+  httpMethod: 'post',
+  httpPath: '/quickbooks-desktop/non-inventory-items/{id}',
+};
+
+export const tool: Tool = {
+  name: 'update_qbd_non_inventory_items',
+  description: 'Updates an existing non-inventory item.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      id: {
+        type: 'string',
+        description: 'The QuickBooks-assigned unique identifier of the non-inventory item to update.',
+      },
+      revisionNumber: {
+        type: 'string',
+        description:
+          "The current QuickBooks-assigned revision number of the non-inventory item object you are updating, which you can get by fetching the object first. Provide the most recent `revisionNumber` to ensure you're working with the latest data; otherwise, the update will return an error.",
+      },
+      'Conductor-End-User-Id': {
+        type: 'string',
+        description:
+          'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
+      },
+      barcode: {
+        type: 'object',
+        description: "The non-inventory item's barcode.",
+        properties: {
+          allowOverride: {
+            type: 'boolean',
+            description: 'Indicates whether to allow the barcode to be overridden.',
+          },
+          assignEvenIfUsed: {
+            type: 'boolean',
+            description: 'Indicates whether to assign the barcode even if it is already used.',
+          },
+          value: {
+            type: 'string',
+            description: "The item's barcode value.",
+          },
+        },
+        required: [],
+      },
+      classId: {
+        type: 'string',
+        description:
+          "The non-inventory item's class. Classes can be used to categorize objects into meaningful segments, such as department, location, or type of work. In QuickBooks, class tracking is off by default.",
+      },
+      forceUnitOfMeasureChange: {
+        type: 'boolean',
+        description:
+          "Indicates whether to allow changing the non-inventory item's unit-of-measure set (using the `unitOfMeasureSetId` field) when the base unit of the new unit-of-measure set does not match that of the currently assigned set. Without setting this field to `true` in this scenario, the request will fail with an error; hence, this field is equivalent to accepting the warning prompt in the QuickBooks UI.\n\nNOTE: Changing the base unit requires you to update the item's quantities-on-hand and cost to reflect the new unit; otherwise, these values will be inaccurate. Alternatively, consider creating a new item with the desired unit-of-measure set and deactivating the old item.",
+      },
+      isActive: {
+        type: 'boolean',
+        description:
+          'Indicates whether this non-inventory item is active. Inactive objects are typically hidden from views and reports in QuickBooks. Defaults to `true`.',
+      },
+      name: {
+        type: 'string',
+        description:
+          'The case-insensitive name of this non-inventory item. Not guaranteed to be unique because it does not include the names of its hierarchical parent objects like `fullName` does. For example, two non-inventory items could both have the `name` "Printer Ink Cartridge", but they could have unique `fullName` values, such as "Office Supplies:Printer Ink Cartridge" and "Miscellaneous:Printer Ink Cartridge".\n\nMaximum length: 31 characters.',
+      },
+      parentId: {
+        type: 'string',
+        description:
+          'The parent non-inventory item one level above this one in the hierarchy. For example, if this non-inventory item has a `fullName` of "Office Supplies:Printer Ink Cartridge", its parent has a `fullName` of "Office Supplies". If this non-inventory item is at the top level, this field will be `null`.',
+      },
+      salesAndPurchaseDetails: {
+        type: 'object',
+        description:
+          'Details for non-inventory items that are both purchased and sold, such as reimbursable expenses or inventory items that are bought from vendors and sold to customers.\n\n**IMPORTANT**: You cannot specify both `salesAndPurchaseDetails` and `salesOrPurchaseDetails` when modifying a non-inventory item because an item cannot have both configurations.',
+        properties: {
+          expenseAccountId: {
+            type: 'string',
+            description: 'The expense account used to track costs from purchases of this item.',
+          },
+          incomeAccountId: {
+            type: 'string',
+            description: 'The income account used to track revenue from sales of this item.',
+          },
+          preferredVendorId: {
+            type: 'string',
+            description: 'The preferred vendor from whom this item is typically purchased.',
+          },
+          purchaseCost: {
+            type: 'string',
+            description:
+              'The cost at which this item is purchased from vendors, represented as a decimal string.',
+          },
+          purchaseDescription: {
+            type: 'string',
+            description:
+              'The description of this item that appears on purchase forms (e.g., checks, bills, item receipts) when it is ordered or bought from vendors.',
+          },
+          purchaseTaxCodeId: {
+            type: 'string',
+            description:
+              'The tax code applied to purchases of this item. Applicable in regions where purchase taxes are used, such as Canada or the UK.',
+          },
+          salesDescription: {
+            type: 'string',
+            description:
+              'The description of this item that appears on sales forms (e.g., invoices, sales receipts) when sold to customers.',
+          },
+          salesPrice: {
+            type: 'string',
+            description:
+              'The price at which this item is sold to customers, represented as a decimal string.',
+          },
+          updateExistingTransactionsExpenseAccount: {
+            type: 'boolean',
+            description:
+              'When `true`, applies the new expense account (specified by the `expenseAccountId` field) to all existing transactions that use this item. This updates historical data and should be used with caution. The update will fail if any affected transaction falls within a closed accounting period. If this parameter is not specified, QuickBooks will prompt the user before making any changes.',
+          },
+          updateExistingTransactionsIncomeAccount: {
+            type: 'boolean',
+            description:
+              'When `true`, applies the new income account (specified by the `incomeAccountId` field) to all existing transactions that use this item. This updates historical data and should be used with caution. The update will fail if any affected transaction falls within a closed accounting period. If this parameter is not specified, QuickBooks will prompt the user before making any changes.',
+          },
+        },
+        required: [],
+      },
+      salesOrPurchaseDetails: {
+        type: 'object',
+        description:
+          "Details for non-inventory items that are exclusively sold or exclusively purchased, but not both. This typically applies to non-inventory items (like a purchased office supply that isn't resold) or service items (like consulting services that are sold but not purchased).\n\n**IMPORTANT**: You cannot specify both `salesOrPurchaseDetails` and `salesAndPurchaseDetails` when modifying a non-inventory item because an item cannot have both configurations.",
+        properties: {
+          description: {
+            type: 'string',
+            description: 'A description of this item.',
+          },
+          postingAccountId: {
+            type: 'string',
+            description:
+              'The posting account to which transactions involving this item are posted. This could be an income account when selling or an expense account when purchasing.',
+          },
+          price: {
+            type: 'string',
+            description:
+              'The price at which this item is purchased or sold, represented as a decimal string.',
+          },
+          pricePercentage: {
+            type: 'string',
+            description:
+              "The price of this item expressed as a percentage, used instead of `price` when the item's cost is calculated as a percentage of another amount. For example, a service item that costs a percentage of another item's price.",
+          },
+          updateExistingTransactionsAccount: {
+            type: 'boolean',
+            description:
+              'When `true`, applies the new account (specified by the `accountId` field) to all existing transactions associated with this item. This updates historical data and should be used with caution. The update will fail if any affected transaction falls within a closed accounting period. If this parameter is not specified, QuickBooks will prompt the user before making any changes.',
+          },
+        },
+        required: [],
+      },
+      salesTaxCodeId: {
+        type: 'string',
+        description:
+          'The default sales-tax code for this non-inventory item, determining whether it is taxable or non-taxable. This can be overridden at the transaction-line level.\n\nDefault codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes can also be created in QuickBooks. If QuickBooks is not set up to charge sales tax (via the "Do You Charge Sales Tax?" preference), it will assign the default non-taxable code to all sales.',
+      },
+      sku: {
+        type: 'string',
+        description:
+          "The non-inventory item's stock keeping unit (SKU), which is sometimes the manufacturer's part number.",
+      },
+      unitOfMeasureSetId: {
+        type: 'string',
+        description:
+          'The unit-of-measure set associated with this non-inventory item, which consists of a base unit and related units.',
+      },
+    },
+  },
+};
+
+export const handler = (client: Conductor, args: Record<string, unknown> | undefined) => {
+  const { id, ...body } = args as any;
+  return client.qbd.nonInventoryItems.update(id, body);
+};
+
+export default { metadata, tool, handler };
