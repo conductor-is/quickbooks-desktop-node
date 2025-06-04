@@ -72,14 +72,10 @@ const conductor = new Conductor({
   apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const page = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' });
-  const invoice = page.data[0];
+const page = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' });
+const invoice = page.data[0];
 
-  console.log(invoice.id);
-}
-
-main();
+console.log(invoice.id);
 ```
 
 ### Request & Response types
@@ -94,12 +90,8 @@ const conductor = new Conductor({
   apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const params: Conductor.Qbd.InvoiceListParams = { conductorEndUserId: 'YOUR_END_USER_ID' };
-  const [invoice]: [Conductor.Qbd.Invoice] = await conductor.qbd.invoices.list(params);
-}
-
-main();
+const params: Conductor.Qbd.InvoiceListParams = { conductorEndUserId: 'YOUR_END_USER_ID' };
+const [invoice]: [Conductor.Qbd.Invoice] = await conductor.qbd.invoices.list(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -112,21 +104,15 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const page = await conductor.qbd.invoices
-    .list({ conductorEndUserId: 'YOUR_END_USER_ID' })
-    .catch(async (err) => {
-      if (err instanceof Conductor.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
-}
-
-main();
+const page = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }).catch(async (err) => {
+  if (err instanceof Conductor.APIError) {
+    console.log(err.status); // 400
+    console.log(err.name); // BadRequestError
+    console.log(err.headers); // {server: 'nginx', ...}
+  } else {
+    throw err;
+  }
+});
 ```
 
 Error codes are as follows:
