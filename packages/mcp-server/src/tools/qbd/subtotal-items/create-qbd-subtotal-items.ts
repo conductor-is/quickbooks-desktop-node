@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { asTextContentResult } from 'conductor-node-mcp/tools/types';
+
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../../';
 import Conductor from 'conductor-node';
@@ -66,9 +68,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return client.qbd.subtotalItems.create(body);
+  return asTextContentResult(await client.qbd.subtotalItems.create(body));
 };
 
 export default { metadata, tool, handler };

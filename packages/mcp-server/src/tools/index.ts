@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Conductor from 'conductor-node';
-import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import { Metadata, Endpoint, HandlerFunction } from './types';
+
+export { Metadata, Endpoint, HandlerFunction };
 
 import create_auth_sessions from './auth-sessions/create-auth-sessions';
 import create_end_users from './end-users/create-end-users';
@@ -194,24 +195,6 @@ import create_qbd_vendors from './qbd/vendors/create-qbd-vendors';
 import retrieve_qbd_vendors from './qbd/vendors/retrieve-qbd-vendors';
 import update_qbd_vendors from './qbd/vendors/update-qbd-vendors';
 import list_qbd_vendors from './qbd/vendors/list-qbd-vendors';
-
-export type HandlerFunction = (client: Conductor, args: Record<string, unknown> | undefined) => Promise<any>;
-
-export type Metadata = {
-  resource: string;
-  operation: 'read' | 'write';
-  tags: string[];
-
-  httpMethod?: string;
-  httpPath?: string;
-  operationId?: string;
-};
-
-export type Endpoint = {
-  metadata: Metadata;
-  tool: Tool;
-  handler: HandlerFunction;
-};
 
 export const endpoints: Endpoint[] = [];
 

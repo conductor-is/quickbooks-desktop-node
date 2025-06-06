@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { asTextContentResult } from 'conductor-node-mcp/tools/types';
+
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
 import Conductor from 'conductor-node';
@@ -21,8 +23,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: Conductor, args: Record<string, unknown> | undefined) => {
-  return client.endUsers.list();
+export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
+  return asTextContentResult(await client.endUsers.list());
 };
 
 export default { metadata, tool, handler };
