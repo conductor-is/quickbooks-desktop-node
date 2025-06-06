@@ -1,5 +1,18 @@
 # Changelog
 
+## 12.9.0 (2025-06-06)
+
+Full Changelog: [v12.8.1...v12.9.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.8.1...v12.9.0)
+
+### Features
+
+* **mcp:** implement support for binary responses ([e5261e6](https://github.com/conductor-is/quickbooks-desktop-node/commit/e5261e6e4aaf89d7a06aeed09214e18a84d1a83c))
+
+
+### Chores
+
+* **docs:** use top-level-await in example snippets ([1b9e6e3](https://github.com/conductor-is/quickbooks-desktop-node/commit/1b9e6e39772f0bc760599e41fd20d674338dd90c))
+
 ## 12.8.1 (2025-06-03)
 
 Full Changelog: [v12.8.0...v12.8.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.8.0...v12.8.1)
