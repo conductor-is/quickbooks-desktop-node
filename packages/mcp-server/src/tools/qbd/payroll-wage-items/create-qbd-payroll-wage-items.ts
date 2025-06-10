@@ -59,9 +59,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await client.qbd.payrollWageItems.create(body));
+  return asTextContentResult(await conductor.qbd.payrollWageItems.create(body));
 };
 
 export default { metadata, tool, handler };

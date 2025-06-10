@@ -10,7 +10,7 @@ export class SalesRepresentatives extends APIResource {
    * @example
    * ```ts
    * const salesRepresentative =
-   *   await client.qbd.salesRepresentatives.create({
+   *   await conductor.qbd.salesRepresentatives.create({
    *     entityId: '80000001-1234567890',
    *     initial: 'JD',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -35,7 +35,7 @@ export class SalesRepresentatives extends APIResource {
    * @example
    * ```ts
    * const salesRepresentative =
-   *   await client.qbd.salesRepresentatives.retrieve(
+   *   await conductor.qbd.salesRepresentatives.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -59,7 +59,7 @@ export class SalesRepresentatives extends APIResource {
    * @example
    * ```ts
    * const salesRepresentative =
-   *   await client.qbd.salesRepresentatives.update(
+   *   await conductor.qbd.salesRepresentatives.update(
    *     '80000001-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -89,7 +89,7 @@ export class SalesRepresentatives extends APIResource {
    * @example
    * ```ts
    * const salesRepresentatives =
-   *   await client.qbd.salesRepresentatives.list({
+   *   await conductor.qbd.salesRepresentatives.list({
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```

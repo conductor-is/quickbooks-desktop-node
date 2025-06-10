@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource payrollWageItems', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.qbd.payrollWageItems.create({
+    const responsePromise = conductor.qbd.payrollWageItems.create({
       expenseAccountId: '80000001-1234567890',
       name: 'Regular Pay',
       wageType: 'hourly_regular',
@@ -26,7 +26,7 @@ describe('resource payrollWageItems', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.qbd.payrollWageItems.create({
+    const response = await conductor.qbd.payrollWageItems.create({
       expenseAccountId: '80000001-1234567890',
       name: 'Regular Pay',
       wageType: 'hourly_regular',
@@ -36,7 +36,7 @@ describe('resource payrollWageItems', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.payrollWageItems.retrieve('80000001-1234567890', {
+    const responsePromise = conductor.qbd.payrollWageItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -49,13 +49,13 @@ describe('resource payrollWageItems', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.payrollWageItems.retrieve('80000001-1234567890', {
+    const response = await conductor.qbd.payrollWageItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.payrollWageItems.list({
+    const responsePromise = conductor.qbd.payrollWageItems.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -68,7 +68,7 @@ describe('resource payrollWageItems', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.payrollWageItems.list({
+    const response = await conductor.qbd.payrollWageItems.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['80000001-1234567890'],

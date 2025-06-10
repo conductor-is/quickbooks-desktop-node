@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource timeTrackingActivities', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.qbd.timeTrackingActivities.create({
+    const responsePromise = conductor.qbd.timeTrackingActivities.create({
       duration: 'PT1H30M',
       entityId: '80000001-1234567890',
       transactionDate: '2021-10-01',
@@ -26,7 +26,7 @@ describe('resource timeTrackingActivities', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.qbd.timeTrackingActivities.create({
+    const response = await conductor.qbd.timeTrackingActivities.create({
       duration: 'PT1H30M',
       entityId: '80000001-1234567890',
       transactionDate: '2021-10-01',
@@ -42,7 +42,7 @@ describe('resource timeTrackingActivities', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.timeTrackingActivities.retrieve('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.timeTrackingActivities.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -55,13 +55,13 @@ describe('resource timeTrackingActivities', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.timeTrackingActivities.retrieve('123ABC-1234567890', {
+    const response = await conductor.qbd.timeTrackingActivities.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.qbd.timeTrackingActivities.update('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.timeTrackingActivities.update('123ABC-1234567890', {
       duration: 'PT1H30M',
       entityId: '80000001-1234567890',
       revisionNumber: '1721172183',
@@ -77,7 +77,7 @@ describe('resource timeTrackingActivities', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.qbd.timeTrackingActivities.update('123ABC-1234567890', {
+    const response = await conductor.qbd.timeTrackingActivities.update('123ABC-1234567890', {
       duration: 'PT1H30M',
       entityId: '80000001-1234567890',
       revisionNumber: '1721172183',
@@ -93,7 +93,7 @@ describe('resource timeTrackingActivities', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.timeTrackingActivities.list({
+    const responsePromise = conductor.qbd.timeTrackingActivities.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -106,7 +106,7 @@ describe('resource timeTrackingActivities', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.timeTrackingActivities.list({
+    const response = await conductor.qbd.timeTrackingActivities.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       entityIds: ['80000001-1234567890'],
@@ -120,7 +120,7 @@ describe('resource timeTrackingActivities', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = client.qbd.timeTrackingActivities.delete('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.timeTrackingActivities.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -133,7 +133,7 @@ describe('resource timeTrackingActivities', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await client.qbd.timeTrackingActivities.delete('123ABC-1234567890', {
+    const response = await conductor.qbd.timeTrackingActivities.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });

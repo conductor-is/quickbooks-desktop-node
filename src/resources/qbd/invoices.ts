@@ -10,7 +10,7 @@ export class Invoices extends APIResource {
    *
    * @example
    * ```ts
-   * const invoice = await client.qbd.invoices.create({
+   * const invoice = await conductor.qbd.invoices.create({
    *   customerId: '80000001-1234567890',
    *   transactionDate: '2021-10-01',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -31,7 +31,7 @@ export class Invoices extends APIResource {
    *
    * @example
    * ```ts
-   * const invoice = await client.qbd.invoices.retrieve(
+   * const invoice = await conductor.qbd.invoices.retrieve(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -54,7 +54,7 @@ export class Invoices extends APIResource {
    *
    * @example
    * ```ts
-   * const invoice = await client.qbd.invoices.update(
+   * const invoice = await conductor.qbd.invoices.update(
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -79,7 +79,7 @@ export class Invoices extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const invoice of client.qbd.invoices.list({
+   * for await (const invoice of conductor.qbd.invoices.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...
@@ -104,7 +104,7 @@ export class Invoices extends APIResource {
    *
    * @example
    * ```ts
-   * const invoice = await client.qbd.invoices.delete(
+   * const invoice = await conductor.qbd.invoices.delete(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );

@@ -23,8 +23,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
-  return asTextContentResult(await client.endUsers.list());
+export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
+  return asTextContentResult(await conductor.endUsers.list());
 };
 
 export default { metadata, tool, handler };
