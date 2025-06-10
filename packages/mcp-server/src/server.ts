@@ -19,7 +19,7 @@ export { endpoints } from './tools';
 export const server = new McpServer(
   {
     name: 'conductor_node_api',
-    version: '12.9.0',
+    version: '12.10.0',
   },
   {
     capabilities: {
