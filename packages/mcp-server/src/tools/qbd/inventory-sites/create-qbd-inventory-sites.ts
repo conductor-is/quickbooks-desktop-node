@@ -98,9 +98,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await client.qbd.inventorySites.create(body));
+  return asTextContentResult(await conductor.qbd.inventorySites.create(body));
 };
 
 export default { metadata, tool, handler };

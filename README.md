@@ -104,15 +104,17 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const page = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }).catch(async (err) => {
-  if (err instanceof Conductor.APIError) {
-    console.log(err.status); // 400
-    console.log(err.name); // BadRequestError
-    console.log(err.headers); // {server: 'nginx', ...}
-  } else {
-    throw err;
-  }
-});
+const page = await conductor.qbd.invoices
+  .list({ conductorEndUserId: 'YOUR_END_USER_ID' })
+  .catch(async (err) => {
+    if (err instanceof Conductor.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:

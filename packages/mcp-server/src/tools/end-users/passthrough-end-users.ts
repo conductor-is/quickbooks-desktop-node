@@ -38,9 +38,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const { id, integrationSlug, ...body } = args as any;
-  return asTextContentResult(await client.endUsers.passthrough(id, integrationSlug, body['qbd_payload']));
+  return asTextContentResult(await conductor.endUsers.passthrough(id, integrationSlug, body['qbd_payload']));
 };
 
 export default { metadata, tool, handler };

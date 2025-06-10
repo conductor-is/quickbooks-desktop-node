@@ -9,7 +9,7 @@ export class PriceLevels extends APIResource {
    *
    * @example
    * ```ts
-   * const priceLevel = await client.qbd.priceLevels.create({
+   * const priceLevel = await conductor.qbd.priceLevels.create({
    *   name: 'Wholesale 20% Discount',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
@@ -29,7 +29,7 @@ export class PriceLevels extends APIResource {
    *
    * @example
    * ```ts
-   * const priceLevel = await client.qbd.priceLevels.retrieve(
+   * const priceLevel = await conductor.qbd.priceLevels.retrieve(
    *   '80000001-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -52,7 +52,7 @@ export class PriceLevels extends APIResource {
    *
    * @example
    * ```ts
-   * const priceLevel = await client.qbd.priceLevels.update(
+   * const priceLevel = await conductor.qbd.priceLevels.update(
    *   '80000001-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -81,7 +81,7 @@ export class PriceLevels extends APIResource {
    *
    * @example
    * ```ts
-   * const priceLevels = await client.qbd.priceLevels.list({
+   * const priceLevels = await conductor.qbd.priceLevels.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```

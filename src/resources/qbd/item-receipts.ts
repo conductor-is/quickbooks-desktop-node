@@ -10,11 +10,13 @@ export class ItemReceipts extends APIResource {
    *
    * @example
    * ```ts
-   * const itemReceipt = await client.qbd.itemReceipts.create({
-   *   transactionDate: '2021-10-01',
-   *   vendorId: '80000001-1234567890',
-   *   conductorEndUserId: 'end_usr_1234567abcdefg',
-   * });
+   * const itemReceipt = await conductor.qbd.itemReceipts.create(
+   *   {
+   *     transactionDate: '2021-10-01',
+   *     vendorId: '80000001-1234567890',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
    * ```
    */
   create(params: ItemReceiptCreateParams, options?: Core.RequestOptions): Core.APIPromise<ItemReceipt> {
@@ -31,10 +33,11 @@ export class ItemReceipts extends APIResource {
    *
    * @example
    * ```ts
-   * const itemReceipt = await client.qbd.itemReceipts.retrieve(
-   *   '123ABC-1234567890',
-   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
-   * );
+   * const itemReceipt =
+   *   await conductor.qbd.itemReceipts.retrieve(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
    * ```
    */
   retrieve(
@@ -54,7 +57,7 @@ export class ItemReceipts extends APIResource {
    *
    * @example
    * ```ts
-   * const itemReceipt = await client.qbd.itemReceipts.update(
+   * const itemReceipt = await conductor.qbd.itemReceipts.update(
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -83,7 +86,7 @@ export class ItemReceipts extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const itemReceipt of client.qbd.itemReceipts.list(
+   * for await (const itemReceipt of conductor.qbd.itemReceipts.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
@@ -108,7 +111,7 @@ export class ItemReceipts extends APIResource {
    *
    * @example
    * ```ts
-   * const itemReceipt = await client.qbd.itemReceipts.delete(
+   * const itemReceipt = await conductor.qbd.itemReceipts.delete(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );

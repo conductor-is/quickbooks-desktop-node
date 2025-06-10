@@ -11,7 +11,7 @@ export class BillCheckPayments extends APIResource {
    * @example
    * ```ts
    * const billCheckPayment =
-   *   await client.qbd.billCheckPayments.create({
+   *   await conductor.qbd.billCheckPayments.create({
    *     applyToTransactions: [
    *       { transactionId: '123ABC-1234567890' },
    *     ],
@@ -40,7 +40,7 @@ export class BillCheckPayments extends APIResource {
    * @example
    * ```ts
    * const billCheckPayment =
-   *   await client.qbd.billCheckPayments.retrieve(
+   *   await conductor.qbd.billCheckPayments.retrieve(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -64,7 +64,7 @@ export class BillCheckPayments extends APIResource {
    * @example
    * ```ts
    * const billCheckPayment =
-   *   await client.qbd.billCheckPayments.update(
+   *   await conductor.qbd.billCheckPayments.update(
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -93,7 +93,7 @@ export class BillCheckPayments extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const billCheckPayment of client.qbd.billCheckPayments.list(
+   * for await (const billCheckPayment of conductor.qbd.billCheckPayments.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
@@ -120,7 +120,7 @@ export class BillCheckPayments extends APIResource {
    * @example
    * ```ts
    * const billCheckPayment =
-   *   await client.qbd.billCheckPayments.delete(
+   *   await conductor.qbd.billCheckPayments.delete(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
