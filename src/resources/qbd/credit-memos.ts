@@ -10,7 +10,7 @@ export class CreditMemos extends APIResource {
    *
    * @example
    * ```ts
-   * const creditMemo = await client.qbd.creditMemos.create({
+   * const creditMemo = await conductor.qbd.creditMemos.create({
    *   customerId: '80000001-1234567890',
    *   transactionDate: '2021-10-01',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -31,7 +31,7 @@ export class CreditMemos extends APIResource {
    *
    * @example
    * ```ts
-   * const creditMemo = await client.qbd.creditMemos.retrieve(
+   * const creditMemo = await conductor.qbd.creditMemos.retrieve(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -54,7 +54,7 @@ export class CreditMemos extends APIResource {
    *
    * @example
    * ```ts
-   * const creditMemo = await client.qbd.creditMemos.update(
+   * const creditMemo = await conductor.qbd.creditMemos.update(
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -83,9 +83,9 @@ export class CreditMemos extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const creditMemo of client.qbd.creditMemos.list({
-   *   conductorEndUserId: 'end_usr_1234567abcdefg',
-   * })) {
+   * for await (const creditMemo of conductor.qbd.creditMemos.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
    *   // ...
    * }
    * ```
@@ -108,7 +108,7 @@ export class CreditMemos extends APIResource {
    *
    * @example
    * ```ts
-   * const creditMemo = await client.qbd.creditMemos.delete(
+   * const creditMemo = await conductor.qbd.creditMemos.delete(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );

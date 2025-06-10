@@ -12,7 +12,7 @@ export class AccountTaxLines extends APIResource {
    * @example
    * ```ts
    * const accountTaxLines =
-   *   await client.qbd.accountTaxLines.list({
+   *   await conductor.qbd.accountTaxLines.list({
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```

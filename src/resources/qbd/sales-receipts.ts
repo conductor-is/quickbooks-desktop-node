@@ -10,11 +10,12 @@ export class SalesReceipts extends APIResource {
    *
    * @example
    * ```ts
-   * const salesReceipt = await client.qbd.salesReceipts.create({
-   *   customerId: '80000001-1234567890',
-   *   transactionDate: '2021-10-01',
-   *   conductorEndUserId: 'end_usr_1234567abcdefg',
-   * });
+   * const salesReceipt =
+   *   await conductor.qbd.salesReceipts.create({
+   *     customerId: '80000001-1234567890',
+   *     transactionDate: '2021-10-01',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
    * ```
    */
   create(params: SalesReceiptCreateParams, options?: Core.RequestOptions): Core.APIPromise<SalesReceipt> {
@@ -32,7 +33,7 @@ export class SalesReceipts extends APIResource {
    * @example
    * ```ts
    * const salesReceipt =
-   *   await client.qbd.salesReceipts.retrieve(
+   *   await conductor.qbd.salesReceipts.retrieve(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -55,13 +56,14 @@ export class SalesReceipts extends APIResource {
    *
    * @example
    * ```ts
-   * const salesReceipt = await client.qbd.salesReceipts.update(
-   *   '123ABC-1234567890',
-   *   {
-   *     revisionNumber: '1721172183',
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   },
-   * );
+   * const salesReceipt =
+   *   await conductor.qbd.salesReceipts.update(
+   *     '123ABC-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
    * ```
    */
   update(
@@ -84,7 +86,7 @@ export class SalesReceipts extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const salesReceipt of client.qbd.salesReceipts.list(
+   * for await (const salesReceipt of conductor.qbd.salesReceipts.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
@@ -109,10 +111,11 @@ export class SalesReceipts extends APIResource {
    *
    * @example
    * ```ts
-   * const salesReceipt = await client.qbd.salesReceipts.delete(
-   *   '123ABC-1234567890',
-   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
-   * );
+   * const salesReceipt =
+   *   await conductor.qbd.salesReceipts.delete(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
    * ```
    */
   delete(

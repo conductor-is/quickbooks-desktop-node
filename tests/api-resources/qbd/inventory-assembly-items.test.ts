@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource inventoryAssemblyItems', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.qbd.inventoryAssemblyItems.create({
+    const responsePromise = conductor.qbd.inventoryAssemblyItems.create({
       assetAccountId: '80000001-1234567890',
       cogsAccountId: '80000001-1234567890',
       incomeAccountId: '80000001-1234567890',
@@ -27,7 +27,7 @@ describe('resource inventoryAssemblyItems', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.qbd.inventoryAssemblyItems.create({
+    const response = await conductor.qbd.inventoryAssemblyItems.create({
       assetAccountId: '80000001-1234567890',
       cogsAccountId: '80000001-1234567890',
       incomeAccountId: '80000001-1234567890',
@@ -56,7 +56,7 @@ describe('resource inventoryAssemblyItems', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.inventoryAssemblyItems.retrieve('80000001-1234567890', {
+    const responsePromise = conductor.qbd.inventoryAssemblyItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -69,13 +69,13 @@ describe('resource inventoryAssemblyItems', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.inventoryAssemblyItems.retrieve('80000001-1234567890', {
+    const response = await conductor.qbd.inventoryAssemblyItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.qbd.inventoryAssemblyItems.update('80000001-1234567890', {
+    const responsePromise = conductor.qbd.inventoryAssemblyItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -89,7 +89,7 @@ describe('resource inventoryAssemblyItems', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.qbd.inventoryAssemblyItems.update('80000001-1234567890', {
+    const response = await conductor.qbd.inventoryAssemblyItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       assetAccountId: '80000001-1234567890',
@@ -119,7 +119,7 @@ describe('resource inventoryAssemblyItems', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.inventoryAssemblyItems.list({
+    const responsePromise = conductor.qbd.inventoryAssemblyItems.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -132,7 +132,7 @@ describe('resource inventoryAssemblyItems', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.inventoryAssemblyItems.list({
+    const response = await conductor.qbd.inventoryAssemblyItems.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       classIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',

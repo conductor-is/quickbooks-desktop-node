@@ -9,7 +9,7 @@ export class Classes extends APIResource {
    *
    * @example
    * ```ts
-   * const _class = await client.qbd.classes.create({
+   * const _class = await conductor.qbd.classes.create({
    *   name: 'Marketing',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
@@ -29,7 +29,7 @@ export class Classes extends APIResource {
    *
    * @example
    * ```ts
-   * const _class = await client.qbd.classes.retrieve(
+   * const _class = await conductor.qbd.classes.retrieve(
    *   '80000001-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -48,7 +48,7 @@ export class Classes extends APIResource {
    *
    * @example
    * ```ts
-   * const _class = await client.qbd.classes.update(
+   * const _class = await conductor.qbd.classes.update(
    *   '80000001-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -73,7 +73,7 @@ export class Classes extends APIResource {
    *
    * @example
    * ```ts
-   * const classes = await client.qbd.classes.list({
+   * const classes = await conductor.qbd.classes.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```

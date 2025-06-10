@@ -133,9 +133,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await client.qbd.creditMemos.list(body));
+  return asTextContentResult(await conductor.qbd.creditMemos.list(body));
 };
 
 export default { metadata, tool, handler };

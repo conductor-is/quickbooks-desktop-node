@@ -10,12 +10,11 @@ export class JournalEntries extends APIResource {
    *
    * @example
    * ```ts
-   * const journalEntry = await client.qbd.journalEntries.create(
-   *   {
+   * const journalEntry =
+   *   await conductor.qbd.journalEntries.create({
    *     transactionDate: '2021-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   },
-   * );
+   *   });
    * ```
    */
   create(params: JournalEntryCreateParams, options?: Core.RequestOptions): Core.APIPromise<JournalEntry> {
@@ -33,7 +32,7 @@ export class JournalEntries extends APIResource {
    * @example
    * ```ts
    * const journalEntry =
-   *   await client.qbd.journalEntries.retrieve(
+   *   await conductor.qbd.journalEntries.retrieve(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -56,13 +55,14 @@ export class JournalEntries extends APIResource {
    *
    * @example
    * ```ts
-   * const journalEntry = await client.qbd.journalEntries.update(
-   *   '123ABC-1234567890',
-   *   {
-   *     revisionNumber: '1721172183',
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   },
-   * );
+   * const journalEntry =
+   *   await conductor.qbd.journalEntries.update(
+   *     '123ABC-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
    * ```
    */
   update(
@@ -85,7 +85,7 @@ export class JournalEntries extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const journalEntry of client.qbd.journalEntries.list(
+   * for await (const journalEntry of conductor.qbd.journalEntries.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
@@ -110,10 +110,11 @@ export class JournalEntries extends APIResource {
    *
    * @example
    * ```ts
-   * const journalEntry = await client.qbd.journalEntries.delete(
-   *   '123ABC-1234567890',
-   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
-   * );
+   * const journalEntry =
+   *   await conductor.qbd.journalEntries.delete(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
    * ```
    */
   delete(

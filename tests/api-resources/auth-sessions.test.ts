@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource authSessions', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.authSessions.create({
+    const responsePromise = conductor.authSessions.create({
       endUserId: 'end_usr_1234567abcdefg',
       publishableKey: '{{YOUR_PUBLISHABLE_KEY}}',
     });
@@ -24,7 +24,7 @@ describe('resource authSessions', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.authSessions.create({
+    const response = await conductor.authSessions.create({
       endUserId: 'end_usr_1234567abcdefg',
       publishableKey: '{{YOUR_PUBLISHABLE_KEY}}',
       linkExpiryMins: 0,

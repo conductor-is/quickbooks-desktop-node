@@ -10,7 +10,7 @@ export class SalesOrders extends APIResource {
    *
    * @example
    * ```ts
-   * const salesOrder = await client.qbd.salesOrders.create({
+   * const salesOrder = await conductor.qbd.salesOrders.create({
    *   customerId: '80000001-1234567890',
    *   transactionDate: '2021-10-01',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -31,7 +31,7 @@ export class SalesOrders extends APIResource {
    *
    * @example
    * ```ts
-   * const salesOrder = await client.qbd.salesOrders.retrieve(
+   * const salesOrder = await conductor.qbd.salesOrders.retrieve(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -54,7 +54,7 @@ export class SalesOrders extends APIResource {
    *
    * @example
    * ```ts
-   * const salesOrder = await client.qbd.salesOrders.update(
+   * const salesOrder = await conductor.qbd.salesOrders.update(
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -83,9 +83,9 @@ export class SalesOrders extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const salesOrder of client.qbd.salesOrders.list({
-   *   conductorEndUserId: 'end_usr_1234567abcdefg',
-   * })) {
+   * for await (const salesOrder of conductor.qbd.salesOrders.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * )) {
    *   // ...
    * }
    * ```
@@ -108,7 +108,7 @@ export class SalesOrders extends APIResource {
    *
    * @example
    * ```ts
-   * const salesOrder = await client.qbd.salesOrders.delete(
+   * const salesOrder = await conductor.qbd.salesOrders.delete(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );

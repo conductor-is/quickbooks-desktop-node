@@ -11,7 +11,7 @@ export class PayrollWageItems extends APIResource {
    * @example
    * ```ts
    * const payrollWageItem =
-   *   await client.qbd.payrollWageItems.create({
+   *   await conductor.qbd.payrollWageItems.create({
    *     expenseAccountId: '80000001-1234567890',
    *     name: 'Regular Pay',
    *     wageType: 'hourly_regular',
@@ -37,7 +37,7 @@ export class PayrollWageItems extends APIResource {
    * @example
    * ```ts
    * const payrollWageItem =
-   *   await client.qbd.payrollWageItems.retrieve(
+   *   await conductor.qbd.payrollWageItems.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -62,7 +62,7 @@ export class PayrollWageItems extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const payrollWageItem of client.qbd.payrollWageItems.list(
+   * for await (const payrollWageItem of conductor.qbd.payrollWageItems.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...

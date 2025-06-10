@@ -9,11 +9,12 @@ export class SalesTaxCodes extends APIResource {
    *
    * @example
    * ```ts
-   * const salesTaxCode = await client.qbd.salesTaxCodes.create({
-   *   isTaxable: true,
-   *   name: 'Tax',
-   *   conductorEndUserId: 'end_usr_1234567abcdefg',
-   * });
+   * const salesTaxCode =
+   *   await conductor.qbd.salesTaxCodes.create({
+   *     isTaxable: true,
+   *     name: 'Tax',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
    * ```
    */
   create(params: SalesTaxCodeCreateParams, options?: Core.RequestOptions): Core.APIPromise<SalesTaxCode> {
@@ -31,7 +32,7 @@ export class SalesTaxCodes extends APIResource {
    * @example
    * ```ts
    * const salesTaxCode =
-   *   await client.qbd.salesTaxCodes.retrieve(
+   *   await conductor.qbd.salesTaxCodes.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -54,13 +55,14 @@ export class SalesTaxCodes extends APIResource {
    *
    * @example
    * ```ts
-   * const salesTaxCode = await client.qbd.salesTaxCodes.update(
-   *   '80000001-1234567890',
-   *   {
-   *     revisionNumber: '1721172183',
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   },
-   * );
+   * const salesTaxCode =
+   *   await conductor.qbd.salesTaxCodes.update(
+   *     '80000001-1234567890',
+   *     {
+   *       revisionNumber: '1721172183',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
+   *   );
    * ```
    */
   update(
@@ -83,9 +85,10 @@ export class SalesTaxCodes extends APIResource {
    *
    * @example
    * ```ts
-   * const salesTaxCodes = await client.qbd.salesTaxCodes.list({
-   *   conductorEndUserId: 'end_usr_1234567abcdefg',
-   * });
+   * const salesTaxCodes =
+   *   await conductor.qbd.salesTaxCodes.list({
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
    * ```
    */
   list(
