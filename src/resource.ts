@@ -2,7 +2,7 @@
 
 import type { Conductor } from './index';
 
-export class APIResource {
+export abstract class APIResource {
   protected _client: Conductor;
 
   constructor(client: Conductor) {
