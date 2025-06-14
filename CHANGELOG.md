@@ -1,5 +1,24 @@
 # Changelog
 
+## 12.11.0 (2025-06-14)
+
+Full Changelog: [v12.10.0...v12.11.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.10.0...v12.11.0)
+
+### Features
+
+* **mcp:** set X-Stainless-MCP header ([3030dbb](https://github.com/conductor-is/quickbooks-desktop-node/commit/3030dbbe329445f6341b8893e3407d97e80dda94))
+
+
+### Bug Fixes
+
+* publish script — handle NPM errors correctly ([5b293a3](https://github.com/conductor-is/quickbooks-desktop-node/commit/5b293a31fbcd50d8022d1bffc549d8690096f571))
+
+
+### Chores
+
+* **internal:** make base APIResource abstract ([88bf90e](https://github.com/conductor-is/quickbooks-desktop-node/commit/88bf90e8f2612438059236b2ff18ec2ec93aa328))
+* **mcp:** provides high-level initMcpServer function and exports known clients ([23068ef](https://github.com/conductor-is/quickbooks-desktop-node/commit/23068ef9c6fb86cd9ad82991b11505d09dd47f19))
+
 ## 12.10.0 (2025-06-10)
 
 Full Changelog: [v12.9.0...v12.10.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.9.0...v12.10.0)
