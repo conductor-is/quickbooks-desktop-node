@@ -1,5 +1,19 @@
 # Changelog
 
+## 12.12.0 (2025-06-17)
+
+Full Changelog: [v12.11.0...v12.12.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.11.0...v12.12.0)
+
+### Features
+
+* **api:** api update ([3cdca37](https://github.com/conductor-is/quickbooks-desktop-node/commit/3cdca3781a5499d2c9d6c5179f1b89b4c21ecea0))
+* **client:** add support for endpoint-specific base URLs ([6d01197](https://github.com/conductor-is/quickbooks-desktop-node/commit/6d011975f83dbb3f7a1d0445e1594c50a5caf71e))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([5a0335f](https://github.com/conductor-is/quickbooks-desktop-node/commit/5a0335fa6e632abffec5760944d5dc29f1a62826))
+
 ## 12.11.0 (2025-06-14)
 
 Full Changelog: [v12.10.0...v12.11.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.10.0...v12.11.0)
