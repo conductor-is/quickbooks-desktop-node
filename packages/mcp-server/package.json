@@ -1,6 +1,6 @@
 {
   "name": "conductor-node-mcp",
-  "version": "12.11.0",
+  "version": "12.12.0",
   "description": "The official MCP Server for the Conductor API",
   "author": "Conductor <support@conductor.is>",
   "types": "dist/index.d.ts",
