@@ -122,6 +122,7 @@ export class Conductor extends Core.APIClient {
 
     super({
       baseURL: options.baseURL!,
+      baseURLOverridden: baseURL ? baseURL !== 'https://api.conductor.is/v1' : false,
       timeout: options.timeout ?? 120000 /* 2 minutes */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
@@ -136,6 +137,13 @@ export class Conductor extends Core.APIClient {
   authSessions: API.AuthSessions = new API.AuthSessions(this);
   endUsers: API.EndUsers = new API.EndUsers(this);
   qbd: API.Qbd = new API.Qbd(this);
+
+  /**
+   * Check whether the base URL is set to its default.
+   */
+  #baseURLOverridden(): boolean {
+    return this.baseURL !== 'https://api.conductor.is/v1';
+  }
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
