@@ -161,7 +161,7 @@ export class Conductor extends Core.APIClient {
   }
 
   protected override stringifyQuery(query: Record<string, unknown>): string {
-    return qs.stringify(query, { allowDots: true, arrayFormat: 'comma' });
+    return qs.stringify(query, { allowDots: true, arrayFormat: 'repeat' });
   }
 
   static Conductor = this;
