@@ -211,7 +211,7 @@ export interface EndUserDeleteResponse {
 /**
  * The response from the integration connection.
  */
-export type EndUserPassthroughResponse = Record<string, unknown>;
+export type EndUserPassthroughResponse = { [key: string]: unknown };
 
 export interface EndUserCreateParams {
   /**
@@ -233,7 +233,7 @@ export interface EndUserCreateParams {
   sourceId: string;
 }
 
-export type EndUserPassthroughParams = Record<string, unknown>;
+export type EndUserPassthroughParams = { [key: string]: unknown };
 
 export declare namespace EndUsers {
   export {
