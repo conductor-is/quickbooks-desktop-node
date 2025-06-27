@@ -1080,15 +1080,19 @@ export interface ServiceItemListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for service items whose `name` contains this substring,
-   * case-insensitive. NOTE: If you use this parameter, you cannot also use
-   * `nameStartsWith` or `nameEndsWith`.
+   * case-insensitive.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `nameStartsWith` or
+   * `nameEndsWith`.
    */
   nameContains?: string;
 
   /**
    * Query param: Filter for service items whose `name` ends with this substring,
-   * case-insensitive. NOTE: If you use this parameter, you cannot also use
-   * `nameContains` or `nameStartsWith`.
+   * case-insensitive.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `nameContains` or
+   * `nameStartsWith`.
    */
   nameEndsWith?: string;
 
@@ -1100,8 +1104,10 @@ export interface ServiceItemListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for service items whose `name` starts with this substring,
-   * case-insensitive. NOTE: If you use this parameter, you cannot also use
-   * `nameContains` or `nameEndsWith`.
+   * case-insensitive.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `nameContains` or
+   * `nameEndsWith`.
    */
   nameStartsWith?: string;
 
