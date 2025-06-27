@@ -1113,15 +1113,19 @@ export interface NonInventoryItemListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for non-inventory items whose `name` contains this
-   * substring, case-insensitive. NOTE: If you use this parameter, you cannot also
-   * use `nameStartsWith` or `nameEndsWith`.
+   * substring, case-insensitive.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `nameStartsWith` or
+   * `nameEndsWith`.
    */
   nameContains?: string;
 
   /**
    * Query param: Filter for non-inventory items whose `name` ends with this
-   * substring, case-insensitive. NOTE: If you use this parameter, you cannot also
-   * use `nameContains` or `nameStartsWith`.
+   * substring, case-insensitive.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `nameContains` or
+   * `nameStartsWith`.
    */
   nameEndsWith?: string;
 
@@ -1133,8 +1137,10 @@ export interface NonInventoryItemListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for non-inventory items whose `name` starts with this
-   * substring, case-insensitive. NOTE: If you use this parameter, you cannot also
-   * use `nameContains` or `nameEndsWith`.
+   * substring, case-insensitive.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `nameContains` or
+   * `nameEndsWith`.
    */
   nameStartsWith?: string;
 

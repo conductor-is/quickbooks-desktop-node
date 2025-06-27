@@ -2950,15 +2950,19 @@ export interface CheckListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for checks whose `refNumber` contains this substring. (For
-   * checks, this field is the check number.) NOTE: If you use this parameter, you
-   * cannot also use `refNumberStartsWith` or `refNumberEndsWith`.
+   * checks, this field is the check number.)
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberStartsWith`
+   * or `refNumberEndsWith`.
    */
   refNumberContains?: string;
 
   /**
    * Query param: Filter for checks whose `refNumber` ends with this substring. (For
-   * checks, this field is the check number.) NOTE: If you use this parameter, you
-   * cannot also use `refNumberContains` or `refNumberStartsWith`.
+   * checks, this field is the check number.)
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains` or
+   * `refNumberStartsWith`.
    */
   refNumberEndsWith?: string;
 
@@ -2985,8 +2989,10 @@ export interface CheckListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for checks whose `refNumber` starts with this substring.
-   * (For checks, this field is the check number.) NOTE: If you use this parameter,
-   * you cannot also use `refNumberContains` or `refNumberEndsWith`.
+   * (For checks, this field is the check number.)
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains` or
+   * `refNumberEndsWith`.
    */
   refNumberStartsWith?: string;
 

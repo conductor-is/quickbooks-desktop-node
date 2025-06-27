@@ -46,12 +46,12 @@ export const tool: Tool = {
       nameContains: {
         type: 'string',
         description:
-          'Filter for employees whose `name` contains this substring, case-insensitive. NOTE: If you use this parameter, you cannot also use `nameStartsWith` or `nameEndsWith`.',
+          'Filter for employees whose `name` contains this substring, case-insensitive.\n\n**NOTE**: If you use this parameter, you cannot also use `nameStartsWith` or `nameEndsWith`.',
       },
       nameEndsWith: {
         type: 'string',
         description:
-          'Filter for employees whose `name` ends with this substring, case-insensitive. NOTE: If you use this parameter, you cannot also use `nameContains` or `nameStartsWith`.',
+          'Filter for employees whose `name` ends with this substring, case-insensitive.\n\n**NOTE**: If you use this parameter, you cannot also use `nameContains` or `nameStartsWith`.',
       },
       nameFrom: {
         type: 'string',
@@ -69,7 +69,7 @@ export const tool: Tool = {
       nameStartsWith: {
         type: 'string',
         description:
-          'Filter for employees whose `name` starts with this substring, case-insensitive. NOTE: If you use this parameter, you cannot also use `nameContains` or `nameEndsWith`.',
+          'Filter for employees whose `name` starts with this substring, case-insensitive.\n\n**NOTE**: If you use this parameter, you cannot also use `nameContains` or `nameEndsWith`.',
       },
       nameTo: {
         type: 'string',

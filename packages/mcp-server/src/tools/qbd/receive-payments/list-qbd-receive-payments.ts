@@ -72,12 +72,12 @@ export const tool: Tool = {
       refNumberContains: {
         type: 'string',
         description:
-          'Filter for receive-payments whose `refNumber` contains this substring. NOTE: If you use this parameter, you cannot also use `refNumberStartsWith` or `refNumberEndsWith`.',
+          'Filter for receive-payments whose `refNumber` contains this substring.\n\n**NOTE**: If you use this parameter, you cannot also use `refNumberStartsWith` or `refNumberEndsWith`.',
       },
       refNumberEndsWith: {
         type: 'string',
         description:
-          'Filter for receive-payments whose `refNumber` ends with this substring. NOTE: If you use this parameter, you cannot also use `refNumberContains` or `refNumberStartsWith`.',
+          'Filter for receive-payments whose `refNumber` ends with this substring.\n\n**NOTE**: If you use this parameter, you cannot also use `refNumberContains` or `refNumberStartsWith`.',
       },
       refNumberFrom: {
         type: 'string',
@@ -95,7 +95,7 @@ export const tool: Tool = {
       refNumberStartsWith: {
         type: 'string',
         description:
-          'Filter for receive-payments whose `refNumber` starts with this substring. NOTE: If you use this parameter, you cannot also use `refNumberContains` or `refNumberEndsWith`.',
+          'Filter for receive-payments whose `refNumber` starts with this substring.\n\n**NOTE**: If you use this parameter, you cannot also use `refNumberContains` or `refNumberEndsWith`.',
       },
       refNumberTo: {
         type: 'string',

@@ -333,14 +333,16 @@ export interface TransactionListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for transactions whose `refNumber` contains this substring.
-   * NOTE: If you use this parameter, you cannot also use `refNumberStartsWith` or
-   * `refNumberEndsWith`.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberStartsWith`
+   * or `refNumberEndsWith`.
    */
   refNumberContains?: string;
 
   /**
    * Query param: Filter for transactions whose `refNumber` ends with this substring.
-   * NOTE: If you use this parameter, you cannot also use `refNumberContains` or
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains` or
    * `refNumberStartsWith`.
    */
   refNumberEndsWith?: string;
@@ -368,8 +370,10 @@ export interface TransactionListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for transactions whose `refNumber` starts with this
-   * substring. NOTE: If you use this parameter, you cannot also use
-   * `refNumberContains` or `refNumberEndsWith`.
+   * substring.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains` or
+   * `refNumberEndsWith`.
    */
   refNumberStartsWith?: string;
 

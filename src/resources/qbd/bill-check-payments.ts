@@ -1033,15 +1033,19 @@ export interface BillCheckPaymentListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for bill check payments whose `refNumber` contains this
-   * substring. (For checks, this field is the check number.) NOTE: If you use this
-   * parameter, you cannot also use `refNumberStartsWith` or `refNumberEndsWith`.
+   * substring. (For checks, this field is the check number.)
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberStartsWith`
+   * or `refNumberEndsWith`.
    */
   refNumberContains?: string;
 
   /**
    * Query param: Filter for bill check payments whose `refNumber` ends with this
-   * substring. (For checks, this field is the check number.) NOTE: If you use this
-   * parameter, you cannot also use `refNumberContains` or `refNumberStartsWith`.
+   * substring. (For checks, this field is the check number.)
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains` or
+   * `refNumberStartsWith`.
    */
   refNumberEndsWith?: string;
 
@@ -1069,8 +1073,10 @@ export interface BillCheckPaymentListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for bill check payments whose `refNumber` starts with this
-   * substring. (For checks, this field is the check number.) NOTE: If you use this
-   * parameter, you cannot also use `refNumberContains` or `refNumberEndsWith`.
+   * substring. (For checks, this field is the check number.)
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains` or
+   * `refNumberEndsWith`.
    */
   refNumberStartsWith?: string;
 
