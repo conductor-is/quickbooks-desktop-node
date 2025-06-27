@@ -2979,15 +2979,17 @@ export interface BillListParams extends CursorPageParams {
   paymentStatus?: 'all' | 'paid' | 'not_paid';
 
   /**
-   * Query param: Filter for bills whose `refNumber` contains this substring. NOTE:
-   * If you use this parameter, you cannot also use `refNumberStartsWith` or
-   * `refNumberEndsWith`.
+   * Query param: Filter for bills whose `refNumber` contains this substring.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberStartsWith`
+   * or `refNumberEndsWith`.
    */
   refNumberContains?: string;
 
   /**
-   * Query param: Filter for bills whose `refNumber` ends with this substring. NOTE:
-   * If you use this parameter, you cannot also use `refNumberContains` or
+   * Query param: Filter for bills whose `refNumber` ends with this substring.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains` or
    * `refNumberStartsWith`.
    */
   refNumberEndsWith?: string;
@@ -3015,7 +3017,8 @@ export interface BillListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for bills whose `refNumber` starts with this substring.
-   * NOTE: If you use this parameter, you cannot also use `refNumberContains` or
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains` or
    * `refNumberEndsWith`.
    */
   refNumberStartsWith?: string;

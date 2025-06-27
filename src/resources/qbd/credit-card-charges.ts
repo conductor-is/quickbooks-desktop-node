@@ -2597,15 +2597,19 @@ export interface CreditCardChargeListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for credit card charges whose `refNumber` contains this
-   * substring. NOTE: If you use this parameter, you cannot also use
-   * `refNumberStartsWith` or `refNumberEndsWith`.
+   * substring.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberStartsWith`
+   * or `refNumberEndsWith`.
    */
   refNumberContains?: string;
 
   /**
    * Query param: Filter for credit card charges whose `refNumber` ends with this
-   * substring. NOTE: If you use this parameter, you cannot also use
-   * `refNumberContains` or `refNumberStartsWith`.
+   * substring.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains` or
+   * `refNumberStartsWith`.
    */
   refNumberEndsWith?: string;
 
@@ -2632,8 +2636,10 @@ export interface CreditCardChargeListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for credit card charges whose `refNumber` starts with this
-   * substring. NOTE: If you use this parameter, you cannot also use
-   * `refNumberContains` or `refNumberEndsWith`.
+   * substring.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains` or
+   * `refNumberEndsWith`.
    */
   refNumberStartsWith?: string;
 
