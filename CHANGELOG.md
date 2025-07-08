@@ -1,5 +1,25 @@
 # Changelog
 
+## 12.14.0 (2025-07-08)
+
+Full Changelog: [v12.13.0...v12.14.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.13.0...v12.14.0)
+
+### Features
+
+* **api:** api update ([fd43535](https://github.com/conductor-is/quickbooks-desktop-node/commit/fd435352f7c64549b5a30f83e5e6326c6f4df936))
+
+
+### Bug Fixes
+
+* **build:** bump node version in CI build to 20 to be compatible with MCP package ([61506ab](https://github.com/conductor-is/quickbooks-desktop-node/commit/61506abbd8ea5e18c9b729c63e63667da9e73574))
+* **client:** don't send `Content-Type` for bodyless methods ([a0a0201](https://github.com/conductor-is/quickbooks-desktop-node/commit/a0a0201b8418f9fcfe2784a80534ff96e259c940))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([ac6a16d](https://github.com/conductor-is/quickbooks-desktop-node/commit/ac6a16d0060edeee06cb5c3c8bc4fb05451f987f))
+* mention unit type in timeout docs ([fbaa38d](https://github.com/conductor-is/quickbooks-desktop-node/commit/fbaa38dd0ad2e1a95ec7862470212af338a42364))
+
 ## 12.13.0 (2025-06-27)
 
 Full Changelog: [v12.12.0...v12.13.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.12.0...v12.13.0)
