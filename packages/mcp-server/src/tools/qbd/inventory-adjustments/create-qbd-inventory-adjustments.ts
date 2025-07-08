@@ -61,6 +61,10 @@ export const tool: Tool = {
         items: {
           type: 'object',
           properties: {
+            itemId: {
+              type: 'string',
+              description: 'The inventory item associated with this inventory adjustment line.',
+            },
             adjustLotNumber: {
               type: 'object',
               description: 'Adjusts the lot number of this inventory adjustment line.',
@@ -185,12 +189,8 @@ export const tool: Tool = {
               },
               required: [],
             },
-            itemId: {
-              type: 'string',
-              description: 'The inventory item associated with this inventory adjustment line.',
-            },
           },
-          required: [],
+          required: ['itemId'],
         },
       },
       memo: {
