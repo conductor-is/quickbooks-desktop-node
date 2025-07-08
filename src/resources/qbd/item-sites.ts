@@ -108,10 +108,7 @@ export interface ItemSite {
   objectType: 'qbd_item_site';
 
   /**
-   * The number of units of this item site currently in inventory. `quantityOnHand`
-   * multiplied by `averageCost` equals `totalValue` for inventory item lists. To
-   * change the `quantityOnHand` for an item site, you must use an
-   * inventory-adjustment instead of updating the item site directly.
+   * The number of units of this item site currently in inventory.
    */
   quantityOnHand: number | null;
 

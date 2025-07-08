@@ -62,6 +62,11 @@ export const tool: Tool = {
                 "The base value reference for this per-item price level's percentage adjustment. Specifies which price to use as the starting point for the adjustment calculation in the price level.\n\n**NOTE:** The price level must use either a fixed pricing approach (`customPrice` or `customPricePercent`) or a relative adjustment approach (`adjustPercentage` with `adjustRelativeTo`) when configuring per-item price levels.",
               enum: ['cost', 'current_custom_price', 'standard_price'],
             },
+            itemId: {
+              type: 'string',
+              description:
+                'The item associated with this per-item price level. This can refer to any good or service that the business buys or sells, including item types such as a service item, inventory item, or special calculation item like a discount item or sales-tax item.',
+            },
             customPrice: {
               type: 'string',
               description:
@@ -72,13 +77,8 @@ export const tool: Tool = {
               description:
                 "The fixed discount percentage for this per-item price level that modifies the specified item's standard price. Used to create a fixed percentage markup or discount specific to this item within this price level.",
             },
-            itemId: {
-              type: 'string',
-              description:
-                'The item associated with this per-item price level. This can refer to any good or service that the business buys or sells, including item types such as a service item, inventory item, or special calculation item like a discount item or sales-tax item.',
-            },
           },
-          required: ['adjustPercentage', 'adjustRelativeTo'],
+          required: ['adjustPercentage', 'adjustRelativeTo', 'itemId'],
         },
       },
     },

@@ -375,7 +375,7 @@ export namespace InventoryAdjustment {
     /**
      * The inventory item associated with this inventory adjustment line.
      */
-    item: Line.Item | null;
+    item: Line.Item;
 
     /**
      * The lot number of the item associated with this inventory adjustment line. Used
@@ -573,6 +573,11 @@ export interface InventoryAdjustmentCreateParams {
 export namespace InventoryAdjustmentCreateParams {
   export interface Line {
     /**
+     * The inventory item associated with this inventory adjustment line.
+     */
+    itemId: string;
+
+    /**
      * Adjusts the lot number of this inventory adjustment line.
      */
     adjustLotNumber?: Line.AdjustLotNumber;
@@ -594,11 +599,6 @@ export namespace InventoryAdjustmentCreateParams {
      * new monetary value, and optionally by setting a new quantity.
      */
     adjustValue?: Line.AdjustValue;
-
-    /**
-     * The inventory item associated with this inventory adjustment line.
-     */
-    itemId?: string;
   }
 
   export namespace Line {

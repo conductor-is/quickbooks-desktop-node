@@ -213,6 +213,14 @@ The following tools are available in this MCP server.
 - `list_qbd_bills` (`read`): Returns a list of bills. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_bills` (`write`): Permanently deletes a a bill. The deletion will fail if the bill is currently in use or has any linked transactions that are in use.
 
+### Resource `qbd.build_assemblies`:
+
+- `create_qbd_build_assemblies` (`write`): Creates a new build assembly.
+- `retrieve_qbd_build_assemblies` (`read`): Retrieves a build assembly by ID.
+- `update_qbd_build_assemblies` (`write`): Updates an existing build assembly.
+- `list_qbd_build_assemblies` (`read`): Returns a list of build assemblies. Use the `cursor` parameter to paginate through the results.
+- `delete_qbd_build_assemblies` (`write`): Permanently deletes a a build assembly. The deletion will fail if the build assembly is currently in use or has any linked transactions that are in use.
+
 ### Resource `qbd.checks`:
 
 - `create_qbd_checks` (`write`): Creates a new check.
