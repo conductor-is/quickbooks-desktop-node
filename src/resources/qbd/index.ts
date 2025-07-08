@@ -48,6 +48,17 @@ export {
   type BillDeleteParams,
 } from './bills';
 export {
+  BuildAssembliesCursorPage,
+  BuildAssemblies,
+  type BuildAssembly,
+  type BuildAssemblyDeleteResponse,
+  type BuildAssemblyCreateParams,
+  type BuildAssemblyRetrieveParams,
+  type BuildAssemblyUpdateParams,
+  type BuildAssemblyListParams,
+  type BuildAssemblyDeleteParams,
+} from './build-assemblies';
+export {
   ChecksCursorPage,
   Checks,
   type Check,

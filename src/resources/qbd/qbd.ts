@@ -54,6 +54,18 @@ import {
   Bills,
   BillsCursorPage,
 } from './bills';
+import * as BuildAssembliesAPI from './build-assemblies';
+import {
+  BuildAssemblies,
+  BuildAssembliesCursorPage,
+  BuildAssembly,
+  BuildAssemblyCreateParams,
+  BuildAssemblyDeleteParams,
+  BuildAssemblyDeleteResponse,
+  BuildAssemblyListParams,
+  BuildAssemblyRetrieveParams,
+  BuildAssemblyUpdateParams,
+} from './build-assemblies';
 import * as ChecksAPI from './checks';
 import {
   Check,
@@ -480,6 +492,7 @@ export class Qbd extends APIResource {
   billCreditCardPayments: BillCreditCardPaymentsAPI.BillCreditCardPayments =
     new BillCreditCardPaymentsAPI.BillCreditCardPayments(this._client);
   bills: BillsAPI.Bills = new BillsAPI.Bills(this._client);
+  buildAssemblies: BuildAssembliesAPI.BuildAssemblies = new BuildAssembliesAPI.BuildAssemblies(this._client);
   checks: ChecksAPI.Checks = new ChecksAPI.Checks(this._client);
   classes: ClassesAPI.Classes = new ClassesAPI.Classes(this._client);
   company: CompanyAPI.CompanyResource = new CompanyAPI.CompanyResource(this._client);
@@ -589,6 +602,8 @@ Qbd.BillCreditCardPayments = BillCreditCardPayments;
 Qbd.BillCreditCardPaymentsCursorPage = BillCreditCardPaymentsCursorPage;
 Qbd.Bills = Bills;
 Qbd.BillsCursorPage = BillsCursorPage;
+Qbd.BuildAssemblies = BuildAssemblies;
+Qbd.BuildAssembliesCursorPage = BuildAssembliesCursorPage;
 Qbd.Checks = Checks;
 Qbd.ChecksCursorPage = ChecksCursorPage;
 Qbd.Classes = Classes;
@@ -715,6 +730,18 @@ export declare namespace Qbd {
     type BillUpdateParams as BillUpdateParams,
     type BillListParams as BillListParams,
     type BillDeleteParams as BillDeleteParams,
+  };
+
+  export {
+    BuildAssemblies as BuildAssemblies,
+    type BuildAssembly as BuildAssembly,
+    type BuildAssemblyDeleteResponse as BuildAssemblyDeleteResponse,
+    BuildAssembliesCursorPage as BuildAssembliesCursorPage,
+    type BuildAssemblyCreateParams as BuildAssemblyCreateParams,
+    type BuildAssemblyRetrieveParams as BuildAssemblyRetrieveParams,
+    type BuildAssemblyUpdateParams as BuildAssemblyUpdateParams,
+    type BuildAssemblyListParams as BuildAssemblyListParams,
+    type BuildAssemblyDeleteParams as BuildAssemblyDeleteParams,
   };
 
   export {

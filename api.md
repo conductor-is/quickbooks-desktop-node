@@ -104,6 +104,21 @@ Methods:
 - <code title="get /quickbooks-desktop/bills">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">list</a>({ ...params }) -> BillsCursorPage</code>
 - <code title="delete /quickbooks-desktop/bills/{id}">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">delete</a>(id, { ...params }) -> BillDeleteResponse</code>
 
+## BuildAssemblies
+
+Types:
+
+- <code><a href="./src/resources/qbd/build-assemblies.ts">BuildAssembly</a></code>
+- <code><a href="./src/resources/qbd/build-assemblies.ts">BuildAssemblyDeleteResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/build-assemblies">client.qbd.buildAssemblies.<a href="./src/resources/qbd/build-assemblies.ts">create</a>({ ...params }) -> BuildAssembly</code>
+- <code title="get /quickbooks-desktop/build-assemblies/{id}">client.qbd.buildAssemblies.<a href="./src/resources/qbd/build-assemblies.ts">retrieve</a>(id, { ...params }) -> BuildAssembly</code>
+- <code title="post /quickbooks-desktop/build-assemblies/{id}">client.qbd.buildAssemblies.<a href="./src/resources/qbd/build-assemblies.ts">update</a>(id, { ...params }) -> BuildAssembly</code>
+- <code title="get /quickbooks-desktop/build-assemblies">client.qbd.buildAssemblies.<a href="./src/resources/qbd/build-assemblies.ts">list</a>({ ...params }) -> BuildAssembliesCursorPage</code>
+- <code title="delete /quickbooks-desktop/build-assemblies/{id}">client.qbd.buildAssemblies.<a href="./src/resources/qbd/build-assemblies.ts">delete</a>(id, { ...params }) -> BuildAssemblyDeleteResponse</code>
+
 ## Checks
 
 Types:

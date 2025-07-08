@@ -34,9 +34,9 @@ describe('resource priceLevels', () => {
         {
           adjustPercentage: '-10.0',
           adjustRelativeTo: 'standard_price',
+          itemId: '80000001-1234567890',
           customPrice: '19.99',
           customPricePercent: '15.0',
-          itemId: '80000001-1234567890',
         },
       ],
     });
@@ -87,9 +87,9 @@ describe('resource priceLevels', () => {
         {
           adjustPercentage: '-10.0',
           adjustRelativeTo: 'standard_price',
+          itemId: '80000001-1234567890',
           customPrice: '19.99',
           customPricePercent: '15.0',
-          itemId: '80000001-1234567890',
         },
       ],
     });

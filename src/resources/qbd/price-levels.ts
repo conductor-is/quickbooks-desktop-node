@@ -220,7 +220,7 @@ export namespace PriceLevel {
      * service item, inventory item, or special calculation item like a discount item
      * or sales-tax item.
      */
-    item: PerItemPriceLevel.Item | null;
+    item: PerItemPriceLevel.Item;
   }
 
   export namespace PerItemPriceLevel {
@@ -339,6 +339,14 @@ export namespace PriceLevelCreateParams {
     adjustRelativeTo: 'cost' | 'current_custom_price' | 'standard_price';
 
     /**
+     * The item associated with this per-item price level. This can refer to any good
+     * or service that the business buys or sells, including item types such as a
+     * service item, inventory item, or special calculation item like a discount item
+     * or sales-tax item.
+     */
+    itemId: string;
+
+    /**
      * The fixed amount custom price for this per-item price level that overrides the
      * standard price for the specified item. Used when setting an absolute price value
      * for the item in this price level.
@@ -351,14 +359,6 @@ export namespace PriceLevelCreateParams {
      * discount specific to this item within this price level.
      */
     customPricePercent?: string;
-
-    /**
-     * The item associated with this per-item price level. This can refer to any good
-     * or service that the business buys or sells, including item types such as a
-     * service item, inventory item, or special calculation item like a discount item
-     * or sales-tax item.
-     */
-    itemId?: string;
   }
 }
 
@@ -452,6 +452,14 @@ export namespace PriceLevelUpdateParams {
     adjustRelativeTo: 'cost' | 'current_custom_price' | 'standard_price';
 
     /**
+     * The item associated with this per-item price level. This can refer to any good
+     * or service that the business buys or sells, including item types such as a
+     * service item, inventory item, or special calculation item like a discount item
+     * or sales-tax item.
+     */
+    itemId: string;
+
+    /**
      * The fixed amount custom price for this per-item price level that overrides the
      * standard price for the specified item. Used when setting an absolute price value
      * for the item in this price level.
@@ -464,14 +472,6 @@ export namespace PriceLevelUpdateParams {
      * discount specific to this item within this price level.
      */
     customPricePercent?: string;
-
-    /**
-     * The item associated with this per-item price level. This can refer to any good
-     * or service that the business buys or sells, including item types such as a
-     * service item, inventory item, or special calculation item like a discount item
-     * or sales-tax item.
-     */
-    itemId?: string;
   }
 }
 

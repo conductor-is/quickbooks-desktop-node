@@ -8,10 +8,11 @@ const conductor = new Conductor({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource inventoryAdjustments', () => {
+describe('resource buildAssemblies', () => {
   test('create: only required params', async () => {
-    const responsePromise = conductor.qbd.inventoryAdjustments.create({
-      accountId: '80000001-1234567890',
+    const responsePromise = conductor.qbd.buildAssemblies.create({
+      inventoryAssemblyItemId: '80000001-1234567890',
+      quantityToBuild: 7,
       transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -25,47 +26,25 @@ describe('resource inventoryAdjustments', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await conductor.qbd.inventoryAdjustments.create({
-      accountId: '80000001-1234567890',
+    const response = await conductor.qbd.buildAssemblies.create({
+      inventoryAssemblyItemId: '80000001-1234567890',
+      quantityToBuild: 7,
       transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      classId: '80000001-1234567890',
-      customerId: '80000001-1234567890',
+      expirationDate: '2025-12-31',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       inventorySiteId: '80000001-1234567890',
-      lines: [
-        {
-          itemId: '80000001-1234567890',
-          adjustLotNumber: {
-            adjustCount: 2,
-            expirationDate: '2025-12-31',
-            inventorySiteLocationId: '80000001-1234567890',
-            lotNumber: 'LOT2023-001',
-          },
-          adjustQuantity: {
-            expirationDate: '2025-12-31',
-            inventorySiteLocationId: '80000001-1234567890',
-            lotNumber: 'LOT2023-001',
-            newQuantity: 10,
-            quantityDifference: 5,
-            serialNumber: 'SN1234567890',
-          },
-          adjustSerialNumber: {
-            addSerialNumber: '123456',
-            expirationDate: '2025-12-31',
-            inventorySiteLocationId: '80000001-1234567890',
-            removeSerialNumber: '123456',
-          },
-          adjustValue: { newQuantity: 10, newValue: '100.00', quantityDifference: 5, valueDifference: 7 },
-        },
-      ],
-      memo: 'Adjusted quantity due to physical count discrepancy',
-      refNumber: 'INVADJ-1234',
+      inventorySiteLocationId: '80000001-1234567890',
+      lotNumber: 'LOT2023-001',
+      markPendingIfRequired: true,
+      memo: 'Assembled 25 units of Model ABC-123 Office Chair',
+      refNumber: 'BUILD-1234',
+      serialNumber: 'SN1234567890',
     });
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = conductor.qbd.inventoryAdjustments.retrieve('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.buildAssemblies.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -78,13 +57,13 @@ describe('resource inventoryAdjustments', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await conductor.qbd.inventoryAdjustments.retrieve('123ABC-1234567890', {
+    const response = await conductor.qbd.buildAssemblies.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = conductor.qbd.inventoryAdjustments.update('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.buildAssemblies.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -98,34 +77,25 @@ describe('resource inventoryAdjustments', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await conductor.qbd.inventoryAdjustments.update('123ABC-1234567890', {
+    const response = await conductor.qbd.buildAssemblies.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      accountId: '80000001-1234567890',
-      classId: '80000001-1234567890',
-      customerId: '80000001-1234567890',
+      expirationDate: '2025-12-31',
       inventorySiteId: '80000001-1234567890',
-      lines: [
-        {
-          id: '456DEF-1234567890',
-          adjustCount: 2,
-          expirationDate: '2025-12-31',
-          inventorySiteLocationId: '80000001-1234567890',
-          itemId: '80000001-1234567890',
-          lotNumber: 'LOT2023-001',
-          quantityDifference: 5,
-          serialNumber: 'SN1234567890',
-          valueDifference: 7,
-        },
-      ],
-      memo: 'Adjusted quantity due to physical count discrepancy',
-      refNumber: 'INVADJ-1234',
+      inventorySiteLocationId: '80000001-1234567890',
+      lotNumber: 'LOT2023-001',
+      markPendingIfRequired: true,
+      memo: 'Assembled 25 units of Model ABC-123 Office Chair',
+      quantityToBuild: 7,
+      refNumber: 'BUILD-1234',
+      removePending: true,
+      serialNumber: 'SN1234567890',
       transactionDate: '2021-10-01',
     });
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.inventoryAdjustments.list({
+    const responsePromise = conductor.qbd.buildAssemblies.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -138,20 +108,20 @@ describe('resource inventoryAdjustments', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await conductor.qbd.inventoryAdjustments.list({
+    const response = await conductor.qbd.buildAssemblies.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      accountIds: ['80000001-1234567890'],
-      customerIds: ['80000001-1234567890'],
+      cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['123ABC-1234567890'],
-      includeLineItems: true,
+      includeComponentLineItems: true,
       itemIds: ['80000001-1234567890'],
-      limit: 10,
-      refNumberContains: 'INVADJ-1234',
+      limit: 150,
+      pendingStatus: 'pending',
+      refNumberContains: 'BUILD-1234',
       refNumberEndsWith: '1234',
-      refNumberFrom: 'INVADJ-0001',
-      refNumbers: ['INVENTORY ADJUSTMENT-1234'],
-      refNumberStartsWith: 'INVADJ',
-      refNumberTo: 'INVADJ-9999',
+      refNumberFrom: 'BUILD-0001',
+      refNumbers: ['BUILD ASSEMBLY-1234'],
+      refNumberStartsWith: 'BUILD',
+      refNumberTo: 'BUILD-9999',
       transactionDateFrom: '2021-01-01',
       transactionDateTo: '2021-02-01',
       updatedAfter: '2021-01-01T12:34:56',
@@ -160,7 +130,7 @@ describe('resource inventoryAdjustments', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = conductor.qbd.inventoryAdjustments.delete('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.buildAssemblies.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -173,7 +143,7 @@ describe('resource inventoryAdjustments', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await conductor.qbd.inventoryAdjustments.delete('123ABC-1234567890', {
+    const response = await conductor.qbd.buildAssemblies.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
