@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'list_qbd_price_levels',
   description:
-    'Returns a list of price levels. NOTE: QuickBooks Desktop does not support pagination for price levels; hence, there is no `cursor` parameter. Users typically have few price levels.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns a list of price levels. NOTE: QuickBooks Desktop does not support pagination for price levels; hence, there is no `cursor` parameter. Users typically have few price levels.",
   inputSchema: {
     type: 'object',
     properties: {

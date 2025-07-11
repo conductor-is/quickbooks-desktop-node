@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'list_qbd_transactions',
   description:
-    'Searches across all transaction types. Unlike transaction-specific queries, this endpoint only returns fields common to all transaction types, such as ID, type, dates, account, and reference numbers. For more details specific to that transaction type, make a subsequent call to the relevant transaction-specific endpoint (such as invoices, bills, etc.). NOTE: This endpoint does not support time tracking activities.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nSearches across all transaction types. Unlike transaction-specific queries, this endpoint only returns fields common to all transaction types, such as ID, type, dates, account, and reference numbers. For more details specific to that transaction type, make a subsequent call to the relevant transaction-specific endpoint (such as invoices, bills, etc.). NOTE: This endpoint does not support time tracking activities.",
   inputSchema: {
     type: 'object',
     properties: {
@@ -200,7 +200,8 @@ export const tool: Tool = {
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await conductor.qbd.transactions.list(body));
+  const response = await conductor.qbd.transactions.list(body).asResponse();
+  return asTextContentResult(await response.json());
 };
 
 export default { metadata, tool, handler };
