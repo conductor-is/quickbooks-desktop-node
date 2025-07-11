@@ -1,5 +1,23 @@
 # Changelog
 
+## 12.15.0 (2025-07-11)
+
+Full Changelog: [v12.14.0...v12.15.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.14.0...v12.15.0)
+
+### Features
+
+* **mcp:** support filtering tool results by a jq expression ([da4b1fc](https://github.com/conductor-is/quickbooks-desktop-node/commit/da4b1fcb30c2ba4c05a1b324171d636d8213fe71))
+
+
+### Bug Fixes
+
+* **mcp:** relax input type for asTextContextResult ([b200650](https://github.com/conductor-is/quickbooks-desktop-node/commit/b200650b5e917b26f0309c29bb5d090f1841c729))
+
+
+### Chores
+
+* make some internal functions async ([6abccc5](https://github.com/conductor-is/quickbooks-desktop-node/commit/6abccc50c10ba291d49bc8292d75a7bf0c1a2f87))
+
 ## 12.14.0 (2025-07-08)
 
 Full Changelog: [v12.13.0...v12.14.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.13.0...v12.14.0)
