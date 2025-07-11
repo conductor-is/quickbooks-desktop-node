@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { maybeFilter } from 'conductor-node-mcp/filtering';
 import { asTextContentResult } from 'conductor-node-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'list_qbd_payment_methods',
   description:
-    'Returns a list of payment methods. NOTE: QuickBooks Desktop does not support pagination for payment methods; hence, there is no `cursor` parameter. Users typically have few payment methods.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns a list of payment methods. NOTE: QuickBooks Desktop does not support pagination for payment methods; hence, there is no `cursor` parameter. Users typically have few payment methods.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {\n    data: {\n      type: 'array',\n      description: 'The array of payment methods.',\n      items: {\n        $ref: '#/$defs/payment_method'\n      }\n    },\n    objectType: {\n      type: 'string',\n      description: 'The type of object. This value is always `\"list\"`.',\n      enum: [        'list'\n      ]\n    },\n    url: {\n      type: 'string',\n      description: 'The endpoint URL where this list can be accessed.'\n    }\n  },\n  required: [    'data',\n    'objectType',\n    'url'\n  ],\n  $defs: {\n    payment_method: {\n      type: 'object',\n      title: 'The Payment Method object',\n      properties: {\n        id: {\n          type: 'string',\n          description: 'The unique identifier assigned by QuickBooks to this payment method. This ID is unique across all payment methods but not across different QuickBooks object types.'\n        },\n        createdAt: {\n          type: 'string',\n          description: 'The date and time when this payment method was created, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm). The time zone is the same as the user\\'s time zone in QuickBooks.'\n        },\n        isActive: {\n          type: 'boolean',\n          description: 'Indicates whether this payment method is active. Inactive objects are typically hidden from views and reports in QuickBooks. Defaults to `true`.'\n        },\n        name: {\n          type: 'string',\n          description: 'The case-insensitive unique name of this payment method, unique across all payment methods.\\n\\n**NOTE**: Payment methods do not have a `fullName` field because they are not hierarchical objects, which is why `name` is unique for them but not for objects that have parents.'\n        },\n        objectType: {\n          type: 'string',\n          description: 'The type of object. This value is always `\"qbd_payment_method\"`.',\n          enum: [            'qbd_payment_method'\n          ]\n        },\n        paymentMethodType: {\n          type: 'string',\n          description: 'This payment method\\'s type.',\n          enum: [            'american_express',\n            'cash',\n            'check',\n            'debit_card',\n            'discover',\n            'e_check',\n            'gift_card',\n            'master_card',\n            'other',\n            'other_credit_card',\n            'visa'\n          ]\n        },\n        revisionNumber: {\n          type: 'string',\n          description: 'The current QuickBooks-assigned revision number of this payment method object, which changes each time the object is modified. When updating this object, you must provide the most recent `revisionNumber` to ensure you\\'re working with the latest data; otherwise, the update will return an error.'\n        },\n        updatedAt: {\n          type: 'string',\n          description: 'The date and time when this payment method was last updated, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm). The time zone is the same as the user\\'s time zone in QuickBooks.'\n        }\n      },\n      required: [        'id',\n        'createdAt',\n        'isActive',\n        'name',\n        'objectType',\n        'paymentMethodType',\n        'revisionNumber',\n        'updatedAt'\n      ]\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
@@ -104,13 +105,19 @@ export const tool: Tool = {
         description:
           'Filter for payment methods updated on or before this date and time, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss). If you only provide a date (YYYY-MM-DD), the time is assumed to be 23:59:59 of that day.',
       },
+      jq_filter: {
+        type: 'string',
+        title: 'jq Filter',
+        description:
+          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
+      },
     },
   },
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await conductor.qbd.paymentMethods.list(body));
+  return asTextContentResult(await maybeFilter(args, await conductor.qbd.paymentMethods.list(body)));
 };
 
 export default { metadata, tool, handler };

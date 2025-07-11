@@ -16,7 +16,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'retrieve_qbd_vendors',
-  description: 'Retrieves a vendor by ID.',
+  description:
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieves a vendor by ID.",
   inputSchema: {
     type: 'object',
     properties: {
