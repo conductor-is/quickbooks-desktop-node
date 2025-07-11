@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'list_qbd_inventory_assembly_items',
   description:
-    'Returns a list of inventory assembly items. Use the `cursor` parameter to paginate through the results.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns a list of inventory assembly items. Use the `cursor` parameter to paginate through the results.",
   inputSchema: {
     type: 'object',
     properties: {
@@ -106,7 +106,8 @@ export const tool: Tool = {
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await conductor.qbd.inventoryAssemblyItems.list(body));
+  const response = await conductor.qbd.inventoryAssemblyItems.list(body).asResponse();
+  return asTextContentResult(await response.json());
 };
 
 export default { metadata, tool, handler };
