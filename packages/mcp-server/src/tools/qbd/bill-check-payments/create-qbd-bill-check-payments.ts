@@ -93,10 +93,10 @@ export const tool: Tool = {
         description:
           'The vendor who sent the bill(s) that this bill check payment is paying and who will receive this payment.\n\n**IMPORTANT**: This vendor must match the `vendor` on the bill(s) specified in `applyToTransactions`; otherwise, QuickBooks will say the `transactionId` in `applyToTransactions` "does not exist".',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
-          'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
+          'The ID of the EndUser to receive this request (e.g., `"conductorEndUserId:{{END_USER_ID}}"`).',
       },
       exchangeRate: {
         type: 'number',

@@ -30,10 +30,10 @@ export const tool: Tool = {
         description:
           'The case-insensitive name of this discount item. Not guaranteed to be unique because it does not include the names of its hierarchical parent objects like `fullName` does. For example, two discount items could both have the `name` "10% labor discount", but they could have unique `fullName` values, such as "Discounts:10% labor discount" and "Promotions:10% labor discount".\n\nMaximum length: 31 characters.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
-          'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
+          'The ID of the EndUser to receive this request (e.g., `"conductorEndUserId:{{END_USER_ID}}"`).',
       },
       barcode: {
         type: 'object',
