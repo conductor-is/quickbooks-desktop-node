@@ -1,5 +1,19 @@
 # Changelog
 
+## 12.15.1 (2025-07-16)
+
+Full Changelog: [v12.15.0...v12.15.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.15.0...v12.15.1)
+
+### Bug Fixes
+
+* **client:** use correct alias for conductorEndUserId ([cdc4ca9](https://github.com/conductor-is/quickbooks-desktop-node/commit/cdc4ca938e662abf153a79408b74669a5eca5599))
+* **mcp:** support jq filtering on cloudflare workers ([bbf333b](https://github.com/conductor-is/quickbooks-desktop-node/commit/bbf333b9c7e4d54398a8a04c60c462e50c1e01a7))
+
+
+### Chores
+
+* **mcp:** rework imports in tools ([500e8f5](https://github.com/conductor-is/quickbooks-desktop-node/commit/500e8f583b23b0f6dd092a2fe3f10945267c9c57))
+
 ## 12.15.0 (2025-07-11)
 
 Full Changelog: [v12.14.0...v12.15.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.14.0...v12.15.0)
