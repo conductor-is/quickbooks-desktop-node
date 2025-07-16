@@ -26,10 +26,10 @@ export const tool: Tool = {
         description:
           'The case-insensitive unique name of this inventory site, unique across all inventory sites.\n\n**NOTE**: Inventory sites do not have a `fullName` field because they are not hierarchical objects, which is why `name` is unique for them but not for objects that have parents.\n\nMaximum length: 31 characters.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
-          'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
+          'The ID of the EndUser to receive this request (e.g., `"conductorEndUserId:{{END_USER_ID}}"`).',
       },
       address: {
         type: 'object',

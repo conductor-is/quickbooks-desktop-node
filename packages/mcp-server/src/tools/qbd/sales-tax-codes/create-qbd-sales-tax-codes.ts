@@ -31,10 +31,10 @@ export const tool: Tool = {
         description:
           'The case-insensitive unique name of this sales-tax code, unique across all sales-tax codes. This short name will appear on sales forms to identify the tax status of an item.\n\n**NOTE**: Sales-tax codes do not have a `fullName` field because they are not hierarchical objects, which is why `name` is unique for them but not for objects that have parents.\n\nMaximum length: 3 characters.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
-          'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
+          'The ID of the EndUser to receive this request (e.g., `"conductorEndUserId:{{END_USER_ID}}"`).',
       },
       description: {
         type: 'string',

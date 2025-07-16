@@ -29,10 +29,10 @@ export const tool: Tool = {
         type: 'string',
         description: 'The vendor who sent this item receipt for goods or services purchased.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
-          'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
+          'The ID of the EndUser to receive this request (e.g., `"conductorEndUserId:{{END_USER_ID}}"`).',
       },
       exchangeRate: {
         type: 'number',

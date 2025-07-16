@@ -46,10 +46,10 @@ export const tool: Tool = {
           'salary_vacation',
         ],
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
-          'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
+          'The ID of the EndUser to receive this request (e.g., `"conductorEndUserId:{{END_USER_ID}}"`).',
       },
       isActive: {
         type: 'boolean',

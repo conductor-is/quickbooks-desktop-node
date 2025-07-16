@@ -25,10 +25,10 @@ export const tool: Tool = {
         description: 'The date of this journal entry, in ISO 8601 format (YYYY-MM-DD).',
         format: 'date',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
-          'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
+          'The ID of the EndUser to receive this request (e.g., `"conductorEndUserId:{{END_USER_ID}}"`).',
       },
       areAmountsEnteredInHomeCurrency: {
         type: 'boolean',
