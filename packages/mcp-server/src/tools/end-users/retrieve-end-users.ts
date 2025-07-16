@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { maybeFilter } from 'conductor-node-mcp/filtering';
-import { asTextContentResult } from 'conductor-node-mcp/tools/types';
+import { Metadata, asTextContentResult } from 'conductor-node-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import type { Metadata } from '../';
 import Conductor from 'conductor-node';
 
 export const metadata: Metadata = {
