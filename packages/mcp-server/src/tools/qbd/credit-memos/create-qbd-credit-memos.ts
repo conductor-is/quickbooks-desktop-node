@@ -29,7 +29,7 @@ export const tool: Tool = {
         description: 'The date of this credit memo, in ISO 8601 format (YYYY-MM-DD).',
         format: 'date',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -84,7 +84,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       classId: {
         type: 'string',
@@ -315,7 +314,6 @@ export const tool: Tool = {
                 "The unit-of-measure used for the `quantity` in this credit memo line. Must be a valid unit within the item's available units of measure.",
             },
           },
-          required: [],
         },
       },
       memo: {
@@ -413,7 +411,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       shippingDate: {
         type: 'string',
@@ -432,6 +429,7 @@ export const tool: Tool = {
           "The credit memo's payment terms, defining when payment is due and any applicable discounts.",
       },
     },
+    required: ['customerId', 'transactionDate', 'conductorEndUserId'],
   },
 };
 

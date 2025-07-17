@@ -38,7 +38,7 @@ export const tool: Tool = {
         description:
           'The case-insensitive name of this inventory item. Not guaranteed to be unique because it does not include the names of its hierarchical parent objects like `fullName` does. For example, two inventory items could both have the `name` "Cabinet", but they could have unique `fullName` values, such as "Kitchen:Cabinet" and "Inventory:Cabinet".\n\nMaximum length: 31 characters.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -60,7 +60,6 @@ export const tool: Tool = {
             description: "The item's barcode value.",
           },
         },
-        required: [],
       },
       classId: {
         type: 'string',
@@ -152,6 +151,7 @@ export const tool: Tool = {
           'The unit-of-measure set associated with this inventory item, which consists of a base unit and related units.',
       },
     },
+    required: ['assetAccountId', 'cogsAccountId', 'incomeAccountId', 'name', 'conductorEndUserId'],
   },
 };
 

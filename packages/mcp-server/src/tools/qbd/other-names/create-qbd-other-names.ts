@@ -25,7 +25,7 @@ export const tool: Tool = {
         description:
           'The case-insensitive unique name of this other-name, unique across all other-names.\n\n**NOTE**: Other-names do not have a `fullName` field because they are not hierarchical objects, which is why `name` is unique for them but not for objects that have parents.\n\nMaximum length: 31 characters.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -85,7 +85,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       alternateContact: {
         type: 'string',
@@ -151,6 +150,7 @@ export const tool: Tool = {
           'The formal salutation title that precedes the name of the contact person for this other-name, such as "Mr.", "Ms.", or "Dr.".',
       },
     },
+    required: ['name', 'conductorEndUserId'],
   },
 };
 

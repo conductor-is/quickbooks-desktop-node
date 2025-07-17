@@ -29,7 +29,7 @@ export const tool: Tool = {
         description:
           "The current QuickBooks-assigned revision number of the item group object you are updating, which you can get by fetching the object first. Provide the most recent `revisionNumber` to ensure you're working with the latest data; otherwise, the update will return an error.",
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -51,7 +51,6 @@ export const tool: Tool = {
             description: "The item's barcode value.",
           },
         },
-        required: [],
       },
       clearItemLines: {
         type: 'boolean',
@@ -94,7 +93,6 @@ export const tool: Tool = {
                 "The unit-of-measure used for the `quantity` in this item group line. Must be a valid unit within the item's available units of measure.",
             },
           },
-          required: [],
         },
       },
       name: {
@@ -113,6 +111,7 @@ export const tool: Tool = {
           'The unit-of-measure set associated with this item group, which consists of a base unit and related units.',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

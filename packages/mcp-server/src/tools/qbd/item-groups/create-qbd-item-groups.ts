@@ -30,7 +30,7 @@ export const tool: Tool = {
         description:
           'Indicates whether the individual items in this item group and their separate amounts appear on printed forms.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -52,7 +52,6 @@ export const tool: Tool = {
             description: "The item's barcode value.",
           },
         },
-        required: [],
       },
       description: {
         type: 'string',
@@ -90,7 +89,6 @@ export const tool: Tool = {
                 "The unit-of-measure used for the `quantity` in this item group line. Must be a valid unit within the item's available units of measure.",
             },
           },
-          required: [],
         },
       },
       unitOfMeasureSetId: {
@@ -99,6 +97,7 @@ export const tool: Tool = {
           'The unit-of-measure set associated with this item group, which consists of a base unit and related units.',
       },
     },
+    required: ['name', 'shouldPrintItemsInGroup', 'conductorEndUserId'],
   },
 };
 

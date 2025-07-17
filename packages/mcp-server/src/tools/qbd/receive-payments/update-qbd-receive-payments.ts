@@ -29,7 +29,7 @@ export const tool: Tool = {
         description:
           "The current QuickBooks-assigned revision number of the receive-payment object you are updating, which you can get by fetching the object first. Provide the most recent `revisionNumber` to ensure you're working with the latest data; otherwise, the update will return an error.",
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -143,7 +143,6 @@ export const tool: Tool = {
                 enum: ['authorization', 'capture', 'charge', 'refund', 'voice_authorization'],
               },
             },
-            required: [],
           },
           response: {
             type: 'object',
@@ -225,10 +224,8 @@ export const tool: Tool = {
                   'The date and time when the credit card processor authorized this credit card transaction.',
               },
             },
-            required: [],
           },
         },
-        required: [],
       },
       customerId: {
         type: 'string',
@@ -274,6 +271,7 @@ export const tool: Tool = {
         format: 'date',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

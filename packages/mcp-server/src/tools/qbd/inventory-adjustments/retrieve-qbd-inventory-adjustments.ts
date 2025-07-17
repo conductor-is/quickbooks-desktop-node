@@ -24,12 +24,13 @@ export const tool: Tool = {
         type: 'string',
         description: 'The QuickBooks-assigned unique identifier of the inventory adjustment to retrieve.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
       },
     },
+    required: ['id', 'conductorEndUserId'],
   },
 };
 
