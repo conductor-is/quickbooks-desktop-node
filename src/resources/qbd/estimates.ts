@@ -29,6 +29,8 @@ export class Estimates extends APIResource {
   /**
    * Retrieves an estimate by ID.
    *
+   * NOTE: The response automatically includes any linked transactions.
+   *
    * @example
    * ```ts
    * const estimate = await conductor.qbd.estimates.retrieve(

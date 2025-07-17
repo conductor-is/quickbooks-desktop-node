@@ -29,6 +29,8 @@ export class SalesOrders extends APIResource {
   /**
    * Retrieves a sales order by ID.
    *
+   * NOTE: The response automatically includes any linked transactions.
+   *
    * @example
    * ```ts
    * const salesOrder = await conductor.qbd.salesOrders.retrieve(

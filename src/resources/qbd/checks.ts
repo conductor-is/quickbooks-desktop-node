@@ -29,6 +29,8 @@ export class Checks extends APIResource {
   /**
    * Retrieves a check by ID.
    *
+   * NOTE: The response automatically includes any linked transactions.
+   *
    * @example
    * ```ts
    * const check = await conductor.qbd.checks.retrieve(

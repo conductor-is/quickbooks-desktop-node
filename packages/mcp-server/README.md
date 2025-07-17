@@ -209,6 +209,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_bills` (`write`): Creates a new bill.
 - `retrieve_qbd_bills` (`read`): Retrieves a bill by ID.
+
+  NOTE: The response automatically includes any linked transactions.
+
 - `update_qbd_bills` (`write`): Updates an existing bill.
 - `list_qbd_bills` (`read`): Returns a list of bills. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_bills` (`write`): Permanently deletes a a bill. The deletion will fail if the bill is currently in use or has any linked transactions that are in use.
@@ -225,6 +228,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_checks` (`write`): Creates a new check.
 - `retrieve_qbd_checks` (`read`): Retrieves a check by ID.
+
+  NOTE: The response automatically includes any linked transactions.
+
 - `update_qbd_checks` (`write`): Updates an existing check.
 - `list_qbd_checks` (`read`): Returns a list of checks. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_checks` (`write`): Permanently deletes a a check. The deletion will fail if the check is currently in use or has any linked transactions that are in use.
@@ -260,6 +266,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_credit_memos` (`write`): Creates a new credit memo.
 - `retrieve_qbd_credit_memos` (`read`): Retrieves a credit memo by ID.
+
+  NOTE: The response automatically includes any linked transactions.
+
 - `update_qbd_credit_memos` (`write`): Updates an existing credit memo.
 - `list_qbd_credit_memos` (`read`): Returns a list of credit memos. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_credit_memos` (`write`): Permanently deletes a a credit memo. The deletion will fail if the credit memo is currently in use or has any linked transactions that are in use.
@@ -295,6 +304,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_estimates` (`write`): Creates a new estimate.
 - `retrieve_qbd_estimates` (`read`): Retrieves an estimate by ID.
+
+  NOTE: The response automatically includes any linked transactions.
+
 - `update_qbd_estimates` (`write`): Updates an existing estimate.
 - `list_qbd_estimates` (`read`): Returns a list of estimates. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_estimates` (`write`): Permanently deletes a an estimate. The deletion will fail if the estimate is currently in use or has any linked transactions that are in use.
@@ -332,6 +344,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_invoices` (`write`): Creates a new invoice.
 - `retrieve_qbd_invoices` (`read`): Retrieves an invoice by ID.
+
+  NOTE: The response automatically includes any linked transactions.
+
 - `update_qbd_invoices` (`write`): Updates an existing invoice.
 - `list_qbd_invoices` (`read`): Returns a list of invoices. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_invoices` (`write`): Permanently deletes a an invoice. The deletion will fail if the invoice is currently in use or has any linked transactions that are in use.
@@ -347,6 +362,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_item_receipts` (`write`): Creates a new item receipt.
 - `retrieve_qbd_item_receipts` (`read`): Retrieves an item receipt by ID.
+
+  NOTE: The response automatically includes any linked transactions.
+
 - `update_qbd_item_receipts` (`write`): Updates an existing item receipt.
 - `list_qbd_item_receipts` (`read`): Returns a list of item receipts. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_item_receipts` (`write`): Permanently deletes a an item receipt. The deletion will fail if the item receipt is currently in use or has any linked transactions that are in use.
@@ -405,6 +423,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_purchase_orders` (`write`): Creates a new purchase order.
 - `retrieve_qbd_purchase_orders` (`read`): Retrieves a purchase order by ID.
+
+  NOTE: The response automatically includes any linked transactions.
+
 - `update_qbd_purchase_orders` (`write`): Updates an existing purchase order.
 - `list_qbd_purchase_orders` (`read`): Returns a list of purchase orders. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_purchase_orders` (`write`): Permanently deletes a a purchase order. The deletion will fail if the purchase order is currently in use or has any linked transactions that are in use.
@@ -421,6 +442,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_sales_orders` (`write`): Creates a new sales order.
 - `retrieve_qbd_sales_orders` (`read`): Retrieves a sales order by ID.
+
+  NOTE: The response automatically includes any linked transactions.
+
 - `update_qbd_sales_orders` (`write`): Updates an existing sales order.
 - `list_qbd_sales_orders` (`read`): Returns a list of sales orders. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_sales_orders` (`write`): Permanently deletes a a sales order. The deletion will fail if the sales order is currently in use or has any linked transactions that are in use.
@@ -498,6 +522,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_vendor_credits` (`write`): Creates a new vendor credit.
 - `retrieve_qbd_vendor_credits` (`read`): Retrieves a vendor credit by ID.
+
+  NOTE: The response automatically includes any linked transactions.
+
 - `update_qbd_vendor_credits` (`write`): Updates an existing vendor credit.
 - `list_qbd_vendor_credits` (`read`): Returns a list of vendor credits. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_vendor_credits` (`write`): Permanently deletes a a vendor credit. The deletion will fail if the vendor credit is currently in use or has any linked transactions that are in use.

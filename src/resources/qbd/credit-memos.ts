@@ -29,6 +29,8 @@ export class CreditMemos extends APIResource {
   /**
    * Retrieves a credit memo by ID.
    *
+   * NOTE: The response automatically includes any linked transactions.
+   *
    * @example
    * ```ts
    * const creditMemo = await conductor.qbd.creditMemos.retrieve(

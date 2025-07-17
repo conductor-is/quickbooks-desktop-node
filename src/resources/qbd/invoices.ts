@@ -29,6 +29,8 @@ export class Invoices extends APIResource {
   /**
    * Retrieves an invoice by ID.
    *
+   * NOTE: The response automatically includes any linked transactions.
+   *
    * @example
    * ```ts
    * const invoice = await conductor.qbd.invoices.retrieve(
