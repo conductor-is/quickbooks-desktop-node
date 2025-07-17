@@ -82,6 +82,7 @@ export const tool: Tool = {
         enum: ['active', 'all', 'inactive'],
       },
     },
+    required: ['conductorEndUserId'],
   },
 };
 

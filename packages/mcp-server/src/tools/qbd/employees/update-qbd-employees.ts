@@ -161,7 +161,6 @@ export const tool: Tool = {
             ],
           },
         },
-        required: [],
       },
       adjustedServiceDate: {
         type: 'string',
@@ -292,7 +291,6 @@ export const tool: Tool = {
             required: ['name', 'value'],
           },
         },
-        required: [],
       },
       employeePayroll: {
         type: 'object',
@@ -379,7 +377,6 @@ export const tool: Tool = {
                   "Indicates whether the employee's sick hours reset to zero at the beginning of the new year.",
               },
             },
-            required: [],
           },
           useTimeDataToCreatePaychecks: {
             type: 'string',
@@ -428,10 +425,8 @@ export const tool: Tool = {
                   "Indicates whether the employee's vacation hours reset to zero at the beginning of the new year.",
               },
             },
-            required: [],
           },
         },
-        required: [],
       },
       employeeType: {
         type: 'string',
@@ -567,6 +562,7 @@ export const tool: Tool = {
         format: 'date',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

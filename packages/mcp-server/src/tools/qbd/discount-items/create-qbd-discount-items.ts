@@ -52,7 +52,6 @@ export const tool: Tool = {
             description: "The item's barcode value.",
           },
         },
-        required: [],
       },
       classId: {
         type: 'string',
@@ -95,6 +94,7 @@ export const tool: Tool = {
           'The default sales-tax code for this discount item, determining whether it is taxable or non-taxable. This can be overridden at the transaction-line level.\n\nDefault codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes can also be created in QuickBooks. If QuickBooks is not set up to charge sales tax (via the "Do You Charge Sales Tax?" preference), it will assign the default non-taxable code to all sales.',
       },
     },
+    required: ['accountId', 'name', 'conductorEndUserId'],
   },
 };
 

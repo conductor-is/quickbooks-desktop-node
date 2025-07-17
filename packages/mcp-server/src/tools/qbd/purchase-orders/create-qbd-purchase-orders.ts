@@ -242,7 +242,6 @@ export const tool: Tool = {
                 "The unit-of-measure used for the `quantity` in this purchase order line. Must be a valid unit within the item's available units of measure.",
             },
           },
-          required: [],
         },
       },
       memo: {
@@ -325,7 +324,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       shippingMethodId: {
         type: 'string',
@@ -392,7 +390,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       vendorId: {
         type: 'string',
@@ -403,6 +400,7 @@ export const tool: Tool = {
         description: 'A message to be printed on this purchase order for the vendor to read.',
       },
     },
+    required: ['transactionDate', 'conductorEndUserId'],
   },
 };
 

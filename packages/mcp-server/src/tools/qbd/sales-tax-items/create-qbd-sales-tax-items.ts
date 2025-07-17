@@ -47,7 +47,6 @@ export const tool: Tool = {
             description: "The item's barcode value.",
           },
         },
-        required: [],
       },
       classId: {
         type: 'string',
@@ -85,6 +84,7 @@ export const tool: Tool = {
           'The tax agency (vendor) to whom collected sales taxes are owed for this sales-tax item. This field refers to a vendor in QuickBooks that represents the tax authority. If a non-zero `taxRate` is specified, then `taxVendor` is required.',
       },
     },
+    required: ['name', 'conductorEndUserId'],
   },
 };
 

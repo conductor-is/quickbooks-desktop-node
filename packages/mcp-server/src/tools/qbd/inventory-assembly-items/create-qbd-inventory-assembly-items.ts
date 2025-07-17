@@ -61,7 +61,6 @@ export const tool: Tool = {
             description: "The item's barcode value.",
           },
         },
-        required: [],
       },
       buildNotificationThreshold: {
         type: 'number',
@@ -105,7 +104,6 @@ export const tool: Tool = {
                 'The quantity of the item associated with this inventory assembly item line. This field cannot be cleared.\n\n**NOTE**: Do not use this field if the associated item is a discount item.',
             },
           },
-          required: [],
         },
       },
       maximumQuantityOnHand: {
@@ -167,6 +165,7 @@ export const tool: Tool = {
           'The unit-of-measure set associated with this inventory assembly item, which consists of a base unit and related units.',
       },
     },
+    required: ['assetAccountId', 'cogsAccountId', 'incomeAccountId', 'name', 'conductorEndUserId'],
   },
 };
 

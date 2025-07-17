@@ -378,6 +378,7 @@ export const tool: Tool = {
         format: 'date',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

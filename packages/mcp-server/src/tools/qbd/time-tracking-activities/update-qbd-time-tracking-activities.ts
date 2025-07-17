@@ -80,6 +80,7 @@ export const tool: Tool = {
         format: 'date',
       },
     },
+    required: ['id', 'duration', 'entityId', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

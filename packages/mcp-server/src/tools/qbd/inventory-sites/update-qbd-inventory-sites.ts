@@ -80,7 +80,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the site address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       contact: {
         type: 'string',
@@ -123,6 +122,7 @@ export const tool: Tool = {
           'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

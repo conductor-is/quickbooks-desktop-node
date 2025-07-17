@@ -85,7 +85,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       alternateContact: {
         type: 'string',
@@ -151,6 +150,7 @@ export const tool: Tool = {
           'The formal salutation title that precedes the name of the contact person for this other-name, such as "Mr.", "Ms.", or "Dr.".',
       },
     },
+    required: ['name', 'conductorEndUserId'],
   },
 };
 

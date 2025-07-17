@@ -143,7 +143,6 @@ export const tool: Tool = {
                 enum: ['authorization', 'capture', 'charge', 'refund', 'voice_authorization'],
               },
             },
-            required: [],
           },
           response: {
             type: 'object',
@@ -225,10 +224,8 @@ export const tool: Tool = {
                   'The date and time when the credit card processor authorized this credit card transaction.',
               },
             },
-            required: [],
           },
         },
-        required: [],
       },
       customerId: {
         type: 'string',
@@ -274,6 +271,7 @@ export const tool: Tool = {
         format: 'date',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

@@ -84,7 +84,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       checkNumber: {
         type: 'string',
@@ -238,7 +237,6 @@ export const tool: Tool = {
             ],
           },
         },
-        required: [],
       },
       customerMessageId: {
         type: 'string',
@@ -507,7 +505,6 @@ export const tool: Tool = {
                   ],
                 },
               },
-              required: [],
             },
             customFields: {
               type: 'array',
@@ -622,7 +619,6 @@ export const tool: Tool = {
                 "The unit-of-measure used for the `quantity` in this sales receipt line. Must be a valid unit within the item's available units of measure.",
             },
           },
-          required: [],
         },
       },
       memo: {
@@ -715,7 +711,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       shippingDate: {
         type: 'string',
@@ -729,6 +724,7 @@ export const tool: Tool = {
           'The shipping method used for this sales receipt, such as standard mail or overnight delivery.',
       },
     },
+    required: ['customerId', 'transactionDate', 'conductorEndUserId'],
   },
 };
 

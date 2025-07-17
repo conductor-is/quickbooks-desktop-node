@@ -30,6 +30,7 @@ export const tool: Tool = {
           'The ID of the EndUser to receive this request (e.g., `"conductorEndUserId:{{END_USER_ID}}"`).',
       },
     },
+    required: ['id', 'conductorEndUserId'],
   },
 };
 

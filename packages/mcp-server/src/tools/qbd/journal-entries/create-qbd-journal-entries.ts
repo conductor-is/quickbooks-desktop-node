@@ -153,6 +153,7 @@ export const tool: Tool = {
           'The case-sensitive user-defined reference number for this journal entry, which can be used to identify the transaction in QuickBooks. This value is not required to be unique and can be arbitrarily changed by the QuickBooks user. When left blank in this create request, this field will be left blank in QuickBooks (i.e., it does *not* auto-increment).',
       },
     },
+    required: ['transactionDate', 'conductorEndUserId'],
   },
 };
 

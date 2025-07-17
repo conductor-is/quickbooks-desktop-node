@@ -86,6 +86,7 @@ export const tool: Tool = {
           'The serial number of the item associated with this build assembly. This is used for tracking individual units of serialized inventory items.',
       },
     },
+    required: ['inventoryAssemblyItemId', 'quantityToBuild', 'transactionDate', 'conductorEndUserId'],
   },
 };
 

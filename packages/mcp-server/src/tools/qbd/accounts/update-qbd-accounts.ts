@@ -112,6 +112,7 @@ export const tool: Tool = {
           'The identifier of the tax line associated with this account. You can see a list of all available values for this field by calling the endpoint for account tax lines.',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 
