@@ -100,6 +100,7 @@ export const tool: Tool = {
           'Filter for inventory items updated on or before this date and time, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss). If you only provide a date (YYYY-MM-DD), the time is assumed to be 23:59:59 of that day.\n\n**WARNING**: Due to a known issue in QuickBooks Desktop, the `updatedBefore` parameter may not correctly filter inventory items by their updated dates. To accurately retrieve the desired inventory items, we recommend avoiding this parameter and instead fetching a broader dataset, then filtering the results locally using the `updatedAt` property.',
       },
     },
+    required: ['conductorEndUserId'],
   },
 };
 

@@ -226,7 +226,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       ccEmail: {
         type: 'string',
@@ -276,7 +275,6 @@ export const tool: Tool = {
             description: "The card's billing address ZIP or postal code.",
           },
         },
-        required: [],
       },
       creditLimit: {
         type: 'string',
@@ -499,7 +497,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       taxRegistrationNumber: {
         type: 'string',
@@ -511,6 +508,7 @@ export const tool: Tool = {
           "The customer's payment terms, defining when payment is due and any applicable discounts.",
       },
     },
+    required: ['name', 'conductorEndUserId'],
   },
 };
 

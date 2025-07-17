@@ -47,7 +47,6 @@ export const tool: Tool = {
             description: "The item's barcode value.",
           },
         },
-        required: [],
       },
       classId: {
         type: 'string',
@@ -157,6 +156,7 @@ export const tool: Tool = {
           'The unit-of-measure set associated with this non-inventory item, which consists of a base unit and related units.',
       },
     },
+    required: ['name', 'conductorEndUserId'],
   },
 };
 

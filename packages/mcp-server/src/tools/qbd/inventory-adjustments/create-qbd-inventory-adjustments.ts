@@ -91,7 +91,6 @@ export const tool: Tool = {
                     'The lot number of the item associated with this inventory adjustment line. Used for tracking groups of inventory items that are purchased or manufactured together.',
                 },
               },
-              required: [],
             },
             adjustQuantity: {
               type: 'object',
@@ -130,7 +129,6 @@ export const tool: Tool = {
                     'The serial number of the item associated with this inventory adjustment line. This is used for tracking individual units of serialized inventory items.',
                 },
               },
-              required: [],
             },
             adjustSerialNumber: {
               type: 'object',
@@ -159,7 +157,6 @@ export const tool: Tool = {
                     'The serial number, which represents a unique unit of the inventory item associated with this inventory adjustment line, to remove from inventory.',
                 },
               },
-              required: [],
             },
             adjustValue: {
               type: 'object',
@@ -187,7 +184,6 @@ export const tool: Tool = {
                     'Either a positive or negative number that shows the change in the total value of the entire stock of the inventory item associated with this inventory adjustment line. A positive number increases the value, while a negative number decreases it.',
                 },
               },
-              required: [],
             },
           },
           required: ['itemId'],
@@ -203,6 +199,7 @@ export const tool: Tool = {
           'The case-sensitive user-defined reference number for this inventory adjustment, which can be used to identify the transaction in QuickBooks. This value is not required to be unique and can be arbitrarily changed by the QuickBooks user. When left blank in this create request, this field will be left blank in QuickBooks (i.e., it does *not* auto-increment).',
       },
     },
+    required: ['accountId', 'transactionDate', 'conductorEndUserId'],
   },
 };
 

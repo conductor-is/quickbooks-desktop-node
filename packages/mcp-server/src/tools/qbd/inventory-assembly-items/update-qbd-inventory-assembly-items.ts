@@ -56,7 +56,6 @@ export const tool: Tool = {
             description: "The item's barcode value.",
           },
         },
-        required: [],
       },
       buildNotificationThreshold: {
         type: 'number',
@@ -108,7 +107,6 @@ export const tool: Tool = {
                 'The quantity of the item associated with this inventory assembly item line. This field cannot be cleared.\n\n**NOTE**: Do not use this field if the associated item is a discount item.',
             },
           },
-          required: [],
         },
       },
       maximumQuantityOnHand: {
@@ -175,6 +173,7 @@ export const tool: Tool = {
           'When `true`, applies the new income account (specified by the `incomeAccountId` field) to all existing transactions that use this inventory assembly item. This updates historical data and should be used with caution. The update will fail if any affected transaction falls within a closed accounting period. If this parameter is not specified, QuickBooks will prompt the user before making any changes.',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

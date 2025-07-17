@@ -109,7 +109,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       classId: {
         type: 'string',
@@ -366,7 +365,6 @@ export const tool: Tool = {
                 "The unit-of-measure used for the `quantity` in this invoice line. Must be a valid unit within the item's available units of measure.",
             },
           },
-          required: [],
         },
       },
       linkToTransactionIds: {
@@ -472,7 +470,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       shippingDate: {
         type: 'string',
@@ -491,6 +488,7 @@ export const tool: Tool = {
           "The invoice's payment terms, defining when payment is due and any applicable discounts.",
       },
     },
+    required: ['customerId', 'transactionDate', 'conductorEndUserId'],
   },
 };
 

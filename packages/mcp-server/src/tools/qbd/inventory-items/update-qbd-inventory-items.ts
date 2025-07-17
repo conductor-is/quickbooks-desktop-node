@@ -55,7 +55,6 @@ export const tool: Tool = {
             description: "The item's barcode value.",
           },
         },
-        required: [],
       },
       classId: {
         type: 'string',
@@ -155,6 +154,7 @@ export const tool: Tool = {
           'When `true`, applies the new income account (specified by the `incomeAccountId` field) to all existing transactions that use this inventory item. This updates historical data and should be used with caution. The update will fail if any affected transaction falls within a closed accounting period. If this parameter is not specified, QuickBooks will prompt the user before making any changes.',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

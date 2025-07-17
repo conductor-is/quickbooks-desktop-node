@@ -174,7 +174,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       billingRateId: {
         type: 'string',
@@ -392,7 +391,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       taxIdentificationNumber: {
         type: 'string',
@@ -412,6 +410,7 @@ export const tool: Tool = {
           "The vendor's type, used for categorizing vendors into meaningful segments, such as industry or region.",
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

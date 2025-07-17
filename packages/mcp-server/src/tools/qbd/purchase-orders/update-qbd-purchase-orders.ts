@@ -398,7 +398,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       shippingMethodId: {
         type: 'string',
@@ -470,7 +469,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       vendorId: {
         type: 'string',
@@ -481,6 +479,7 @@ export const tool: Tool = {
         description: 'A message to be printed on this purchase order for the vendor to read.',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

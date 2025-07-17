@@ -76,6 +76,7 @@ export const tool: Tool = {
           'The type of service performed during this time tracking activity, referring to billable or purchasable services such as specialized labor, consulting hours, and professional fees.\n\n**NOTE**: This field is not required if no `customer` is specified. However, if `billingStatus` is set to "billable", both this field and `customer` are required.',
       },
     },
+    required: ['duration', 'entityId', 'transactionDate', 'conductorEndUserId'],
   },
 };
 

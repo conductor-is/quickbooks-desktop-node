@@ -125,6 +125,7 @@ export const tool: Tool = {
           'Filter for credit card charges updated on or before this date and time, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss). If you only provide a date (YYYY-MM-DD), the time is assumed to be 23:59:59 of that day.',
       },
     },
+    required: ['conductorEndUserId'],
   },
 };
 

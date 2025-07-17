@@ -433,13 +433,13 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       vendorId: {
         type: 'string',
         description: 'The vendor who sent this bill for goods or services purchased.',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

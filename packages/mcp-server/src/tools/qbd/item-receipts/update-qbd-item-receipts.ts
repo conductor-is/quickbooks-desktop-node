@@ -378,6 +378,7 @@ export const tool: Tool = {
         description: 'The vendor who sent this item receipt for goods or services purchased.',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

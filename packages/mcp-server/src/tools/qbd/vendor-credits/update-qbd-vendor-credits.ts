@@ -378,6 +378,7 @@ export const tool: Tool = {
         description: 'The vendor who sent this vendor credit for goods or services purchased.',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

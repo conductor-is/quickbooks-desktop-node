@@ -84,7 +84,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       applyToTransactions: {
         type: 'array',
@@ -455,6 +454,7 @@ export const tool: Tool = {
         format: 'date',
       },
     },
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
 };
 

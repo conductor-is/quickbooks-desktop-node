@@ -110,7 +110,6 @@ export const tool: Tool = {
                 'The sales-tax code for this expense line, determining whether it is taxable or non-taxable. If set, this overrides any sales-tax codes defined on the parent transaction or the associated item.\n\nDefault codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes can also be created in QuickBooks. If QuickBooks is not set up to charge sales tax (via the "Do You Charge Sales Tax?" preference), it will assign the default non-taxable code to all sales.',
             },
           },
-          required: [],
         },
       },
       externalId: {
@@ -314,7 +313,6 @@ export const tool: Tool = {
                 "The unit-of-measure used for the `quantity` in this item line. Must be a valid unit within the item's available units of measure.",
             },
           },
-          required: [],
         },
       },
       memo: {
@@ -337,6 +335,7 @@ export const tool: Tool = {
           'The sales-tax code for this credit card charge, determining whether it is taxable or non-taxable. If set, this overrides any sales-tax codes defined on the payee. This can be overridden on the credit card charge\'s individual lines.\n\nDefault codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes can also be created in QuickBooks. If QuickBooks is not set up to charge sales tax (via the "Do You Charge Sales Tax?" preference), it will assign the default non-taxable code to all sales.',
       },
     },
+    required: ['accountId', 'transactionDate', 'conductorEndUserId'],
   },
 };
 

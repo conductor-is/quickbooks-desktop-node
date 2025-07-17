@@ -84,7 +84,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       classId: {
         type: 'string',
@@ -316,7 +315,6 @@ export const tool: Tool = {
                 "The unit-of-measure used for the `quantity` in this sales order line. Must be a valid unit within the item's available units of measure.",
             },
           },
-          required: [],
         },
       },
       memo: {
@@ -421,7 +419,6 @@ export const tool: Tool = {
               'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
           },
         },
-        required: [],
       },
       shippingDate: {
         type: 'string',
@@ -440,6 +437,7 @@ export const tool: Tool = {
           "The sales order's payment terms, defining when payment is due and any applicable discounts.",
       },
     },
+    required: ['customerId', 'transactionDate', 'conductorEndUserId'],
   },
 };
 
