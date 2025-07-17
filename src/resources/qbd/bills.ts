@@ -29,6 +29,8 @@ export class Bills extends APIResource {
   /**
    * Retrieves a bill by ID.
    *
+   * NOTE: The response automatically includes any linked transactions.
+   *
    * @example
    * ```ts
    * const bill = await conductor.qbd.bills.retrieve(
