@@ -30,6 +30,8 @@ export class VendorCredits extends APIResource {
   /**
    * Retrieves a vendor credit by ID.
    *
+   * NOTE: The response automatically includes any linked transactions.
+   *
    * @example
    * ```ts
    * const vendorCredit =

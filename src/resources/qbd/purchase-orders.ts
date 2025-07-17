@@ -29,6 +29,8 @@ export class PurchaseOrders extends APIResource {
   /**
    * Retrieves a purchase order by ID.
    *
+   * NOTE: The response automatically includes any linked transactions.
+   *
    * @example
    * ```ts
    * const purchaseOrder =
