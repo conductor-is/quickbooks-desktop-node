@@ -26,7 +26,7 @@ export { endpoints } from './tools';
 export const server = new McpServer(
   {
     name: 'conductor_node_api',
-    version: '12.15.1',
+    version: '12.16.0',
   },
   { capabilities: { tools: {} } },
 );
