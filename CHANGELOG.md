@@ -1,5 +1,23 @@
 # Changelog
 
+## 12.16.0 (2025-07-19)
+
+Full Changelog: [v12.15.1...v12.16.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.15.1...v12.16.0)
+
+### Features
+
+* **api:** api update ([0ba3124](https://github.com/conductor-is/quickbooks-desktop-node/commit/0ba3124587805865a45fb97f37eae3a1976314ed))
+
+
+### Bug Fixes
+
+* **mcp:** include required section for top-level properties and support naming transformations ([6a09f0c](https://github.com/conductor-is/quickbooks-desktop-node/commit/6a09f0c57aba769fc07efb34ff73f9c072761d8f))
+
+
+### Chores
+
+* **mcp:** formatting ([76d8f5d](https://github.com/conductor-is/quickbooks-desktop-node/commit/76d8f5d877b1bccb475857abbdbebc22c53930ac))
+
 ## 12.15.1 (2025-07-16)
 
 Full Changelog: [v12.15.0...v12.15.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.15.0...v12.15.1)
