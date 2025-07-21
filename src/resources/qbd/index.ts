@@ -139,9 +139,9 @@ export {
   type DiscountItemListParams,
 } from './discount-items';
 export {
-  EmployeesCursorPage,
   Employees,
   type Employee,
+  type EmployeeListResponse,
   type EmployeeCreateParams,
   type EmployeeRetrieveParams,
   type EmployeeUpdateParams,

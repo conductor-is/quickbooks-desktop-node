@@ -240,9 +240,8 @@ describe('resource employees', () => {
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.employees.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['80000001-1234567890'],
-      limit: 150,
+      limit: 10,
       nameContains: 'ABC',
       nameEndsWith: 'ABC',
       nameFrom: 'A',

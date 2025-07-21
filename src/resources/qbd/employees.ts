@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class Employees extends APIResource {
   /**
@@ -71,33 +70,26 @@ export class Employees extends APIResource {
   }
 
   /**
-   * Returns a list of employees. Use the `cursor` parameter to paginate through the
-   * results.
+   * Returns a list of employees. NOTE: QuickBooks Desktop does not support
+   * pagination for employees; hence, there is no `cursor` parameter. Users typically
+   * have few employees.
    *
    * @example
    * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const employee of conductor.qbd.employees.list({
+   * const employees = await conductor.qbd.employees.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
-   * })) {
-   *   // ...
-   * }
+   * });
    * ```
    */
-  list(
-    params: EmployeeListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<EmployeesCursorPage, Employee> {
+  list(params: EmployeeListParams, options?: Core.RequestOptions): Core.APIPromise<EmployeeListResponse> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/employees', EmployeesCursorPage, {
+    return this._client.get('/quickbooks-desktop/employees', {
       query,
       ...options,
       headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
     });
   }
 }
-
-export class EmployeesCursorPage extends CursorPage<Employee> {}
 
 export interface Employee {
   /**
@@ -867,6 +859,23 @@ export namespace Employee {
      */
     fullName: string | null;
   }
+}
+
+export interface EmployeeListResponse {
+  /**
+   * The array of employees.
+   */
+  data: Array<Employee>;
+
+  /**
+   * The type of object. This value is always `"list"`.
+   */
+  objectType: 'list';
+
+  /**
+   * The endpoint URL where this list can be accessed.
+   */
+  url: string;
 }
 
 export interface EmployeeCreateParams {
@@ -2219,7 +2228,7 @@ export namespace EmployeeUpdateParams {
   }
 }
 
-export interface EmployeeListParams extends CursorPageParams {
+export interface EmployeeListParams {
   /**
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
@@ -2237,6 +2246,20 @@ export interface EmployeeListParams extends CursorPageParams {
    * request will return an error.
    */
   ids?: Array<string>;
+
+  /**
+   * Query param: The maximum number of objects to return.
+   *
+   * **IMPORTANT**: QuickBooks Desktop does not support cursor-based pagination for
+   * employees. This parameter will limit the response size, but you cannot fetch
+   * subsequent results using a cursor. For pagination, use the name-range parameters
+   * instead (e.g., `nameFrom=A&nameTo=B`).
+   *
+   * When this parameter is omitted, the endpoint returns all employees without
+   * limit, unlike paginated endpoints which default to 150 records. This is
+   * acceptable because employees typically have low record counts.
+   */
+  limit?: number;
 
   /**
    * Query param: Filter for employees whose `name` contains this substring,
@@ -2309,12 +2332,10 @@ export interface EmployeeListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-Employees.EmployeesCursorPage = EmployeesCursorPage;
-
 export declare namespace Employees {
   export {
     type Employee as Employee,
-    EmployeesCursorPage as EmployeesCursorPage,
+    type EmployeeListResponse as EmployeeListResponse,
     type EmployeeCreateParams as EmployeeCreateParams,
     type EmployeeRetrieveParams as EmployeeRetrieveParams,
     type EmployeeUpdateParams as EmployeeUpdateParams,

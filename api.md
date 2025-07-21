@@ -247,13 +247,14 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/qbd/employees.ts">Employee</a></code>
+- <code><a href="./src/resources/qbd/employees.ts">EmployeeListResponse</a></code>
 
 Methods:
 
 - <code title="post /quickbooks-desktop/employees">client.qbd.employees.<a href="./src/resources/qbd/employees.ts">create</a>({ ...params }) -> Employee</code>
 - <code title="get /quickbooks-desktop/employees/{id}">client.qbd.employees.<a href="./src/resources/qbd/employees.ts">retrieve</a>(id, { ...params }) -> Employee</code>
 - <code title="post /quickbooks-desktop/employees/{id}">client.qbd.employees.<a href="./src/resources/qbd/employees.ts">update</a>(id, { ...params }) -> Employee</code>
-- <code title="get /quickbooks-desktop/employees">client.qbd.employees.<a href="./src/resources/qbd/employees.ts">list</a>({ ...params }) -> EmployeesCursorPage</code>
+- <code title="get /quickbooks-desktop/employees">client.qbd.employees.<a href="./src/resources/qbd/employees.ts">list</a>({ ...params }) -> EmployeeListResponse</code>
 
 ## Estimates
 
