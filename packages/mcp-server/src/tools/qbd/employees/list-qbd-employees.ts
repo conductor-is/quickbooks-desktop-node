@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'list_qbd_employees',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns a list of employees. Use the `cursor` parameter to paginate through the results.",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns a list of employees. NOTE: QuickBooks Desktop does not support pagination for employees; hence, there is no `cursor` parameter. Users typically have few employees.",
   inputSchema: {
     type: 'object',
     properties: {
@@ -24,11 +24,6 @@ export const tool: Tool = {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"conductorEndUserId:{{END_USER_ID}}"`).',
-      },
-      cursor: {
-        type: 'string',
-        description:
-          'The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.',
       },
       ids: {
         type: 'array',
@@ -41,7 +36,7 @@ export const tool: Tool = {
       limit: {
         type: 'integer',
         description:
-          'The maximum number of objects to return. Accepts values ranging from 1 to 150, defaults to 150. When used with cursor-based pagination, this parameter controls how many results are returned per page. To paginate through results, combine this with the `cursor` parameter. Each response will include a `nextCursor` value that can be passed to subsequent requests to retrieve the next page of results.',
+          'The maximum number of objects to return.\n\n**IMPORTANT**: QuickBooks Desktop does not support cursor-based pagination for employees. This parameter will limit the response size, but you cannot fetch subsequent results using a cursor. For pagination, use the name-range parameters instead (e.g., `nameFrom=A&nameTo=B`).\n\nWhen this parameter is omitted, the endpoint returns all employees without limit, unlike paginated endpoints which default to 150 records. This is acceptable because employees typically have low record counts.',
       },
       nameContains: {
         type: 'string',
@@ -97,8 +92,7 @@ export const tool: Tool = {
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  const response = await conductor.qbd.employees.list(body).asResponse();
-  return asTextContentResult(await response.json());
+  return asTextContentResult(await conductor.qbd.employees.list(body));
 };
 
 export default { metadata, tool, handler };
