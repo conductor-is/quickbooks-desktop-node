@@ -160,10 +160,10 @@ import {
   Employee,
   EmployeeCreateParams,
   EmployeeListParams,
+  EmployeeListResponse,
   EmployeeRetrieveParams,
   EmployeeUpdateParams,
   Employees,
-  EmployeesCursorPage,
 } from './employees';
 import * as EstimatesAPI from './estimates';
 import {
@@ -620,7 +620,6 @@ Qbd.DateDrivenTerms = DateDrivenTerms;
 Qbd.DiscountItems = DiscountItems;
 Qbd.DiscountItemsCursorPage = DiscountItemsCursorPage;
 Qbd.Employees = Employees;
-Qbd.EmployeesCursorPage = EmployeesCursorPage;
 Qbd.Estimates = Estimates;
 Qbd.EstimatesCursorPage = EstimatesCursorPage;
 Qbd.InventoryAdjustments = InventoryAdjustments;
@@ -840,7 +839,7 @@ export declare namespace Qbd {
   export {
     Employees as Employees,
     type Employee as Employee,
-    EmployeesCursorPage as EmployeesCursorPage,
+    type EmployeeListResponse as EmployeeListResponse,
     type EmployeeCreateParams as EmployeeCreateParams,
     type EmployeeRetrieveParams as EmployeeRetrieveParams,
     type EmployeeUpdateParams as EmployeeUpdateParams,

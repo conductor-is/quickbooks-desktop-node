@@ -298,7 +298,7 @@ The following tools are available in this MCP server.
 - `create_qbd_employees` (`write`): Creates a new employee.
 - `retrieve_qbd_employees` (`read`): Retrieves an employee by ID.
 - `update_qbd_employees` (`write`): Updates an existing employee.
-- `list_qbd_employees` (`read`): Returns a list of employees. Use the `cursor` parameter to paginate through the results.
+- `list_qbd_employees` (`read`): Returns a list of employees. NOTE: QuickBooks Desktop does not support pagination for employees; hence, there is no `cursor` parameter. Users typically have few employees.
 
 ### Resource `qbd.estimates`:
 
