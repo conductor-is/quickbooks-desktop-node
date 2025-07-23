@@ -160,7 +160,7 @@ export const tool: Tool = {
                   amount: {
                     type: 'string',
                     description:
-                      'The monetary amount of this estimate line, represented as a decimal string. If both `quantity` and `rate` are specified but not `amount`, QuickBooks will use them to calculate `amount`. If `amount`, `rate`, and `quantity` are all unspecified, then QuickBooks will calculate `amount` based on a `quantity` of `1` and the suggested `rate`. This field cannot be cleared.',
+                      'The monetary amount of this estimate line, represented as a decimal string. If both `quantity` and `rate` are specified but not `amount`, QuickBooks will calculate `amount` using the rate and any markup you supply. The calculation is `amount = (quantity * rate) * (1 + markupRate)` when `markupRate` is provided, or `amount = (quantity * rate) * (1 + markupRatePercent/100)` when `markupRatePercent` is provided. If `amount`, `rate`, and `quantity` are all unspecified, QuickBooks will calculate `amount` based on a `quantity` of `1` and the suggested `rate`. This field cannot be cleared.',
                   },
                   classId: {
                     type: 'string',
@@ -285,7 +285,7 @@ export const tool: Tool = {
             amount: {
               type: 'string',
               description:
-                'The monetary amount of this estimate line, represented as a decimal string. If both `quantity` and `rate` are specified but not `amount`, QuickBooks will use them to calculate `amount`. If `amount`, `rate`, and `quantity` are all unspecified, then QuickBooks will calculate `amount` based on a `quantity` of `1` and the suggested `rate`. This field cannot be cleared.',
+                'The monetary amount of this estimate line, represented as a decimal string. If both `quantity` and `rate` are specified but not `amount`, QuickBooks will calculate `amount` using the rate and any markup you supply. The calculation is `amount = (quantity * rate) * (1 + markupRate)` when `markupRate` is provided, or `amount = (quantity * rate) * (1 + markupRatePercent/100)` when `markupRatePercent` is provided. If `amount`, `rate`, and `quantity` are all unspecified, QuickBooks will calculate `amount` based on a `quantity` of `1` and the suggested `rate`. This field cannot be cleared.',
             },
             classId: {
               type: 'string',
