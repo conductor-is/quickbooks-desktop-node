@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.18.1 (2025-07-24)
+
+Full Changelog: [v12.18.0...v12.18.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.18.0...v12.18.1)
+
+### Chores
+
+* **internal:** codegen related update ([a414ede](https://github.com/conductor-is/quickbooks-desktop-node/commit/a414eded634b791ccc0bbc0e9a2cb043027ee6ae))
+
 ## 12.18.0 (2025-07-23)
 
 Full Changelog: [v12.17.0...v12.18.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.17.0...v12.18.0)
