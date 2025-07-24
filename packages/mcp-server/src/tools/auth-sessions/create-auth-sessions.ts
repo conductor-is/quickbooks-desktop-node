@@ -49,6 +49,7 @@ export const tool: Tool = {
     },
     required: ['endUserId', 'publishableKey'],
   },
+  annotations: {},
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {

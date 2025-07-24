@@ -99,6 +99,7 @@ export const tool: Tool = {
     },
     required: ['name', 'shouldPrintItemsInGroup', 'conductorEndUserId'],
   },
+  annotations: {},
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {

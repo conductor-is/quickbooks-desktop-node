@@ -96,6 +96,9 @@ export const tool: Tool = {
     },
     required: ['conductorEndUserId'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
