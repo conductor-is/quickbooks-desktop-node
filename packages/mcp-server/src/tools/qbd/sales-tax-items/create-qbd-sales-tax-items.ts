@@ -86,6 +86,7 @@ export const tool: Tool = {
     },
     required: ['name', 'conductorEndUserId'],
   },
+  annotations: {},
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {

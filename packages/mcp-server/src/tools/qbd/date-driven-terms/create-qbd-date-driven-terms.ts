@@ -64,6 +64,7 @@ export const tool: Tool = {
     },
     required: ['dueDayOfMonth', 'name', 'conductorEndUserId'],
   },
+  annotations: {},
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {

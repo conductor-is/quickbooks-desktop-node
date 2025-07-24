@@ -153,6 +153,7 @@ export const tool: Tool = {
     },
     required: ['assetAccountId', 'cogsAccountId', 'incomeAccountId', 'name', 'conductorEndUserId'],
   },
+  annotations: {},
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {

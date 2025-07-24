@@ -61,6 +61,7 @@ export const tool: Tool = {
     },
     required: ['amount', 'sourceAccountId', 'targetAccountId', 'transactionDate', 'conductorEndUserId'],
   },
+  annotations: {},
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {

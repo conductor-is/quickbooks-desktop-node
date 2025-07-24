@@ -34,6 +34,9 @@ export const tool: Tool = {
     },
     required: ['id'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
