@@ -44,6 +44,7 @@ export const tool: Tool = {
     },
     required: ['companyName', 'email', 'sourceId'],
   },
+  annotations: {},
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {

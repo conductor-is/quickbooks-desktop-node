@@ -34,6 +34,9 @@ export const tool: Tool = {
     },
     required: ['id'],
   },
+  annotations: {
+    idempotentHint: true,
+  },
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {

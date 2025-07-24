@@ -59,6 +59,7 @@ export const tool: Tool = {
     },
     required: ['isTaxable', 'name', 'conductorEndUserId'],
   },
+  annotations: {},
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {

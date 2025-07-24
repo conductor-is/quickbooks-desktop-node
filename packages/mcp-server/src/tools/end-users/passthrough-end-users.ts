@@ -43,6 +43,7 @@ export const tool: Tool = {
     },
     required: ['id', 'integrationSlug'],
   },
+  annotations: {},
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
