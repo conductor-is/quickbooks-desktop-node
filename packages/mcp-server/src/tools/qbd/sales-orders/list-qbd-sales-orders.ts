@@ -15,8 +15,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'list_qbd_sales_orders',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns a list of sales orders. Use the `cursor` parameter to paginate through the results.",
+  description: 'Returns a list of sales orders. Use the `cursor` parameter to paginate through the results.',
   inputSchema: {
     type: 'object',
     properties: {

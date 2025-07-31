@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'retrieve_qbd_preferences',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns the preferences that the QuickBooks administrator has set for all users of the connected company file. Note that preferences cannot be modified through the API, only through the QuickBooks Desktop user interface.",
+    'Returns the preferences that the QuickBooks administrator has set for all users of the connected company file. Note that preferences cannot be modified through the API, only through the QuickBooks Desktop user interface.',
   inputSchema: {
     type: 'object',
     properties: {

@@ -15,8 +15,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_other_names',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nCreates a new other-name.",
+  description: 'Creates a new other-name.',
   inputSchema: {
     type: 'object',
     properties: {
