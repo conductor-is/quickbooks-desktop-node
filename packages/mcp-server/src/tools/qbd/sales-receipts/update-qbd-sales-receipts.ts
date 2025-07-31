@@ -15,8 +15,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_sales_receipts',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nUpdates an existing sales receipt.",
+  description: 'Updates an existing sales receipt.',
   inputSchema: {
     type: 'object',
     properties: {
