@@ -189,6 +189,7 @@ import retrieve_qbd_time_tracking_activities from './qbd/time-tracking-activitie
 import update_qbd_time_tracking_activities from './qbd/time-tracking-activities/update-qbd-time-tracking-activities';
 import list_qbd_time_tracking_activities from './qbd/time-tracking-activities/list-qbd-time-tracking-activities';
 import delete_qbd_time_tracking_activities from './qbd/time-tracking-activities/delete-qbd-time-tracking-activities';
+import list_qbd_transaction_templates from './qbd/transaction-templates/list-qbd-transaction-templates';
 import retrieve_qbd_transactions from './qbd/transactions/retrieve-qbd-transactions';
 import list_qbd_transactions from './qbd/transactions/list-qbd-transactions';
 import create_qbd_transfers from './qbd/transfers/create-qbd-transfers';
@@ -396,6 +397,7 @@ addEndpoint(retrieve_qbd_time_tracking_activities);
 addEndpoint(update_qbd_time_tracking_activities);
 addEndpoint(list_qbd_time_tracking_activities);
 addEndpoint(delete_qbd_time_tracking_activities);
+addEndpoint(list_qbd_transaction_templates);
 addEndpoint(retrieve_qbd_transactions);
 addEndpoint(list_qbd_transactions);
 addEndpoint(create_qbd_transfers);
