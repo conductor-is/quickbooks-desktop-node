@@ -513,6 +513,10 @@ The following tools are available in this MCP server.
 - `list_qbd_time_tracking_activities` (`read`): Returns a list of time tracking activities. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_time_tracking_activities` (`write`): Permanently deletes a a time tracking activity. The deletion will fail if the time tracking activity is currently in use or has any linked transactions that are in use.
 
+### Resource `qbd.transaction_templates`:
+
+- `list_qbd_transaction_templates` (`read`): Returns a list of transaction templates. Use the `cursor` parameter to paginate through the results.
+
 ### Resource `qbd.transactions`:
 
 - `retrieve_qbd_transactions` (`read`): Retrieves a transaction by ID.

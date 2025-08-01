@@ -408,6 +408,12 @@ export {
   type TimeTrackingActivityDeleteParams,
 } from './time-tracking-activities';
 export {
+  TransactionTemplates,
+  type TransactionTemplate,
+  type TransactionTemplateListResponse,
+  type TransactionTemplateListParams,
+} from './transaction-templates';
+export {
   TransactionsCursorPage,
   Transactions,
   type Transaction,
