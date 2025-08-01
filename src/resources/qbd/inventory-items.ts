@@ -171,9 +171,8 @@ export interface InventoryItem {
   /**
    * The case-insensitive fully-qualified unique name of this inventory item, formed
    * by combining the names of its hierarchical parent objects with its own `name`,
-   * separated by colons. For example, if an inventory item is under
-   * "Products:Electronics" and has the `name` "Widgets", its `fullName` would be
-   * "Products:Electronics:Widgets".
+   * separated by colons. For example, if an inventory item is under "Kitchen" and
+   * has the `name` "Cabinet", its `fullName` would be "Kitchen:Cabinet".
    *
    * **NOTE**: Unlike `name`, `fullName` is guaranteed to be unique across all
    * inventory item objects. However, `fullName` can still be arbitrarily changed by

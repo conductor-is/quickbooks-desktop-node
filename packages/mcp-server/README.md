@@ -389,6 +389,13 @@ The following tools are available in this MCP server.
 - `update_qbd_non_inventory_items` (`write`): Updates an existing non-inventory item.
 - `list_qbd_non_inventory_items` (`read`): Returns a list of non-inventory items. Use the `cursor` parameter to paginate through the results.
 
+### Resource `qbd.other_charge_items`:
+
+- `create_qbd_other_charge_items` (`write`): Creates a new other charge item.
+- `retrieve_qbd_other_charge_items` (`read`): Retrieves an other charge item by ID.
+- `update_qbd_other_charge_items` (`write`): Updates an existing other charge item.
+- `list_qbd_other_charge_items` (`read`): Returns a list of other charge items. Use the `cursor` parameter to paginate through the results.
+
 ### Resource `qbd.other_names`:
 
 - `create_qbd_other_names` (`write`): Creates a new other-name.

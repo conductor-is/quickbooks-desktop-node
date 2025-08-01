@@ -255,6 +255,15 @@ export {
   type NonInventoryItemListParams,
 } from './non-inventory-items';
 export {
+  OtherChargeItemsCursorPage,
+  OtherChargeItems,
+  type OtherChargeItem,
+  type OtherChargeItemCreateParams,
+  type OtherChargeItemRetrieveParams,
+  type OtherChargeItemUpdateParams,
+  type OtherChargeItemListParams,
+} from './other-charge-items';
+export {
   OtherNames,
   type OtherName,
   type OtherNameListResponse,

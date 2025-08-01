@@ -409,6 +409,19 @@ Methods:
 - <code title="post /quickbooks-desktop/non-inventory-items/{id}">client.qbd.nonInventoryItems.<a href="./src/resources/qbd/non-inventory-items.ts">update</a>(id, { ...params }) -> NonInventoryItem</code>
 - <code title="get /quickbooks-desktop/non-inventory-items">client.qbd.nonInventoryItems.<a href="./src/resources/qbd/non-inventory-items.ts">list</a>({ ...params }) -> NonInventoryItemsCursorPage</code>
 
+## OtherChargeItems
+
+Types:
+
+- <code><a href="./src/resources/qbd/other-charge-items.ts">OtherChargeItem</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/other-charge-items">client.qbd.otherChargeItems.<a href="./src/resources/qbd/other-charge-items.ts">create</a>({ ...params }) -> OtherChargeItem</code>
+- <code title="get /quickbooks-desktop/other-charge-items/{id}">client.qbd.otherChargeItems.<a href="./src/resources/qbd/other-charge-items.ts">retrieve</a>(id, { ...params }) -> OtherChargeItem</code>
+- <code title="post /quickbooks-desktop/other-charge-items/{id}">client.qbd.otherChargeItems.<a href="./src/resources/qbd/other-charge-items.ts">update</a>(id, { ...params }) -> OtherChargeItem</code>
+- <code title="get /quickbooks-desktop/other-charge-items">client.qbd.otherChargeItems.<a href="./src/resources/qbd/other-charge-items.ts">list</a>({ ...params }) -> OtherChargeItemsCursorPage</code>
+
 ## OtherNames
 
 Types:
