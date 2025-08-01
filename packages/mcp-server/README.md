@@ -505,6 +505,10 @@ The following tools are available in this MCP server.
 - `update_qbd_subtotal_items` (`write`): Updates an existing subtotal item.
 - `list_qbd_subtotal_items` (`read`): Returns a list of subtotal items. Use the `cursor` parameter to paginate through the results.
 
+### Resource `qbd.templates`:
+
+- `list_qbd_templates` (`read`): Returns a list of templates. Use the `cursor` parameter to paginate through the results.
+
 ### Resource `qbd.time_tracking_activities`:
 
 - `create_qbd_time_tracking_activities` (`write`): Creates a new time tracking activity.
@@ -512,10 +516,6 @@ The following tools are available in this MCP server.
 - `update_qbd_time_tracking_activities` (`write`): Updates an existing time tracking activity.
 - `list_qbd_time_tracking_activities` (`read`): Returns a list of time tracking activities. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_time_tracking_activities` (`write`): Permanently deletes a a time tracking activity. The deletion will fail if the time tracking activity is currently in use or has any linked transactions that are in use.
-
-### Resource `qbd.transaction_templates`:
-
-- `list_qbd_transaction_templates` (`read`): Returns a list of transaction templates. Use the `cursor` parameter to paginate through the results.
 
 ### Resource `qbd.transactions`:
 
