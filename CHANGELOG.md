@@ -1,5 +1,20 @@
 # Changelog
 
+## 12.18.2 (2025-08-01)
+
+Full Changelog: [v12.18.1...v12.18.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.18.1...v12.18.2)
+
+### Bug Fixes
+
+* **mcp:** avoid sending `jq_filter` to base API ([fac3d68](https://github.com/conductor-is/quickbooks-desktop-node/commit/fac3d68b0cf1a3c5efdb3bc6aea4e72705871be5))
+* **mcp:** fix tool description of jq_filter ([74a9c5a](https://github.com/conductor-is/quickbooks-desktop-node/commit/74a9c5acd6c12b4a5f6bcdfe961b14a8889364cd))
+* **mcp:** reverse validJson capability option and limit scope ([523b818](https://github.com/conductor-is/quickbooks-desktop-node/commit/523b818b04ad4ec622f0f91a446f854cca06482f))
+
+
+### Chores
+
+* **internal:** remove redundant imports config ([86d1e55](https://github.com/conductor-is/quickbooks-desktop-node/commit/86d1e550d1c7d517c0872126cdfa22de842cb180))
+
 ## 12.18.1 (2025-07-24)
 
 Full Changelog: [v12.18.0...v12.18.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.18.0...v12.18.1)
