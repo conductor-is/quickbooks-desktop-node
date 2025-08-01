@@ -396,6 +396,7 @@ export {
   type SubtotalItemUpdateParams,
   type SubtotalItemListParams,
 } from './subtotal-items';
+export { Templates, type Template, type TemplateListResponse, type TemplateListParams } from './templates';
 export {
   TimeTrackingActivitiesCursorPage,
   TimeTrackingActivities,
@@ -407,12 +408,6 @@ export {
   type TimeTrackingActivityListParams,
   type TimeTrackingActivityDeleteParams,
 } from './time-tracking-activities';
-export {
-  TransactionTemplates,
-  type TransactionTemplate,
-  type TransactionTemplateListResponse,
-  type TransactionTemplateListParams,
-} from './transaction-templates';
 export {
   TransactionsCursorPage,
   Transactions,
