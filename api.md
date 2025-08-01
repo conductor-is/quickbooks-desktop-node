@@ -640,6 +640,17 @@ Methods:
 - <code title="get /quickbooks-desktop/time-tracking-activities">client.qbd.timeTrackingActivities.<a href="./src/resources/qbd/time-tracking-activities.ts">list</a>({ ...params }) -> TimeTrackingActivitiesCursorPage</code>
 - <code title="delete /quickbooks-desktop/time-tracking-activities/{id}">client.qbd.timeTrackingActivities.<a href="./src/resources/qbd/time-tracking-activities.ts">delete</a>(id, { ...params }) -> TimeTrackingActivityDeleteResponse</code>
 
+## TransactionTemplates
+
+Types:
+
+- <code><a href="./src/resources/qbd/transaction-templates.ts">TransactionTemplate</a></code>
+- <code><a href="./src/resources/qbd/transaction-templates.ts">TransactionTemplateListResponse</a></code>
+
+Methods:
+
+- <code title="get /quickbooks-desktop/transaction-templates">client.qbd.transactionTemplates.<a href="./src/resources/qbd/transaction-templates.ts">list</a>({ ...params }) -> TransactionTemplateListResponse</code>
+
 ## Transactions
 
 Types:
