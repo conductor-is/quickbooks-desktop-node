@@ -81,9 +81,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
-  const body = args as any;
+  const { jq_filter, ...body } = args as any;
   const response = await conductor.qbd.transfers.list(body).asResponse();
-  return asTextContentResult(await maybeFilter(args, await response.json()));
+  return asTextContentResult(await maybeFilter(jq_filter, await response.json()));
 };
 
 export default { metadata, tool, handler };

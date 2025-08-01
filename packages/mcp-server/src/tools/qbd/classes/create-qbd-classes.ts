@@ -54,8 +54,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
-  const body = args as any;
-  return asTextContentResult(await maybeFilter(args, await conductor.qbd.classes.create(body)));
+  const { jq_filter, ...body } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await conductor.qbd.classes.create(body)));
 };
 
 export default { metadata, tool, handler };
