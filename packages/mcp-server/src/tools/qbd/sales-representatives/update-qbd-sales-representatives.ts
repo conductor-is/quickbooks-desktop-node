@@ -62,9 +62,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
-  const { id, ...body } = args as any;
+  const { id, jq_filter, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await conductor.qbd.salesRepresentatives.update(id, body)),
+    await maybeFilter(jq_filter, await conductor.qbd.salesRepresentatives.update(id, body)),
   );
 };
 
