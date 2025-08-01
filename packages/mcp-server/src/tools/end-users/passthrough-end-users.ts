@@ -47,9 +47,12 @@ export const tool: Tool = {
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
-  const { id, integrationSlug, ...body } = args as any;
+  const { id, integrationSlug, jq_filter, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await conductor.endUsers.passthrough(id, integrationSlug, body['qbd_payload'])),
+    await maybeFilter(
+      jq_filter,
+      await conductor.endUsers.passthrough(id, integrationSlug, body['qbd_payload']),
+    ),
   );
 };
 
