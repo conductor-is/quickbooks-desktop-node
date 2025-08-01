@@ -283,6 +283,16 @@ import {
   NonInventoryItems,
   NonInventoryItemsCursorPage,
 } from './non-inventory-items';
+import * as OtherChargeItemsAPI from './other-charge-items';
+import {
+  OtherChargeItem,
+  OtherChargeItemCreateParams,
+  OtherChargeItemListParams,
+  OtherChargeItemRetrieveParams,
+  OtherChargeItemUpdateParams,
+  OtherChargeItems,
+  OtherChargeItemsCursorPage,
+} from './other-charge-items';
 import * as OtherNamesAPI from './other-names';
 import {
   OtherName,
@@ -522,6 +532,9 @@ export class Qbd extends APIResource {
   nonInventoryItems: NonInventoryItemsAPI.NonInventoryItems = new NonInventoryItemsAPI.NonInventoryItems(
     this._client,
   );
+  otherChargeItems: OtherChargeItemsAPI.OtherChargeItems = new OtherChargeItemsAPI.OtherChargeItems(
+    this._client,
+  );
   otherNames: OtherNamesAPI.OtherNames = new OtherNamesAPI.OtherNames(this._client);
   paymentMethods: PaymentMethodsAPI.PaymentMethods = new PaymentMethodsAPI.PaymentMethods(this._client);
   payrollWageItems: PayrollWageItemsAPI.PayrollWageItems = new PayrollWageItemsAPI.PayrollWageItems(
@@ -640,6 +653,8 @@ Qbd.JournalEntries = JournalEntries;
 Qbd.JournalEntriesCursorPage = JournalEntriesCursorPage;
 Qbd.NonInventoryItems = NonInventoryItems;
 Qbd.NonInventoryItemsCursorPage = NonInventoryItemsCursorPage;
+Qbd.OtherChargeItems = OtherChargeItems;
+Qbd.OtherChargeItemsCursorPage = OtherChargeItemsCursorPage;
 Qbd.OtherNames = OtherNames;
 Qbd.PaymentMethods = PaymentMethods;
 Qbd.PayrollWageItems = PayrollWageItems;
@@ -962,6 +977,16 @@ export declare namespace Qbd {
     type NonInventoryItemRetrieveParams as NonInventoryItemRetrieveParams,
     type NonInventoryItemUpdateParams as NonInventoryItemUpdateParams,
     type NonInventoryItemListParams as NonInventoryItemListParams,
+  };
+
+  export {
+    OtherChargeItems as OtherChargeItems,
+    type OtherChargeItem as OtherChargeItem,
+    OtherChargeItemsCursorPage as OtherChargeItemsCursorPage,
+    type OtherChargeItemCreateParams as OtherChargeItemCreateParams,
+    type OtherChargeItemRetrieveParams as OtherChargeItemRetrieveParams,
+    type OtherChargeItemUpdateParams as OtherChargeItemUpdateParams,
+    type OtherChargeItemListParams as OtherChargeItemListParams,
   };
 
   export {
