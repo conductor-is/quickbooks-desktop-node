@@ -625,6 +625,17 @@ Methods:
 - <code title="post /quickbooks-desktop/subtotal-items/{id}">client.qbd.subtotalItems.<a href="./src/resources/qbd/subtotal-items.ts">update</a>(id, { ...params }) -> SubtotalItem</code>
 - <code title="get /quickbooks-desktop/subtotal-items">client.qbd.subtotalItems.<a href="./src/resources/qbd/subtotal-items.ts">list</a>({ ...params }) -> SubtotalItemsCursorPage</code>
 
+## Templates
+
+Types:
+
+- <code><a href="./src/resources/qbd/templates.ts">Template</a></code>
+- <code><a href="./src/resources/qbd/templates.ts">TemplateListResponse</a></code>
+
+Methods:
+
+- <code title="get /quickbooks-desktop/templates">client.qbd.templates.<a href="./src/resources/qbd/templates.ts">list</a>({ ...params }) -> TemplateListResponse</code>
+
 ## TimeTrackingActivities
 
 Types:
@@ -639,17 +650,6 @@ Methods:
 - <code title="post /quickbooks-desktop/time-tracking-activities/{id}">client.qbd.timeTrackingActivities.<a href="./src/resources/qbd/time-tracking-activities.ts">update</a>(id, { ...params }) -> TimeTrackingActivity</code>
 - <code title="get /quickbooks-desktop/time-tracking-activities">client.qbd.timeTrackingActivities.<a href="./src/resources/qbd/time-tracking-activities.ts">list</a>({ ...params }) -> TimeTrackingActivitiesCursorPage</code>
 - <code title="delete /quickbooks-desktop/time-tracking-activities/{id}">client.qbd.timeTrackingActivities.<a href="./src/resources/qbd/time-tracking-activities.ts">delete</a>(id, { ...params }) -> TimeTrackingActivityDeleteResponse</code>
-
-## TransactionTemplates
-
-Types:
-
-- <code><a href="./src/resources/qbd/transaction-templates.ts">TransactionTemplate</a></code>
-- <code><a href="./src/resources/qbd/transaction-templates.ts">TransactionTemplateListResponse</a></code>
-
-Methods:
-
-- <code title="get /quickbooks-desktop/transaction-templates">client.qbd.transactionTemplates.<a href="./src/resources/qbd/transaction-templates.ts">list</a>({ ...params }) -> TransactionTemplateListResponse</code>
 
 ## Transactions
 
