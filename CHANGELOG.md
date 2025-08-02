@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.21.0 (2025-08-02)
+
+Full Changelog: [v12.20.0...v12.21.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.20.0...v12.21.0)
+
+### Features
+
+* **mcp:** add logging when environment variable is set ([67ecdc8](https://github.com/conductor-is/quickbooks-desktop-node/commit/67ecdc8701f2cf5aa998fd215ec60dc026121d81))
+
 ## 12.20.0 (2025-08-01)
 
 Full Changelog: [v12.19.0...v12.20.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.19.0...v12.20.0)
