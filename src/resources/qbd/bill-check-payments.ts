@@ -383,7 +383,7 @@ export namespace BillCheckPayment {
     /**
      * The date of this receivable transaction, in ISO 8601 format (YYYY-MM-DD).
      */
-    transactionDate: string;
+    transactionDate: string | null;
 
     /**
      * The ID of the receivable transaction to which this payment is applied.
