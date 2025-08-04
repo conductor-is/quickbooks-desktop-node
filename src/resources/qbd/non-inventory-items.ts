@@ -357,7 +357,7 @@ export namespace NonInventoryItem {
     /**
      * The expense account used to track costs from purchases of this item.
      */
-    expenseAccount: SalesAndPurchaseDetails.ExpenseAccount;
+    expenseAccount: SalesAndPurchaseDetails.ExpenseAccount | null;
 
     /**
      * The income account used to track revenue from sales of this item.
