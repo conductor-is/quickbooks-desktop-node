@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
 import * as Core from '../core';
 
 export class EndUsers extends APIResource {
@@ -77,23 +76,9 @@ export class EndUsers extends APIResource {
   passthrough(
     id: string,
     integrationSlug: 'quickbooks_desktop',
-    body?: EndUserPassthroughParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EndUserPassthroughResponse>;
-  passthrough(
-    id: string,
-    integrationSlug: 'quickbooks_desktop',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EndUserPassthroughResponse>;
-  passthrough(
-    id: string,
-    integrationSlug: 'quickbooks_desktop',
-    body?: EndUserPassthroughParams | Core.RequestOptions,
+    body: EndUserPassthroughParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<EndUserPassthroughResponse> {
-    if (isRequestOptions(body)) {
-      return this.passthrough(id, integrationSlug, undefined, body);
-    }
     return this._client.post(`/end-users/${id}/passthrough/${integrationSlug}`, { body, ...options });
   }
 }
