@@ -145,6 +145,13 @@ import {
   DateDrivenTermRetrieveParams,
   DateDrivenTerms,
 } from './date-driven-terms';
+import * as DeletedTransactionsAPI from './deleted-transactions';
+import {
+  DeletedTransaction,
+  DeletedTransactionListParams,
+  DeletedTransactionListResponse,
+  DeletedTransactions,
+} from './deleted-transactions';
 import * as DiscountItemsAPI from './discount-items';
 import {
   DiscountItem,
@@ -517,6 +524,8 @@ export class Qbd extends APIResource {
   creditMemos: CreditMemosAPI.CreditMemos = new CreditMemosAPI.CreditMemos(this._client);
   customers: CustomersAPI.Customers = new CustomersAPI.Customers(this._client);
   dateDrivenTerms: DateDrivenTermsAPI.DateDrivenTerms = new DateDrivenTermsAPI.DateDrivenTerms(this._client);
+  deletedTransactions: DeletedTransactionsAPI.DeletedTransactions =
+    new DeletedTransactionsAPI.DeletedTransactions(this._client);
   discountItems: DiscountItemsAPI.DiscountItems = new DiscountItemsAPI.DiscountItems(this._client);
   employees: EmployeesAPI.Employees = new EmployeesAPI.Employees(this._client);
   estimates: EstimatesAPI.Estimates = new EstimatesAPI.Estimates(this._client);
@@ -633,6 +642,7 @@ Qbd.CreditMemosCursorPage = CreditMemosCursorPage;
 Qbd.Customers = Customers;
 Qbd.CustomersCursorPage = CustomersCursorPage;
 Qbd.DateDrivenTerms = DateDrivenTerms;
+Qbd.DeletedTransactions = DeletedTransactions;
 Qbd.DiscountItems = DiscountItems;
 Qbd.DiscountItemsCursorPage = DiscountItemsCursorPage;
 Qbd.Employees = Employees;
@@ -843,6 +853,13 @@ export declare namespace Qbd {
     type DateDrivenTermCreateParams as DateDrivenTermCreateParams,
     type DateDrivenTermRetrieveParams as DateDrivenTermRetrieveParams,
     type DateDrivenTermListParams as DateDrivenTermListParams,
+  };
+
+  export {
+    DeletedTransactions as DeletedTransactions,
+    type DeletedTransaction as DeletedTransaction,
+    type DeletedTransactionListResponse as DeletedTransactionListResponse,
+    type DeletedTransactionListParams as DeletedTransactionListParams,
   };
 
   export {
