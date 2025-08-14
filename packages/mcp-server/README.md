@@ -286,6 +286,10 @@ The following tools are available in this MCP server.
 - `retrieve_qbd_date_driven_terms` (`read`): Retrieves a date-driven term by ID.
 - `list_qbd_date_driven_terms` (`read`): Returns a list of date-driven terms. NOTE: QuickBooks Desktop does not support pagination for date-driven terms; hence, there is no `cursor` parameter. Users typically have few date-driven terms.
 
+### Resource `qbd.deleted_list_objects`:
+
+- `list_qbd_deleted_list_objects` (`read`): Lists deleted non-transaction list-objects (e.g., customers, vendors, employees, items) from the last 90 days. Results are grouped by list-object type and ordered by actual delete time (ascending). For deleted transactions, see the deleted-transactions endpoint.
+
 ### Resource `qbd.deleted_transactions`:
 
 - `list_qbd_deleted_transactions` (`read`): Lists deleted transactions of the specified type(s) (e.g., invoice, bill, estimate) in the last 90 days. Results are grouped by transaction type and ordered by actual delete time (ascending).
