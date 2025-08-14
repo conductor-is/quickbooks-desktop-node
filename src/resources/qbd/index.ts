@@ -130,6 +130,12 @@ export {
   type DateDrivenTermListParams,
 } from './date-driven-terms';
 export {
+  DeletedListObjects,
+  type DeletedListObject,
+  type DeletedListObjectListResponse,
+  type DeletedListObjectListParams,
+} from './deleted-list-objects';
+export {
   DeletedTransactions,
   type DeletedTransaction,
   type DeletedTransactionListResponse,

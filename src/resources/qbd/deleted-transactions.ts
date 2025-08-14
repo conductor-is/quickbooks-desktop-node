@@ -110,8 +110,8 @@ export interface DeletedTransactionListResponse {
 
 export interface DeletedTransactionListParams {
   /**
-   * Query param: Filter for deleted transactions by their transaction type. You can
-   * specify one or more types.
+   * Query param: Filter for deleted transactions by their transaction type. Specify
+   * one or more types.
    */
   transactionType: Array<
     | 'ar_refund_credit_card'
