@@ -229,6 +229,17 @@ Methods:
 - <code title="get /quickbooks-desktop/date-driven-terms/{id}">client.qbd.dateDrivenTerms.<a href="./src/resources/qbd/date-driven-terms.ts">retrieve</a>(id, { ...params }) -> DateDrivenTerm</code>
 - <code title="get /quickbooks-desktop/date-driven-terms">client.qbd.dateDrivenTerms.<a href="./src/resources/qbd/date-driven-terms.ts">list</a>({ ...params }) -> DateDrivenTermListResponse</code>
 
+## DeletedTransactions
+
+Types:
+
+- <code><a href="./src/resources/qbd/deleted-transactions.ts">DeletedTransaction</a></code>
+- <code><a href="./src/resources/qbd/deleted-transactions.ts">DeletedTransactionListResponse</a></code>
+
+Methods:
+
+- <code title="get /quickbooks-desktop/deleted-transactions">client.qbd.deletedTransactions.<a href="./src/resources/qbd/deleted-transactions.ts">list</a>({ ...params }) -> DeletedTransactionListResponse</code>
+
 ## DiscountItems
 
 Types:
