@@ -23,8 +23,7 @@ export const tool: Tool = {
     properties: {
       transactionType: {
         type: 'array',
-        description:
-          'Filter for deleted transactions by their transaction type. You can specify one or more types.',
+        description: 'Filter for deleted transactions by their transaction type. Specify one or more types.',
         items: {
           type: 'string',
           enum: [
