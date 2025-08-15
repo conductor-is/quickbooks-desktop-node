@@ -11,7 +11,7 @@ const conductor = new Conductor({
 describe('resource deletedTransactions', () => {
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.deletedTransactions.list({
-      transactionType: ['invoice'],
+      transactionTypes: ['invoice'],
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -25,7 +25,7 @@ describe('resource deletedTransactions', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.deletedTransactions.list({
-      transactionType: ['invoice'],
+      transactionTypes: ['invoice'],
       conductorEndUserId: 'end_usr_1234567abcdefg',
       deletedAfter: '2021-01-01T12:34:56',
       deletedBefore: '2021-02-01T12:34:56',

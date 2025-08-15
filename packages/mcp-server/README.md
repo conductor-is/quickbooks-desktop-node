@@ -288,13 +288,11 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.deleted_list_objects`:
 
-- `list_qbd_deleted_list_objects` (`read`): Lists deleted non-transaction list-objects (e.g., customers, vendors, employees, items) from the last 90 days. Results are grouped by list-object type and ordered by actual delete time (ascending). For deleted transactions, see the deleted-transactions endpoint.
+- `list_qbd_deleted_list_objects` (`read`): Lists deleted non-transaction list-objects (e.g., customers, vendors, employees, items) from the last 90 days. Results are grouped by list-object type and ordered by actual delete time (ascending). For deleted transactions (e.g., invoices, bills, estimates), see the deleted-transactions endpoint.
 
 ### Resource `qbd.deleted_transactions`:
 
-- `list_qbd_deleted_transactions` (`read`): Lists deleted transactions of the specified type(s) (e.g., invoice, bill, estimate) in the last 90 days. Results are grouped by transaction type and ordered by actual delete time (ascending).
-
-  NOTE: For deleted non-transaction objects (e.g., customer, vendor, employee), see the deleted-objects endpoint.
+- `list_qbd_deleted_transactions` (`read`): Lists deleted transactions of the specified type(s) (e.g., invoice, bill, estimate) in the last 90 days. Results are grouped by transaction type and ordered by actual delete time (ascending). NOTE: For deleted non-transaction list-objects (e.g., customer, vendor, employee), see the deleted-list-objects endpoint.
 
 ### Resource `qbd.discount_items`:
 

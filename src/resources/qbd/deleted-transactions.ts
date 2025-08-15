@@ -7,16 +7,15 @@ export class DeletedTransactions extends APIResource {
   /**
    * Lists deleted transactions of the specified type(s) (e.g., invoice, bill,
    * estimate) in the last 90 days. Results are grouped by transaction type and
-   * ordered by actual delete time (ascending).
-   *
-   * NOTE: For deleted non-transaction objects (e.g., customer, vendor, employee),
-   * see the deleted-objects endpoint.
+   * ordered by actual delete time (ascending). NOTE: For deleted non-transaction
+   * list-objects (e.g., customer, vendor, employee), see the deleted-list-objects
+   * endpoint.
    *
    * @example
    * ```ts
    * const deletedTransactions =
    *   await conductor.qbd.deletedTransactions.list({
-   *     transactionType: ['invoice'],
+   *     transactionTypes: ['invoice'],
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
@@ -59,6 +58,13 @@ export interface DeletedTransaction {
    * The type of object. This value is always `"qbd_deleted_transaction"`.
    */
   objectType: 'qbd_deleted_transaction';
+
+  /**
+   * The case-sensitive user-defined reference number for this deleted transaction,
+   * which can be used to identify the transaction in QuickBooks. This value is not
+   * required to be unique and can be arbitrarily changed by the QuickBooks user.
+   */
+  refNumber: string | null;
 
   /**
    * The type of deleted transaction.
@@ -110,10 +116,9 @@ export interface DeletedTransactionListResponse {
 
 export interface DeletedTransactionListParams {
   /**
-   * Query param: Filter for deleted transactions by their transaction type. Specify
-   * one or more types.
+   * Query param: Filter for deleted transactions by their transaction type(s).
    */
-  transactionType: Array<
+  transactionTypes: Array<
     | 'ar_refund_credit_card'
     | 'bill'
     | 'bill_payment_check'

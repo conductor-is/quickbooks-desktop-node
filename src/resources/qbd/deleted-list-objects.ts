@@ -7,14 +7,14 @@ export class DeletedListObjects extends APIResource {
   /**
    * Lists deleted non-transaction list-objects (e.g., customers, vendors, employees,
    * items) from the last 90 days. Results are grouped by list-object type and
-   * ordered by actual delete time (ascending). For deleted transactions, see the
-   * deleted-transactions endpoint.
+   * ordered by actual delete time (ascending). For deleted transactions (e.g.,
+   * invoices, bills, estimates), see the deleted-transactions endpoint.
    *
    * @example
    * ```ts
    * const deletedListObjects =
    *   await conductor.qbd.deletedListObjects.list({
-   *     objectType: ['customer'],
+   *     objectTypes: ['customer'],
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
@@ -122,10 +122,9 @@ export interface DeletedListObjectListResponse {
 
 export interface DeletedListObjectListParams {
   /**
-   * Query param: Filter for deleted list-objects by their list-object type. Specify
-   * one or more types.
+   * Query param: Filter for deleted list-objects by their list-object type(s).
    */
-  objectType: Array<
+  objectTypes: Array<
     | 'account'
     | 'billing_rate'
     | 'class'
