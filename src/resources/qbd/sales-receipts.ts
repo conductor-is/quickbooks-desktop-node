@@ -12,7 +12,6 @@ export class SalesReceipts extends APIResource {
    * ```ts
    * const salesReceipt =
    *   await conductor.qbd.salesReceipts.create({
-   *     customerId: '80000001-1234567890',
    *     transactionDate: '2021-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
@@ -183,7 +182,7 @@ export interface SalesReceipt {
    * The customer or customer-job to which the payment for this sales receipt is
    * credited.
    */
-  customer: SalesReceipt.Customer;
+  customer: SalesReceipt.Customer | null;
 
   /**
    * The message to display to the customer on the sales receipt.
@@ -2164,12 +2163,6 @@ export interface SalesReceiptDeleteResponse {
 
 export interface SalesReceiptCreateParams {
   /**
-   * Body param: The customer or customer-job to which the payment for this sales
-   * receipt is credited.
-   */
-  customerId: string;
-
-  /**
    * Body param: The date of this sales receipt, in ISO 8601 format (YYYY-MM-DD).
    */
   transactionDate: string;
@@ -2205,6 +2198,12 @@ export interface SalesReceiptCreateParams {
    * must also specify the `paymentMethod` field.
    */
   creditCardTransaction?: SalesReceiptCreateParams.CreditCardTransaction;
+
+  /**
+   * Body param: The customer or customer-job to which the payment for this sales
+   * receipt is credited.
+   */
+  customerId?: string;
 
   /**
    * Body param: The message to display to the customer on the sales receipt.
