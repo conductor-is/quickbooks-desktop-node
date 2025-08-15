@@ -11,7 +11,7 @@ const conductor = new Conductor({
 describe('resource deletedListObjects', () => {
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.deletedListObjects.list({
-      objectType: ['customer'],
+      objectTypes: ['customer'],
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -25,7 +25,7 @@ describe('resource deletedListObjects', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.deletedListObjects.list({
-      objectType: ['customer'],
+      objectTypes: ['customer'],
       conductorEndUserId: 'end_usr_1234567abcdefg',
       deletedAfter: '2021-01-01T12:34:56',
       deletedBefore: '2021-02-01T12:34:56',
