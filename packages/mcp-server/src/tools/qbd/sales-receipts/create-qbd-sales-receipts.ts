@@ -19,10 +19,6 @@ export const tool: Tool = {
   inputSchema: {
     type: 'object',
     properties: {
-      customerId: {
-        type: 'string',
-        description: 'The customer or customer-job to which the payment for this sales receipt is credited.',
-      },
       transactionDate: {
         type: 'string',
         description: 'The date of this sales receipt, in ISO 8601 format (YYYY-MM-DD).',
@@ -236,6 +232,10 @@ export const tool: Tool = {
             ],
           },
         },
+      },
+      customerId: {
+        type: 'string',
+        description: 'The customer or customer-job to which the payment for this sales receipt is credited.',
       },
       customerMessageId: {
         type: 'string',
@@ -723,7 +723,7 @@ export const tool: Tool = {
           'The shipping method used for this sales receipt, such as standard mail or overnight delivery.',
       },
     },
-    required: ['customerId', 'transactionDate', 'conductorEndUserId'],
+    required: ['transactionDate', 'conductorEndUserId'],
   },
   annotations: {},
 };

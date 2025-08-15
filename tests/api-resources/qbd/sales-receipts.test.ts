@@ -11,7 +11,6 @@ const conductor = new Conductor({
 describe('resource salesReceipts', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.salesReceipts.create({
-      customerId: '80000001-1234567890',
       transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -26,7 +25,6 @@ describe('resource salesReceipts', () => {
 
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.salesReceipts.create({
-      customerId: '80000001-1234567890',
       transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       billingAddress: {
@@ -72,6 +70,7 @@ describe('resource salesReceipts', () => {
           transactionAuthorizationStamp: 2,
         },
       },
+      customerId: '80000001-1234567890',
       customerMessageId: '80000001-1234567890',
       depositToAccountId: '80000001-1234567890',
       documentTemplateId: '80000001-1234567890',
