@@ -398,13 +398,12 @@ export interface TransactionListParams extends CursorPageParams {
   transactionDateTo?: string;
 
   /**
-   * Query param: Filter for transactions by their type. You can specify one or more
-   * transaction types.
+   * Query param: Filter for transactions by their transaction type(s).
    *
    * **NOTE**: Filtering for time tracking activities is not supported by QuickBooks
    * for this endpoint.
    */
-  transactionType?: Array<
+  transactionTypes?: Array<
     | 'all'
     | 'ar_refund_credit_card'
     | 'bill'

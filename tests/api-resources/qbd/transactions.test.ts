@@ -61,7 +61,7 @@ describe('resource transactions', () => {
       refNumberTo: 'INV-9999',
       transactionDateFrom: '2021-01-01',
       transactionDateTo: '2021-02-01',
-      transactionType: ['invoice'],
+      transactionTypes: ['invoice'],
       updatedAfter: '2021-01-01T12:34:56',
       updatedBefore: '2021-02-01T12:34:56',
     });

@@ -145,10 +145,10 @@ export const tool: Tool = {
           'Filter for transactions whose `date` field is on or before this date, in ISO 8601 format (YYYY-MM-DD).',
         format: 'date',
       },
-      transactionType: {
+      transactionTypes: {
         type: 'array',
         description:
-          'Filter for transactions by their type. You can specify one or more transaction types.\n\n**NOTE**: Filtering for time tracking activities is not supported by QuickBooks for this endpoint.',
+          'Filter for transactions by their transaction type(s).\n\n**NOTE**: Filtering for time tracking activities is not supported by QuickBooks for this endpoint.',
         items: {
           type: 'string',
           enum: [
