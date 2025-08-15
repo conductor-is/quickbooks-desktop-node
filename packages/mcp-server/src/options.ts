@@ -5,6 +5,9 @@ import { ClientCapabilities, knownClients, ClientType } from './compat';
 
 export type CLIOptions = McpOptions & {
   list: boolean;
+  transport: 'stdio' | 'http';
+  port: number | undefined;
+  socket: string | undefined;
 };
 
 export type McpOptions = {
@@ -129,6 +132,20 @@ export function parseOptions(): CLIOptions {
       type: 'boolean',
       description: 'Print detailed explanation of client capabilities and exit',
     })
+    .option('transport', {
+      type: 'string',
+      choices: ['stdio', 'http'],
+      default: 'stdio',
+      description: 'What transport to use; stdio for local servers or http for remote servers',
+    })
+    .option('port', {
+      type: 'number',
+      description: 'Port to serve on if using http transport',
+    })
+    .option('socket', {
+      type: 'string',
+      description: 'Unix socket to serve on if using http transport',
+    })
     .help();
 
   for (const [command, desc] of examples()) {
@@ -238,6 +255,8 @@ export function parseOptions(): CLIOptions {
   const includeAllTools =
     explicitTools ? argv.tools?.includes('all') && !argv.noTools?.includes('all') : undefined;
 
+  const transport = argv.transport as 'stdio' | 'http';
+
   const client = argv.client as ClientType;
   return {
     client: client && knownClients[client] ? client : undefined,
@@ -246,6 +265,9 @@ export function parseOptions(): CLIOptions {
     filters,
     capabilities: clientCapabilities,
     list: argv.list || false,
+    transport,
+    port: argv.port,
+    socket: argv.socket,
   };
 }
 
