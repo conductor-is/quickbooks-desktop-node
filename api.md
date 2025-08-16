@@ -697,6 +697,19 @@ Methods:
 - <code title="post /quickbooks-desktop/transfers/{id}">client.qbd.transfers.<a href="./src/resources/qbd/transfers.ts">update</a>(id, { ...params }) -> Transfer</code>
 - <code title="get /quickbooks-desktop/transfers">client.qbd.transfers.<a href="./src/resources/qbd/transfers.ts">list</a>({ ...params }) -> TransfersCursorPage</code>
 
+## UnitOfMeasureSets
+
+Types:
+
+- <code><a href="./src/resources/qbd/unit-of-measure-sets.ts">UnitOfMeasureSet</a></code>
+- <code><a href="./src/resources/qbd/unit-of-measure-sets.ts">UnitOfMeasureSetListResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/unit-of-measure-sets">client.qbd.unitOfMeasureSets.<a href="./src/resources/qbd/unit-of-measure-sets.ts">create</a>({ ...params }) -> UnitOfMeasureSet</code>
+- <code title="get /quickbooks-desktop/unit-of-measure-sets/{id}">client.qbd.unitOfMeasureSets.<a href="./src/resources/qbd/unit-of-measure-sets.ts">retrieve</a>(id, { ...params }) -> UnitOfMeasureSet</code>
+- <code title="get /quickbooks-desktop/unit-of-measure-sets">client.qbd.unitOfMeasureSets.<a href="./src/resources/qbd/unit-of-measure-sets.ts">list</a>({ ...params }) -> UnitOfMeasureSetListResponse</code>
+
 ## VendorCredits
 
 Types:

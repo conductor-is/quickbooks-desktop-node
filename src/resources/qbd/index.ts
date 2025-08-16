@@ -437,6 +437,14 @@ export {
   type TransferListParams,
 } from './transfers';
 export {
+  UnitOfMeasureSets,
+  type UnitOfMeasureSet,
+  type UnitOfMeasureSetListResponse,
+  type UnitOfMeasureSetCreateParams,
+  type UnitOfMeasureSetRetrieveParams,
+  type UnitOfMeasureSetListParams,
+} from './unit-of-measure-sets';
+export {
   VendorCreditsCursorPage,
   VendorCredits,
   type VendorCredit,
