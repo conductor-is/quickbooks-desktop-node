@@ -563,6 +563,15 @@ The following tools are available in this MCP server.
 - `update_qbd_transfers` (`write`): Updates an existing transfer.
 - `list_qbd_transfers` (`read`): Returns a list of transfers. Use the `cursor` parameter to paginate through the results.
 
+### Resource `qbd.unit_of_measure_sets`:
+
+- `create_qbd_unit_of_measure_sets` (`write`): Creates a new unit-of-measure set.
+
+  NOTE: The QuickBooks company file must have unit-of-measure enabled (either a single unit per item or multiple units per item). To support both configurations, prefix all UOM set names with "By the" (for example, "By the Barrel"); otherwise, the set may not appear in the QuickBooks UI when the company file is configured for a single unit per item.
+
+- `retrieve_qbd_unit_of_measure_sets` (`read`): Retrieves an unit-of-measure set by ID.
+- `list_qbd_unit_of_measure_sets` (`read`): Returns a list of unit-of-measure sets. NOTE: QuickBooks Desktop does not support pagination for unit-of-measure sets; hence, there is no `cursor` parameter. Users typically have few unit-of-measure sets.
+
 ### Resource `qbd.vendor_credits`:
 
 - `create_qbd_vendor_credits` (`write`): Creates a new vendor credit.
