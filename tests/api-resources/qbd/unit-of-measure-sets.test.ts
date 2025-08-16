@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource unitOfMeasureSets', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.qbd.unitOfMeasureSets.create({
+    const responsePromise = conductor.qbd.unitOfMeasureSets.create({
       baseUnit: { abbreviation: 'ea', name: 'Each' },
       name: 'Weight Units',
       unitOfMeasureType: 'count',
@@ -26,7 +26,7 @@ describe('resource unitOfMeasureSets', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.qbd.unitOfMeasureSets.create({
+    const response = await conductor.qbd.unitOfMeasureSets.create({
       baseUnit: { abbreviation: 'ea', name: 'Each' },
       name: 'Weight Units',
       unitOfMeasureType: 'count',
@@ -38,7 +38,7 @@ describe('resource unitOfMeasureSets', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.unitOfMeasureSets.retrieve('80000001-1234567890', {
+    const responsePromise = conductor.qbd.unitOfMeasureSets.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -51,13 +51,13 @@ describe('resource unitOfMeasureSets', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.unitOfMeasureSets.retrieve('80000001-1234567890', {
+    const response = await conductor.qbd.unitOfMeasureSets.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.unitOfMeasureSets.list({
+    const responsePromise = conductor.qbd.unitOfMeasureSets.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -70,7 +70,7 @@ describe('resource unitOfMeasureSets', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.unitOfMeasureSets.list({
+    const response = await conductor.qbd.unitOfMeasureSets.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       ids: ['80000001-1234567890'],
       limit: 10,

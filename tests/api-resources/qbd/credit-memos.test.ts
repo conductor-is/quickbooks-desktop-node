@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource creditMemos', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.qbd.creditMemos.create({
+    const responsePromise = conductor.qbd.creditMemos.create({
       customerId: '80000001-1234567890',
       transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -25,7 +25,7 @@ describe('resource creditMemos', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.qbd.creditMemos.create({
+    const response = await conductor.qbd.creditMemos.create({
       customerId: '80000001-1234567890',
       transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -111,7 +111,7 @@ describe('resource creditMemos', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.creditMemos.retrieve('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.creditMemos.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -124,13 +124,13 @@ describe('resource creditMemos', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.creditMemos.retrieve('123ABC-1234567890', {
+    const response = await conductor.qbd.creditMemos.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.qbd.creditMemos.update('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.creditMemos.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -144,7 +144,7 @@ describe('resource creditMemos', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.qbd.creditMemos.update('123ABC-1234567890', {
+    const response = await conductor.qbd.creditMemos.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       billingAddress: {
@@ -254,7 +254,7 @@ describe('resource creditMemos', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.creditMemos.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+    const responsePromise = conductor.qbd.creditMemos.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -265,7 +265,7 @@ describe('resource creditMemos', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.creditMemos.list({
+    const response = await conductor.qbd.creditMemos.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
@@ -289,7 +289,7 @@ describe('resource creditMemos', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = client.qbd.creditMemos.delete('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.creditMemos.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -302,7 +302,7 @@ describe('resource creditMemos', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await client.qbd.creditMemos.delete('123ABC-1234567890', {
+    const response = await conductor.qbd.creditMemos.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });

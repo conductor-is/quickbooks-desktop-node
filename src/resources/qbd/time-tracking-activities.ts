@@ -11,7 +11,7 @@ export class TimeTrackingActivities extends APIResource {
    * @example
    * ```ts
    * const timeTrackingActivity =
-   *   await client.qbd.timeTrackingActivities.create({
+   *   await conductor.qbd.timeTrackingActivities.create({
    *     duration: 'PT1H30M',
    *     entityId: '80000001-1234567890',
    *     transactionDate: '2021-10-01',
@@ -37,7 +37,7 @@ export class TimeTrackingActivities extends APIResource {
    * @example
    * ```ts
    * const timeTrackingActivity =
-   *   await client.qbd.timeTrackingActivities.retrieve(
+   *   await conductor.qbd.timeTrackingActivities.retrieve(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -61,7 +61,7 @@ export class TimeTrackingActivities extends APIResource {
    * @example
    * ```ts
    * const timeTrackingActivity =
-   *   await client.qbd.timeTrackingActivities.update(
+   *   await conductor.qbd.timeTrackingActivities.update(
    *     '123ABC-1234567890',
    *     {
    *       duration: 'PT1H30M',
@@ -92,7 +92,7 @@ export class TimeTrackingActivities extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const timeTrackingActivity of client.qbd.timeTrackingActivities.list(
+   * for await (const timeTrackingActivity of conductor.qbd.timeTrackingActivities.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
@@ -119,7 +119,7 @@ export class TimeTrackingActivities extends APIResource {
    * @example
    * ```ts
    * const timeTrackingActivity =
-   *   await client.qbd.timeTrackingActivities.delete(
+   *   await conductor.qbd.timeTrackingActivities.delete(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );

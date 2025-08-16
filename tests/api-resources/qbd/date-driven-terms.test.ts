@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource dateDrivenTerms', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.qbd.dateDrivenTerms.create({
+    const responsePromise = conductor.qbd.dateDrivenTerms.create({
       dueDayOfMonth: 15,
       name: '2% 5th Net 25th',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -25,7 +25,7 @@ describe('resource dateDrivenTerms', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.qbd.dateDrivenTerms.create({
+    const response = await conductor.qbd.dateDrivenTerms.create({
       dueDayOfMonth: 15,
       name: '2% 5th Net 25th',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -37,7 +37,7 @@ describe('resource dateDrivenTerms', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.dateDrivenTerms.retrieve('80000001-1234567890', {
+    const responsePromise = conductor.qbd.dateDrivenTerms.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -50,13 +50,15 @@ describe('resource dateDrivenTerms', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.dateDrivenTerms.retrieve('80000001-1234567890', {
+    const response = await conductor.qbd.dateDrivenTerms.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.dateDrivenTerms.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+    const responsePromise = conductor.qbd.dateDrivenTerms.list({
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -67,7 +69,7 @@ describe('resource dateDrivenTerms', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.dateDrivenTerms.list({
+    const response = await conductor.qbd.dateDrivenTerms.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       ids: ['80000001-1234567890'],
       limit: 10,

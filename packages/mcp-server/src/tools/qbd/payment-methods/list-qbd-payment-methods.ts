@@ -118,9 +118,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const { jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.qbd.paymentMethods.list(body)));
+  return asTextContentResult(await maybeFilter(jq_filter, await conductor.qbd.paymentMethods.list(body)));
 };
 
 export default { metadata, tool, handler };
