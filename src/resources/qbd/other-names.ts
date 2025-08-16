@@ -9,7 +9,7 @@ export class OtherNames extends APIResource {
    *
    * @example
    * ```ts
-   * const otherName = await client.qbd.otherNames.create({
+   * const otherName = await conductor.qbd.otherNames.create({
    *   name: 'John Doe',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
@@ -29,7 +29,7 @@ export class OtherNames extends APIResource {
    *
    * @example
    * ```ts
-   * const otherName = await client.qbd.otherNames.retrieve(
+   * const otherName = await conductor.qbd.otherNames.retrieve(
    *   '80000001-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -52,7 +52,7 @@ export class OtherNames extends APIResource {
    *
    * @example
    * ```ts
-   * const otherName = await client.qbd.otherNames.update(
+   * const otherName = await conductor.qbd.otherNames.update(
    *   '80000001-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -81,7 +81,7 @@ export class OtherNames extends APIResource {
    *
    * @example
    * ```ts
-   * const otherNames = await client.qbd.otherNames.list({
+   * const otherNames = await conductor.qbd.otherNames.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```

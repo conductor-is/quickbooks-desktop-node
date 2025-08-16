@@ -106,9 +106,9 @@ export const tool: Tool = {
   annotations: {},
 };
 
-export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const { jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.qbd.inventorySites.create(body)));
+  return asTextContentResult(await maybeFilter(jq_filter, await conductor.qbd.inventorySites.create(body)));
 };
 
 export default { metadata, tool, handler };

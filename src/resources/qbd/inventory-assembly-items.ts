@@ -11,7 +11,7 @@ export class InventoryAssemblyItems extends APIResource {
    * @example
    * ```ts
    * const inventoryAssemblyItem =
-   *   await client.qbd.inventoryAssemblyItems.create({
+   *   await conductor.qbd.inventoryAssemblyItems.create({
    *     assetAccountId: '80000001-1234567890',
    *     cogsAccountId: '80000001-1234567890',
    *     incomeAccountId: '80000001-1234567890',
@@ -38,7 +38,7 @@ export class InventoryAssemblyItems extends APIResource {
    * @example
    * ```ts
    * const inventoryAssemblyItem =
-   *   await client.qbd.inventoryAssemblyItems.retrieve(
+   *   await conductor.qbd.inventoryAssemblyItems.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -62,7 +62,7 @@ export class InventoryAssemblyItems extends APIResource {
    * @example
    * ```ts
    * const inventoryAssemblyItem =
-   *   await client.qbd.inventoryAssemblyItems.update(
+   *   await conductor.qbd.inventoryAssemblyItems.update(
    *     '80000001-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -91,7 +91,7 @@ export class InventoryAssemblyItems extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const inventoryAssemblyItem of client.qbd.inventoryAssemblyItems.list(
+   * for await (const inventoryAssemblyItem of conductor.qbd.inventoryAssemblyItems.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...

@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource deletedListObjects', () => {
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.deletedListObjects.list({
+    const responsePromise = conductor.qbd.deletedListObjects.list({
       objectTypes: ['customer'],
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -24,7 +24,7 @@ describe('resource deletedListObjects', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.deletedListObjects.list({
+    const response = await conductor.qbd.deletedListObjects.list({
       objectTypes: ['customer'],
       conductorEndUserId: 'end_usr_1234567abcdefg',
       deletedAfter: '2021-01-01T12:34:56',

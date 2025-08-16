@@ -11,7 +11,7 @@ export class InventoryItems extends APIResource {
    * @example
    * ```ts
    * const inventoryItem =
-   *   await client.qbd.inventoryItems.create({
+   *   await conductor.qbd.inventoryItems.create({
    *     assetAccountId: '80000001-1234567890',
    *     cogsAccountId: '80000001-1234567890',
    *     incomeAccountId: '80000001-1234567890',
@@ -35,7 +35,7 @@ export class InventoryItems extends APIResource {
    * @example
    * ```ts
    * const inventoryItem =
-   *   await client.qbd.inventoryItems.retrieve(
+   *   await conductor.qbd.inventoryItems.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -59,7 +59,7 @@ export class InventoryItems extends APIResource {
    * @example
    * ```ts
    * const inventoryItem =
-   *   await client.qbd.inventoryItems.update(
+   *   await conductor.qbd.inventoryItems.update(
    *     '80000001-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -88,7 +88,7 @@ export class InventoryItems extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const inventoryItem of client.qbd.inventoryItems.list(
+   * for await (const inventoryItem of conductor.qbd.inventoryItems.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...

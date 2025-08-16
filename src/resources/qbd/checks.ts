@@ -10,7 +10,7 @@ export class Checks extends APIResource {
    *
    * @example
    * ```ts
-   * const check = await client.qbd.checks.create({
+   * const check = await conductor.qbd.checks.create({
    *   bankAccountId: '80000001-1234567890',
    *   transactionDate: '2021-10-01',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -33,7 +33,7 @@ export class Checks extends APIResource {
    *
    * @example
    * ```ts
-   * const check = await client.qbd.checks.retrieve(
+   * const check = await conductor.qbd.checks.retrieve(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -52,7 +52,7 @@ export class Checks extends APIResource {
    *
    * @example
    * ```ts
-   * const check = await client.qbd.checks.update(
+   * const check = await conductor.qbd.checks.update(
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -77,7 +77,7 @@ export class Checks extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const check of client.qbd.checks.list({
+   * for await (const check of conductor.qbd.checks.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...
@@ -99,7 +99,7 @@ export class Checks extends APIResource {
    *
    * @example
    * ```ts
-   * const check = await client.qbd.checks.delete(
+   * const check = await conductor.qbd.checks.delete(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );

@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource billCreditCardPayments', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.qbd.billCreditCardPayments.create({
+    const responsePromise = conductor.qbd.billCreditCardPayments.create({
       applyToTransactions: [{ transactionId: '123ABC-1234567890' }],
       creditCardAccountId: '80000001-1234567890',
       transactionDate: '2021-10-01',
@@ -27,7 +27,7 @@ describe('resource billCreditCardPayments', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.qbd.billCreditCardPayments.create({
+    const response = await conductor.qbd.billCreditCardPayments.create({
       applyToTransactions: [
         {
           transactionId: '123ABC-1234567890',
@@ -57,7 +57,7 @@ describe('resource billCreditCardPayments', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.billCreditCardPayments.retrieve('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.billCreditCardPayments.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -70,13 +70,13 @@ describe('resource billCreditCardPayments', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.billCreditCardPayments.retrieve('123ABC-1234567890', {
+    const response = await conductor.qbd.billCreditCardPayments.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.billCreditCardPayments.list({
+    const responsePromise = conductor.qbd.billCreditCardPayments.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -89,7 +89,7 @@ describe('resource billCreditCardPayments', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.billCreditCardPayments.list({
+    const response = await conductor.qbd.billCreditCardPayments.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
@@ -112,7 +112,7 @@ describe('resource billCreditCardPayments', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = client.qbd.billCreditCardPayments.delete('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.billCreditCardPayments.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -125,7 +125,7 @@ describe('resource billCreditCardPayments', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await client.qbd.billCreditCardPayments.delete('123ABC-1234567890', {
+    const response = await conductor.qbd.billCreditCardPayments.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });

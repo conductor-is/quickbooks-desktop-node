@@ -10,7 +10,7 @@ export class Bills extends APIResource {
    *
    * @example
    * ```ts
-   * const bill = await client.qbd.bills.create({
+   * const bill = await conductor.qbd.bills.create({
    *   transactionDate: '2021-10-01',
    *   vendorId: '80000001-1234567890',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -33,7 +33,7 @@ export class Bills extends APIResource {
    *
    * @example
    * ```ts
-   * const bill = await client.qbd.bills.retrieve(
+   * const bill = await conductor.qbd.bills.retrieve(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -52,7 +52,7 @@ export class Bills extends APIResource {
    *
    * @example
    * ```ts
-   * const bill = await client.qbd.bills.update(
+   * const bill = await conductor.qbd.bills.update(
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -77,7 +77,7 @@ export class Bills extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const bill of client.qbd.bills.list({
+   * for await (const bill of conductor.qbd.bills.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...
@@ -99,7 +99,7 @@ export class Bills extends APIResource {
    *
    * @example
    * ```ts
-   * const bill = await client.qbd.bills.delete(
+   * const bill = await conductor.qbd.bills.delete(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );

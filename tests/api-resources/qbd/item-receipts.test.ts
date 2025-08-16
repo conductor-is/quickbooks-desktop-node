@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource itemReceipts', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.qbd.itemReceipts.create({
+    const responsePromise = conductor.qbd.itemReceipts.create({
       transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -25,7 +25,7 @@ describe('resource itemReceipts', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.qbd.itemReceipts.create({
+    const response = await conductor.qbd.itemReceipts.create({
       transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -89,7 +89,7 @@ describe('resource itemReceipts', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.itemReceipts.retrieve('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.itemReceipts.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -102,13 +102,13 @@ describe('resource itemReceipts', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.itemReceipts.retrieve('123ABC-1234567890', {
+    const response = await conductor.qbd.itemReceipts.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.qbd.itemReceipts.update('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.itemReceipts.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -122,7 +122,7 @@ describe('resource itemReceipts', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.qbd.itemReceipts.update('123ABC-1234567890', {
+    const response = await conductor.qbd.itemReceipts.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       clearExpenseLines: false,
@@ -206,7 +206,7 @@ describe('resource itemReceipts', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.itemReceipts.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+    const responsePromise = conductor.qbd.itemReceipts.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -217,7 +217,7 @@ describe('resource itemReceipts', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.itemReceipts.list({
+    const response = await conductor.qbd.itemReceipts.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
@@ -241,7 +241,7 @@ describe('resource itemReceipts', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = client.qbd.itemReceipts.delete('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.itemReceipts.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -254,7 +254,7 @@ describe('resource itemReceipts', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await client.qbd.itemReceipts.delete('123ABC-1234567890', {
+    const response = await conductor.qbd.itemReceipts.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });

@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource invoices', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.qbd.invoices.create({
+    const responsePromise = conductor.qbd.invoices.create({
       customerId: '80000001-1234567890',
       transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -25,7 +25,7 @@ describe('resource invoices', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.qbd.invoices.create({
+    const response = await conductor.qbd.invoices.create({
       customerId: '80000001-1234567890',
       transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -125,7 +125,7 @@ describe('resource invoices', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.invoices.retrieve('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.invoices.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -138,13 +138,13 @@ describe('resource invoices', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.invoices.retrieve('123ABC-1234567890', {
+    const response = await conductor.qbd.invoices.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.qbd.invoices.update('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.invoices.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -158,7 +158,7 @@ describe('resource invoices', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.qbd.invoices.update('123ABC-1234567890', {
+    const response = await conductor.qbd.invoices.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       applyCredits: [
@@ -277,7 +277,7 @@ describe('resource invoices', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.invoices.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+    const responsePromise = conductor.qbd.invoices.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -288,7 +288,7 @@ describe('resource invoices', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.invoices.list({
+    const response = await conductor.qbd.invoices.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
@@ -313,7 +313,7 @@ describe('resource invoices', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = client.qbd.invoices.delete('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.invoices.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -326,7 +326,7 @@ describe('resource invoices', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await client.qbd.invoices.delete('123ABC-1234567890', {
+    const response = await conductor.qbd.invoices.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });

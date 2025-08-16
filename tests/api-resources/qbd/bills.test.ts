@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource bills', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.qbd.bills.create({
+    const responsePromise = conductor.qbd.bills.create({
       transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -25,7 +25,7 @@ describe('resource bills', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.qbd.bills.create({
+    const response = await conductor.qbd.bills.create({
       transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -103,7 +103,7 @@ describe('resource bills', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.bills.retrieve('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.bills.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -116,13 +116,13 @@ describe('resource bills', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.bills.retrieve('123ABC-1234567890', {
+    const response = await conductor.qbd.bills.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.qbd.bills.update('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.bills.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -136,7 +136,7 @@ describe('resource bills', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.qbd.bills.update('123ABC-1234567890', {
+    const response = await conductor.qbd.bills.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       clearExpenseLines: false,
@@ -234,7 +234,7 @@ describe('resource bills', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.bills.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+    const responsePromise = conductor.qbd.bills.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -245,7 +245,7 @@ describe('resource bills', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.bills.list({
+    const response = await conductor.qbd.bills.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
@@ -270,7 +270,7 @@ describe('resource bills', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = client.qbd.bills.delete('123ABC-1234567890', {
+    const responsePromise = conductor.qbd.bills.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -283,7 +283,7 @@ describe('resource bills', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await client.qbd.bills.delete('123ABC-1234567890', {
+    const response = await conductor.qbd.bills.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });

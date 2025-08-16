@@ -10,7 +10,7 @@ export class Customers extends APIResource {
    *
    * @example
    * ```ts
-   * const customer = await client.qbd.customers.create({
+   * const customer = await conductor.qbd.customers.create({
    *   name: 'Website Redesign Project',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
@@ -30,7 +30,7 @@ export class Customers extends APIResource {
    *
    * @example
    * ```ts
-   * const customer = await client.qbd.customers.retrieve(
+   * const customer = await conductor.qbd.customers.retrieve(
    *   '80000001-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -53,7 +53,7 @@ export class Customers extends APIResource {
    *
    * @example
    * ```ts
-   * const customer = await client.qbd.customers.update(
+   * const customer = await conductor.qbd.customers.update(
    *   '80000001-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -78,7 +78,7 @@ export class Customers extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const customer of client.qbd.customers.list({
+   * for await (const customer of conductor.qbd.customers.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...

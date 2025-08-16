@@ -11,7 +11,7 @@ export class NonInventoryItems extends APIResource {
    * @example
    * ```ts
    * const nonInventoryItem =
-   *   await client.qbd.nonInventoryItems.create({
+   *   await conductor.qbd.nonInventoryItems.create({
    *     name: 'Printer Ink Cartridge',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
@@ -35,7 +35,7 @@ export class NonInventoryItems extends APIResource {
    * @example
    * ```ts
    * const nonInventoryItem =
-   *   await client.qbd.nonInventoryItems.retrieve(
+   *   await conductor.qbd.nonInventoryItems.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -59,7 +59,7 @@ export class NonInventoryItems extends APIResource {
    * @example
    * ```ts
    * const nonInventoryItem =
-   *   await client.qbd.nonInventoryItems.update(
+   *   await conductor.qbd.nonInventoryItems.update(
    *     '80000001-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -88,7 +88,7 @@ export class NonInventoryItems extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const nonInventoryItem of client.qbd.nonInventoryItems.list(
+   * for await (const nonInventoryItem of conductor.qbd.nonInventoryItems.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...

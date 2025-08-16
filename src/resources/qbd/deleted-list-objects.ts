@@ -13,7 +13,7 @@ export class DeletedListObjects extends APIResource {
    * @example
    * ```ts
    * const deletedListObjects =
-   *   await client.qbd.deletedListObjects.list({
+   *   await conductor.qbd.deletedListObjects.list({
    *     objectTypes: ['customer'],
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });

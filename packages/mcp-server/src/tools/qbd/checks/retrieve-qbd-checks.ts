@@ -37,9 +37,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const { id, ...body } = args as any;
-  return asTextContentResult(await client.qbd.checks.retrieve(id, body));
+  return asTextContentResult(await conductor.qbd.checks.retrieve(id, body));
 };
 
 export default { metadata, tool, handler };

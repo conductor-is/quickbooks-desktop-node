@@ -20,19 +20,19 @@ describe('instantiate client', () => {
   });
 
   describe('defaultHeaders', () => {
-    const client = new Conductor({
+    const conductor = new Conductor({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
       apiKey: 'sk_conductor_...',
     });
 
     test('they are used in the request', async () => {
-      const { req } = await client.buildRequest({ path: '/foo', method: 'post' });
+      const { req } = await conductor.buildRequest({ path: '/foo', method: 'post' });
       expect((req.headers as Headers)['x-my-default-header']).toEqual('2');
     });
 
     test('can ignore `undefined` and leave the default', async () => {
-      const { req } = await client.buildRequest({
+      const { req } = await conductor.buildRequest({
         path: '/foo',
         method: 'post',
         headers: { 'X-My-Default-Header': undefined },
@@ -41,7 +41,7 @@ describe('instantiate client', () => {
     });
 
     test('can be removed with `null`', async () => {
-      const { req } = await client.buildRequest({
+      const { req } = await conductor.buildRequest({
         path: '/foo',
         method: 'post',
         headers: { 'X-My-Default-Header': null },
@@ -52,35 +52,37 @@ describe('instantiate client', () => {
 
   describe('defaultQuery', () => {
     test('with null query params given', () => {
-      const client = new Conductor({
+      const conductor = new Conductor({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
         apiKey: 'sk_conductor_...',
       });
-      expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
+      expect(conductor.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
     });
 
     test('multiple default query params', () => {
-      const client = new Conductor({
+      const conductor = new Conductor({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
         apiKey: 'sk_conductor_...',
       });
-      expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo&hello=world');
+      expect(conductor.buildURL('/foo', null)).toEqual(
+        'http://localhost:5000/foo?apiVersion=foo&hello=world',
+      );
     });
 
     test('overriding with `undefined`', () => {
-      const client = new Conductor({
+      const conductor = new Conductor({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
         apiKey: 'sk_conductor_...',
       });
-      expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
+      expect(conductor.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
     });
   });
 
   test('custom fetch', async () => {
-    const client = new Conductor({
+    const conductor = new Conductor({
       baseURL: 'http://localhost:5000/',
       apiKey: 'sk_conductor_...',
       fetch: (url) => {
@@ -92,13 +94,13 @@ describe('instantiate client', () => {
       },
     });
 
-    const response = await client.get('/foo');
+    const response = await conductor.get('/foo');
     expect(response).toEqual({ url: 'http://localhost:5000/foo', custom: true });
   });
 
   test('explicit global fetch', async () => {
     // make sure the global fetch type is assignable to our Fetch type
-    const client = new Conductor({
+    const conductor = new Conductor({
       baseURL: 'http://localhost:5000/',
       apiKey: 'sk_conductor_...',
       fetch: defaultFetch,
@@ -106,7 +108,7 @@ describe('instantiate client', () => {
   });
 
   test('custom signal', async () => {
-    const client = new Conductor({
+    const conductor = new Conductor({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
       apiKey: 'sk_conductor_...',
       fetch: (...args) => {
@@ -125,9 +127,11 @@ describe('instantiate client', () => {
     const controller = new AbortController();
     setTimeout(() => controller.abort(), 200);
 
-    const spy = jest.spyOn(client, 'request');
+    const spy = jest.spyOn(conductor, 'request');
 
-    await expect(client.get('/foo', { signal: controller.signal })).rejects.toThrowError(APIUserAbortError);
+    await expect(conductor.get('/foo', { signal: controller.signal })).rejects.toThrowError(
+      APIUserAbortError,
+    );
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -138,31 +142,31 @@ describe('instantiate client', () => {
       return new Response(JSON.stringify({}), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Conductor({
+    const conductor = new Conductor({
       baseURL: 'http://localhost:5000/',
       apiKey: 'sk_conductor_...',
       fetch: testFetch,
     });
 
-    await client.patch('/foo');
+    await conductor.patch('/foo');
     expect(capturedRequest?.method).toEqual('PATCH');
   });
 
   describe('baseUrl', () => {
     test('trailing slash', () => {
-      const client = new Conductor({
+      const conductor = new Conductor({
         baseURL: 'http://localhost:5000/custom/path/',
         apiKey: 'sk_conductor_...',
       });
-      expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
+      expect(conductor.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     test('no trailing slash', () => {
-      const client = new Conductor({
+      const conductor = new Conductor({
         baseURL: 'http://localhost:5000/custom/path',
         apiKey: 'sk_conductor_...',
       });
-      expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
+      expect(conductor.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     afterEach(() => {
@@ -170,93 +174,100 @@ describe('instantiate client', () => {
     });
 
     test('explicit option', () => {
-      const client = new Conductor({ baseURL: 'https://example.com', apiKey: 'sk_conductor_...' });
-      expect(client.baseURL).toEqual('https://example.com');
+      const conductor = new Conductor({ baseURL: 'https://example.com', apiKey: 'sk_conductor_...' });
+      expect(conductor.baseURL).toEqual('https://example.com');
     });
 
     test('env variable', () => {
       process.env['CONDUCTOR_BASE_URL'] = 'https://example.com/from_env';
-      const client = new Conductor({ apiKey: 'sk_conductor_...' });
-      expect(client.baseURL).toEqual('https://example.com/from_env');
+      const conductor = new Conductor({ apiKey: 'sk_conductor_...' });
+      expect(conductor.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
       process.env['CONDUCTOR_BASE_URL'] = ''; // empty
-      const client = new Conductor({ apiKey: 'sk_conductor_...' });
-      expect(client.baseURL).toEqual('https://api.conductor.is/v1');
+      const conductor = new Conductor({ apiKey: 'sk_conductor_...' });
+      expect(conductor.baseURL).toEqual('https://api.conductor.is/v1');
     });
 
     test('blank env variable', () => {
       process.env['CONDUCTOR_BASE_URL'] = '  '; // blank
-      const client = new Conductor({ apiKey: 'sk_conductor_...' });
-      expect(client.baseURL).toEqual('https://api.conductor.is/v1');
+      const conductor = new Conductor({ apiKey: 'sk_conductor_...' });
+      expect(conductor.baseURL).toEqual('https://api.conductor.is/v1');
     });
 
     test('in request options', () => {
-      const client = new Conductor({ apiKey: 'sk_conductor_...' });
-      expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
+      const conductor = new Conductor({ apiKey: 'sk_conductor_...' });
+      expect(conductor.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
         'http://localhost:5000/option/foo',
       );
     });
 
     test('in request options overridden by client options', () => {
-      const client = new Conductor({ apiKey: 'sk_conductor_...', baseURL: 'http://localhost:5000/client' });
-      expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
+      const conductor = new Conductor({
+        apiKey: 'sk_conductor_...',
+        baseURL: 'http://localhost:5000/client',
+      });
+      expect(conductor.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
         'http://localhost:5000/client/foo',
       );
     });
 
     test('in request options overridden by env variable', () => {
       process.env['CONDUCTOR_BASE_URL'] = 'http://localhost:5000/env';
-      const client = new Conductor({ apiKey: 'sk_conductor_...' });
-      expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
+      const conductor = new Conductor({ apiKey: 'sk_conductor_...' });
+      expect(conductor.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
         'http://localhost:5000/env/foo',
       );
     });
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new Conductor({ maxRetries: 4, apiKey: 'sk_conductor_...' });
-    expect(client.maxRetries).toEqual(4);
+    const conductor = new Conductor({ maxRetries: 4, apiKey: 'sk_conductor_...' });
+    expect(conductor.maxRetries).toEqual(4);
 
     // default
-    const client2 = new Conductor({ apiKey: 'sk_conductor_...' });
-    expect(client2.maxRetries).toEqual(2);
+    const conductor2 = new Conductor({ apiKey: 'sk_conductor_...' });
+    expect(conductor2.maxRetries).toEqual(2);
   });
 
   test('with environment variable arguments', () => {
     // set options via env var
     process.env['CONDUCTOR_SECRET_KEY'] = 'sk_conductor_...';
-    const client = new Conductor();
-    expect(client.apiKey).toBe('sk_conductor_...');
+    const conductor = new Conductor();
+    expect(conductor.apiKey).toBe('sk_conductor_...');
   });
 
   test('with overridden environment variable arguments', () => {
     // set options via env var
     process.env['CONDUCTOR_SECRET_KEY'] = 'another sk_conductor_...';
-    const client = new Conductor({ apiKey: 'sk_conductor_...' });
-    expect(client.apiKey).toBe('sk_conductor_...');
+    const conductor = new Conductor({ apiKey: 'sk_conductor_...' });
+    expect(conductor.apiKey).toBe('sk_conductor_...');
   });
 });
 
 describe('request building', () => {
-  const client = new Conductor({ apiKey: 'sk_conductor_...' });
+  const conductor = new Conductor({ apiKey: 'sk_conductor_...' });
 
   describe('Content-Length', () => {
     test('handles multi-byte characters', async () => {
-      const { req } = await client.buildRequest({ path: '/foo', method: 'post', body: { value: '—' } });
+      const { req } = await conductor.buildRequest({ path: '/foo', method: 'post', body: { value: '—' } });
       expect((req.headers as Record<string, string>)['content-length']).toEqual('20');
     });
 
     test('handles standard characters', async () => {
-      const { req } = await client.buildRequest({ path: '/foo', method: 'post', body: { value: 'hello' } });
+      const { req } = await conductor.buildRequest({
+        path: '/foo',
+        method: 'post',
+        body: { value: 'hello' },
+      });
       expect((req.headers as Record<string, string>)['content-length']).toEqual('22');
     });
   });
 
   describe('custom headers', () => {
     test('handles undefined', async () => {
-      const { req } = await client.buildRequest({
+      const { req } = await conductor.buildRequest({
         path: '/foo',
         method: 'post',
         body: { value: 'hello' },
@@ -282,12 +293,12 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Conductor({ apiKey: 'sk_conductor_...', timeout: 10, fetch: testFetch });
+    const conductor = new Conductor({ apiKey: 'sk_conductor_...', timeout: 10, fetch: testFetch });
 
-    expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
+    expect(await conductor.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
     expect(
-      await client
+      await conductor
         .request({ path: '/foo', method: 'get' })
         .asResponse()
         .then((r) => r.text()),
@@ -312,9 +323,9 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch, maxRetries: 4 });
+    const conductor = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch, maxRetries: 4 });
 
-    expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
+    expect(await conductor.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
 
     expect((capturedRequest!.headers as Headers)['x-stainless-retry-count']).toEqual('2');
     expect(count).toEqual(3);
@@ -336,10 +347,10 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch, maxRetries: 4 });
+    const conductor = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch, maxRetries: 4 });
 
     expect(
-      await client.request({
+      await conductor.request({
         path: '/foo',
         method: 'get',
         headers: { 'X-Stainless-Retry-Count': null },
@@ -365,7 +376,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new Conductor({
+    const conductor = new Conductor({
       apiKey: 'sk_conductor_...',
       fetch: testFetch,
       maxRetries: 4,
@@ -373,7 +384,7 @@ describe('retries', () => {
     });
 
     expect(
-      await client.request({
+      await conductor.request({
         path: '/foo',
         method: 'get',
       }),
@@ -398,10 +409,10 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch, maxRetries: 4 });
+    const conductor = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch, maxRetries: 4 });
 
     expect(
-      await client.request({
+      await conductor.request({
         path: '/foo',
         method: 'get',
         headers: { 'X-Stainless-Retry-Count': '42' },
@@ -425,12 +436,12 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch });
+    const conductor = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch });
 
-    expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
+    expect(await conductor.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
     expect(
-      await client
+      await conductor
         .request({ path: '/foo', method: 'get' })
         .asResponse()
         .then((r) => r.text()),
@@ -452,12 +463,12 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch });
+    const conductor = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch });
 
-    expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
+    expect(await conductor.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
     expect(
-      await client
+      await conductor
         .request({ path: '/foo', method: 'get' })
         .asResponse()
         .then((r) => r.text()),

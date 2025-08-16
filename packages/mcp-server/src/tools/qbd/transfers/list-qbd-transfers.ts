@@ -80,9 +80,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const { jq_filter, ...body } = args as any;
-  const response = await client.qbd.transfers.list(body).asResponse();
+  const response = await conductor.qbd.transfers.list(body).asResponse();
   return asTextContentResult(await maybeFilter(jq_filter, await response.json()));
 };
 
