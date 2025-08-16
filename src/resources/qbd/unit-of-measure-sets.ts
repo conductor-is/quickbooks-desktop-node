@@ -16,7 +16,7 @@ export class UnitOfMeasureSets extends APIResource {
    * @example
    * ```ts
    * const unitOfMeasureSet =
-   *   await conductor.qbd.unitOfMeasureSets.create({
+   *   await client.qbd.unitOfMeasureSets.create({
    *     baseUnit: { abbreviation: 'ea', name: 'Each' },
    *     name: 'Weight Units',
    *     unitOfMeasureType: 'count',
@@ -42,7 +42,7 @@ export class UnitOfMeasureSets extends APIResource {
    * @example
    * ```ts
    * const unitOfMeasureSet =
-   *   await conductor.qbd.unitOfMeasureSets.retrieve(
+   *   await client.qbd.unitOfMeasureSets.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -71,7 +71,7 @@ export class UnitOfMeasureSets extends APIResource {
    * @example
    * ```ts
    * const unitOfMeasureSets =
-   *   await conductor.qbd.unitOfMeasureSets.list({
+   *   await client.qbd.unitOfMeasureSets.list({
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```

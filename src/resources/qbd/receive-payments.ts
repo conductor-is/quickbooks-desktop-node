@@ -11,7 +11,7 @@ export class ReceivePayments extends APIResource {
    * @example
    * ```ts
    * const receivePayment =
-   *   await conductor.qbd.receivePayments.create({
+   *   await client.qbd.receivePayments.create({
    *     customerId: '80000001-1234567890',
    *     totalAmount: '1000.00',
    *     transactionDate: '2021-10-01',
@@ -34,7 +34,7 @@ export class ReceivePayments extends APIResource {
    * @example
    * ```ts
    * const receivePayment =
-   *   await conductor.qbd.receivePayments.retrieve(
+   *   await client.qbd.receivePayments.retrieve(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -58,7 +58,7 @@ export class ReceivePayments extends APIResource {
    * @example
    * ```ts
    * const receivePayment =
-   *   await conductor.qbd.receivePayments.update(
+   *   await client.qbd.receivePayments.update(
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -87,7 +87,7 @@ export class ReceivePayments extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const receivePayment of conductor.qbd.receivePayments.list(
+   * for await (const receivePayment of client.qbd.receivePayments.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
@@ -114,7 +114,7 @@ export class ReceivePayments extends APIResource {
    * @example
    * ```ts
    * const receivePayment =
-   *   await conductor.qbd.receivePayments.delete(
+   *   await client.qbd.receivePayments.delete(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );

@@ -10,7 +10,7 @@ export class InventorySites extends APIResource {
    * @example
    * ```ts
    * const inventorySite =
-   *   await conductor.qbd.inventorySites.create({
+   *   await client.qbd.inventorySites.create({
    *     name: 'Stockroom',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
@@ -31,7 +31,7 @@ export class InventorySites extends APIResource {
    * @example
    * ```ts
    * const inventorySite =
-   *   await conductor.qbd.inventorySites.retrieve(
+   *   await client.qbd.inventorySites.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -55,7 +55,7 @@ export class InventorySites extends APIResource {
    * @example
    * ```ts
    * const inventorySite =
-   *   await conductor.qbd.inventorySites.update(
+   *   await client.qbd.inventorySites.update(
    *     '80000001-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -84,10 +84,9 @@ export class InventorySites extends APIResource {
    *
    * @example
    * ```ts
-   * const inventorySites =
-   *   await conductor.qbd.inventorySites.list({
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   });
+   * const inventorySites = await client.qbd.inventorySites.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
    * ```
    */
   list(

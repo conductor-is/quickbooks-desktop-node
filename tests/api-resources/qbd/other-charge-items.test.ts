@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const conductor = new Conductor({
-  apiKey: 'My API Key',
+const client = new Conductor({
+  apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource otherChargeItems', () => {
   test('create: only required params', async () => {
-    const responsePromise = conductor.qbd.otherChargeItems.create({
+    const responsePromise = client.qbd.otherChargeItems.create({
       name: 'Overnight Delivery',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -24,7 +24,7 @@ describe('resource otherChargeItems', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await conductor.qbd.otherChargeItems.create({
+    const response = await client.qbd.otherChargeItems.create({
       name: 'Overnight Delivery',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
@@ -53,7 +53,7 @@ describe('resource otherChargeItems', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = conductor.qbd.otherChargeItems.retrieve('80000001-1234567890', {
+    const responsePromise = client.qbd.otherChargeItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -66,13 +66,13 @@ describe('resource otherChargeItems', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await conductor.qbd.otherChargeItems.retrieve('80000001-1234567890', {
+    const response = await client.qbd.otherChargeItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = conductor.qbd.otherChargeItems.update('80000001-1234567890', {
+    const responsePromise = client.qbd.otherChargeItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -86,7 +86,7 @@ describe('resource otherChargeItems', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await conductor.qbd.otherChargeItems.update('80000001-1234567890', {
+    const response = await client.qbd.otherChargeItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
@@ -118,7 +118,7 @@ describe('resource otherChargeItems', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.otherChargeItems.list({
+    const responsePromise = client.qbd.otherChargeItems.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -131,7 +131,7 @@ describe('resource otherChargeItems', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await conductor.qbd.otherChargeItems.list({
+    const response = await client.qbd.otherChargeItems.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       classIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',

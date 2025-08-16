@@ -137,9 +137,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  const response = await conductor.qbd.customers.list(body).asResponse();
+  const response = await client.qbd.customers.list(body).asResponse();
   return asTextContentResult(await response.json());
 };
 

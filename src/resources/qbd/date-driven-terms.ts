@@ -10,7 +10,7 @@ export class DateDrivenTerms extends APIResource {
    * @example
    * ```ts
    * const dateDrivenTerm =
-   *   await conductor.qbd.dateDrivenTerms.create({
+   *   await client.qbd.dateDrivenTerms.create({
    *     dueDayOfMonth: 15,
    *     name: '2% 5th Net 25th',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -32,7 +32,7 @@ export class DateDrivenTerms extends APIResource {
    * @example
    * ```ts
    * const dateDrivenTerm =
-   *   await conductor.qbd.dateDrivenTerms.retrieve(
+   *   await client.qbd.dateDrivenTerms.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -58,7 +58,7 @@ export class DateDrivenTerms extends APIResource {
    * @example
    * ```ts
    * const dateDrivenTerms =
-   *   await conductor.qbd.dateDrivenTerms.list({
+   *   await client.qbd.dateDrivenTerms.list({
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```

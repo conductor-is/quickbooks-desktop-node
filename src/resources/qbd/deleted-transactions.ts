@@ -14,7 +14,7 @@ export class DeletedTransactions extends APIResource {
    * @example
    * ```ts
    * const deletedTransactions =
-   *   await conductor.qbd.deletedTransactions.list({
+   *   await client.qbd.deletedTransactions.list({
    *     transactionTypes: ['invoice'],
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });

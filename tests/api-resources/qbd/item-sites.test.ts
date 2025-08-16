@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const conductor = new Conductor({
-  apiKey: 'My API Key',
+const client = new Conductor({
+  apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource itemSites', () => {
   test('retrieve: only required params', async () => {
-    const responsePromise = conductor.qbd.itemSites.retrieve('80000001-1234567890', {
+    const responsePromise = client.qbd.itemSites.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -23,13 +23,13 @@ describe('resource itemSites', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await conductor.qbd.itemSites.retrieve('80000001-1234567890', {
+    const response = await client.qbd.itemSites.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.itemSites.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+    const responsePromise = client.qbd.itemSites.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -40,7 +40,7 @@ describe('resource itemSites', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await conductor.qbd.itemSites.list({
+    const response = await client.qbd.itemSites.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['80000001-1234567890'],

@@ -604,7 +604,7 @@ export class Qbd extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.qbd.healthCheck({
+   * const response = await client.qbd.healthCheck({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```

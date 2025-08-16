@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const conductor = new Conductor({
-  apiKey: 'My API Key',
+const client = new Conductor({
+  apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource vendors', () => {
   test('create: only required params', async () => {
-    const responsePromise = conductor.qbd.vendors.create({
+    const responsePromise = client.qbd.vendors.create({
       name: 'Acme Supplies Inc.',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -24,7 +24,7 @@ describe('resource vendors', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await conductor.qbd.vendors.create({
+    const response = await client.qbd.vendors.create({
       name: 'Acme Supplies Inc.',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountNumber: '1010',
@@ -107,7 +107,7 @@ describe('resource vendors', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = conductor.qbd.vendors.retrieve('80000001-1234567890', {
+    const responsePromise = client.qbd.vendors.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -120,13 +120,13 @@ describe('resource vendors', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await conductor.qbd.vendors.retrieve('80000001-1234567890', {
+    const response = await client.qbd.vendors.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = conductor.qbd.vendors.update('80000001-1234567890', {
+    const responsePromise = client.qbd.vendors.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -140,7 +140,7 @@ describe('resource vendors', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await conductor.qbd.vendors.update('80000001-1234567890', {
+    const response = await client.qbd.vendors.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountNumber: '1010',
@@ -223,7 +223,7 @@ describe('resource vendors', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.vendors.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+    const responsePromise = client.qbd.vendors.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -234,7 +234,7 @@ describe('resource vendors', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await conductor.qbd.vendors.list({
+    const response = await client.qbd.vendors.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       classIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],

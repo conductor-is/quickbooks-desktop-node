@@ -9,7 +9,7 @@ export class Accounts extends APIResource {
    *
    * @example
    * ```ts
-   * const account = await conductor.qbd.accounts.create({
+   * const account = await client.qbd.accounts.create({
    *   accountType: 'bank',
    *   name: 'Accounts-Payable',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -30,7 +30,7 @@ export class Accounts extends APIResource {
    *
    * @example
    * ```ts
-   * const account = await conductor.qbd.accounts.retrieve(
+   * const account = await client.qbd.accounts.retrieve(
    *   '80000001-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -53,7 +53,7 @@ export class Accounts extends APIResource {
    *
    * @example
    * ```ts
-   * const account = await conductor.qbd.accounts.update(
+   * const account = await client.qbd.accounts.update(
    *   '80000001-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -78,7 +78,7 @@ export class Accounts extends APIResource {
    *
    * @example
    * ```ts
-   * const accounts = await conductor.qbd.accounts.list({
+   * const accounts = await client.qbd.accounts.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```

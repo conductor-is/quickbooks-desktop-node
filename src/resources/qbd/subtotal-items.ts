@@ -10,11 +10,10 @@ export class SubtotalItems extends APIResource {
    *
    * @example
    * ```ts
-   * const subtotalItem =
-   *   await conductor.qbd.subtotalItems.create({
-   *     name: 'Labor subtotal',
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   });
+   * const subtotalItem = await client.qbd.subtotalItems.create({
+   *   name: 'Labor subtotal',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
    * ```
    */
   create(params: SubtotalItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<SubtotalItem> {
@@ -32,7 +31,7 @@ export class SubtotalItems extends APIResource {
    * @example
    * ```ts
    * const subtotalItem =
-   *   await conductor.qbd.subtotalItems.retrieve(
+   *   await client.qbd.subtotalItems.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -55,14 +54,13 @@ export class SubtotalItems extends APIResource {
    *
    * @example
    * ```ts
-   * const subtotalItem =
-   *   await conductor.qbd.subtotalItems.update(
-   *     '80000001-1234567890',
-   *     {
-   *       revisionNumber: '1721172183',
-   *       conductorEndUserId: 'end_usr_1234567abcdefg',
-   *     },
-   *   );
+   * const subtotalItem = await client.qbd.subtotalItems.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
    * ```
    */
   update(
@@ -85,7 +83,7 @@ export class SubtotalItems extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const subtotalItem of conductor.qbd.subtotalItems.list(
+   * for await (const subtotalItem of client.qbd.subtotalItems.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...

@@ -10,7 +10,7 @@ export class Transfers extends APIResource {
    *
    * @example
    * ```ts
-   * const transfer = await conductor.qbd.transfers.create({
+   * const transfer = await client.qbd.transfers.create({
    *   amount: '1000.00',
    *   sourceAccountId: '80000001-1234567890',
    *   targetAccountId: '80000001-1234567890',
@@ -33,7 +33,7 @@ export class Transfers extends APIResource {
    *
    * @example
    * ```ts
-   * const transfer = await conductor.qbd.transfers.retrieve(
+   * const transfer = await client.qbd.transfers.retrieve(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -56,7 +56,7 @@ export class Transfers extends APIResource {
    *
    * @example
    * ```ts
-   * const transfer = await conductor.qbd.transfers.update(
+   * const transfer = await client.qbd.transfers.update(
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -81,7 +81,7 @@ export class Transfers extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const transfer of conductor.qbd.transfers.list({
+   * for await (const transfer of client.qbd.transfers.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...

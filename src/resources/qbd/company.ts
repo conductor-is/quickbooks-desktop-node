@@ -12,7 +12,7 @@ export class CompanyResource extends APIResource {
    *
    * @example
    * ```ts
-   * const company = await conductor.qbd.company.retrieve({
+   * const company = await client.qbd.company.retrieve({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```

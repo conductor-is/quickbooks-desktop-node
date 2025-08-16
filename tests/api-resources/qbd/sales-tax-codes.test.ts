@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const conductor = new Conductor({
-  apiKey: 'My API Key',
+const client = new Conductor({
+  apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource salesTaxCodes', () => {
   test('create: only required params', async () => {
-    const responsePromise = conductor.qbd.salesTaxCodes.create({
+    const responsePromise = client.qbd.salesTaxCodes.create({
       isTaxable: true,
       name: 'Tax',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -25,7 +25,7 @@ describe('resource salesTaxCodes', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await conductor.qbd.salesTaxCodes.create({
+    const response = await client.qbd.salesTaxCodes.create({
       isTaxable: true,
       name: 'Tax',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -36,7 +36,7 @@ describe('resource salesTaxCodes', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = conductor.qbd.salesTaxCodes.retrieve('80000001-1234567890', {
+    const responsePromise = client.qbd.salesTaxCodes.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -49,13 +49,13 @@ describe('resource salesTaxCodes', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await conductor.qbd.salesTaxCodes.retrieve('80000001-1234567890', {
+    const response = await client.qbd.salesTaxCodes.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = conductor.qbd.salesTaxCodes.update('80000001-1234567890', {
+    const responsePromise = client.qbd.salesTaxCodes.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -69,7 +69,7 @@ describe('resource salesTaxCodes', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await conductor.qbd.salesTaxCodes.update('80000001-1234567890', {
+    const response = await client.qbd.salesTaxCodes.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       description: 'Standard tax rate for California',
@@ -81,9 +81,7 @@ describe('resource salesTaxCodes', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.salesTaxCodes.list({
-      conductorEndUserId: 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = client.qbd.salesTaxCodes.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -94,7 +92,7 @@ describe('resource salesTaxCodes', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await conductor.qbd.salesTaxCodes.list({
+    const response = await client.qbd.salesTaxCodes.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       ids: ['80000001-1234567890'],
       limit: 10,

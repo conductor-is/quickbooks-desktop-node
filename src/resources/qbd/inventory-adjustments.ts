@@ -10,7 +10,7 @@ export class InventoryAdjustments extends APIResource {
    * @example
    * ```ts
    * const inventoryAdjustment =
-   *   await conductor.qbd.inventoryAdjustments.create({
+   *   await client.qbd.inventoryAdjustments.create({
    *     accountId: '80000001-1234567890',
    *     transactionDate: '2021-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -35,7 +35,7 @@ export class InventoryAdjustments extends APIResource {
    * @example
    * ```ts
    * const inventoryAdjustment =
-   *   await conductor.qbd.inventoryAdjustments.retrieve(
+   *   await client.qbd.inventoryAdjustments.retrieve(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -59,7 +59,7 @@ export class InventoryAdjustments extends APIResource {
    * @example
    * ```ts
    * const inventoryAdjustment =
-   *   await conductor.qbd.inventoryAdjustments.update(
+   *   await client.qbd.inventoryAdjustments.update(
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -89,7 +89,7 @@ export class InventoryAdjustments extends APIResource {
    * @example
    * ```ts
    * const inventoryAdjustments =
-   *   await conductor.qbd.inventoryAdjustments.list({
+   *   await client.qbd.inventoryAdjustments.list({
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
@@ -114,7 +114,7 @@ export class InventoryAdjustments extends APIResource {
    * @example
    * ```ts
    * const inventoryAdjustment =
-   *   await conductor.qbd.inventoryAdjustments.delete(
+   *   await client.qbd.inventoryAdjustments.delete(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );

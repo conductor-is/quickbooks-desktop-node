@@ -11,7 +11,7 @@ export class OtherChargeItems extends APIResource {
    * @example
    * ```ts
    * const otherChargeItem =
-   *   await conductor.qbd.otherChargeItems.create({
+   *   await client.qbd.otherChargeItems.create({
    *     name: 'Overnight Delivery',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
@@ -35,7 +35,7 @@ export class OtherChargeItems extends APIResource {
    * @example
    * ```ts
    * const otherChargeItem =
-   *   await conductor.qbd.otherChargeItems.retrieve(
+   *   await client.qbd.otherChargeItems.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -59,7 +59,7 @@ export class OtherChargeItems extends APIResource {
    * @example
    * ```ts
    * const otherChargeItem =
-   *   await conductor.qbd.otherChargeItems.update(
+   *   await client.qbd.otherChargeItems.update(
    *     '80000001-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -88,7 +88,7 @@ export class OtherChargeItems extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const otherChargeItem of conductor.qbd.otherChargeItems.list(
+   * for await (const otherChargeItem of client.qbd.otherChargeItems.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...

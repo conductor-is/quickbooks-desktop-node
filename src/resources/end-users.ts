@@ -9,7 +9,7 @@ export class EndUsers extends APIResource {
    *
    * @example
    * ```ts
-   * const endUser = await conductor.endUsers.create({
+   * const endUser = await client.endUsers.create({
    *   companyName: 'Acme Inc.',
    *   email: 'alice@acme.com',
    *   sourceId: '12345678-abcd-abcd-example-1234567890ab',
@@ -25,7 +25,7 @@ export class EndUsers extends APIResource {
    *
    * @example
    * ```ts
-   * const endUser = await conductor.endUsers.retrieve(
+   * const endUser = await client.endUsers.retrieve(
    *   'end_usr_1234567abcdefg',
    * );
    * ```
@@ -39,7 +39,7 @@ export class EndUsers extends APIResource {
    *
    * @example
    * ```ts
-   * const endUsers = await conductor.endUsers.list();
+   * const endUsers = await client.endUsers.list();
    * ```
    */
   list(options?: Core.RequestOptions): Core.APIPromise<EndUserListResponse> {
@@ -51,7 +51,7 @@ export class EndUsers extends APIResource {
    *
    * @example
    * ```ts
-   * const endUser = await conductor.endUsers.delete(
+   * const endUser = await client.endUsers.delete(
    *   'end_usr_1234567abcdefg',
    * );
    * ```
@@ -66,7 +66,7 @@ export class EndUsers extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.endUsers.passthrough(
+   * const response = await client.endUsers.passthrough(
    *   'end_usr_1234567abcdefg',
    *   'quickbooks_desktop',
    *   { foo: 'bar' },

@@ -10,7 +10,7 @@ export class Estimates extends APIResource {
    *
    * @example
    * ```ts
-   * const estimate = await conductor.qbd.estimates.create({
+   * const estimate = await client.qbd.estimates.create({
    *   customerId: '80000001-1234567890',
    *   transactionDate: '2021-10-01',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -33,7 +33,7 @@ export class Estimates extends APIResource {
    *
    * @example
    * ```ts
-   * const estimate = await conductor.qbd.estimates.retrieve(
+   * const estimate = await client.qbd.estimates.retrieve(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -56,7 +56,7 @@ export class Estimates extends APIResource {
    *
    * @example
    * ```ts
-   * const estimate = await conductor.qbd.estimates.update(
+   * const estimate = await client.qbd.estimates.update(
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -81,7 +81,7 @@ export class Estimates extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const estimate of conductor.qbd.estimates.list({
+   * for await (const estimate of client.qbd.estimates.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...
@@ -106,7 +106,7 @@ export class Estimates extends APIResource {
    *
    * @example
    * ```ts
-   * const estimate = await conductor.qbd.estimates.delete(
+   * const estimate = await client.qbd.estimates.delete(
    *   '123ABC-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );

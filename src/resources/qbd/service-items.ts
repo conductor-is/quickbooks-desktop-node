@@ -10,12 +10,10 @@ export class ServiceItems extends APIResource {
    *
    * @example
    * ```ts
-   * const serviceItem = await conductor.qbd.serviceItems.create(
-   *   {
-   *     name: 'Web-Design',
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   },
-   * );
+   * const serviceItem = await client.qbd.serviceItems.create({
+   *   name: 'Web-Design',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
    * ```
    */
   create(params: ServiceItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<ServiceItem> {
@@ -32,11 +30,10 @@ export class ServiceItems extends APIResource {
    *
    * @example
    * ```ts
-   * const serviceItem =
-   *   await conductor.qbd.serviceItems.retrieve(
-   *     '80000001-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
-   *   );
+   * const serviceItem = await client.qbd.serviceItems.retrieve(
+   *   '80000001-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
    * ```
    */
   retrieve(
@@ -56,7 +53,7 @@ export class ServiceItems extends APIResource {
    *
    * @example
    * ```ts
-   * const serviceItem = await conductor.qbd.serviceItems.update(
+   * const serviceItem = await client.qbd.serviceItems.update(
    *   '80000001-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -85,7 +82,7 @@ export class ServiceItems extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const serviceItem of conductor.qbd.serviceItems.list(
+   * for await (const serviceItem of client.qbd.serviceItems.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...

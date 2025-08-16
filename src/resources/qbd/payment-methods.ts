@@ -10,7 +10,7 @@ export class PaymentMethods extends APIResource {
    * @example
    * ```ts
    * const paymentMethod =
-   *   await conductor.qbd.paymentMethods.create({
+   *   await client.qbd.paymentMethods.create({
    *     name: 'Cash',
    *     paymentMethodType: 'cash',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -32,7 +32,7 @@ export class PaymentMethods extends APIResource {
    * @example
    * ```ts
    * const paymentMethod =
-   *   await conductor.qbd.paymentMethods.retrieve(
+   *   await client.qbd.paymentMethods.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -57,10 +57,9 @@ export class PaymentMethods extends APIResource {
    *
    * @example
    * ```ts
-   * const paymentMethods =
-   *   await conductor.qbd.paymentMethods.list({
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   });
+   * const paymentMethods = await client.qbd.paymentMethods.list(
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
    * ```
    */
   list(

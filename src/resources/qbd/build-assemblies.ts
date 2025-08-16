@@ -11,7 +11,7 @@ export class BuildAssemblies extends APIResource {
    * @example
    * ```ts
    * const buildAssembly =
-   *   await conductor.qbd.buildAssemblies.create({
+   *   await client.qbd.buildAssemblies.create({
    *     inventoryAssemblyItemId: '80000001-1234567890',
    *     quantityToBuild: 7,
    *     transactionDate: '2021-10-01',
@@ -34,7 +34,7 @@ export class BuildAssemblies extends APIResource {
    * @example
    * ```ts
    * const buildAssembly =
-   *   await conductor.qbd.buildAssemblies.retrieve(
+   *   await client.qbd.buildAssemblies.retrieve(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -58,7 +58,7 @@ export class BuildAssemblies extends APIResource {
    * @example
    * ```ts
    * const buildAssembly =
-   *   await conductor.qbd.buildAssemblies.update(
+   *   await client.qbd.buildAssemblies.update(
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -87,7 +87,7 @@ export class BuildAssemblies extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const buildAssembly of conductor.qbd.buildAssemblies.list(
+   * for await (const buildAssembly of client.qbd.buildAssemblies.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
@@ -113,7 +113,7 @@ export class BuildAssemblies extends APIResource {
    * @example
    * ```ts
    * const buildAssembly =
-   *   await conductor.qbd.buildAssemblies.delete(
+   *   await client.qbd.buildAssemblies.delete(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );

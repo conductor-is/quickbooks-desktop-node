@@ -11,7 +11,7 @@ export class AuthSessions extends APIResource {
    *
    * @example
    * ```ts
-   * const authSession = await conductor.authSessions.create({
+   * const authSession = await client.authSessions.create({
    *   endUserId: 'end_usr_1234567abcdefg',
    *   publishableKey: '{{YOUR_PUBLISHABLE_KEY}}',
    * });
