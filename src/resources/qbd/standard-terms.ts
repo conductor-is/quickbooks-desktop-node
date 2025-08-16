@@ -9,11 +9,10 @@ export class StandardTerms extends APIResource {
    *
    * @example
    * ```ts
-   * const standardTerm =
-   *   await conductor.qbd.standardTerms.create({
-   *     name: 'Net 30',
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   });
+   * const standardTerm = await client.qbd.standardTerms.create({
+   *   name: 'Net 30',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
    * ```
    */
   create(params: StandardTermCreateParams, options?: Core.RequestOptions): Core.APIPromise<StandardTerm> {
@@ -31,7 +30,7 @@ export class StandardTerms extends APIResource {
    * @example
    * ```ts
    * const standardTerm =
-   *   await conductor.qbd.standardTerms.retrieve(
+   *   await client.qbd.standardTerms.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -56,10 +55,9 @@ export class StandardTerms extends APIResource {
    *
    * @example
    * ```ts
-   * const standardTerms =
-   *   await conductor.qbd.standardTerms.list({
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   });
+   * const standardTerms = await client.qbd.standardTerms.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
    * ```
    */
   list(

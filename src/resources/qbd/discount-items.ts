@@ -10,12 +10,11 @@ export class DiscountItems extends APIResource {
    *
    * @example
    * ```ts
-   * const discountItem =
-   *   await conductor.qbd.discountItems.create({
-   *     accountId: '80000001-1234567890',
-   *     name: '10% labor discount',
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   });
+   * const discountItem = await client.qbd.discountItems.create({
+   *   accountId: '80000001-1234567890',
+   *   name: '10% labor discount',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
    * ```
    */
   create(params: DiscountItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<DiscountItem> {
@@ -33,7 +32,7 @@ export class DiscountItems extends APIResource {
    * @example
    * ```ts
    * const discountItem =
-   *   await conductor.qbd.discountItems.retrieve(
+   *   await client.qbd.discountItems.retrieve(
    *     '80000001-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -56,14 +55,13 @@ export class DiscountItems extends APIResource {
    *
    * @example
    * ```ts
-   * const discountItem =
-   *   await conductor.qbd.discountItems.update(
-   *     '80000001-1234567890',
-   *     {
-   *       revisionNumber: '1721172183',
-   *       conductorEndUserId: 'end_usr_1234567abcdefg',
-   *     },
-   *   );
+   * const discountItem = await client.qbd.discountItems.update(
+   *   '80000001-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
    * ```
    */
   update(
@@ -86,7 +84,7 @@ export class DiscountItems extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const discountItem of conductor.qbd.discountItems.list(
+   * for await (const discountItem of client.qbd.discountItems.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...

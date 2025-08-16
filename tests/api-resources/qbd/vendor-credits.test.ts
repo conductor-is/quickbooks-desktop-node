@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const conductor = new Conductor({
-  apiKey: 'My API Key',
+const client = new Conductor({
+  apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource vendorCredits', () => {
   test('create: only required params', async () => {
-    const responsePromise = conductor.qbd.vendorCredits.create({
+    const responsePromise = client.qbd.vendorCredits.create({
       transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -25,7 +25,7 @@ describe('resource vendorCredits', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await conductor.qbd.vendorCredits.create({
+    const response = await client.qbd.vendorCredits.create({
       transactionDate: '2021-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -88,7 +88,7 @@ describe('resource vendorCredits', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = conductor.qbd.vendorCredits.retrieve('123ABC-1234567890', {
+    const responsePromise = client.qbd.vendorCredits.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -101,13 +101,13 @@ describe('resource vendorCredits', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await conductor.qbd.vendorCredits.retrieve('123ABC-1234567890', {
+    const response = await client.qbd.vendorCredits.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = conductor.qbd.vendorCredits.update('123ABC-1234567890', {
+    const responsePromise = client.qbd.vendorCredits.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -121,7 +121,7 @@ describe('resource vendorCredits', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await conductor.qbd.vendorCredits.update('123ABC-1234567890', {
+    const response = await client.qbd.vendorCredits.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       clearExpenseLines: false,
@@ -205,9 +205,7 @@ describe('resource vendorCredits', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.vendorCredits.list({
-      conductorEndUserId: 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = client.qbd.vendorCredits.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -218,7 +216,7 @@ describe('resource vendorCredits', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await conductor.qbd.vendorCredits.list({
+    const response = await client.qbd.vendorCredits.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
@@ -242,7 +240,7 @@ describe('resource vendorCredits', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = conductor.qbd.vendorCredits.delete('123ABC-1234567890', {
+    const responsePromise = client.qbd.vendorCredits.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -255,7 +253,7 @@ describe('resource vendorCredits', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await conductor.qbd.vendorCredits.delete('123ABC-1234567890', {
+    const response = await client.qbd.vendorCredits.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });

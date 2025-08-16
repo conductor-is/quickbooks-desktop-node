@@ -10,7 +10,7 @@ export class Templates extends APIResource {
    *
    * @example
    * ```ts
-   * const templates = await conductor.qbd.templates.list({
+   * const templates = await client.qbd.templates.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```

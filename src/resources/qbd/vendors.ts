@@ -10,7 +10,7 @@ export class Vendors extends APIResource {
    *
    * @example
    * ```ts
-   * const vendor = await conductor.qbd.vendors.create({
+   * const vendor = await client.qbd.vendors.create({
    *   name: 'Acme Supplies Inc.',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
@@ -30,7 +30,7 @@ export class Vendors extends APIResource {
    *
    * @example
    * ```ts
-   * const vendor = await conductor.qbd.vendors.retrieve(
+   * const vendor = await client.qbd.vendors.retrieve(
    *   '80000001-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -49,7 +49,7 @@ export class Vendors extends APIResource {
    *
    * @example
    * ```ts
-   * const vendor = await conductor.qbd.vendors.update(
+   * const vendor = await client.qbd.vendors.update(
    *   '80000001-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -74,7 +74,7 @@ export class Vendors extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const vendor of conductor.qbd.vendors.list({
+   * for await (const vendor of client.qbd.vendors.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...

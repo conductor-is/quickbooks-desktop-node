@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const conductor = new Conductor({
-  apiKey: 'My API Key',
+const client = new Conductor({
+  apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource subtotalItems', () => {
   test('create: only required params', async () => {
-    const responsePromise = conductor.qbd.subtotalItems.create({
+    const responsePromise = client.qbd.subtotalItems.create({
       name: 'Labor subtotal',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -24,7 +24,7 @@ describe('resource subtotalItems', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await conductor.qbd.subtotalItems.create({
+    const response = await client.qbd.subtotalItems.create({
       name: 'Labor subtotal',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
@@ -35,7 +35,7 @@ describe('resource subtotalItems', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = conductor.qbd.subtotalItems.retrieve('80000001-1234567890', {
+    const responsePromise = client.qbd.subtotalItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -48,13 +48,13 @@ describe('resource subtotalItems', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await conductor.qbd.subtotalItems.retrieve('80000001-1234567890', {
+    const response = await client.qbd.subtotalItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = conductor.qbd.subtotalItems.update('80000001-1234567890', {
+    const responsePromise = client.qbd.subtotalItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -68,7 +68,7 @@ describe('resource subtotalItems', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await conductor.qbd.subtotalItems.update('80000001-1234567890', {
+    const response = await client.qbd.subtotalItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
@@ -79,9 +79,7 @@ describe('resource subtotalItems', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.subtotalItems.list({
-      conductorEndUserId: 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = client.qbd.subtotalItems.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -92,7 +90,7 @@ describe('resource subtotalItems', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await conductor.qbd.subtotalItems.list({
+    const response = await client.qbd.subtotalItems.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['80000001-1234567890'],

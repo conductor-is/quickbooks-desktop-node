@@ -10,12 +10,11 @@ export class VendorCredits extends APIResource {
    *
    * @example
    * ```ts
-   * const vendorCredit =
-   *   await conductor.qbd.vendorCredits.create({
-   *     transactionDate: '2021-10-01',
-   *     vendorId: '80000001-1234567890',
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   });
+   * const vendorCredit = await client.qbd.vendorCredits.create({
+   *   transactionDate: '2021-10-01',
+   *   vendorId: '80000001-1234567890',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
    * ```
    */
   create(params: VendorCreditCreateParams, options?: Core.RequestOptions): Core.APIPromise<VendorCredit> {
@@ -35,7 +34,7 @@ export class VendorCredits extends APIResource {
    * @example
    * ```ts
    * const vendorCredit =
-   *   await conductor.qbd.vendorCredits.retrieve(
+   *   await client.qbd.vendorCredits.retrieve(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -58,14 +57,13 @@ export class VendorCredits extends APIResource {
    *
    * @example
    * ```ts
-   * const vendorCredit =
-   *   await conductor.qbd.vendorCredits.update(
-   *     '123ABC-1234567890',
-   *     {
-   *       revisionNumber: '1721172183',
-   *       conductorEndUserId: 'end_usr_1234567abcdefg',
-   *     },
-   *   );
+   * const vendorCredit = await client.qbd.vendorCredits.update(
+   *   '123ABC-1234567890',
+   *   {
+   *     revisionNumber: '1721172183',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
+   * );
    * ```
    */
   update(
@@ -88,7 +86,7 @@ export class VendorCredits extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const vendorCredit of conductor.qbd.vendorCredits.list(
+   * for await (const vendorCredit of client.qbd.vendorCredits.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
@@ -113,11 +111,10 @@ export class VendorCredits extends APIResource {
    *
    * @example
    * ```ts
-   * const vendorCredit =
-   *   await conductor.qbd.vendorCredits.delete(
-   *     '123ABC-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
-   *   );
+   * const vendorCredit = await client.qbd.vendorCredits.delete(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
    * ```
    */
   delete(

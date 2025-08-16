@@ -112,7 +112,7 @@ export class Conductor extends Core.APIClient {
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
       throw new Errors.ConductorError(
-        "The CONDUCTOR_SECRET_KEY environment variable is missing or empty; either provide it, or instantiate the Conductor client with an apiKey option, like new Conductor({ apiKey: 'My API Key' }).",
+        "The CONDUCTOR_SECRET_KEY environment variable is missing or empty; either provide it, or instantiate the Conductor client with an apiKey option, like new Conductor({ apiKey: 'sk_conductor_...' }).",
       );
     }
 
