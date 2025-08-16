@@ -1,5 +1,14 @@
 # Changelog
 
+## 12.24.1 (2025-08-16)
+
+Full Changelog: [v12.24.0...v12.24.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.24.0...v12.24.1)
+
+### Chores
+
+* **internal:** formatting change ([400ef30](https://github.com/conductor-is/quickbooks-desktop-node/commit/400ef301ad4ad30b21f8edb99b7372d6811dd162))
+* **mcp:** update README ([e5f31bc](https://github.com/conductor-is/quickbooks-desktop-node/commit/e5f31bc2c6d5718376897b723e4ef51283e38af6))
+
 ## 12.24.0 (2025-08-15)
 
 Full Changelog: [v12.23.1...v12.24.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.23.1...v12.24.0)
