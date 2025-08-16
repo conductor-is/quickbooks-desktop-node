@@ -486,6 +486,15 @@ import {
   Transfers,
   TransfersCursorPage,
 } from './transfers';
+import * as UnitOfMeasureSetsAPI from './unit-of-measure-sets';
+import {
+  UnitOfMeasureSet,
+  UnitOfMeasureSetCreateParams,
+  UnitOfMeasureSetListParams,
+  UnitOfMeasureSetListResponse,
+  UnitOfMeasureSetRetrieveParams,
+  UnitOfMeasureSets,
+} from './unit-of-measure-sets';
 import * as VendorCreditsAPI from './vendor-credits';
 import {
   VendorCredit,
@@ -579,6 +588,9 @@ export class Qbd extends APIResource {
     new TimeTrackingActivitiesAPI.TimeTrackingActivities(this._client);
   transactions: TransactionsAPI.Transactions = new TransactionsAPI.Transactions(this._client);
   transfers: TransfersAPI.Transfers = new TransfersAPI.Transfers(this._client);
+  unitOfMeasureSets: UnitOfMeasureSetsAPI.UnitOfMeasureSets = new UnitOfMeasureSetsAPI.UnitOfMeasureSets(
+    this._client,
+  );
   vendorCredits: VendorCreditsAPI.VendorCredits = new VendorCreditsAPI.VendorCredits(this._client);
   vendors: VendorsAPI.Vendors = new VendorsAPI.Vendors(this._client);
 
@@ -708,6 +720,7 @@ Qbd.Transactions = Transactions;
 Qbd.TransactionsCursorPage = TransactionsCursorPage;
 Qbd.Transfers = Transfers;
 Qbd.TransfersCursorPage = TransfersCursorPage;
+Qbd.UnitOfMeasureSets = UnitOfMeasureSets;
 Qbd.VendorCredits = VendorCredits;
 Qbd.VendorCreditsCursorPage = VendorCreditsCursorPage;
 Qbd.Vendors = Vendors;
@@ -1210,6 +1223,15 @@ export declare namespace Qbd {
     type TransferRetrieveParams as TransferRetrieveParams,
     type TransferUpdateParams as TransferUpdateParams,
     type TransferListParams as TransferListParams,
+  };
+
+  export {
+    UnitOfMeasureSets as UnitOfMeasureSets,
+    type UnitOfMeasureSet as UnitOfMeasureSet,
+    type UnitOfMeasureSetListResponse as UnitOfMeasureSetListResponse,
+    type UnitOfMeasureSetCreateParams as UnitOfMeasureSetCreateParams,
+    type UnitOfMeasureSetRetrieveParams as UnitOfMeasureSetRetrieveParams,
+    type UnitOfMeasureSetListParams as UnitOfMeasureSetListParams,
   };
 
   export {
