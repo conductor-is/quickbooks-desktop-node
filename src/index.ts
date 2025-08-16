@@ -190,6 +190,7 @@ export class Conductor extends Core.APIClient {
 Conductor.AuthSessions = AuthSessions;
 Conductor.EndUsers = EndUsers;
 Conductor.Qbd = Qbd;
+
 export declare namespace Conductor {
   export type RequestOptions = Core.RequestOptions;
 
