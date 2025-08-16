@@ -11,7 +11,7 @@ export class CreditCardCharges extends APIResource {
    * @example
    * ```ts
    * const creditCardCharge =
-   *   await conductor.qbd.creditCardCharges.create({
+   *   await client.qbd.creditCardCharges.create({
    *     accountId: '80000001-1234567890',
    *     transactionDate: '2021-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -36,7 +36,7 @@ export class CreditCardCharges extends APIResource {
    * @example
    * ```ts
    * const creditCardCharge =
-   *   await conductor.qbd.creditCardCharges.retrieve(
+   *   await client.qbd.creditCardCharges.retrieve(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -60,7 +60,7 @@ export class CreditCardCharges extends APIResource {
    * @example
    * ```ts
    * const creditCardCharge =
-   *   await conductor.qbd.creditCardCharges.update(
+   *   await client.qbd.creditCardCharges.update(
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -89,7 +89,7 @@ export class CreditCardCharges extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const creditCardCharge of conductor.qbd.creditCardCharges.list(
+   * for await (const creditCardCharge of client.qbd.creditCardCharges.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
@@ -115,7 +115,7 @@ export class CreditCardCharges extends APIResource {
    * @example
    * ```ts
    * const creditCardCharge =
-   *   await conductor.qbd.creditCardCharges.delete(
+   *   await client.qbd.creditCardCharges.delete(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );

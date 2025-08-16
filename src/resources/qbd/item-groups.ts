@@ -10,7 +10,7 @@ export class ItemGroups extends APIResource {
    *
    * @example
    * ```ts
-   * const itemGroup = await conductor.qbd.itemGroups.create({
+   * const itemGroup = await client.qbd.itemGroups.create({
    *   name: 'Office Supplies Bundle',
    *   shouldPrintItemsInGroup: true,
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -31,7 +31,7 @@ export class ItemGroups extends APIResource {
    *
    * @example
    * ```ts
-   * const itemGroup = await conductor.qbd.itemGroups.retrieve(
+   * const itemGroup = await client.qbd.itemGroups.retrieve(
    *   '80000001-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -54,7 +54,7 @@ export class ItemGroups extends APIResource {
    *
    * @example
    * ```ts
-   * const itemGroup = await conductor.qbd.itemGroups.update(
+   * const itemGroup = await client.qbd.itemGroups.update(
    *   '80000001-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -83,9 +83,9 @@ export class ItemGroups extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const itemGroup of conductor.qbd.itemGroups.list(
-   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
-   * )) {
+   * for await (const itemGroup of client.qbd.itemGroups.list({
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * })) {
    *   // ...
    * }
    * ```

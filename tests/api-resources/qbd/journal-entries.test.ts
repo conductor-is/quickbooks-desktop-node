@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const conductor = new Conductor({
-  apiKey: 'My API Key',
+const client = new Conductor({
+  apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource journalEntries', () => {
   test('create: only required params', async () => {
-    const responsePromise = conductor.qbd.journalEntries.create({
+    const responsePromise = client.qbd.journalEntries.create({
       transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -24,7 +24,7 @@ describe('resource journalEntries', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await conductor.qbd.journalEntries.create({
+    const response = await client.qbd.journalEntries.create({
       transactionDate: '2021-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       areAmountsEnteredInHomeCurrency: false,
@@ -60,7 +60,7 @@ describe('resource journalEntries', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = conductor.qbd.journalEntries.retrieve('123ABC-1234567890', {
+    const responsePromise = client.qbd.journalEntries.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -73,13 +73,13 @@ describe('resource journalEntries', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await conductor.qbd.journalEntries.retrieve('123ABC-1234567890', {
+    const response = await client.qbd.journalEntries.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = conductor.qbd.journalEntries.update('123ABC-1234567890', {
+    const responsePromise = client.qbd.journalEntries.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -93,7 +93,7 @@ describe('resource journalEntries', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await conductor.qbd.journalEntries.update('123ABC-1234567890', {
+    const response = await client.qbd.journalEntries.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       areAmountsEnteredInHomeCurrency: false,
@@ -119,9 +119,7 @@ describe('resource journalEntries', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.journalEntries.list({
-      conductorEndUserId: 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = client.qbd.journalEntries.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -132,7 +130,7 @@ describe('resource journalEntries', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await conductor.qbd.journalEntries.list({
+    const response = await client.qbd.journalEntries.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
@@ -155,7 +153,7 @@ describe('resource journalEntries', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = conductor.qbd.journalEntries.delete('123ABC-1234567890', {
+    const responsePromise = client.qbd.journalEntries.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -168,7 +166,7 @@ describe('resource journalEntries', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await conductor.qbd.journalEntries.delete('123ABC-1234567890', {
+    const response = await client.qbd.journalEntries.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });

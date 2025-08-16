@@ -11,7 +11,7 @@ export class PurchaseOrders extends APIResource {
    * @example
    * ```ts
    * const purchaseOrder =
-   *   await conductor.qbd.purchaseOrders.create({
+   *   await client.qbd.purchaseOrders.create({
    *     transactionDate: '2021-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
@@ -34,7 +34,7 @@ export class PurchaseOrders extends APIResource {
    * @example
    * ```ts
    * const purchaseOrder =
-   *   await conductor.qbd.purchaseOrders.retrieve(
+   *   await client.qbd.purchaseOrders.retrieve(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -58,7 +58,7 @@ export class PurchaseOrders extends APIResource {
    * @example
    * ```ts
    * const purchaseOrder =
-   *   await conductor.qbd.purchaseOrders.update(
+   *   await client.qbd.purchaseOrders.update(
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
@@ -87,7 +87,7 @@ export class PurchaseOrders extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const purchaseOrder of conductor.qbd.purchaseOrders.list(
+   * for await (const purchaseOrder of client.qbd.purchaseOrders.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
@@ -113,7 +113,7 @@ export class PurchaseOrders extends APIResource {
    * @example
    * ```ts
    * const purchaseOrder =
-   *   await conductor.qbd.purchaseOrders.delete(
+   *   await client.qbd.purchaseOrders.delete(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );

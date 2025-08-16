@@ -7,7 +7,7 @@
 You can run the MCP Server directly via `npx`:
 
 ```sh
-export CONDUCTOR_SECRET_KEY="My API Key"
+export CONDUCTOR_SECRET_KEY="sk_conductor_..."
 npx -y conductor-node-mcp@latest
 ```
 
@@ -25,7 +25,7 @@ For clients with a configuration JSON, it might look something like this:
       "command": "npx",
       "args": ["-y", "conductor-node-mcp", "--client=claude", "--tools=dynamic"],
       "env": {
-        "CONDUCTOR_SECRET_KEY": "My API Key"
+        "CONDUCTOR_SECRET_KEY": "sk_conductor_..."
       }
     }
   }
@@ -176,7 +176,7 @@ const myCustomEndpoint = {
     description: 'My custom tool',
     inputSchema: zodToJsonSchema(z.object({ a_property: z.string() })),
   },
-  handler: async (client: conductor, args: any) => {
+  handler: async (client: client, args: any) => {
     return { myResponse: 'Hello world!' };
   })
 };

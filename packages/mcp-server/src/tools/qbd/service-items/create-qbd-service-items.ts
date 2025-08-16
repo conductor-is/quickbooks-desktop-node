@@ -155,9 +155,9 @@ export const tool: Tool = {
   annotations: {},
 };
 
-export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await conductor.qbd.serviceItems.create(body));
+  return asTextContentResult(await client.qbd.serviceItems.create(body));
 };
 
 export default { metadata, tool, handler };

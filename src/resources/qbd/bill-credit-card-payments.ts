@@ -11,7 +11,7 @@ export class BillCreditCardPayments extends APIResource {
    * @example
    * ```ts
    * const billCreditCardPayment =
-   *   await conductor.qbd.billCreditCardPayments.create({
+   *   await client.qbd.billCreditCardPayments.create({
    *     applyToTransactions: [
    *       { transactionId: '123ABC-1234567890' },
    *     ],
@@ -40,7 +40,7 @@ export class BillCreditCardPayments extends APIResource {
    * @example
    * ```ts
    * const billCreditCardPayment =
-   *   await conductor.qbd.billCreditCardPayments.retrieve(
+   *   await client.qbd.billCreditCardPayments.retrieve(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
@@ -65,7 +65,7 @@ export class BillCreditCardPayments extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const billCreditCardPayment of conductor.qbd.billCreditCardPayments.list(
+   * for await (const billCreditCardPayment of client.qbd.billCreditCardPayments.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
@@ -92,7 +92,7 @@ export class BillCreditCardPayments extends APIResource {
    * @example
    * ```ts
    * const billCreditCardPayment =
-   *   await conductor.qbd.billCreditCardPayments.delete(
+   *   await client.qbd.billCreditCardPayments.delete(
    *     '123ABC-1234567890',
    *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );

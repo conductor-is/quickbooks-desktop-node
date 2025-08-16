@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const conductor = new Conductor({
-  apiKey: 'My API Key',
+const client = new Conductor({
+  apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource billCheckPayments', () => {
   test('create: only required params', async () => {
-    const responsePromise = conductor.qbd.billCheckPayments.create({
+    const responsePromise = client.qbd.billCheckPayments.create({
       applyToTransactions: [{ transactionId: '123ABC-1234567890' }],
       bankAccountId: '80000001-1234567890',
       transactionDate: '2021-10-01',
@@ -27,7 +27,7 @@ describe('resource billCheckPayments', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await conductor.qbd.billCheckPayments.create({
+    const response = await client.qbd.billCheckPayments.create({
       applyToTransactions: [
         {
           transactionId: '123ABC-1234567890',
@@ -58,7 +58,7 @@ describe('resource billCheckPayments', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = conductor.qbd.billCheckPayments.retrieve('123ABC-1234567890', {
+    const responsePromise = client.qbd.billCheckPayments.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -71,13 +71,13 @@ describe('resource billCheckPayments', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await conductor.qbd.billCheckPayments.retrieve('123ABC-1234567890', {
+    const response = await client.qbd.billCheckPayments.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = conductor.qbd.billCheckPayments.update('123ABC-1234567890', {
+    const responsePromise = client.qbd.billCheckPayments.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -91,7 +91,7 @@ describe('resource billCheckPayments', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await conductor.qbd.billCheckPayments.update('123ABC-1234567890', {
+    const response = await client.qbd.billCheckPayments.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       amount: '1000.00',
@@ -121,7 +121,7 @@ describe('resource billCheckPayments', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.billCheckPayments.list({
+    const responsePromise = client.qbd.billCheckPayments.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -134,7 +134,7 @@ describe('resource billCheckPayments', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await conductor.qbd.billCheckPayments.list({
+    const response = await client.qbd.billCheckPayments.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
@@ -157,7 +157,7 @@ describe('resource billCheckPayments', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = conductor.qbd.billCheckPayments.delete('123ABC-1234567890', {
+    const responsePromise = client.qbd.billCheckPayments.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -170,7 +170,7 @@ describe('resource billCheckPayments', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await conductor.qbd.billCheckPayments.delete('123ABC-1234567890', {
+    const response = await client.qbd.billCheckPayments.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });

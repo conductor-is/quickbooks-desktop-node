@@ -414,9 +414,9 @@ export const tool: Tool = {
   annotations: {},
 };
 
-export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
   const { id, ...body } = args as any;
-  return asTextContentResult(await conductor.qbd.vendors.update(id, body));
+  return asTextContentResult(await client.qbd.vendors.update(id, body));
 };
 
 export default { metadata, tool, handler };

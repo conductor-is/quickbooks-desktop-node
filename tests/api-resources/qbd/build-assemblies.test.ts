@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const conductor = new Conductor({
-  apiKey: 'My API Key',
+const client = new Conductor({
+  apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource buildAssemblies', () => {
   test('create: only required params', async () => {
-    const responsePromise = conductor.qbd.buildAssemblies.create({
+    const responsePromise = client.qbd.buildAssemblies.create({
       inventoryAssemblyItemId: '80000001-1234567890',
       quantityToBuild: 7,
       transactionDate: '2021-10-01',
@@ -26,7 +26,7 @@ describe('resource buildAssemblies', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await conductor.qbd.buildAssemblies.create({
+    const response = await client.qbd.buildAssemblies.create({
       inventoryAssemblyItemId: '80000001-1234567890',
       quantityToBuild: 7,
       transactionDate: '2021-10-01',
@@ -44,7 +44,7 @@ describe('resource buildAssemblies', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = conductor.qbd.buildAssemblies.retrieve('123ABC-1234567890', {
+    const responsePromise = client.qbd.buildAssemblies.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -57,13 +57,13 @@ describe('resource buildAssemblies', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await conductor.qbd.buildAssemblies.retrieve('123ABC-1234567890', {
+    const response = await client.qbd.buildAssemblies.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = conductor.qbd.buildAssemblies.update('123ABC-1234567890', {
+    const responsePromise = client.qbd.buildAssemblies.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -77,7 +77,7 @@ describe('resource buildAssemblies', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await conductor.qbd.buildAssemblies.update('123ABC-1234567890', {
+    const response = await client.qbd.buildAssemblies.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       expirationDate: '2025-12-31',
@@ -95,9 +95,7 @@ describe('resource buildAssemblies', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.buildAssemblies.list({
-      conductorEndUserId: 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = client.qbd.buildAssemblies.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -108,7 +106,7 @@ describe('resource buildAssemblies', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await conductor.qbd.buildAssemblies.list({
+    const response = await client.qbd.buildAssemblies.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['123ABC-1234567890'],
@@ -130,7 +128,7 @@ describe('resource buildAssemblies', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = conductor.qbd.buildAssemblies.delete('123ABC-1234567890', {
+    const responsePromise = client.qbd.buildAssemblies.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -143,7 +141,7 @@ describe('resource buildAssemblies', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await conductor.qbd.buildAssemblies.delete('123ABC-1234567890', {
+    const response = await client.qbd.buildAssemblies.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
