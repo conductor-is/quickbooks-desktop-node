@@ -11,9 +11,10 @@ export class Preferences extends APIResource {
    *
    * @example
    * ```ts
-   * const preferences = await client.qbd.preferences.retrieve({
-   *   conductorEndUserId: 'end_usr_1234567abcdefg',
-   * });
+   * const preferences =
+   *   await conductor.qbd.preferences.retrieve({
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
    * ```
    */
   retrieve(params: PreferenceRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Preferences> {

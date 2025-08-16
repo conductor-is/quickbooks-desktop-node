@@ -10,10 +10,11 @@ export class Transactions extends APIResource {
    *
    * @example
    * ```ts
-   * const transaction = await client.qbd.transactions.retrieve(
-   *   '123ABC-1234567890',
-   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
-   * );
+   * const transaction =
+   *   await conductor.qbd.transactions.retrieve(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
    * ```
    */
   retrieve(
@@ -39,7 +40,7 @@ export class Transactions extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const transaction of client.qbd.transactions.list(
+   * for await (const transaction of conductor.qbd.transactions.list(
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...

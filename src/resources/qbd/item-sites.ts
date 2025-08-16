@@ -10,7 +10,7 @@ export class ItemSites extends APIResource {
    *
    * @example
    * ```ts
-   * const itemSite = await client.qbd.itemSites.retrieve(
+   * const itemSite = await conductor.qbd.itemSites.retrieve(
    *   '80000001-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -35,7 +35,7 @@ export class ItemSites extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const itemSite of client.qbd.itemSites.list({
+   * for await (const itemSite of conductor.qbd.itemSites.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...

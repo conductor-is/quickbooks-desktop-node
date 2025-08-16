@@ -3,14 +3,14 @@
 import Conductor from 'conductor-node';
 import { Response } from 'node-fetch';
 
-const client = new Conductor({
+const conductor = new Conductor({
   apiKey: 'sk_conductor_...',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource itemGroups', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.qbd.itemGroups.create({
+    const responsePromise = conductor.qbd.itemGroups.create({
       name: 'Office Supplies Bundle',
       shouldPrintItemsInGroup: true,
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -25,7 +25,7 @@ describe('resource itemGroups', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.qbd.itemGroups.create({
+    const response = await conductor.qbd.itemGroups.create({
       name: 'Office Supplies Bundle',
       shouldPrintItemsInGroup: true,
       conductorEndUserId: 'end_usr_1234567abcdefg',
@@ -39,7 +39,7 @@ describe('resource itemGroups', () => {
   });
 
   test('retrieve: only required params', async () => {
-    const responsePromise = client.qbd.itemGroups.retrieve('80000001-1234567890', {
+    const responsePromise = conductor.qbd.itemGroups.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -52,13 +52,13 @@ describe('resource itemGroups', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.qbd.itemGroups.retrieve('80000001-1234567890', {
+    const response = await conductor.qbd.itemGroups.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.qbd.itemGroups.update('80000001-1234567890', {
+    const responsePromise = conductor.qbd.itemGroups.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -72,7 +72,7 @@ describe('resource itemGroups', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.qbd.itemGroups.update('80000001-1234567890', {
+    const response = await conductor.qbd.itemGroups.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
@@ -88,7 +88,7 @@ describe('resource itemGroups', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.qbd.itemGroups.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+    const responsePromise = conductor.qbd.itemGroups.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -99,7 +99,7 @@ describe('resource itemGroups', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.qbd.itemGroups.list({
+    const response = await conductor.qbd.itemGroups.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['80000001-1234567890'],

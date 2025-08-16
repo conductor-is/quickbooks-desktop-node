@@ -39,9 +39,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (client: Conductor, args: Record<string, unknown> | undefined) => {
+export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const { id, jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.endUsers.delete(id)));
+  return asTextContentResult(await maybeFilter(jq_filter, await conductor.endUsers.delete(id)));
 };
 
 export default { metadata, tool, handler };

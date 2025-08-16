@@ -176,7 +176,7 @@ const myCustomEndpoint = {
     description: 'My custom tool',
     inputSchema: zodToJsonSchema(z.object({ a_property: z.string() })),
   },
-  handler: async (client: client, args: any) => {
+  handler: async (client: conductor, args: any) => {
     return { myResponse: 'Hello world!' };
   })
 };

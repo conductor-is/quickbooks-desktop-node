@@ -9,7 +9,7 @@ export class Employees extends APIResource {
    *
    * @example
    * ```ts
-   * const employee = await client.qbd.employees.create({
+   * const employee = await conductor.qbd.employees.create({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
@@ -28,7 +28,7 @@ export class Employees extends APIResource {
    *
    * @example
    * ```ts
-   * const employee = await client.qbd.employees.retrieve(
+   * const employee = await conductor.qbd.employees.retrieve(
    *   '80000001-1234567890',
    *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
@@ -51,7 +51,7 @@ export class Employees extends APIResource {
    *
    * @example
    * ```ts
-   * const employee = await client.qbd.employees.update(
+   * const employee = await conductor.qbd.employees.update(
    *   '80000001-1234567890',
    *   {
    *     revisionNumber: '1721172183',
@@ -76,7 +76,7 @@ export class Employees extends APIResource {
    *
    * @example
    * ```ts
-   * const employees = await client.qbd.employees.list({
+   * const employees = await conductor.qbd.employees.list({
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
