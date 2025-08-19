@@ -1,5 +1,18 @@
 # Changelog
 
+## 12.26.0 (2025-08-19)
+
+Full Changelog: [v12.25.0...v12.26.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.25.0...v12.26.0)
+
+### Features
+
+* **mcp:** parse query string as mcp client options in mcp server ([acefbd7](https://github.com/conductor-is/quickbooks-desktop-node/commit/acefbd7484bc15ebfd2a31b347611d4dc527e826))
+
+
+### Chores
+
+* **internal:** refactor array check ([a4cc9e1](https://github.com/conductor-is/quickbooks-desktop-node/commit/a4cc9e103c4c10ec6d836186af6e662b3add0a14))
+
 ## 12.25.0 (2025-08-16)
 
 Full Changelog: [v12.24.0...v12.25.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.24.0...v12.25.0)
