@@ -14,7 +14,7 @@ export class ReceivePayments extends APIResource {
    *   await conductor.qbd.receivePayments.create({
    *     customerId: '80000001-1234567890',
    *     totalAmount: '1000.00',
-   *     transactionDate: '2021-10-01',
+   *     transactionDate: '2024-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```

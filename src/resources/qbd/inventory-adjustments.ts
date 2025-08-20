@@ -12,7 +12,7 @@ export class InventoryAdjustments extends APIResource {
    * const inventoryAdjustment =
    *   await conductor.qbd.inventoryAdjustments.create({
    *     accountId: '80000001-1234567890',
-   *     transactionDate: '2021-10-01',
+   *     transactionDate: '2024-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```

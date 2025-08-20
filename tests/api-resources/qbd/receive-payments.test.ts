@@ -13,7 +13,7 @@ describe('resource receivePayments', () => {
     const responsePromise = conductor.qbd.receivePayments.create({
       customerId: '80000001-1234567890',
       totalAmount: '1000.00',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -29,7 +29,7 @@ describe('resource receivePayments', () => {
     const response = await conductor.qbd.receivePayments.create({
       customerId: '80000001-1234567890',
       totalAmount: '1000.00',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       applyToTransactions: [
         {
@@ -177,7 +177,7 @@ describe('resource receivePayments', () => {
       receivablesAccountId: '80000001-1234567890',
       refNumber: 'PAYMENT-1234',
       totalAmount: '1000.00',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
     });
   });
 
@@ -210,10 +210,10 @@ describe('resource receivePayments', () => {
       refNumbers: ['RECEIVE-PAYMENT-1234'],
       refNumberStartsWith: 'PAYMENT',
       refNumberTo: 'PAYMENT-9999',
-      transactionDateFrom: '2021-01-01',
-      transactionDateTo: '2021-02-01',
-      updatedAfter: '2021-01-01T12:34:56',
-      updatedBefore: '2021-02-01T12:34:56',
+      transactionDateFrom: '2024-01-01',
+      transactionDateTo: '2024-02-01',
+      updatedAfter: '2024-01-01T12:34:56',
+      updatedBefore: '2024-02-01T12:34:56',
     });
   });
 
