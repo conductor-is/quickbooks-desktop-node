@@ -12,7 +12,7 @@ describe('resource creditMemos', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.creditMemos.create({
       customerId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -27,7 +27,7 @@ describe('resource creditMemos', () => {
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.creditMemos.create({
       customerId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       billingAddress: {
         city: 'San Francisco',
@@ -44,7 +44,7 @@ describe('resource creditMemos', () => {
       classId: '80000001-1234567890',
       customerMessageId: '80000001-1234567890',
       documentTemplateId: '80000001-1234567890',
-      dueDate: '2021-10-31',
+      dueDate: '2024-10-31',
       exchangeRate: 1.2345,
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       isPending: false,
@@ -104,7 +104,7 @@ describe('resource creditMemos', () => {
         postalCode: '94110',
         state: 'CA',
       },
-      shippingDate: '2021-10-01',
+      shippingDate: '2024-10-01',
       shippingMethodId: '80000001-1234567890',
       termsId: '80000001-1234567890',
     });
@@ -163,7 +163,7 @@ describe('resource creditMemos', () => {
       customerId: '80000001-1234567890',
       customerMessageId: '80000001-1234567890',
       documentTemplateId: '80000001-1234567890',
-      dueDate: '2021-10-31',
+      dueDate: '2024-10-31',
       exchangeRate: 1.2345,
       isPending: false,
       isQueuedForEmail: true,
@@ -246,10 +246,10 @@ describe('resource creditMemos', () => {
         postalCode: '94110',
         state: 'CA',
       },
-      shippingDate: '2021-10-01',
+      shippingDate: '2024-10-01',
       shippingMethodId: '80000001-1234567890',
       termsId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
     });
   });
 
@@ -281,10 +281,10 @@ describe('resource creditMemos', () => {
       refNumbers: ['CREDIT MEMO-1234'],
       refNumberStartsWith: 'CM',
       refNumberTo: 'CM-9999',
-      transactionDateFrom: '2021-01-01',
-      transactionDateTo: '2021-02-01',
-      updatedAfter: '2021-01-01T12:34:56',
-      updatedBefore: '2021-02-01T12:34:56',
+      transactionDateFrom: '2024-01-01',
+      transactionDateTo: '2024-02-01',
+      updatedAfter: '2024-01-01T12:34:56',
+      updatedBefore: '2024-02-01T12:34:56',
     });
   });
 

@@ -13,7 +13,7 @@ export class CreditCardCharges extends APIResource {
    * const creditCardCharge =
    *   await conductor.qbd.creditCardCharges.create({
    *     accountId: '80000001-1234567890',
-   *     transactionDate: '2021-10-01',
+   *     transactionDate: '2024-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```

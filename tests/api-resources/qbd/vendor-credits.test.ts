@@ -11,7 +11,7 @@ const conductor = new Conductor({
 describe('resource vendorCredits', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.vendorCredits.create({
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -26,7 +26,7 @@ describe('resource vendorCredits', () => {
 
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.vendorCredits.create({
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       exchangeRate: 1.2345,
@@ -199,7 +199,7 @@ describe('resource vendorCredits', () => {
       payablesAccountId: '80000001-1234567890',
       refNumber: 'VCREDIT-1234',
       salesTaxCodeId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
     });
   });
@@ -233,10 +233,10 @@ describe('resource vendorCredits', () => {
       refNumbers: ['VENDOR CREDIT-1234'],
       refNumberStartsWith: 'VCREDIT',
       refNumberTo: 'VCREDIT-9999',
-      transactionDateFrom: '2021-01-01',
-      transactionDateTo: '2021-02-01',
-      updatedAfter: '2021-01-01T12:34:56',
-      updatedBefore: '2021-02-01T12:34:56',
+      transactionDateFrom: '2024-01-01',
+      transactionDateTo: '2024-02-01',
+      updatedAfter: '2024-01-01T12:34:56',
+      updatedBefore: '2024-02-01T12:34:56',
       vendorIds: ['80000001-1234567890'],
     });
   });

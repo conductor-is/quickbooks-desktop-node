@@ -11,7 +11,7 @@ const conductor = new Conductor({
 describe('resource journalEntries', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.journalEntries.create({
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -25,7 +25,7 @@ describe('resource journalEntries', () => {
 
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.journalEntries.create({
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       areAmountsEnteredInHomeCurrency: false,
       creditLines: [
@@ -114,7 +114,7 @@ describe('resource journalEntries', () => {
         },
       ],
       refNumber: 'JE-1234',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
     });
   });
 
@@ -147,10 +147,10 @@ describe('resource journalEntries', () => {
       refNumbers: ['JOURNAL ENTRY-1234'],
       refNumberStartsWith: 'JE',
       refNumberTo: 'JE-9999',
-      transactionDateFrom: '2021-01-01',
-      transactionDateTo: '2021-02-01',
-      updatedAfter: '2021-01-01T12:34:56',
-      updatedBefore: '2021-02-01T12:34:56',
+      transactionDateFrom: '2024-01-01',
+      transactionDateTo: '2024-02-01',
+      updatedAfter: '2024-01-01T12:34:56',
+      updatedBefore: '2024-02-01T12:34:56',
     });
   });
 

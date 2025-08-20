@@ -12,7 +12,7 @@ export class SalesReceipts extends APIResource {
    * ```ts
    * const salesReceipt =
    *   await conductor.qbd.salesReceipts.create({
-   *     transactionDate: '2021-10-01',
+   *     transactionDate: '2024-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```

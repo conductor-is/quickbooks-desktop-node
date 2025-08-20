@@ -12,7 +12,7 @@ export class CreditMemos extends APIResource {
    * ```ts
    * const creditMemo = await conductor.qbd.creditMemos.create({
    *   customerId: '80000001-1234567890',
-   *   transactionDate: '2021-10-01',
+   *   transactionDate: '2024-10-01',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```

@@ -11,7 +11,7 @@ const conductor = new Conductor({
 describe('resource bills', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.bills.create({
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -26,10 +26,10 @@ describe('resource bills', () => {
 
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.bills.create({
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      dueDate: '2021-10-31',
+      dueDate: '2024-10-31',
       exchangeRate: 1.2345,
       expenseLines: [
         {
@@ -141,7 +141,7 @@ describe('resource bills', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
       clearExpenseLines: false,
       clearItemLines: false,
-      dueDate: '2021-10-31',
+      dueDate: '2024-10-31',
       exchangeRate: 1.2345,
       expenseLines: [
         {
@@ -216,7 +216,7 @@ describe('resource bills', () => {
       refNumber: 'BILL-1234',
       salesTaxCodeId: '80000001-1234567890',
       termsId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       vendorAddress: {
         city: 'San Francisco',
         country: 'United States',
@@ -261,10 +261,10 @@ describe('resource bills', () => {
       refNumbers: ['BILL-1234'],
       refNumberStartsWith: 'BILL',
       refNumberTo: 'BILL-9999',
-      transactionDateFrom: '2021-01-01',
-      transactionDateTo: '2021-02-01',
-      updatedAfter: '2021-01-01T12:34:56',
-      updatedBefore: '2021-02-01T12:34:56',
+      transactionDateFrom: '2024-01-01',
+      transactionDateTo: '2024-02-01',
+      updatedAfter: '2024-01-01T12:34:56',
+      updatedBefore: '2024-02-01T12:34:56',
       vendorIds: ['80000001-1234567890'],
     });
   });

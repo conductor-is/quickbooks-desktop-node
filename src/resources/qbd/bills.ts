@@ -11,7 +11,7 @@ export class Bills extends APIResource {
    * @example
    * ```ts
    * const bill = await conductor.qbd.bills.create({
-   *   transactionDate: '2021-10-01',
+   *   transactionDate: '2024-10-01',
    *   vendorId: '80000001-1234567890',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });

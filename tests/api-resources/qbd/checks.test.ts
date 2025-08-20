@@ -12,7 +12,7 @@ describe('resource checks', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.checks.create({
       bankAccountId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -27,7 +27,7 @@ describe('resource checks', () => {
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.checks.create({
       bankAccountId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       address: {
         city: 'San Francisco',
@@ -228,7 +228,7 @@ describe('resource checks', () => {
       payeeId: '80000001-1234567890',
       refNumber: 'CHECK-1234',
       salesTaxCodeId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
     });
   });
 
@@ -260,10 +260,10 @@ describe('resource checks', () => {
       refNumbers: ['CHECK-1234'],
       refNumberStartsWith: 'CHECK',
       refNumberTo: 'CHECK-9999',
-      transactionDateFrom: '2021-01-01',
-      transactionDateTo: '2021-02-01',
-      updatedAfter: '2021-01-01T12:34:56',
-      updatedBefore: '2021-02-01T12:34:56',
+      transactionDateFrom: '2024-01-01',
+      transactionDateTo: '2024-02-01',
+      updatedAfter: '2024-01-01T12:34:56',
+      updatedBefore: '2024-02-01T12:34:56',
     });
   });
 

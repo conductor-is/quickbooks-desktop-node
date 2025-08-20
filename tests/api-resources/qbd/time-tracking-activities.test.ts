@@ -13,7 +13,7 @@ describe('resource timeTrackingActivities', () => {
     const responsePromise = conductor.qbd.timeTrackingActivities.create({
       duration: 'PT1H30M',
       entityId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -29,7 +29,7 @@ describe('resource timeTrackingActivities', () => {
     const response = await conductor.qbd.timeTrackingActivities.create({
       duration: 'PT1H30M',
       entityId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       billingStatus: 'billable',
       classId: '80000001-1234567890',
@@ -88,7 +88,7 @@ describe('resource timeTrackingActivities', () => {
       note: 'Project planning meeting with client.',
       payrollWageItemId: '80000001-1234567890',
       serviceItemId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
     });
   });
 
@@ -112,10 +112,10 @@ describe('resource timeTrackingActivities', () => {
       entityIds: ['80000001-1234567890'],
       ids: ['123ABC-1234567890'],
       limit: 150,
-      transactionDateFrom: '2021-01-01',
-      transactionDateTo: '2021-02-01',
-      updatedAfter: '2021-01-01T12:34:56',
-      updatedBefore: '2021-02-01T12:34:56',
+      transactionDateFrom: '2024-01-01',
+      transactionDateTo: '2024-02-01',
+      updatedAfter: '2024-01-01T12:34:56',
+      updatedBefore: '2024-02-01T12:34:56',
     });
   });
 

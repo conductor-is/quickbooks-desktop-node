@@ -13,7 +13,7 @@ describe('resource billCheckPayments', () => {
     const responsePromise = conductor.qbd.billCheckPayments.create({
       applyToTransactions: [{ transactionId: '123ABC-1234567890' }],
       bankAccountId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
@@ -45,7 +45,7 @@ describe('resource billCheckPayments', () => {
         },
       ],
       bankAccountId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       exchangeRate: 1.2345,
@@ -116,7 +116,7 @@ describe('resource billCheckPayments', () => {
       isQueuedForPrint: true,
       memo: 'Payment for office supplies - Invoice INV-1234',
       refNumber: 'CHECK-1234',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
     });
   });
 
@@ -148,10 +148,10 @@ describe('resource billCheckPayments', () => {
       refNumbers: ['BILL CHECK PAYMENT-1234'],
       refNumberStartsWith: 'CHECK',
       refNumberTo: 'CHECK-9999',
-      transactionDateFrom: '2021-01-01',
-      transactionDateTo: '2021-02-01',
-      updatedAfter: '2021-01-01T12:34:56',
-      updatedBefore: '2021-02-01T12:34:56',
+      transactionDateFrom: '2024-01-01',
+      transactionDateTo: '2024-02-01',
+      updatedAfter: '2024-01-01T12:34:56',
+      updatedBefore: '2024-02-01T12:34:56',
       vendorIds: ['80000001-1234567890'],
     });
   });

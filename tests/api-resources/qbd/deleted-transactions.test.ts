@@ -27,8 +27,8 @@ describe('resource deletedTransactions', () => {
     const response = await conductor.qbd.deletedTransactions.list({
       transactionTypes: ['invoice'],
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      deletedAfter: '2021-01-01T12:34:56',
-      deletedBefore: '2021-02-01T12:34:56',
+      deletedAfter: '2024-01-01T12:34:56',
+      deletedBefore: '2024-02-01T12:34:56',
     });
   });
 });

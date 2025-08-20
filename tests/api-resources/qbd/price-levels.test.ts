@@ -120,8 +120,8 @@ describe('resource priceLevels', () => {
       nameStartsWith: 'ABC',
       nameTo: 'Z',
       status: 'active',
-      updatedAfter: '2021-01-01T12:34:56',
-      updatedBefore: '2021-02-01T12:34:56',
+      updatedAfter: '2024-01-01T12:34:56',
+      updatedBefore: '2024-02-01T12:34:56',
     });
   });
 });
