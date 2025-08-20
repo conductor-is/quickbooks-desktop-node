@@ -27,7 +27,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'conductor_node_api',
-      version: '12.26.0',
+      version: '12.27.0',
     },
     { capabilities: { tools: {}, logging: {} } },
   );

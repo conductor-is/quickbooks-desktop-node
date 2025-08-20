@@ -1,5 +1,18 @@
 # Changelog
 
+## 12.27.0 (2025-08-20)
+
+Full Changelog: [v12.26.0...v12.27.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.26.0...v12.27.0)
+
+### Features
+
+* **mcp:** add code execution tool ([7b01353](https://github.com/conductor-is/quickbooks-desktop-node/commit/7b0135365dd0dc2d9f91fa7d122421f37d42ef2f))
+
+
+### Chores
+
+* **mcp:** add cors to oauth metadata route ([6385ee1](https://github.com/conductor-is/quickbooks-desktop-node/commit/6385ee194bb0dd513a7a6db182353e5eb18d3ef6))
+
 ## 12.26.0 (2025-08-19)
 
 Full Changelog: [v12.25.0...v12.26.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.25.0...v12.26.0)
