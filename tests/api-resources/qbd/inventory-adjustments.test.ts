@@ -12,7 +12,7 @@ describe('resource inventoryAdjustments', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.inventoryAdjustments.create({
       accountId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -27,7 +27,7 @@ describe('resource inventoryAdjustments', () => {
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.inventoryAdjustments.create({
       accountId: '80000001-1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       classId: '80000001-1234567890',
       customerId: '80000001-1234567890',
@@ -120,7 +120,7 @@ describe('resource inventoryAdjustments', () => {
       ],
       memo: 'Adjusted quantity due to physical count discrepancy',
       refNumber: 'INVADJ-1234',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
     });
   });
 
@@ -152,10 +152,10 @@ describe('resource inventoryAdjustments', () => {
       refNumbers: ['INVENTORY ADJUSTMENT-1234'],
       refNumberStartsWith: 'INVADJ',
       refNumberTo: 'INVADJ-9999',
-      transactionDateFrom: '2021-01-01',
-      transactionDateTo: '2021-02-01',
-      updatedAfter: '2021-01-01T12:34:56',
-      updatedBefore: '2021-02-01T12:34:56',
+      transactionDateFrom: '2024-01-01',
+      transactionDateTo: '2024-02-01',
+      updatedAfter: '2024-01-01T12:34:56',
+      updatedBefore: '2024-02-01T12:34:56',
     });
   });
 

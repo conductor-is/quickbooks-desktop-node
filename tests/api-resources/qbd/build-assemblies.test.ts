@@ -13,7 +13,7 @@ describe('resource buildAssemblies', () => {
     const responsePromise = conductor.qbd.buildAssemblies.create({
       inventoryAssemblyItemId: '80000001-1234567890',
       quantityToBuild: 7,
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -29,7 +29,7 @@ describe('resource buildAssemblies', () => {
     const response = await conductor.qbd.buildAssemblies.create({
       inventoryAssemblyItemId: '80000001-1234567890',
       quantityToBuild: 7,
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       expirationDate: '2025-12-31',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
@@ -90,7 +90,7 @@ describe('resource buildAssemblies', () => {
       refNumber: 'BUILD-1234',
       removePending: true,
       serialNumber: 'SN1234567890',
-      transactionDate: '2021-10-01',
+      transactionDate: '2024-10-01',
     });
   });
 
@@ -122,10 +122,10 @@ describe('resource buildAssemblies', () => {
       refNumbers: ['BUILD ASSEMBLY-1234'],
       refNumberStartsWith: 'BUILD',
       refNumberTo: 'BUILD-9999',
-      transactionDateFrom: '2021-01-01',
-      transactionDateTo: '2021-02-01',
-      updatedAfter: '2021-01-01T12:34:56',
-      updatedBefore: '2021-02-01T12:34:56',
+      transactionDateFrom: '2024-01-01',
+      transactionDateTo: '2024-02-01',
+      updatedAfter: '2024-01-01T12:34:56',
+      updatedBefore: '2024-02-01T12:34:56',
     });
   });
 

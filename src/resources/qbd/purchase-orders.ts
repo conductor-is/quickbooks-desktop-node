@@ -12,7 +12,7 @@ export class PurchaseOrders extends APIResource {
    * ```ts
    * const purchaseOrder =
    *   await conductor.qbd.purchaseOrders.create({
-   *     transactionDate: '2021-10-01',
+   *     transactionDate: '2024-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```

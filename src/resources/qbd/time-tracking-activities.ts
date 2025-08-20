@@ -14,7 +14,7 @@ export class TimeTrackingActivities extends APIResource {
    *   await conductor.qbd.timeTrackingActivities.create({
    *     duration: 'PT1H30M',
    *     entityId: '80000001-1234567890',
-   *     transactionDate: '2021-10-01',
+   *     transactionDate: '2024-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```

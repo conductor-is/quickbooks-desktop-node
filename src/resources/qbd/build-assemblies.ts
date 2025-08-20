@@ -14,7 +14,7 @@ export class BuildAssemblies extends APIResource {
    *   await conductor.qbd.buildAssemblies.create({
    *     inventoryAssemblyItemId: '80000001-1234567890',
    *     quantityToBuild: 7,
-   *     transactionDate: '2021-10-01',
+   *     transactionDate: '2024-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```

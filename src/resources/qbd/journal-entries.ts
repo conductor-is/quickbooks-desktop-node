@@ -12,7 +12,7 @@ export class JournalEntries extends APIResource {
    * ```ts
    * const journalEntry =
    *   await conductor.qbd.journalEntries.create({
-   *     transactionDate: '2021-10-01',
+   *     transactionDate: '2024-10-01',
    *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
