@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.28.0 (2025-08-20)
+
+Full Changelog: [v12.27.0...v12.28.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.27.0...v12.28.0)
+
+### Features
+
+* **api:** api update ([7857fef](https://github.com/conductor-is/quickbooks-desktop-node/commit/7857fef883d0ee8dd6a10d94ffb42bc260f180fa))
+
 ## 12.27.0 (2025-08-20)
 
 Full Changelog: [v12.26.0...v12.27.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.26.0...v12.27.0)
