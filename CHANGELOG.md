@@ -1,5 +1,20 @@
 # Changelog
 
+## 12.29.0 (2025-08-22)
+
+Full Changelog: [v12.28.0...v12.29.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.28.0...v12.29.0)
+
+### Features
+
+* **mcp:** add option to infer mcp client ([3a65daa](https://github.com/conductor-is/quickbooks-desktop-node/commit/3a65daae0164c0c6a7d95686f6e694ea8988e95f))
+
+
+### Chores
+
+* **internal:** make mcp-server publishing public by defaut ([acc69ba](https://github.com/conductor-is/quickbooks-desktop-node/commit/acc69babc182c7e8d7e3bc524b3f1d4801ea1293))
+* **mcp:** update package.json ([d912aa7](https://github.com/conductor-is/quickbooks-desktop-node/commit/d912aa79287b90ab4cdadd9e6677eb9062915c6d))
+* **mcp:** update types ([dc6be3e](https://github.com/conductor-is/quickbooks-desktop-node/commit/dc6be3e0d5cba5b901aafd01bf19dd1a450c4f2a))
+
 ## 12.28.0 (2025-08-20)
 
 Full Changelog: [v12.27.0...v12.28.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.27.0...v12.28.0)
