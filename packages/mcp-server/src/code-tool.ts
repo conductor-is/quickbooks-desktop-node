@@ -1,10 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type ClientOptions } from 'conductor-node/index';
-
 import { dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import Conductor from 'conductor-node';
+import Conductor, { ClientOptions } from 'conductor-node';
 import { Endpoint, ContentBlock, Metadata } from './tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';

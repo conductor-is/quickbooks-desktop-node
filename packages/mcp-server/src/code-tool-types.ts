@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type ClientOptions } from 'conductor-node/index';
+import { ClientOptions } from 'conductor-node';
 
 export type WorkerInput = {
   opts: ClientOptions;
