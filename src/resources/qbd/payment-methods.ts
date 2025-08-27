@@ -86,8 +86,8 @@ export interface PaymentMethod {
 
   /**
    * The date and time when this payment method was created, in ISO 8601 format
-   * (YYYY-MM-DDThh:mm:ss±hh:mm), in the QuickBooks Desktop host machine’s local
-   * timezone.
+   * (YYYY-MM-DDThh:mm:ss±hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
    */
   createdAt: string;
 
@@ -138,8 +138,8 @@ export interface PaymentMethod {
 
   /**
    * The date and time when this payment method was last updated, in ISO 8601 format
-   * (YYYY-MM-DDThh:mm:ss±hh:mm), in the QuickBooks Desktop host machine’s local
-   * timezone.
+   * (YYYY-MM-DDThh:mm:ss±hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
    */
   updatedAt: string;
 }
@@ -321,9 +321,9 @@ export interface PaymentMethodListParams {
    * Accepts the following ISO 8601 formats:
    *
    * - **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this as midnight in
-   *   the host machine’s local timezone.
+   *   the local timezone of the end-user's computer.
    * - **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses
-   *   the host machine’s local timezone to interpret the timestamp.
+   *   the local timezone of the end-user's computer to interpret the timestamp.
    * - **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop
    *   uses this timezone to interpret the timestamp.
    */
@@ -334,9 +334,9 @@ export interface PaymentMethodListParams {
    * Accepts the following ISO 8601 formats:
    *
    * - **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this as midnight in
-   *   the host machine’s local timezone.
+   *   the local timezone of the end-user's computer.
    * - **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses
-   *   the host machine’s local timezone to interpret the timestamp.
+   *   the local timezone of the end-user's computer to interpret the timestamp.
    * - **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop
    *   uses this timezone to interpret the timestamp.
    */
