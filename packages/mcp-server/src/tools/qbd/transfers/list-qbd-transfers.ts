@@ -1,6 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from 'conductor-node-mcp/filtering';
 import { Metadata, asTextContentResult } from 'conductor-node-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
@@ -16,8 +15,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'list_qbd_transfers',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns a list of transfers. Use the `cursor` parameter to paginate through the results.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {\n    data: {\n      type: 'array',\n      description: 'The array of transfers.',\n      items: {\n        $ref: '#/$defs/transfer'\n      }\n    },\n    hasMore: {\n      type: 'boolean',\n      description: 'Indicates whether there are more objects to be fetched.'\n    },\n    nextCursor: {\n      type: 'string',\n      description: 'The `nextCursor` is a pagination token returned in the response when you use the `limit` parameter in your request. To retrieve subsequent pages of results, include this token as the value of the `cursor` request parameter in your following API calls.\\n\\n**NOTE**: The `nextCursor` value remains constant throughout the pagination process for a specific list instance; continue to use the same `nextCursor` token in each request to fetch additional pages.'\n    },\n    objectType: {\n      type: 'string',\n      description: 'The type of object. This value is always `\"list\"`.',\n      enum: [        'list'\n      ]\n    },\n    remainingCount: {\n      type: 'number',\n      description: 'The number of objects remaining to be fetched.'\n    },\n    url: {\n      type: 'string',\n      description: 'The endpoint URL where this list can be accessed.'\n    }\n  },\n  required: [    'data',\n    'hasMore',\n    'nextCursor',\n    'objectType',\n    'remainingCount',\n    'url'\n  ],\n  $defs: {\n    transfer: {\n      type: 'object',\n      title: 'The Transfer object',\n      properties: {\n        id: {\n          type: 'string',\n          description: 'The unique identifier assigned by QuickBooks to this transfer. This ID is unique across all transaction types.'\n        },\n        amount: {\n          type: 'string',\n          description: 'The monetary amount of this transfer, represented as a decimal string.'\n        },\n        class: {\n          type: 'object',\n          description: 'The transfer\\'s class. Classes can be used to categorize objects into meaningful segments, such as department, location, or type of work. In QuickBooks, class tracking is off by default.',\n          properties: {\n            id: {\n              type: 'string',\n              description: 'The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.'\n            },\n            fullName: {\n              type: 'string',\n              description: 'The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.'\n            }\n          },\n          required: [            'id',\n            'fullName'\n          ]\n        },\n        createdAt: {\n          type: 'string',\n          description: 'The date and time when this transfer was created, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm), which QuickBooks Desktop interprets in the local timezone of the end-user\\'s computer.'\n        },\n        memo: {\n          type: 'string',\n          description: 'A memo or note for this transfer.'\n        },\n        objectType: {\n          type: 'string',\n          description: 'The type of object. This value is always `\"qbd_transfer\"`.',\n          enum: [            'qbd_transfer'\n          ]\n        },\n        revisionNumber: {\n          type: 'string',\n          description: 'The current QuickBooks-assigned revision number of this transfer object, which changes each time the object is modified. When updating this object, you must provide the most recent `revisionNumber` to ensure you\\'re working with the latest data; otherwise, the update will return an error.'\n        },\n        sourceAccount: {\n          type: 'object',\n          description: 'The account from which money will be transferred.',\n          properties: {\n            id: {\n              type: 'string',\n              description: 'The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.'\n            },\n            fullName: {\n              type: 'string',\n              description: 'The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.'\n            }\n          },\n          required: [            'id',\n            'fullName'\n          ]\n        },\n        sourceAccountBalance: {\n          type: 'string',\n          description: 'The balance of the account from which money will be transferred.'\n        },\n        targetAccount: {\n          type: 'object',\n          description: 'The account to which money will be transferred.',\n          properties: {\n            id: {\n              type: 'string',\n              description: 'The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.'\n            },\n            fullName: {\n              type: 'string',\n              description: 'The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.'\n            }\n          },\n          required: [            'id',\n            'fullName'\n          ]\n        },\n        targetAccountBalance: {\n          type: 'string',\n          description: 'The balance of the account to which money will be transferred.'\n        },\n        transactionDate: {\n          type: 'string',\n          description: 'The date of this transfer, in ISO 8601 format (YYYY-MM-DD).',\n          format: 'date'\n        },\n        updatedAt: {\n          type: 'string',\n          description: 'The date and time when this transfer was last updated, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm), which QuickBooks Desktop interprets in the local timezone of the end-user\\'s computer.'\n        }\n      },\n      required: [        'id',\n        'amount',\n        'class',\n        'createdAt',\n        'memo',\n        'objectType',\n        'revisionNumber',\n        'sourceAccount',\n        'sourceAccountBalance',\n        'targetAccount',\n        'targetAccountBalance',\n        'transactionDate',\n        'updatedAt'\n      ]\n    }\n  }\n}\n```",
+  description: 'Returns a list of transfers. Use the `cursor` parameter to paginate through the results.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -47,30 +45,24 @@ export const tool: Tool = {
       transactionDateFrom: {
         type: 'string',
         description:
-          "Filter for transfers whose `date` field is on or after this date, in ISO 8601 format (YYYY-MM-DD).\n\n**NOTE**: QuickBooks Desktop interprets date-only values in the local timezone of the end-user's computer (i.e., midnight in that timezone).",
+          "Filter for transfers whose `date` field is on or after this date, in ISO 8601 format (YYYY-MM-DD).\n\n**NOTE:** QuickBooks Desktop interprets this date as the **start of the specified day** in the local timezone of the end-user's computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).",
         format: 'date',
       },
       transactionDateTo: {
         type: 'string',
         description:
-          "Filter for transfers whose `date` field is on or before this date, in ISO 8601 format (YYYY-MM-DD).\n\n**NOTE**: QuickBooks Desktop interprets date-only values in the local timezone of the end-user's computer (i.e., midnight in that timezone).",
+          "Filter for transfers whose `date` field is on or before this date, in ISO 8601 format (YYYY-MM-DD).\n\n**NOTE:** QuickBooks Desktop interprets this date as the **end of the specified day** in the local timezone of the end-user's computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).",
         format: 'date',
       },
       updatedAfter: {
         type: 'string',
         description:
-          "Filter for transfers updated on or after this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this as midnight in the local timezone of the end-user's computer.\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses the local timezone of the end-user's computer to interpret the timestamp.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop uses this timezone to interpret the timestamp.",
+          "Filter for transfers updated on or after this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this date as the **start of the specified day** in the local timezone of the end-user's computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses the local timezone of the end-user's computer to interpret the timestamp.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop uses the specified timezone to interpret the timestamp.",
       },
       updatedBefore: {
         type: 'string',
         description:
-          "Filter for transfers updated on or before this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this as midnight in the local timezone of the end-user's computer.\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses the local timezone of the end-user's computer to interpret the timestamp.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop uses this timezone to interpret the timestamp.",
-      },
-      jq_filter: {
-        type: 'string',
-        title: 'jq Filter',
-        description:
-          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
+          "Filter for transfers updated on or before this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this date as the **end of the specified day** in the local timezone of the end-user's computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses the local timezone of the end-user's computer to interpret the timestamp.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop uses the specified timezone to interpret the timestamp.",
       },
     },
     required: ['conductorEndUserId'],
@@ -81,9 +73,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
-  const { jq_filter, ...body } = args as any;
+  const body = args as any;
   const response = await conductor.qbd.transfers.list(body).asResponse();
-  return asTextContentResult(await maybeFilter(jq_filter, await response.json()));
+  return asTextContentResult(await response.json());
 };
 
 export default { metadata, tool, handler };
