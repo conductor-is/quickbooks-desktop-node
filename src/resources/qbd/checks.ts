@@ -3008,17 +3008,17 @@ export interface CheckListParams extends CursorPageParams {
 
   /**
    * Query param: Filter for checks whose `date` field is on or after this date, in
-   * ISO 8601 format (YYYY-MM-DD). QuickBooks Desktop interprets this date-only value
-   * in the host machine’s local timezone; i.e., midnight in the timezone of the
-   * end-user's computer running QuickBooks Desktop.
+   * ISO 8601 format (YYYY-MM-DD). **NOTE**: QuickBooks Desktop interprets date-only
+   * values in the QuickBooks Desktop host machine’s local timezone (i.e., midnight
+   * in that timezone).
    */
   transactionDateFrom?: string;
 
   /**
    * Query param: Filter for checks whose `date` field is on or before this date, in
-   * ISO 8601 format (YYYY-MM-DD). QuickBooks Desktop interprets this date-only value
-   * in the host machine’s local timezone; i.e., midnight in the timezone of the
-   * end-user's computer running QuickBooks Desktop.
+   * ISO 8601 format (YYYY-MM-DD). **NOTE**: QuickBooks Desktop interprets date-only
+   * values in the QuickBooks Desktop host machine’s local timezone (i.e., midnight
+   * in that timezone).
    */
   transactionDateTo?: string;
 
@@ -3026,10 +3026,10 @@ export interface CheckListParams extends CursorPageParams {
    * Query param: Filter for checks updated on or after this date/time. Format:
    * ISO 8601. Accepts date-only (YYYY-MM-DD), datetime without timezone
    * (YYYY-MM-DDTHH:mm:ss), or datetime with timezone (YYYY-MM-DDTHH:mm:ss±HH:mm).
-   * Date-only and timezone-less datetimes are passed through for QuickBooks Desktop
-   * to interpret in the host machine’s local timezone. If the datetime includes a
-   * timezone (e.g., `+05:30` or `Z`), QuickBooks Desktop uses that timezone to
-   * interpret the timestamp.
+   * **NOTE**: Date-only and timezone-less datetimes are passed through for
+   * QuickBooks Desktop to interpret in the QuickBooks Desktop host machine’s local
+   * timezone. If the datetime includes a timezone (e.g., `+05:30` or `Z`),
+   * QuickBooks Desktop uses that timezone to interpret the timestamp.
    */
   updatedAfter?: string;
 
@@ -3037,10 +3037,10 @@ export interface CheckListParams extends CursorPageParams {
    * Query param: Filter for checks updated on or before this date/time. Format:
    * ISO 8601. Accepts date-only (YYYY-MM-DD), datetime without timezone
    * (YYYY-MM-DDTHH:mm:ss), or datetime with timezone (YYYY-MM-DDTHH:mm:ss±HH:mm).
-   * Date-only and timezone-less datetimes are passed through for QuickBooks Desktop
-   * to interpret in the host machine’s local timezone. If the datetime includes a
-   * timezone (e.g., `+05:30` or `Z`), QuickBooks Desktop uses that timezone to
-   * interpret the timestamp.
+   * **NOTE**: Date-only and timezone-less datetimes are passed through for
+   * QuickBooks Desktop to interpret in the QuickBooks Desktop host machine’s local
+   * timezone. If the datetime includes a timezone (e.g., `+05:30` or `Z`),
+   * QuickBooks Desktop uses that timezone to interpret the timestamp.
    */
   updatedBefore?: string;
 }

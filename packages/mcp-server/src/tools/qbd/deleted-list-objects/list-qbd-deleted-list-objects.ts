@@ -76,12 +76,12 @@ export const tool: Tool = {
       deletedAfter: {
         type: 'string',
         description:
-          'Filter for deleted list-objects deleted on or after this date/time, within the last 90 days (QuickBooks limit). Format: ISO 8601. Accepts date-only (YYYY-MM-DD), datetime without timezone (YYYY-MM-DDTHH:mm:ss), or datetime with timezone (YYYY-MM-DDTHH:mm:ss±HH:mm). Date-only and timezone-less datetimes are passed through for QuickBooks Desktop to interpret in the host machine’s local timezone. If the datetime includes a timezone (e.g., `+05:30` or `Z`), QuickBooks Desktop uses that timezone to interpret the timestamp.',
+          'Filter for deleted list-objects deleted on or after this date/time, within the last 90 days (QuickBooks limit). Format: ISO 8601. Accepts date-only (YYYY-MM-DD), datetime without timezone (YYYY-MM-DDTHH:mm:ss), or datetime with timezone (YYYY-MM-DDTHH:mm:ss±HH:mm). **NOTE**: Date-only and timezone-less datetimes are passed through for QuickBooks Desktop to interpret in the QuickBooks Desktop host machine’s local timezone. If the datetime includes a timezone (e.g., `+05:30` or `Z`), QuickBooks Desktop uses that timezone to interpret the timestamp.',
       },
       deletedBefore: {
         type: 'string',
         description:
-          'Filter for deleted list-objects deleted on or before this date/time, within the last 90 days (QuickBooks limit). Format: ISO 8601. Accepts date-only (YYYY-MM-DD), datetime without timezone (YYYY-MM-DDTHH:mm:ss), or datetime with timezone (YYYY-MM-DDTHH:mm:ss±HH:mm). Date-only and timezone-less datetimes are passed through for QuickBooks Desktop to interpret in the host machine’s local timezone. If the datetime includes a timezone (e.g., `+05:30` or `Z`), QuickBooks Desktop uses that timezone to interpret the timestamp.',
+          'Filter for deleted list-objects deleted on or before this date/time, within the last 90 days (QuickBooks limit). Format: ISO 8601. Accepts date-only (YYYY-MM-DD), datetime without timezone (YYYY-MM-DDTHH:mm:ss), or datetime with timezone (YYYY-MM-DDTHH:mm:ss±HH:mm). **NOTE**: Date-only and timezone-less datetimes are passed through for QuickBooks Desktop to interpret in the QuickBooks Desktop host machine’s local timezone. If the datetime includes a timezone (e.g., `+05:30` or `Z`), QuickBooks Desktop uses that timezone to interpret the timestamp.',
       },
       jq_filter: {
         type: 'string',
