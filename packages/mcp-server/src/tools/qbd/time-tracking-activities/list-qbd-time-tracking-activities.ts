@@ -54,24 +54,24 @@ export const tool: Tool = {
       transactionDateFrom: {
         type: 'string',
         description:
-          'Filter for time tracking activities whose `date` field is on or after this date, in ISO 8601 format (YYYY-MM-DD).\n\n**NOTE**: QuickBooks Desktop interprets date-only values in the QuickBooks Desktop host machine’s local timezone (i.e., midnight in that timezone).',
+          "Filter for time tracking activities whose `date` field is on or after this date, in ISO 8601 format (YYYY-MM-DD).\n\n**NOTE**: QuickBooks Desktop interprets date-only values in the local timezone of the end-user's computer (i.e., midnight in that timezone).",
         format: 'date',
       },
       transactionDateTo: {
         type: 'string',
         description:
-          'Filter for time tracking activities whose `date` field is on or before this date, in ISO 8601 format (YYYY-MM-DD).\n\n**NOTE**: QuickBooks Desktop interprets date-only values in the QuickBooks Desktop host machine’s local timezone (i.e., midnight in that timezone).',
+          "Filter for time tracking activities whose `date` field is on or before this date, in ISO 8601 format (YYYY-MM-DD).\n\n**NOTE**: QuickBooks Desktop interprets date-only values in the local timezone of the end-user's computer (i.e., midnight in that timezone).",
         format: 'date',
       },
       updatedAfter: {
         type: 'string',
         description:
-          'Filter for time tracking activities updated on or after this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this as midnight in the host machine’s local timezone.\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses the host machine’s local timezone to interpret the timestamp.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop uses this timezone to interpret the timestamp.',
+          "Filter for time tracking activities updated on or after this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this as midnight in the local timezone of the end-user's computer.\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses the local timezone of the end-user's computer to interpret the timestamp.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop uses this timezone to interpret the timestamp.",
       },
       updatedBefore: {
         type: 'string',
         description:
-          'Filter for time tracking activities updated on or before this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this as midnight in the host machine’s local timezone.\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses the host machine’s local timezone to interpret the timestamp.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop uses this timezone to interpret the timestamp.',
+          "Filter for time tracking activities updated on or before this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this as midnight in the local timezone of the end-user's computer.\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses the local timezone of the end-user's computer to interpret the timestamp.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop uses this timezone to interpret the timestamp.",
       },
     },
     required: ['conductorEndUserId'],

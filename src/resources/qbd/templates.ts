@@ -33,8 +33,8 @@ export interface Template {
 
   /**
    * The date and time when this template was created, in ISO 8601 format
-   * (YYYY-MM-DDThh:mm:ss±hh:mm), in the QuickBooks Desktop host machine’s local
-   * timezone.
+   * (YYYY-MM-DDThh:mm:ss±hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
    */
   createdAt: string;
 
@@ -82,8 +82,8 @@ export interface Template {
 
   /**
    * The date and time when this template was last updated, in ISO 8601 format
-   * (YYYY-MM-DDThh:mm:ss±hh:mm), in the QuickBooks Desktop host machine’s local
-   * timezone.
+   * (YYYY-MM-DDThh:mm:ss±hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
    */
   updatedAt: string;
 }
