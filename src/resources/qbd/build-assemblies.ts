@@ -795,8 +795,9 @@ export interface BuildAssemblyListParams extends CursorPageParams {
    * Query param: Filter for build assemblies whose `date` field is on or after this
    * date, in ISO 8601 format (YYYY-MM-DD).
    *
-   * **NOTE**: QuickBooks Desktop interprets date-only values in the local timezone
-   * of the end-user's computer (i.e., midnight in that timezone).
+   * **NOTE:** QuickBooks Desktop interprets this date as the **start of the
+   * specified day** in the local timezone of the end-user's computer (e.g.,
+   * `2025-01-01` → `2025-01-01T00:00:00`).
    */
   transactionDateFrom?: string;
 
@@ -804,8 +805,9 @@ export interface BuildAssemblyListParams extends CursorPageParams {
    * Query param: Filter for build assemblies whose `date` field is on or before this
    * date, in ISO 8601 format (YYYY-MM-DD).
    *
-   * **NOTE**: QuickBooks Desktop interprets date-only values in the local timezone
-   * of the end-user's computer (i.e., midnight in that timezone).
+   * **NOTE:** QuickBooks Desktop interprets this date as the **end of the specified
+   * day** in the local timezone of the end-user's computer (e.g., `2025-01-01` →
+   * `2025-01-01T23:59:59`).
    */
   transactionDateTo?: string;
 
@@ -813,12 +815,13 @@ export interface BuildAssemblyListParams extends CursorPageParams {
    * Query param: Filter for build assemblies updated on or after this date/time.
    * Accepts the following ISO 8601 formats:
    *
-   * - **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this as midnight in
-   *   the local timezone of the end-user's computer.
+   * - **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this date as the
+   *   **start of the specified day** in the local timezone of the end-user's
+   *   computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
    * - **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses
    *   the local timezone of the end-user's computer to interpret the timestamp.
    * - **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop
-   *   uses this timezone to interpret the timestamp.
+   *   uses the specified timezone to interpret the timestamp.
    */
   updatedAfter?: string;
 
@@ -826,12 +829,13 @@ export interface BuildAssemblyListParams extends CursorPageParams {
    * Query param: Filter for build assemblies updated on or before this date/time.
    * Accepts the following ISO 8601 formats:
    *
-   * - **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this as midnight in
-   *   the local timezone of the end-user's computer.
+   * - **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets this date as the
+   *   **end of the specified day** in the local timezone of the end-user's computer
+   *   (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
    * - **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop uses
    *   the local timezone of the end-user's computer to interpret the timestamp.
    * - **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop
-   *   uses this timezone to interpret the timestamp.
+   *   uses the specified timezone to interpret the timestamp.
    */
   updatedBefore?: string;
 }
