@@ -180,8 +180,8 @@ export interface Customer {
 
   /**
    * The date and time when this customer was created, in ISO 8601 format
-   * (YYYY-MM-DDThh:mm:ss±hh:mm). The time zone is the same as the user's time zone
-   * in QuickBooks.
+   * (YYYY-MM-DDThh:mm:ss±hh:mm), in the QuickBooks Desktop host machine’s local
+   * timezone.
    */
   createdAt: string;
 
@@ -457,8 +457,8 @@ export interface Customer {
 
   /**
    * The date and time when this customer was last updated, in ISO 8601 format
-   * (YYYY-MM-DDThh:mm:ss±hh:mm). The time zone is the same as the user's time zone
-   * in QuickBooks.
+   * (YYYY-MM-DDThh:mm:ss±hh:mm), in the QuickBooks Desktop host machine’s local
+   * timezone.
    */
   updatedAt: string;
 }
@@ -473,8 +473,8 @@ export namespace Customer {
 
     /**
      * The date and time when this contact was created, in ISO 8601 format
-     * (YYYY-MM-DDThh:mm:ss±hh:mm). The time zone is the same as the user's time zone
-     * in QuickBooks.
+     * (YYYY-MM-DDThh:mm:ss±hh:mm), in the QuickBooks Desktop host machine’s local
+     * timezone.
      */
     createdAt: string;
 
@@ -530,8 +530,8 @@ export namespace Customer {
 
     /**
      * The date and time when this contact was last updated, in ISO 8601 format
-     * (YYYY-MM-DDThh:mm:ss±hh:mm). The time zone is the same as the user's time zone
-     * in QuickBooks.
+     * (YYYY-MM-DDThh:mm:ss±hh:mm), in the QuickBooks Desktop host machine’s local
+     * timezone.
      */
     updatedAt: string;
   }

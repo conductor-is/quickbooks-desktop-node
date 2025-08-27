@@ -168,8 +168,8 @@ export interface Invoice {
 
   /**
    * The date and time when this invoice was created, in ISO 8601 format
-   * (YYYY-MM-DDThh:mm:ss±hh:mm). The time zone is the same as the user's time zone
-   * in QuickBooks.
+   * (YYYY-MM-DDThh:mm:ss±hh:mm), in the QuickBooks Desktop host machine’s local
+   * timezone.
    */
   createdAt: string;
 
@@ -429,8 +429,8 @@ export interface Invoice {
 
   /**
    * The date and time when this invoice was last updated, in ISO 8601 format
-   * (YYYY-MM-DDThh:mm:ss±hh:mm). The time zone is the same as the user's time zone
-   * in QuickBooks.
+   * (YYYY-MM-DDThh:mm:ss±hh:mm), in the QuickBooks Desktop host machine’s local
+   * timezone.
    */
   updatedAt: string;
 }
