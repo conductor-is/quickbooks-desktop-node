@@ -313,16 +313,24 @@ export interface PayrollWageItemListParams extends CursorPageParams {
   status?: 'active' | 'all' | 'inactive';
 
   /**
-   * Query param: Filter for payroll wage items updated on or after this date and
-   * time, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss). If you only provide a date
-   * (YYYY-MM-DD), the time is assumed to be 00:00:00 of that day.
+   * Query param: Filter for payroll wage items updated on or after this date/time.
+   * Format: ISO 8601. Accepts date-only (YYYY-MM-DD), datetime without timezone
+   * (YYYY-MM-DDTHH:mm:ss), or datetime with timezone (YYYY-MM-DDTHH:mm:ss±HH:mm).
+   * Date-only and timezone-less datetimes are passed through for QuickBooks Desktop
+   * to interpret in the host machine’s local timezone. If the datetime includes a
+   * timezone (e.g., `+05:30` or `Z`), QuickBooks Desktop uses that timezone to
+   * interpret the timestamp.
    */
   updatedAfter?: string;
 
   /**
-   * Query param: Filter for payroll wage items updated on or before this date and
-   * time, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss). If you only provide a date
-   * (YYYY-MM-DD), the time is assumed to be 23:59:59 of that day.
+   * Query param: Filter for payroll wage items updated on or before this date/time.
+   * Format: ISO 8601. Accepts date-only (YYYY-MM-DD), datetime without timezone
+   * (YYYY-MM-DDTHH:mm:ss), or datetime with timezone (YYYY-MM-DDTHH:mm:ss±HH:mm).
+   * Date-only and timezone-less datetimes are passed through for QuickBooks Desktop
+   * to interpret in the host machine’s local timezone. If the datetime includes a
+   * timezone (e.g., `+05:30` or `Z`), QuickBooks Desktop uses that timezone to
+   * interpret the timestamp.
    */
   updatedBefore?: string;
 }

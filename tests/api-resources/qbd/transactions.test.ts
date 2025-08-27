@@ -62,8 +62,8 @@ describe('resource transactions', () => {
       transactionDateFrom: '2024-01-01',
       transactionDateTo: '2024-02-01',
       transactionTypes: ['invoice'],
-      updatedAfter: '2024-01-01T12:34:56',
-      updatedBefore: '2024-02-01T12:34:56',
+      updatedAfter: '2024-01-01T12:34:56+00:00',
+      updatedBefore: '2024-02-01T12:34:56+00:00',
     });
   });
 });
