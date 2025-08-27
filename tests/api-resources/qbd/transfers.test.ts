@@ -101,10 +101,10 @@ describe('resource transfers', () => {
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['123ABC-1234567890'],
       limit: 150,
-      transactionDateFrom: '2024-01-01',
-      transactionDateTo: '2024-02-01',
-      updatedAfter: '2024-01-01T12:34:56+00:00',
-      updatedBefore: '2024-02-01T12:34:56+00:00',
+      transactionDateFrom: '2025-01-01',
+      transactionDateTo: '2025-02-01',
+      updatedAfter: '2025-01-01T12:34:56+00:00',
+      updatedBefore: '2025-02-01T12:34:56+00:00',
     });
   });
 });
