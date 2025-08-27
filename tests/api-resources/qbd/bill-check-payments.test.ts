@@ -148,10 +148,10 @@ describe('resource billCheckPayments', () => {
       refNumbers: ['BILL CHECK PAYMENT-1234'],
       refNumberStartsWith: 'CHECK',
       refNumberTo: 'CHECK-9999',
-      transactionDateFrom: '2024-01-01',
-      transactionDateTo: '2024-02-01',
-      updatedAfter: '2024-01-01T12:34:56+00:00',
-      updatedBefore: '2024-02-01T12:34:56+00:00',
+      transactionDateFrom: '2025-01-01',
+      transactionDateTo: '2025-02-01',
+      updatedAfter: '2025-01-01T12:34:56+00:00',
+      updatedBefore: '2025-02-01T12:34:56+00:00',
       vendorIds: ['80000001-1234567890'],
     });
   });
