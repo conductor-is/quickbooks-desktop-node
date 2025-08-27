@@ -1,5 +1,26 @@
 # Changelog
 
+## 12.29.0 (2025-08-27)
+
+Full Changelog: [v12.28.0...v12.29.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.28.0...v12.29.0)
+
+### Features
+
+* **api:** api update ([3703fb4](https://github.com/conductor-is/quickbooks-desktop-node/commit/3703fb43793f1e023043ccaa858119d1447efca1))
+* **api:** api update ([1ddc619](https://github.com/conductor-is/quickbooks-desktop-node/commit/1ddc6191b9ea2f320b91a9886980b20178a4525a))
+* **api:** api update ([4a4b0ce](https://github.com/conductor-is/quickbooks-desktop-node/commit/4a4b0ceef265ead222b4eaa2d91ef7b9394cd464))
+* **api:** api update ([94bc373](https://github.com/conductor-is/quickbooks-desktop-node/commit/94bc37346561ab11f54c6658d338cc132db1690d))
+* **mcp:** add option to infer mcp client ([3a65daa](https://github.com/conductor-is/quickbooks-desktop-node/commit/3a65daae0164c0c6a7d95686f6e694ea8988e95f))
+
+
+### Chores
+
+* **internal:** codegen related update ([8d4c583](https://github.com/conductor-is/quickbooks-desktop-node/commit/8d4c583e919d0b1bd72a0ea5b5e36e80093af61c))
+* **internal:** make mcp-server publishing public by defaut ([acc69ba](https://github.com/conductor-is/quickbooks-desktop-node/commit/acc69babc182c7e8d7e3bc524b3f1d4801ea1293))
+* **mcp:** update package.json ([d912aa7](https://github.com/conductor-is/quickbooks-desktop-node/commit/d912aa79287b90ab4cdadd9e6677eb9062915c6d))
+* **mcp:** update types ([dc6be3e](https://github.com/conductor-is/quickbooks-desktop-node/commit/dc6be3e0d5cba5b901aafd01bf19dd1a450c4f2a))
+* update CI script ([30c820d](https://github.com/conductor-is/quickbooks-desktop-node/commit/30c820d74b4af4bce5b198e8474b3febabfaea99))
+
 ## 12.28.0 (2025-08-20)
 
 Full Changelog: [v12.27.0...v12.28.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.27.0...v12.28.0)
