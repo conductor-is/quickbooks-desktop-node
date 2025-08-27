@@ -27,8 +27,8 @@ describe('resource deletedListObjects', () => {
     const response = await conductor.qbd.deletedListObjects.list({
       objectTypes: ['customer'],
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      deletedAfter: '2024-01-01T12:34:56',
-      deletedBefore: '2024-02-01T12:34:56',
+      deletedAfter: '2024-01-01T12:34:56+00:00',
+      deletedBefore: '2024-02-01T12:34:56+00:00',
     });
   });
 });
