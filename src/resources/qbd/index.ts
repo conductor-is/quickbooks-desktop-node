@@ -113,6 +113,15 @@ export {
   type CreditMemoDeleteParams,
 } from './credit-memos';
 export {
+  Currencies,
+  type Currency,
+  type CurrencyListResponse,
+  type CurrencyCreateParams,
+  type CurrencyRetrieveParams,
+  type CurrencyUpdateParams,
+  type CurrencyListParams,
+} from './currencies';
+export {
   CustomersCursorPage,
   Customers,
   type Customer,
