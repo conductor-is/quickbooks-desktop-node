@@ -203,6 +203,20 @@ Methods:
 - <code title="get /quickbooks-desktop/credit-memos">client.qbd.creditMemos.<a href="./src/resources/qbd/credit-memos.ts">list</a>({ ...params }) -> CreditMemosCursorPage</code>
 - <code title="delete /quickbooks-desktop/credit-memos/{id}">client.qbd.creditMemos.<a href="./src/resources/qbd/credit-memos.ts">delete</a>(id, { ...params }) -> CreditMemoDeleteResponse</code>
 
+## Currencies
+
+Types:
+
+- <code><a href="./src/resources/qbd/currencies.ts">Currency</a></code>
+- <code><a href="./src/resources/qbd/currencies.ts">CurrencyListResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/currencies">client.qbd.currencies.<a href="./src/resources/qbd/currencies.ts">create</a>({ ...params }) -> Currency</code>
+- <code title="get /quickbooks-desktop/currencies/{id}">client.qbd.currencies.<a href="./src/resources/qbd/currencies.ts">retrieve</a>(id, { ...params }) -> Currency</code>
+- <code title="post /quickbooks-desktop/currencies/{id}">client.qbd.currencies.<a href="./src/resources/qbd/currencies.ts">update</a>(id, { ...params }) -> Currency</code>
+- <code title="get /quickbooks-desktop/currencies">client.qbd.currencies.<a href="./src/resources/qbd/currencies.ts">list</a>({ ...params }) -> CurrencyListResponse</code>
+
 ## Customers
 
 Types:
