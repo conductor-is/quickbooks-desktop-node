@@ -312,6 +312,13 @@ The following tools are available in this MCP server.
 - `list_qbd_credit_memos` (`read`): Returns a list of credit memos. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_credit_memos` (`write`): Permanently deletes a a credit memo. The deletion will fail if the credit memo is currently in use or has any linked transactions that are in use.
 
+### Resource `qbd.currencies`:
+
+- `create_qbd_currencies` (`write`): Creates a user-defined currency with the specified name and currency code. Exchange rates for user-defined currencies are not updated automatically by QuickBooks Desktop; update them manually as needed.
+- `retrieve_qbd_currencies` (`read`): Retrieves a currency by ID.
+- `update_qbd_currencies` (`write`): Updates an existing currency. For built-in currencies, only the `isActive` status can be changed; name and currency code are not editable. For user-defined currencies, all fields in this request are editable.
+- `list_qbd_currencies` (`read`): Returns a list of currencies. NOTE: QuickBooks Desktop does not support pagination for currencies; hence, there is no `cursor` parameter. Users typically have few currencies.
+
 ### Resource `qbd.customers`:
 
 - `create_qbd_customers` (`write`): Creates a new customer.
