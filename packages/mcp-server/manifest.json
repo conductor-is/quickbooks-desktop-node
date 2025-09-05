@@ -15,11 +15,11 @@
   "documentation": "https://docs.conductor.is/api-ref",
   "server": {
     "type": "node",
-    "entry_point": "${"templates/TypeScriptSDK/mcp"}/index.js",
+    "entry_point": "${__dirname}/index.js",
     "mcp_config": {
       "command": "node",
       "args": [
-        "${"templates/TypeScriptSDK/mcp"}/index.js"
+        "${__dirname}/index.js"
       ],
       "env": {
         "CONDUCTOR_SECRET_KEY": "${user_config.CONDUCTOR_SECRET_KEY}"
