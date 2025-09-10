@@ -39,3 +39,6 @@ jobs:
           yarn tsn scripts/publish-packages.ts "{ \"paths_released\": \"$PATHS_RELEASED\" }"
         env:
           NPM_TOKEN: ${{ secrets.CONDUCTOR_NPM_TOKEN || secrets.NPM_TOKEN }}
+
+      - name: Upload MCP Server DXT GitHub release asset
+        run: gh release upload packages/mcp-server/conductor_node_api.dxt
