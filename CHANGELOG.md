@@ -1,5 +1,19 @@
 # Changelog
 
+## 12.31.1 (2025-09-12)
+
+Full Changelog: [v12.31.0...v12.31.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.31.0...v12.31.1)
+
+### Bug Fixes
+
+* coerce nullable values to undefined ([e308428](https://github.com/conductor-is/quickbooks-desktop-node/commit/e3084284be693103d3bf2f33afa039d8237e5068))
+
+
+### Chores
+
+* **internal:** codegen related update ([a58c26e](https://github.com/conductor-is/quickbooks-desktop-node/commit/a58c26e7e83522052668f2f01f157c8be4ee06a0))
+* **internal:** codegen related update ([5ad6ea8](https://github.com/conductor-is/quickbooks-desktop-node/commit/5ad6ea8517a0ec18bc0249e0a6c671ee90df4068))
+
 ## 12.31.0 (2025-09-05)
 
 Full Changelog: [v12.30.0...v12.31.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.30.0...v12.31.0)
