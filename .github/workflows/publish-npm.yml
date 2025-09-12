@@ -41,4 +41,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.CONDUCTOR_NPM_TOKEN || secrets.NPM_TOKEN }}
 
       - name: Upload MCP Server DXT GitHub release asset
-        run: gh release upload packages/mcp-server/conductor_node_api.dxt
+        run: |
+          gh release upload ${{ github.event.release.tag_name }} \
+            packages/mcp-server/conductor_node_api.dxt
