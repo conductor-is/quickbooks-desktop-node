@@ -474,14 +474,15 @@ export namespace Employee {
     postalCode: string | null;
 
     /**
-     * The state, county, province, or region name of the employee address.
+     * The U.S. state of the employee address. QuickBooks requires this field to be a
+     * U.S. state abbreviation (e.g., "CA" for California). See enum for all possible
+     * values.
      *
-     * **NOTE:** This `state` field is an enum when creating or updating an employee,
-     * but a plain string when returning an employee. On input, QuickBooks Desktop
-     * rejects any non-standard state values for employee addresses; hence, we must use
-     * an enum for the input. However, when returning an employee address, we have seen
-     * QuickBooks return non-standard state values (like 'ON') that do not conform to
-     * the enum; hence, we use a plain string on return to support unexpected values.
+     * **NOTE:** This `state` field stays enum-constrained when creating or updating an
+     * employee because QuickBooks Desktop rejects non-standard values on input. In
+     * responses, though, we've seen QuickBooks return values outside its own enum
+     * (like 'ON'), so Conductor surfaces the raw QuickBooks string unchanged instead
+     * of enforcing the enum.
      */
     state: string | null;
   }
@@ -1228,13 +1229,6 @@ export namespace EmployeeCreateParams {
      * The U.S. state of the employee address. QuickBooks requires this field to be a
      * U.S. state abbreviation (e.g., "CA" for California). See enum for all possible
      * values.
-     *
-     * **NOTE:** This `state` field is an enum when creating or updating an employee,
-     * but a plain string when returning an employee. On input, QuickBooks Desktop
-     * rejects any non-standard state values for employee addresses; hence, we must use
-     * an enum for the input. However, when returning an employee address, we have seen
-     * QuickBooks return non-standard state values (like 'ON') that do not conform to
-     * the enum; hence, we use a plain string on return to support unexpected values.
      */
     state?:
       | 'none'
@@ -1896,13 +1890,6 @@ export namespace EmployeeUpdateParams {
      * The U.S. state of the employee address. QuickBooks requires this field to be a
      * U.S. state abbreviation (e.g., "CA" for California). See enum for all possible
      * values.
-     *
-     * **NOTE:** This `state` field is an enum when creating or updating an employee,
-     * but a plain string when returning an employee. On input, QuickBooks Desktop
-     * rejects any non-standard state values for employee addresses; hence, we must use
-     * an enum for the input. However, when returning an employee address, we have seen
-     * QuickBooks return non-standard state values (like 'ON') that do not conform to
-     * the enum; hence, we use a plain string on return to support unexpected values.
      */
     state?:
       | 'none'

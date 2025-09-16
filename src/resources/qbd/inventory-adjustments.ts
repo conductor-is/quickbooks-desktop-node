@@ -375,7 +375,7 @@ export namespace InventoryAdjustment {
     /**
      * The inventory item associated with this inventory adjustment line.
      */
-    item: Line.Item;
+    item: Line.Item | null;
 
     /**
      * The lot number of the item associated with this inventory adjustment line. Used
