@@ -6,7 +6,9 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class BillCreditCardPayments extends APIResource {
   /**
-   * Creates a new bill credit card payment.
+   * Charges one vendor’s bills to a credit card account. Each bill allocation must
+   * supply a payment amount, discount, or credit, and you have to use the same
+   * accounts payable account that’s on the bills being closed.
    *
    * @example
    * ```ts

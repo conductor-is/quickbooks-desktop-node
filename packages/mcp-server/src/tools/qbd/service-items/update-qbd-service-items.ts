@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_service_items',
-  description: 'Updates an existing service item.',
+  description:
+    'Updates a service item’s details, including its accounts and unit-of-measure set. QuickBooks won’t let you convert a sell-only service into a buy-and-sell service (or the reverse); create a separate item instead. If you’re switching the unit of measure, set `forceUnitOfMeasureChange` so QuickBooks replaces it on existing forms.',
   inputSchema: {
     type: 'object',
     properties: {

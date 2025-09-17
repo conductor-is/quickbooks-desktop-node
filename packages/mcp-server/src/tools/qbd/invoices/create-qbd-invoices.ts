@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_invoices',
-  description: 'Creates a new invoice.',
+  description:
+    'Creates an invoice to bill a customer when goods or services were delivered before payment. Use a sales receipt instead if the sale was paid in full.',
   inputSchema: {
     type: 'object',
     properties: {

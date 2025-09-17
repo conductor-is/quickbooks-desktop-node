@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_accounts',
-  description: 'Creates a new financial account.',
+  description:
+    'Creates a new financial account. QuickBooks requires you to pick a supported account type for the chart of accounts, and non-posting types can’t be created through the API.',
   inputSchema: {
     type: 'object',
     properties: {

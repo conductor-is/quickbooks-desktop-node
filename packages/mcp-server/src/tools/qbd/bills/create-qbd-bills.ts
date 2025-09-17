@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_bills',
-  description: 'Creates a new bill.',
+  description:
+    "Creates a vendor bill and posts it to accounts payable. You can also link eligible purchase orders so QuickBooks pulls their lines onto the bill before it's saved.",
   inputSchema: {
     type: 'object',
     properties: {

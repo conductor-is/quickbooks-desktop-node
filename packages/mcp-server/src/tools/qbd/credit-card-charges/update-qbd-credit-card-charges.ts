@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_credit_card_charges',
-  description: 'Updates an existing credit card charge.',
+  description:
+    'Updates an existing credit card charge so you can adjust the credit card account, payee, memo, transaction date, and expense or item lines. The total is recalculated from the line details.',
   inputSchema: {
     type: 'object',
     properties: {

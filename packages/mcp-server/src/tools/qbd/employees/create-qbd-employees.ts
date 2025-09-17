@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_employees',
-  description: 'Creates a new employee.',
+  description:
+    'Creates an employee record that captures personal details, contact information, employment dates, and payroll settings in a single request so the employee is ready for scheduling, time tracking, and payroll processing.',
   inputSchema: {
     type: 'object',
     properties: {

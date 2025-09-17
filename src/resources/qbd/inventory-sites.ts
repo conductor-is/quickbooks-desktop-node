@@ -5,7 +5,8 @@ import * as Core from '../../core';
 
 export class InventorySites extends APIResource {
   /**
-   * Creates a new inventory site.
+   * Creates an inventory site for companies using QuickBooks Enterprise with
+   * Advanced Inventory.
    *
    * @example
    * ```ts

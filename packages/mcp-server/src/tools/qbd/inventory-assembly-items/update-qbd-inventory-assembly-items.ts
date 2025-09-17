@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_inventory_assembly_items',
-  description: 'Updates an existing inventory assembly item.',
+  description:
+    'Updates an inventory assembly item. If you change the income account, set `updateExistingTransactionsIncomeAccount` to true so QuickBooks applies the new account to existing transactions that use the assembly.',
   inputSchema: {
     type: 'object',
     properties: {

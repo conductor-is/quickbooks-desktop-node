@@ -6,7 +6,9 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class Bills extends APIResource {
   /**
-   * Creates a new bill.
+   * Creates a vendor bill and posts it to accounts payable. You can also link
+   * eligible purchase orders so QuickBooks pulls their lines onto the bill before
+   * it's saved.
    *
    * @example
    * ```ts
@@ -48,7 +50,10 @@ export class Bills extends APIResource {
   }
 
   /**
-   * Updates an existing bill.
+   * Updates an existing vendor bill while keeping the required references intact.
+   * QuickBooks does not let this update request add new purchase order links, and
+   * you must continue to supply the vendor, accounts payable account, and at least
+   * one expense or item line when you resubmit the bill.
    *
    * @example
    * ```ts

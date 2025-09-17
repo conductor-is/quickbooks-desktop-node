@@ -54,7 +54,9 @@ export class InventoryItems extends APIResource {
   }
 
   /**
-   * Updates an existing inventory item.
+   * Updates an inventory item. If you switch the income account, set
+   * `updateExistingTransactionsIncomeAccount` to true so QuickBooks applies the new
+   * account to existing transactions that reference the item.
    *
    * @example
    * ```ts

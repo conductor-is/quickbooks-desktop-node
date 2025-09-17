@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_discount_items',
-  description: 'Updates an existing discount item.',
+  description:
+    'Updates a discount item, including its linked account or discount rate. When changing the account, use `updateExistingTransactionsAccount` to control whether existing transactions that reference the item should also be updated.',
   inputSchema: {
     type: 'object',
     properties: {

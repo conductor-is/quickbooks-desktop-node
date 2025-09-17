@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_journal_entries',
-  description: 'Updates an existing journal entry.',
+  description:
+    'Updates an existing journal entry. Keep the debits and credits in balance, and include the related customer or vendor on any A/R or A/P line you submit in the update body.',
   inputSchema: {
     type: 'object',
     properties: {
