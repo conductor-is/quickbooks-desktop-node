@@ -16,6 +16,8 @@ jobs:
   publish:
     name: publish
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -44,3 +46,5 @@ jobs:
         run: |
           gh release upload ${{ github.event.release.tag_name }} \
             packages/mcp-server/conductor_node_api.dxt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
