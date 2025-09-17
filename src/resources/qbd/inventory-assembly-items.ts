@@ -6,7 +6,7 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class InventoryAssemblyItems extends APIResource {
   /**
-   * Creates a new inventory assembly item.
+   * Creates an inventory assembly item that bundles existing inventory items.
    *
    * @example
    * ```ts
@@ -57,7 +57,9 @@ export class InventoryAssemblyItems extends APIResource {
   }
 
   /**
-   * Updates an existing inventory assembly item.
+   * Updates an inventory assembly item. If you change the income account, set
+   * `updateExistingTransactionsIncomeAccount` to true so QuickBooks applies the new
+   * account to existing transactions that use the assembly.
    *
    * @example
    * ```ts

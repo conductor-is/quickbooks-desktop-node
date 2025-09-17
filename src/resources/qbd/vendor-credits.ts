@@ -6,7 +6,8 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class VendorCredits extends APIResource {
   /**
-   * Creates a new vendor credit.
+   * Creates a vendor credit to capture returns, rebates, or other amounts a vendor
+   * owes so you can apply the credit when recording future bill payments.
    *
    * @example
    * ```ts
@@ -54,7 +55,8 @@ export class VendorCredits extends APIResource {
   }
 
   /**
-   * Updates an existing vendor credit.
+   * Updates a vendor credit before you apply it to bills, letting you adjust the
+   * amounts, memo, or line allocations that make up the credit.
    *
    * @example
    * ```ts

@@ -6,7 +6,10 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class ReceivePayments extends APIResource {
   /**
-   * Creates a new receive-payment.
+   * Records a customer payment and optionally applies it to specific invoices or
+   * credits. All allocations must target the same accounts receivable account as
+   * those invoices, and each one has to include a payment amount, discount, or
+   * credit so QuickBooks can close out the balance.
    *
    * @example
    * ```ts
@@ -53,7 +56,9 @@ export class ReceivePayments extends APIResource {
   }
 
   /**
-   * Updates an existing receive-payment.
+   * Updates a received payment. When you resubmit applications to invoices, keep
+   * them on the same accounts receivable account and include the payment amount,
+   * discount, or credit on every allocation you send.
    *
    * @example
    * ```ts

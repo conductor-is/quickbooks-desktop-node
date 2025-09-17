@@ -52,7 +52,11 @@ export class ServiceItems extends APIResource {
   }
 
   /**
-   * Updates an existing service item.
+   * Updates a service item’s details, including its accounts and unit-of-measure
+   * set. QuickBooks won’t let you convert a sell-only service into a buy-and-sell
+   * service (or the reverse); create a separate item instead. If you’re switching
+   * the unit of measure, set `forceUnitOfMeasureChange` so QuickBooks replaces it on
+   * existing forms.
    *
    * @example
    * ```ts

@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_vendor_credits',
-  description: 'Updates an existing vendor credit.',
+  description:
+    'Updates a vendor credit before you apply it to bills, letting you adjust the amounts, memo, or line allocations that make up the credit.',
   inputSchema: {
     type: 'object',
     properties: {

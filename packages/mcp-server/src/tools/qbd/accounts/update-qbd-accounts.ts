@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_accounts',
-  description: 'Updates an existing financial account.',
+  description:
+    'Updates an existing financial account. You can rename the account, adjust numbering, or change supported attributes, but QuickBooks won’t let you convert it to a non-posting type via the API.',
   inputSchema: {
     type: 'object',
     properties: {

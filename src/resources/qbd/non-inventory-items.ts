@@ -54,7 +54,12 @@ export class NonInventoryItems extends APIResource {
   }
 
   /**
-   * Updates an existing non-inventory item.
+   * Updates a non-inventory item. You can modify either `salesOrPurchaseDetails` or
+   * `salesAndPurchaseDetails`, but the item must keep the same configuration it was
+   * created with. When you change `postingAccount`, `incomeAccount`, or
+   * `expenseAccount`, include the matching `updateExistingTransactions...` flag so
+   * QuickBooks applies the new account to existing transactions and doesn’t reject
+   * the update when historical activity is present.
    *
    * @example
    * ```ts

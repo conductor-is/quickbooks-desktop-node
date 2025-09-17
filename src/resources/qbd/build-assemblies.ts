@@ -6,7 +6,9 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class BuildAssemblies extends APIResource {
   /**
-   * Creates a new build assembly.
+   * Creates a build assembly transaction that consumes component quantities and
+   * increases the finished assembly on hand. If components are short you can mark
+   * the build as pending instead of failing.
    *
    * @example
    * ```ts

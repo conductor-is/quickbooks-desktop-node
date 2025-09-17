@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_checks',
-  description: 'Updates an existing check.',
+  description:
+    'Updates a standard check so you can adjust the issuing account, payee details, memo, transaction date, or expense and item lines. This request cannot modify checks created through the bill-payment workflow.',
   inputSchema: {
     type: 'object',
     properties: {

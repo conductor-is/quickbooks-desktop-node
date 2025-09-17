@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_inventory_items',
-  description: 'Updates an existing inventory item.',
+  description:
+    'Updates an inventory item. If you switch the income account, set `updateExistingTransactionsIncomeAccount` to true so QuickBooks applies the new account to existing transactions that reference the item.',
   inputSchema: {
     type: 'object',
     properties: {

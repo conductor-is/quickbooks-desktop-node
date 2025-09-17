@@ -6,7 +6,8 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class Invoices extends APIResource {
   /**
-   * Creates a new invoice.
+   * Creates an invoice to bill a customer when goods or services were delivered
+   * before payment. Use a sales receipt instead if the sale was paid in full.
    *
    * @example
    * ```ts

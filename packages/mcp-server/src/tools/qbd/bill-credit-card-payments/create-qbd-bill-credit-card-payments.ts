@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_bill_credit_card_payments',
-  description: 'Creates a new bill credit card payment.',
+  description:
+    'Charges one vendor’s bills to a credit card account. Each bill allocation must supply a payment amount, discount, or credit, and you have to use the same accounts payable account that’s on the bills being closed.',
   inputSchema: {
     type: 'object',
     properties: {

@@ -5,7 +5,9 @@ import * as Core from '../../core';
 
 export class Employees extends APIResource {
   /**
-   * Creates a new employee.
+   * Creates an employee record that captures personal details, contact information,
+   * employment dates, and payroll settings in a single request so the employee is
+   * ready for scheduling, time tracking, and payroll processing.
    *
    * @example
    * ```ts
@@ -47,7 +49,9 @@ export class Employees extends APIResource {
   }
 
   /**
-   * Updates an existing employee.
+   * Updates an employee record, allowing you to revise contact details, employment
+   * status dates, supervisory assignments, payroll configuration, and additional
+   * notes to keep workforce data current.
    *
    * @example
    * ```ts

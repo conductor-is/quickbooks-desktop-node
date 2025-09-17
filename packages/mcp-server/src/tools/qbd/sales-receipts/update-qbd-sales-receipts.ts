@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_sales_receipts',
-  description: 'Updates an existing sales receipt.',
+  description:
+    'Updates an existing sales receipt. Credit card payments still have to use a credit-card payment method and remain deposited to Undeposited Funds, so don’t switch the deposit account in those scenarios.',
   inputSchema: {
     type: 'object',
     properties: {

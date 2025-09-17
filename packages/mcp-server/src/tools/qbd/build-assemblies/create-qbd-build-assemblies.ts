@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_build_assemblies',
-  description: 'Creates a new build assembly.',
+  description:
+    'Creates a build assembly transaction that consumes component quantities and increases the finished assembly on hand. If components are short you can mark the build as pending instead of failing.',
   inputSchema: {
     type: 'object',
     properties: {

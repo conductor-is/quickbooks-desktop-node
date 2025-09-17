@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_bills',
-  description: 'Updates an existing bill.',
+  description:
+    'Updates an existing vendor bill while keeping the required references intact. QuickBooks does not let this update request add new purchase order links, and you must continue to supply the vendor, accounts payable account, and at least one expense or item line when you resubmit the bill.',
   inputSchema: {
     type: 'object',
     properties: {

@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_item_receipts',
-  description: 'Creates a new item receipt.',
+  description:
+    "Creates an item receipt to record inventory received from a vendor. You can link it to a purchase order during creation to pull in the order's lines automatically and update quantities, but that link can't be added later with an update.",
   inputSchema: {
     type: 'object',
     properties: {

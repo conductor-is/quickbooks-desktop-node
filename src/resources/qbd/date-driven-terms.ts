@@ -5,7 +5,10 @@ import * as Core from '../../core';
 
 export class DateDrivenTerms extends APIResource {
   /**
-   * Creates a new date-driven term.
+   * Creates a date-driven term that sets the payment due on a specific day of the
+   * month and can optionally grant an early-payment discount before
+   * `discountDayOfMonth`. Use it when you need due dates tied to calendar days
+   * instead of a fixed number of days after the transaction.
    *
    * @example
    * ```ts

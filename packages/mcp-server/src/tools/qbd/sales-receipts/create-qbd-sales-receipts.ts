@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_sales_receipts',
-  description: 'Creates a new sales receipt.',
+  description:
+    'Creates a sales receipt for a sale paid in full. If you include credit card transaction details, QuickBooks requires the payment method to reference a credit card type and automatically deposits the funds to Undeposited Funds rather than a specific bank account.',
   inputSchema: {
     type: 'object',
     properties: {

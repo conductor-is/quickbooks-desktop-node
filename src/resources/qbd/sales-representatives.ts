@@ -5,7 +5,8 @@ import * as Core from '../../core';
 
 export class SalesRepresentatives extends APIResource {
   /**
-   * Creates a new sales representative.
+   * Creates a sales representative that references an existing employee, vendor, or
+   * other-name record so it can be assigned on sales forms.
    *
    * @example
    * ```ts

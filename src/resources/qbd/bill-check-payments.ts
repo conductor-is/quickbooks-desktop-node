@@ -6,7 +6,9 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class BillCheckPayments extends APIResource {
   /**
-   * Creates a new bill check payment.
+   * Records a check payment against one vendor’s open bills. Each bill allocation
+   * must include a payment amount, discount, or vendor credit, and the accounts
+   * payable account has to match the one used on the bills you’re closing.
    *
    * @example
    * ```ts
@@ -59,7 +61,10 @@ export class BillCheckPayments extends APIResource {
   }
 
   /**
-   * Updates an existing bill check payment.
+   * Updates a bill check payment so you can reallocate how amounts, discounts, or
+   * credits are applied to the vendor’s bills. When you update a payment, QuickBooks
+   * clears the prior allocations but keeps any existing vendor credits unchanged, so
+   * submit the full list of bill applications in this request.
    *
    * @example
    * ```ts

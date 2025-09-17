@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_checks',
-  description: 'Creates a new check.',
+  description:
+    'Creates a non-payroll check from a bank account. QuickBooks uses this request for direct expense disbursements; to pay vendor bills or payroll liabilities you must use the dedicated bill-payment or payroll transactions instead.',
   inputSchema: {
     type: 'object',
     properties: {

@@ -224,40 +224,40 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.accounts`:
 
-- `create_qbd_accounts` (`write`): Creates a new financial account.
+- `create_qbd_accounts` (`write`): Creates a new financial account. QuickBooks requires you to pick a supported account type for the chart of accounts, and non-posting types can’t be created through the API.
 - `retrieve_qbd_accounts` (`read`): Retrieves an account by ID.
-- `update_qbd_accounts` (`write`): Updates an existing financial account.
+- `update_qbd_accounts` (`write`): Updates an existing financial account. You can rename the account, adjust numbering, or change supported attributes, but QuickBooks won’t let you convert it to a non-posting type via the API.
 - `list_qbd_accounts` (`read`): Returns a list of accounts. NOTE: QuickBooks Desktop does not support pagination for accounts; hence, there is no `cursor` parameter. Users typically have few accounts.
 
 ### Resource `qbd.bill_check_payments`:
 
-- `create_qbd_bill_check_payments` (`write`): Creates a new bill check payment.
+- `create_qbd_bill_check_payments` (`write`): Records a check payment against one vendor’s open bills. Each bill allocation must include a payment amount, discount, or vendor credit, and the accounts payable account has to match the one used on the bills you’re closing.
 - `retrieve_qbd_bill_check_payments` (`read`): Retrieves a bill check payment by ID.
-- `update_qbd_bill_check_payments` (`write`): Updates an existing bill check payment.
+- `update_qbd_bill_check_payments` (`write`): Updates a bill check payment so you can reallocate how amounts, discounts, or credits are applied to the vendor’s bills. When you update a payment, QuickBooks clears the prior allocations but keeps any existing vendor credits unchanged, so submit the full list of bill applications in this request.
 - `list_qbd_bill_check_payments` (`read`): Returns a list of bill check payments. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_bill_check_payments` (`write`): Permanently deletes a a bill check payment. The deletion will fail if the bill check payment is currently in use or has any linked transactions that are in use.
 
 ### Resource `qbd.bill_credit_card_payments`:
 
-- `create_qbd_bill_credit_card_payments` (`write`): Creates a new bill credit card payment.
+- `create_qbd_bill_credit_card_payments` (`write`): Charges one vendor’s bills to a credit card account. Each bill allocation must supply a payment amount, discount, or credit, and you have to use the same accounts payable account that’s on the bills being closed.
 - `retrieve_qbd_bill_credit_card_payments` (`read`): Retrieves a bill credit card payment by ID.
 - `list_qbd_bill_credit_card_payments` (`read`): Returns a list of bill credit card payments. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_bill_credit_card_payments` (`write`): Permanently deletes a a bill credit card payment. The deletion will fail if the bill credit card payment is currently in use or has any linked transactions that are in use.
 
 ### Resource `qbd.bills`:
 
-- `create_qbd_bills` (`write`): Creates a new bill.
+- `create_qbd_bills` (`write`): Creates a vendor bill and posts it to accounts payable. You can also link eligible purchase orders so QuickBooks pulls their lines onto the bill before it's saved.
 - `retrieve_qbd_bills` (`read`): Retrieves a bill by ID.
 
   NOTE: The response automatically includes any linked transactions.
 
-- `update_qbd_bills` (`write`): Updates an existing bill.
+- `update_qbd_bills` (`write`): Updates an existing vendor bill while keeping the required references intact. QuickBooks does not let this update request add new purchase order links, and you must continue to supply the vendor, accounts payable account, and at least one expense or item line when you resubmit the bill.
 - `list_qbd_bills` (`read`): Returns a list of bills. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_bills` (`write`): Permanently deletes a a bill. The deletion will fail if the bill is currently in use or has any linked transactions that are in use.
 
 ### Resource `qbd.build_assemblies`:
 
-- `create_qbd_build_assemblies` (`write`): Creates a new build assembly.
+- `create_qbd_build_assemblies` (`write`): Creates a build assembly transaction that consumes component quantities and increases the finished assembly on hand. If components are short you can mark the build as pending instead of failing.
 - `retrieve_qbd_build_assemblies` (`read`): Retrieves a build assembly by ID.
 - `update_qbd_build_assemblies` (`write`): Updates an existing build assembly.
 - `list_qbd_build_assemblies` (`read`): Returns a list of build assemblies. Use the `cursor` parameter to paginate through the results.
@@ -265,12 +265,12 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.checks`:
 
-- `create_qbd_checks` (`write`): Creates a new check.
+- `create_qbd_checks` (`write`): Creates a non-payroll check from a bank account. QuickBooks uses this request for direct expense disbursements; to pay vendor bills or payroll liabilities you must use the dedicated bill-payment or payroll transactions instead.
 - `retrieve_qbd_checks` (`read`): Retrieves a check by ID.
 
   NOTE: The response automatically includes any linked transactions.
 
-- `update_qbd_checks` (`write`): Updates an existing check.
+- `update_qbd_checks` (`write`): Updates a standard check so you can adjust the issuing account, payee details, memo, transaction date, or expense and item lines. This request cannot modify checks created through the bill-payment workflow.
 - `list_qbd_checks` (`read`): Returns a list of checks. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_checks` (`write`): Permanently deletes a a check. The deletion will fail if the check is currently in use or has any linked transactions that are in use.
 
@@ -289,7 +289,7 @@ The following tools are available in this MCP server.
 
 - `create_qbd_credit_card_charges` (`write`): Creates a new credit card charge for the specified account.
 - `retrieve_qbd_credit_card_charges` (`read`): Retrieves a credit card charge by ID.
-- `update_qbd_credit_card_charges` (`write`): Updates an existing credit card charge.
+- `update_qbd_credit_card_charges` (`write`): Updates an existing credit card charge so you can adjust the credit card account, payee, memo, transaction date, and expense or item lines. The total is recalculated from the line details.
 - `list_qbd_credit_card_charges` (`read`): Returns a list of credit card charges. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_credit_card_charges` (`write`): Permanently deletes a a credit card charge. The deletion will fail if the credit card charge is currently in use or has any linked transactions that are in use.
 
@@ -335,7 +335,7 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.date_driven_terms`:
 
-- `create_qbd_date_driven_terms` (`write`): Creates a new date-driven term.
+- `create_qbd_date_driven_terms` (`write`): Creates a date-driven term that sets the payment due on a specific day of the month and can optionally grant an early-payment discount before `discountDayOfMonth`. Use it when you need due dates tied to calendar days instead of a fixed number of days after the transaction.
 - `retrieve_qbd_date_driven_terms` (`read`): Retrieves a date-driven term by ID.
 - `list_qbd_date_driven_terms` (`read`): Returns a list of date-driven terms. NOTE: QuickBooks Desktop does not support pagination for date-driven terms; hence, there is no `cursor` parameter. Users typically have few date-driven terms.
 
@@ -349,16 +349,16 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.discount_items`:
 
-- `create_qbd_discount_items` (`write`): Creates a new discount item.
+- `create_qbd_discount_items` (`write`): Creates a discount item that subtracts either a percentage or fixed amount from transaction totals. Percentage discounts only affect the preceding line, while fixed-amount discounts reduce the accumulated amount above them unless you bound the target lines with a subtotal item.
 - `retrieve_qbd_discount_items` (`read`): Retrieves a discount item by ID.
-- `update_qbd_discount_items` (`write`): Updates an existing discount item.
+- `update_qbd_discount_items` (`write`): Updates a discount item, including its linked account or discount rate. When changing the account, use `updateExistingTransactionsAccount` to control whether existing transactions that reference the item should also be updated.
 - `list_qbd_discount_items` (`read`): Returns a list of discount items. Use the `cursor` parameter to paginate through the results.
 
 ### Resource `qbd.employees`:
 
-- `create_qbd_employees` (`write`): Creates a new employee.
+- `create_qbd_employees` (`write`): Creates an employee record that captures personal details, contact information, employment dates, and payroll settings in a single request so the employee is ready for scheduling, time tracking, and payroll processing.
 - `retrieve_qbd_employees` (`read`): Retrieves an employee by ID.
-- `update_qbd_employees` (`write`): Updates an existing employee.
+- `update_qbd_employees` (`write`): Updates an employee record, allowing you to revise contact details, employment status dates, supervisory assignments, payroll configuration, and additional notes to keep workforce data current.
 - `list_qbd_employees` (`read`): Returns a list of employees. NOTE: QuickBooks Desktop does not support pagination for employees; hence, there is no `cursor` parameter. Users typically have few employees.
 
 ### Resource `qbd.estimates`:
@@ -374,7 +374,7 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.inventory_adjustments`:
 
-- `create_qbd_inventory_adjustments` (`write`): Creates a new inventory adjustment.
+- `create_qbd_inventory_adjustments` (`write`): Creates an inventory adjustment to correct on-hand quantities or values. QuickBooks requires single-user mode unless you're on Enterprise with Advanced Inventory enabled.
 - `retrieve_qbd_inventory_adjustments` (`read`): Retrieves an inventory adjustment by ID.
 - `update_qbd_inventory_adjustments` (`write`): Updates an existing inventory adjustment.
 - `list_qbd_inventory_adjustments` (`read`): Returns a list of inventory adjustments. NOTE: QuickBooks Desktop does not support pagination for inventory adjustments; hence, there is no `cursor` parameter. Users typically have few inventory adjustments.
@@ -382,28 +382,28 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.inventory_assembly_items`:
 
-- `create_qbd_inventory_assembly_items` (`write`): Creates a new inventory assembly item.
+- `create_qbd_inventory_assembly_items` (`write`): Creates an inventory assembly item that bundles existing inventory items.
 - `retrieve_qbd_inventory_assembly_items` (`read`): Retrieves an inventory assembly item by ID.
-- `update_qbd_inventory_assembly_items` (`write`): Updates an existing inventory assembly item.
+- `update_qbd_inventory_assembly_items` (`write`): Updates an inventory assembly item. If you change the income account, set `updateExistingTransactionsIncomeAccount` to true so QuickBooks applies the new account to existing transactions that use the assembly.
 - `list_qbd_inventory_assembly_items` (`read`): Returns a list of inventory assembly items. Use the `cursor` parameter to paginate through the results.
 
 ### Resource `qbd.inventory_items`:
 
 - `create_qbd_inventory_items` (`write`): Creates a new inventory item.
 - `retrieve_qbd_inventory_items` (`read`): Retrieves an inventory item by ID.
-- `update_qbd_inventory_items` (`write`): Updates an existing inventory item.
+- `update_qbd_inventory_items` (`write`): Updates an inventory item. If you switch the income account, set `updateExistingTransactionsIncomeAccount` to true so QuickBooks applies the new account to existing transactions that reference the item.
 - `list_qbd_inventory_items` (`read`): Returns a list of inventory items. Use the `cursor` parameter to paginate through the results.
 
 ### Resource `qbd.inventory_sites`:
 
-- `create_qbd_inventory_sites` (`write`): Creates a new inventory site.
+- `create_qbd_inventory_sites` (`write`): Creates an inventory site for companies using QuickBooks Enterprise with Advanced Inventory.
 - `retrieve_qbd_inventory_sites` (`read`): Retrieves an inventory site by ID.
 - `update_qbd_inventory_sites` (`write`): Updates an existing inventory site.
 - `list_qbd_inventory_sites` (`read`): Returns a list of inventory sites. NOTE: QuickBooks Desktop does not support pagination for inventory sites; hence, there is no `cursor` parameter. Users typically have few inventory sites.
 
 ### Resource `qbd.invoices`:
 
-- `create_qbd_invoices` (`write`): Creates a new invoice.
+- `create_qbd_invoices` (`write`): Creates an invoice to bill a customer when goods or services were delivered before payment. Use a sales receipt instead if the sale was paid in full.
 - `retrieve_qbd_invoices` (`read`): Retrieves an invoice by ID.
 
   NOTE: The response automatically includes any linked transactions.
@@ -421,7 +421,7 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.item_receipts`:
 
-- `create_qbd_item_receipts` (`write`): Creates a new item receipt.
+- `create_qbd_item_receipts` (`write`): Creates an item receipt to record inventory received from a vendor. You can link it to a purchase order during creation to pull in the order's lines automatically and update quantities, but that link can't be added later with an update.
 - `retrieve_qbd_item_receipts` (`read`): Retrieves an item receipt by ID.
 
   NOTE: The response automatically includes any linked transactions.
@@ -437,9 +437,9 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.journal_entries`:
 
-- `create_qbd_journal_entries` (`write`): Creates a new journal entry.
+- `create_qbd_journal_entries` (`write`): Creates a journal entry with balanced debit and credit lines. QuickBooks Desktop requires total debits to equal total credits, and any line that posts to Accounts Receivable or Accounts Payable must include the related customer or vendor reference.
 - `retrieve_qbd_journal_entries` (`read`): Retrieves a journal entry by ID.
-- `update_qbd_journal_entries` (`write`): Updates an existing journal entry.
+- `update_qbd_journal_entries` (`write`): Updates an existing journal entry. Keep the debits and credits in balance, and include the related customer or vendor on any A/R or A/P line you submit in the update body.
 - `list_qbd_journal_entries` (`read`): Returns a list of journal entries. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_journal_entries` (`write`): Permanently deletes a a journal entry. The deletion will fail if the journal entry is currently in use or has any linked transactions that are in use.
 
@@ -447,7 +447,7 @@ The following tools are available in this MCP server.
 
 - `create_qbd_non_inventory_items` (`write`): Creates a new non-inventory item.
 - `retrieve_qbd_non_inventory_items` (`read`): Retrieves a non-inventory item by ID.
-- `update_qbd_non_inventory_items` (`write`): Updates an existing non-inventory item.
+- `update_qbd_non_inventory_items` (`write`): Updates a non-inventory item. You can modify either `salesOrPurchaseDetails` or `salesAndPurchaseDetails`, but the item must keep the same configuration it was created with. When you change `postingAccount`, `incomeAccount`, or `expenseAccount`, include the matching `updateExistingTransactions...` flag so QuickBooks applies the new account to existing transactions and doesn’t reject the update when historical activity is present.
 - `list_qbd_non_inventory_items` (`read`): Returns a list of non-inventory items. Use the `cursor` parameter to paginate through the results.
 
 ### Resource `qbd.other_charge_items`:
@@ -500,9 +500,9 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.receive_payments`:
 
-- `create_qbd_receive_payments` (`write`): Creates a new receive-payment.
+- `create_qbd_receive_payments` (`write`): Records a customer payment and optionally applies it to specific invoices or credits. All allocations must target the same accounts receivable account as those invoices, and each one has to include a payment amount, discount, or credit so QuickBooks can close out the balance.
 - `retrieve_qbd_receive_payments` (`read`): Retrieves a receive-payment by ID.
-- `update_qbd_receive_payments` (`write`): Updates an existing receive-payment.
+- `update_qbd_receive_payments` (`write`): Updates a received payment. When you resubmit applications to invoices, keep them on the same accounts receivable account and include the payment amount, discount, or credit on every allocation you send.
 - `list_qbd_receive_payments` (`read`): Returns a list of receive-payments. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_receive_payments` (`write`): Permanently deletes a a receive-payment. The deletion will fail if the receive-payment is currently in use or has any linked transactions that are in use.
 
@@ -519,15 +519,15 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.sales_receipts`:
 
-- `create_qbd_sales_receipts` (`write`): Creates a new sales receipt.
+- `create_qbd_sales_receipts` (`write`): Creates a sales receipt for a sale paid in full. If you include credit card transaction details, QuickBooks requires the payment method to reference a credit card type and automatically deposits the funds to Undeposited Funds rather than a specific bank account.
 - `retrieve_qbd_sales_receipts` (`read`): Retrieves a sales receipt by ID.
-- `update_qbd_sales_receipts` (`write`): Updates an existing sales receipt.
+- `update_qbd_sales_receipts` (`write`): Updates an existing sales receipt. Credit card payments still have to use a credit-card payment method and remain deposited to Undeposited Funds, so don’t switch the deposit account in those scenarios.
 - `list_qbd_sales_receipts` (`read`): Returns a list of sales receipts. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_sales_receipts` (`write`): Permanently deletes a a sales receipt. The deletion will fail if the sales receipt is currently in use or has any linked transactions that are in use.
 
 ### Resource `qbd.sales_representatives`:
 
-- `create_qbd_sales_representatives` (`write`): Creates a new sales representative.
+- `create_qbd_sales_representatives` (`write`): Creates a sales representative that references an existing employee, vendor, or other-name record so it can be assigned on sales forms.
 - `retrieve_qbd_sales_representatives` (`read`): Retrieves a sales representative by ID.
 - `update_qbd_sales_representatives` (`write`): Updates an existing sales representative.
 - `list_qbd_sales_representatives` (`read`): Returns a list of sales representatives. NOTE: QuickBooks Desktop does not support pagination for sales representatives; hence, there is no `cursor` parameter. Users typically have few sales representatives.
@@ -536,7 +536,7 @@ The following tools are available in this MCP server.
 
 - `create_qbd_sales_tax_codes` (`write`): Creates a new sales-tax code.
 - `retrieve_qbd_sales_tax_codes` (`read`): Retrieves a sales-tax code by ID.
-- `update_qbd_sales_tax_codes` (`write`): Updates an existing sales-tax code.
+- `update_qbd_sales_tax_codes` (`write`): Updates a sales-tax code’s name, activity status, or linked tax items. Once a code has been used you can’t flip it between taxable and non-taxable, and the built-in TAX/NON codes keep their original taxable setting, so plan new codes if you need a different tax status.
 - `list_qbd_sales_tax_codes` (`read`): Returns a list of sales-tax codes. NOTE: QuickBooks Desktop does not support pagination for sales-tax codes; hence, there is no `cursor` parameter. Users typically have few sales-tax codes.
 
 ### Resource `qbd.sales_tax_items`:
@@ -550,7 +550,7 @@ The following tools are available in this MCP server.
 
 - `create_qbd_service_items` (`write`): Creates a new service item.
 - `retrieve_qbd_service_items` (`read`): Retrieves a service item by ID.
-- `update_qbd_service_items` (`write`): Updates an existing service item.
+- `update_qbd_service_items` (`write`): Updates a service item’s details, including its accounts and unit-of-measure set. QuickBooks won’t let you convert a sell-only service into a buy-and-sell service (or the reverse); create a separate item instead. If you’re switching the unit of measure, set `forceUnitOfMeasureChange` so QuickBooks replaces it on existing forms.
 - `list_qbd_service_items` (`read`): Returns a list of service items. Use the `cursor` parameter to paginate through the results.
 
 ### Resource `qbd.standard_terms`:
@@ -603,12 +603,12 @@ The following tools are available in this MCP server.
 
 ### Resource `qbd.vendor_credits`:
 
-- `create_qbd_vendor_credits` (`write`): Creates a new vendor credit.
+- `create_qbd_vendor_credits` (`write`): Creates a vendor credit to capture returns, rebates, or other amounts a vendor owes so you can apply the credit when recording future bill payments.
 - `retrieve_qbd_vendor_credits` (`read`): Retrieves a vendor credit by ID.
 
   NOTE: The response automatically includes any linked transactions.
 
-- `update_qbd_vendor_credits` (`write`): Updates an existing vendor credit.
+- `update_qbd_vendor_credits` (`write`): Updates a vendor credit before you apply it to bills, letting you adjust the amounts, memo, or line allocations that make up the credit.
 - `list_qbd_vendor_credits` (`read`): Returns a list of vendor credits. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_vendor_credits` (`write`): Permanently deletes a a vendor credit. The deletion will fail if the vendor credit is currently in use or has any linked transactions that are in use.
 

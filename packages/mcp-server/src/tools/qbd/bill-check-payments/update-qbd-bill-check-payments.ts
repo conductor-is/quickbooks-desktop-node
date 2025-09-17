@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_bill_check_payments',
-  description: 'Updates an existing bill check payment.',
+  description:
+    'Updates a bill check payment so you can reallocate how amounts, discounts, or credits are applied to the vendor’s bills. When you update a payment, QuickBooks clears the prior allocations but keeps any existing vendor credits unchanged, so submit the full list of bill applications in this request.',
   inputSchema: {
     type: 'object',
     properties: {

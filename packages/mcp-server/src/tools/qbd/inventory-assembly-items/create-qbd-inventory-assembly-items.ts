@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_inventory_assembly_items',
-  description: 'Creates a new inventory assembly item.',
+  description: 'Creates an inventory assembly item that bundles existing inventory items.',
   inputSchema: {
     type: 'object',
     properties: {

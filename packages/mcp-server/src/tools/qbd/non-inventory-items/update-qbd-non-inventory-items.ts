@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_non_inventory_items',
-  description: 'Updates an existing non-inventory item.',
+  description:
+    'Updates a non-inventory item. You can modify either `salesOrPurchaseDetails` or `salesAndPurchaseDetails`, but the item must keep the same configuration it was created with. When you change `postingAccount`, `incomeAccount`, or `expenseAccount`, include the matching `updateExistingTransactions...` flag so QuickBooks applies the new account to existing transactions and doesn’t reject the update when historical activity is present.',
   inputSchema: {
     type: 'object',
     properties: {

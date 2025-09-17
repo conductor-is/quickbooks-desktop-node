@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_vendor_credits',
-  description: 'Creates a new vendor credit.',
+  description:
+    'Creates a vendor credit to capture returns, rebates, or other amounts a vendor owes so you can apply the credit when recording future bill payments.',
   inputSchema: {
     type: 'object',
     properties: {

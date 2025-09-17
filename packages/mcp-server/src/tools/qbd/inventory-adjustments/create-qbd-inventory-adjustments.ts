@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_inventory_adjustments',
-  description: 'Creates a new inventory adjustment.',
+  description:
+    "Creates an inventory adjustment to correct on-hand quantities or values. QuickBooks requires single-user mode unless you're on Enterprise with Advanced Inventory enabled.",
   inputSchema: {
     type: 'object',
     properties: {
