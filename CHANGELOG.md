@@ -1,5 +1,18 @@
 # Changelog
 
+## 12.33.0 (2025-09-17)
+
+Full Changelog: [v12.32.0...v12.33.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.32.0...v12.33.0)
+
+### Features
+
+* **api:** api update ([7a93ab6](https://github.com/conductor-is/quickbooks-desktop-node/commit/7a93ab638483e744d09a60042b7d67d13ef86ecb))
+
+
+### Bug Fixes
+
+* **ci:** set permissions for DXT publish action ([91974a0](https://github.com/conductor-is/quickbooks-desktop-node/commit/91974a0ade920a844fd5de7da42ffc7b56467c1b))
+
 ## 12.32.0 (2025-09-16)
 
 Full Changelog: [v12.31.1...v12.32.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.31.1...v12.32.0)
