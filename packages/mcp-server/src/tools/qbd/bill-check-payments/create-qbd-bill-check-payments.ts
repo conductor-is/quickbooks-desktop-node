@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_bill_check_payments',
-  description: 'Creates a new bill check payment.',
+  description:
+    'Records a check payment against one vendor’s open bills. Each bill allocation must include a payment amount, discount, or vendor credit, and the accounts payable account has to match the one used on the bills you’re closing.',
   inputSchema: {
     type: 'object',
     properties: {

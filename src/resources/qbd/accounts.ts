@@ -5,7 +5,9 @@ import * as Core from '../../core';
 
 export class Accounts extends APIResource {
   /**
-   * Creates a new financial account.
+   * Creates a new financial account. QuickBooks requires you to pick a supported
+   * account type for the chart of accounts, and non-posting types can’t be created
+   * through the API.
    *
    * @example
    * ```ts
@@ -49,7 +51,9 @@ export class Accounts extends APIResource {
   }
 
   /**
-   * Updates an existing financial account.
+   * Updates an existing financial account. You can rename the account, adjust
+   * numbering, or change supported attributes, but QuickBooks won’t let you convert
+   * it to a non-posting type via the API.
    *
    * @example
    * ```ts

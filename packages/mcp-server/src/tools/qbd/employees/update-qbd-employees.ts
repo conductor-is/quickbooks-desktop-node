@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_employees',
-  description: 'Updates an existing employee.',
+  description:
+    'Updates an employee record, allowing you to revise contact details, employment status dates, supervisory assignments, payroll configuration, and additional notes to keep workforce data current.',
   inputSchema: {
     type: 'object',
     properties: {

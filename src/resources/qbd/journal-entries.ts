@@ -6,7 +6,10 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class JournalEntries extends APIResource {
   /**
-   * Creates a new journal entry.
+   * Creates a journal entry with balanced debit and credit lines. QuickBooks Desktop
+   * requires total debits to equal total credits, and any line that posts to
+   * Accounts Receivable or Accounts Payable must include the related customer or
+   * vendor reference.
    *
    * @example
    * ```ts
@@ -51,7 +54,9 @@ export class JournalEntries extends APIResource {
   }
 
   /**
-   * Updates an existing journal entry.
+   * Updates an existing journal entry. Keep the debits and credits in balance, and
+   * include the related customer or vendor on any A/R or A/P line you submit in the
+   * update body.
    *
    * @example
    * ```ts

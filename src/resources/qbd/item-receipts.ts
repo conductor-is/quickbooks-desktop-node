@@ -6,7 +6,10 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 
 export class ItemReceipts extends APIResource {
   /**
-   * Creates a new item receipt.
+   * Creates an item receipt to record inventory received from a vendor. You can link
+   * it to a purchase order during creation to pull in the order's lines
+   * automatically and update quantities, but that link can't be added later with an
+   * update.
    *
    * @example
    * ```ts

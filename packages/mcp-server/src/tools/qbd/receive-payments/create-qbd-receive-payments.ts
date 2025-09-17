@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_receive_payments',
-  description: 'Creates a new receive-payment.',
+  description:
+    'Records a customer payment and optionally applies it to specific invoices or credits. All allocations must target the same accounts receivable account as those invoices, and each one has to include a payment amount, discount, or credit so QuickBooks can close out the balance.',
   inputSchema: {
     type: 'object',
     properties: {

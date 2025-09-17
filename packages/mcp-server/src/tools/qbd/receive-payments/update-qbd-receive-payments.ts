@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'update_qbd_receive_payments',
-  description: 'Updates an existing receive-payment.',
+  description:
+    'Updates a received payment. When you resubmit applications to invoices, keep them on the same accounts receivable account and include the payment amount, discount, or credit on every allocation you send.',
   inputSchema: {
     type: 'object',
     properties: {

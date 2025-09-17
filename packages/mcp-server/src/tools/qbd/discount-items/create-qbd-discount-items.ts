@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_discount_items',
-  description: 'Creates a new discount item.',
+  description:
+    'Creates a discount item that subtracts either a percentage or fixed amount from transaction totals. Percentage discounts only affect the preceding line, while fixed-amount discounts reduce the accumulated amount above them unless you bound the target lines with a subtotal item.',
   inputSchema: {
     type: 'object',
     properties: {

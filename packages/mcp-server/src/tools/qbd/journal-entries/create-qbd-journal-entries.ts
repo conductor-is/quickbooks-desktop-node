@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_qbd_journal_entries',
-  description: 'Creates a new journal entry.',
+  description:
+    'Creates a journal entry with balanced debit and credit lines. QuickBooks Desktop requires total debits to equal total credits, and any line that posts to Accounts Receivable or Accounts Payable must include the related customer or vendor reference.',
   inputSchema: {
     type: 'object',
     properties: {
