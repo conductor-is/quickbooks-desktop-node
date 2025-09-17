@@ -137,11 +137,36 @@ export interface Transaction {
   transactionLineId: string | null;
 
   /**
-   * The type of transaction. The output for this field is a raw string, not an enum,
-   * because in rare cases QuickBooks Desktop may return a value outside its own
-   * schema, which we pass through unchanged.
+   * The type of transaction.
    */
-  transactionType: string;
+  transactionType:
+    | 'ar_refund_credit_card'
+    | 'bill'
+    | 'bill_payment_check'
+    | 'bill_payment_credit_card'
+    | 'build_assembly'
+    | 'charge'
+    | 'check'
+    | 'credit_card_charge'
+    | 'credit_card_credit'
+    | 'credit_memo'
+    | 'deposit'
+    | 'estimate'
+    | 'inventory_adjustment'
+    | 'invoice'
+    | 'item_receipt'
+    | 'journal_entry'
+    | 'liability_adjustment'
+    | 'paycheck'
+    | 'payroll_liability_check'
+    | 'purchase_order'
+    | 'receive_payment'
+    | 'sales_order'
+    | 'sales_receipt'
+    | 'sales_tax_payment_check'
+    | 'transfer'
+    | 'vendor_credit'
+    | 'ytd_adjustment';
 
   /**
    * The date and time when this transaction was last updated, in ISO 8601 format

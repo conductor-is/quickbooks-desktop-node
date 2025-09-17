@@ -102,6 +102,16 @@ export {
   type CreditCardCreditDeleteParams,
 } from './credit-card-credits';
 export {
+  CreditCardRefundsCursorPage,
+  CreditCardRefunds,
+  type CreditCardRefund,
+  type CreditCardRefundDeleteResponse,
+  type CreditCardRefundCreateParams,
+  type CreditCardRefundRetrieveParams,
+  type CreditCardRefundListParams,
+  type CreditCardRefundDeleteParams,
+} from './credit-card-refunds';
+export {
   CreditMemosCursorPage,
   CreditMemos,
   type CreditMemo,

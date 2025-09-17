@@ -301,6 +301,13 @@ The following tools are available in this MCP server.
 - `list_qbd_credit_card_credits` (`read`): Returns a list of credit card credits. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_credit_card_credits` (`write`): Permanently deletes a a credit card credit. The deletion will fail if the credit card credit is currently in use or has any linked transactions that are in use.
 
+### Resource `qbd.credit_card_refunds`:
+
+- `create_qbd_credit_card_refunds` (`write`): Creates a credit card refund linked to one or more existing credit transactions, such as credit memos or overpayments. You must supply at least one entry in `refundAppliedToTransactions`, and the refund amount cannot exceed the available balance on the linked credits.
+- `retrieve_qbd_credit_card_refunds` (`read`): Retrieves a credit card refund by ID.
+- `list_qbd_credit_card_refunds` (`read`): Returns a list of credit card refunds. Use the `cursor` parameter to paginate through the results.
+- `delete_qbd_credit_card_refunds` (`write`): Permanently deletes a a credit card refund. The deletion will fail if the credit card refund is currently in use or has any linked transactions that are in use.
+
 ### Resource `qbd.credit_memos`:
 
 - `create_qbd_credit_memos` (`write`): Creates a new credit memo.

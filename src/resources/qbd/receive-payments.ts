@@ -221,9 +221,7 @@ export interface ReceivePayment {
    * default A/R account.
    *
    * **IMPORTANT**: If this receive-payment is linked to other transactions, this A/R
-   * account must match the `receivablesAccount` used in all linked transactions. For
-   * example, when refunding a credit card payment, the A/R account must match the
-   * one used in the original credit transactions being refunded.
+   * account must match the `receivablesAccount` used in all linked transactions.
    */
   receivablesAccount: ReceivePayment.ReceivablesAccount | null;
 
@@ -344,11 +342,36 @@ export namespace ReceivePayment {
     transactionId: string;
 
     /**
-     * The type of transaction for this receivable transaction. The output for this
-     * field is a raw string, not an enum, because in rare cases QuickBooks Desktop may
-     * return a value outside its own schema, which we pass through unchanged.
+     * The type of transaction for this receivable transaction.
      */
-    transactionType: string;
+    transactionType:
+      | 'ar_refund_credit_card'
+      | 'bill'
+      | 'bill_payment_check'
+      | 'bill_payment_credit_card'
+      | 'build_assembly'
+      | 'charge'
+      | 'check'
+      | 'credit_card_charge'
+      | 'credit_card_credit'
+      | 'credit_memo'
+      | 'deposit'
+      | 'estimate'
+      | 'inventory_adjustment'
+      | 'invoice'
+      | 'item_receipt'
+      | 'journal_entry'
+      | 'liability_adjustment'
+      | 'paycheck'
+      | 'payroll_liability_check'
+      | 'purchase_order'
+      | 'receive_payment'
+      | 'sales_order'
+      | 'sales_receipt'
+      | 'sales_tax_payment_check'
+      | 'transfer'
+      | 'vendor_credit'
+      | 'ytd_adjustment';
   }
 
   export namespace AppliedToTransaction {
@@ -428,11 +451,37 @@ export namespace ReceivePayment {
       transactionDate: string;
 
       /**
-       * The type of transaction for this linked transaction. The output for this field
-       * is a raw string, not an enum, because in rare cases QuickBooks Desktop may
-       * return a value outside its own schema, which we pass through unchanged.
+       * The type of transaction for this linked transaction.
        */
-      transactionType: string;
+      transactionType:
+        | 'ar_refund_credit_card'
+        | 'bill'
+        | 'bill_payment_check'
+        | 'bill_payment_credit_card'
+        | 'build_assembly'
+        | 'charge'
+        | 'check'
+        | 'credit_card_charge'
+        | 'credit_card_credit'
+        | 'credit_memo'
+        | 'deposit'
+        | 'estimate'
+        | 'inventory_adjustment'
+        | 'invoice'
+        | 'item_receipt'
+        | 'journal_entry'
+        | 'liability_adjustment'
+        | 'paycheck'
+        | 'payroll_liability_check'
+        | 'purchase_order'
+        | 'receive_payment'
+        | 'sales_order'
+        | 'sales_receipt'
+        | 'sales_tax_payment_check'
+        | 'transfer'
+        | 'vendor_credit'
+        | 'ytd_adjustment'
+        | 'unknown';
     }
   }
 
@@ -725,9 +774,7 @@ export namespace ReceivePayment {
    * default A/R account.
    *
    * **IMPORTANT**: If this receive-payment is linked to other transactions, this A/R
-   * account must match the `receivablesAccount` used in all linked transactions. For
-   * example, when refunding a credit card payment, the A/R account must match the
-   * one used in the original credit transactions being refunded.
+   * account must match the `receivablesAccount` used in all linked transactions.
    */
   export interface ReceivablesAccount {
     /**
@@ -879,9 +926,7 @@ export interface ReceivePaymentCreateParams {
    * will use its default A/R account.
    *
    * **IMPORTANT**: If this receive-payment is linked to other transactions, this A/R
-   * account must match the `receivablesAccount` used in all linked transactions. For
-   * example, when refunding a credit card payment, the A/R account must match the
-   * one used in the original credit transactions being refunded.
+   * account must match the `receivablesAccount` used in all linked transactions.
    */
   receivablesAccountId?: string;
 
@@ -1209,9 +1254,7 @@ export interface ReceivePaymentUpdateParams {
    * will use its default A/R account.
    *
    * **IMPORTANT**: If this receive-payment is linked to other transactions, this A/R
-   * account must match the `receivablesAccount` used in all linked transactions. For
-   * example, when refunding a credit card payment, the A/R account must match the
-   * one used in the original credit transactions being refunded.
+   * account must match the `receivablesAccount` used in all linked transactions.
    */
   receivablesAccountId?: string;
 
