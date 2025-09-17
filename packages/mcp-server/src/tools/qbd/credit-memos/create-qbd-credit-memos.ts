@@ -333,7 +333,7 @@ export const tool: Tool = {
       receivablesAccountId: {
         type: 'string',
         description:
-          'The Accounts-Receivable (A/R) account to which this credit memo is assigned, used to track the amount owed. If not specified, QuickBooks Desktop will use its default A/R account.\n\n**IMPORTANT**: If this credit memo is linked to other transactions, this A/R account must match the `receivablesAccount` used in all linked transactions. For example, when refunding a credit card payment, the A/R account must match the one used in the original credit transactions being refunded.',
+          'The Accounts-Receivable (A/R) account to which this credit memo is assigned, used to track the amount owed. If not specified, QuickBooks Desktop will use its default A/R account.\n\n**IMPORTANT**: If this credit memo is linked to other transactions, this A/R account must match the `receivablesAccount` used in all linked transactions.',
       },
       refNumber: {
         type: 'string',

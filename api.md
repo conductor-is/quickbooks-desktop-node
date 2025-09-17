@@ -188,6 +188,20 @@ Methods:
 - <code title="get /quickbooks-desktop/credit-card-credits">client.qbd.creditCardCredits.<a href="./src/resources/qbd/credit-card-credits.ts">list</a>({ ...params }) -> CreditCardCreditsCursorPage</code>
 - <code title="delete /quickbooks-desktop/credit-card-credits/{id}">client.qbd.creditCardCredits.<a href="./src/resources/qbd/credit-card-credits.ts">delete</a>(id, { ...params }) -> CreditCardCreditDeleteResponse</code>
 
+## CreditCardRefunds
+
+Types:
+
+- <code><a href="./src/resources/qbd/credit-card-refunds.ts">CreditCardRefund</a></code>
+- <code><a href="./src/resources/qbd/credit-card-refunds.ts">CreditCardRefundDeleteResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/credit-card-refunds">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">create</a>({ ...params }) -> CreditCardRefund</code>
+- <code title="get /quickbooks-desktop/credit-card-refunds/{id}">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">retrieve</a>(id, { ...params }) -> CreditCardRefund</code>
+- <code title="get /quickbooks-desktop/credit-card-refunds">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">list</a>({ ...params }) -> CreditCardRefundsCursorPage</code>
+- <code title="delete /quickbooks-desktop/credit-card-refunds/{id}">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">delete</a>(id, { ...params }) -> CreditCardRefundDeleteResponse</code>
+
 ## CreditMemos
 
 Types:

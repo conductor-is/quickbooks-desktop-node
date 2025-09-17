@@ -6,101 +6,109 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Conductor from 'conductor-node';
 
 export const metadata: Metadata = {
-  resource: 'qbd.receive_payments',
+  resource: 'qbd.credit_card_refunds',
   operation: 'write',
   tags: [],
   httpMethod: 'post',
-  httpPath: '/quickbooks-desktop/receive-payments',
+  httpPath: '/quickbooks-desktop/credit-card-refunds',
 };
 
 export const tool: Tool = {
-  name: 'create_qbd_receive_payments',
-  description: 'Creates a new receive-payment.',
+  name: 'create_qbd_credit_card_refunds',
+  description:
+    'Creates a credit card refund linked to one or more existing credit transactions, such as credit memos or overpayments. You must supply at least one entry in `refundAppliedToTransactions`, and the refund amount cannot exceed the available balance on the linked credits.',
   inputSchema: {
     type: 'object',
     properties: {
       customerId: {
         type: 'string',
-        description:
-          'The customer or customer-job to which the payment for this receive-payment is credited.',
+        description: 'The customer or customer-job associated with this credit card refund.',
       },
-      totalAmount: {
-        type: 'string',
+      refundAppliedToTransactions: {
+        type: 'array',
         description:
-          'The total monetary amount of this receive-payment, represented as a decimal string.\n\n**NOTE**: The sum of the `paymentAmount` amounts in the `applyToTransactions` array cannot exceed the `totalAmount`, or you will receive an error.',
+          "The credit transactions to refund in this credit card refund. Each entry links this credit card refund to an existing credit (for example, a credit memo or unused receive-payment credit).\n\n**IMPORTANT**: The `refundAmount` for each linked credit cannot exceed that credit's remaining balance, and the combined `refundAmount` across all links cannot exceed this credit card refund's `totalAmount`.",
+        items: {
+          type: 'object',
+          properties: {
+            refundAmount: {
+              type: 'string',
+              description:
+                'The monetary amount to refund from the linked credit transaction within this credit transaction, represented as a decimal string.',
+            },
+            transactionId: {
+              type: 'string',
+              description: 'The ID of the credit transaction being refunded by this credit card refund.',
+            },
+          },
+          required: ['refundAmount', 'transactionId'],
+        },
       },
       transactionDate: {
         type: 'string',
-        description: 'The date of this receive-payment, in ISO 8601 format (YYYY-MM-DD).',
+        description: 'The date of this credit card refund, in ISO 8601 format (YYYY-MM-DD).',
         format: 'date',
       },
       conductorEndUserId: {
         type: 'string',
         description:
-          'The ID of the EndUser to receive this request (e.g., `"conductorEndUserId:{{END_USER_ID}}"`).',
+          'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
       },
-      applyToTransactions: {
-        type: 'array',
-        description:
-          'The invoices to be paid by this receive-payment. This will create a link between this receive-payment and the specified invoices.\n\n**IMPORTANT**: In each `applyToTransactions` object, you must specify either `paymentAmount`, `applyCredits`, `discountAmount`, or any combination of these; if none of these are specified, you will receive an error for an empty transaction.\n\n**IMPORTANT**: The target invoice must have `isPaid=false`, otherwise, QuickBooks will report this object as "cannot be found".\n\n**NOTE**: You must specify either `isAutoApply` or `applyToTransactions` when creating a receive-payment, but never both.',
-        items: {
-          type: 'object',
-          properties: {
-            transactionId: {
-              type: 'string',
-              description: 'The ID of the receivable transaction to which this payment is applied.',
-            },
-            applyCredits: {
-              type: 'array',
-              description:
-                "Credit memos to apply to this receivable transaction, reducing its balance. This creates a link between this receivable transaction and the specified credit memos.\n\n**IMPORTANT**: By default, QuickBooks will not return any information about the linked transactions in this endpoint's response even when this request is successful. To see the transactions linked via this field, refetch the receivable transaction and check the `linkedTransactions` response field. If fetching a list of receivable transactions, you must also specify the parameter `includeLinkedTransactions=true` to see the `linkedTransactions` response field.",
-              items: {
-                type: 'object',
-                properties: {
-                  appliedAmount: {
-                    type: 'string',
-                    description:
-                      'The amount of credit applied to this transaction. This could include customer deposits, payments, or credits. Represented as a decimal string.',
-                  },
-                  creditTransactionId: {
-                    type: 'string',
-                    description:
-                      'The unique identifier of the credit transaction (credit memo or vendor credit) to apply to this transaction.',
-                  },
-                  overrideCreditApplication: {
-                    type: 'boolean',
-                    description: 'Indicates whether to override the credit.',
-                  },
-                },
-                required: ['appliedAmount', 'creditTransactionId'],
-              },
-            },
-            discountAccountId: {
-              type: 'string',
-              description: "The financial account used to track this receivable transaction's discount.",
-            },
-            discountAmount: {
-              type: 'string',
-              description:
-                "The monetary amount by which to reduce the receivable transaction's receivable amount, represented as a decimal string.",
-            },
-            discountClassId: {
-              type: 'string',
-              description: "The class used to track this receivable transaction's discount.",
-            },
-            paymentAmount: {
-              type: 'string',
-              description:
-                'The monetary amount to apply to the receivable transaction, represented as a decimal string.',
-            },
+      address: {
+        type: 'object',
+        description: 'The address that is printed on the credit card refund.',
+        properties: {
+          city: {
+            type: 'string',
+            description:
+              'The city, district, suburb, town, or village name of the address.\n\nMaximum length: 31 characters.',
           },
-          required: ['transactionId'],
+          country: {
+            type: 'string',
+            description: 'The country name of the address.',
+          },
+          line1: {
+            type: 'string',
+            description:
+              'The first line of the address (e.g., street, PO Box, or company name).\n\nMaximum length: 41 characters.',
+          },
+          line2: {
+            type: 'string',
+            description:
+              'The second line of the address, if needed (e.g., apartment, suite, unit, or building).\n\nMaximum length: 41 characters.',
+          },
+          line3: {
+            type: 'string',
+            description: 'The third line of the address, if needed.\n\nMaximum length: 41 characters.',
+          },
+          line4: {
+            type: 'string',
+            description: 'The fourth line of the address, if needed.\n\nMaximum length: 41 characters.',
+          },
+          line5: {
+            type: 'string',
+            description: 'The fifth line of the address, if needed.\n\nMaximum length: 41 characters.',
+          },
+          note: {
+            type: 'string',
+            description:
+              'A note written at the bottom of the address in the form in which it appears, such as the invoice form.',
+          },
+          postalCode: {
+            type: 'string',
+            description: 'The postal code or ZIP code of the address.\n\nMaximum length: 13 characters.',
+          },
+          state: {
+            type: 'string',
+            description:
+              'The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.',
+          },
         },
       },
       creditCardTransaction: {
         type: 'object',
         description:
-          "The credit card transaction data for this receive-payment's payment when using QuickBooks Merchant Services (QBMS). If specifying this field, you must also specify the `paymentMethod` field.",
+          "The credit card transaction data for this credit card refund's payment when using QuickBooks Merchant Services (QBMS). If specifying this field, you must also specify the `paymentMethod` field.",
         properties: {
           request: {
             type: 'object',
@@ -241,55 +249,49 @@ export const tool: Tool = {
           },
         },
       },
-      depositToAccountId: {
-        type: 'string',
-        description:
-          'The account where the funds for this receive-payment will be or have been deposited. If omitted, QuickBooks will use the default Undeposited Funds account.',
-      },
       exchangeRate: {
         type: 'number',
         description:
-          "The market exchange rate between this receive-payment's currency and the home currency in QuickBooks at the time of this transaction. Represented as a decimal value (e.g., 1.2345 for 1 EUR = 1.2345 USD if USD is the home currency).",
+          "The market exchange rate between this credit card refund's currency and the home currency in QuickBooks at the time of this transaction. Represented as a decimal value (e.g., 1.2345 for 1 EUR = 1.2345 USD if USD is the home currency).",
       },
       externalId: {
         type: 'string',
         description:
           'A globally unique identifier (GUID) you, the developer, can provide for tracking this object in your external system. This field is immutable and can only be set during object creation.\n\n**IMPORTANT**: This field must be formatted as a valid GUID; otherwise, QuickBooks will return an error.',
       },
-      isAutoApply: {
-        type: 'boolean',
-        description:
-          "When `true`, QuickBooks applies `totalAmount` to any outstanding transaction that exactly matches `totalAmount`. If no exact match is found, this receive-payment is applied to the oldest outstanding transaction for the customer-job. When `false`, QuickBooks records the payment but does not apply it to any specific transaction, causing the amount to appear as a credit on the customer-job's next transaction.\n\n**IMPORTANT**: You must specify either `isAutoApply` or `applyToTransactions` when creating a receive-payment, but never both.",
-      },
       memo: {
         type: 'string',
-        description:
-          'A memo or note for this receive-payment that will be displayed at the beginning of reports containing details about this receive-payment.',
+        description: 'A memo or note for this credit card refund.',
       },
       paymentMethodId: {
         type: 'string',
         description:
-          'The receive-payment\'s payment method (e.g., cash, check, credit card).\n\n**NOTE**: If this receive-payment contains credit card transaction data supplied from QuickBooks Merchant Services (QBMS) transaction responses, you must specify a credit card payment method (e.g., "Visa", "MasterCard", etc.).',
+          'The credit card refund\'s payment method (e.g., cash, check, credit card).\n\n**NOTE**: If this credit card refund contains credit card transaction data supplied from QuickBooks Merchant Services (QBMS) transaction responses, you must specify a credit card payment method (e.g., "Visa", "MasterCard", etc.).',
       },
       receivablesAccountId: {
         type: 'string',
         description:
-          'The Accounts-Receivable (A/R) account to which this receive-payment is assigned, used to track the amount owed. If not specified, QuickBooks Desktop will use its default A/R account.\n\n**IMPORTANT**: If this receive-payment is linked to other transactions, this A/R account must match the `receivablesAccount` used in all linked transactions.',
+          'The Accounts-Receivable (A/R) account to which this credit card refund is assigned, used to track the amount owed. If not specified, QuickBooks Desktop will use its default A/R account.\n\n**IMPORTANT**: If this credit card refund is linked to other transactions, this A/R account must match the `receivablesAccount` used in all linked transactions. For example, when refunding a credit card payment, the A/R account must match the one used in each linked credit transaction being refunded.',
       },
       refNumber: {
         type: 'string',
         description:
-          'The case-sensitive user-defined reference number for this receive-payment, which can be used to identify the transaction in QuickBooks. This value is not required to be unique and can be arbitrarily changed by the QuickBooks user. When left blank in this create request, this field will be left blank in QuickBooks (i.e., it does *not* auto-increment).',
+          'The case-sensitive user-defined reference number for this credit card refund, which can be used to identify the transaction in QuickBooks. This value is not required to be unique and can be arbitrarily changed by the QuickBooks user. When left blank in this create request, this field will be left blank in QuickBooks (i.e., it does *not* auto-increment).',
+      },
+      refundFromAccountId: {
+        type: 'string',
+        description:
+          'The account providing funds for this credit card refund. This is typically the Undeposited Funds account used to hold customer payments. If omitted, QuickBooks Desktop will use the default Undeposited Funds account.',
       },
     },
-    required: ['customerId', 'totalAmount', 'transactionDate', 'conductorEndUserId'],
+    required: ['customerId', 'refundAppliedToTransactions', 'transactionDate', 'conductorEndUserId'],
   },
   annotations: {},
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await conductor.qbd.receivePayments.create(body));
+  return asTextContentResult(await conductor.qbd.creditCardRefunds.create(body));
 };
 
 export default { metadata, tool, handler };

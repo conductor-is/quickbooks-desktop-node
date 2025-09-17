@@ -114,6 +114,17 @@ import {
   CreditCardCredits,
   CreditCardCreditsCursorPage,
 } from './credit-card-credits';
+import * as CreditCardRefundsAPI from './credit-card-refunds';
+import {
+  CreditCardRefund,
+  CreditCardRefundCreateParams,
+  CreditCardRefundDeleteParams,
+  CreditCardRefundDeleteResponse,
+  CreditCardRefundListParams,
+  CreditCardRefundRetrieveParams,
+  CreditCardRefunds,
+  CreditCardRefundsCursorPage,
+} from './credit-card-refunds';
 import * as CreditMemosAPI from './credit-memos';
 import {
   CreditMemo,
@@ -547,6 +558,9 @@ export class Qbd extends APIResource {
   creditCardCredits: CreditCardCreditsAPI.CreditCardCredits = new CreditCardCreditsAPI.CreditCardCredits(
     this._client,
   );
+  creditCardRefunds: CreditCardRefundsAPI.CreditCardRefunds = new CreditCardRefundsAPI.CreditCardRefunds(
+    this._client,
+  );
   creditMemos: CreditMemosAPI.CreditMemos = new CreditMemosAPI.CreditMemos(this._client);
   currencies: CurrenciesAPI.Currencies = new CurrenciesAPI.Currencies(this._client);
   customers: CustomersAPI.Customers = new CustomersAPI.Customers(this._client);
@@ -670,6 +684,8 @@ Qbd.CreditCardCharges = CreditCardCharges;
 Qbd.CreditCardChargesCursorPage = CreditCardChargesCursorPage;
 Qbd.CreditCardCredits = CreditCardCredits;
 Qbd.CreditCardCreditsCursorPage = CreditCardCreditsCursorPage;
+Qbd.CreditCardRefunds = CreditCardRefunds;
+Qbd.CreditCardRefundsCursorPage = CreditCardRefundsCursorPage;
 Qbd.CreditMemos = CreditMemos;
 Qbd.CreditMemosCursorPage = CreditMemosCursorPage;
 Qbd.Currencies = Currencies;
@@ -858,6 +874,17 @@ export declare namespace Qbd {
     type CreditCardCreditUpdateParams as CreditCardCreditUpdateParams,
     type CreditCardCreditListParams as CreditCardCreditListParams,
     type CreditCardCreditDeleteParams as CreditCardCreditDeleteParams,
+  };
+
+  export {
+    CreditCardRefunds as CreditCardRefunds,
+    type CreditCardRefund as CreditCardRefund,
+    type CreditCardRefundDeleteResponse as CreditCardRefundDeleteResponse,
+    CreditCardRefundsCursorPage as CreditCardRefundsCursorPage,
+    type CreditCardRefundCreateParams as CreditCardRefundCreateParams,
+    type CreditCardRefundRetrieveParams as CreditCardRefundRetrieveParams,
+    type CreditCardRefundListParams as CreditCardRefundListParams,
+    type CreditCardRefundDeleteParams as CreditCardRefundDeleteParams,
   };
 
   export {
