@@ -45,6 +45,6 @@ jobs:
       - name: Upload MCP Server DXT GitHub release asset
         run: |
           gh release upload ${{ github.event.release.tag_name }} \
-            packages/mcp-server/conductor_node_api.dxt
+            packages/mcp-server/conductor_node_api.mcpb
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
