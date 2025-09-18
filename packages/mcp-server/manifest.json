@@ -1,5 +1,5 @@
 {
-  "dxt_version": "0.1",
+  "dxt_version": "0.2",
   "name": "conductor-node-mcp",
   "version": "12.30.0",
   "description": "The official MCP Server for the Conductor API",
@@ -15,7 +15,7 @@
   "documentation": "https://docs.conductor.is/api-ref",
   "server": {
     "type": "node",
-    "entry_point": "${__dirname}/index.js",
+    "entry_point": "index.js",
     "mcp_config": {
       "command": "node",
       "args": [
@@ -34,6 +34,7 @@
       "type": "string"
     }
   },
+  "tools": [],
   "tools_generated": true,
   "compatibility": {
     "runtimes": {
