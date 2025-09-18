@@ -1,5 +1,18 @@
 # Changelog
 
+## 12.34.0 (2025-09-18)
+
+Full Changelog: [v12.33.0...v12.34.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.33.0...v12.34.0)
+
+### Features
+
+* **api:** api update ([886901a](https://github.com/conductor-is/quickbooks-desktop-node/commit/886901a6ccb88823f1e752b64312ff5ab99009ef))
+
+
+### Chores
+
+* **mcp:** rename dxt to mcpb ([5bd72f8](https://github.com/conductor-is/quickbooks-desktop-node/commit/5bd72f8df7952104a0f08628b2bf240c4f38e567))
+
 ## 12.33.0 (2025-09-17)
 
 Full Changelog: [v12.32.0...v12.33.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.32.0...v12.33.0)
