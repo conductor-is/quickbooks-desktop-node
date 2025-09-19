@@ -1,5 +1,19 @@
 # Changelog
 
+## 12.35.0 (2025-09-19)
+
+Full Changelog: [v12.34.0...v12.35.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.34.0...v12.35.0)
+
+### Features
+
+* **mcp:** add docs search tool ([08b0a42](https://github.com/conductor-is/quickbooks-desktop-node/commit/08b0a428e8f8244f488b1e7abaeaefdda71d5fb0))
+
+
+### Chores
+
+* **codegen:** internal codegen update ([6a83300](https://github.com/conductor-is/quickbooks-desktop-node/commit/6a833009b877656caa60348b54f60916cb10ff3b))
+* **internal:** gitignore .mcpb files ([deaeba4](https://github.com/conductor-is/quickbooks-desktop-node/commit/deaeba4e54ff996818f28d5ce13ecd9fcc0c4049))
+
 ## 12.34.0 (2025-09-18)
 
 Full Changelog: [v12.33.0...v12.34.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.33.0...v12.34.0)
