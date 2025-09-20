@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.35.1 (2025-09-20)
+
+Full Changelog: [v12.35.0...v12.35.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.35.0...v12.35.1)
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([844274b](https://github.com/conductor-is/quickbooks-desktop-node/commit/844274b89d129598b9eba6d15e4def6034441b9c))
+
 ## 12.35.0 (2025-09-19)
 
 Full Changelog: [v12.34.0...v12.35.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.34.0...v12.35.0)
