@@ -1,5 +1,19 @@
 # Changelog
 
+## 12.36.0 (2025-09-24)
+
+Full Changelog: [v12.35.0...v12.36.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.35.0...v12.36.0)
+
+### Features
+
+* **mcp:** add option for including docs tools ([a8ec8dc](https://github.com/conductor-is/quickbooks-desktop-node/commit/a8ec8dceb7c5fd0fbbbec98902a7435ed4048a6f))
+* **mcp:** enable experimental docs search tool ([4039789](https://github.com/conductor-is/quickbooks-desktop-node/commit/4039789ae43e24a83e0082e3ee70019288195091))
+
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([844274b](https://github.com/conductor-is/quickbooks-desktop-node/commit/844274b89d129598b9eba6d15e4def6034441b9c))
+
 ## 12.35.0 (2025-09-19)
 
 Full Changelog: [v12.34.0...v12.35.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.34.0...v12.35.0)
