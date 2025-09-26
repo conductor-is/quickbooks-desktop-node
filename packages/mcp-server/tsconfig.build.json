@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "conductor-node-mcp/*": ["dist/src/*"],
-      "conductor-node-mcp": ["dist/src/index.ts"]
+      "conductor-node-mcp/*": ["./dist/src/*"],
+      "conductor-node-mcp": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
