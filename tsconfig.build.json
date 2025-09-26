@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "conductor-node/*": ["dist/src/*"],
-      "conductor-node": ["dist/src/index.ts"],
+      "conductor-node/*": ["./dist/src/*"],
+      "conductor-node": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
