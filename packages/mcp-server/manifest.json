@@ -18,9 +18,7 @@
     "entry_point": "index.js",
     "mcp_config": {
       "command": "node",
-      "args": [
-        "${__dirname}/index.js"
-      ],
+      "args": ["${__dirname}/index.js"],
       "env": {
         "CONDUCTOR_SECRET_KEY": "${user_config.CONDUCTOR_SECRET_KEY}"
       }
@@ -41,7 +39,5 @@
       "node": ">=18.0.0"
     }
   },
-  "keywords": [
-    "api"
-  ]
+  "keywords": ["api"]
 }

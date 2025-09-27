@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "conductor-node-mcp/*": ["src/*"],
-      "conductor-node-mcp": ["src/index.ts"]
+      "conductor-node-mcp/*": ["./src/*"],
+      "conductor-node-mcp": ["./src/index.ts"]
     },
     "noEmit": true,
 
