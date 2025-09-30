@@ -1,5 +1,29 @@
 # Changelog
 
+## 12.36.1 (2025-09-30)
+
+Full Changelog: [v12.36.0...v12.36.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.36.0...v12.36.1)
+
+### Bug Fixes
+
+* **mcp:** fix cli argument parsing logic ([2e49f0c](https://github.com/conductor-is/quickbooks-desktop-node/commit/2e49f0ca193e4a58818453946f090dbac061a57b))
+* **mcp:** resolve a linting issue in server code ([2f9c47f](https://github.com/conductor-is/quickbooks-desktop-node/commit/2f9c47f73b52bf6172459bbeace145711fcc9895))
+
+
+### Performance Improvements
+
+* faster formatting ([82b7a6d](https://github.com/conductor-is/quickbooks-desktop-node/commit/82b7a6dd1d06b2685636ffcb1017d051accde9aa))
+
+
+### Chores
+
+* **internal:** codegen related update ([3b69b19](https://github.com/conductor-is/quickbooks-desktop-node/commit/3b69b194b8a4c40a04ef5ff369133701d9984253))
+* **internal:** fix incremental formatting in some cases ([ccc30c2](https://github.com/conductor-is/quickbooks-desktop-node/commit/ccc30c25c0357b25843c64ac64a83309ee083004))
+* **internal:** ignore .eslintcache ([aa64e62](https://github.com/conductor-is/quickbooks-desktop-node/commit/aa64e627d6b7d52612bb1d15d486a1de5a2d6649))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([841cfea](https://github.com/conductor-is/quickbooks-desktop-node/commit/841cfeaab384e81885dd2a4c7710c4c3ce46ad8b))
+* **mcp:** allow pointing `docs_search` tool at other URLs ([cbc2d89](https://github.com/conductor-is/quickbooks-desktop-node/commit/cbc2d8951983215cab6ac6d20cb48583127998fb))
+* update lockfile ([8b76186](https://github.com/conductor-is/quickbooks-desktop-node/commit/8b76186e92e42a4b2c1f85a7fb8bc5e3f77a2c35))
+
 ## 12.36.0 (2025-09-24)
 
 Full Changelog: [v12.35.0...v12.36.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.35.0...v12.36.0)
