@@ -404,7 +404,7 @@ export namespace BuildAssembly {
      * item, inventory item, or special calculation item like a discount item or
      * sales-tax item.
      */
-    item: Line.Item;
+    item: Line.Item | null;
 
     /**
      * The lot number of the item associated with this component item line. Used for
