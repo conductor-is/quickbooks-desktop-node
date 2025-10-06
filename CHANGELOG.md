@@ -1,5 +1,18 @@
 # Changelog
 
+## 12.37.0 (2025-10-06)
+
+Full Changelog: [v12.36.1...v12.37.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.36.1...v12.37.0)
+
+### Features
+
+* **api:** api update ([8c3d1cc](https://github.com/conductor-is/quickbooks-desktop-node/commit/8c3d1cc5c1c768c09e496c1788713142c2c23fc2))
+
+
+### Chores
+
+* **internal:** remove .eslintcache ([2384419](https://github.com/conductor-is/quickbooks-desktop-node/commit/23844190a8f395b158d039112043baf7cff80a47))
+
 ## 12.36.1 (2025-09-30)
 
 Full Changelog: [v12.36.0...v12.36.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.36.0...v12.36.1)
