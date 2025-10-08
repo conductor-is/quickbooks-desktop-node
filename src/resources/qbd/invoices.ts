@@ -1910,6 +1910,8 @@ export interface InvoiceCreateParams {
    * Body param: The customer's Purchase Order (PO) number associated with this
    * invoice. This field is often used to cross-reference the invoice with the
    * customer's purchasing system.
+   *
+   * Maximum length: 25 characters.
    */
   purchaseOrderNumber?: string;
 
@@ -2641,6 +2643,8 @@ export interface InvoiceUpdateParams {
    * Body param: The customer's Purchase Order (PO) number associated with this
    * invoice. This field is often used to cross-reference the invoice with the
    * customer's purchasing system.
+   *
+   * Maximum length: 25 characters.
    */
   purchaseOrderNumber?: string;
 

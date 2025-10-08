@@ -388,7 +388,7 @@ export const tool: Tool = {
       purchaseOrderNumber: {
         type: 'string',
         description:
-          "The customer's Purchase Order (PO) number associated with this estimate. This field is often used to cross-reference the estimate with the customer's purchasing system.",
+          "The customer's Purchase Order (PO) number associated with this estimate. This field is often used to cross-reference the estimate with the customer's purchasing system.\n\nMaximum length: 25 characters.",
       },
       refNumber: {
         type: 'string',
