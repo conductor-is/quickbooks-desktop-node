@@ -1,0 +1,43 @@
+{
+  "dxt_version": "0.2",
+  "name": "conductor-node-mcp",
+  "version": "0.0.1",
+  "description": "The official MCP Server for the Conductor API",
+  "author": {
+    "name": "Conductor",
+    "email": "support@conductor.is"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stainless-sdks/conductor-typescript.git"
+  },
+  "homepage": "https://github.com/stainless-sdks/conductor-typescript/tree/main/packages/mcp-server#readme",
+  "documentation": "https://docs.conductor.is/api-ref",
+  "server": {
+    "type": "node",
+    "entry_point": "index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/index.js"],
+      "env": {
+        "CONDUCTOR_SECRET_KEY": "${user_config.CONDUCTOR_SECRET_KEY}"
+      }
+    }
+  },
+  "user_config": {
+    "CONDUCTOR_SECRET_KEY": {
+      "title": "api_key",
+      "description": "",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "tools": [],
+  "tools_generated": true,
+  "compatibility": {
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  },
+  "keywords": ["api"]
+}
