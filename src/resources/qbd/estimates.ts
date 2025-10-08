@@ -1725,6 +1725,8 @@ export interface EstimateCreateParams {
    * Body param: The customer's Purchase Order (PO) number associated with this
    * estimate. This field is often used to cross-reference the estimate with the
    * customer's purchasing system.
+   *
+   * Maximum length: 25 characters.
    */
   purchaseOrderNumber?: string;
 
@@ -2316,6 +2318,8 @@ export interface EstimateUpdateParams {
    * Body param: The customer's Purchase Order (PO) number associated with this
    * estimate. This field is often used to cross-reference the estimate with the
    * customer's purchasing system.
+   *
+   * Maximum length: 25 characters.
    */
   purchaseOrderNumber?: string;
 
