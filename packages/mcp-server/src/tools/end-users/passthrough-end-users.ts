@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'passthrough_end_users',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nSends a request directly to the specified integration connection (e.g., QuickBooks Desktop) on behalf of the end-user.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  description: 'The response from the integration connection.',\n  additionalProperties: true\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nSends a request directly to the specified integration connection (e.g., QuickBooks Desktop) on behalf of the end-user.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/end_user_passthrough_response',\n  $defs: {\n    end_user_passthrough_response: {\n      type: 'object',\n      description: 'The response from the integration connection.',\n      additionalProperties: true\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
