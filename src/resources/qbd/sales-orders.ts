@@ -1829,6 +1829,8 @@ export interface SalesOrderCreateParams {
    * Body param: The customer's Purchase Order (PO) number associated with this sales
    * order. This field is often used to cross-reference the sales order with the
    * customer's purchasing system.
+   *
+   * Maximum length: 25 characters.
    */
   purchaseOrderNumber?: string;
 
@@ -2440,6 +2442,8 @@ export interface SalesOrderUpdateParams {
    * Body param: The customer's Purchase Order (PO) number associated with this sales
    * order. This field is often used to cross-reference the sales order with the
    * customer's purchasing system.
+   *
+   * Maximum length: 25 characters.
    */
   purchaseOrderNumber?: string;
 
