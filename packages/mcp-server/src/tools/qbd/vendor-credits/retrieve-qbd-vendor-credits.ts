@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'retrieve_qbd_vendor_credits',
   description:
-    'Retrieves a vendor credit by ID.\n\nNOTE: The response automatically includes any linked transactions.',
+    'Retrieves a vendor credit by ID.\n\n**IMPORTANT:** If you need to fetch a batch of specific vendor credits by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.\n\nNOTE: The response automatically includes any linked transactions.',
   inputSchema: {
     type: 'object',
     properties: {
