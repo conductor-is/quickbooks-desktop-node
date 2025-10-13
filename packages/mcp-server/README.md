@@ -226,6 +226,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_accounts` (`write`): Creates a new financial account. QuickBooks requires you to pick a supported account type for the chart of accounts, and non-posting types can’t be created through the API.
 - `retrieve_qbd_accounts` (`read`): Retrieves an account by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific accounts by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_accounts` (`write`): Updates an existing financial account. You can rename the account, adjust numbering, or change supported attributes, but QuickBooks won’t let you convert it to a non-posting type via the API.
 - `list_qbd_accounts` (`read`): Returns a list of accounts. NOTE: QuickBooks Desktop does not support pagination for accounts; hence, there is no `cursor` parameter. Users typically have few accounts.
 
@@ -233,6 +236,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_bill_check_payments` (`write`): Records a check payment against one vendor’s open bills. Each bill allocation must include a payment amount, discount, or vendor credit, and the accounts payable account has to match the one used on the bills you’re closing.
 - `retrieve_qbd_bill_check_payments` (`read`): Retrieves a bill check payment by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific bill check payments by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_bill_check_payments` (`write`): Updates a bill check payment so you can reallocate how amounts, discounts, or credits are applied to the vendor’s bills. When you update a payment, QuickBooks clears the prior allocations but keeps any existing vendor credits unchanged, so submit the full list of bill applications in this request.
 - `list_qbd_bill_check_payments` (`read`): Returns a list of bill check payments. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_bill_check_payments` (`write`): Permanently deletes a a bill check payment. The deletion will fail if the bill check payment is currently in use or has any linked transactions that are in use.
@@ -241,6 +247,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_bill_credit_card_payments` (`write`): Charges one vendor’s bills to a credit card account. Each bill allocation must supply a payment amount, discount, or credit, and you have to use the same accounts payable account that’s on the bills being closed.
 - `retrieve_qbd_bill_credit_card_payments` (`read`): Retrieves a bill credit card payment by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific bill credit card payments by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `list_qbd_bill_credit_card_payments` (`read`): Returns a list of bill credit card payments. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_bill_credit_card_payments` (`write`): Permanently deletes a a bill credit card payment. The deletion will fail if the bill credit card payment is currently in use or has any linked transactions that are in use.
 
@@ -248,6 +257,8 @@ The following tools are available in this MCP server.
 
 - `create_qbd_bills` (`write`): Creates a vendor bill and posts it to accounts payable. You can also link eligible purchase orders so QuickBooks pulls their lines onto the bill before it's saved.
 - `retrieve_qbd_bills` (`read`): Retrieves a bill by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific bills by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
 
   NOTE: The response automatically includes any linked transactions.
 
@@ -259,6 +270,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_build_assemblies` (`write`): Creates a build assembly transaction that consumes component quantities and increases the finished assembly on hand. If components are short you can mark the build as pending instead of failing.
 - `retrieve_qbd_build_assemblies` (`read`): Retrieves a build assembly by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific build assemblies by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_build_assemblies` (`write`): Updates an existing build assembly.
 - `list_qbd_build_assemblies` (`read`): Returns a list of build assemblies. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_build_assemblies` (`write`): Permanently deletes a a build assembly. The deletion will fail if the build assembly is currently in use or has any linked transactions that are in use.
@@ -267,6 +281,8 @@ The following tools are available in this MCP server.
 
 - `create_qbd_checks` (`write`): Creates a non-payroll check from a bank account. QuickBooks uses this request for direct expense disbursements; to pay vendor bills or payroll liabilities you must use the dedicated bill-payment or payroll transactions instead.
 - `retrieve_qbd_checks` (`read`): Retrieves a check by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific checks by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
 
   NOTE: The response automatically includes any linked transactions.
 
@@ -278,6 +294,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_classes` (`write`): Creates a new class.
 - `retrieve_qbd_classes` (`read`): Retrieves a class by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific classes by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_classes` (`write`): Updates an existing class.
 - `list_qbd_classes` (`read`): Returns a list of classes. NOTE: QuickBooks Desktop does not support pagination for classes; hence, there is no `cursor` parameter. Users typically have few classes.
 
@@ -289,6 +308,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_credit_card_charges` (`write`): Creates a new credit card charge for the specified account.
 - `retrieve_qbd_credit_card_charges` (`read`): Retrieves a credit card charge by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific credit card charges by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_credit_card_charges` (`write`): Updates an existing credit card charge so you can adjust the credit card account, payee, memo, transaction date, and expense or item lines. The total is recalculated from the line details.
 - `list_qbd_credit_card_charges` (`read`): Returns a list of credit card charges. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_credit_card_charges` (`write`): Permanently deletes a a credit card charge. The deletion will fail if the credit card charge is currently in use or has any linked transactions that are in use.
@@ -297,6 +319,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_credit_card_credits` (`write`): Creates a new credit card credit for the specified account.
 - `retrieve_qbd_credit_card_credits` (`read`): Retrieves a credit card credit by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific credit card credits by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_credit_card_credits` (`write`): Updates an existing credit card credit.
 - `list_qbd_credit_card_credits` (`read`): Returns a list of credit card credits. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_credit_card_credits` (`write`): Permanently deletes a a credit card credit. The deletion will fail if the credit card credit is currently in use or has any linked transactions that are in use.
@@ -305,6 +330,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_credit_card_refunds` (`write`): Creates a credit card refund linked to one or more existing credit transactions, such as credit memos or overpayments. You must supply at least one entry in `refundAppliedToTransactions`, and the refund amount cannot exceed the available balance on the linked credits.
 - `retrieve_qbd_credit_card_refunds` (`read`): Retrieves a credit card refund by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific credit card refunds by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `list_qbd_credit_card_refunds` (`read`): Returns a list of credit card refunds. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_credit_card_refunds` (`write`): Permanently deletes a a credit card refund. The deletion will fail if the credit card refund is currently in use or has any linked transactions that are in use.
 
@@ -312,6 +340,8 @@ The following tools are available in this MCP server.
 
 - `create_qbd_credit_memos` (`write`): Creates a new credit memo.
 - `retrieve_qbd_credit_memos` (`read`): Retrieves a credit memo by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific credit memos by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
 
   NOTE: The response automatically includes any linked transactions.
 
@@ -323,6 +353,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_currencies` (`write`): Creates a user-defined currency with the specified name and currency code. Exchange rates for user-defined currencies are not updated automatically by QuickBooks Desktop; update them manually as needed.
 - `retrieve_qbd_currencies` (`read`): Retrieves a currency by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific currencies by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_currencies` (`write`): Updates an existing currency. For built-in currencies, only the `isActive` status can be changed; name and currency code are not editable. For user-defined currencies, all fields in this request are editable.
 - `list_qbd_currencies` (`read`): Returns a list of currencies. NOTE: QuickBooks Desktop does not support pagination for currencies; hence, there is no `cursor` parameter. Users typically have few currencies.
 
@@ -330,6 +363,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_customers` (`write`): Creates a new customer.
 - `retrieve_qbd_customers` (`read`): Retrieves a customer by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific customers by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_customers` (`write`): Updates an existing customer.
 - `list_qbd_customers` (`read`): Returns a list of customers. Use the `cursor` parameter to paginate through the results.
 
@@ -337,6 +373,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_date_driven_terms` (`write`): Creates a date-driven term that sets the payment due on a specific day of the month and can optionally grant an early-payment discount before `discountDayOfMonth`. Use it when you need due dates tied to calendar days instead of a fixed number of days after the transaction.
 - `retrieve_qbd_date_driven_terms` (`read`): Retrieves a date-driven term by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific date-driven terms by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `list_qbd_date_driven_terms` (`read`): Returns a list of date-driven terms. NOTE: QuickBooks Desktop does not support pagination for date-driven terms; hence, there is no `cursor` parameter. Users typically have few date-driven terms.
 
 ### Resource `qbd.deleted_list_objects`:
@@ -351,6 +390,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_discount_items` (`write`): Creates a discount item that subtracts either a percentage or fixed amount from transaction totals. Percentage discounts only affect the preceding line, while fixed-amount discounts reduce the accumulated amount above them unless you bound the target lines with a subtotal item.
 - `retrieve_qbd_discount_items` (`read`): Retrieves a discount item by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific discount items by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_discount_items` (`write`): Updates a discount item, including its linked account or discount rate. When changing the account, use `updateExistingTransactionsAccount` to control whether existing transactions that reference the item should also be updated.
 - `list_qbd_discount_items` (`read`): Returns a list of discount items. Use the `cursor` parameter to paginate through the results.
 
@@ -358,6 +400,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_employees` (`write`): Creates an employee record that captures personal details, contact information, employment dates, and payroll settings in a single request so the employee is ready for scheduling, time tracking, and payroll processing.
 - `retrieve_qbd_employees` (`read`): Retrieves an employee by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific employees by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_employees` (`write`): Updates an employee record, allowing you to revise contact details, employment status dates, supervisory assignments, payroll configuration, and additional notes to keep workforce data current.
 - `list_qbd_employees` (`read`): Returns a list of employees. NOTE: QuickBooks Desktop does not support pagination for employees; hence, there is no `cursor` parameter. Users typically have few employees.
 
@@ -365,6 +410,8 @@ The following tools are available in this MCP server.
 
 - `create_qbd_estimates` (`write`): Creates a new estimate.
 - `retrieve_qbd_estimates` (`read`): Retrieves an estimate by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific estimates by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
 
   NOTE: The response automatically includes any linked transactions.
 
@@ -376,6 +423,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_inventory_adjustments` (`write`): Creates an inventory adjustment to correct on-hand quantities or values. QuickBooks requires single-user mode unless you're on Enterprise with Advanced Inventory enabled.
 - `retrieve_qbd_inventory_adjustments` (`read`): Retrieves an inventory adjustment by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific inventory adjustments by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_inventory_adjustments` (`write`): Updates an existing inventory adjustment.
 - `list_qbd_inventory_adjustments` (`read`): Returns a list of inventory adjustments. NOTE: QuickBooks Desktop does not support pagination for inventory adjustments; hence, there is no `cursor` parameter. Users typically have few inventory adjustments.
 - `delete_qbd_inventory_adjustments` (`write`): Permanently deletes a an inventory adjustment. The deletion will fail if the inventory adjustment is currently in use or has any linked transactions that are in use.
@@ -384,6 +434,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_inventory_assembly_items` (`write`): Creates an inventory assembly item that bundles existing inventory items.
 - `retrieve_qbd_inventory_assembly_items` (`read`): Retrieves an inventory assembly item by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific inventory assembly items by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_inventory_assembly_items` (`write`): Updates an inventory assembly item. If you change the income account, set `updateExistingTransactionsIncomeAccount` to true so QuickBooks applies the new account to existing transactions that use the assembly.
 - `list_qbd_inventory_assembly_items` (`read`): Returns a list of inventory assembly items. Use the `cursor` parameter to paginate through the results.
 
@@ -391,6 +444,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_inventory_items` (`write`): Creates a new inventory item.
 - `retrieve_qbd_inventory_items` (`read`): Retrieves an inventory item by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific inventory items by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_inventory_items` (`write`): Updates an inventory item. If you switch the income account, set `updateExistingTransactionsIncomeAccount` to true so QuickBooks applies the new account to existing transactions that reference the item.
 - `list_qbd_inventory_items` (`read`): Returns a list of inventory items. Use the `cursor` parameter to paginate through the results.
 
@@ -398,6 +454,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_inventory_sites` (`write`): Creates an inventory site for companies using QuickBooks Enterprise with Advanced Inventory.
 - `retrieve_qbd_inventory_sites` (`read`): Retrieves an inventory site by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific inventory sites by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_inventory_sites` (`write`): Updates an existing inventory site.
 - `list_qbd_inventory_sites` (`read`): Returns a list of inventory sites. NOTE: QuickBooks Desktop does not support pagination for inventory sites; hence, there is no `cursor` parameter. Users typically have few inventory sites.
 
@@ -405,6 +464,8 @@ The following tools are available in this MCP server.
 
 - `create_qbd_invoices` (`write`): Creates an invoice to bill a customer when goods or services were delivered before payment. Use a sales receipt instead if the sale was paid in full.
 - `retrieve_qbd_invoices` (`read`): Retrieves an invoice by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific invoices by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
 
   NOTE: The response automatically includes any linked transactions.
 
@@ -416,6 +477,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_item_groups` (`write`): Creates a new item group.
 - `retrieve_qbd_item_groups` (`read`): Retrieves an item group by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific item groups by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_item_groups` (`write`): Updates an existing item group.
 - `list_qbd_item_groups` (`read`): Returns a list of item groups. Use the `cursor` parameter to paginate through the results.
 
@@ -423,6 +487,8 @@ The following tools are available in this MCP server.
 
 - `create_qbd_item_receipts` (`write`): Creates an item receipt to record inventory received from a vendor. You can link it to a purchase order during creation to pull in the order's lines automatically and update quantities, but that link can't be added later with an update.
 - `retrieve_qbd_item_receipts` (`read`): Retrieves an item receipt by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific item receipts by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
 
   NOTE: The response automatically includes any linked transactions.
 
@@ -433,12 +499,18 @@ The following tools are available in this MCP server.
 ### Resource `qbd.item_sites`:
 
 - `retrieve_qbd_item_sites` (`read`): Retrieves an item site by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific item sites by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `list_qbd_item_sites` (`read`): Returns a list of item sites. Use the `cursor` parameter to paginate through the results.
 
 ### Resource `qbd.journal_entries`:
 
 - `create_qbd_journal_entries` (`write`): Creates a journal entry with balanced debit and credit lines. QuickBooks Desktop requires total debits to equal total credits, and any line that posts to Accounts Receivable or Accounts Payable must include the related customer or vendor reference.
 - `retrieve_qbd_journal_entries` (`read`): Retrieves a journal entry by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific journal entries by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_journal_entries` (`write`): Updates an existing journal entry. Keep the debits and credits in balance, and include the related customer or vendor on any A/R or A/P line you submit in the update body.
 - `list_qbd_journal_entries` (`read`): Returns a list of journal entries. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_journal_entries` (`write`): Permanently deletes a a journal entry. The deletion will fail if the journal entry is currently in use or has any linked transactions that are in use.
@@ -447,6 +519,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_non_inventory_items` (`write`): Creates a new non-inventory item.
 - `retrieve_qbd_non_inventory_items` (`read`): Retrieves a non-inventory item by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific non-inventory items by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_non_inventory_items` (`write`): Updates a non-inventory item. You can modify either `salesOrPurchaseDetails` or `salesAndPurchaseDetails`, but the item must keep the same configuration it was created with. When you change `postingAccount`, `incomeAccount`, or `expenseAccount`, include the matching `updateExistingTransactions...` flag so QuickBooks applies the new account to existing transactions and doesn’t reject the update when historical activity is present.
 - `list_qbd_non_inventory_items` (`read`): Returns a list of non-inventory items. Use the `cursor` parameter to paginate through the results.
 
@@ -454,6 +529,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_other_charge_items` (`write`): Creates a new other charge item.
 - `retrieve_qbd_other_charge_items` (`read`): Retrieves an other charge item by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific other charge items by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_other_charge_items` (`write`): Updates an existing other charge item.
 - `list_qbd_other_charge_items` (`read`): Returns a list of other charge items. Use the `cursor` parameter to paginate through the results.
 
@@ -461,6 +539,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_other_names` (`write`): Creates a new other-name.
 - `retrieve_qbd_other_names` (`read`): Retrieves an other-name by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific other-names by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_other_names` (`write`): Updates an existing other-name.
 - `list_qbd_other_names` (`read`): Returns a list of other-names. NOTE: QuickBooks Desktop does not support pagination for other-names; hence, there is no `cursor` parameter. Users typically have few other-names.
 
@@ -468,12 +549,18 @@ The following tools are available in this MCP server.
 
 - `create_qbd_payment_methods` (`write`): Creates a new payment method.
 - `retrieve_qbd_payment_methods` (`read`): Retrieves a payment method by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific payment methods by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `list_qbd_payment_methods` (`read`): Returns a list of payment methods. NOTE: QuickBooks Desktop does not support pagination for payment methods; hence, there is no `cursor` parameter. Users typically have few payment methods.
 
 ### Resource `qbd.payroll_wage_items`:
 
 - `create_qbd_payroll_wage_items` (`write`): Creates a new payroll wage item.
 - `retrieve_qbd_payroll_wage_items` (`read`): Retrieves a payroll wage item by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific payroll wage items by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `list_qbd_payroll_wage_items` (`read`): Returns a list of payroll wage items. Use the `cursor` parameter to paginate through the results.
 
 ### Resource `qbd.preferences`:
@@ -484,6 +571,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_price_levels` (`write`): Creates a new price level.
 - `retrieve_qbd_price_levels` (`read`): Retrieves a price level by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific price levels by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_price_levels` (`write`): Updates an existing price level.
 - `list_qbd_price_levels` (`read`): Returns a list of price levels. NOTE: QuickBooks Desktop does not support pagination for price levels; hence, there is no `cursor` parameter. Users typically have few price levels.
 
@@ -491,6 +581,8 @@ The following tools are available in this MCP server.
 
 - `create_qbd_purchase_orders` (`write`): Creates a new purchase order.
 - `retrieve_qbd_purchase_orders` (`read`): Retrieves a purchase order by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific purchase orders by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
 
   NOTE: The response automatically includes any linked transactions.
 
@@ -502,6 +594,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_receive_payments` (`write`): Records a customer payment and optionally applies it to specific invoices or credits. All allocations must target the same accounts receivable account as those invoices, and each one has to include a payment amount, discount, or credit so QuickBooks can close out the balance.
 - `retrieve_qbd_receive_payments` (`read`): Retrieves a receive-payment by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific receive-payments by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_receive_payments` (`write`): Updates a received payment. When you resubmit applications to invoices, keep them on the same accounts receivable account and include the payment amount, discount, or credit on every allocation you send.
 - `list_qbd_receive_payments` (`read`): Returns a list of receive-payments. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_receive_payments` (`write`): Permanently deletes a a receive-payment. The deletion will fail if the receive-payment is currently in use or has any linked transactions that are in use.
@@ -510,6 +605,8 @@ The following tools are available in this MCP server.
 
 - `create_qbd_sales_orders` (`write`): Creates a new sales order.
 - `retrieve_qbd_sales_orders` (`read`): Retrieves a sales order by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific sales orders by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
 
   NOTE: The response automatically includes any linked transactions.
 
@@ -521,6 +618,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_sales_receipts` (`write`): Creates a sales receipt for a sale paid in full. If you include credit card transaction details, QuickBooks requires the payment method to reference a credit card type and automatically deposits the funds to Undeposited Funds rather than a specific bank account.
 - `retrieve_qbd_sales_receipts` (`read`): Retrieves a sales receipt by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific sales receipts by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_sales_receipts` (`write`): Updates an existing sales receipt. Credit card payments still have to use a credit-card payment method and remain deposited to Undeposited Funds, so don’t switch the deposit account in those scenarios.
 - `list_qbd_sales_receipts` (`read`): Returns a list of sales receipts. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_sales_receipts` (`write`): Permanently deletes a a sales receipt. The deletion will fail if the sales receipt is currently in use or has any linked transactions that are in use.
@@ -529,6 +629,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_sales_representatives` (`write`): Creates a sales representative that references an existing employee, vendor, or other-name record so it can be assigned on sales forms.
 - `retrieve_qbd_sales_representatives` (`read`): Retrieves a sales representative by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific sales representatives by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_sales_representatives` (`write`): Updates an existing sales representative.
 - `list_qbd_sales_representatives` (`read`): Returns a list of sales representatives. NOTE: QuickBooks Desktop does not support pagination for sales representatives; hence, there is no `cursor` parameter. Users typically have few sales representatives.
 
@@ -536,6 +639,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_sales_tax_codes` (`write`): Creates a new sales-tax code.
 - `retrieve_qbd_sales_tax_codes` (`read`): Retrieves a sales-tax code by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific sales-tax codes by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_sales_tax_codes` (`write`): Updates a sales-tax code’s name, activity status, or linked tax items. Once a code has been used you can’t flip it between taxable and non-taxable, and the built-in TAX/NON codes keep their original taxable setting, so plan new codes if you need a different tax status.
 - `list_qbd_sales_tax_codes` (`read`): Returns a list of sales-tax codes. NOTE: QuickBooks Desktop does not support pagination for sales-tax codes; hence, there is no `cursor` parameter. Users typically have few sales-tax codes.
 
@@ -543,6 +649,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_sales_tax_items` (`write`): Creates a new sales-tax item.
 - `retrieve_qbd_sales_tax_items` (`read`): Retrieves a sales-tax item by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific sales-tax items by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_sales_tax_items` (`write`): Updates an existing sales-tax item.
 - `list_qbd_sales_tax_items` (`read`): Returns a list of sales-tax items. Use the `cursor` parameter to paginate through the results.
 
@@ -550,6 +659,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_service_items` (`write`): Creates a new service item.
 - `retrieve_qbd_service_items` (`read`): Retrieves a service item by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific service items by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_service_items` (`write`): Updates a service item’s details, including its accounts and unit-of-measure set. QuickBooks won’t let you convert a sell-only service into a buy-and-sell service (or the reverse); create a separate item instead. If you’re switching the unit of measure, set `forceUnitOfMeasureChange` so QuickBooks replaces it on existing forms.
 - `list_qbd_service_items` (`read`): Returns a list of service items. Use the `cursor` parameter to paginate through the results.
 
@@ -557,12 +669,18 @@ The following tools are available in this MCP server.
 
 - `create_qbd_standard_terms` (`write`): Creates a new standard term.
 - `retrieve_qbd_standard_terms` (`read`): Retrieves a standard term by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific standard terms by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `list_qbd_standard_terms` (`read`): Returns a list of standard terms. NOTE: QuickBooks Desktop does not support pagination for standard terms; hence, there is no `cursor` parameter. Users typically have few standard terms.
 
 ### Resource `qbd.subtotal_items`:
 
 - `create_qbd_subtotal_items` (`write`): Creates a new subtotal item.
 - `retrieve_qbd_subtotal_items` (`read`): Retrieves a subtotal item by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific subtotal items by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_subtotal_items` (`write`): Updates an existing subtotal item.
 - `list_qbd_subtotal_items` (`read`): Returns a list of subtotal items. Use the `cursor` parameter to paginate through the results.
 
@@ -574,6 +692,9 @@ The following tools are available in this MCP server.
 
 - `create_qbd_time_tracking_activities` (`write`): Creates a new time tracking activity.
 - `retrieve_qbd_time_tracking_activities` (`read`): Retrieves a time tracking activity by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific time tracking activities by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_time_tracking_activities` (`write`): Updates an existing time tracking activity.
 - `list_qbd_time_tracking_activities` (`read`): Returns a list of time tracking activities. Use the `cursor` parameter to paginate through the results.
 - `delete_qbd_time_tracking_activities` (`write`): Permanently deletes a a time tracking activity. The deletion will fail if the time tracking activity is currently in use or has any linked transactions that are in use.
@@ -581,12 +702,18 @@ The following tools are available in this MCP server.
 ### Resource `qbd.transactions`:
 
 - `retrieve_qbd_transactions` (`read`): Retrieves a transaction by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific transactions by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `list_qbd_transactions` (`read`): Searches across all transaction types. Unlike transaction-specific queries, this endpoint only returns fields common to all transaction types, such as ID, type, dates, account, and reference numbers. For more details specific to that transaction type, make a subsequent call to the relevant transaction-specific endpoint (such as invoices, bills, etc.). NOTE: This endpoint does not support time tracking activities.
 
 ### Resource `qbd.transfers`:
 
 - `create_qbd_transfers` (`write`): Creates a new transfer.
 - `retrieve_qbd_transfers` (`read`): Retrieves a transfer by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific transfers by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_transfers` (`write`): Updates an existing transfer.
 - `list_qbd_transfers` (`read`): Returns a list of transfers. Use the `cursor` parameter to paginate through the results.
 
@@ -597,6 +724,9 @@ The following tools are available in this MCP server.
   NOTE: The QuickBooks company file must have unit-of-measure enabled (either a single unit per item or multiple units per item). To support both configurations, prefix all UOM set names with "By the" (for example, "By the Barrel"); otherwise, the set may not appear in the QuickBooks UI when the company file is configured for a single unit per item.
 
 - `retrieve_qbd_unit_of_measure_sets` (`read`): Retrieves an unit-of-measure set by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific unit-of-measure sets by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `list_qbd_unit_of_measure_sets` (`read`): Lists all unit-of-measure sets. NOTE: QuickBooks Desktop does not support pagination for unit-of-measure sets; hence, there is no cursor parameter. Users typically have few unit-of-measure sets.
 
   NOTE: The QuickBooks company file must have unit-of-measure enabled (either a single unit per item or multiple units per item).
@@ -605,6 +735,8 @@ The following tools are available in this MCP server.
 
 - `create_qbd_vendor_credits` (`write`): Creates a vendor credit to capture returns, rebates, or other amounts a vendor owes so you can apply the credit when recording future bill payments.
 - `retrieve_qbd_vendor_credits` (`read`): Retrieves a vendor credit by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific vendor credits by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
 
   NOTE: The response automatically includes any linked transactions.
 
@@ -616,5 +748,8 @@ The following tools are available in this MCP server.
 
 - `create_qbd_vendors` (`write`): Creates a new vendor.
 - `retrieve_qbd_vendors` (`read`): Retrieves a vendor by ID.
+
+  **IMPORTANT:** If you need to fetch a batch of specific vendors by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
 - `update_qbd_vendors` (`write`): Updates an existing vendor.
 - `list_qbd_vendors` (`read`): Returns a list of vendors. Use the `cursor` parameter to paginate through the results.
