@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'retrieve_qbd_estimates',
   description:
-    'Retrieves an estimate by ID.\n\n**IMPORTANT:** If you need to fetch a batch of specific estimates by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.\n\nNOTE: The response automatically includes any linked transactions.',
+    'Retrieves an estimate by ID.\n\n**IMPORTANT:** If you need to fetch multiple specific estimates by ID, use the list endpoint instead with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.\n\nNOTE: The response automatically includes any linked transactions.',
   inputSchema: {
     type: 'object',
     properties: {

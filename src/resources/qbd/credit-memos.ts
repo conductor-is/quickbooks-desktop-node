@@ -29,9 +29,9 @@ export class CreditMemos extends APIResource {
   /**
    * Retrieves a credit memo by ID.
    *
-   * **IMPORTANT:** If you need to fetch a batch of specific credit memos by ID, use
-   * the list endpoint with the `ids` parameter. It accepts an array of IDs so you
-   * can batch the request into a single call, which is significantly faster.
+   * **IMPORTANT:** If you need to fetch multiple specific credit memos by ID, use
+   * the list endpoint instead with the `ids` parameter. It accepts an array of IDs
+   * so you can batch the request into a single call, which is significantly faster.
    *
    * NOTE: The response automatically includes any linked transactions.
    *
