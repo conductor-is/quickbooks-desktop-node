@@ -31,6 +31,10 @@ export class Employees extends APIResource {
   /**
    * Retrieves an employee by ID.
    *
+   * **IMPORTANT:** If you need to fetch a batch of specific employees by ID, use the
+   * list endpoint with the `ids` parameter. It accepts an array of IDs so you can
+   * batch the request into a single call, which is significantly faster.
+   *
    * @example
    * ```ts
    * const employee = await conductor.qbd.employees.retrieve(
