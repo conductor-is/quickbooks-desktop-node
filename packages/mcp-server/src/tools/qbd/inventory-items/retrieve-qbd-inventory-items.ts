@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'retrieve_qbd_inventory_items',
   description:
-    'Retrieves an inventory item by ID.\n\n**IMPORTANT:** If you need to fetch a batch of specific inventory items by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.',
+    'Retrieves an inventory item by ID.\n\n**IMPORTANT:** If you need to fetch multiple specific inventory items by ID, use the list endpoint instead with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.',
   inputSchema: {
     type: 'object',
     properties: {

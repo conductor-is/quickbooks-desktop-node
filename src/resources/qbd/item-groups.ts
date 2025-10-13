@@ -32,9 +32,9 @@ export class ItemGroups extends APIResource {
   /**
    * Retrieves an item group by ID.
    *
-   * **IMPORTANT:** If you need to fetch a batch of specific item groups by ID, use
-   * the list endpoint with the `ids` parameter. It accepts an array of IDs so you
-   * can batch the request into a single call, which is significantly faster.
+   * **IMPORTANT:** If you need to fetch multiple specific item groups by ID, use the
+   * list endpoint instead with the `ids` parameter. It accepts an array of IDs so
+   * you can batch the request into a single call, which is significantly faster.
    *
    * @example
    * ```ts
