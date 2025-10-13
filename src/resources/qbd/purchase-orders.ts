@@ -29,6 +29,10 @@ export class PurchaseOrders extends APIResource {
   /**
    * Retrieves a purchase order by ID.
    *
+   * **IMPORTANT:** If you need to fetch a batch of specific purchase orders by ID,
+   * use the list endpoint with the `ids` parameter. It accepts an array of IDs so
+   * you can batch the request into a single call, which is significantly faster.
+   *
    * NOTE: The response automatically includes any linked transactions.
    *
    * @example

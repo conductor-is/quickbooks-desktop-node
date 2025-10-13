@@ -27,6 +27,10 @@ export class PriceLevels extends APIResource {
   /**
    * Retrieves a price level by ID.
    *
+   * **IMPORTANT:** If you need to fetch a batch of specific price levels by ID, use
+   * the list endpoint with the `ids` parameter. It accepts an array of IDs so you
+   * can batch the request into a single call, which is significantly faster.
+   *
    * @example
    * ```ts
    * const priceLevel = await conductor.qbd.priceLevels.retrieve(

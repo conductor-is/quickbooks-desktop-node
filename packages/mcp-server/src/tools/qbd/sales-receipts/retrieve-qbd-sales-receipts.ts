@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'retrieve_qbd_sales_receipts',
-  description: 'Retrieves a sales receipt by ID.',
+  description:
+    'Retrieves a sales receipt by ID.\n\n**IMPORTANT:** If you need to fetch a batch of specific sales receipts by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.',
   inputSchema: {
     type: 'object',
     properties: {

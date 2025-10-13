@@ -33,6 +33,10 @@ export class SalesRepresentatives extends APIResource {
   /**
    * Retrieves a sales representative by ID.
    *
+   * **IMPORTANT:** If you need to fetch a batch of specific sales representatives by
+   * ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs
+   * so you can batch the request into a single call, which is significantly faster.
+   *
    * @example
    * ```ts
    * const salesRepresentative =

@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'retrieve_qbd_receive_payments',
-  description: 'Retrieves a receive-payment by ID.',
+  description:
+    'Retrieves a receive-payment by ID.\n\n**IMPORTANT:** If you need to fetch a batch of specific receive-payments by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.',
   inputSchema: {
     type: 'object',
     properties: {

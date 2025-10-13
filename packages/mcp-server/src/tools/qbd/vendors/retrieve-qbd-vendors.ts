@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'retrieve_qbd_vendors',
-  description: 'Retrieves a vendor by ID.',
+  description:
+    'Retrieves a vendor by ID.\n\n**IMPORTANT:** If you need to fetch a batch of specific vendors by ID, use the list endpoint with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.',
   inputSchema: {
     type: 'object',
     properties: {
