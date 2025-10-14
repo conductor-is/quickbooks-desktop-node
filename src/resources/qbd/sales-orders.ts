@@ -350,7 +350,7 @@ export interface SalesOrder {
    * The total amount of sales tax charged for this sales order, represented as a
    * decimal string.
    */
-  salesTaxTotal: string;
+  salesTaxTotal: string | null;
 
   /**
    * The origin location from where the product associated with this sales order is
