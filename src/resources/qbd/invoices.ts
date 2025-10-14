@@ -370,7 +370,7 @@ export interface Invoice {
    * The total amount of sales tax charged for this invoice, represented as a decimal
    * string.
    */
-  salesTaxTotal: string;
+  salesTaxTotal: string | null;
 
   /**
    * The origin location from where the product associated with this invoice is

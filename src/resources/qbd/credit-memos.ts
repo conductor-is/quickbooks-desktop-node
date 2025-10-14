@@ -347,7 +347,7 @@ export interface CreditMemo {
    * The total amount of sales tax charged for this credit memo, represented as a
    * decimal string.
    */
-  salesTaxTotal: string;
+  salesTaxTotal: string | null;
 
   /**
    * The origin location from where the product associated with this credit memo is

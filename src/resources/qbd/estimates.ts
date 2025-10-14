@@ -313,7 +313,7 @@ export interface Estimate {
    * The total amount of sales tax charged for this estimate, represented as a
    * decimal string.
    */
-  salesTaxTotal: string;
+  salesTaxTotal: string | null;
 
   /**
    * The origin location from where the product associated with this estimate is
