@@ -1,5 +1,22 @@
 # Changelog
 
+## 12.38.0 (2025-10-14)
+
+Full Changelog: [v12.37.0...v12.38.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.37.0...v12.38.0)
+
+### Features
+
+* **api:** api update ([15db0da](https://github.com/conductor-is/quickbooks-desktop-node/commit/15db0da368640aedf4562690f0365201a86e55e7))
+* **api:** api update ([9dd99f0](https://github.com/conductor-is/quickbooks-desktop-node/commit/9dd99f0c9aa16724bb8b82dba0021332c51fd817))
+* **api:** api update ([48a5743](https://github.com/conductor-is/quickbooks-desktop-node/commit/48a574383425999c493a03601202fccbfc63f3fe))
+* **api:** api update ([29ae4d2](https://github.com/conductor-is/quickbooks-desktop-node/commit/29ae4d21a3c5687631a8eb5e431aef20cb35ff64))
+
+
+### Chores
+
+* extract some types in mcp docs ([8a6aa57](https://github.com/conductor-is/quickbooks-desktop-node/commit/8a6aa572c7e329852957555d583f168f44279621))
+* **internal:** use npm pack for build uploads ([6611b4d](https://github.com/conductor-is/quickbooks-desktop-node/commit/6611b4d9463a6adc01caf20957095c00b5745786))
+
 ## 12.37.0 (2025-10-06)
 
 Full Changelog: [v12.36.1...v12.37.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.36.1...v12.37.0)
