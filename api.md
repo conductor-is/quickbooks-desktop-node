@@ -231,6 +231,19 @@ Methods:
 - <code title="post /quickbooks-desktop/currencies/{id}">client.qbd.currencies.<a href="./src/resources/qbd/currencies.ts">update</a>(id, { ...params }) -> Currency</code>
 - <code title="get /quickbooks-desktop/currencies">client.qbd.currencies.<a href="./src/resources/qbd/currencies.ts">list</a>({ ...params }) -> CurrencyListResponse</code>
 
+## CustomerTypes
+
+Types:
+
+- <code><a href="./src/resources/qbd/customer-types.ts">CustomerType</a></code>
+- <code><a href="./src/resources/qbd/customer-types.ts">CustomerTypeListResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/customer-types">client.qbd.customerTypes.<a href="./src/resources/qbd/customer-types.ts">create</a>({ ...params }) -> CustomerType</code>
+- <code title="get /quickbooks-desktop/customer-types/{id}">client.qbd.customerTypes.<a href="./src/resources/qbd/customer-types.ts">retrieve</a>(id, { ...params }) -> CustomerType</code>
+- <code title="get /quickbooks-desktop/customer-types">client.qbd.customerTypes.<a href="./src/resources/qbd/customer-types.ts">list</a>({ ...params }) -> CustomerTypeListResponse</code>
+
 ## Customers
 
 Types:
