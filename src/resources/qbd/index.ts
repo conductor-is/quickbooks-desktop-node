@@ -132,6 +132,14 @@ export {
   type CurrencyListParams,
 } from './currencies';
 export {
+  CustomerTypes,
+  type CustomerType,
+  type CustomerTypeListResponse,
+  type CustomerTypeCreateParams,
+  type CustomerTypeRetrieveParams,
+  type CustomerTypeListParams,
+} from './customer-types';
+export {
   Customers,
   type Customer,
   type CustomerCreateParams,

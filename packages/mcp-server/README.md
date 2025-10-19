@@ -378,6 +378,15 @@ The following tools are available in this MCP server.
 - `update_qbd_currencies` (`write`): Updates an existing currency. For built-in currencies, only the `isActive` status can be changed; name and currency code are not editable. For user-defined currencies, all fields in this request are editable.
 - `list_qbd_currencies` (`read`): Returns a list of currencies. NOTE: QuickBooks Desktop does not support pagination for currencies; hence, there is no `cursor` parameter. Users typically have few currencies.
 
+### Resource `qbd.customer_types`:
+
+- `create_qbd_customer_types` (`write`): Creates a new customer type.
+- `retrieve_qbd_customer_types` (`read`): Retrieves a customer type by ID.
+
+  **IMPORTANT:** If you need to fetch multiple specific customer types by ID, use the list endpoint instead with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.
+
+- `list_qbd_customer_types` (`read`): Returns a list of customer types. NOTE: QuickBooks Desktop does not support pagination for customer types; hence, there is no `cursor` parameter. Users typically have few customer types.
+
 ### Resource `qbd.customers`:
 
 - `create_qbd_customers` (`write`): Creates a new customer.

@@ -146,6 +146,15 @@ import {
   CurrencyRetrieveParams,
   CurrencyUpdateParams,
 } from './currencies';
+import * as CustomerTypesAPI from './customer-types';
+import {
+  CustomerType,
+  CustomerTypeCreateParams,
+  CustomerTypeListParams,
+  CustomerTypeListResponse,
+  CustomerTypeRetrieveParams,
+  CustomerTypes,
+} from './customer-types';
 import * as CustomersAPI from './customers';
 import {
   Customer,
@@ -565,6 +574,7 @@ export class Qbd extends APIResource {
   );
   creditMemos: CreditMemosAPI.CreditMemos = new CreditMemosAPI.CreditMemos(this._client);
   currencies: CurrenciesAPI.Currencies = new CurrenciesAPI.Currencies(this._client);
+  customerTypes: CustomerTypesAPI.CustomerTypes = new CustomerTypesAPI.CustomerTypes(this._client);
   customers: CustomersAPI.Customers = new CustomersAPI.Customers(this._client);
   dateDrivenTerms: DateDrivenTermsAPI.DateDrivenTerms = new DateDrivenTermsAPI.DateDrivenTerms(this._client);
   deletedListObjects: DeletedListObjectsAPI.DeletedListObjects = new DeletedListObjectsAPI.DeletedListObjects(
@@ -679,6 +689,7 @@ Qbd.CreditCardCredits = CreditCardCredits;
 Qbd.CreditCardRefunds = CreditCardRefunds;
 Qbd.CreditMemos = CreditMemos;
 Qbd.Currencies = Currencies;
+Qbd.CustomerTypes = CustomerTypes;
 Qbd.Customers = Customers;
 Qbd.DateDrivenTerms = DateDrivenTerms;
 Qbd.DeletedListObjects = DeletedListObjects;
@@ -872,6 +883,15 @@ export declare namespace Qbd {
     type CurrencyRetrieveParams as CurrencyRetrieveParams,
     type CurrencyUpdateParams as CurrencyUpdateParams,
     type CurrencyListParams as CurrencyListParams,
+  };
+
+  export {
+    CustomerTypes as CustomerTypes,
+    type CustomerType as CustomerType,
+    type CustomerTypeListResponse as CustomerTypeListResponse,
+    type CustomerTypeCreateParams as CustomerTypeCreateParams,
+    type CustomerTypeRetrieveParams as CustomerTypeRetrieveParams,
+    type CustomerTypeListParams as CustomerTypeListParams,
   };
 
   export {
