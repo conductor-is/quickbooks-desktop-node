@@ -1,6 +1,6 @@
 {
   "name": "conductor-node-mcp",
-  "version": "12.39.0",
+  "version": "12.39.1",
   "description": "The official MCP Server for the Conductor API",
   "author": "Conductor <support@conductor.is>",
   "types": "dist/index.d.ts",
@@ -47,7 +47,7 @@
     "mcp-server": "dist/index.js"
   },
   "devDependencies": {
-    "@anthropic-ai/mcpb": "^1.1.0",
+    "@anthropic-ai/mcpb": "1.1.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/jest": "^29.4.0",

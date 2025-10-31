@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.39.1 (2025-10-31)
+
+Full Changelog: [v12.39.0...v12.39.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.39.0...v12.39.1)
+
+### Bug Fixes
+
+* **mcpb:** pin @anthropic-ai/mcpb version ([50c12b7](https://github.com/conductor-is/quickbooks-desktop-node/commit/50c12b74dc41dd547c312f88fe80c89f454f8ee1))
+
 ## 12.39.0 (2025-10-19)
 
 Full Changelog: [v12.38.0...v12.39.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.38.0...v12.39.0)
