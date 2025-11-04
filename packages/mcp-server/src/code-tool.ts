@@ -3,7 +3,7 @@
 import { dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import Conductor, { ClientOptions } from 'conductor-node';
-import { Endpoint, ContentBlock, Metadata } from './tools/types';
+import { ContentBlock, Endpoint, Metadata, ToolCallResult } from './tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 
@@ -31,7 +31,7 @@ export async function codeTool(): Promise<Endpoint> {
   const { newDenoHTTPWorker } = await import('@valtown/deno-http-worker');
   const { workerPath } = await import('./code-tool-paths.cjs');
 
-  const handler = async (conductor: Conductor, args: unknown) => {
+  const handler = async (conductor: Conductor, args: unknown): Promise<ToolCallResult> => {
     const baseURLHostname = new URL(conductor.baseURL).hostname;
     const { code } = args as { code: string };
 
@@ -97,7 +97,7 @@ export async function codeTool(): Promise<Endpoint> {
         } satisfies WorkerInput);
 
         req.write(body, (err) => {
-          if (err !== null && err !== undefined) {
+          if (err != null) {
             reject(err);
           }
         });
@@ -108,12 +108,12 @@ export async function codeTool(): Promise<Endpoint> {
       if (resp.status === 200) {
         const { result, logLines, errLines } = (await resp.json()) as WorkerSuccess;
         const returnOutput: ContentBlock | null =
-          result === null ? null
-          : result === undefined ? null
-          : {
+          result == null ? null : (
+            {
               type: 'text',
-              text: typeof result === 'string' ? (result as string) : JSON.stringify(result),
-            };
+              text: typeof result === 'string' ? result : JSON.stringify(result),
+            }
+          );
         const logOutput: ContentBlock | null =
           logLines.length === 0 ?
             null
@@ -133,10 +133,11 @@ export async function codeTool(): Promise<Endpoint> {
         };
       } else {
         const { message } = (await resp.json()) as WorkerError;
-        throw new Error(message);
+        return {
+          content: message == null ? [] : [{ type: 'text', text: message }],
+          isError: true,
+        };
       }
-    } catch (e) {
-      throw e;
     } finally {
       worker.terminate();
     }
