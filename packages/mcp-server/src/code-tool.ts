@@ -12,7 +12,7 @@ import { WorkerInput, WorkerError, WorkerSuccess } from './code-tool-types';
 /**
  * A tool that runs code against a copy of the SDK.
  *
- * Instead of exposing every endpoint as it's own tool, which uses up too many tokens for LLMs to use at once,
+ * Instead of exposing every endpoint as its own tool, which uses up too many tokens for LLMs to use at once,
  * we expose a single tool that can be used to search for endpoints by name, resource, operation, or tag, and then
  * a generic endpoint that can be used to invoke any endpoint with the provided arguments.
  *
@@ -23,7 +23,7 @@ export async function codeTool(): Promise<Endpoint> {
   const tool: Tool = {
     name: 'execute',
     description:
-      'Runs Typescript code to interact with the API.\nYou are a skilled programmer writing code to interface with the service.\nDefine an async function named "run" that takes a single parameter of an initialized client, and it will be run.\nDo not initialize a client, but instead use the client that you are given as a parameter.\nYou will be returned anything that your function returns, plus the results of any console.log statements.\nIf any code triggers an error, the tool will return an error response, so you do not need to add error handling unless you want to output something more helpful than the raw error.\nIt is not necessary to add comments to code, unless by adding those comments you believe that you can generate better code.\nThis code will run in a container, and you will not be able to use fetch or otherwise interact with the network calls other than through the client you are given.\nAny variables you define won\'t live between successive uses of this call, so make sure to return or log any data you might need later.',
+      'Runs TypeScript code to interact with the API.\nYou are a skilled programmer writing code to interface with the service.\nDefine an async function named "run" that takes a single parameter of an initialized client, and it will be run.\nDo not initialize a client, but instead use the client that you are given as a parameter.\nYou will be returned anything that your function returns, plus the results of any console.log statements.\nIf any code triggers an error, the tool will return an error response, so you do not need to add error handling unless you want to output something more helpful than the raw error.\nIt is not necessary to add comments to code, unless by adding those comments you believe that you can generate better code.\nThis code will run in a container, and you will not be able to use fetch or otherwise interact with the network calls other than through the client you are given.\nAny variables you define won\'t live between successive uses of this call, so make sure to return or log any data you might need later.',
     inputSchema: { type: 'object', properties: { code: { type: 'string' } } },
   };
 
