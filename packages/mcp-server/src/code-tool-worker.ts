@@ -333,6 +333,25 @@ function makeSdkProxy<T extends object>(obj: T, { path, isBelievedBad = false }:
   return proxy;
 }
 
+function parseError(code: string, error: unknown): string | undefined {
+  if (!(error instanceof Error)) return;
+  const message = error.name ? `${error.name}: ${error.message}` : error.message;
+  try {
+    // Deno uses V8; the first "<anonymous>:LINE:COLUMN" is the top of stack.
+    const lineNumber = error.stack?.match(/<anonymous>:([0-9]+):[0-9]+/)?.[1];
+    // -1 for the zero-based indexing
+    const line =
+      lineNumber &&
+      code
+        .split('\n')
+        .at(parseInt(lineNumber, 10) - 1)
+        ?.trim();
+    return line ? `${message}\n  at line ${lineNumber}\n    ${line}` : message;
+  } catch {
+    return message;
+  }
+}
+
 const fetch = async (req: Request): Promise<Response> => {
   const { opts, code } = (await req.json()) as WorkerInput;
   if (code == null) {
@@ -372,10 +391,7 @@ const fetch = async (req: Request): Promise<Response> => {
   };
   try {
     let run_ = async (conductor: any) => {};
-    eval(`
-      ${code}
-      run_ = run;
-    `);
+    eval(`${code}\nrun_ = run;`);
     const result = await run_(makeSdkProxy(conductor, { path: ['conductor'] }));
     return Response.json({
       result,
@@ -383,10 +399,9 @@ const fetch = async (req: Request): Promise<Response> => {
       errLines,
     } satisfies WorkerSuccess);
   } catch (e) {
-    const message = e instanceof Error ? e.message : undefined;
     return Response.json(
       {
-        message,
+        message: parseError(code, e),
       } satisfies WorkerError,
       { status: 400, statusText: 'Code execution error' },
     );
