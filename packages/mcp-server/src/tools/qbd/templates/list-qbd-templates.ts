@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from 'conductor-node-mcp/filtering';
-import { Metadata, asTextContentResult } from 'conductor-node-mcp/tools/types';
+import { isJqError, maybeFilter } from 'conductor-node-mcp/filtering';
+import { Metadata, asErrorResult, asTextContentResult } from 'conductor-node-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Conductor from 'conductor-node';
@@ -42,7 +42,14 @@ export const tool: Tool = {
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
   const { jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await conductor.qbd.templates.list(body)));
+  try {
+    return asTextContentResult(await maybeFilter(jq_filter, await conductor.qbd.templates.list(body)));
+  } catch (error) {
+    if (isJqError(error)) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
