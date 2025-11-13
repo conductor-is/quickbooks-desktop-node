@@ -1,5 +1,38 @@
 # Changelog
 
+## 12.40.0 (2025-11-13)
+
+Full Changelog: [v12.39.0...v12.40.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.39.0...v12.40.0)
+
+### Features
+
+* **mcp:** enable optional code execution tool on http mcp servers ([d167a15](https://github.com/conductor-is/quickbooks-desktop-node/commit/d167a15597367f1eacf85bbc27d404a504adfeb3))
+
+
+### Bug Fixes
+
+* **mcpb:** pin @anthropic-ai/mcpb version ([50c12b7](https://github.com/conductor-is/quickbooks-desktop-node/commit/50c12b74dc41dd547c312f88fe80c89f454f8ee1))
+* **mcp:** return tool execution error on jq failure ([6634cc0](https://github.com/conductor-is/quickbooks-desktop-node/commit/6634cc01f3f763608f6924c5198bba674ec0b8ae))
+
+
+### Chores
+
+* **internal:** codegen related update ([a93c332](https://github.com/conductor-is/quickbooks-desktop-node/commit/a93c332d88480010085fa2af8466c8665da25a5b))
+* **internal:** codegen related update ([65e0bac](https://github.com/conductor-is/quickbooks-desktop-node/commit/65e0bacdb4ea33e7a7e1746a5ef8b8fe4b265dcc))
+* **internal:** grammar fix (it's -&gt; its) ([1e1452d](https://github.com/conductor-is/quickbooks-desktop-node/commit/1e1452ddd35cb4f94e7f2aaffa9bac83f0bc911b))
+* mcp code tool explicit error message when missing a run function ([45fa155](https://github.com/conductor-is/quickbooks-desktop-node/commit/45fa1553ec9a546e94b3f1a68da7479ec7be557e))
+* **mcp:** add friendlier MCP code tool errors on incorrect method invocations ([0786aa6](https://github.com/conductor-is/quickbooks-desktop-node/commit/0786aa6120d2f7d47152b33854e2a01763bc2fa6))
+* **mcp:** add line numbers to code tool errors ([678df34](https://github.com/conductor-is/quickbooks-desktop-node/commit/678df34dbfa86c0d61779d8073383ce8905091d8))
+* **mcp:** clarify http auth error ([cc9ecd1](https://github.com/conductor-is/quickbooks-desktop-node/commit/cc9ecd1e8f7057c0693dbb0fc48da2f9f85ef551))
+* **mcp:** upgrade jq-web ([197bd33](https://github.com/conductor-is/quickbooks-desktop-node/commit/197bd33848c693ea7510cda88c92c4f9300ae2fe))
+* use structured error when code execution tool errors ([baedc1f](https://github.com/conductor-is/quickbooks-desktop-node/commit/baedc1f81e05dc19b30dc1f593c23793ae971cdb))
+
+
+### Documentation
+
+* **mcp:** add a README button for one-click add to Cursor ([947ee8e](https://github.com/conductor-is/quickbooks-desktop-node/commit/947ee8edd4133df6cb8563ba3e21085dfee59fff))
+* **mcp:** add a README link to add server to VS Code or Claude Code ([d687756](https://github.com/conductor-is/quickbooks-desktop-node/commit/d687756499c7d7c466d53a84dcc5af0ef004d72d))
+
 ## 12.39.0 (2025-10-19)
 
 Full Changelog: [v12.38.0...v12.39.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.38.0...v12.39.0)
