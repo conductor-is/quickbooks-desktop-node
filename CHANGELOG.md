@@ -1,5 +1,19 @@
 # Changelog
 
+## 12.41.0 (2025-12-02)
+
+Full Changelog: [v12.40.0...v12.41.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.40.0...v12.41.0)
+
+### Features
+
+* **mcp:** add detail field to docs search tool ([1da6d2a](https://github.com/conductor-is/quickbooks-desktop-node/commit/1da6d2a2a4884b13d13e6341848f97335c6983b3))
+* **mcp:** return logs on code tool errors ([977d876](https://github.com/conductor-is/quickbooks-desktop-node/commit/977d8760ee9fca5f03c94f64a5b66c2a5023dcd2))
+
+
+### Bug Fixes
+
+* **mcp:** return tool execution error on api error ([4571eae](https://github.com/conductor-is/quickbooks-desktop-node/commit/4571eaeacde7c53190913a377571499f46ae7c57))
+
 ## 12.40.0 (2025-11-13)
 
 Full Changelog: [v12.39.0...v12.40.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.39.0...v12.40.0)
