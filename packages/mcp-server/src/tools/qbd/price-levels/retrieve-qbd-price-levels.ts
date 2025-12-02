@@ -51,7 +51,7 @@ export const handler = async (conductor: Conductor, args: Record<string, unknown
       await maybeFilter(jq_filter, await conductor.qbd.priceLevels.retrieve(id, body)),
     );
   } catch (error) {
-    if (isJqError(error)) {
+    if (error instanceof Conductor.APIError || isJqError(error)) {
       return asErrorResult(error.message);
     }
     throw error;
