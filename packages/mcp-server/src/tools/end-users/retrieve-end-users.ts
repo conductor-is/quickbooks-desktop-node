@@ -44,7 +44,7 @@ export const handler = async (conductor: Conductor, args: Record<string, unknown
   try {
     return asTextContentResult(await maybeFilter(jq_filter, await conductor.endUsers.retrieve(id)));
   } catch (error) {
-    if (isJqError(error)) {
+    if (error instanceof Conductor.APIError || isJqError(error)) {
       return asErrorResult(error.message);
     }
     throw error;
