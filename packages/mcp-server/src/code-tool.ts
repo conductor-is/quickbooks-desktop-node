@@ -132,9 +132,30 @@ export async function codeTool(): Promise<Endpoint> {
           content: [returnOutput, logOutput, errOutput].filter((block) => block !== null),
         };
       } else {
-        const { message } = (await resp.json()) as WorkerError;
+        const { message, logLines, errLines } = (await resp.json()) as WorkerError;
+        const messageOutput: ContentBlock | null =
+          message == null ? null : (
+            {
+              type: 'text',
+              text: message,
+            }
+          );
+        const logOutput: ContentBlock | null =
+          logLines.length === 0 ?
+            null
+          : {
+              type: 'text',
+              text: logLines.join('\n'),
+            };
+        const errOutput: ContentBlock | null =
+          errLines.length === 0 ?
+            null
+          : {
+              type: 'text',
+              text: 'Error output:\n' + errLines.join('\n'),
+            };
         return {
-          content: message == null ? [] : [{ type: 'text', text: message }],
+          content: [messageOutput, logOutput, errOutput].filter((block) => block !== null),
           isError: true,
         };
       }
