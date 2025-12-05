@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { dirname } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import path from 'node:path';
+import url from 'node:url';
 import Conductor, { ClientOptions } from 'conductor-node';
 import { ContentBlock, Endpoint, Metadata, ToolCallResult } from './tools/types';
 
@@ -35,10 +35,16 @@ export async function codeTool(): Promise<Endpoint> {
     const baseURLHostname = new URL(conductor.baseURL).hostname;
     const { code } = args as { code: string };
 
-    const worker = await newDenoHTTPWorker(pathToFileURL(workerPath), {
+    const allowRead = [
+      'code-tool-worker.mjs',
+      `${workerPath.replace(/([\/\\]node_modules)[\/\\].+$/, '$1')}/`,
+      path.resolve(path.dirname(workerPath), '..'),
+    ].join(',');
+
+    const worker = await newDenoHTTPWorker(url.pathToFileURL(workerPath), {
       runFlags: [
         `--node-modules-dir=manual`,
-        `--allow-read=code-tool-worker.mjs,${workerPath.replace(/([\/\\]node_modules)[\/\\].+$/, '$1')}/`,
+        `--allow-read=${allowRead}`,
         `--allow-net=${baseURLHostname}`,
         // Allow environment variables because instantiating the client will try to read from them,
         // even though they are not set.
@@ -46,7 +52,7 @@ export async function codeTool(): Promise<Endpoint> {
       ],
       printOutput: true,
       spawnOptions: {
-        cwd: dirname(workerPath),
+        cwd: path.dirname(workerPath),
       },
     });
 
