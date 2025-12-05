@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import path from 'node:path';
 import util from 'node:util';
 
 import Fuse from 'fuse.js';
@@ -8,36 +9,102 @@ import ts from 'typescript';
 import { WorkerInput, WorkerSuccess, WorkerError } from './code-tool-types';
 import { Conductor } from 'conductor-node';
 
-function getRunFunctionNode(
-  code: string,
-): ts.FunctionDeclaration | ts.FunctionExpression | ts.ArrowFunction | null {
+function getRunFunctionSource(code: string): {
+  type: 'declaration' | 'expression';
+  client: string | undefined;
+  code: string;
+} | null {
   const sourceFile = ts.createSourceFile('code.ts', code, ts.ScriptTarget.Latest, true);
+  const printer = ts.createPrinter();
 
   for (const statement of sourceFile.statements) {
     // Check for top-level function declarations
     if (ts.isFunctionDeclaration(statement)) {
       if (statement.name?.text === 'run') {
-        return statement;
+        return {
+          type: 'declaration',
+          client: statement.parameters[0]?.name.getText(),
+          code: printer.printNode(ts.EmitHint.Unspecified, statement.body!, sourceFile),
+        };
       }
     }
 
     // Check for variable declarations: const run = () => {} or const run = function() {}
     if (ts.isVariableStatement(statement)) {
       for (const declaration of statement.declarationList.declarations) {
-        if (ts.isIdentifier(declaration.name) && declaration.name.text === 'run') {
+        if (
+          ts.isIdentifier(declaration.name) &&
+          declaration.name.text === 'run' &&
           // Check if it's initialized with a function
-          if (
-            declaration.initializer &&
-            (ts.isFunctionExpression(declaration.initializer) || ts.isArrowFunction(declaration.initializer))
-          ) {
-            return declaration.initializer;
-          }
+          declaration.initializer &&
+          (ts.isFunctionExpression(declaration.initializer) || ts.isArrowFunction(declaration.initializer))
+        ) {
+          return {
+            type: 'expression',
+            client: declaration.initializer.parameters[0]?.name.getText(),
+            code: printer.printNode(ts.EmitHint.Unspecified, declaration.initializer, sourceFile),
+          };
         }
       }
     }
   }
 
   return null;
+}
+
+function getTSDiagnostics(code: string): string[] {
+  const functionSource = getRunFunctionSource(code)!;
+  const codeWithImport = [
+    'import { Conductor } from "conductor-node";',
+    functionSource.type === 'declaration' ?
+      `async function run(${functionSource.client}: Conductor)`
+    : `const run: (${functionSource.client}: Conductor) => Promise<unknown> =`,
+    functionSource.code,
+  ].join('\n');
+  const sourcePath = path.resolve('code.ts');
+  const ast = ts.createSourceFile(sourcePath, codeWithImport, ts.ScriptTarget.Latest, true);
+  const options = ts.getDefaultCompilerOptions();
+  options.target = ts.ScriptTarget.Latest;
+  options.module = ts.ModuleKind.NodeNext;
+  options.moduleResolution = ts.ModuleResolutionKind.NodeNext;
+  const host = ts.createCompilerHost(options, true);
+  const newHost: typeof host = {
+    ...host,
+    getSourceFile: (...args) => {
+      if (path.resolve(args[0]) === sourcePath) {
+        return ast;
+      }
+      return host.getSourceFile(...args);
+    },
+    readFile: (...args) => {
+      if (path.resolve(args[0]) === sourcePath) {
+        return codeWithImport;
+      }
+      return host.readFile(...args);
+    },
+    fileExists: (...args) => {
+      if (path.resolve(args[0]) === sourcePath) {
+        return true;
+      }
+      return host.fileExists(...args);
+    },
+  };
+  const program = ts.createProgram({
+    options,
+    rootNames: [sourcePath],
+    host: newHost,
+  });
+  const diagnostics = ts.getPreEmitDiagnostics(program, ast);
+  return diagnostics.map((d) => {
+    const message = ts.flattenDiagnosticMessageText(d.messageText, '\n');
+    if (!d.file || !d.start) return `- ${message}`;
+    const { line: tsLine } = ts.getLineAndCharacterOfPosition(d.file, d.start);
+    // We add two lines in the beginning, for the client import and the function declaration.
+    // So the actual (zero-based) line number is tsLine - 2.
+    const lineNumber = tsLine - 2;
+    const line = code.split('\n').at(lineNumber)?.trim();
+    return line ? `- ${message}\n    at line ${lineNumber + 1}\n      ${line}` : `- ${message}`;
+  });
 }
 
 const fuse = new Fuse(
@@ -354,11 +421,16 @@ function parseError(code: string, error: unknown): string | undefined {
 
 const fetch = async (req: Request): Promise<Response> => {
   const { opts, code } = (await req.json()) as WorkerInput;
-  if (code == null) {
+
+  const runFunctionSource = code ? getRunFunctionSource(code) : null;
+  if (!runFunctionSource) {
+    const message =
+      code ?
+        'The code is missing a top-level `run` function.'
+      : 'The code argument is missing. Provide one containing a top-level `run` function.';
     return Response.json(
       {
-        message:
-          'The code param is missing. Provide one containing a top-level `run` function. Write code within this template:\n\n```\nasync function run(conductor) {\n  // Fill this out\n}\n```',
+        message: `${message} Write code within this template:\n\n\`\`\`\nasync function run(conductor) {\n  // Fill this out\n}\n\`\`\``,
         logLines: [],
         errLines: [],
       } satisfies WorkerError,
@@ -366,12 +438,11 @@ const fetch = async (req: Request): Promise<Response> => {
     );
   }
 
-  const runFunctionNode = getRunFunctionNode(code);
-  if (!runFunctionNode) {
+  const diagnostics = getTSDiagnostics(code);
+  if (diagnostics.length > 0) {
     return Response.json(
       {
-        message:
-          'The code is missing a top-level `run` function. Write code within this template:\n\n```\nasync function run(conductor) {\n  // Fill this out\n}\n```',
+        message: `The code contains TypeScript diagnostics:\n${diagnostics.join('\n')}`,
         logLines: [],
         errLines: [],
       } satisfies WorkerError,
