@@ -1,5 +1,18 @@
 # Changelog
 
+## 12.42.0 (2025-12-05)
+
+Full Changelog: [v12.41.0...v12.42.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.41.0...v12.42.0)
+
+### Features
+
+* **mcp:** add typescript check to code execution tool ([021b2d0](https://github.com/conductor-is/quickbooks-desktop-node/commit/021b2d028684d1404227b12aad5b755a11cae43d))
+
+
+### Chores
+
+* use latest @modelcontextprotocol/sdk ([e357a25](https://github.com/conductor-is/quickbooks-desktop-node/commit/e357a2573f2a844f3d750dcccb35f769075ca90d))
+
 ## 12.41.0 (2025-12-02)
 
 Full Changelog: [v12.40.0...v12.41.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.40.0...v12.41.0)
