@@ -46,6 +46,13 @@ export const handler = async (_: unknown, args: Record<string, unknown> | undefi
   const body = args as any;
   const query = new URLSearchParams(body).toString();
   const result = await fetch(`${docsSearchURL}?${query}`);
+
+  if (!result.ok) {
+    throw new Error(
+      `${result.status}: ${result.statusText} when using doc search tool. Details: ${await result.text()}`,
+    );
+  }
+
   return asTextContentResult(await result.json());
 };
 
