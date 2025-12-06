@@ -28,7 +28,7 @@ export async function codeTool() {
     // will allow you to run code-mode queries against non-published versions of your SDK.
     const stainlessAPIKey = readEnv('STAINLESS_API_KEY');
     const codeModeEndpoint =
-      readEnv('CODE_MODE_ENDPOINT_URL') ?? 'https://api.stainless.com/api/ai/code-tool/';
+      readEnv('CODE_MODE_ENDPOINT_URL') ?? 'https://api.stainless.com/api/ai/code-tool';
 
     const res = await fetch(codeModeEndpoint, {
       method: 'POST',
