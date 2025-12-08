@@ -239,8 +239,15 @@ export interface Bill {
   /**
    * The remaining amount still owed on this bill, represented as a decimal string.
    * This equals the bill's amount minus any credits or discounts.
+   *
+   * **NOTE**: This field is almost always present, but due to a known QBD bug, it
+   * can be absent in rare cases. If you ever encounter `openAmount` as `null`, we
+   * recommend the following fallback procedure: Re-query the bills with
+   * `includeLinkedTransactions=true` and compute a fallback open amount as
+   * `amountDue` minus the sum of `linkedTransactions[].amount` for all entries where
+   * `linkedTransactions[].linkType` is `"amount"`.
    */
-  openAmount: string;
+  openAmount: string | null;
 
   /**
    * The Accounts-Payable (A/P) account to which this bill is assigned, used to track
