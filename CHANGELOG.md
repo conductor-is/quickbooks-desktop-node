@@ -1,5 +1,26 @@
 # Changelog
 
+## 12.43.0 (2025-12-08)
+
+Full Changelog: [v12.42.0...v12.43.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.42.0...v12.43.0)
+
+### Features
+
+* **api:** api update ([549da53](https://github.com/conductor-is/quickbooks-desktop-node/commit/549da53da83636a66223e7310eba1bff8f759492))
+* **mcp:** handle code mode calls in the Stainless API ([3628618](https://github.com/conductor-is/quickbooks-desktop-node/commit/3628618d82b2d6ceeb6fd73f6993e99aa3988a37))
+
+
+### Bug Fixes
+
+* **mcp:** correct code tool API endpoint ([ebdf952](https://github.com/conductor-is/quickbooks-desktop-node/commit/ebdf952196947b8cda0b16717a7e3e4bcdadf49f))
+* **mcp:** return correct lines on typescript errors ([5ce369d](https://github.com/conductor-is/quickbooks-desktop-node/commit/5ce369d8388c522e3bb37a69dd152fe552f9fb99))
+
+
+### Chores
+
+* **internal:** codegen related update ([76c8b35](https://github.com/conductor-is/quickbooks-desktop-node/commit/76c8b3530f7e546ef8c66b6e952d465f3f2d484f))
+* **internal:** codegen related update ([995760f](https://github.com/conductor-is/quickbooks-desktop-node/commit/995760f024ec3e61ae9884c5232e78850e2f1739))
+
 ## 12.42.0 (2025-12-05)
 
 Full Changelog: [v12.41.0...v12.42.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.41.0...v12.42.0)
