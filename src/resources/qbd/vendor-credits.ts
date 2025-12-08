@@ -234,10 +234,18 @@ export interface VendorCredit {
   objectType: 'qbd_vendor_credit';
 
   /**
-   * The remaining amount still owed on this vendor credit, represented as a decimal
-   * string. This equals the vendor credit's amount minus any credits or discounts.
+   * The remaining unapplied credit on this vendor credit, represented as a decimal
+   * string. This equals the original credit amount minus any amounts that have been
+   * applied to bills.
+   *
+   * **NOTE**: This field is almost always present, but due to a known QBD bug, it
+   * can be absent in rare cases. If you ever encounter `openAmount` as `null`, we
+   * recommend the following fallback procedure: Re-query the vendor credits with
+   * `includeLinkedTransactions=true` and compute a fallback open amount as
+   * `creditAmount` minus the sum of `linkedTransactions[].amount` for all entries
+   * where `linkedTransactions[].linkType` is `"amount"`.
    */
-  openAmount: string;
+  openAmount: string | null;
 
   /**
    * The Accounts-Payable (A/P) account to which this vendor credit is assigned, used
