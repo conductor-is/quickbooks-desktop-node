@@ -1,6 +1,6 @@
 {
   "pkg": "conductor-node",
-  "githubRepo": "https://github.com/stainless-sdks/conductor-typescript",
+  "githubRepo": "https://github.com/conductor-is/quickbooks-desktop-node",
   "clientClass": "Conductor",
   "methods": [
     {

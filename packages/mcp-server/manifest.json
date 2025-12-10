@@ -9,9 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stainless-sdks/conductor-typescript.git"
+    "url": "git+https://github.com/conductor-is/quickbooks-desktop-node.git"
   },
-  "homepage": "https://github.com/stainless-sdks/conductor-typescript/tree/main/packages/mcp-server#readme",
+  "homepage": "https://github.com/conductor-is/quickbooks-desktop-node/tree/main/packages/mcp-server#readme",
   "documentation": "https://docs.conductor.is/api-ref",
   "server": {
     "type": "node",
