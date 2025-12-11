@@ -21,8 +21,7 @@ export const tool: Tool = {
     properties: {
       conductorEndUserId: {
         type: 'string',
-        description:
-          'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
+        description: 'The ID of the End-User to receive this request.',
       },
       accountIds: {
         type: 'array',
