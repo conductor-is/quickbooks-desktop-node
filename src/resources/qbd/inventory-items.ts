@@ -20,12 +20,12 @@ export class InventoryItems extends APIResource {
    *   });
    * ```
    */
-  create(params: InventoryItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<InventoryItem> {
+  create(params: InventoryItemCreateParams, options?: RequestOptions): APIPromise<InventoryItem> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/inventory-items', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -48,12 +48,12 @@ export class InventoryItems extends APIResource {
   retrieve(
     id: string,
     params: InventoryItemRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventoryItem> {
+    options?: RequestOptions,
+  ): APIPromise<InventoryItem> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/inventory-items/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/inventory-items/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -74,16 +74,12 @@ export class InventoryItems extends APIResource {
    *   );
    * ```
    */
-  update(
-    id: string,
-    params: InventoryItemUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventoryItem> {
+  update(id: string, params: InventoryItemUpdateParams, options?: RequestOptions): APIPromise<InventoryItem> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/inventory-items/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/inventory-items/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -103,13 +99,13 @@ export class InventoryItems extends APIResource {
    */
   list(
     params: InventoryItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<InventoryItemsCursorPage, InventoryItem> {
+    options?: RequestOptions,
+  ): PagePromise<InventoryItemsCursorPage, InventoryItem> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/inventory-items', InventoryItemsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/inventory-items', CursorPage<InventoryItem>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

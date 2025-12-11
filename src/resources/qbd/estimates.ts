@@ -17,12 +17,12 @@ export class Estimates extends APIResource {
    * });
    * ```
    */
-  create(params: EstimateCreateParams, options?: Core.RequestOptions): Core.APIPromise<Estimate> {
+  create(params: EstimateCreateParams, options?: RequestOptions): APIPromise<Estimate> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/estimates', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -43,15 +43,11 @@ export class Estimates extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: EstimateRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Estimate> {
+  retrieve(id: string, params: EstimateRetrieveParams, options?: RequestOptions): APIPromise<Estimate> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/estimates/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/estimates/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -69,12 +65,12 @@ export class Estimates extends APIResource {
    * );
    * ```
    */
-  update(id: string, params: EstimateUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Estimate> {
+  update(id: string, params: EstimateUpdateParams, options?: RequestOptions): APIPromise<Estimate> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/estimates/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/estimates/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -92,15 +88,12 @@ export class Estimates extends APIResource {
    * }
    * ```
    */
-  list(
-    params: EstimateListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<EstimatesCursorPage, Estimate> {
+  list(params: EstimateListParams, options?: RequestOptions): PagePromise<EstimatesCursorPage, Estimate> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/estimates', EstimatesCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/estimates', CursorPage<Estimate>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -119,12 +112,12 @@ export class Estimates extends APIResource {
   delete(
     id: string,
     params: EstimateDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EstimateDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<EstimateDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/estimates/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/estimates/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

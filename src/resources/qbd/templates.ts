@@ -15,11 +15,11 @@ export class Templates extends APIResource {
    * });
    * ```
    */
-  list(params: TemplateListParams, options?: Core.RequestOptions): Core.APIPromise<TemplateListResponse> {
+  list(params: TemplateListParams, options?: RequestOptions): APIPromise<TemplateListResponse> {
     const { conductorEndUserId } = params;
     return this._client.get('/quickbooks-desktop/templates', {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

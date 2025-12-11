@@ -19,12 +19,12 @@ export class VendorCredits extends APIResource {
    *   });
    * ```
    */
-  create(params: VendorCreditCreateParams, options?: Core.RequestOptions): Core.APIPromise<VendorCredit> {
+  create(params: VendorCreditCreateParams, options?: RequestOptions): APIPromise<VendorCredit> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/vendor-credits', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -49,12 +49,12 @@ export class VendorCredits extends APIResource {
   retrieve(
     id: string,
     params: VendorCreditRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<VendorCredit> {
+    options?: RequestOptions,
+  ): APIPromise<VendorCredit> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/vendor-credits/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/vendor-credits/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -74,16 +74,12 @@ export class VendorCredits extends APIResource {
    *   );
    * ```
    */
-  update(
-    id: string,
-    params: VendorCreditUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<VendorCredit> {
+  update(id: string, params: VendorCreditUpdateParams, options?: RequestOptions): APIPromise<VendorCredit> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/vendor-credits/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/vendor-credits/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -103,13 +99,13 @@ export class VendorCredits extends APIResource {
    */
   list(
     params: VendorCreditListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<VendorCreditsCursorPage, VendorCredit> {
+    options?: RequestOptions,
+  ): PagePromise<VendorCreditsCursorPage, VendorCredit> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/vendor-credits', VendorCreditsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/vendor-credits', CursorPage<VendorCredit>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -129,12 +125,12 @@ export class VendorCredits extends APIResource {
   delete(
     id: string,
     params: VendorCreditDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<VendorCreditDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<VendorCreditDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/vendor-credits/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/vendor-credits/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

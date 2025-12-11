@@ -644,14 +644,11 @@ export class Qbd extends APIResource {
    * });
    * ```
    */
-  healthCheck(
-    params: QbdHealthCheckParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<QbdHealthCheckResponse> {
+  healthCheck(params: QbdHealthCheckParams, options?: RequestOptions): APIPromise<QbdHealthCheckResponse> {
     const { conductorEndUserId } = params;
     return this._client.get('/quickbooks-desktop/health-check', {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

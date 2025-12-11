@@ -18,12 +18,12 @@ export class Invoices extends APIResource {
    * });
    * ```
    */
-  create(params: InvoiceCreateParams, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
+  create(params: InvoiceCreateParams, options?: RequestOptions): APIPromise<Invoice> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/invoices', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -44,15 +44,11 @@ export class Invoices extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: InvoiceRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Invoice> {
+  retrieve(id: string, params: InvoiceRetrieveParams, options?: RequestOptions): APIPromise<Invoice> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/invoices/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/invoices/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -70,12 +66,12 @@ export class Invoices extends APIResource {
    * );
    * ```
    */
-  update(id: string, params: InvoiceUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Invoice> {
+  update(id: string, params: InvoiceUpdateParams, options?: RequestOptions): APIPromise<Invoice> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/invoices/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/invoices/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -93,15 +89,12 @@ export class Invoices extends APIResource {
    * }
    * ```
    */
-  list(
-    params: InvoiceListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<InvoicesCursorPage, Invoice> {
+  list(params: InvoiceListParams, options?: RequestOptions): PagePromise<InvoicesCursorPage, Invoice> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/invoices', InvoicesCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/invoices', CursorPage<Invoice>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -120,12 +113,12 @@ export class Invoices extends APIResource {
   delete(
     id: string,
     params: InvoiceDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InvoiceDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<InvoiceDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/invoices/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/invoices/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

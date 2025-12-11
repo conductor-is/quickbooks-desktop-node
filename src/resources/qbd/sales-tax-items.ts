@@ -17,12 +17,12 @@ export class SalesTaxItems extends APIResource {
    *   });
    * ```
    */
-  create(params: SalesTaxItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<SalesTaxItem> {
+  create(params: SalesTaxItemCreateParams, options?: RequestOptions): APIPromise<SalesTaxItem> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/sales-tax-items', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -45,12 +45,12 @@ export class SalesTaxItems extends APIResource {
   retrieve(
     id: string,
     params: SalesTaxItemRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesTaxItem> {
+    options?: RequestOptions,
+  ): APIPromise<SalesTaxItem> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/sales-tax-items/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/sales-tax-items/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -69,16 +69,12 @@ export class SalesTaxItems extends APIResource {
    *   );
    * ```
    */
-  update(
-    id: string,
-    params: SalesTaxItemUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesTaxItem> {
+  update(id: string, params: SalesTaxItemUpdateParams, options?: RequestOptions): APIPromise<SalesTaxItem> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/sales-tax-items/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/sales-tax-items/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -98,13 +94,13 @@ export class SalesTaxItems extends APIResource {
    */
   list(
     params: SalesTaxItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<SalesTaxItemsCursorPage, SalesTaxItem> {
+    options?: RequestOptions,
+  ): PagePromise<SalesTaxItemsCursorPage, SalesTaxItem> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/sales-tax-items', SalesTaxItemsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/sales-tax-items', CursorPage<SalesTaxItem>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

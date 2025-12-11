@@ -20,12 +20,12 @@ export class DateDrivenTerms extends APIResource {
    *   });
    * ```
    */
-  create(params: DateDrivenTermCreateParams, options?: Core.RequestOptions): Core.APIPromise<DateDrivenTerm> {
+  create(params: DateDrivenTermCreateParams, options?: RequestOptions): APIPromise<DateDrivenTerm> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/date-driven-terms', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -49,12 +49,12 @@ export class DateDrivenTerms extends APIResource {
   retrieve(
     id: string,
     params: DateDrivenTermRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DateDrivenTerm> {
+    options?: RequestOptions,
+  ): APIPromise<DateDrivenTerm> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/date-driven-terms/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/date-driven-terms/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -71,15 +71,12 @@ export class DateDrivenTerms extends APIResource {
    *   });
    * ```
    */
-  list(
-    params: DateDrivenTermListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DateDrivenTermListResponse> {
+  list(params: DateDrivenTermListParams, options?: RequestOptions): APIPromise<DateDrivenTermListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/date-driven-terms', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

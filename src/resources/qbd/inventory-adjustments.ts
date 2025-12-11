@@ -19,15 +19,12 @@ export class InventoryAdjustments extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: InventoryAdjustmentCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventoryAdjustment> {
+  create(params: InventoryAdjustmentCreateParams, options?: RequestOptions): APIPromise<InventoryAdjustment> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/inventory-adjustments', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -51,12 +48,12 @@ export class InventoryAdjustments extends APIResource {
   retrieve(
     id: string,
     params: InventoryAdjustmentRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventoryAdjustment> {
+    options?: RequestOptions,
+  ): APIPromise<InventoryAdjustment> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/inventory-adjustments/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/inventory-adjustments/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -78,13 +75,13 @@ export class InventoryAdjustments extends APIResource {
   update(
     id: string,
     params: InventoryAdjustmentUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventoryAdjustment> {
+    options?: RequestOptions,
+  ): APIPromise<InventoryAdjustment> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/inventory-adjustments/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/inventory-adjustments/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -103,13 +100,13 @@ export class InventoryAdjustments extends APIResource {
    */
   list(
     params: InventoryAdjustmentListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventoryAdjustmentListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<InventoryAdjustmentListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/inventory-adjustments', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -130,12 +127,12 @@ export class InventoryAdjustments extends APIResource {
   delete(
     id: string,
     params: InventoryAdjustmentDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventoryAdjustmentDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<InventoryAdjustmentDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/inventory-adjustments/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/inventory-adjustments/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

@@ -22,12 +22,12 @@ export class ReceivePayments extends APIResource {
    *   });
    * ```
    */
-  create(params: ReceivePaymentCreateParams, options?: Core.RequestOptions): Core.APIPromise<ReceivePayment> {
+  create(params: ReceivePaymentCreateParams, options?: RequestOptions): APIPromise<ReceivePayment> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/receive-payments', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -51,12 +51,12 @@ export class ReceivePayments extends APIResource {
   retrieve(
     id: string,
     params: ReceivePaymentRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ReceivePayment> {
+    options?: RequestOptions,
+  ): APIPromise<ReceivePayment> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/receive-payments/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/receive-payments/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -80,13 +80,13 @@ export class ReceivePayments extends APIResource {
   update(
     id: string,
     params: ReceivePaymentUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ReceivePayment> {
+    options?: RequestOptions,
+  ): APIPromise<ReceivePayment> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/receive-payments/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/receive-payments/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -106,13 +106,13 @@ export class ReceivePayments extends APIResource {
    */
   list(
     params: ReceivePaymentListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ReceivePaymentsCursorPage, ReceivePayment> {
+    options?: RequestOptions,
+  ): PagePromise<ReceivePaymentsCursorPage, ReceivePayment> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/receive-payments', ReceivePaymentsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/receive-payments', CursorPage<ReceivePayment>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -133,12 +133,12 @@ export class ReceivePayments extends APIResource {
   delete(
     id: string,
     params: ReceivePaymentDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ReceivePaymentDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<ReceivePaymentDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/receive-payments/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/receive-payments/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

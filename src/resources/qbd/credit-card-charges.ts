@@ -18,15 +18,12 @@ export class CreditCardCharges extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: CreditCardChargeCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditCardCharge> {
+  create(params: CreditCardChargeCreateParams, options?: RequestOptions): APIPromise<CreditCardCharge> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/credit-card-charges', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -50,12 +47,12 @@ export class CreditCardCharges extends APIResource {
   retrieve(
     id: string,
     params: CreditCardChargeRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditCardCharge> {
+    options?: RequestOptions,
+  ): APIPromise<CreditCardCharge> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/credit-card-charges/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/credit-card-charges/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -79,13 +76,13 @@ export class CreditCardCharges extends APIResource {
   update(
     id: string,
     params: CreditCardChargeUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditCardCharge> {
+    options?: RequestOptions,
+  ): APIPromise<CreditCardCharge> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/credit-card-charges/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/credit-card-charges/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -105,13 +102,13 @@ export class CreditCardCharges extends APIResource {
    */
   list(
     params: CreditCardChargeListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<CreditCardChargesCursorPage, CreditCardCharge> {
+    options?: RequestOptions,
+  ): PagePromise<CreditCardChargesCursorPage, CreditCardCharge> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/credit-card-charges', CreditCardChargesCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/credit-card-charges', CursorPage<CreditCardCharge>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -131,12 +128,12 @@ export class CreditCardCharges extends APIResource {
   delete(
     id: string,
     params: CreditCardChargeDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditCardChargeDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<CreditCardChargeDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/credit-card-charges/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/credit-card-charges/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

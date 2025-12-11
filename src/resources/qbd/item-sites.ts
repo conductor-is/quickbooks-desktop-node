@@ -20,15 +20,11 @@ export class ItemSites extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: ItemSiteRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ItemSite> {
+  retrieve(id: string, params: ItemSiteRetrieveParams, options?: RequestOptions): APIPromise<ItemSite> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/item-sites/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/item-sites/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -46,15 +42,12 @@ export class ItemSites extends APIResource {
    * }
    * ```
    */
-  list(
-    params: ItemSiteListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ItemSitesCursorPage, ItemSite> {
+  list(params: ItemSiteListParams, options?: RequestOptions): PagePromise<ItemSitesCursorPage, ItemSite> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/item-sites', ItemSitesCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/item-sites', CursorPage<ItemSite>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

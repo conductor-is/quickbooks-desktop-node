@@ -18,15 +18,12 @@ export class SalesRepresentatives extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: SalesRepresentativeCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesRepresentative> {
+  create(params: SalesRepresentativeCreateParams, options?: RequestOptions): APIPromise<SalesRepresentative> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/sales-representatives', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -50,12 +47,12 @@ export class SalesRepresentatives extends APIResource {
   retrieve(
     id: string,
     params: SalesRepresentativeRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesRepresentative> {
+    options?: RequestOptions,
+  ): APIPromise<SalesRepresentative> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/sales-representatives/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/sales-representatives/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -77,13 +74,13 @@ export class SalesRepresentatives extends APIResource {
   update(
     id: string,
     params: SalesRepresentativeUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesRepresentative> {
+    options?: RequestOptions,
+  ): APIPromise<SalesRepresentative> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/sales-representatives/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/sales-representatives/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -102,13 +99,13 @@ export class SalesRepresentatives extends APIResource {
    */
   list(
     params: SalesRepresentativeListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesRepresentativeListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<SalesRepresentativeListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/sales-representatives', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

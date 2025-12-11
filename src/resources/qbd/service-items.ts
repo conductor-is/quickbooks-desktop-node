@@ -18,12 +18,12 @@ export class ServiceItems extends APIResource {
    * );
    * ```
    */
-  create(params: ServiceItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<ServiceItem> {
+  create(params: ServiceItemCreateParams, options?: RequestOptions): APIPromise<ServiceItem> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/service-items', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -43,15 +43,11 @@ export class ServiceItems extends APIResource {
    *   );
    * ```
    */
-  retrieve(
-    id: string,
-    params: ServiceItemRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ServiceItem> {
+  retrieve(id: string, params: ServiceItemRetrieveParams, options?: RequestOptions): APIPromise<ServiceItem> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/service-items/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/service-items/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -73,16 +69,12 @@ export class ServiceItems extends APIResource {
    * );
    * ```
    */
-  update(
-    id: string,
-    params: ServiceItemUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ServiceItem> {
+  update(id: string, params: ServiceItemUpdateParams, options?: RequestOptions): APIPromise<ServiceItem> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/service-items/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/service-items/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -102,13 +94,13 @@ export class ServiceItems extends APIResource {
    */
   list(
     params: ServiceItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ServiceItemsCursorPage, ServiceItem> {
+    options?: RequestOptions,
+  ): PagePromise<ServiceItemsCursorPage, ServiceItem> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/service-items', ServiceItemsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/service-items', CursorPage<ServiceItem>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

@@ -16,12 +16,12 @@ export class Employees extends APIResource {
    * });
    * ```
    */
-  create(params: EmployeeCreateParams, options?: Core.RequestOptions): Core.APIPromise<Employee> {
+  create(params: EmployeeCreateParams, options?: RequestOptions): APIPromise<Employee> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/employees', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -40,15 +40,11 @@ export class Employees extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: EmployeeRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Employee> {
+  retrieve(id: string, params: EmployeeRetrieveParams, options?: RequestOptions): APIPromise<Employee> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/employees/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/employees/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -68,12 +64,12 @@ export class Employees extends APIResource {
    * );
    * ```
    */
-  update(id: string, params: EmployeeUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Employee> {
+  update(id: string, params: EmployeeUpdateParams, options?: RequestOptions): APIPromise<Employee> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/employees/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/employees/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -89,12 +85,12 @@ export class Employees extends APIResource {
    * });
    * ```
    */
-  list(params: EmployeeListParams, options?: Core.RequestOptions): Core.APIPromise<EmployeeListResponse> {
+  list(params: EmployeeListParams, options?: RequestOptions): APIPromise<EmployeeListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/employees', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

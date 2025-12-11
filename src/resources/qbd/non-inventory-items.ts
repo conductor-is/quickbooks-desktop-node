@@ -17,15 +17,12 @@ export class NonInventoryItems extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: NonInventoryItemCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<NonInventoryItem> {
+  create(params: NonInventoryItemCreateParams, options?: RequestOptions): APIPromise<NonInventoryItem> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/non-inventory-items', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -49,12 +46,12 @@ export class NonInventoryItems extends APIResource {
   retrieve(
     id: string,
     params: NonInventoryItemRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<NonInventoryItem> {
+    options?: RequestOptions,
+  ): APIPromise<NonInventoryItem> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/non-inventory-items/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/non-inventory-items/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -81,13 +78,13 @@ export class NonInventoryItems extends APIResource {
   update(
     id: string,
     params: NonInventoryItemUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<NonInventoryItem> {
+    options?: RequestOptions,
+  ): APIPromise<NonInventoryItem> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/non-inventory-items/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/non-inventory-items/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -107,13 +104,13 @@ export class NonInventoryItems extends APIResource {
    */
   list(
     params: NonInventoryItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<NonInventoryItemsCursorPage, NonInventoryItem> {
+    options?: RequestOptions,
+  ): PagePromise<NonInventoryItemsCursorPage, NonInventoryItem> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/non-inventory-items', NonInventoryItemsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/non-inventory-items', CursorPage<NonInventoryItem>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

@@ -21,13 +21,13 @@ export class TimeTrackingActivities extends APIResource {
    */
   create(
     params: TimeTrackingActivityCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TimeTrackingActivity> {
+    options?: RequestOptions,
+  ): APIPromise<TimeTrackingActivity> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/time-tracking-activities', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -51,12 +51,12 @@ export class TimeTrackingActivities extends APIResource {
   retrieve(
     id: string,
     params: TimeTrackingActivityRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TimeTrackingActivity> {
+    options?: RequestOptions,
+  ): APIPromise<TimeTrackingActivity> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/time-tracking-activities/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/time-tracking-activities/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -80,13 +80,13 @@ export class TimeTrackingActivities extends APIResource {
   update(
     id: string,
     params: TimeTrackingActivityUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TimeTrackingActivity> {
+    options?: RequestOptions,
+  ): APIPromise<TimeTrackingActivity> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/time-tracking-activities/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/time-tracking-activities/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -106,13 +106,17 @@ export class TimeTrackingActivities extends APIResource {
    */
   list(
     params: TimeTrackingActivityListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TimeTrackingActivitiesCursorPage, TimeTrackingActivity> {
+    options?: RequestOptions,
+  ): PagePromise<TimeTrackingActivitiesCursorPage, TimeTrackingActivity> {
     const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList(
       '/quickbooks-desktop/time-tracking-activities',
-      TimeTrackingActivitiesCursorPage,
-      { query, ...options, headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers } },
+      CursorPage<TimeTrackingActivity>,
+      {
+        query,
+        ...options,
+        headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+      },
     );
   }
 
@@ -133,12 +137,12 @@ export class TimeTrackingActivities extends APIResource {
   delete(
     id: string,
     params: TimeTrackingActivityDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TimeTrackingActivityDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<TimeTrackingActivityDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/time-tracking-activities/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/time-tracking-activities/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

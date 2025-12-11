@@ -17,15 +17,12 @@ export class OtherChargeItems extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: OtherChargeItemCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OtherChargeItem> {
+  create(params: OtherChargeItemCreateParams, options?: RequestOptions): APIPromise<OtherChargeItem> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/other-charge-items', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -49,12 +46,12 @@ export class OtherChargeItems extends APIResource {
   retrieve(
     id: string,
     params: OtherChargeItemRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OtherChargeItem> {
+    options?: RequestOptions,
+  ): APIPromise<OtherChargeItem> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/other-charge-items/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/other-charge-items/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -76,13 +73,13 @@ export class OtherChargeItems extends APIResource {
   update(
     id: string,
     params: OtherChargeItemUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OtherChargeItem> {
+    options?: RequestOptions,
+  ): APIPromise<OtherChargeItem> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/other-charge-items/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/other-charge-items/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -102,13 +99,13 @@ export class OtherChargeItems extends APIResource {
    */
   list(
     params: OtherChargeItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<OtherChargeItemsCursorPage, OtherChargeItem> {
+    options?: RequestOptions,
+  ): PagePromise<OtherChargeItemsCursorPage, OtherChargeItem> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/other-charge-items', OtherChargeItemsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/other-charge-items', CursorPage<OtherChargeItem>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

@@ -19,12 +19,12 @@ export class Transfers extends APIResource {
    * });
    * ```
    */
-  create(params: TransferCreateParams, options?: Core.RequestOptions): Core.APIPromise<Transfer> {
+  create(params: TransferCreateParams, options?: RequestOptions): APIPromise<Transfer> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/transfers', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -43,15 +43,11 @@ export class Transfers extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: TransferRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Transfer> {
+  retrieve(id: string, params: TransferRetrieveParams, options?: RequestOptions): APIPromise<Transfer> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/transfers/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/transfers/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -69,12 +65,12 @@ export class Transfers extends APIResource {
    * );
    * ```
    */
-  update(id: string, params: TransferUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Transfer> {
+  update(id: string, params: TransferUpdateParams, options?: RequestOptions): APIPromise<Transfer> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/transfers/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/transfers/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -92,15 +88,12 @@ export class Transfers extends APIResource {
    * }
    * ```
    */
-  list(
-    params: TransferListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TransfersCursorPage, Transfer> {
+  list(params: TransferListParams, options?: RequestOptions): PagePromise<TransfersCursorPage, Transfer> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/transfers', TransfersCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/transfers', CursorPage<Transfer>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

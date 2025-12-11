@@ -16,12 +16,12 @@ export class Customers extends APIResource {
    * });
    * ```
    */
-  create(params: CustomerCreateParams, options?: Core.RequestOptions): Core.APIPromise<Customer> {
+  create(params: CustomerCreateParams, options?: RequestOptions): APIPromise<Customer> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/customers', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -40,15 +40,11 @@ export class Customers extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: CustomerRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Customer> {
+  retrieve(id: string, params: CustomerRetrieveParams, options?: RequestOptions): APIPromise<Customer> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/customers/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/customers/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -66,12 +62,12 @@ export class Customers extends APIResource {
    * );
    * ```
    */
-  update(id: string, params: CustomerUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Customer> {
+  update(id: string, params: CustomerUpdateParams, options?: RequestOptions): APIPromise<Customer> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/customers/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/customers/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -89,15 +85,12 @@ export class Customers extends APIResource {
    * }
    * ```
    */
-  list(
-    params: CustomerListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<CustomersCursorPage, Customer> {
+  list(params: CustomerListParams, options?: RequestOptions): PagePromise<CustomersCursorPage, Customer> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/customers', CustomersCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/customers', CursorPage<Customer>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

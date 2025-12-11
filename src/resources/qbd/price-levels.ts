@@ -15,12 +15,12 @@ export class PriceLevels extends APIResource {
    * });
    * ```
    */
-  create(params: PriceLevelCreateParams, options?: Core.RequestOptions): Core.APIPromise<PriceLevel> {
+  create(params: PriceLevelCreateParams, options?: RequestOptions): APIPromise<PriceLevel> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/price-levels', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -39,15 +39,11 @@ export class PriceLevels extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: PriceLevelRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PriceLevel> {
+  retrieve(id: string, params: PriceLevelRetrieveParams, options?: RequestOptions): APIPromise<PriceLevel> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/price-levels/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/price-levels/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -65,16 +61,12 @@ export class PriceLevels extends APIResource {
    * );
    * ```
    */
-  update(
-    id: string,
-    params: PriceLevelUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PriceLevel> {
+  update(id: string, params: PriceLevelUpdateParams, options?: RequestOptions): APIPromise<PriceLevel> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/price-levels/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/price-levels/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -90,12 +82,12 @@ export class PriceLevels extends APIResource {
    * });
    * ```
    */
-  list(params: PriceLevelListParams, options?: Core.RequestOptions): Core.APIPromise<PriceLevelListResponse> {
+  list(params: PriceLevelListParams, options?: RequestOptions): APIPromise<PriceLevelListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/price-levels', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

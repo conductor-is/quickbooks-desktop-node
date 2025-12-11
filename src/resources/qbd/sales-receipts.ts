@@ -20,12 +20,12 @@ export class SalesReceipts extends APIResource {
    *   });
    * ```
    */
-  create(params: SalesReceiptCreateParams, options?: Core.RequestOptions): Core.APIPromise<SalesReceipt> {
+  create(params: SalesReceiptCreateParams, options?: RequestOptions): APIPromise<SalesReceipt> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/sales-receipts', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -48,12 +48,12 @@ export class SalesReceipts extends APIResource {
   retrieve(
     id: string,
     params: SalesReceiptRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesReceipt> {
+    options?: RequestOptions,
+  ): APIPromise<SalesReceipt> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/sales-receipts/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/sales-receipts/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -74,16 +74,12 @@ export class SalesReceipts extends APIResource {
    *   );
    * ```
    */
-  update(
-    id: string,
-    params: SalesReceiptUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesReceipt> {
+  update(id: string, params: SalesReceiptUpdateParams, options?: RequestOptions): APIPromise<SalesReceipt> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/sales-receipts/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/sales-receipts/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -103,13 +99,13 @@ export class SalesReceipts extends APIResource {
    */
   list(
     params: SalesReceiptListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<SalesReceiptsCursorPage, SalesReceipt> {
+    options?: RequestOptions,
+  ): PagePromise<SalesReceiptsCursorPage, SalesReceipt> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/sales-receipts', SalesReceiptsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/sales-receipts', CursorPage<SalesReceipt>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -129,12 +125,12 @@ export class SalesReceipts extends APIResource {
   delete(
     id: string,
     params: SalesReceiptDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesReceiptDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<SalesReceiptDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/sales-receipts/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/sales-receipts/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

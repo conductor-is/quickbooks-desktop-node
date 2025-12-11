@@ -21,12 +21,12 @@ export class DiscountItems extends APIResource {
    *   });
    * ```
    */
-  create(params: DiscountItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<DiscountItem> {
+  create(params: DiscountItemCreateParams, options?: RequestOptions): APIPromise<DiscountItem> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/discount-items', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -49,12 +49,12 @@ export class DiscountItems extends APIResource {
   retrieve(
     id: string,
     params: DiscountItemRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DiscountItem> {
+    options?: RequestOptions,
+  ): APIPromise<DiscountItem> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/discount-items/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/discount-items/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -75,16 +75,12 @@ export class DiscountItems extends APIResource {
    *   );
    * ```
    */
-  update(
-    id: string,
-    params: DiscountItemUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DiscountItem> {
+  update(id: string, params: DiscountItemUpdateParams, options?: RequestOptions): APIPromise<DiscountItem> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/discount-items/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/discount-items/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -104,13 +100,13 @@ export class DiscountItems extends APIResource {
    */
   list(
     params: DiscountItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DiscountItemsCursorPage, DiscountItem> {
+    options?: RequestOptions,
+  ): PagePromise<DiscountItemsCursorPage, DiscountItem> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/discount-items', DiscountItemsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/discount-items', CursorPage<DiscountItem>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
