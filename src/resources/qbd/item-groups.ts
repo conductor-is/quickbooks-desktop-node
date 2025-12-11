@@ -327,8 +327,7 @@ export interface ItemGroupCreateParams {
   shouldPrintItemsInGroup: boolean;
 
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -420,8 +419,7 @@ export namespace ItemGroupCreateParams {
 
 export interface ItemGroupRetrieveParams {
   /**
-   * The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 }
@@ -436,8 +434,7 @@ export interface ItemGroupUpdateParams {
   revisionNumber: string;
 
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -559,8 +556,7 @@ export namespace ItemGroupUpdateParams {
 
 export interface ItemGroupListParams extends CursorPageParams {
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 

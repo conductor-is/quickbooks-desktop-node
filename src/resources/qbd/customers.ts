@@ -1085,8 +1085,7 @@ export interface CustomerCreateParams {
   name: string;
 
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -1735,8 +1734,7 @@ export namespace CustomerCreateParams {
 
 export interface CustomerRetrieveParams {
   /**
-   * The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 }
@@ -1751,8 +1749,7 @@ export interface CustomerUpdateParams {
   revisionNumber: string;
 
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -2409,8 +2406,7 @@ export namespace CustomerUpdateParams {
 
 export interface CustomerListParams extends CursorPageParams {
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 

@@ -364,8 +364,7 @@ export interface OtherNameCreateParams {
   name: string;
 
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -546,8 +545,7 @@ export namespace OtherNameCreateParams {
 
 export interface OtherNameRetrieveParams {
   /**
-   * The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 }
@@ -562,8 +560,7 @@ export interface OtherNameUpdateParams {
   revisionNumber: string;
 
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -746,8 +743,7 @@ export namespace OtherNameUpdateParams {
 
 export interface OtherNameListParams {
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 

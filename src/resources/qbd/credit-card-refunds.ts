@@ -749,8 +749,7 @@ export interface CreditCardRefundCreateParams {
   transactionDate: string;
 
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -1084,16 +1083,14 @@ export namespace CreditCardRefundCreateParams {
 
 export interface CreditCardRefundRetrieveParams {
   /**
-   * The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 }
 
 export interface CreditCardRefundListParams extends CursorPageParams {
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -1236,8 +1233,7 @@ export interface CreditCardRefundListParams extends CursorPageParams {
 
 export interface CreditCardRefundDeleteParams {
   /**
-   * The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 }

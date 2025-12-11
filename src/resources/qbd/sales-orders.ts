@@ -1719,8 +1719,7 @@ export interface SalesOrderCreateParams {
   transactionDate: string;
 
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -2302,8 +2301,7 @@ export namespace SalesOrderCreateParams {
 
 export interface SalesOrderRetrieveParams {
   /**
-   * The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 }
@@ -2318,8 +2316,7 @@ export interface SalesOrderUpdateParams {
   revisionNumber: string;
 
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -3054,8 +3051,7 @@ export namespace SalesOrderUpdateParams {
 
 export interface SalesOrderListParams extends CursorPageParams {
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -3197,8 +3193,7 @@ export interface SalesOrderListParams extends CursorPageParams {
 
 export interface SalesOrderDeleteParams {
   /**
-   * The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 }

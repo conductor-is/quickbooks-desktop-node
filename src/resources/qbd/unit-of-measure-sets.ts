@@ -292,8 +292,7 @@ export interface UnitOfMeasureSetCreateParams {
   unitOfMeasureType: 'area' | 'count' | 'length' | 'other' | 'time' | 'volume' | 'weight';
 
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
@@ -398,16 +397,14 @@ export namespace UnitOfMeasureSetCreateParams {
 
 export interface UnitOfMeasureSetRetrieveParams {
   /**
-   * The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 }
 
 export interface UnitOfMeasureSetListParams {
   /**
-   * Header param: The ID of the EndUser to receive this request (e.g.,
-   * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
 
