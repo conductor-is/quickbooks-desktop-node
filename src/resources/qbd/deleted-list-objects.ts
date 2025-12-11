@@ -21,13 +21,13 @@ export class DeletedListObjects extends APIResource {
    */
   list(
     params: DeletedListObjectListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DeletedListObjectListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<DeletedListObjectListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/deleted-list-objects', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

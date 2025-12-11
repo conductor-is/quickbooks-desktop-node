@@ -17,12 +17,12 @@ export class SalesOrders extends APIResource {
    * });
    * ```
    */
-  create(params: SalesOrderCreateParams, options?: Core.RequestOptions): Core.APIPromise<SalesOrder> {
+  create(params: SalesOrderCreateParams, options?: RequestOptions): APIPromise<SalesOrder> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/sales-orders', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -43,15 +43,11 @@ export class SalesOrders extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: SalesOrderRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesOrder> {
+  retrieve(id: string, params: SalesOrderRetrieveParams, options?: RequestOptions): APIPromise<SalesOrder> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/sales-orders/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/sales-orders/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -69,16 +65,12 @@ export class SalesOrders extends APIResource {
    * );
    * ```
    */
-  update(
-    id: string,
-    params: SalesOrderUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesOrder> {
+  update(id: string, params: SalesOrderUpdateParams, options?: RequestOptions): APIPromise<SalesOrder> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/sales-orders/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/sales-orders/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -98,13 +90,13 @@ export class SalesOrders extends APIResource {
    */
   list(
     params: SalesOrderListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<SalesOrdersCursorPage, SalesOrder> {
+    options?: RequestOptions,
+  ): PagePromise<SalesOrdersCursorPage, SalesOrder> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/sales-orders', SalesOrdersCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/sales-orders', CursorPage<SalesOrder>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -123,12 +115,12 @@ export class SalesOrders extends APIResource {
   delete(
     id: string,
     params: SalesOrderDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesOrderDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<SalesOrderDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/sales-orders/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/sales-orders/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

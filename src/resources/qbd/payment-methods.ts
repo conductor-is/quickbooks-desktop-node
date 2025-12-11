@@ -17,12 +17,12 @@ export class PaymentMethods extends APIResource {
    *   });
    * ```
    */
-  create(params: PaymentMethodCreateParams, options?: Core.RequestOptions): Core.APIPromise<PaymentMethod> {
+  create(params: PaymentMethodCreateParams, options?: RequestOptions): APIPromise<PaymentMethod> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/payment-methods', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -45,12 +45,12 @@ export class PaymentMethods extends APIResource {
   retrieve(
     id: string,
     params: PaymentMethodRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PaymentMethod> {
+    options?: RequestOptions,
+  ): APIPromise<PaymentMethod> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/payment-methods/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/payment-methods/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -67,15 +67,12 @@ export class PaymentMethods extends APIResource {
    *   });
    * ```
    */
-  list(
-    params: PaymentMethodListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PaymentMethodListResponse> {
+  list(params: PaymentMethodListParams, options?: RequestOptions): APIPromise<PaymentMethodListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/payment-methods', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

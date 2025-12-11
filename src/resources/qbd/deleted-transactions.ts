@@ -22,13 +22,13 @@ export class DeletedTransactions extends APIResource {
    */
   list(
     params: DeletedTransactionListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DeletedTransactionListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<DeletedTransactionListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/deleted-transactions', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

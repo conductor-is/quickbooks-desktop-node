@@ -22,13 +22,13 @@ export class InventoryAssemblyItems extends APIResource {
    */
   create(
     params: InventoryAssemblyItemCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventoryAssemblyItem> {
+    options?: RequestOptions,
+  ): APIPromise<InventoryAssemblyItem> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/inventory-assembly-items', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -52,12 +52,12 @@ export class InventoryAssemblyItems extends APIResource {
   retrieve(
     id: string,
     params: InventoryAssemblyItemRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventoryAssemblyItem> {
+    options?: RequestOptions,
+  ): APIPromise<InventoryAssemblyItem> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/inventory-assembly-items/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/inventory-assembly-items/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -81,13 +81,13 @@ export class InventoryAssemblyItems extends APIResource {
   update(
     id: string,
     params: InventoryAssemblyItemUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventoryAssemblyItem> {
+    options?: RequestOptions,
+  ): APIPromise<InventoryAssemblyItem> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/inventory-assembly-items/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/inventory-assembly-items/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -107,13 +107,17 @@ export class InventoryAssemblyItems extends APIResource {
    */
   list(
     params: InventoryAssemblyItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<InventoryAssemblyItemsCursorPage, InventoryAssemblyItem> {
+    options?: RequestOptions,
+  ): PagePromise<InventoryAssemblyItemsCursorPage, InventoryAssemblyItem> {
     const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList(
       '/quickbooks-desktop/inventory-assembly-items',
-      InventoryAssemblyItemsCursorPage,
-      { query, ...options, headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers } },
+      CursorPage<InventoryAssemblyItem>,
+      {
+        query,
+        ...options,
+        headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+      },
     );
   }
 }

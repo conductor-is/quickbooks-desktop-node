@@ -16,12 +16,12 @@ export class StandardTerms extends APIResource {
    *   });
    * ```
    */
-  create(params: StandardTermCreateParams, options?: Core.RequestOptions): Core.APIPromise<StandardTerm> {
+  create(params: StandardTermCreateParams, options?: RequestOptions): APIPromise<StandardTerm> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/standard-terms', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -44,12 +44,12 @@ export class StandardTerms extends APIResource {
   retrieve(
     id: string,
     params: StandardTermRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<StandardTerm> {
+    options?: RequestOptions,
+  ): APIPromise<StandardTerm> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/standard-terms/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/standard-terms/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -66,15 +66,12 @@ export class StandardTerms extends APIResource {
    *   });
    * ```
    */
-  list(
-    params: StandardTermListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<StandardTermListResponse> {
+  list(params: StandardTermListParams, options?: RequestOptions): APIPromise<StandardTermListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/standard-terms', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

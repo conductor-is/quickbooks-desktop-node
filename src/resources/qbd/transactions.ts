@@ -21,15 +21,11 @@ export class Transactions extends APIResource {
    *   );
    * ```
    */
-  retrieve(
-    id: string,
-    params: TransactionRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Transaction> {
+  retrieve(id: string, params: TransactionRetrieveParams, options?: RequestOptions): APIPromise<Transaction> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/transactions/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/transactions/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -53,13 +49,13 @@ export class Transactions extends APIResource {
    */
   list(
     params: TransactionListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TransactionsCursorPage, Transaction> {
+    options?: RequestOptions,
+  ): PagePromise<TransactionsCursorPage, Transaction> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/transactions', TransactionsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/transactions', CursorPage<Transaction>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

@@ -17,12 +17,12 @@ export class ItemGroups extends APIResource {
    * });
    * ```
    */
-  create(params: ItemGroupCreateParams, options?: Core.RequestOptions): Core.APIPromise<ItemGroup> {
+  create(params: ItemGroupCreateParams, options?: RequestOptions): APIPromise<ItemGroup> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/item-groups', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -41,15 +41,11 @@ export class ItemGroups extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: ItemGroupRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ItemGroup> {
+  retrieve(id: string, params: ItemGroupRetrieveParams, options?: RequestOptions): APIPromise<ItemGroup> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/item-groups/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/item-groups/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -67,16 +63,12 @@ export class ItemGroups extends APIResource {
    * );
    * ```
    */
-  update(
-    id: string,
-    params: ItemGroupUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ItemGroup> {
+  update(id: string, params: ItemGroupUpdateParams, options?: RequestOptions): APIPromise<ItemGroup> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/item-groups/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/item-groups/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -94,15 +86,12 @@ export class ItemGroups extends APIResource {
    * }
    * ```
    */
-  list(
-    params: ItemGroupListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ItemGroupsCursorPage, ItemGroup> {
+  list(params: ItemGroupListParams, options?: RequestOptions): PagePromise<ItemGroupsCursorPage, ItemGroup> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/item-groups', ItemGroupsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/item-groups', CursorPage<ItemGroup>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

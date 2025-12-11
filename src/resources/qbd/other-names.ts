@@ -15,12 +15,12 @@ export class OtherNames extends APIResource {
    * });
    * ```
    */
-  create(params: OtherNameCreateParams, options?: Core.RequestOptions): Core.APIPromise<OtherName> {
+  create(params: OtherNameCreateParams, options?: RequestOptions): APIPromise<OtherName> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/other-names', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -39,15 +39,11 @@ export class OtherNames extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: OtherNameRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OtherName> {
+  retrieve(id: string, params: OtherNameRetrieveParams, options?: RequestOptions): APIPromise<OtherName> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/other-names/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/other-names/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -65,16 +61,12 @@ export class OtherNames extends APIResource {
    * );
    * ```
    */
-  update(
-    id: string,
-    params: OtherNameUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OtherName> {
+  update(id: string, params: OtherNameUpdateParams, options?: RequestOptions): APIPromise<OtherName> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/other-names/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/other-names/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -90,12 +82,12 @@ export class OtherNames extends APIResource {
    * });
    * ```
    */
-  list(params: OtherNameListParams, options?: Core.RequestOptions): Core.APIPromise<OtherNameListResponse> {
+  list(params: OtherNameListParams, options?: RequestOptions): APIPromise<OtherNameListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/other-names', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

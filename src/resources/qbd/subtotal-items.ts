@@ -17,12 +17,12 @@ export class SubtotalItems extends APIResource {
    *   });
    * ```
    */
-  create(params: SubtotalItemCreateParams, options?: Core.RequestOptions): Core.APIPromise<SubtotalItem> {
+  create(params: SubtotalItemCreateParams, options?: RequestOptions): APIPromise<SubtotalItem> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/subtotal-items', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -45,12 +45,12 @@ export class SubtotalItems extends APIResource {
   retrieve(
     id: string,
     params: SubtotalItemRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SubtotalItem> {
+    options?: RequestOptions,
+  ): APIPromise<SubtotalItem> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/subtotal-items/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/subtotal-items/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -69,16 +69,12 @@ export class SubtotalItems extends APIResource {
    *   );
    * ```
    */
-  update(
-    id: string,
-    params: SubtotalItemUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SubtotalItem> {
+  update(id: string, params: SubtotalItemUpdateParams, options?: RequestOptions): APIPromise<SubtotalItem> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/subtotal-items/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/subtotal-items/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -98,13 +94,13 @@ export class SubtotalItems extends APIResource {
    */
   list(
     params: SubtotalItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<SubtotalItemsCursorPage, SubtotalItem> {
+    options?: RequestOptions,
+  ): PagePromise<SubtotalItemsCursorPage, SubtotalItem> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/subtotal-items', SubtotalItemsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/subtotal-items', CursorPage<SubtotalItem>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

@@ -19,15 +19,12 @@ export class PayrollWageItems extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: PayrollWageItemCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PayrollWageItem> {
+  create(params: PayrollWageItemCreateParams, options?: RequestOptions): APIPromise<PayrollWageItem> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/payroll-wage-items', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -51,12 +48,12 @@ export class PayrollWageItems extends APIResource {
   retrieve(
     id: string,
     params: PayrollWageItemRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PayrollWageItem> {
+    options?: RequestOptions,
+  ): APIPromise<PayrollWageItem> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/payroll-wage-items/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/payroll-wage-items/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -76,13 +73,13 @@ export class PayrollWageItems extends APIResource {
    */
   list(
     params: PayrollWageItemListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PayrollWageItemsCursorPage, PayrollWageItem> {
+    options?: RequestOptions,
+  ): PagePromise<PayrollWageItemsCursorPage, PayrollWageItem> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/payroll-wage-items', PayrollWageItemsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/payroll-wage-items', CursorPage<PayrollWageItem>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

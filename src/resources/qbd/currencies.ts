@@ -18,12 +18,12 @@ export class Currencies extends APIResource {
    * });
    * ```
    */
-  create(params: CurrencyCreateParams, options?: Core.RequestOptions): Core.APIPromise<Currency> {
+  create(params: CurrencyCreateParams, options?: RequestOptions): APIPromise<Currency> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/currencies', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -42,15 +42,11 @@ export class Currencies extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: CurrencyRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Currency> {
+  retrieve(id: string, params: CurrencyRetrieveParams, options?: RequestOptions): APIPromise<Currency> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/currencies/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/currencies/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -70,12 +66,12 @@ export class Currencies extends APIResource {
    * );
    * ```
    */
-  update(id: string, params: CurrencyUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Currency> {
+  update(id: string, params: CurrencyUpdateParams, options?: RequestOptions): APIPromise<Currency> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/currencies/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/currencies/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -91,12 +87,12 @@ export class Currencies extends APIResource {
    * });
    * ```
    */
-  list(params: CurrencyListParams, options?: Core.RequestOptions): Core.APIPromise<CurrencyListResponse> {
+  list(params: CurrencyListParams, options?: RequestOptions): APIPromise<CurrencyListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/currencies', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

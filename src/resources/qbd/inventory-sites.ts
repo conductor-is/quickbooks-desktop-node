@@ -17,12 +17,12 @@ export class InventorySites extends APIResource {
    *   });
    * ```
    */
-  create(params: InventorySiteCreateParams, options?: Core.RequestOptions): Core.APIPromise<InventorySite> {
+  create(params: InventorySiteCreateParams, options?: RequestOptions): APIPromise<InventorySite> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/inventory-sites', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -45,12 +45,12 @@ export class InventorySites extends APIResource {
   retrieve(
     id: string,
     params: InventorySiteRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventorySite> {
+    options?: RequestOptions,
+  ): APIPromise<InventorySite> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/inventory-sites/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/inventory-sites/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -69,16 +69,12 @@ export class InventorySites extends APIResource {
    *   );
    * ```
    */
-  update(
-    id: string,
-    params: InventorySiteUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventorySite> {
+  update(id: string, params: InventorySiteUpdateParams, options?: RequestOptions): APIPromise<InventorySite> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/inventory-sites/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/inventory-sites/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -95,15 +91,12 @@ export class InventorySites extends APIResource {
    *   });
    * ```
    */
-  list(
-    params: InventorySiteListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InventorySiteListResponse> {
+  list(params: InventorySiteListParams, options?: RequestOptions): APIPromise<InventorySiteListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/inventory-sites', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

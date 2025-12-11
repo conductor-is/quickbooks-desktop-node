@@ -17,14 +17,11 @@ export class AccountTaxLines extends APIResource {
    *   });
    * ```
    */
-  list(
-    params: AccountTaxLineListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AccountTaxLineListResponse> {
+  list(params: AccountTaxLineListParams, options?: RequestOptions): APIPromise<AccountTaxLineListResponse> {
     const { conductorEndUserId } = params;
     return this._client.get('/quickbooks-desktop/account-tax-lines', {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

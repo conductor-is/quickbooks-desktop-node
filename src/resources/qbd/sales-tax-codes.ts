@@ -17,12 +17,12 @@ export class SalesTaxCodes extends APIResource {
    *   });
    * ```
    */
-  create(params: SalesTaxCodeCreateParams, options?: Core.RequestOptions): Core.APIPromise<SalesTaxCode> {
+  create(params: SalesTaxCodeCreateParams, options?: RequestOptions): APIPromise<SalesTaxCode> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/sales-tax-codes', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -45,12 +45,12 @@ export class SalesTaxCodes extends APIResource {
   retrieve(
     id: string,
     params: SalesTaxCodeRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesTaxCode> {
+    options?: RequestOptions,
+  ): APIPromise<SalesTaxCode> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/sales-tax-codes/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/sales-tax-codes/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -72,16 +72,12 @@ export class SalesTaxCodes extends APIResource {
    *   );
    * ```
    */
-  update(
-    id: string,
-    params: SalesTaxCodeUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesTaxCode> {
+  update(id: string, params: SalesTaxCodeUpdateParams, options?: RequestOptions): APIPromise<SalesTaxCode> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/sales-tax-codes/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/sales-tax-codes/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -98,15 +94,12 @@ export class SalesTaxCodes extends APIResource {
    *   });
    * ```
    */
-  list(
-    params: SalesTaxCodeListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SalesTaxCodeListResponse> {
+  list(params: SalesTaxCodeListParams, options?: RequestOptions): APIPromise<SalesTaxCodeListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/sales-tax-codes', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

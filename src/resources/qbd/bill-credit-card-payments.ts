@@ -26,13 +26,13 @@ export class BillCreditCardPayments extends APIResource {
    */
   create(
     params: BillCreditCardPaymentCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BillCreditCardPayment> {
+    options?: RequestOptions,
+  ): APIPromise<BillCreditCardPayment> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/bill-credit-card-payments', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -56,12 +56,12 @@ export class BillCreditCardPayments extends APIResource {
   retrieve(
     id: string,
     params: BillCreditCardPaymentRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BillCreditCardPayment> {
+    options?: RequestOptions,
+  ): APIPromise<BillCreditCardPayment> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/bill-credit-card-payments/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/bill-credit-card-payments/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -81,13 +81,17 @@ export class BillCreditCardPayments extends APIResource {
    */
   list(
     params: BillCreditCardPaymentListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BillCreditCardPaymentsCursorPage, BillCreditCardPayment> {
+    options?: RequestOptions,
+  ): PagePromise<BillCreditCardPaymentsCursorPage, BillCreditCardPayment> {
     const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList(
       '/quickbooks-desktop/bill-credit-card-payments',
-      BillCreditCardPaymentsCursorPage,
-      { query, ...options, headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers } },
+      CursorPage<BillCreditCardPayment>,
+      {
+        query,
+        ...options,
+        headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+      },
     );
   }
 
@@ -108,12 +112,12 @@ export class BillCreditCardPayments extends APIResource {
   delete(
     id: string,
     params: BillCreditCardPaymentDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BillCreditCardPaymentDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<BillCreditCardPaymentDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/bill-credit-card-payments/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/bill-credit-card-payments/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

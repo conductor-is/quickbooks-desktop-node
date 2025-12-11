@@ -15,12 +15,12 @@ export class Classes extends APIResource {
    * });
    * ```
    */
-  create(params: ClassCreateParams, options?: Core.RequestOptions): Core.APIPromise<Class> {
+  create(params: ClassCreateParams, options?: RequestOptions): APIPromise<Class> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/classes', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -39,11 +39,11 @@ export class Classes extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, params: ClassRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Class> {
+  retrieve(id: string, params: ClassRetrieveParams, options?: RequestOptions): APIPromise<Class> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/classes/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/classes/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -61,12 +61,12 @@ export class Classes extends APIResource {
    * );
    * ```
    */
-  update(id: string, params: ClassUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Class> {
+  update(id: string, params: ClassUpdateParams, options?: RequestOptions): APIPromise<Class> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/classes/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/classes/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -82,12 +82,12 @@ export class Classes extends APIResource {
    * });
    * ```
    */
-  list(params: ClassListParams, options?: Core.RequestOptions): Core.APIPromise<ClassListResponse> {
+  list(params: ClassListParams, options?: RequestOptions): APIPromise<ClassListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/classes', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

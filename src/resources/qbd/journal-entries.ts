@@ -20,12 +20,12 @@ export class JournalEntries extends APIResource {
    *   });
    * ```
    */
-  create(params: JournalEntryCreateParams, options?: Core.RequestOptions): Core.APIPromise<JournalEntry> {
+  create(params: JournalEntryCreateParams, options?: RequestOptions): APIPromise<JournalEntry> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/journal-entries', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -48,12 +48,12 @@ export class JournalEntries extends APIResource {
   retrieve(
     id: string,
     params: JournalEntryRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<JournalEntry> {
+    options?: RequestOptions,
+  ): APIPromise<JournalEntry> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/journal-entries/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/journal-entries/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -74,16 +74,12 @@ export class JournalEntries extends APIResource {
    *   );
    * ```
    */
-  update(
-    id: string,
-    params: JournalEntryUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<JournalEntry> {
+  update(id: string, params: JournalEntryUpdateParams, options?: RequestOptions): APIPromise<JournalEntry> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/journal-entries/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/journal-entries/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -103,13 +99,13 @@ export class JournalEntries extends APIResource {
    */
   list(
     params: JournalEntryListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<JournalEntriesCursorPage, JournalEntry> {
+    options?: RequestOptions,
+  ): PagePromise<JournalEntriesCursorPage, JournalEntry> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/journal-entries', JournalEntriesCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/journal-entries', CursorPage<JournalEntry>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -129,12 +125,12 @@ export class JournalEntries extends APIResource {
   delete(
     id: string,
     params: JournalEntryDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<JournalEntryDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<JournalEntryDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/journal-entries/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/journal-entries/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

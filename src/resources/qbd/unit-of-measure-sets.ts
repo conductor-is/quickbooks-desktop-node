@@ -24,15 +24,12 @@ export class UnitOfMeasureSets extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: UnitOfMeasureSetCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<UnitOfMeasureSet> {
+  create(params: UnitOfMeasureSetCreateParams, options?: RequestOptions): APIPromise<UnitOfMeasureSet> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/unit-of-measure-sets', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -56,12 +53,12 @@ export class UnitOfMeasureSets extends APIResource {
   retrieve(
     id: string,
     params: UnitOfMeasureSetRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<UnitOfMeasureSet> {
+    options?: RequestOptions,
+  ): APIPromise<UnitOfMeasureSet> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/unit-of-measure-sets/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/unit-of-measure-sets/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -83,13 +80,13 @@ export class UnitOfMeasureSets extends APIResource {
    */
   list(
     params: UnitOfMeasureSetListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<UnitOfMeasureSetListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<UnitOfMeasureSetListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/unit-of-measure-sets', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

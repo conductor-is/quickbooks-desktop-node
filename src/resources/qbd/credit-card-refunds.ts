@@ -27,15 +27,12 @@ export class CreditCardRefunds extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: CreditCardRefundCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditCardRefund> {
+  create(params: CreditCardRefundCreateParams, options?: RequestOptions): APIPromise<CreditCardRefund> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/credit-card-refunds', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -59,12 +56,12 @@ export class CreditCardRefunds extends APIResource {
   retrieve(
     id: string,
     params: CreditCardRefundRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditCardRefund> {
+    options?: RequestOptions,
+  ): APIPromise<CreditCardRefund> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/credit-card-refunds/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/credit-card-refunds/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -84,13 +81,13 @@ export class CreditCardRefunds extends APIResource {
    */
   list(
     params: CreditCardRefundListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<CreditCardRefundsCursorPage, CreditCardRefund> {
+    options?: RequestOptions,
+  ): PagePromise<CreditCardRefundsCursorPage, CreditCardRefund> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/credit-card-refunds', CreditCardRefundsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/credit-card-refunds', CursorPage<CreditCardRefund>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -110,12 +107,12 @@ export class CreditCardRefunds extends APIResource {
   delete(
     id: string,
     params: CreditCardRefundDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditCardRefundDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<CreditCardRefundDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/credit-card-refunds/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/credit-card-refunds/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

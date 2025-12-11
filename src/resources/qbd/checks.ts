@@ -19,12 +19,12 @@ export class Checks extends APIResource {
    * });
    * ```
    */
-  create(params: CheckCreateParams, options?: Core.RequestOptions): Core.APIPromise<Check> {
+  create(params: CheckCreateParams, options?: RequestOptions): APIPromise<Check> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/checks', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -45,11 +45,11 @@ export class Checks extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, params: CheckRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Check> {
+  retrieve(id: string, params: CheckRetrieveParams, options?: RequestOptions): APIPromise<Check> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/checks/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/checks/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -69,12 +69,12 @@ export class Checks extends APIResource {
    * );
    * ```
    */
-  update(id: string, params: CheckUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Check> {
+  update(id: string, params: CheckUpdateParams, options?: RequestOptions): APIPromise<Check> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/checks/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/checks/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -92,12 +92,12 @@ export class Checks extends APIResource {
    * }
    * ```
    */
-  list(params: CheckListParams, options?: Core.RequestOptions): Core.PagePromise<ChecksCursorPage, Check> {
+  list(params: CheckListParams, options?: RequestOptions): PagePromise<ChecksCursorPage, Check> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/checks', ChecksCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/checks', CursorPage<Check>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -113,15 +113,11 @@ export class Checks extends APIResource {
    * );
    * ```
    */
-  delete(
-    id: string,
-    params: CheckDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CheckDeleteResponse> {
+  delete(id: string, params: CheckDeleteParams, options?: RequestOptions): APIPromise<CheckDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/checks/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/checks/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

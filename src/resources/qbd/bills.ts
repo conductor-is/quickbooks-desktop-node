@@ -19,12 +19,12 @@ export class Bills extends APIResource {
    * });
    * ```
    */
-  create(params: BillCreateParams, options?: Core.RequestOptions): Core.APIPromise<Bill> {
+  create(params: BillCreateParams, options?: RequestOptions): APIPromise<Bill> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/bills', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -45,11 +45,11 @@ export class Bills extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, params: BillRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Bill> {
+  retrieve(id: string, params: BillRetrieveParams, options?: RequestOptions): APIPromise<Bill> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/bills/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/bills/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -70,12 +70,12 @@ export class Bills extends APIResource {
    * );
    * ```
    */
-  update(id: string, params: BillUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Bill> {
+  update(id: string, params: BillUpdateParams, options?: RequestOptions): APIPromise<Bill> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/bills/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/bills/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -93,12 +93,12 @@ export class Bills extends APIResource {
    * }
    * ```
    */
-  list(params: BillListParams, options?: Core.RequestOptions): Core.PagePromise<BillsCursorPage, Bill> {
+  list(params: BillListParams, options?: RequestOptions): PagePromise<BillsCursorPage, Bill> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/bills', BillsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/bills', CursorPage<Bill>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -114,15 +114,11 @@ export class Bills extends APIResource {
    * );
    * ```
    */
-  delete(
-    id: string,
-    params: BillDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BillDeleteResponse> {
+  delete(id: string, params: BillDeleteParams, options?: RequestOptions): APIPromise<BillDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/bills/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/bills/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

@@ -17,11 +17,11 @@ export class Preferences extends APIResource {
    *   });
    * ```
    */
-  retrieve(params: PreferenceRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Preferences> {
+  retrieve(params: PreferenceRetrieveParams, options?: RequestOptions): APIPromise<Preferences> {
     const { conductorEndUserId } = params;
     return this._client.get('/quickbooks-desktop/preferences', {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

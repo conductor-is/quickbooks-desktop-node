@@ -16,12 +16,12 @@ export class CustomerTypes extends APIResource {
    *   });
    * ```
    */
-  create(params: CustomerTypeCreateParams, options?: Core.RequestOptions): Core.APIPromise<CustomerType> {
+  create(params: CustomerTypeCreateParams, options?: RequestOptions): APIPromise<CustomerType> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/customer-types', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -44,12 +44,12 @@ export class CustomerTypes extends APIResource {
   retrieve(
     id: string,
     params: CustomerTypeRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CustomerType> {
+    options?: RequestOptions,
+  ): APIPromise<CustomerType> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/customer-types/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/customer-types/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -66,15 +66,12 @@ export class CustomerTypes extends APIResource {
    *   });
    * ```
    */
-  list(
-    params: CustomerTypeListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CustomerTypeListResponse> {
+  list(params: CustomerTypeListParams, options?: RequestOptions): APIPromise<CustomerTypeListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/customer-types', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

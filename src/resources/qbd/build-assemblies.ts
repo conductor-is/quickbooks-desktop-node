@@ -21,12 +21,12 @@ export class BuildAssemblies extends APIResource {
    *   });
    * ```
    */
-  create(params: BuildAssemblyCreateParams, options?: Core.RequestOptions): Core.APIPromise<BuildAssembly> {
+  create(params: BuildAssemblyCreateParams, options?: RequestOptions): APIPromise<BuildAssembly> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/build-assemblies', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -50,12 +50,12 @@ export class BuildAssemblies extends APIResource {
   retrieve(
     id: string,
     params: BuildAssemblyRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BuildAssembly> {
+    options?: RequestOptions,
+  ): APIPromise<BuildAssembly> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/build-assemblies/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/build-assemblies/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -74,16 +74,12 @@ export class BuildAssemblies extends APIResource {
    *   );
    * ```
    */
-  update(
-    id: string,
-    params: BuildAssemblyUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BuildAssembly> {
+  update(id: string, params: BuildAssemblyUpdateParams, options?: RequestOptions): APIPromise<BuildAssembly> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/build-assemblies/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/build-assemblies/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -103,13 +99,13 @@ export class BuildAssemblies extends APIResource {
    */
   list(
     params: BuildAssemblyListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BuildAssembliesCursorPage, BuildAssembly> {
+    options?: RequestOptions,
+  ): PagePromise<BuildAssembliesCursorPage, BuildAssembly> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/build-assemblies', BuildAssembliesCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/build-assemblies', CursorPage<BuildAssembly>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -129,12 +125,12 @@ export class BuildAssemblies extends APIResource {
   delete(
     id: string,
     params: BuildAssemblyDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BuildAssemblyDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<BuildAssemblyDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/build-assemblies/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/build-assemblies/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

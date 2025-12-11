@@ -16,12 +16,12 @@ export class Vendors extends APIResource {
    * });
    * ```
    */
-  create(params: VendorCreateParams, options?: Core.RequestOptions): Core.APIPromise<Vendor> {
+  create(params: VendorCreateParams, options?: RequestOptions): APIPromise<Vendor> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/vendors', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -40,11 +40,11 @@ export class Vendors extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, params: VendorRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Vendor> {
+  retrieve(id: string, params: VendorRetrieveParams, options?: RequestOptions): APIPromise<Vendor> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/vendors/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/vendors/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -62,12 +62,12 @@ export class Vendors extends APIResource {
    * );
    * ```
    */
-  update(id: string, params: VendorUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Vendor> {
+  update(id: string, params: VendorUpdateParams, options?: RequestOptions): APIPromise<Vendor> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/vendors/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/vendors/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -85,12 +85,12 @@ export class Vendors extends APIResource {
    * }
    * ```
    */
-  list(params: VendorListParams, options?: Core.RequestOptions): Core.PagePromise<VendorsCursorPage, Vendor> {
+  list(params: VendorListParams, options?: RequestOptions): PagePromise<VendorsCursorPage, Vendor> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/vendors', VendorsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/vendors', CursorPage<Vendor>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

@@ -17,11 +17,11 @@ export class CompanyResource extends APIResource {
    * });
    * ```
    */
-  retrieve(params: CompanyRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Company> {
+  retrieve(params: CompanyRetrieveParams, options?: RequestOptions): APIPromise<Company> {
     const { conductorEndUserId } = params;
     return this._client.get('/quickbooks-desktop/company', {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

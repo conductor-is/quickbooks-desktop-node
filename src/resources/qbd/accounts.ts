@@ -18,12 +18,12 @@ export class Accounts extends APIResource {
    * });
    * ```
    */
-  create(params: AccountCreateParams, options?: Core.RequestOptions): Core.APIPromise<Account> {
+  create(params: AccountCreateParams, options?: RequestOptions): APIPromise<Account> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/accounts', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -42,15 +42,11 @@ export class Accounts extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: AccountRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Account> {
+  retrieve(id: string, params: AccountRetrieveParams, options?: RequestOptions): APIPromise<Account> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/accounts/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/accounts/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -70,12 +66,12 @@ export class Accounts extends APIResource {
    * );
    * ```
    */
-  update(id: string, params: AccountUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Account> {
+  update(id: string, params: AccountUpdateParams, options?: RequestOptions): APIPromise<Account> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/accounts/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/accounts/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -91,12 +87,12 @@ export class Accounts extends APIResource {
    * });
    * ```
    */
-  list(params: AccountListParams, options?: Core.RequestOptions): Core.APIPromise<AccountListResponse> {
+  list(params: AccountListParams, options?: RequestOptions): APIPromise<AccountListResponse> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/accounts', {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

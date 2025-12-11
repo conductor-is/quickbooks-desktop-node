@@ -17,12 +17,12 @@ export class PurchaseOrders extends APIResource {
    *   });
    * ```
    */
-  create(params: PurchaseOrderCreateParams, options?: Core.RequestOptions): Core.APIPromise<PurchaseOrder> {
+  create(params: PurchaseOrderCreateParams, options?: RequestOptions): APIPromise<PurchaseOrder> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/purchase-orders', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -47,12 +47,12 @@ export class PurchaseOrders extends APIResource {
   retrieve(
     id: string,
     params: PurchaseOrderRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PurchaseOrder> {
+    options?: RequestOptions,
+  ): APIPromise<PurchaseOrder> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/purchase-orders/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/purchase-orders/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -71,16 +71,12 @@ export class PurchaseOrders extends APIResource {
    *   );
    * ```
    */
-  update(
-    id: string,
-    params: PurchaseOrderUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PurchaseOrder> {
+  update(id: string, params: PurchaseOrderUpdateParams, options?: RequestOptions): APIPromise<PurchaseOrder> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/purchase-orders/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/purchase-orders/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -100,13 +96,13 @@ export class PurchaseOrders extends APIResource {
    */
   list(
     params: PurchaseOrderListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PurchaseOrdersCursorPage, PurchaseOrder> {
+    options?: RequestOptions,
+  ): PagePromise<PurchaseOrdersCursorPage, PurchaseOrder> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/purchase-orders', PurchaseOrdersCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/purchase-orders', CursorPage<PurchaseOrder>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -126,12 +122,12 @@ export class PurchaseOrders extends APIResource {
   delete(
     id: string,
     params: PurchaseOrderDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PurchaseOrderDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<PurchaseOrderDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/purchase-orders/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/purchase-orders/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

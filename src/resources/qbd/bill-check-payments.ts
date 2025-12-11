@@ -24,15 +24,12 @@ export class BillCheckPayments extends APIResource {
    *   });
    * ```
    */
-  create(
-    params: BillCheckPaymentCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BillCheckPayment> {
+  create(params: BillCheckPaymentCreateParams, options?: RequestOptions): APIPromise<BillCheckPayment> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/bill-check-payments', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -56,12 +53,12 @@ export class BillCheckPayments extends APIResource {
   retrieve(
     id: string,
     params: BillCheckPaymentRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BillCheckPayment> {
+    options?: RequestOptions,
+  ): APIPromise<BillCheckPayment> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/bill-check-payments/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/bill-check-payments/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -86,13 +83,13 @@ export class BillCheckPayments extends APIResource {
   update(
     id: string,
     params: BillCheckPaymentUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BillCheckPayment> {
+    options?: RequestOptions,
+  ): APIPromise<BillCheckPayment> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/bill-check-payments/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/bill-check-payments/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -112,13 +109,13 @@ export class BillCheckPayments extends APIResource {
    */
   list(
     params: BillCheckPaymentListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BillCheckPaymentsCursorPage, BillCheckPayment> {
+    options?: RequestOptions,
+  ): PagePromise<BillCheckPaymentsCursorPage, BillCheckPayment> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/bill-check-payments', BillCheckPaymentsCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/bill-check-payments', CursorPage<BillCheckPayment>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -139,12 +136,12 @@ export class BillCheckPayments extends APIResource {
   delete(
     id: string,
     params: BillCheckPaymentDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BillCheckPaymentDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<BillCheckPaymentDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/bill-check-payments/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/bill-check-payments/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }

@@ -17,12 +17,12 @@ export class CreditMemos extends APIResource {
    * });
    * ```
    */
-  create(params: CreditMemoCreateParams, options?: Core.RequestOptions): Core.APIPromise<CreditMemo> {
+  create(params: CreditMemoCreateParams, options?: RequestOptions): APIPromise<CreditMemo> {
     const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/credit-memos', {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -43,15 +43,11 @@ export class CreditMemos extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    params: CreditMemoRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditMemo> {
+  retrieve(id: string, params: CreditMemoRetrieveParams, options?: RequestOptions): APIPromise<CreditMemo> {
     const { conductorEndUserId } = params;
-    return this._client.get(`/quickbooks-desktop/credit-memos/${id}`, {
+    return this._client.get(path`/quickbooks-desktop/credit-memos/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -69,16 +65,12 @@ export class CreditMemos extends APIResource {
    * );
    * ```
    */
-  update(
-    id: string,
-    params: CreditMemoUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditMemo> {
+  update(id: string, params: CreditMemoUpdateParams, options?: RequestOptions): APIPromise<CreditMemo> {
     const { conductorEndUserId, ...body } = params;
-    return this._client.post(`/quickbooks-desktop/credit-memos/${id}`, {
+    return this._client.post(path`/quickbooks-desktop/credit-memos/${id}`, {
       body,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -98,13 +90,13 @@ export class CreditMemos extends APIResource {
    */
   list(
     params: CreditMemoListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<CreditMemosCursorPage, CreditMemo> {
+    options?: RequestOptions,
+  ): PagePromise<CreditMemosCursorPage, CreditMemo> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/credit-memos', CreditMemosCursorPage, {
+    return this._client.getAPIList('/quickbooks-desktop/credit-memos', CursorPage<CreditMemo>, {
       query,
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -123,12 +115,12 @@ export class CreditMemos extends APIResource {
   delete(
     id: string,
     params: CreditMemoDeleteParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditMemoDeleteResponse> {
+    options?: RequestOptions,
+  ): APIPromise<CreditMemoDeleteResponse> {
     const { conductorEndUserId } = params;
-    return this._client.delete(`/quickbooks-desktop/credit-memos/${id}`, {
+    return this._client.delete(path`/quickbooks-desktop/credit-memos/${id}`, {
       ...options,
-      headers: { 'Conductor-End-User-Id': conductorEndUserId, ...options?.headers },
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
