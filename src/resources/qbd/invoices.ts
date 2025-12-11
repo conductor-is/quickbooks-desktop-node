@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Invoices extends APIResource {
   /**
@@ -123,7 +126,7 @@ export class Invoices extends APIResource {
   }
 }
 
-export class InvoicesCursorPage extends CursorPage<Invoice> {}
+export type InvoicesCursorPage = CursorPage<Invoice>;
 
 export interface Invoice {
   /**
@@ -3450,13 +3453,11 @@ export interface InvoiceDeleteParams {
   conductorEndUserId: string;
 }
 
-Invoices.InvoicesCursorPage = InvoicesCursorPage;
-
 export declare namespace Invoices {
   export {
     type Invoice as Invoice,
     type InvoiceDeleteResponse as InvoiceDeleteResponse,
-    InvoicesCursorPage as InvoicesCursorPage,
+    type InvoicesCursorPage as InvoicesCursorPage,
     type InvoiceCreateParams as InvoiceCreateParams,
     type InvoiceRetrieveParams as InvoiceRetrieveParams,
     type InvoiceUpdateParams as InvoiceUpdateParams,

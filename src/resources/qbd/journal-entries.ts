@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class JournalEntries extends APIResource {
   /**
@@ -135,7 +138,7 @@ export class JournalEntries extends APIResource {
   }
 }
 
-export class JournalEntriesCursorPage extends CursorPage<JournalEntry> {}
+export type JournalEntriesCursorPage = CursorPage<JournalEntry>;
 
 export interface JournalEntry {
   /**
@@ -1117,13 +1120,11 @@ export interface JournalEntryDeleteParams {
   conductorEndUserId: string;
 }
 
-JournalEntries.JournalEntriesCursorPage = JournalEntriesCursorPage;
-
 export declare namespace JournalEntries {
   export {
     type JournalEntry as JournalEntry,
     type JournalEntryDeleteResponse as JournalEntryDeleteResponse,
-    JournalEntriesCursorPage as JournalEntriesCursorPage,
+    type JournalEntriesCursorPage as JournalEntriesCursorPage,
     type JournalEntryCreateParams as JournalEntryCreateParams,
     type JournalEntryRetrieveParams as JournalEntryRetrieveParams,
     type JournalEntryUpdateParams as JournalEntryUpdateParams,

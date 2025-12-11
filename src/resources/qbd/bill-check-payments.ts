@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class BillCheckPayments extends APIResource {
   /**
@@ -146,7 +149,7 @@ export class BillCheckPayments extends APIResource {
   }
 }
 
-export class BillCheckPaymentsCursorPage extends CursorPage<BillCheckPayment> {}
+export type BillCheckPaymentsCursorPage = CursorPage<BillCheckPayment>;
 
 export interface BillCheckPayment {
   /**
@@ -1160,13 +1163,11 @@ export interface BillCheckPaymentDeleteParams {
   conductorEndUserId: string;
 }
 
-BillCheckPayments.BillCheckPaymentsCursorPage = BillCheckPaymentsCursorPage;
-
 export declare namespace BillCheckPayments {
   export {
     type BillCheckPayment as BillCheckPayment,
     type BillCheckPaymentDeleteResponse as BillCheckPaymentDeleteResponse,
-    BillCheckPaymentsCursorPage as BillCheckPaymentsCursorPage,
+    type BillCheckPaymentsCursorPage as BillCheckPaymentsCursorPage,
     type BillCheckPaymentCreateParams as BillCheckPaymentCreateParams,
     type BillCheckPaymentRetrieveParams as BillCheckPaymentRetrieveParams,
     type BillCheckPaymentUpdateParams as BillCheckPaymentUpdateParams,

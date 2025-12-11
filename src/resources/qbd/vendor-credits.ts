@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class VendorCredits extends APIResource {
   /**
@@ -135,7 +138,7 @@ export class VendorCredits extends APIResource {
   }
 }
 
-export class VendorCreditsCursorPage extends CursorPage<VendorCredit> {}
+export type VendorCreditsCursorPage = CursorPage<VendorCredit>;
 
 export interface VendorCredit {
   /**
@@ -2817,13 +2820,11 @@ export interface VendorCreditDeleteParams {
   conductorEndUserId: string;
 }
 
-VendorCredits.VendorCreditsCursorPage = VendorCreditsCursorPage;
-
 export declare namespace VendorCredits {
   export {
     type VendorCredit as VendorCredit,
     type VendorCreditDeleteResponse as VendorCreditDeleteResponse,
-    VendorCreditsCursorPage as VendorCreditsCursorPage,
+    type VendorCreditsCursorPage as VendorCreditsCursorPage,
     type VendorCreditCreateParams as VendorCreditCreateParams,
     type VendorCreditRetrieveParams as VendorCreditRetrieveParams,
     type VendorCreditUpdateParams as VendorCreditUpdateParams,

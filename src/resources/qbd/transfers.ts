@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Transfers extends APIResource {
   /**
@@ -98,7 +101,7 @@ export class Transfers extends APIResource {
   }
 }
 
-export class TransfersCursorPage extends CursorPage<Transfer> {}
+export type TransfersCursorPage = CursorPage<Transfer>;
 
 export interface Transfer {
   /**
@@ -404,12 +407,10 @@ export interface TransferListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-Transfers.TransfersCursorPage = TransfersCursorPage;
-
 export declare namespace Transfers {
   export {
     type Transfer as Transfer,
-    TransfersCursorPage as TransfersCursorPage,
+    type TransfersCursorPage as TransfersCursorPage,
     type TransferCreateParams as TransferCreateParams,
     type TransferRetrieveParams as TransferRetrieveParams,
     type TransferUpdateParams as TransferUpdateParams,

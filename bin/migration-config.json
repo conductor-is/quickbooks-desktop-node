@@ -1,0 +1,44 @@
+{
+  "pkg": "conductor-node",
+  "githubRepo": "https://github.com/conductor-is/quickbooks-desktop-node",
+  "clientClass": "Conductor",
+  "methods": [
+    {
+      "base": "endUsers",
+      "name": "passthrough",
+      "params": [
+        {
+          "type": "param",
+          "key": "integrationSlug",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "integrationSlug",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ]
+    }
+  ]
+}

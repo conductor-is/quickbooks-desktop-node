@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class InventoryAssemblyItems extends APIResource {
   /**
@@ -122,7 +125,7 @@ export class InventoryAssemblyItems extends APIResource {
   }
 }
 
-export class InventoryAssemblyItemsCursorPage extends CursorPage<InventoryAssemblyItem> {}
+export type InventoryAssemblyItemsCursorPage = CursorPage<InventoryAssemblyItem>;
 
 export interface InventoryAssemblyItem {
   /**
@@ -1177,12 +1180,10 @@ export interface InventoryAssemblyItemListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-InventoryAssemblyItems.InventoryAssemblyItemsCursorPage = InventoryAssemblyItemsCursorPage;
-
 export declare namespace InventoryAssemblyItems {
   export {
     type InventoryAssemblyItem as InventoryAssemblyItem,
-    InventoryAssemblyItemsCursorPage as InventoryAssemblyItemsCursorPage,
+    type InventoryAssemblyItemsCursorPage as InventoryAssemblyItemsCursorPage,
     type InventoryAssemblyItemCreateParams as InventoryAssemblyItemCreateParams,
     type InventoryAssemblyItemRetrieveParams as InventoryAssemblyItemRetrieveParams,
     type InventoryAssemblyItemUpdateParams as InventoryAssemblyItemUpdateParams,

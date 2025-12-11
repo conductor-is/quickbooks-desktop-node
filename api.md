@@ -23,7 +23,7 @@ Methods:
 - <code title="get /end-users/{id}">client.endUsers.<a href="./src/resources/end-users.ts">retrieve</a>(id) -> EndUser</code>
 - <code title="get /end-users">client.endUsers.<a href="./src/resources/end-users.ts">list</a>() -> EndUserListResponse</code>
 - <code title="delete /end-users/{id}">client.endUsers.<a href="./src/resources/end-users.ts">delete</a>(id) -> EndUserDeleteResponse</code>
-- <code title="post /end-users/{id}/passthrough/{integrationSlug}">client.endUsers.<a href="./src/resources/end-users.ts">passthrough</a>(id, integrationSlug, { ...params }) -> EndUserPassthroughResponse</code>
+- <code title="post /end-users/{id}/passthrough/{integrationSlug}">client.endUsers.<a href="./src/resources/end-users.ts">passthrough</a>(integrationSlug, { ...params }) -> EndUserPassthroughResponse</code>
 
 # Qbd
 

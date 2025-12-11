@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Customers extends APIResource {
   /**
@@ -95,7 +98,7 @@ export class Customers extends APIResource {
   }
 }
 
-export class CustomersCursorPage extends CursorPage<Customer> {}
+export type CustomersCursorPage = CursorPage<Customer>;
 
 export interface Customer {
   /**
@@ -2558,12 +2561,10 @@ export interface CustomerListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-Customers.CustomersCursorPage = CustomersCursorPage;
-
 export declare namespace Customers {
   export {
     type Customer as Customer,
-    CustomersCursorPage as CustomersCursorPage,
+    type CustomersCursorPage as CustomersCursorPage,
     type CustomerCreateParams as CustomerCreateParams,
     type CustomerRetrieveParams as CustomerRetrieveParams,
     type CustomerUpdateParams as CustomerUpdateParams,

@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Bills extends APIResource {
   /**
@@ -123,7 +126,7 @@ export class Bills extends APIResource {
   }
 }
 
-export class BillsCursorPage extends CursorPage<Bill> {}
+export type BillsCursorPage = CursorPage<Bill>;
 
 export interface Bill {
   /**
@@ -3108,13 +3111,11 @@ export interface BillDeleteParams {
   conductorEndUserId: string;
 }
 
-Bills.BillsCursorPage = BillsCursorPage;
-
 export declare namespace Bills {
   export {
     type Bill as Bill,
     type BillDeleteResponse as BillDeleteResponse,
-    BillsCursorPage as BillsCursorPage,
+    type BillsCursorPage as BillsCursorPage,
     type BillCreateParams as BillCreateParams,
     type BillRetrieveParams as BillRetrieveParams,
     type BillUpdateParams as BillUpdateParams,

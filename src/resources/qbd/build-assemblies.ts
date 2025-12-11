@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class BuildAssemblies extends APIResource {
   /**
@@ -135,7 +138,7 @@ export class BuildAssemblies extends APIResource {
   }
 }
 
-export class BuildAssembliesCursorPage extends CursorPage<BuildAssembly> {}
+export type BuildAssembliesCursorPage = CursorPage<BuildAssembly>;
 
 export interface BuildAssembly {
   /**
@@ -851,13 +854,11 @@ export interface BuildAssemblyDeleteParams {
   conductorEndUserId: string;
 }
 
-BuildAssemblies.BuildAssembliesCursorPage = BuildAssembliesCursorPage;
-
 export declare namespace BuildAssemblies {
   export {
     type BuildAssembly as BuildAssembly,
     type BuildAssemblyDeleteResponse as BuildAssemblyDeleteResponse,
-    BuildAssembliesCursorPage as BuildAssembliesCursorPage,
+    type BuildAssembliesCursorPage as BuildAssembliesCursorPage,
     type BuildAssemblyCreateParams as BuildAssemblyCreateParams,
     type BuildAssemblyRetrieveParams as BuildAssemblyRetrieveParams,
     type BuildAssemblyUpdateParams as BuildAssemblyUpdateParams,

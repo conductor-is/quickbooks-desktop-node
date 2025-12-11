@@ -16,7 +16,7 @@ jobs:
   lint:
     timeout-minutes: 10
     name: lint
-    runs-on: ${{ github.repository == 'stainless-sdks/conductor-node' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'stainless-sdks/conductor-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
 
       - name: Bootstrap
         run: ./scripts/bootstrap
@@ -35,7 +35,7 @@ jobs:
   build:
     timeout-minutes: 5
     name: build
-    runs-on: ${{ github.repository == 'stainless-sdks/conductor-node' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'stainless-sdks/conductor-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     permissions:
       contents: read
@@ -46,7 +46,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Bootstrap
         run: ./scripts/bootstrap
@@ -55,14 +55,14 @@ jobs:
         run: ./scripts/build
 
       - name: Get GitHub OIDC Token
-        if: github.repository == 'stainless-sdks/conductor-node'
+        if: github.repository == 'stainless-sdks/conductor-typescript'
         id: github-oidc
         uses: actions/github-script@v6
         with:
           script: core.setOutput('github_token', await core.getIDToken());
 
       - name: Upload tarball
-        if: github.repository == 'stainless-sdks/conductor-node'
+        if: github.repository == 'stainless-sdks/conductor-typescript'
         env:
           URL: https://pkg.stainless.com/s
           AUTH: ${{ steps.github-oidc.outputs.github_token }}
@@ -70,7 +70,7 @@ jobs:
         run: ./scripts/utils/upload-artifact.sh
 
       - name: Upload MCP Server tarball
-        if: github.repository == 'stainless-sdks/conductor-node'
+        if: github.repository == 'stainless-sdks/conductor-typescript'
         env:
           URL: https://pkg.stainless.com/s?subpackage=mcp-server
           AUTH: ${{ steps.github-oidc.outputs.github_token }}
@@ -80,7 +80,7 @@ jobs:
   test:
     timeout-minutes: 10
     name: test
-    runs-on: ${{ github.repository == 'stainless-sdks/conductor-node' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'stainless-sdks/conductor-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
       - uses: actions/checkout@v4

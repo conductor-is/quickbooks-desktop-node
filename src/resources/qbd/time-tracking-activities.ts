@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class TimeTrackingActivities extends APIResource {
   /**
@@ -147,7 +150,7 @@ export class TimeTrackingActivities extends APIResource {
   }
 }
 
-export class TimeTrackingActivitiesCursorPage extends CursorPage<TimeTrackingActivity> {}
+export type TimeTrackingActivitiesCursorPage = CursorPage<TimeTrackingActivity>;
 
 export interface TimeTrackingActivity {
   /**
@@ -683,13 +686,11 @@ export interface TimeTrackingActivityDeleteParams {
   conductorEndUserId: string;
 }
 
-TimeTrackingActivities.TimeTrackingActivitiesCursorPage = TimeTrackingActivitiesCursorPage;
-
 export declare namespace TimeTrackingActivities {
   export {
     type TimeTrackingActivity as TimeTrackingActivity,
     type TimeTrackingActivityDeleteResponse as TimeTrackingActivityDeleteResponse,
-    TimeTrackingActivitiesCursorPage as TimeTrackingActivitiesCursorPage,
+    type TimeTrackingActivitiesCursorPage as TimeTrackingActivitiesCursorPage,
     type TimeTrackingActivityCreateParams as TimeTrackingActivityCreateParams,
     type TimeTrackingActivityRetrieveParams as TimeTrackingActivityRetrieveParams,
     type TimeTrackingActivityUpdateParams as TimeTrackingActivityUpdateParams,

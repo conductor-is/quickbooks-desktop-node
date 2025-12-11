@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Conductor from 'conductor-node';
-import { Response } from 'node-fetch';
 
 const conductor = new Conductor({
   apiKey: 'sk_conductor_...',

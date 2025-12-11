@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class CreditCardRefunds extends APIResource {
   /**
@@ -117,7 +120,7 @@ export class CreditCardRefunds extends APIResource {
   }
 }
 
-export class CreditCardRefundsCursorPage extends CursorPage<CreditCardRefund> {}
+export type CreditCardRefundsCursorPage = CursorPage<CreditCardRefund>;
 
 export interface CreditCardRefund {
   /**
@@ -1239,13 +1242,11 @@ export interface CreditCardRefundDeleteParams {
   conductorEndUserId: string;
 }
 
-CreditCardRefunds.CreditCardRefundsCursorPage = CreditCardRefundsCursorPage;
-
 export declare namespace CreditCardRefunds {
   export {
     type CreditCardRefund as CreditCardRefund,
     type CreditCardRefundDeleteResponse as CreditCardRefundDeleteResponse,
-    CreditCardRefundsCursorPage as CreditCardRefundsCursorPage,
+    type CreditCardRefundsCursorPage as CreditCardRefundsCursorPage,
     type CreditCardRefundCreateParams as CreditCardRefundCreateParams,
     type CreditCardRefundRetrieveParams as CreditCardRefundRetrieveParams,
     type CreditCardRefundListParams as CreditCardRefundListParams,

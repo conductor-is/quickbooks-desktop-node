@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class BillCreditCardPayments extends APIResource {
   /**
@@ -122,7 +125,7 @@ export class BillCreditCardPayments extends APIResource {
   }
 }
 
-export class BillCreditCardPaymentsCursorPage extends CursorPage<BillCreditCardPayment> {}
+export type BillCreditCardPaymentsCursorPage = CursorPage<BillCreditCardPayment>;
 
 export interface BillCreditCardPayment {
   /**
@@ -918,13 +921,11 @@ export interface BillCreditCardPaymentDeleteParams {
   conductorEndUserId: string;
 }
 
-BillCreditCardPayments.BillCreditCardPaymentsCursorPage = BillCreditCardPaymentsCursorPage;
-
 export declare namespace BillCreditCardPayments {
   export {
     type BillCreditCardPayment as BillCreditCardPayment,
     type BillCreditCardPaymentDeleteResponse as BillCreditCardPaymentDeleteResponse,
-    BillCreditCardPaymentsCursorPage as BillCreditCardPaymentsCursorPage,
+    type BillCreditCardPaymentsCursorPage as BillCreditCardPaymentsCursorPage,
     type BillCreditCardPaymentCreateParams as BillCreditCardPaymentCreateParams,
     type BillCreditCardPaymentRetrieveParams as BillCreditCardPaymentRetrieveParams,
     type BillCreditCardPaymentListParams as BillCreditCardPaymentListParams,

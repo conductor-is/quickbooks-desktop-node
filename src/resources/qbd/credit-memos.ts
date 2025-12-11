@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class CreditMemos extends APIResource {
   /**
@@ -125,7 +128,7 @@ export class CreditMemos extends APIResource {
   }
 }
 
-export class CreditMemosCursorPage extends CursorPage<CreditMemo> {}
+export type CreditMemosCursorPage = CursorPage<CreditMemo>;
 
 export interface CreditMemo {
   /**
@@ -3208,13 +3211,11 @@ export interface CreditMemoDeleteParams {
   conductorEndUserId: string;
 }
 
-CreditMemos.CreditMemosCursorPage = CreditMemosCursorPage;
-
 export declare namespace CreditMemos {
   export {
     type CreditMemo as CreditMemo,
     type CreditMemoDeleteResponse as CreditMemoDeleteResponse,
-    CreditMemosCursorPage as CreditMemosCursorPage,
+    type CreditMemosCursorPage as CreditMemosCursorPage,
     type CreditMemoCreateParams as CreditMemoCreateParams,
     type CreditMemoRetrieveParams as CreditMemoRetrieveParams,
     type CreditMemoUpdateParams as CreditMemoUpdateParams,
