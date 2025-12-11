@@ -1,5 +1,25 @@
 # Changelog
 
+## 13.0.0 (2025-12-11)
+
+Full Changelog: [v12.43.0...v13.0.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.43.0...v13.0.0)
+
+### Features
+
+* **api:** api update ([236b084](https://github.com/conductor-is/quickbooks-desktop-node/commit/236b0848a9f7fc8b7c5e044496d732768155fa80))
+* **api:** api update ([3a2839a](https://github.com/conductor-is/quickbooks-desktop-node/commit/3a2839a83087ef3cca4f66d3bd4635b01e7deb9b))
+* **client:** revert most aspects of client to generated code ([0820fd2](https://github.com/conductor-is/quickbooks-desktop-node/commit/0820fd21d1203d7c083de72edc679c65bdae3e45))
+
+
+### Bug Fixes
+
+* **mcp:** add client instantiation options to code tool ([2aecab2](https://github.com/conductor-is/quickbooks-desktop-node/commit/2aecab2706699d3d8e0ecf690f4f53cd7d4ab976))
+
+
+### Chores
+
+* **mcp:** update lockfile ([5a9942a](https://github.com/conductor-is/quickbooks-desktop-node/commit/5a9942a6ed8811b2b318b14311844772df1674df))
+
 ## 12.43.0 (2025-12-08)
 
 Full Changelog: [v12.42.0...v12.43.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v12.42.0...v12.43.0)
