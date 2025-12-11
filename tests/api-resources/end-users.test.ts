@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Conductor from 'conductor-node';
-import { Response } from 'node-fetch';
 
 const conductor = new Conductor({
   apiKey: 'sk_conductor_...',
@@ -43,13 +42,6 @@ describe('resource endUsers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      conductor.endUsers.retrieve('end_usr_1234567abcdefg', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Conductor.NotFoundError);
-  });
-
   test('list', async () => {
     const responsePromise = conductor.endUsers.list();
     const rawResponse = await responsePromise.asResponse();
@@ -59,13 +51,6 @@ describe('resource endUsers', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(conductor.endUsers.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Conductor.NotFoundError,
-    );
   });
 
   test('delete', async () => {
@@ -79,16 +64,10 @@ describe('resource endUsers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      conductor.endUsers.delete('end_usr_1234567abcdefg', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Conductor.NotFoundError);
-  });
-
   test('passthrough: only required params', async () => {
-    const responsePromise = conductor.endUsers.passthrough('end_usr_1234567abcdefg', 'quickbooks_desktop', {
-      foo: 'bar',
+    const responsePromise = conductor.endUsers.passthrough('quickbooks_desktop', {
+      id: 'end_usr_1234567abcdefg',
+      qbd_payload: { foo: 'bar' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -100,8 +79,9 @@ describe('resource endUsers', () => {
   });
 
   test('passthrough: required and optional params', async () => {
-    const response = await conductor.endUsers.passthrough('end_usr_1234567abcdefg', 'quickbooks_desktop', {
-      foo: 'bar',
+    const response = await conductor.endUsers.passthrough('quickbooks_desktop', {
+      id: 'end_usr_1234567abcdefg',
+      qbd_payload: { foo: 'bar' },
     });
   });
 });

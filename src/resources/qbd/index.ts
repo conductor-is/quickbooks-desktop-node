@@ -16,7 +16,6 @@ export {
   type AccountListParams,
 } from './accounts';
 export {
-  BillCheckPaymentsCursorPage,
   BillCheckPayments,
   type BillCheckPayment,
   type BillCheckPaymentDeleteResponse,
@@ -25,9 +24,9 @@ export {
   type BillCheckPaymentUpdateParams,
   type BillCheckPaymentListParams,
   type BillCheckPaymentDeleteParams,
+  type BillCheckPaymentsCursorPage,
 } from './bill-check-payments';
 export {
-  BillCreditCardPaymentsCursorPage,
   BillCreditCardPayments,
   type BillCreditCardPayment,
   type BillCreditCardPaymentDeleteResponse,
@@ -35,9 +34,9 @@ export {
   type BillCreditCardPaymentRetrieveParams,
   type BillCreditCardPaymentListParams,
   type BillCreditCardPaymentDeleteParams,
+  type BillCreditCardPaymentsCursorPage,
 } from './bill-credit-card-payments';
 export {
-  BillsCursorPage,
   Bills,
   type Bill,
   type BillDeleteResponse,
@@ -46,9 +45,9 @@ export {
   type BillUpdateParams,
   type BillListParams,
   type BillDeleteParams,
+  type BillsCursorPage,
 } from './bills';
 export {
-  BuildAssembliesCursorPage,
   BuildAssemblies,
   type BuildAssembly,
   type BuildAssemblyDeleteResponse,
@@ -57,9 +56,9 @@ export {
   type BuildAssemblyUpdateParams,
   type BuildAssemblyListParams,
   type BuildAssemblyDeleteParams,
+  type BuildAssembliesCursorPage,
 } from './build-assemblies';
 export {
-  ChecksCursorPage,
   Checks,
   type Check,
   type CheckDeleteResponse,
@@ -68,6 +67,7 @@ export {
   type CheckUpdateParams,
   type CheckListParams,
   type CheckDeleteParams,
+  type ChecksCursorPage,
 } from './checks';
 export {
   Classes,
@@ -80,7 +80,6 @@ export {
 } from './classes';
 export { CompanyResource, type Company, type CompanyRetrieveParams } from './company';
 export {
-  CreditCardChargesCursorPage,
   CreditCardCharges,
   type CreditCardCharge,
   type CreditCardChargeDeleteResponse,
@@ -89,9 +88,9 @@ export {
   type CreditCardChargeUpdateParams,
   type CreditCardChargeListParams,
   type CreditCardChargeDeleteParams,
+  type CreditCardChargesCursorPage,
 } from './credit-card-charges';
 export {
-  CreditCardCreditsCursorPage,
   CreditCardCredits,
   type CreditCardCredit,
   type CreditCardCreditDeleteResponse,
@@ -100,9 +99,9 @@ export {
   type CreditCardCreditUpdateParams,
   type CreditCardCreditListParams,
   type CreditCardCreditDeleteParams,
+  type CreditCardCreditsCursorPage,
 } from './credit-card-credits';
 export {
-  CreditCardRefundsCursorPage,
   CreditCardRefunds,
   type CreditCardRefund,
   type CreditCardRefundDeleteResponse,
@@ -110,9 +109,9 @@ export {
   type CreditCardRefundRetrieveParams,
   type CreditCardRefundListParams,
   type CreditCardRefundDeleteParams,
+  type CreditCardRefundsCursorPage,
 } from './credit-card-refunds';
 export {
-  CreditMemosCursorPage,
   CreditMemos,
   type CreditMemo,
   type CreditMemoDeleteResponse,
@@ -121,6 +120,7 @@ export {
   type CreditMemoUpdateParams,
   type CreditMemoListParams,
   type CreditMemoDeleteParams,
+  type CreditMemosCursorPage,
 } from './credit-memos';
 export {
   Currencies,
@@ -140,13 +140,13 @@ export {
   type CustomerTypeListParams,
 } from './customer-types';
 export {
-  CustomersCursorPage,
   Customers,
   type Customer,
   type CustomerCreateParams,
   type CustomerRetrieveParams,
   type CustomerUpdateParams,
   type CustomerListParams,
+  type CustomersCursorPage,
 } from './customers';
 export {
   DateDrivenTerms,
@@ -169,13 +169,13 @@ export {
   type DeletedTransactionListParams,
 } from './deleted-transactions';
 export {
-  DiscountItemsCursorPage,
   DiscountItems,
   type DiscountItem,
   type DiscountItemCreateParams,
   type DiscountItemRetrieveParams,
   type DiscountItemUpdateParams,
   type DiscountItemListParams,
+  type DiscountItemsCursorPage,
 } from './discount-items';
 export {
   Employees,
@@ -187,7 +187,6 @@ export {
   type EmployeeListParams,
 } from './employees';
 export {
-  EstimatesCursorPage,
   Estimates,
   type Estimate,
   type EstimateDeleteResponse,
@@ -196,6 +195,7 @@ export {
   type EstimateUpdateParams,
   type EstimateListParams,
   type EstimateDeleteParams,
+  type EstimatesCursorPage,
 } from './estimates';
 export {
   InventoryAdjustments,
@@ -209,22 +209,22 @@ export {
   type InventoryAdjustmentDeleteParams,
 } from './inventory-adjustments';
 export {
-  InventoryAssemblyItemsCursorPage,
   InventoryAssemblyItems,
   type InventoryAssemblyItem,
   type InventoryAssemblyItemCreateParams,
   type InventoryAssemblyItemRetrieveParams,
   type InventoryAssemblyItemUpdateParams,
   type InventoryAssemblyItemListParams,
+  type InventoryAssemblyItemsCursorPage,
 } from './inventory-assembly-items';
 export {
-  InventoryItemsCursorPage,
   InventoryItems,
   type InventoryItem,
   type InventoryItemCreateParams,
   type InventoryItemRetrieveParams,
   type InventoryItemUpdateParams,
   type InventoryItemListParams,
+  type InventoryItemsCursorPage,
 } from './inventory-items';
 export {
   InventorySites,
@@ -236,7 +236,6 @@ export {
   type InventorySiteListParams,
 } from './inventory-sites';
 export {
-  InvoicesCursorPage,
   Invoices,
   type Invoice,
   type InvoiceDeleteResponse,
@@ -245,18 +244,18 @@ export {
   type InvoiceUpdateParams,
   type InvoiceListParams,
   type InvoiceDeleteParams,
+  type InvoicesCursorPage,
 } from './invoices';
 export {
-  ItemGroupsCursorPage,
   ItemGroups,
   type ItemGroup,
   type ItemGroupCreateParams,
   type ItemGroupRetrieveParams,
   type ItemGroupUpdateParams,
   type ItemGroupListParams,
+  type ItemGroupsCursorPage,
 } from './item-groups';
 export {
-  ItemReceiptsCursorPage,
   ItemReceipts,
   type ItemReceipt,
   type ItemReceiptDeleteResponse,
@@ -265,16 +264,16 @@ export {
   type ItemReceiptUpdateParams,
   type ItemReceiptListParams,
   type ItemReceiptDeleteParams,
+  type ItemReceiptsCursorPage,
 } from './item-receipts';
 export {
-  ItemSitesCursorPage,
   ItemSites,
   type ItemSite,
   type ItemSiteRetrieveParams,
   type ItemSiteListParams,
+  type ItemSitesCursorPage,
 } from './item-sites';
 export {
-  JournalEntriesCursorPage,
   JournalEntries,
   type JournalEntry,
   type JournalEntryDeleteResponse,
@@ -283,24 +282,25 @@ export {
   type JournalEntryUpdateParams,
   type JournalEntryListParams,
   type JournalEntryDeleteParams,
+  type JournalEntriesCursorPage,
 } from './journal-entries';
 export {
-  NonInventoryItemsCursorPage,
   NonInventoryItems,
   type NonInventoryItem,
   type NonInventoryItemCreateParams,
   type NonInventoryItemRetrieveParams,
   type NonInventoryItemUpdateParams,
   type NonInventoryItemListParams,
+  type NonInventoryItemsCursorPage,
 } from './non-inventory-items';
 export {
-  OtherChargeItemsCursorPage,
   OtherChargeItems,
   type OtherChargeItem,
   type OtherChargeItemCreateParams,
   type OtherChargeItemRetrieveParams,
   type OtherChargeItemUpdateParams,
   type OtherChargeItemListParams,
+  type OtherChargeItemsCursorPage,
 } from './other-charge-items';
 export {
   OtherNames,
@@ -320,12 +320,12 @@ export {
   type PaymentMethodListParams,
 } from './payment-methods';
 export {
-  PayrollWageItemsCursorPage,
   PayrollWageItems,
   type PayrollWageItem,
   type PayrollWageItemCreateParams,
   type PayrollWageItemRetrieveParams,
   type PayrollWageItemListParams,
+  type PayrollWageItemsCursorPage,
 } from './payroll-wage-items';
 export { Preferences, type PreferenceRetrieveParams } from './preferences';
 export {
@@ -338,7 +338,6 @@ export {
   type PriceLevelListParams,
 } from './price-levels';
 export {
-  PurchaseOrdersCursorPage,
   PurchaseOrders,
   type PurchaseOrder,
   type PurchaseOrderDeleteResponse,
@@ -347,10 +346,10 @@ export {
   type PurchaseOrderUpdateParams,
   type PurchaseOrderListParams,
   type PurchaseOrderDeleteParams,
+  type PurchaseOrdersCursorPage,
 } from './purchase-orders';
 export { Qbd, type QbdHealthCheckResponse, type QbdHealthCheckParams } from './qbd';
 export {
-  ReceivePaymentsCursorPage,
   ReceivePayments,
   type ReceivePayment,
   type ReceivePaymentDeleteResponse,
@@ -359,9 +358,9 @@ export {
   type ReceivePaymentUpdateParams,
   type ReceivePaymentListParams,
   type ReceivePaymentDeleteParams,
+  type ReceivePaymentsCursorPage,
 } from './receive-payments';
 export {
-  SalesOrdersCursorPage,
   SalesOrders,
   type SalesOrder,
   type SalesOrderDeleteResponse,
@@ -370,9 +369,9 @@ export {
   type SalesOrderUpdateParams,
   type SalesOrderListParams,
   type SalesOrderDeleteParams,
+  type SalesOrdersCursorPage,
 } from './sales-orders';
 export {
-  SalesReceiptsCursorPage,
   SalesReceipts,
   type SalesReceipt,
   type SalesReceiptDeleteResponse,
@@ -381,6 +380,7 @@ export {
   type SalesReceiptUpdateParams,
   type SalesReceiptListParams,
   type SalesReceiptDeleteParams,
+  type SalesReceiptsCursorPage,
 } from './sales-receipts';
 export {
   SalesRepresentatives,
@@ -401,22 +401,22 @@ export {
   type SalesTaxCodeListParams,
 } from './sales-tax-codes';
 export {
-  SalesTaxItemsCursorPage,
   SalesTaxItems,
   type SalesTaxItem,
   type SalesTaxItemCreateParams,
   type SalesTaxItemRetrieveParams,
   type SalesTaxItemUpdateParams,
   type SalesTaxItemListParams,
+  type SalesTaxItemsCursorPage,
 } from './sales-tax-items';
 export {
-  ServiceItemsCursorPage,
   ServiceItems,
   type ServiceItem,
   type ServiceItemCreateParams,
   type ServiceItemRetrieveParams,
   type ServiceItemUpdateParams,
   type ServiceItemListParams,
+  type ServiceItemsCursorPage,
 } from './service-items';
 export {
   StandardTerms,
@@ -427,17 +427,16 @@ export {
   type StandardTermListParams,
 } from './standard-terms';
 export {
-  SubtotalItemsCursorPage,
   SubtotalItems,
   type SubtotalItem,
   type SubtotalItemCreateParams,
   type SubtotalItemRetrieveParams,
   type SubtotalItemUpdateParams,
   type SubtotalItemListParams,
+  type SubtotalItemsCursorPage,
 } from './subtotal-items';
 export { Templates, type Template, type TemplateListResponse, type TemplateListParams } from './templates';
 export {
-  TimeTrackingActivitiesCursorPage,
   TimeTrackingActivities,
   type TimeTrackingActivity,
   type TimeTrackingActivityDeleteResponse,
@@ -446,22 +445,23 @@ export {
   type TimeTrackingActivityUpdateParams,
   type TimeTrackingActivityListParams,
   type TimeTrackingActivityDeleteParams,
+  type TimeTrackingActivitiesCursorPage,
 } from './time-tracking-activities';
 export {
-  TransactionsCursorPage,
   Transactions,
   type Transaction,
   type TransactionRetrieveParams,
   type TransactionListParams,
+  type TransactionsCursorPage,
 } from './transactions';
 export {
-  TransfersCursorPage,
   Transfers,
   type Transfer,
   type TransferCreateParams,
   type TransferRetrieveParams,
   type TransferUpdateParams,
   type TransferListParams,
+  type TransfersCursorPage,
 } from './transfers';
 export {
   UnitOfMeasureSets,
@@ -472,7 +472,6 @@ export {
   type UnitOfMeasureSetListParams,
 } from './unit-of-measure-sets';
 export {
-  VendorCreditsCursorPage,
   VendorCredits,
   type VendorCredit,
   type VendorCreditDeleteResponse,
@@ -481,13 +480,14 @@ export {
   type VendorCreditUpdateParams,
   type VendorCreditListParams,
   type VendorCreditDeleteParams,
+  type VendorCreditsCursorPage,
 } from './vendor-credits';
 export {
-  VendorsCursorPage,
   Vendors,
   type Vendor,
   type VendorCreateParams,
   type VendorRetrieveParams,
   type VendorUpdateParams,
   type VendorListParams,
+  type VendorsCursorPage,
 } from './vendors';

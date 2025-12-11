@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class SubtotalItems extends APIResource {
   /**
@@ -105,7 +108,7 @@ export class SubtotalItems extends APIResource {
   }
 }
 
-export class SubtotalItemsCursorPage extends CursorPage<SubtotalItem> {}
+export type SubtotalItemsCursorPage = CursorPage<SubtotalItem>;
 
 export interface SubtotalItem {
   /**
@@ -476,12 +479,10 @@ export interface SubtotalItemListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-SubtotalItems.SubtotalItemsCursorPage = SubtotalItemsCursorPage;
-
 export declare namespace SubtotalItems {
   export {
     type SubtotalItem as SubtotalItem,
-    SubtotalItemsCursorPage as SubtotalItemsCursorPage,
+    type SubtotalItemsCursorPage as SubtotalItemsCursorPage,
     type SubtotalItemCreateParams as SubtotalItemCreateParams,
     type SubtotalItemRetrieveParams as SubtotalItemRetrieveParams,
     type SubtotalItemUpdateParams as SubtotalItemUpdateParams,

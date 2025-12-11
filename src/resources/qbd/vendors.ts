@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Vendors extends APIResource {
   /**
@@ -95,7 +98,7 @@ export class Vendors extends APIResource {
   }
 }
 
-export class VendorsCursorPage extends CursorPage<Vendor> {}
+export type VendorsCursorPage = CursorPage<Vendor>;
 
 export interface Vendor {
   /**
@@ -2064,12 +2067,10 @@ export interface VendorListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-Vendors.VendorsCursorPage = VendorsCursorPage;
-
 export declare namespace Vendors {
   export {
     type Vendor as Vendor,
-    VendorsCursorPage as VendorsCursorPage,
+    type VendorsCursorPage as VendorsCursorPage,
     type VendorCreateParams as VendorCreateParams,
     type VendorRetrieveParams as VendorRetrieveParams,
     type VendorUpdateParams as VendorUpdateParams,

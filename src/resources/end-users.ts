@@ -1,7 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class EndUsers extends APIResource {
   /**
@@ -16,7 +18,7 @@ export class EndUsers extends APIResource {
    * });
    * ```
    */
-  create(body: EndUserCreateParams, options?: Core.RequestOptions): Core.APIPromise<EndUser> {
+  create(body: EndUserCreateParams, options?: RequestOptions): APIPromise<EndUser> {
     return this._client.post('/end-users', { body, ...options });
   }
 
@@ -30,8 +32,8 @@ export class EndUsers extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EndUser> {
-    return this._client.get(`/end-users/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<EndUser> {
+    return this._client.get(path`/end-users/${id}`, options);
   }
 
   /**
@@ -42,7 +44,7 @@ export class EndUsers extends APIResource {
    * const endUsers = await conductor.endUsers.list();
    * ```
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<EndUserListResponse> {
+  list(options?: RequestOptions): APIPromise<EndUserListResponse> {
     return this._client.get('/end-users', options);
   }
 
@@ -56,8 +58,8 @@ export class EndUsers extends APIResource {
    * );
    * ```
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<EndUserDeleteResponse> {
-    return this._client.delete(`/end-users/${id}`, options);
+  delete(id: string, options?: RequestOptions): APIPromise<EndUserDeleteResponse> {
+    return this._client.delete(path`/end-users/${id}`, options);
   }
 
   /**
@@ -67,19 +69,24 @@ export class EndUsers extends APIResource {
    * @example
    * ```ts
    * const response = await conductor.endUsers.passthrough(
-   *   'end_usr_1234567abcdefg',
    *   'quickbooks_desktop',
-   *   { foo: 'bar' },
+   *   {
+   *     id: 'end_usr_1234567abcdefg',
+   *     qbd_payload: { foo: 'bar' },
+   *   },
    * );
    * ```
    */
   passthrough(
-    id: string,
     integrationSlug: 'quickbooks_desktop',
-    body: EndUserPassthroughParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EndUserPassthroughResponse> {
-    return this._client.post(`/end-users/${id}/passthrough/${integrationSlug}`, { body, ...options });
+    params: EndUserPassthroughParams,
+    options?: RequestOptions,
+  ): APIPromise<EndUserPassthroughResponse> {
+    const { id, qbd_payload } = params;
+    return this._client.post(path`/end-users/${id}/passthrough/${integrationSlug}`, {
+      body: qbd_payload,
+      ...options,
+    });
   }
 }
 
@@ -218,7 +225,17 @@ export interface EndUserCreateParams {
   sourceId: string;
 }
 
-export type EndUserPassthroughParams = { [key: string]: unknown };
+export interface EndUserPassthroughParams {
+  /**
+   * Path param: The ID of the end-user who owns the integration connection.
+   */
+  id: string;
+
+  /**
+   * Body param: The request body to send to the integration connection.
+   */
+  qbd_payload: { [key: string]: unknown };
+}
 
 export declare namespace EndUsers {
   export {

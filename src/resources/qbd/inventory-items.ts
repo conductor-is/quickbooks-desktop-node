@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class InventoryItems extends APIResource {
   /**
@@ -110,7 +113,7 @@ export class InventoryItems extends APIResource {
   }
 }
 
-export class InventoryItemsCursorPage extends CursorPage<InventoryItem> {}
+export type InventoryItemsCursorPage = CursorPage<InventoryItem>;
 
 export interface InventoryItem {
   /**
@@ -1066,12 +1069,10 @@ export interface InventoryItemListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-InventoryItems.InventoryItemsCursorPage = InventoryItemsCursorPage;
-
 export declare namespace InventoryItems {
   export {
     type InventoryItem as InventoryItem,
-    InventoryItemsCursorPage as InventoryItemsCursorPage,
+    type InventoryItemsCursorPage as InventoryItemsCursorPage,
     type InventoryItemCreateParams as InventoryItemCreateParams,
     type InventoryItemRetrieveParams as InventoryItemRetrieveParams,
     type InventoryItemUpdateParams as InventoryItemUpdateParams,

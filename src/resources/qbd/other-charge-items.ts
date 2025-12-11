@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class OtherChargeItems extends APIResource {
   /**
@@ -110,7 +113,7 @@ export class OtherChargeItems extends APIResource {
   }
 }
 
-export class OtherChargeItemsCursorPage extends CursorPage<OtherChargeItem> {}
+export type OtherChargeItemsCursorPage = CursorPage<OtherChargeItem>;
 
 export interface OtherChargeItem {
   /**
@@ -1115,12 +1118,10 @@ export interface OtherChargeItemListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-OtherChargeItems.OtherChargeItemsCursorPage = OtherChargeItemsCursorPage;
-
 export declare namespace OtherChargeItems {
   export {
     type OtherChargeItem as OtherChargeItem,
-    OtherChargeItemsCursorPage as OtherChargeItemsCursorPage,
+    type OtherChargeItemsCursorPage as OtherChargeItemsCursorPage,
     type OtherChargeItemCreateParams as OtherChargeItemCreateParams,
     type OtherChargeItemRetrieveParams as OtherChargeItemRetrieveParams,
     type OtherChargeItemUpdateParams as OtherChargeItemUpdateParams,

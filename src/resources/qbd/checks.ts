@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Checks extends APIResource {
   /**
@@ -122,7 +125,7 @@ export class Checks extends APIResource {
   }
 }
 
-export class ChecksCursorPage extends CursorPage<Check> {}
+export type ChecksCursorPage = CursorPage<Check>;
 
 export interface Check {
   /**
@@ -3068,13 +3071,11 @@ export interface CheckDeleteParams {
   conductorEndUserId: string;
 }
 
-Checks.ChecksCursorPage = ChecksCursorPage;
-
 export declare namespace Checks {
   export {
     type Check as Check,
     type CheckDeleteResponse as CheckDeleteResponse,
-    ChecksCursorPage as ChecksCursorPage,
+    type ChecksCursorPage as ChecksCursorPage,
     type CheckCreateParams as CheckCreateParams,
     type CheckRetrieveParams as CheckRetrieveParams,
     type CheckUpdateParams as CheckUpdateParams,

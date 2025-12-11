@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class CreditCardCredits extends APIResource {
   /**
@@ -136,7 +139,7 @@ export class CreditCardCredits extends APIResource {
   }
 }
 
-export class CreditCardCreditsCursorPage extends CursorPage<CreditCardCredit> {}
+export type CreditCardCreditsCursorPage = CursorPage<CreditCardCredit>;
 
 export interface CreditCardCredit {
   /**
@@ -2707,13 +2710,11 @@ export interface CreditCardCreditDeleteParams {
   conductorEndUserId: string;
 }
 
-CreditCardCredits.CreditCardCreditsCursorPage = CreditCardCreditsCursorPage;
-
 export declare namespace CreditCardCredits {
   export {
     type CreditCardCredit as CreditCardCredit,
     type CreditCardCreditDeleteResponse as CreditCardCreditDeleteResponse,
-    CreditCardCreditsCursorPage as CreditCardCreditsCursorPage,
+    type CreditCardCreditsCursorPage as CreditCardCreditsCursorPage,
     type CreditCardCreditCreateParams as CreditCardCreditCreateParams,
     type CreditCardCreditRetrieveParams as CreditCardCreditRetrieveParams,
     type CreditCardCreditUpdateParams as CreditCardCreditUpdateParams,

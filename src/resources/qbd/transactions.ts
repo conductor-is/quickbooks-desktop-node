@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Transactions extends APIResource {
   /**
@@ -60,7 +63,7 @@ export class Transactions extends APIResource {
   }
 }
 
-export class TransactionsCursorPage extends CursorPage<Transaction> {}
+export type TransactionsCursorPage = CursorPage<Transaction>;
 
 export interface Transaction {
   /**
@@ -471,12 +474,10 @@ export interface TransactionListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-Transactions.TransactionsCursorPage = TransactionsCursorPage;
-
 export declare namespace Transactions {
   export {
     type Transaction as Transaction,
-    TransactionsCursorPage as TransactionsCursorPage,
+    type TransactionsCursorPage as TransactionsCursorPage,
     type TransactionRetrieveParams as TransactionRetrieveParams,
     type TransactionListParams as TransactionListParams,
   };

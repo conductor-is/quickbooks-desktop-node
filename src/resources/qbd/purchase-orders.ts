@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class PurchaseOrders extends APIResource {
   /**
@@ -132,7 +135,7 @@ export class PurchaseOrders extends APIResource {
   }
 }
 
-export class PurchaseOrdersCursorPage extends CursorPage<PurchaseOrder> {}
+export type PurchaseOrdersCursorPage = CursorPage<PurchaseOrder>;
 
 export interface PurchaseOrder {
   /**
@@ -3109,13 +3112,11 @@ export interface PurchaseOrderDeleteParams {
   conductorEndUserId: string;
 }
 
-PurchaseOrders.PurchaseOrdersCursorPage = PurchaseOrdersCursorPage;
-
 export declare namespace PurchaseOrders {
   export {
     type PurchaseOrder as PurchaseOrder,
     type PurchaseOrderDeleteResponse as PurchaseOrderDeleteResponse,
-    PurchaseOrdersCursorPage as PurchaseOrdersCursorPage,
+    type PurchaseOrdersCursorPage as PurchaseOrdersCursorPage,
     type PurchaseOrderCreateParams as PurchaseOrderCreateParams,
     type PurchaseOrderRetrieveParams as PurchaseOrderRetrieveParams,
     type PurchaseOrderUpdateParams as PurchaseOrderUpdateParams,

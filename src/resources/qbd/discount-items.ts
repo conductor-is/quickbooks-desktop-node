@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class DiscountItems extends APIResource {
   /**
@@ -111,7 +114,7 @@ export class DiscountItems extends APIResource {
   }
 }
 
-export class DiscountItemsCursorPage extends CursorPage<DiscountItem> {}
+export type DiscountItemsCursorPage = CursorPage<DiscountItem>;
 
 export interface DiscountItem {
   /**
@@ -764,12 +767,10 @@ export interface DiscountItemListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-DiscountItems.DiscountItemsCursorPage = DiscountItemsCursorPage;
-
 export declare namespace DiscountItems {
   export {
     type DiscountItem as DiscountItem,
-    DiscountItemsCursorPage as DiscountItemsCursorPage,
+    type DiscountItemsCursorPage as DiscountItemsCursorPage,
     type DiscountItemCreateParams as DiscountItemCreateParams,
     type DiscountItemRetrieveParams as DiscountItemRetrieveParams,
     type DiscountItemUpdateParams as DiscountItemUpdateParams,

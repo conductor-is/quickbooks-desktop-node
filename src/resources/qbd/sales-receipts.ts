@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class SalesReceipts extends APIResource {
   /**
@@ -135,7 +138,7 @@ export class SalesReceipts extends APIResource {
   }
 }
 
-export class SalesReceiptsCursorPage extends CursorPage<SalesReceipt> {}
+export type SalesReceiptsCursorPage = CursorPage<SalesReceipt>;
 
 export interface SalesReceipt {
   /**
@@ -4043,13 +4046,11 @@ export interface SalesReceiptDeleteParams {
   conductorEndUserId: string;
 }
 
-SalesReceipts.SalesReceiptsCursorPage = SalesReceiptsCursorPage;
-
 export declare namespace SalesReceipts {
   export {
     type SalesReceipt as SalesReceipt,
     type SalesReceiptDeleteResponse as SalesReceiptDeleteResponse,
-    SalesReceiptsCursorPage as SalesReceiptsCursorPage,
+    type SalesReceiptsCursorPage as SalesReceiptsCursorPage,
     type SalesReceiptCreateParams as SalesReceiptCreateParams,
     type SalesReceiptRetrieveParams as SalesReceiptRetrieveParams,
     type SalesReceiptUpdateParams as SalesReceiptUpdateParams,

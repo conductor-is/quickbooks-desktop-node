@@ -48,13 +48,10 @@ export const tool: Tool = {
 };
 
 export const handler = async (conductor: Conductor, args: Record<string, unknown> | undefined) => {
-  const { id, integrationSlug, jq_filter, ...body } = args as any;
+  const { integrationSlug, jq_filter, ...body } = args as any;
   try {
     return asTextContentResult(
-      await maybeFilter(
-        jq_filter,
-        await conductor.endUsers.passthrough(id, integrationSlug, body['qbd_payload']),
-      ),
+      await maybeFilter(jq_filter, await conductor.endUsers.passthrough(integrationSlug, body)),
     );
   } catch (error) {
     if (error instanceof Conductor.APIError || isJqError(error)) {

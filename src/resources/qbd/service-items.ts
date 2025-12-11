@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class ServiceItems extends APIResource {
   /**
@@ -105,7 +108,7 @@ export class ServiceItems extends APIResource {
   }
 }
 
-export class ServiceItemsCursorPage extends CursorPage<ServiceItem> {}
+export type ServiceItemsCursorPage = CursorPage<ServiceItem>;
 
 export interface ServiceItem {
   /**
@@ -1151,12 +1154,10 @@ export interface ServiceItemListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-ServiceItems.ServiceItemsCursorPage = ServiceItemsCursorPage;
-
 export declare namespace ServiceItems {
   export {
     type ServiceItem as ServiceItem,
-    ServiceItemsCursorPage as ServiceItemsCursorPage,
+    type ServiceItemsCursorPage as ServiceItemsCursorPage,
     type ServiceItemCreateParams as ServiceItemCreateParams,
     type ServiceItemRetrieveParams as ServiceItemRetrieveParams,
     type ServiceItemUpdateParams as ServiceItemUpdateParams,

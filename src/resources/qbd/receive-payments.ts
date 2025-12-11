@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class ReceivePayments extends APIResource {
   /**
@@ -143,7 +146,7 @@ export class ReceivePayments extends APIResource {
   }
 }
 
-export class ReceivePaymentsCursorPage extends CursorPage<ReceivePayment> {}
+export type ReceivePaymentsCursorPage = CursorPage<ReceivePayment>;
 
 export interface ReceivePayment {
   /**
@@ -1675,13 +1678,11 @@ export interface ReceivePaymentDeleteParams {
   conductorEndUserId: string;
 }
 
-ReceivePayments.ReceivePaymentsCursorPage = ReceivePaymentsCursorPage;
-
 export declare namespace ReceivePayments {
   export {
     type ReceivePayment as ReceivePayment,
     type ReceivePaymentDeleteResponse as ReceivePaymentDeleteResponse,
-    ReceivePaymentsCursorPage as ReceivePaymentsCursorPage,
+    type ReceivePaymentsCursorPage as ReceivePaymentsCursorPage,
     type ReceivePaymentCreateParams as ReceivePaymentCreateParams,
     type ReceivePaymentRetrieveParams as ReceivePaymentRetrieveParams,
     type ReceivePaymentUpdateParams as ReceivePaymentUpdateParams,

@@ -27,7 +27,7 @@ fi
 echo "==> Running eslint --fix"
 ESLINT_FILES="$(grep '\.ts$' "$FILE_LIST" || true)"
 if ! [ -z "$ESLINT_FILES" ]; then
-   echo "$ESLINT_FILES" | ESLINT_USE_FLAT_CONFIG="false" xargs ./node_modules/.bin/eslint --cache --fix
+   echo "$ESLINT_FILES" | xargs ./node_modules/.bin/eslint --cache --fix
 fi
 
 echo "==> Running prettier --write"

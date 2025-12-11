@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as AccountTaxLinesAPI from './account-tax-lines';
 import {
   AccountTaxLine,
@@ -547,6 +546,9 @@ import {
   Vendors,
   VendorsCursorPage,
 } from './vendors';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Qbd extends APIResource {
   accountTaxLines: AccountTaxLinesAPI.AccountTaxLines = new AccountTaxLinesAPI.AccountTaxLines(this._client);
@@ -676,91 +678,57 @@ export interface QbdHealthCheckParams {
 Qbd.AccountTaxLines = AccountTaxLines;
 Qbd.Accounts = Accounts;
 Qbd.BillCheckPayments = BillCheckPayments;
-Qbd.BillCheckPaymentsCursorPage = BillCheckPaymentsCursorPage;
 Qbd.BillCreditCardPayments = BillCreditCardPayments;
-Qbd.BillCreditCardPaymentsCursorPage = BillCreditCardPaymentsCursorPage;
 Qbd.Bills = Bills;
-Qbd.BillsCursorPage = BillsCursorPage;
 Qbd.BuildAssemblies = BuildAssemblies;
-Qbd.BuildAssembliesCursorPage = BuildAssembliesCursorPage;
 Qbd.Checks = Checks;
-Qbd.ChecksCursorPage = ChecksCursorPage;
 Qbd.Classes = Classes;
 Qbd.CompanyResource = CompanyResource;
 Qbd.CreditCardCharges = CreditCardCharges;
-Qbd.CreditCardChargesCursorPage = CreditCardChargesCursorPage;
 Qbd.CreditCardCredits = CreditCardCredits;
-Qbd.CreditCardCreditsCursorPage = CreditCardCreditsCursorPage;
 Qbd.CreditCardRefunds = CreditCardRefunds;
-Qbd.CreditCardRefundsCursorPage = CreditCardRefundsCursorPage;
 Qbd.CreditMemos = CreditMemos;
-Qbd.CreditMemosCursorPage = CreditMemosCursorPage;
 Qbd.Currencies = Currencies;
 Qbd.CustomerTypes = CustomerTypes;
 Qbd.Customers = Customers;
-Qbd.CustomersCursorPage = CustomersCursorPage;
 Qbd.DateDrivenTerms = DateDrivenTerms;
 Qbd.DeletedListObjects = DeletedListObjects;
 Qbd.DeletedTransactions = DeletedTransactions;
 Qbd.DiscountItems = DiscountItems;
-Qbd.DiscountItemsCursorPage = DiscountItemsCursorPage;
 Qbd.Employees = Employees;
 Qbd.Estimates = Estimates;
-Qbd.EstimatesCursorPage = EstimatesCursorPage;
 Qbd.InventoryAdjustments = InventoryAdjustments;
 Qbd.InventoryAssemblyItems = InventoryAssemblyItems;
-Qbd.InventoryAssemblyItemsCursorPage = InventoryAssemblyItemsCursorPage;
 Qbd.InventoryItems = InventoryItems;
-Qbd.InventoryItemsCursorPage = InventoryItemsCursorPage;
 Qbd.InventorySites = InventorySites;
 Qbd.Invoices = Invoices;
-Qbd.InvoicesCursorPage = InvoicesCursorPage;
 Qbd.ItemGroups = ItemGroups;
-Qbd.ItemGroupsCursorPage = ItemGroupsCursorPage;
 Qbd.ItemReceipts = ItemReceipts;
-Qbd.ItemReceiptsCursorPage = ItemReceiptsCursorPage;
 Qbd.ItemSites = ItemSites;
-Qbd.ItemSitesCursorPage = ItemSitesCursorPage;
 Qbd.JournalEntries = JournalEntries;
-Qbd.JournalEntriesCursorPage = JournalEntriesCursorPage;
 Qbd.NonInventoryItems = NonInventoryItems;
-Qbd.NonInventoryItemsCursorPage = NonInventoryItemsCursorPage;
 Qbd.OtherChargeItems = OtherChargeItems;
-Qbd.OtherChargeItemsCursorPage = OtherChargeItemsCursorPage;
 Qbd.OtherNames = OtherNames;
 Qbd.PaymentMethods = PaymentMethods;
 Qbd.PayrollWageItems = PayrollWageItems;
-Qbd.PayrollWageItemsCursorPage = PayrollWageItemsCursorPage;
 Qbd.PriceLevels = PriceLevels;
 Qbd.PurchaseOrders = PurchaseOrders;
-Qbd.PurchaseOrdersCursorPage = PurchaseOrdersCursorPage;
 Qbd.ReceivePayments = ReceivePayments;
-Qbd.ReceivePaymentsCursorPage = ReceivePaymentsCursorPage;
 Qbd.SalesOrders = SalesOrders;
-Qbd.SalesOrdersCursorPage = SalesOrdersCursorPage;
 Qbd.SalesReceipts = SalesReceipts;
-Qbd.SalesReceiptsCursorPage = SalesReceiptsCursorPage;
 Qbd.SalesRepresentatives = SalesRepresentatives;
 Qbd.SalesTaxCodes = SalesTaxCodes;
 Qbd.SalesTaxItems = SalesTaxItems;
-Qbd.SalesTaxItemsCursorPage = SalesTaxItemsCursorPage;
 Qbd.ServiceItems = ServiceItems;
-Qbd.ServiceItemsCursorPage = ServiceItemsCursorPage;
 Qbd.StandardTerms = StandardTerms;
 Qbd.SubtotalItems = SubtotalItems;
-Qbd.SubtotalItemsCursorPage = SubtotalItemsCursorPage;
 Qbd.Templates = Templates;
 Qbd.TimeTrackingActivities = TimeTrackingActivities;
-Qbd.TimeTrackingActivitiesCursorPage = TimeTrackingActivitiesCursorPage;
 Qbd.Transactions = Transactions;
-Qbd.TransactionsCursorPage = TransactionsCursorPage;
 Qbd.Transfers = Transfers;
-Qbd.TransfersCursorPage = TransfersCursorPage;
 Qbd.UnitOfMeasureSets = UnitOfMeasureSets;
 Qbd.VendorCredits = VendorCredits;
-Qbd.VendorCreditsCursorPage = VendorCreditsCursorPage;
 Qbd.Vendors = Vendors;
-Qbd.VendorsCursorPage = VendorsCursorPage;
 
 export declare namespace Qbd {
   export {
@@ -789,7 +757,7 @@ export declare namespace Qbd {
     BillCheckPayments as BillCheckPayments,
     type BillCheckPayment as BillCheckPayment,
     type BillCheckPaymentDeleteResponse as BillCheckPaymentDeleteResponse,
-    BillCheckPaymentsCursorPage as BillCheckPaymentsCursorPage,
+    type BillCheckPaymentsCursorPage as BillCheckPaymentsCursorPage,
     type BillCheckPaymentCreateParams as BillCheckPaymentCreateParams,
     type BillCheckPaymentRetrieveParams as BillCheckPaymentRetrieveParams,
     type BillCheckPaymentUpdateParams as BillCheckPaymentUpdateParams,
@@ -801,7 +769,7 @@ export declare namespace Qbd {
     BillCreditCardPayments as BillCreditCardPayments,
     type BillCreditCardPayment as BillCreditCardPayment,
     type BillCreditCardPaymentDeleteResponse as BillCreditCardPaymentDeleteResponse,
-    BillCreditCardPaymentsCursorPage as BillCreditCardPaymentsCursorPage,
+    type BillCreditCardPaymentsCursorPage as BillCreditCardPaymentsCursorPage,
     type BillCreditCardPaymentCreateParams as BillCreditCardPaymentCreateParams,
     type BillCreditCardPaymentRetrieveParams as BillCreditCardPaymentRetrieveParams,
     type BillCreditCardPaymentListParams as BillCreditCardPaymentListParams,
@@ -812,7 +780,7 @@ export declare namespace Qbd {
     Bills as Bills,
     type Bill as Bill,
     type BillDeleteResponse as BillDeleteResponse,
-    BillsCursorPage as BillsCursorPage,
+    type BillsCursorPage as BillsCursorPage,
     type BillCreateParams as BillCreateParams,
     type BillRetrieveParams as BillRetrieveParams,
     type BillUpdateParams as BillUpdateParams,
@@ -824,7 +792,7 @@ export declare namespace Qbd {
     BuildAssemblies as BuildAssemblies,
     type BuildAssembly as BuildAssembly,
     type BuildAssemblyDeleteResponse as BuildAssemblyDeleteResponse,
-    BuildAssembliesCursorPage as BuildAssembliesCursorPage,
+    type BuildAssembliesCursorPage as BuildAssembliesCursorPage,
     type BuildAssemblyCreateParams as BuildAssemblyCreateParams,
     type BuildAssemblyRetrieveParams as BuildAssemblyRetrieveParams,
     type BuildAssemblyUpdateParams as BuildAssemblyUpdateParams,
@@ -836,7 +804,7 @@ export declare namespace Qbd {
     Checks as Checks,
     type Check as Check,
     type CheckDeleteResponse as CheckDeleteResponse,
-    ChecksCursorPage as ChecksCursorPage,
+    type ChecksCursorPage as ChecksCursorPage,
     type CheckCreateParams as CheckCreateParams,
     type CheckRetrieveParams as CheckRetrieveParams,
     type CheckUpdateParams as CheckUpdateParams,
@@ -864,7 +832,7 @@ export declare namespace Qbd {
     CreditCardCharges as CreditCardCharges,
     type CreditCardCharge as CreditCardCharge,
     type CreditCardChargeDeleteResponse as CreditCardChargeDeleteResponse,
-    CreditCardChargesCursorPage as CreditCardChargesCursorPage,
+    type CreditCardChargesCursorPage as CreditCardChargesCursorPage,
     type CreditCardChargeCreateParams as CreditCardChargeCreateParams,
     type CreditCardChargeRetrieveParams as CreditCardChargeRetrieveParams,
     type CreditCardChargeUpdateParams as CreditCardChargeUpdateParams,
@@ -876,7 +844,7 @@ export declare namespace Qbd {
     CreditCardCredits as CreditCardCredits,
     type CreditCardCredit as CreditCardCredit,
     type CreditCardCreditDeleteResponse as CreditCardCreditDeleteResponse,
-    CreditCardCreditsCursorPage as CreditCardCreditsCursorPage,
+    type CreditCardCreditsCursorPage as CreditCardCreditsCursorPage,
     type CreditCardCreditCreateParams as CreditCardCreditCreateParams,
     type CreditCardCreditRetrieveParams as CreditCardCreditRetrieveParams,
     type CreditCardCreditUpdateParams as CreditCardCreditUpdateParams,
@@ -888,7 +856,7 @@ export declare namespace Qbd {
     CreditCardRefunds as CreditCardRefunds,
     type CreditCardRefund as CreditCardRefund,
     type CreditCardRefundDeleteResponse as CreditCardRefundDeleteResponse,
-    CreditCardRefundsCursorPage as CreditCardRefundsCursorPage,
+    type CreditCardRefundsCursorPage as CreditCardRefundsCursorPage,
     type CreditCardRefundCreateParams as CreditCardRefundCreateParams,
     type CreditCardRefundRetrieveParams as CreditCardRefundRetrieveParams,
     type CreditCardRefundListParams as CreditCardRefundListParams,
@@ -899,7 +867,7 @@ export declare namespace Qbd {
     CreditMemos as CreditMemos,
     type CreditMemo as CreditMemo,
     type CreditMemoDeleteResponse as CreditMemoDeleteResponse,
-    CreditMemosCursorPage as CreditMemosCursorPage,
+    type CreditMemosCursorPage as CreditMemosCursorPage,
     type CreditMemoCreateParams as CreditMemoCreateParams,
     type CreditMemoRetrieveParams as CreditMemoRetrieveParams,
     type CreditMemoUpdateParams as CreditMemoUpdateParams,
@@ -929,7 +897,7 @@ export declare namespace Qbd {
   export {
     Customers as Customers,
     type Customer as Customer,
-    CustomersCursorPage as CustomersCursorPage,
+    type CustomersCursorPage as CustomersCursorPage,
     type CustomerCreateParams as CustomerCreateParams,
     type CustomerRetrieveParams as CustomerRetrieveParams,
     type CustomerUpdateParams as CustomerUpdateParams,
@@ -962,7 +930,7 @@ export declare namespace Qbd {
   export {
     DiscountItems as DiscountItems,
     type DiscountItem as DiscountItem,
-    DiscountItemsCursorPage as DiscountItemsCursorPage,
+    type DiscountItemsCursorPage as DiscountItemsCursorPage,
     type DiscountItemCreateParams as DiscountItemCreateParams,
     type DiscountItemRetrieveParams as DiscountItemRetrieveParams,
     type DiscountItemUpdateParams as DiscountItemUpdateParams,
@@ -983,7 +951,7 @@ export declare namespace Qbd {
     Estimates as Estimates,
     type Estimate as Estimate,
     type EstimateDeleteResponse as EstimateDeleteResponse,
-    EstimatesCursorPage as EstimatesCursorPage,
+    type EstimatesCursorPage as EstimatesCursorPage,
     type EstimateCreateParams as EstimateCreateParams,
     type EstimateRetrieveParams as EstimateRetrieveParams,
     type EstimateUpdateParams as EstimateUpdateParams,
@@ -1006,7 +974,7 @@ export declare namespace Qbd {
   export {
     InventoryAssemblyItems as InventoryAssemblyItems,
     type InventoryAssemblyItem as InventoryAssemblyItem,
-    InventoryAssemblyItemsCursorPage as InventoryAssemblyItemsCursorPage,
+    type InventoryAssemblyItemsCursorPage as InventoryAssemblyItemsCursorPage,
     type InventoryAssemblyItemCreateParams as InventoryAssemblyItemCreateParams,
     type InventoryAssemblyItemRetrieveParams as InventoryAssemblyItemRetrieveParams,
     type InventoryAssemblyItemUpdateParams as InventoryAssemblyItemUpdateParams,
@@ -1016,7 +984,7 @@ export declare namespace Qbd {
   export {
     InventoryItems as InventoryItems,
     type InventoryItem as InventoryItem,
-    InventoryItemsCursorPage as InventoryItemsCursorPage,
+    type InventoryItemsCursorPage as InventoryItemsCursorPage,
     type InventoryItemCreateParams as InventoryItemCreateParams,
     type InventoryItemRetrieveParams as InventoryItemRetrieveParams,
     type InventoryItemUpdateParams as InventoryItemUpdateParams,
@@ -1037,7 +1005,7 @@ export declare namespace Qbd {
     Invoices as Invoices,
     type Invoice as Invoice,
     type InvoiceDeleteResponse as InvoiceDeleteResponse,
-    InvoicesCursorPage as InvoicesCursorPage,
+    type InvoicesCursorPage as InvoicesCursorPage,
     type InvoiceCreateParams as InvoiceCreateParams,
     type InvoiceRetrieveParams as InvoiceRetrieveParams,
     type InvoiceUpdateParams as InvoiceUpdateParams,
@@ -1048,7 +1016,7 @@ export declare namespace Qbd {
   export {
     ItemGroups as ItemGroups,
     type ItemGroup as ItemGroup,
-    ItemGroupsCursorPage as ItemGroupsCursorPage,
+    type ItemGroupsCursorPage as ItemGroupsCursorPage,
     type ItemGroupCreateParams as ItemGroupCreateParams,
     type ItemGroupRetrieveParams as ItemGroupRetrieveParams,
     type ItemGroupUpdateParams as ItemGroupUpdateParams,
@@ -1059,7 +1027,7 @@ export declare namespace Qbd {
     ItemReceipts as ItemReceipts,
     type ItemReceipt as ItemReceipt,
     type ItemReceiptDeleteResponse as ItemReceiptDeleteResponse,
-    ItemReceiptsCursorPage as ItemReceiptsCursorPage,
+    type ItemReceiptsCursorPage as ItemReceiptsCursorPage,
     type ItemReceiptCreateParams as ItemReceiptCreateParams,
     type ItemReceiptRetrieveParams as ItemReceiptRetrieveParams,
     type ItemReceiptUpdateParams as ItemReceiptUpdateParams,
@@ -1070,7 +1038,7 @@ export declare namespace Qbd {
   export {
     ItemSites as ItemSites,
     type ItemSite as ItemSite,
-    ItemSitesCursorPage as ItemSitesCursorPage,
+    type ItemSitesCursorPage as ItemSitesCursorPage,
     type ItemSiteRetrieveParams as ItemSiteRetrieveParams,
     type ItemSiteListParams as ItemSiteListParams,
   };
@@ -1079,7 +1047,7 @@ export declare namespace Qbd {
     JournalEntries as JournalEntries,
     type JournalEntry as JournalEntry,
     type JournalEntryDeleteResponse as JournalEntryDeleteResponse,
-    JournalEntriesCursorPage as JournalEntriesCursorPage,
+    type JournalEntriesCursorPage as JournalEntriesCursorPage,
     type JournalEntryCreateParams as JournalEntryCreateParams,
     type JournalEntryRetrieveParams as JournalEntryRetrieveParams,
     type JournalEntryUpdateParams as JournalEntryUpdateParams,
@@ -1090,7 +1058,7 @@ export declare namespace Qbd {
   export {
     NonInventoryItems as NonInventoryItems,
     type NonInventoryItem as NonInventoryItem,
-    NonInventoryItemsCursorPage as NonInventoryItemsCursorPage,
+    type NonInventoryItemsCursorPage as NonInventoryItemsCursorPage,
     type NonInventoryItemCreateParams as NonInventoryItemCreateParams,
     type NonInventoryItemRetrieveParams as NonInventoryItemRetrieveParams,
     type NonInventoryItemUpdateParams as NonInventoryItemUpdateParams,
@@ -1100,7 +1068,7 @@ export declare namespace Qbd {
   export {
     OtherChargeItems as OtherChargeItems,
     type OtherChargeItem as OtherChargeItem,
-    OtherChargeItemsCursorPage as OtherChargeItemsCursorPage,
+    type OtherChargeItemsCursorPage as OtherChargeItemsCursorPage,
     type OtherChargeItemCreateParams as OtherChargeItemCreateParams,
     type OtherChargeItemRetrieveParams as OtherChargeItemRetrieveParams,
     type OtherChargeItemUpdateParams as OtherChargeItemUpdateParams,
@@ -1129,7 +1097,7 @@ export declare namespace Qbd {
   export {
     PayrollWageItems as PayrollWageItems,
     type PayrollWageItem as PayrollWageItem,
-    PayrollWageItemsCursorPage as PayrollWageItemsCursorPage,
+    type PayrollWageItemsCursorPage as PayrollWageItemsCursorPage,
     type PayrollWageItemCreateParams as PayrollWageItemCreateParams,
     type PayrollWageItemRetrieveParams as PayrollWageItemRetrieveParams,
     type PayrollWageItemListParams as PayrollWageItemListParams,
@@ -1151,7 +1119,7 @@ export declare namespace Qbd {
     PurchaseOrders as PurchaseOrders,
     type PurchaseOrder as PurchaseOrder,
     type PurchaseOrderDeleteResponse as PurchaseOrderDeleteResponse,
-    PurchaseOrdersCursorPage as PurchaseOrdersCursorPage,
+    type PurchaseOrdersCursorPage as PurchaseOrdersCursorPage,
     type PurchaseOrderCreateParams as PurchaseOrderCreateParams,
     type PurchaseOrderRetrieveParams as PurchaseOrderRetrieveParams,
     type PurchaseOrderUpdateParams as PurchaseOrderUpdateParams,
@@ -1163,7 +1131,7 @@ export declare namespace Qbd {
     ReceivePayments as ReceivePayments,
     type ReceivePayment as ReceivePayment,
     type ReceivePaymentDeleteResponse as ReceivePaymentDeleteResponse,
-    ReceivePaymentsCursorPage as ReceivePaymentsCursorPage,
+    type ReceivePaymentsCursorPage as ReceivePaymentsCursorPage,
     type ReceivePaymentCreateParams as ReceivePaymentCreateParams,
     type ReceivePaymentRetrieveParams as ReceivePaymentRetrieveParams,
     type ReceivePaymentUpdateParams as ReceivePaymentUpdateParams,
@@ -1175,7 +1143,7 @@ export declare namespace Qbd {
     SalesOrders as SalesOrders,
     type SalesOrder as SalesOrder,
     type SalesOrderDeleteResponse as SalesOrderDeleteResponse,
-    SalesOrdersCursorPage as SalesOrdersCursorPage,
+    type SalesOrdersCursorPage as SalesOrdersCursorPage,
     type SalesOrderCreateParams as SalesOrderCreateParams,
     type SalesOrderRetrieveParams as SalesOrderRetrieveParams,
     type SalesOrderUpdateParams as SalesOrderUpdateParams,
@@ -1187,7 +1155,7 @@ export declare namespace Qbd {
     SalesReceipts as SalesReceipts,
     type SalesReceipt as SalesReceipt,
     type SalesReceiptDeleteResponse as SalesReceiptDeleteResponse,
-    SalesReceiptsCursorPage as SalesReceiptsCursorPage,
+    type SalesReceiptsCursorPage as SalesReceiptsCursorPage,
     type SalesReceiptCreateParams as SalesReceiptCreateParams,
     type SalesReceiptRetrieveParams as SalesReceiptRetrieveParams,
     type SalesReceiptUpdateParams as SalesReceiptUpdateParams,
@@ -1218,7 +1186,7 @@ export declare namespace Qbd {
   export {
     SalesTaxItems as SalesTaxItems,
     type SalesTaxItem as SalesTaxItem,
-    SalesTaxItemsCursorPage as SalesTaxItemsCursorPage,
+    type SalesTaxItemsCursorPage as SalesTaxItemsCursorPage,
     type SalesTaxItemCreateParams as SalesTaxItemCreateParams,
     type SalesTaxItemRetrieveParams as SalesTaxItemRetrieveParams,
     type SalesTaxItemUpdateParams as SalesTaxItemUpdateParams,
@@ -1228,7 +1196,7 @@ export declare namespace Qbd {
   export {
     ServiceItems as ServiceItems,
     type ServiceItem as ServiceItem,
-    ServiceItemsCursorPage as ServiceItemsCursorPage,
+    type ServiceItemsCursorPage as ServiceItemsCursorPage,
     type ServiceItemCreateParams as ServiceItemCreateParams,
     type ServiceItemRetrieveParams as ServiceItemRetrieveParams,
     type ServiceItemUpdateParams as ServiceItemUpdateParams,
@@ -1247,7 +1215,7 @@ export declare namespace Qbd {
   export {
     SubtotalItems as SubtotalItems,
     type SubtotalItem as SubtotalItem,
-    SubtotalItemsCursorPage as SubtotalItemsCursorPage,
+    type SubtotalItemsCursorPage as SubtotalItemsCursorPage,
     type SubtotalItemCreateParams as SubtotalItemCreateParams,
     type SubtotalItemRetrieveParams as SubtotalItemRetrieveParams,
     type SubtotalItemUpdateParams as SubtotalItemUpdateParams,
@@ -1265,7 +1233,7 @@ export declare namespace Qbd {
     TimeTrackingActivities as TimeTrackingActivities,
     type TimeTrackingActivity as TimeTrackingActivity,
     type TimeTrackingActivityDeleteResponse as TimeTrackingActivityDeleteResponse,
-    TimeTrackingActivitiesCursorPage as TimeTrackingActivitiesCursorPage,
+    type TimeTrackingActivitiesCursorPage as TimeTrackingActivitiesCursorPage,
     type TimeTrackingActivityCreateParams as TimeTrackingActivityCreateParams,
     type TimeTrackingActivityRetrieveParams as TimeTrackingActivityRetrieveParams,
     type TimeTrackingActivityUpdateParams as TimeTrackingActivityUpdateParams,
@@ -1276,7 +1244,7 @@ export declare namespace Qbd {
   export {
     Transactions as Transactions,
     type Transaction as Transaction,
-    TransactionsCursorPage as TransactionsCursorPage,
+    type TransactionsCursorPage as TransactionsCursorPage,
     type TransactionRetrieveParams as TransactionRetrieveParams,
     type TransactionListParams as TransactionListParams,
   };
@@ -1284,7 +1252,7 @@ export declare namespace Qbd {
   export {
     Transfers as Transfers,
     type Transfer as Transfer,
-    TransfersCursorPage as TransfersCursorPage,
+    type TransfersCursorPage as TransfersCursorPage,
     type TransferCreateParams as TransferCreateParams,
     type TransferRetrieveParams as TransferRetrieveParams,
     type TransferUpdateParams as TransferUpdateParams,
@@ -1304,7 +1272,7 @@ export declare namespace Qbd {
     VendorCredits as VendorCredits,
     type VendorCredit as VendorCredit,
     type VendorCreditDeleteResponse as VendorCreditDeleteResponse,
-    VendorCreditsCursorPage as VendorCreditsCursorPage,
+    type VendorCreditsCursorPage as VendorCreditsCursorPage,
     type VendorCreditCreateParams as VendorCreditCreateParams,
     type VendorCreditRetrieveParams as VendorCreditRetrieveParams,
     type VendorCreditUpdateParams as VendorCreditUpdateParams,
@@ -1315,7 +1283,7 @@ export declare namespace Qbd {
   export {
     Vendors as Vendors,
     type Vendor as Vendor,
-    VendorsCursorPage as VendorsCursorPage,
+    type VendorsCursorPage as VendorsCursorPage,
     type VendorCreateParams as VendorCreateParams,
     type VendorRetrieveParams as VendorRetrieveParams,
     type VendorUpdateParams as VendorUpdateParams,

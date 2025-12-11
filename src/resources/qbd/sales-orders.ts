@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class SalesOrders extends APIResource {
   /**
@@ -125,7 +128,7 @@ export class SalesOrders extends APIResource {
   }
 }
 
-export class SalesOrdersCursorPage extends CursorPage<SalesOrder> {}
+export type SalesOrdersCursorPage = CursorPage<SalesOrder>;
 
 export interface SalesOrder {
   /**
@@ -3200,13 +3203,11 @@ export interface SalesOrderDeleteParams {
   conductorEndUserId: string;
 }
 
-SalesOrders.SalesOrdersCursorPage = SalesOrdersCursorPage;
-
 export declare namespace SalesOrders {
   export {
     type SalesOrder as SalesOrder,
     type SalesOrderDeleteResponse as SalesOrderDeleteResponse,
-    SalesOrdersCursorPage as SalesOrdersCursorPage,
+    type SalesOrdersCursorPage as SalesOrdersCursorPage,
     type SalesOrderCreateParams as SalesOrderCreateParams,
     type SalesOrderRetrieveParams as SalesOrderRetrieveParams,
     type SalesOrderUpdateParams as SalesOrderUpdateParams,

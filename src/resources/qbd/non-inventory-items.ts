@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class NonInventoryItems extends APIResource {
   /**
@@ -115,7 +118,7 @@ export class NonInventoryItems extends APIResource {
   }
 }
 
-export class NonInventoryItemsCursorPage extends CursorPage<NonInventoryItem> {}
+export type NonInventoryItemsCursorPage = CursorPage<NonInventoryItem>;
 
 export interface NonInventoryItem {
   /**
@@ -1191,12 +1194,10 @@ export interface NonInventoryItemListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
-NonInventoryItems.NonInventoryItemsCursorPage = NonInventoryItemsCursorPage;
-
 export declare namespace NonInventoryItems {
   export {
     type NonInventoryItem as NonInventoryItem,
-    NonInventoryItemsCursorPage as NonInventoryItemsCursorPage,
+    type NonInventoryItemsCursorPage as NonInventoryItemsCursorPage,
     type NonInventoryItemCreateParams as NonInventoryItemCreateParams,
     type NonInventoryItemRetrieveParams as NonInventoryItemRetrieveParams,
     type NonInventoryItemUpdateParams as NonInventoryItemUpdateParams,
