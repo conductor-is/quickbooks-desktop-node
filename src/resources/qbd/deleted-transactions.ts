@@ -18,7 +18,7 @@ export class DeletedTransactions extends APIResource {
    * const deletedTransactions =
    *   await conductor.qbd.deletedTransactions.list({
    *     transactionTypes: ['invoice'],
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
@@ -26,11 +26,11 @@ export class DeletedTransactions extends APIResource {
     params: DeletedTransactionListParams,
     options?: RequestOptions,
   ): APIPromise<DeletedTransactionListResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/deleted-transactions', {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -152,7 +152,7 @@ export interface DeletedTransactionListParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for deleted transactions deleted on or after this date/time,

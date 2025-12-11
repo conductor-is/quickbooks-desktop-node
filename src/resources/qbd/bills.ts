@@ -18,16 +18,16 @@ export class Bills extends APIResource {
    * const bill = await conductor.qbd.bills.create({
    *   transactionDate: '2024-10-01',
    *   vendorId: '80000001-1234567890',
-   *   'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
   create(params: BillCreateParams, options?: RequestOptions): APIPromise<Bill> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/bills', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -44,15 +44,15 @@ export class Bills extends APIResource {
    * ```ts
    * const bill = await conductor.qbd.bills.retrieve(
    *   '123ABC-1234567890',
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
    * ```
    */
   retrieve(id: string, params: BillRetrieveParams, options?: RequestOptions): APIPromise<Bill> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/bills/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -68,17 +68,17 @@ export class Bills extends APIResource {
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   },
    * );
    * ```
    */
   update(id: string, params: BillUpdateParams, options?: RequestOptions): APIPromise<Bill> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/bills/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -90,18 +90,18 @@ export class Bills extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const bill of conductor.qbd.bills.list({
-   *   'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...
    * }
    * ```
    */
   list(params: BillListParams, options?: RequestOptions): PagePromise<BillsCursorPage, Bill> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/bills', CursorPage<Bill>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -113,15 +113,15 @@ export class Bills extends APIResource {
    * ```ts
    * const bill = await conductor.qbd.bills.delete(
    *   '123ABC-1234567890',
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
    * ```
    */
   delete(id: string, params: BillDeleteParams, options?: RequestOptions): APIPromise<BillDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/bills/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -1724,7 +1724,7 @@ export interface BillCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The date by which this bill must be paid, in ISO 8601 format
@@ -2312,7 +2312,7 @@ export interface BillRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface BillUpdateParams {
@@ -2328,7 +2328,7 @@ export interface BillUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: When `true`, removes all existing expense lines associated with this
@@ -2956,7 +2956,7 @@ export interface BillListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for bills associated with these accounts.
@@ -3108,7 +3108,7 @@ export interface BillDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace Bills {

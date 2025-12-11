@@ -18,16 +18,16 @@ export class VendorCredits extends APIResource {
    *   await conductor.qbd.vendorCredits.create({
    *     transactionDate: '2024-10-01',
    *     vendorId: '80000001-1234567890',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: VendorCreditCreateParams, options?: RequestOptions): APIPromise<VendorCredit> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/vendor-credits', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -45,7 +45,7 @@ export class VendorCredits extends APIResource {
    * const vendorCredit =
    *   await conductor.qbd.vendorCredits.retrieve(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -54,10 +54,10 @@ export class VendorCredits extends APIResource {
     params: VendorCreditRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<VendorCredit> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/vendor-credits/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -72,17 +72,17 @@ export class VendorCredits extends APIResource {
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
    */
   update(id: string, params: VendorCreditUpdateParams, options?: RequestOptions): APIPromise<VendorCredit> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/vendor-credits/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -94,7 +94,7 @@ export class VendorCredits extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const vendorCredit of conductor.qbd.vendorCredits.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -104,11 +104,11 @@ export class VendorCredits extends APIResource {
     params: VendorCreditListParams,
     options?: RequestOptions,
   ): PagePromise<VendorCreditsCursorPage, VendorCredit> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/vendor-credits', CursorPage<VendorCredit>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -121,7 +121,7 @@ export class VendorCredits extends APIResource {
    * const vendorCredit =
    *   await conductor.qbd.vendorCredits.delete(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -130,10 +130,10 @@ export class VendorCredits extends APIResource {
     params: VendorCreditDeleteParams,
     options?: RequestOptions,
   ): APIPromise<VendorCreditDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/vendor-credits/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -1635,7 +1635,7 @@ export interface VendorCreditCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The market exchange rate between this vendor credit's currency and
@@ -2109,7 +2109,7 @@ export interface VendorCreditRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface VendorCreditUpdateParams {
@@ -2125,7 +2125,7 @@ export interface VendorCreditUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: When `true`, removes all existing expense lines associated with this
@@ -2666,7 +2666,7 @@ export interface VendorCreditListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for vendor credits associated with these accounts.
@@ -2817,7 +2817,7 @@ export interface VendorCreditDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace VendorCredits {

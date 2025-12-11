@@ -20,16 +20,16 @@ export class BuildAssemblies extends APIResource {
    *     inventoryAssemblyItemId: '80000001-1234567890',
    *     quantityToBuild: 7,
    *     transactionDate: '2024-10-01',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: BuildAssemblyCreateParams, options?: RequestOptions): APIPromise<BuildAssembly> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/build-assemblies', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -46,7 +46,7 @@ export class BuildAssemblies extends APIResource {
    * const buildAssembly =
    *   await conductor.qbd.buildAssemblies.retrieve(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -55,10 +55,10 @@ export class BuildAssemblies extends APIResource {
     params: BuildAssemblyRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<BuildAssembly> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/build-assemblies/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -72,17 +72,17 @@ export class BuildAssemblies extends APIResource {
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
    */
   update(id: string, params: BuildAssemblyUpdateParams, options?: RequestOptions): APIPromise<BuildAssembly> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/build-assemblies/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -94,7 +94,7 @@ export class BuildAssemblies extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const buildAssembly of conductor.qbd.buildAssemblies.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -104,11 +104,11 @@ export class BuildAssemblies extends APIResource {
     params: BuildAssemblyListParams,
     options?: RequestOptions,
   ): PagePromise<BuildAssembliesCursorPage, BuildAssembly> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/build-assemblies', CursorPage<BuildAssembly>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -121,7 +121,7 @@ export class BuildAssemblies extends APIResource {
    * const buildAssembly =
    *   await conductor.qbd.buildAssemblies.delete(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -130,10 +130,10 @@ export class BuildAssemblies extends APIResource {
     params: BuildAssemblyDeleteParams,
     options?: RequestOptions,
   ): APIPromise<BuildAssemblyDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/build-assemblies/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -545,7 +545,7 @@ export interface BuildAssemblyCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The expiration date for the serial number or lot number of the item
@@ -616,7 +616,7 @@ export interface BuildAssemblyRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface BuildAssemblyUpdateParams {
@@ -632,7 +632,7 @@ export interface BuildAssemblyUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The expiration date for the serial number or lot number of the item
@@ -711,7 +711,7 @@ export interface BuildAssemblyListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for specific build assemblies by their QuickBooks-assigned
@@ -851,7 +851,7 @@ export interface BuildAssemblyDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace BuildAssemblies {

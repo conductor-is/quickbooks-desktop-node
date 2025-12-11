@@ -16,16 +16,16 @@ export class SubtotalItems extends APIResource {
    * const subtotalItem =
    *   await conductor.qbd.subtotalItems.create({
    *     name: 'Labor subtotal',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: SubtotalItemCreateParams, options?: RequestOptions): APIPromise<SubtotalItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/subtotal-items', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -41,7 +41,7 @@ export class SubtotalItems extends APIResource {
    * const subtotalItem =
    *   await conductor.qbd.subtotalItems.retrieve(
    *     '80000001-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -50,10 +50,10 @@ export class SubtotalItems extends APIResource {
     params: SubtotalItemRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<SubtotalItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/subtotal-items/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -67,17 +67,17 @@ export class SubtotalItems extends APIResource {
    *     '80000001-1234567890',
    *     {
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
    */
   update(id: string, params: SubtotalItemUpdateParams, options?: RequestOptions): APIPromise<SubtotalItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/subtotal-items/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -89,7 +89,7 @@ export class SubtotalItems extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const subtotalItem of conductor.qbd.subtotalItems.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -99,11 +99,11 @@ export class SubtotalItems extends APIResource {
     params: SubtotalItemListParams,
     options?: RequestOptions,
   ): PagePromise<SubtotalItemsCursorPage, SubtotalItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/subtotal-items', CursorPage<SubtotalItem>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -248,7 +248,7 @@ export interface SubtotalItemCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The subtotal item's barcode.
@@ -305,7 +305,7 @@ export interface SubtotalItemRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface SubtotalItemUpdateParams {
@@ -321,7 +321,7 @@ export interface SubtotalItemUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The subtotal item's barcode.
@@ -380,7 +380,7 @@ export interface SubtotalItemListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for specific subtotal items by their QuickBooks-assigned

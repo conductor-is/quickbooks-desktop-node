@@ -19,15 +19,15 @@ export class ItemSites extends APIResource {
    * ```ts
    * const itemSite = await conductor.qbd.itemSites.retrieve(
    *   '80000001-1234567890',
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
    * ```
    */
   retrieve(id: string, params: ItemSiteRetrieveParams, options?: RequestOptions): APIPromise<ItemSite> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/item-sites/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -39,18 +39,18 @@ export class ItemSites extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const itemSite of conductor.qbd.itemSites.list({
-   *   'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...
    * }
    * ```
    */
   list(params: ItemSiteListParams, options?: RequestOptions): PagePromise<ItemSitesCursorPage, ItemSite> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/item-sites', CursorPage<ItemSite>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -249,7 +249,7 @@ export interface ItemSiteRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface ItemSiteListParams extends CursorPageParams {
@@ -257,7 +257,7 @@ export interface ItemSiteListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for specific item sites by their QuickBooks-assigned unique

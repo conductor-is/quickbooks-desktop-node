@@ -14,7 +14,7 @@ describe('resource transfers', () => {
       sourceAccountId: '80000001-1234567890',
       targetAccountId: '80000001-1234567890',
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -31,7 +31,7 @@ describe('resource transfers', () => {
       sourceAccountId: '80000001-1234567890',
       targetAccountId: '80000001-1234567890',
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       classId: '80000001-1234567890',
       memo: 'Monthly transfer to savings',
     });
@@ -39,7 +39,7 @@ describe('resource transfers', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.transfers.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -52,14 +52,14 @@ describe('resource transfers', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.transfers.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.transfers.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -73,7 +73,7 @@ describe('resource transfers', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.transfers.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       amount: '1000.00',
       classId: '80000001-1234567890',
       memo: 'Monthly transfer to savings',
@@ -84,9 +84,7 @@ describe('resource transfers', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.transfers.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = conductor.qbd.transfers.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -98,7 +96,7 @@ describe('resource transfers', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.transfers.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['123ABC-1234567890'],
       limit: 150,

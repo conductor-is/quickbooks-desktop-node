@@ -12,7 +12,7 @@ describe('resource itemGroups', () => {
     const responsePromise = conductor.qbd.itemGroups.create({
       name: 'Office Supplies Bundle',
       shouldPrintItemsInGroup: true,
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,7 +27,7 @@ describe('resource itemGroups', () => {
     const response = await conductor.qbd.itemGroups.create({
       name: 'Office Supplies Bundle',
       shouldPrintItemsInGroup: true,
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
       description: 'Complete office starter kit with essential supplies for new employees.',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
@@ -39,7 +39,7 @@ describe('resource itemGroups', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.itemGroups.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -52,14 +52,14 @@ describe('resource itemGroups', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.itemGroups.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.itemGroups.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -73,7 +73,7 @@ describe('resource itemGroups', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.itemGroups.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
       clearItemLines: false,
       description: 'Complete office starter kit with essential supplies for new employees.',
@@ -87,9 +87,7 @@ describe('resource itemGroups', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.itemGroups.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = conductor.qbd.itemGroups.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -101,7 +99,7 @@ describe('resource itemGroups', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.itemGroups.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['80000001-1234567890'],
       limit: 150,

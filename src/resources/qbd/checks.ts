@@ -18,16 +18,16 @@ export class Checks extends APIResource {
    * const check = await conductor.qbd.checks.create({
    *   bankAccountId: '80000001-1234567890',
    *   transactionDate: '2024-10-01',
-   *   'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
   create(params: CheckCreateParams, options?: RequestOptions): APIPromise<Check> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/checks', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -44,15 +44,15 @@ export class Checks extends APIResource {
    * ```ts
    * const check = await conductor.qbd.checks.retrieve(
    *   '123ABC-1234567890',
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
    * ```
    */
   retrieve(id: string, params: CheckRetrieveParams, options?: RequestOptions): APIPromise<Check> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/checks/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -67,17 +67,17 @@ export class Checks extends APIResource {
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   },
    * );
    * ```
    */
   update(id: string, params: CheckUpdateParams, options?: RequestOptions): APIPromise<Check> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/checks/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -89,18 +89,18 @@ export class Checks extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const check of conductor.qbd.checks.list({
-   *   'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...
    * }
    * ```
    */
   list(params: CheckListParams, options?: RequestOptions): PagePromise<ChecksCursorPage, Check> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/checks', CursorPage<Check>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -112,15 +112,15 @@ export class Checks extends APIResource {
    * ```ts
    * const check = await conductor.qbd.checks.delete(
    *   '123ABC-1234567890',
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
    * ```
    */
   delete(id: string, params: CheckDeleteParams, options?: RequestOptions): APIPromise<CheckDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/checks/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -1674,7 +1674,7 @@ export interface CheckCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The address that is printed on the check.
@@ -2254,7 +2254,7 @@ export interface CheckRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface CheckUpdateParams {
@@ -2270,7 +2270,7 @@ export interface CheckUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The address that is printed on the check.
@@ -2917,7 +2917,7 @@ export interface CheckListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for checks associated with these accounts.
@@ -3068,7 +3068,7 @@ export interface CheckDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace Checks {

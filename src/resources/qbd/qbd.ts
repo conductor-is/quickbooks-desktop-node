@@ -642,15 +642,15 @@ export class Qbd extends APIResource {
    * @example
    * ```ts
    * const response = await conductor.qbd.healthCheck({
-   *   'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
   healthCheck(params: QbdHealthCheckParams, options?: RequestOptions): APIPromise<QbdHealthCheckResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get('/quickbooks-desktop/health-check', {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -672,7 +672,7 @@ export interface QbdHealthCheckParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 Qbd.AccountTaxLines = AccountTaxLines;

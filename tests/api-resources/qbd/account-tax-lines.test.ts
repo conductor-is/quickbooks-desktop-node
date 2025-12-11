@@ -10,7 +10,7 @@ const conductor = new Conductor({
 describe('resource accountTaxLines', () => {
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.accountTaxLines.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -23,7 +23,7 @@ describe('resource accountTaxLines', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.accountTaxLines.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

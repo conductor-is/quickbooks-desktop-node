@@ -28,7 +28,7 @@ export const tool: Tool = {
         description:
           "The current QuickBooks-assigned revision number of the sales-tax item object you are updating, which you can get by fetching the object first. Provide the most recent `revisionNumber` to ensure you're working with the latest data; otherwise, the update will return an error.",
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -87,7 +87,7 @@ export const tool: Tool = {
           'The tax agency (vendor) to whom collected sales taxes are owed for this sales-tax item. This field refers to a vendor in QuickBooks that represents the tax authority. If a non-zero `taxRate` is specified, then `taxVendor` is required.',
       },
     },
-    required: ['id', 'revisionNumber', 'Conductor-End-User-Id'],
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
   annotations: {},
 };

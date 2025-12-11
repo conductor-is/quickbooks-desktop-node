@@ -9,9 +9,7 @@ const conductor = new Conductor({
 
 describe('resource templates', () => {
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.templates.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = conductor.qbd.templates.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,8 +20,6 @@ describe('resource templates', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await conductor.qbd.templates.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
-    });
+    const response = await conductor.qbd.templates.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
   });
 });

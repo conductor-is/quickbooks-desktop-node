@@ -17,16 +17,16 @@ export class SalesRepresentatives extends APIResource {
    *   await conductor.qbd.salesRepresentatives.create({
    *     entityId: '80000001-1234567890',
    *     initial: 'JD',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: SalesRepresentativeCreateParams, options?: RequestOptions): APIPromise<SalesRepresentative> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/sales-representatives', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -43,7 +43,7 @@ export class SalesRepresentatives extends APIResource {
    * const salesRepresentative =
    *   await conductor.qbd.salesRepresentatives.retrieve(
    *     '80000001-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -52,10 +52,10 @@ export class SalesRepresentatives extends APIResource {
     params: SalesRepresentativeRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<SalesRepresentative> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/sales-representatives/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -69,7 +69,7 @@ export class SalesRepresentatives extends APIResource {
    *     '80000001-1234567890',
    *     {
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
@@ -79,11 +79,11 @@ export class SalesRepresentatives extends APIResource {
     params: SalesRepresentativeUpdateParams,
     options?: RequestOptions,
   ): APIPromise<SalesRepresentative> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/sales-representatives/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -96,7 +96,7 @@ export class SalesRepresentatives extends APIResource {
    * ```ts
    * const salesRepresentatives =
    *   await conductor.qbd.salesRepresentatives.list({
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
@@ -104,11 +104,11 @@ export class SalesRepresentatives extends APIResource {
     params: SalesRepresentativeListParams,
     options?: RequestOptions,
   ): APIPromise<SalesRepresentativeListResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/sales-representatives', {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -223,7 +223,7 @@ export interface SalesRepresentativeCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: Indicates whether this sales representative is active. Inactive
@@ -238,7 +238,7 @@ export interface SalesRepresentativeRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface SalesRepresentativeUpdateParams {
@@ -254,7 +254,7 @@ export interface SalesRepresentativeUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The sales representative's corresponding person entity in
@@ -282,7 +282,7 @@ export interface SalesRepresentativeListParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for specific sales representatives by their

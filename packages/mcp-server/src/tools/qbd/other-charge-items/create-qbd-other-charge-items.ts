@@ -24,7 +24,7 @@ export const tool: Tool = {
         description:
           'The case-insensitive name of this other charge item. Not guaranteed to be unique because it does not include the names of its hierarchical parent objects like `fullName` does. For example, two other charge items could both have the `name` "Overnight Delivery", but they could have unique `fullName` values, such as "Shipping Charges:Overnight Delivery" and "Misc Fees:Overnight Delivery".\n\nMaximum length: 31 characters.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -145,7 +145,7 @@ export const tool: Tool = {
           'The default sales-tax code for this other charge item, determining whether it is taxable or non-taxable. This can be overridden at the transaction-line level.\n\nDefault codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes can also be created in QuickBooks. If QuickBooks is not set up to charge sales tax (via the "Do You Charge Sales Tax?" preference), it will assign the default non-taxable code to all sales.',
       },
     },
-    required: ['name', 'Conductor-End-User-Id'],
+    required: ['name', 'conductorEndUserId'],
   },
   annotations: {},
 };

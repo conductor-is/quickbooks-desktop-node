@@ -30,7 +30,7 @@ export const tool: Tool = {
         description: 'The date written on this check, in ISO 8601 format (YYYY-MM-DD).',
         format: 'date',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -410,7 +410,7 @@ export const tool: Tool = {
           'The sales-tax code for this check, determining whether it is taxable or non-taxable. If set, this overrides any sales-tax codes defined on the payee. This can be overridden on the check\'s individual lines.\n\nDefault codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes can also be created in QuickBooks. If QuickBooks is not set up to charge sales tax (via the "Do You Charge Sales Tax?" preference), it will assign the default non-taxable code to all sales.',
       },
     },
-    required: ['bankAccountId', 'transactionDate', 'Conductor-End-User-Id'],
+    required: ['bankAccountId', 'transactionDate', 'conductorEndUserId'],
   },
   annotations: {},
 };

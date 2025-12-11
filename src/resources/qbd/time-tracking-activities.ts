@@ -18,7 +18,7 @@ export class TimeTrackingActivities extends APIResource {
    *     duration: 'PT1H30M',
    *     entityId: '80000001-1234567890',
    *     transactionDate: '2024-10-01',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
@@ -26,11 +26,11 @@ export class TimeTrackingActivities extends APIResource {
     params: TimeTrackingActivityCreateParams,
     options?: RequestOptions,
   ): APIPromise<TimeTrackingActivity> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/time-tracking-activities', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -47,7 +47,7 @@ export class TimeTrackingActivities extends APIResource {
    * const timeTrackingActivity =
    *   await conductor.qbd.timeTrackingActivities.retrieve(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -56,10 +56,10 @@ export class TimeTrackingActivities extends APIResource {
     params: TimeTrackingActivityRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<TimeTrackingActivity> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/time-tracking-activities/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -75,7 +75,7 @@ export class TimeTrackingActivities extends APIResource {
    *       duration: 'PT1H30M',
    *       entityId: '80000001-1234567890',
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
@@ -85,11 +85,11 @@ export class TimeTrackingActivities extends APIResource {
     params: TimeTrackingActivityUpdateParams,
     options?: RequestOptions,
   ): APIPromise<TimeTrackingActivity> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/time-tracking-activities/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -101,7 +101,7 @@ export class TimeTrackingActivities extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const timeTrackingActivity of conductor.qbd.timeTrackingActivities.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -111,14 +111,14 @@ export class TimeTrackingActivities extends APIResource {
     params: TimeTrackingActivityListParams,
     options?: RequestOptions,
   ): PagePromise<TimeTrackingActivitiesCursorPage, TimeTrackingActivity> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList(
       '/quickbooks-desktop/time-tracking-activities',
       CursorPage<TimeTrackingActivity>,
       {
         query,
         ...options,
-        headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+        headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
       },
     );
   }
@@ -133,7 +133,7 @@ export class TimeTrackingActivities extends APIResource {
    * const timeTrackingActivity =
    *   await conductor.qbd.timeTrackingActivities.delete(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -142,10 +142,10 @@ export class TimeTrackingActivities extends APIResource {
     params: TimeTrackingActivityDeleteParams,
     options?: RequestOptions,
   ): APIPromise<TimeTrackingActivityDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/time-tracking-activities/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -440,7 +440,7 @@ export interface TimeTrackingActivityCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The billing status of this time tracking activity.
@@ -506,7 +506,7 @@ export interface TimeTrackingActivityRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface TimeTrackingActivityUpdateParams {
@@ -547,7 +547,7 @@ export interface TimeTrackingActivityUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The billing status of this time tracking activity.
@@ -609,7 +609,7 @@ export interface TimeTrackingActivityListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for time tracking activities tracking the time of these
@@ -683,7 +683,7 @@ export interface TimeTrackingActivityDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace TimeTrackingActivities {

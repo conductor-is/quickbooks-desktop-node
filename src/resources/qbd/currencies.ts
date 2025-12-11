@@ -17,16 +17,16 @@ export class Currencies extends APIResource {
    * const currency = await conductor.qbd.currencies.create({
    *   currencyCode: 'USD',
    *   name: 'United States Dollar',
-   *   'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
   create(params: CurrencyCreateParams, options?: RequestOptions): APIPromise<Currency> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/currencies', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -41,15 +41,15 @@ export class Currencies extends APIResource {
    * ```ts
    * const currency = await conductor.qbd.currencies.retrieve(
    *   '80000001-1234567890',
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
    * ```
    */
   retrieve(id: string, params: CurrencyRetrieveParams, options?: RequestOptions): APIPromise<Currency> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/currencies/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -64,17 +64,17 @@ export class Currencies extends APIResource {
    *   '80000001-1234567890',
    *   {
    *     revisionNumber: '1721172183',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   },
    * );
    * ```
    */
   update(id: string, params: CurrencyUpdateParams, options?: RequestOptions): APIPromise<Currency> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/currencies/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -86,16 +86,16 @@ export class Currencies extends APIResource {
    * @example
    * ```ts
    * const currencies = await conductor.qbd.currencies.list({
-   *   'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
   list(params: CurrencyListParams, options?: RequestOptions): APIPromise<CurrencyListResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/currencies', {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -266,7 +266,7 @@ export interface CurrencyCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: Controls how this currency displays thousands separators, grouping,
@@ -318,7 +318,7 @@ export interface CurrencyRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface CurrencyUpdateParams {
@@ -334,7 +334,7 @@ export interface CurrencyUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The internationally accepted currency code used by this currency,
@@ -411,7 +411,7 @@ export interface CurrencyListParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for specific currencies by their QuickBooks-assigned unique

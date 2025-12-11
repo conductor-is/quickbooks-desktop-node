@@ -48,7 +48,7 @@ export const tool: Tool = {
         description:
           'The case-insensitive name of this account. Not guaranteed to be unique because it does not include the names of its hierarchical parent objects like `fullName` does. For example, two accounts could both have the `name` "Accounts-Payable", but they could have unique `fullName` values, such as "Corporate:Accounts-Payable" and "Finance:Accounts-Payable".\n\nMaximum length: 31 characters.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -103,7 +103,7 @@ export const tool: Tool = {
           'The identifier of the tax line associated with this account. You can see a list of all available values for this field by calling the endpoint for account tax lines.',
       },
     },
-    required: ['accountType', 'name', 'Conductor-End-User-Id'],
+    required: ['accountType', 'name', 'conductorEndUserId'],
   },
   annotations: {},
 };

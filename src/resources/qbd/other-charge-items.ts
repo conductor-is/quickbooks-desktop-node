@@ -16,16 +16,16 @@ export class OtherChargeItems extends APIResource {
    * const otherChargeItem =
    *   await conductor.qbd.otherChargeItems.create({
    *     name: 'Overnight Delivery',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: OtherChargeItemCreateParams, options?: RequestOptions): APIPromise<OtherChargeItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/other-charge-items', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -42,7 +42,7 @@ export class OtherChargeItems extends APIResource {
    * const otherChargeItem =
    *   await conductor.qbd.otherChargeItems.retrieve(
    *     '80000001-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -51,10 +51,10 @@ export class OtherChargeItems extends APIResource {
     params: OtherChargeItemRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<OtherChargeItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/other-charge-items/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -68,7 +68,7 @@ export class OtherChargeItems extends APIResource {
    *     '80000001-1234567890',
    *     {
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
@@ -78,11 +78,11 @@ export class OtherChargeItems extends APIResource {
     params: OtherChargeItemUpdateParams,
     options?: RequestOptions,
   ): APIPromise<OtherChargeItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/other-charge-items/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -94,7 +94,7 @@ export class OtherChargeItems extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const otherChargeItem of conductor.qbd.otherChargeItems.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -104,11 +104,11 @@ export class OtherChargeItems extends APIResource {
     params: OtherChargeItemListParams,
     options?: RequestOptions,
   ): PagePromise<OtherChargeItemsCursorPage, OtherChargeItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/other-charge-items', CursorPage<OtherChargeItem>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -577,7 +577,7 @@ export interface OtherChargeItemCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The other charge item's barcode.
@@ -770,7 +770,7 @@ export interface OtherChargeItemRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface OtherChargeItemUpdateParams {
@@ -786,7 +786,7 @@ export interface OtherChargeItemUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The other charge item's barcode.
@@ -1009,7 +1009,7 @@ export interface OtherChargeItemListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for other charge items of these classes. A class is a way

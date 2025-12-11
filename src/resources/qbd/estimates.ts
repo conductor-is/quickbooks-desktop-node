@@ -16,16 +16,16 @@ export class Estimates extends APIResource {
    * const estimate = await conductor.qbd.estimates.create({
    *   customerId: '80000001-1234567890',
    *   transactionDate: '2024-10-01',
-   *   'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
   create(params: EstimateCreateParams, options?: RequestOptions): APIPromise<Estimate> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/estimates', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -42,15 +42,15 @@ export class Estimates extends APIResource {
    * ```ts
    * const estimate = await conductor.qbd.estimates.retrieve(
    *   '123ABC-1234567890',
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
    * ```
    */
   retrieve(id: string, params: EstimateRetrieveParams, options?: RequestOptions): APIPromise<Estimate> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/estimates/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -63,17 +63,17 @@ export class Estimates extends APIResource {
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   },
    * );
    * ```
    */
   update(id: string, params: EstimateUpdateParams, options?: RequestOptions): APIPromise<Estimate> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/estimates/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -85,18 +85,18 @@ export class Estimates extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const estimate of conductor.qbd.estimates.list({
-   *   'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * })) {
    *   // ...
    * }
    * ```
    */
   list(params: EstimateListParams, options?: RequestOptions): PagePromise<EstimatesCursorPage, Estimate> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/estimates', CursorPage<Estimate>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -108,7 +108,7 @@ export class Estimates extends APIResource {
    * ```ts
    * const estimate = await conductor.qbd.estimates.delete(
    *   '123ABC-1234567890',
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
    * ```
    */
@@ -117,10 +117,10 @@ export class Estimates extends APIResource {
     params: EstimateDeleteParams,
     options?: RequestOptions,
   ): APIPromise<EstimateDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/estimates/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -1624,7 +1624,7 @@ export interface EstimateCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The estimate's billing address.
@@ -2179,7 +2179,7 @@ export interface EstimateRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface EstimateUpdateParams {
@@ -2195,7 +2195,7 @@ export interface EstimateUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The estimate's billing address.
@@ -2902,7 +2902,7 @@ export interface EstimateListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for estimates associated with these accounts.
@@ -3049,7 +3049,7 @@ export interface EstimateDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace Estimates {

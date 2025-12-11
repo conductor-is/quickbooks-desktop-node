@@ -16,16 +16,16 @@ export class SalesOrders extends APIResource {
    * const salesOrder = await conductor.qbd.salesOrders.create({
    *   customerId: '80000001-1234567890',
    *   transactionDate: '2024-10-01',
-   *   'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
   create(params: SalesOrderCreateParams, options?: RequestOptions): APIPromise<SalesOrder> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/sales-orders', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -42,15 +42,15 @@ export class SalesOrders extends APIResource {
    * ```ts
    * const salesOrder = await conductor.qbd.salesOrders.retrieve(
    *   '123ABC-1234567890',
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
    * ```
    */
   retrieve(id: string, params: SalesOrderRetrieveParams, options?: RequestOptions): APIPromise<SalesOrder> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/sales-orders/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -63,17 +63,17 @@ export class SalesOrders extends APIResource {
    *   '123ABC-1234567890',
    *   {
    *     revisionNumber: '1721172183',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   },
    * );
    * ```
    */
   update(id: string, params: SalesOrderUpdateParams, options?: RequestOptions): APIPromise<SalesOrder> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/sales-orders/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -85,7 +85,7 @@ export class SalesOrders extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const salesOrder of conductor.qbd.salesOrders.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -95,11 +95,11 @@ export class SalesOrders extends APIResource {
     params: SalesOrderListParams,
     options?: RequestOptions,
   ): PagePromise<SalesOrdersCursorPage, SalesOrder> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/sales-orders', CursorPage<SalesOrder>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -111,7 +111,7 @@ export class SalesOrders extends APIResource {
    * ```ts
    * const salesOrder = await conductor.qbd.salesOrders.delete(
    *   '123ABC-1234567890',
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * );
    * ```
    */
@@ -120,10 +120,10 @@ export class SalesOrders extends APIResource {
     params: SalesOrderDeleteParams,
     options?: RequestOptions,
   ): APIPromise<SalesOrderDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/sales-orders/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -1722,7 +1722,7 @@ export interface SalesOrderCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The sales order's billing address.
@@ -2305,7 +2305,7 @@ export interface SalesOrderRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface SalesOrderUpdateParams {
@@ -2321,7 +2321,7 @@ export interface SalesOrderUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The sales order's billing address.
@@ -3057,7 +3057,7 @@ export interface SalesOrderListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for sales orders in these currencies.
@@ -3200,7 +3200,7 @@ export interface SalesOrderDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace SalesOrders {

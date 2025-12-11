@@ -10,7 +10,7 @@ const conductor = new Conductor({
 describe('resource transactions', () => {
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.transactions.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -23,14 +23,12 @@ describe('resource transactions', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.transactions.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.transactions.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = conductor.qbd.transactions.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -42,7 +40,7 @@ describe('resource transactions', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.transactions.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       classIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],

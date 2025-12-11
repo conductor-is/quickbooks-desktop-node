@@ -11,7 +11,7 @@ describe('resource journalEntries', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.journalEntries.create({
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,7 +25,7 @@ describe('resource journalEntries', () => {
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.journalEntries.create({
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       areAmountsEnteredInHomeCurrency: false,
       creditLines: [
         {
@@ -60,7 +60,7 @@ describe('resource journalEntries', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.journalEntries.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -73,14 +73,14 @@ describe('resource journalEntries', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.journalEntries.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.journalEntries.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -94,7 +94,7 @@ describe('resource journalEntries', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.journalEntries.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       areAmountsEnteredInHomeCurrency: false,
       currencyId: '80000001-1234567890',
       exchangeRate: 1.2345,
@@ -119,7 +119,7 @@ describe('resource journalEntries', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.journalEntries.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -132,7 +132,7 @@ describe('resource journalEntries', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.journalEntries.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
@@ -155,7 +155,7 @@ describe('resource journalEntries', () => {
 
   test('delete: only required params', async () => {
     const responsePromise = conductor.qbd.journalEntries.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -168,7 +168,7 @@ describe('resource journalEntries', () => {
 
   test('delete: required and optional params', async () => {
     const response = await conductor.qbd.journalEntries.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

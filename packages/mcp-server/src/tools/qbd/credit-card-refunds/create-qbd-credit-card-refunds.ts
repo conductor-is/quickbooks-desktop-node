@@ -49,7 +49,7 @@ export const tool: Tool = {
         description: 'The date of this credit card refund, in ISO 8601 format (YYYY-MM-DD).',
         format: 'date',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -284,7 +284,7 @@ export const tool: Tool = {
           'The account providing funds for this credit card refund. This is typically the Undeposited Funds account used to hold customer payments. If omitted, QuickBooks Desktop will use the default Undeposited Funds account.',
       },
     },
-    required: ['customerId', 'refundAppliedToTransactions', 'transactionDate', 'Conductor-End-User-Id'],
+    required: ['customerId', 'refundAppliedToTransactions', 'transactionDate', 'conductorEndUserId'],
   },
   annotations: {},
 };

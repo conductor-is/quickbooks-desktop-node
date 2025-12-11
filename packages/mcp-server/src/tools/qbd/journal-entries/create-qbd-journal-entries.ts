@@ -25,7 +25,7 @@ export const tool: Tool = {
         description: 'The date of this journal entry, in ISO 8601 format (YYYY-MM-DD).',
         format: 'date',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -153,7 +153,7 @@ export const tool: Tool = {
           'The case-sensitive user-defined reference number for this journal entry, which can be used to identify the transaction in QuickBooks. This value is not required to be unique and can be arbitrarily changed by the QuickBooks user. When left blank in this create request, this field will be left blank in QuickBooks (i.e., it does *not* auto-increment).',
       },
     },
-    required: ['transactionDate', 'Conductor-End-User-Id'],
+    required: ['transactionDate', 'conductorEndUserId'],
   },
   annotations: {},
 };

@@ -12,7 +12,7 @@ describe('resource salesOrders', () => {
     const responsePromise = conductor.qbd.salesOrders.create({
       customerId: '80000001-1234567890',
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,7 +27,7 @@ describe('resource salesOrders', () => {
     const response = await conductor.qbd.salesOrders.create({
       customerId: '80000001-1234567890',
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       billingAddress: {
         city: 'San Francisco',
         country: 'United States',
@@ -113,7 +113,7 @@ describe('resource salesOrders', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.salesOrders.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -126,14 +126,14 @@ describe('resource salesOrders', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.salesOrders.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.salesOrders.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -147,7 +147,7 @@ describe('resource salesOrders', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.salesOrders.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       billingAddress: {
         city: 'San Francisco',
         country: 'United States',
@@ -257,9 +257,7 @@ describe('resource salesOrders', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.salesOrders.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = conductor.qbd.salesOrders.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -271,7 +269,7 @@ describe('resource salesOrders', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.salesOrders.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       currencyIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       customerIds: ['80000001-1234567890'],
@@ -294,7 +292,7 @@ describe('resource salesOrders', () => {
 
   test('delete: only required params', async () => {
     const responsePromise = conductor.qbd.salesOrders.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -307,7 +305,7 @@ describe('resource salesOrders', () => {
 
   test('delete: required and optional params', async () => {
     const response = await conductor.qbd.salesOrders.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

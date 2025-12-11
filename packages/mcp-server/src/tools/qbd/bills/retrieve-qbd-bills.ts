@@ -24,13 +24,13 @@ export const tool: Tool = {
         type: 'string',
         description: 'The QuickBooks-assigned unique identifier of the bill to retrieve.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
       },
     },
-    required: ['id', 'Conductor-End-User-Id'],
+    required: ['id', 'conductorEndUserId'],
   },
   annotations: {
     readOnlyHint: true,

@@ -15,15 +15,15 @@ export class AccountTaxLines extends APIResource {
    * ```ts
    * const accountTaxLines =
    *   await conductor.qbd.accountTaxLines.list({
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   list(params: AccountTaxLineListParams, options?: RequestOptions): APIPromise<AccountTaxLineListResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get('/quickbooks-desktop/account-tax-lines', {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -65,7 +65,7 @@ export interface AccountTaxLineListParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace AccountTaxLines {

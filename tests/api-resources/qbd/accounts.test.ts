@@ -12,7 +12,7 @@ describe('resource accounts', () => {
     const responsePromise = conductor.qbd.accounts.create({
       accountType: 'bank',
       name: 'Accounts-Payable',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,7 +27,7 @@ describe('resource accounts', () => {
     const response = await conductor.qbd.accounts.create({
       accountType: 'bank',
       name: 'Accounts-Payable',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       accountNumber: '1010',
       bankAccountNumber: '123456789',
       currencyId: '80000001-1234567890',
@@ -44,7 +44,7 @@ describe('resource accounts', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.accounts.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -57,14 +57,14 @@ describe('resource accounts', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.accounts.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.accounts.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -78,7 +78,7 @@ describe('resource accounts', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.accounts.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       accountNumber: '1010',
       accountType: 'bank',
       bankAccountNumber: '123456789',
@@ -96,9 +96,7 @@ describe('resource accounts', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.accounts.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = conductor.qbd.accounts.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -110,7 +108,7 @@ describe('resource accounts', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.accounts.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       accountType: 'income',
       currencyIds: ['80000001-1234567890'],
       fullNames: ['Corporate:Accounts-Payable'],

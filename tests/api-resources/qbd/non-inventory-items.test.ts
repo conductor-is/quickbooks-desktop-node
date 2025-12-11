@@ -11,7 +11,7 @@ describe('resource nonInventoryItems', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.nonInventoryItems.create({
       name: 'Printer Ink Cartridge',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,7 +25,7 @@ describe('resource nonInventoryItems', () => {
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.nonInventoryItems.create({
       name: 'Printer Ink Cartridge',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
       classId: '80000001-1234567890',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
@@ -55,7 +55,7 @@ describe('resource nonInventoryItems', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.nonInventoryItems.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -68,14 +68,14 @@ describe('resource nonInventoryItems', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.nonInventoryItems.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.nonInventoryItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -89,7 +89,7 @@ describe('resource nonInventoryItems', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.nonInventoryItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
       classId: '80000001-1234567890',
       forceUnitOfMeasureChange: false,
@@ -123,7 +123,7 @@ describe('resource nonInventoryItems', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.nonInventoryItems.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -136,7 +136,7 @@ describe('resource nonInventoryItems', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.nonInventoryItems.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       classIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       fullNames: ['Office Supplies:Printer Ink Cartridge'],

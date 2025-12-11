@@ -231,9 +231,7 @@ The `for await` syntax **is not affected**. This still works as-is:
 
 ```ts
 // Automatically fetches more pages as needed.
-for await (const invoice of conductor.qbd.invoices.list({
-  'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
-})) {
+for await (const invoice of conductor.qbd.invoices.list({ conductorEndUserId: 'end_usr_1234567abcdefg' })) {
   console.log(invoice);
 }
 ```

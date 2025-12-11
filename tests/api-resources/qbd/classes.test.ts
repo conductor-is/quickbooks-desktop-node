@@ -11,7 +11,7 @@ describe('resource classes', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.classes.create({
       name: 'Marketing',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,7 +25,7 @@ describe('resource classes', () => {
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.classes.create({
       name: 'Marketing',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       isActive: true,
       parentId: '80000001-1234567890',
     });
@@ -33,7 +33,7 @@ describe('resource classes', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.classes.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -46,14 +46,14 @@ describe('resource classes', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.classes.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.classes.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -67,7 +67,7 @@ describe('resource classes', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.classes.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       isActive: true,
       name: 'Marketing',
       parentId: '80000001-1234567890',
@@ -75,7 +75,7 @@ describe('resource classes', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.classes.list({ 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' });
+    const responsePromise = conductor.qbd.classes.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -87,7 +87,7 @@ describe('resource classes', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.classes.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       fullNames: ['Department:Marketing'],
       ids: ['80000001-1234567890'],
       limit: 10,

@@ -13,7 +13,7 @@ describe('resource unitOfMeasureSets', () => {
       baseUnit: { abbreviation: 'ea', name: 'Each' },
       name: 'Weight Units',
       unitOfMeasureType: 'count',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,7 +29,7 @@ describe('resource unitOfMeasureSets', () => {
       baseUnit: { abbreviation: 'ea', name: 'Each' },
       name: 'Weight Units',
       unitOfMeasureType: 'count',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       defaultUnits: [{ unit: 'Each', unitUsedFor: 'purchase' }],
       isActive: true,
       relatedUnits: [{ abbreviation: 'ea', conversionRatio: '10', name: 'Case' }],
@@ -38,7 +38,7 @@ describe('resource unitOfMeasureSets', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.unitOfMeasureSets.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -51,13 +51,13 @@ describe('resource unitOfMeasureSets', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.unitOfMeasureSets.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.unitOfMeasureSets.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -70,7 +70,7 @@ describe('resource unitOfMeasureSets', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.unitOfMeasureSets.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       ids: ['80000001-1234567890'],
       limit: 10,
       nameContains: 'ABC',

@@ -14,7 +14,7 @@ describe('resource billCheckPayments', () => {
       bankAccountId: '80000001-1234567890',
       transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -46,7 +46,7 @@ describe('resource billCheckPayments', () => {
       bankAccountId: '80000001-1234567890',
       transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       exchangeRate: 1.2345,
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       isQueuedForPrint: true,
@@ -58,7 +58,7 @@ describe('resource billCheckPayments', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.billCheckPayments.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -71,14 +71,14 @@ describe('resource billCheckPayments', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.billCheckPayments.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.billCheckPayments.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -92,7 +92,7 @@ describe('resource billCheckPayments', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.billCheckPayments.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       amount: '1000.00',
       applyToTransactions: [
         {
@@ -121,7 +121,7 @@ describe('resource billCheckPayments', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.billCheckPayments.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -134,7 +134,7 @@ describe('resource billCheckPayments', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.billCheckPayments.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
@@ -157,7 +157,7 @@ describe('resource billCheckPayments', () => {
 
   test('delete: only required params', async () => {
     const responsePromise = conductor.qbd.billCheckPayments.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -170,7 +170,7 @@ describe('resource billCheckPayments', () => {
 
   test('delete: required and optional params', async () => {
     const response = await conductor.qbd.billCheckPayments.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

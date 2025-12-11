@@ -21,16 +21,16 @@ export class ReceivePayments extends APIResource {
    *     customerId: '80000001-1234567890',
    *     totalAmount: '1000.00',
    *     transactionDate: '2024-10-01',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: ReceivePaymentCreateParams, options?: RequestOptions): APIPromise<ReceivePayment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/receive-payments', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -47,7 +47,7 @@ export class ReceivePayments extends APIResource {
    * const receivePayment =
    *   await conductor.qbd.receivePayments.retrieve(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -56,10 +56,10 @@ export class ReceivePayments extends APIResource {
     params: ReceivePaymentRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<ReceivePayment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/receive-payments/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -75,7 +75,7 @@ export class ReceivePayments extends APIResource {
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
@@ -85,11 +85,11 @@ export class ReceivePayments extends APIResource {
     params: ReceivePaymentUpdateParams,
     options?: RequestOptions,
   ): APIPromise<ReceivePayment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/receive-payments/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -101,7 +101,7 @@ export class ReceivePayments extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const receivePayment of conductor.qbd.receivePayments.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -111,11 +111,11 @@ export class ReceivePayments extends APIResource {
     params: ReceivePaymentListParams,
     options?: RequestOptions,
   ): PagePromise<ReceivePaymentsCursorPage, ReceivePayment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/receive-payments', CursorPage<ReceivePayment>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -129,7 +129,7 @@ export class ReceivePayments extends APIResource {
    * const receivePayment =
    *   await conductor.qbd.receivePayments.delete(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -138,10 +138,10 @@ export class ReceivePayments extends APIResource {
     params: ReceivePaymentDeleteParams,
     options?: RequestOptions,
   ): APIPromise<ReceivePaymentDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/receive-payments/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -853,7 +853,7 @@ export interface ReceivePaymentCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The invoices to be paid by this receive-payment. This will create a
@@ -1190,7 +1190,7 @@ export interface ReceivePaymentRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface ReceivePaymentUpdateParams {
@@ -1206,7 +1206,7 @@ export interface ReceivePaymentUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The invoices to be paid by this receive-payment. This will create a
@@ -1531,7 +1531,7 @@ export interface ReceivePaymentListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for receive-payments associated with these accounts.
@@ -1675,7 +1675,7 @@ export interface ReceivePaymentDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace ReceivePayments {

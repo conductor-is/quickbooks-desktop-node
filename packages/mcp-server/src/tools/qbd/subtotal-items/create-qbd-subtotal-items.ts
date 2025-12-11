@@ -26,7 +26,7 @@ export const tool: Tool = {
         description:
           'The case-insensitive unique name of this subtotal item, unique across all subtotal items.\n\n**NOTE**: Subtotal items do not have a `fullName` field because they are not hierarchical objects, which is why `name` is unique for them but not for objects that have parents.\n\nMaximum length: 31 characters.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -71,7 +71,7 @@ export const tool: Tool = {
           'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
-    required: ['name', 'Conductor-End-User-Id'],
+    required: ['name', 'conductorEndUserId'],
   },
   annotations: {},
 };

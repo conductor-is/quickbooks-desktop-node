@@ -26,16 +26,16 @@ export class CreditCardRefunds extends APIResource {
    *       },
    *     ],
    *     transactionDate: '2024-10-01',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: CreditCardRefundCreateParams, options?: RequestOptions): APIPromise<CreditCardRefund> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/credit-card-refunds', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -52,7 +52,7 @@ export class CreditCardRefunds extends APIResource {
    * const creditCardRefund =
    *   await conductor.qbd.creditCardRefunds.retrieve(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -61,10 +61,10 @@ export class CreditCardRefunds extends APIResource {
     params: CreditCardRefundRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<CreditCardRefund> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/credit-card-refunds/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -76,7 +76,7 @@ export class CreditCardRefunds extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const creditCardRefund of conductor.qbd.creditCardRefunds.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -86,11 +86,11 @@ export class CreditCardRefunds extends APIResource {
     params: CreditCardRefundListParams,
     options?: RequestOptions,
   ): PagePromise<CreditCardRefundsCursorPage, CreditCardRefund> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/credit-card-refunds', CursorPage<CreditCardRefund>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -103,7 +103,7 @@ export class CreditCardRefunds extends APIResource {
    * const creditCardRefund =
    *   await conductor.qbd.creditCardRefunds.delete(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -112,10 +112,10 @@ export class CreditCardRefunds extends APIResource {
     params: CreditCardRefundDeleteParams,
     options?: RequestOptions,
   ): APIPromise<CreditCardRefundDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/credit-card-refunds/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -752,7 +752,7 @@ export interface CreditCardRefundCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The address that is printed on the credit card refund.
@@ -1087,7 +1087,7 @@ export interface CreditCardRefundRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface CreditCardRefundListParams extends CursorPageParams {
@@ -1095,7 +1095,7 @@ export interface CreditCardRefundListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for credit card refunds associated with these accounts.
@@ -1239,7 +1239,7 @@ export interface CreditCardRefundDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace CreditCardRefunds {

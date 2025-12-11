@@ -25,7 +25,7 @@ export const tool: Tool = {
         description: 'The date of this sales receipt, in ISO 8601 format (YYYY-MM-DD).',
         format: 'date',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -724,7 +724,7 @@ export const tool: Tool = {
           'The shipping method used for this sales receipt, such as standard mail or overnight delivery.',
       },
     },
-    required: ['transactionDate', 'Conductor-End-User-Id'],
+    required: ['transactionDate', 'conductorEndUserId'],
   },
   annotations: {},
 };

@@ -13,7 +13,7 @@ describe('resource buildAssemblies', () => {
       inventoryAssemblyItemId: '80000001-1234567890',
       quantityToBuild: 7,
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,7 +29,7 @@ describe('resource buildAssemblies', () => {
       inventoryAssemblyItemId: '80000001-1234567890',
       quantityToBuild: 7,
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       expirationDate: '2025-12-31',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       inventorySiteId: '80000001-1234567890',
@@ -44,7 +44,7 @@ describe('resource buildAssemblies', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.buildAssemblies.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -57,14 +57,14 @@ describe('resource buildAssemblies', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.buildAssemblies.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.buildAssemblies.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -78,7 +78,7 @@ describe('resource buildAssemblies', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.buildAssemblies.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       expirationDate: '2025-12-31',
       inventorySiteId: '80000001-1234567890',
       inventorySiteLocationId: '80000001-1234567890',
@@ -95,7 +95,7 @@ describe('resource buildAssemblies', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.buildAssemblies.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -108,7 +108,7 @@ describe('resource buildAssemblies', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.buildAssemblies.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['123ABC-1234567890'],
       includeComponentLineItems: true,
@@ -130,7 +130,7 @@ describe('resource buildAssemblies', () => {
 
   test('delete: only required params', async () => {
     const responsePromise = conductor.qbd.buildAssemblies.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -143,7 +143,7 @@ describe('resource buildAssemblies', () => {
 
   test('delete: required and optional params', async () => {
     const response = await conductor.qbd.buildAssemblies.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

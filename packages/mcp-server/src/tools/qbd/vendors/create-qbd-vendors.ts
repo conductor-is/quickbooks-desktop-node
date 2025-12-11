@@ -24,7 +24,7 @@ export const tool: Tool = {
         description:
           'The case-insensitive unique name of this vendor, unique across all vendors.\n\n**NOTE**: Vendors do not have a `fullName` field because they are not hierarchical objects, which is why `name` is unique for them but not for objects that have parents.\n\nMaximum length: 41 characters.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -402,7 +402,7 @@ export const tool: Tool = {
           "The vendor's type, used for categorizing vendors into meaningful segments, such as industry or region.",
       },
     },
-    required: ['name', 'Conductor-End-User-Id'],
+    required: ['name', 'conductorEndUserId'],
   },
   annotations: {},
 };

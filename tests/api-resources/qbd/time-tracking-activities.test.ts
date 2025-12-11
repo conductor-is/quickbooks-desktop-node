@@ -13,7 +13,7 @@ describe('resource timeTrackingActivities', () => {
       duration: 'PT1H30M',
       entityId: '80000001-1234567890',
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,7 +29,7 @@ describe('resource timeTrackingActivities', () => {
       duration: 'PT1H30M',
       entityId: '80000001-1234567890',
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       billingStatus: 'billable',
       classId: '80000001-1234567890',
       customerId: '80000001-1234567890',
@@ -42,7 +42,7 @@ describe('resource timeTrackingActivities', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.timeTrackingActivities.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -55,7 +55,7 @@ describe('resource timeTrackingActivities', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.timeTrackingActivities.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
@@ -64,7 +64,7 @@ describe('resource timeTrackingActivities', () => {
       duration: 'PT1H30M',
       entityId: '80000001-1234567890',
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -80,7 +80,7 @@ describe('resource timeTrackingActivities', () => {
       duration: 'PT1H30M',
       entityId: '80000001-1234567890',
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       billingStatus: 'billable',
       classId: '80000001-1234567890',
       customerId: '80000001-1234567890',
@@ -93,7 +93,7 @@ describe('resource timeTrackingActivities', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.timeTrackingActivities.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -106,7 +106,7 @@ describe('resource timeTrackingActivities', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.timeTrackingActivities.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       entityIds: ['80000001-1234567890'],
       ids: ['123ABC-1234567890'],
@@ -120,7 +120,7 @@ describe('resource timeTrackingActivities', () => {
 
   test('delete: only required params', async () => {
     const responsePromise = conductor.qbd.timeTrackingActivities.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -133,7 +133,7 @@ describe('resource timeTrackingActivities', () => {
 
   test('delete: required and optional params', async () => {
     const response = await conductor.qbd.timeTrackingActivities.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

@@ -11,7 +11,7 @@ describe('resource customerTypes', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.customerTypes.create({
       name: 'Healthcare',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,7 +25,7 @@ describe('resource customerTypes', () => {
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.customerTypes.create({
       name: 'Healthcare',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       isActive: true,
       parentId: '80000001-1234567890',
     });
@@ -33,7 +33,7 @@ describe('resource customerTypes', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.customerTypes.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -46,13 +46,13 @@ describe('resource customerTypes', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.customerTypes.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.customerTypes.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -65,7 +65,7 @@ describe('resource customerTypes', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.customerTypes.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       fullNames: ['Industry:Healthcare'],
       ids: ['80000001-1234567890'],
       limit: 10,

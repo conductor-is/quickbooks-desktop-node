@@ -24,7 +24,7 @@ export const tool: Tool = {
         description:
           'The case-insensitive name of this customer. Not guaranteed to be unique because it does not include the names of its hierarchical parent objects like `fullName` does. For example, two customers could both have the `name` "Website Redesign Project", but they could have unique `fullName` values, such as "ABC Corporation:Website Redesign Project" and "Baker:Website Redesign Project".\n\nMaximum length: 41 characters.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -507,7 +507,7 @@ export const tool: Tool = {
           "The customer's payment terms, defining when payment is due and any applicable discounts.",
       },
     },
-    required: ['name', 'Conductor-End-User-Id'],
+    required: ['name', 'conductorEndUserId'],
   },
   annotations: {},
 };

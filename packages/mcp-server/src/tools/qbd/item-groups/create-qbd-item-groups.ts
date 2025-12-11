@@ -29,7 +29,7 @@ export const tool: Tool = {
         description:
           'Indicates whether the individual items in this item group and their separate amounts appear on printed forms.',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -96,7 +96,7 @@ export const tool: Tool = {
           'The unit-of-measure set associated with this item group, which consists of a base unit and related units.',
       },
     },
-    required: ['name', 'shouldPrintItemsInGroup', 'Conductor-End-User-Id'],
+    required: ['name', 'shouldPrintItemsInGroup', 'conductorEndUserId'],
   },
   annotations: {},
 };

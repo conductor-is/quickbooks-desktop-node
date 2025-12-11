@@ -19,7 +19,7 @@ export const tool: Tool = {
   inputSchema: {
     type: 'object',
     properties: {
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -81,7 +81,7 @@ export const tool: Tool = {
         enum: ['active', 'all', 'inactive'],
       },
     },
-    required: ['Conductor-End-User-Id'],
+    required: ['conductorEndUserId'],
   },
   annotations: {
     readOnlyHint: true,

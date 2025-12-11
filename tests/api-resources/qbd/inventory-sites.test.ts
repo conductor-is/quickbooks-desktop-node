@@ -11,7 +11,7 @@ describe('resource inventorySites', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.inventorySites.create({
       name: 'Stockroom',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,7 +25,7 @@ describe('resource inventorySites', () => {
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.inventorySites.create({
       name: 'Stockroom',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       address: {
         city: 'San Francisco',
         country: 'United States',
@@ -46,7 +46,7 @@ describe('resource inventorySites', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.inventorySites.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -59,14 +59,14 @@ describe('resource inventorySites', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.inventorySites.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.inventorySites.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -80,7 +80,7 @@ describe('resource inventorySites', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.inventorySites.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       address: {
         city: 'San Francisco',
         country: 'United States',
@@ -105,7 +105,7 @@ describe('resource inventorySites', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.inventorySites.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -118,7 +118,7 @@ describe('resource inventorySites', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.inventorySites.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       ids: ['80000001-1234567890'],
       nameContains: 'ABC',
       nameEndsWith: 'ABC',

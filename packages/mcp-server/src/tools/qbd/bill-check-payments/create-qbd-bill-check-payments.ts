@@ -93,7 +93,7 @@ export const tool: Tool = {
         description:
           'The vendor who sent the bill(s) that this bill check payment is paying and who will receive this payment.\n\n**IMPORTANT**: This vendor must match the `vendor` on the bill(s) specified in `applyToTransactions`; otherwise, QuickBooks will say the `transactionId` in `applyToTransactions` "does not exist".',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -128,13 +128,7 @@ export const tool: Tool = {
           'The case-sensitive user-defined reference number for this bill check payment, which can be used to identify the transaction in QuickBooks. This value is not required to be unique and can be arbitrarily changed by the QuickBooks user. When left blank in this create request, this field will be left blank in QuickBooks (i.e., it does *not* auto-increment).\n\n**IMPORTANT**: For checks, this field is the check number.',
       },
     },
-    required: [
-      'applyToTransactions',
-      'bankAccountId',
-      'transactionDate',
-      'vendorId',
-      'Conductor-End-User-Id',
-    ],
+    required: ['applyToTransactions', 'bankAccountId', 'transactionDate', 'vendorId', 'conductorEndUserId'],
   },
   annotations: {},
 };

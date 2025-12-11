@@ -18,16 +18,16 @@ export class InventoryAdjustments extends APIResource {
    *   await conductor.qbd.inventoryAdjustments.create({
    *     accountId: '80000001-1234567890',
    *     transactionDate: '2024-10-01',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: InventoryAdjustmentCreateParams, options?: RequestOptions): APIPromise<InventoryAdjustment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/inventory-adjustments', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -44,7 +44,7 @@ export class InventoryAdjustments extends APIResource {
    * const inventoryAdjustment =
    *   await conductor.qbd.inventoryAdjustments.retrieve(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -53,10 +53,10 @@ export class InventoryAdjustments extends APIResource {
     params: InventoryAdjustmentRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<InventoryAdjustment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/inventory-adjustments/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -70,7 +70,7 @@ export class InventoryAdjustments extends APIResource {
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
@@ -80,11 +80,11 @@ export class InventoryAdjustments extends APIResource {
     params: InventoryAdjustmentUpdateParams,
     options?: RequestOptions,
   ): APIPromise<InventoryAdjustment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/inventory-adjustments/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -97,7 +97,7 @@ export class InventoryAdjustments extends APIResource {
    * ```ts
    * const inventoryAdjustments =
    *   await conductor.qbd.inventoryAdjustments.list({
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
@@ -105,11 +105,11 @@ export class InventoryAdjustments extends APIResource {
     params: InventoryAdjustmentListParams,
     options?: RequestOptions,
   ): APIPromise<InventoryAdjustmentListResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/inventory-adjustments', {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -123,7 +123,7 @@ export class InventoryAdjustments extends APIResource {
    * const inventoryAdjustment =
    *   await conductor.qbd.inventoryAdjustments.delete(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -132,10 +132,10 @@ export class InventoryAdjustments extends APIResource {
     params: InventoryAdjustmentDeleteParams,
     options?: RequestOptions,
   ): APIPromise<InventoryAdjustmentDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/inventory-adjustments/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -523,7 +523,7 @@ export interface InventoryAdjustmentCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The inventory adjustment's class. Classes can be used to categorize
@@ -762,7 +762,7 @@ export interface InventoryAdjustmentRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface InventoryAdjustmentUpdateParams {
@@ -778,7 +778,7 @@ export interface InventoryAdjustmentUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The account to which this inventory adjustment is posted for
@@ -916,7 +916,7 @@ export interface InventoryAdjustmentListParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for inventory adjustments associated with these accounts.
@@ -1074,7 +1074,7 @@ export interface InventoryAdjustmentDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace InventoryAdjustments {

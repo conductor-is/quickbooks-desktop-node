@@ -28,7 +28,7 @@ export const tool: Tool = {
         description:
           "The current QuickBooks-assigned revision number of the other-name object you are updating, which you can get by fetching the object first. Provide the most recent `revisionNumber` to ensure you're working with the latest data; otherwise, the update will return an error.",
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -153,7 +153,7 @@ export const tool: Tool = {
           'The formal salutation title that precedes the name of the contact person for this other-name, such as "Mr.", "Ms.", or "Dr.".',
       },
     },
-    required: ['id', 'revisionNumber', 'Conductor-End-User-Id'],
+    required: ['id', 'revisionNumber', 'conductorEndUserId'],
   },
   annotations: {},
 };

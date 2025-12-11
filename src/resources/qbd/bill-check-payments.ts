@@ -23,16 +23,16 @@ export class BillCheckPayments extends APIResource {
    *     bankAccountId: '80000001-1234567890',
    *     transactionDate: '2024-10-01',
    *     vendorId: '80000001-1234567890',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: BillCheckPaymentCreateParams, options?: RequestOptions): APIPromise<BillCheckPayment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/bill-check-payments', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -49,7 +49,7 @@ export class BillCheckPayments extends APIResource {
    * const billCheckPayment =
    *   await conductor.qbd.billCheckPayments.retrieve(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -58,10 +58,10 @@ export class BillCheckPayments extends APIResource {
     params: BillCheckPaymentRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<BillCheckPayment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/bill-check-payments/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -78,7 +78,7 @@ export class BillCheckPayments extends APIResource {
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
@@ -88,11 +88,11 @@ export class BillCheckPayments extends APIResource {
     params: BillCheckPaymentUpdateParams,
     options?: RequestOptions,
   ): APIPromise<BillCheckPayment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/bill-check-payments/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -104,7 +104,7 @@ export class BillCheckPayments extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const billCheckPayment of conductor.qbd.billCheckPayments.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -114,11 +114,11 @@ export class BillCheckPayments extends APIResource {
     params: BillCheckPaymentListParams,
     options?: RequestOptions,
   ): PagePromise<BillCheckPaymentsCursorPage, BillCheckPayment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/bill-check-payments', CursorPage<BillCheckPayment>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -132,7 +132,7 @@ export class BillCheckPayments extends APIResource {
    * const billCheckPayment =
    *   await conductor.qbd.billCheckPayments.delete(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -141,10 +141,10 @@ export class BillCheckPayments extends APIResource {
     params: BillCheckPaymentDeleteParams,
     options?: RequestOptions,
   ): APIPromise<BillCheckPaymentDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/bill-check-payments/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -737,7 +737,7 @@ export interface BillCheckPaymentCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The market exchange rate between this bill check payment's currency
@@ -861,7 +861,7 @@ export interface BillCheckPaymentRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface BillCheckPaymentUpdateParams {
@@ -877,7 +877,7 @@ export interface BillCheckPaymentUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The monetary amount of this bill check payment, represented as a
@@ -1013,7 +1013,7 @@ export interface BillCheckPaymentListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for bill check payments associated with these accounts.
@@ -1160,7 +1160,7 @@ export interface BillCheckPaymentDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace BillCheckPayments {

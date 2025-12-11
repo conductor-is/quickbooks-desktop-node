@@ -17,7 +17,7 @@ export class DeletedListObjects extends APIResource {
    * const deletedListObjects =
    *   await conductor.qbd.deletedListObjects.list({
    *     objectTypes: ['customer'],
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
@@ -25,11 +25,11 @@ export class DeletedListObjects extends APIResource {
     params: DeletedListObjectListParams,
     options?: RequestOptions,
   ): APIPromise<DeletedListObjectListResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/deleted-list-objects', {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -171,7 +171,7 @@ export interface DeletedListObjectListParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for deleted list-objects deleted on or after this date/time,

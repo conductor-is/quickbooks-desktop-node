@@ -11,7 +11,7 @@ describe('resource salesTaxItems', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.salesTaxItems.create({
       name: 'Standard Tax',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,7 +25,7 @@ describe('resource salesTaxItems', () => {
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.salesTaxItems.create({
       name: 'Standard Tax',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
       classId: '80000001-1234567890',
       description: 'Standard rate sales tax for California',
@@ -39,7 +39,7 @@ describe('resource salesTaxItems', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.salesTaxItems.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -52,14 +52,14 @@ describe('resource salesTaxItems', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.salesTaxItems.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.salesTaxItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -73,7 +73,7 @@ describe('resource salesTaxItems', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.salesTaxItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
       classId: '80000001-1234567890',
       description: 'Standard rate sales tax for California',
@@ -87,7 +87,7 @@ describe('resource salesTaxItems', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.salesTaxItems.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -100,7 +100,7 @@ describe('resource salesTaxItems', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.salesTaxItems.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       classIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['80000001-1234567890'],

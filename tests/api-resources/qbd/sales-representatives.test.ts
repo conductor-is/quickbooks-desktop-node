@@ -12,7 +12,7 @@ describe('resource salesRepresentatives', () => {
     const responsePromise = conductor.qbd.salesRepresentatives.create({
       entityId: '80000001-1234567890',
       initial: 'JD',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,14 +27,14 @@ describe('resource salesRepresentatives', () => {
     const response = await conductor.qbd.salesRepresentatives.create({
       entityId: '80000001-1234567890',
       initial: 'JD',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       isActive: true,
     });
   });
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.salesRepresentatives.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -47,14 +47,14 @@ describe('resource salesRepresentatives', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.salesRepresentatives.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.salesRepresentatives.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -68,7 +68,7 @@ describe('resource salesRepresentatives', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.salesRepresentatives.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       entityId: '80000001-1234567890',
       initial: 'JD',
       isActive: true,
@@ -77,7 +77,7 @@ describe('resource salesRepresentatives', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.salesRepresentatives.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -90,7 +90,7 @@ describe('resource salesRepresentatives', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.salesRepresentatives.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       ids: ['80000001-1234567890'],
       limit: 10,
       nameContains: 'ABC',

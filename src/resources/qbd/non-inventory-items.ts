@@ -16,16 +16,16 @@ export class NonInventoryItems extends APIResource {
    * const nonInventoryItem =
    *   await conductor.qbd.nonInventoryItems.create({
    *     name: 'Printer Ink Cartridge',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: NonInventoryItemCreateParams, options?: RequestOptions): APIPromise<NonInventoryItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/non-inventory-items', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -42,7 +42,7 @@ export class NonInventoryItems extends APIResource {
    * const nonInventoryItem =
    *   await conductor.qbd.nonInventoryItems.retrieve(
    *     '80000001-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -51,10 +51,10 @@ export class NonInventoryItems extends APIResource {
     params: NonInventoryItemRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<NonInventoryItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/non-inventory-items/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -73,7 +73,7 @@ export class NonInventoryItems extends APIResource {
    *     '80000001-1234567890',
    *     {
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
@@ -83,11 +83,11 @@ export class NonInventoryItems extends APIResource {
     params: NonInventoryItemUpdateParams,
     options?: RequestOptions,
   ): APIPromise<NonInventoryItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/non-inventory-items/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -99,7 +99,7 @@ export class NonInventoryItems extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const nonInventoryItem of conductor.qbd.nonInventoryItems.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -109,11 +109,11 @@ export class NonInventoryItems extends APIResource {
     params: NonInventoryItemListParams,
     options?: RequestOptions,
   ): PagePromise<NonInventoryItemsCursorPage, NonInventoryItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/non-inventory-items', CursorPage<NonInventoryItem>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -610,7 +610,7 @@ export interface NonInventoryItemCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The non-inventory item's barcode.
@@ -817,7 +817,7 @@ export interface NonInventoryItemRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface NonInventoryItemUpdateParams {
@@ -833,7 +833,7 @@ export interface NonInventoryItemUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The non-inventory item's barcode.
@@ -1085,7 +1085,7 @@ export interface NonInventoryItemListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for non-inventory items of these classes. A class is a way

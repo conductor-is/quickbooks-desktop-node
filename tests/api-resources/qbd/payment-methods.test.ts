@@ -12,7 +12,7 @@ describe('resource paymentMethods', () => {
     const responsePromise = conductor.qbd.paymentMethods.create({
       name: 'Cash',
       paymentMethodType: 'cash',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,14 +27,14 @@ describe('resource paymentMethods', () => {
     const response = await conductor.qbd.paymentMethods.create({
       name: 'Cash',
       paymentMethodType: 'cash',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       isActive: true,
     });
   });
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.paymentMethods.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -47,13 +47,13 @@ describe('resource paymentMethods', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.paymentMethods.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.paymentMethods.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -66,7 +66,7 @@ describe('resource paymentMethods', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.paymentMethods.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       ids: ['80000001-1234567890'],
       limit: 10,
       nameContains: 'ABC',

@@ -12,7 +12,7 @@ describe('resource inventoryAdjustments', () => {
     const responsePromise = conductor.qbd.inventoryAdjustments.create({
       accountId: '80000001-1234567890',
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,7 +27,7 @@ describe('resource inventoryAdjustments', () => {
     const response = await conductor.qbd.inventoryAdjustments.create({
       accountId: '80000001-1234567890',
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       classId: '80000001-1234567890',
       customerId: '80000001-1234567890',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
@@ -65,7 +65,7 @@ describe('resource inventoryAdjustments', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.inventoryAdjustments.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -78,14 +78,14 @@ describe('resource inventoryAdjustments', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.inventoryAdjustments.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.inventoryAdjustments.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -99,7 +99,7 @@ describe('resource inventoryAdjustments', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.inventoryAdjustments.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       accountId: '80000001-1234567890',
       classId: '80000001-1234567890',
       customerId: '80000001-1234567890',
@@ -125,7 +125,7 @@ describe('resource inventoryAdjustments', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.inventoryAdjustments.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -138,7 +138,7 @@ describe('resource inventoryAdjustments', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.inventoryAdjustments.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       customerIds: ['80000001-1234567890'],
       ids: ['123ABC-1234567890'],
@@ -160,7 +160,7 @@ describe('resource inventoryAdjustments', () => {
 
   test('delete: only required params', async () => {
     const responsePromise = conductor.qbd.inventoryAdjustments.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -173,7 +173,7 @@ describe('resource inventoryAdjustments', () => {
 
   test('delete: required and optional params', async () => {
     const response = await conductor.qbd.inventoryAdjustments.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

@@ -48,7 +48,7 @@ export const tool: Tool = {
         description: 'The unit-of-measure set\'s type. Use "other" for a custom type defined in QuickBooks.',
         enum: ['area', 'count', 'length', 'other', 'time', 'volume', 'weight'],
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -107,7 +107,7 @@ export const tool: Tool = {
         },
       },
     },
-    required: ['baseUnit', 'name', 'unitOfMeasureType', 'Conductor-End-User-Id'],
+    required: ['baseUnit', 'name', 'unitOfMeasureType', 'conductorEndUserId'],
   },
   annotations: {},
 };

@@ -11,7 +11,7 @@ describe('resource purchaseOrders', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.purchaseOrders.create({
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,7 +25,7 @@ describe('resource purchaseOrders', () => {
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.purchaseOrders.create({
       transactionDate: '2024-10-01',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       classId: '80000001-1234567890',
       documentTemplateId: '80000001-1234567890',
       dueDate: '2024-10-31',
@@ -104,7 +104,7 @@ describe('resource purchaseOrders', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.purchaseOrders.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -117,14 +117,14 @@ describe('resource purchaseOrders', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.purchaseOrders.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.purchaseOrders.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -138,7 +138,7 @@ describe('resource purchaseOrders', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.purchaseOrders.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       classId: '80000001-1234567890',
       documentTemplateId: '80000001-1234567890',
       dueDate: '2024-10-31',
@@ -242,7 +242,7 @@ describe('resource purchaseOrders', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.purchaseOrders.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -255,7 +255,7 @@ describe('resource purchaseOrders', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.purchaseOrders.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
@@ -279,7 +279,7 @@ describe('resource purchaseOrders', () => {
 
   test('delete: only required params', async () => {
     const responsePromise = conductor.qbd.purchaseOrders.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -292,7 +292,7 @@ describe('resource purchaseOrders', () => {
 
   test('delete: required and optional params', async () => {
     const response = await conductor.qbd.purchaseOrders.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

@@ -18,16 +18,16 @@ export class PayrollWageItems extends APIResource {
    *     expenseAccountId: '80000001-1234567890',
    *     name: 'Regular Pay',
    *     wageType: 'hourly_regular',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: PayrollWageItemCreateParams, options?: RequestOptions): APIPromise<PayrollWageItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/payroll-wage-items', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -44,7 +44,7 @@ export class PayrollWageItems extends APIResource {
    * const payrollWageItem =
    *   await conductor.qbd.payrollWageItems.retrieve(
    *     '80000001-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -53,10 +53,10 @@ export class PayrollWageItems extends APIResource {
     params: PayrollWageItemRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<PayrollWageItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/payroll-wage-items/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -68,7 +68,7 @@ export class PayrollWageItems extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const payrollWageItem of conductor.qbd.payrollWageItems.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -78,11 +78,11 @@ export class PayrollWageItems extends APIResource {
     params: PayrollWageItemListParams,
     options?: RequestOptions,
   ): PagePromise<PayrollWageItemsCursorPage, PayrollWageItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/payroll-wage-items', CursorPage<PayrollWageItem>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -224,7 +224,7 @@ export interface PayrollWageItemCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: Indicates whether this payroll wage item is active. Inactive objects
@@ -238,7 +238,7 @@ export interface PayrollWageItemRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface PayrollWageItemListParams extends CursorPageParams {
@@ -246,7 +246,7 @@ export interface PayrollWageItemListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for specific payroll wage items by their QuickBooks-assigned

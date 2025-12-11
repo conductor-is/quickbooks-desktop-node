@@ -12,7 +12,7 @@ describe('resource vendorCredits', () => {
     const responsePromise = conductor.qbd.vendorCredits.create({
       transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,7 +27,7 @@ describe('resource vendorCredits', () => {
     const response = await conductor.qbd.vendorCredits.create({
       transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       exchangeRate: 1.2345,
       expenseLines: [
         {
@@ -88,7 +88,7 @@ describe('resource vendorCredits', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.vendorCredits.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -101,14 +101,14 @@ describe('resource vendorCredits', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.vendorCredits.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.vendorCredits.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -122,7 +122,7 @@ describe('resource vendorCredits', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.vendorCredits.update('123ABC-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       clearExpenseLines: false,
       clearItemLines: false,
       exchangeRate: 1.2345,
@@ -205,7 +205,7 @@ describe('resource vendorCredits', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.vendorCredits.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -218,7 +218,7 @@ describe('resource vendorCredits', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.vendorCredits.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
@@ -242,7 +242,7 @@ describe('resource vendorCredits', () => {
 
   test('delete: only required params', async () => {
     const responsePromise = conductor.qbd.vendorCredits.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -255,7 +255,7 @@ describe('resource vendorCredits', () => {
 
   test('delete: required and optional params', async () => {
     const response = await conductor.qbd.vendorCredits.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

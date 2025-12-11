@@ -28,7 +28,7 @@ export const tool: Tool = {
         description: 'The date of this estimate, in ISO 8601 format (YYYY-MM-DD).',
         format: 'date',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -408,7 +408,7 @@ export const tool: Tool = {
           "The estimate's payment terms, defining when payment is due and any applicable discounts.",
       },
     },
-    required: ['customerId', 'transactionDate', 'Conductor-End-User-Id'],
+    required: ['customerId', 'transactionDate', 'conductorEndUserId'],
   },
   annotations: {},
 };

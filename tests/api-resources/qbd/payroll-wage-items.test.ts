@@ -13,7 +13,7 @@ describe('resource payrollWageItems', () => {
       expenseAccountId: '80000001-1234567890',
       name: 'Regular Pay',
       wageType: 'hourly_regular',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,14 +29,14 @@ describe('resource payrollWageItems', () => {
       expenseAccountId: '80000001-1234567890',
       name: 'Regular Pay',
       wageType: 'hourly_regular',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       isActive: true,
     });
   });
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.payrollWageItems.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -49,13 +49,13 @@ describe('resource payrollWageItems', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.payrollWageItems.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.payrollWageItems.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -68,7 +68,7 @@ describe('resource payrollWageItems', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.payrollWageItems.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['80000001-1234567890'],
       limit: 150,

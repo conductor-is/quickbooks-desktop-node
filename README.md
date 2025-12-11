@@ -24,7 +24,7 @@ const conductor = new Conductor({
   apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted
 });
 
-const page = await conductor.qbd.invoices.list({ 'Conductor-End-User-Id': 'YOUR_END_USER_ID' });
+const page = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' });
 const invoice = page.data[0];
 
 console.log(invoice.id);
@@ -42,7 +42,7 @@ const conductor = new Conductor({
   apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted
 });
 
-const params: Conductor.Qbd.InvoiceListParams = { 'Conductor-End-User-Id': 'YOUR_END_USER_ID' };
+const params: Conductor.Qbd.InvoiceListParams = { conductorEndUserId: 'YOUR_END_USER_ID' };
 const [invoice]: [Conductor.Qbd.Invoice] = await conductor.qbd.invoices.list(params);
 ```
 
@@ -57,7 +57,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 const page = await conductor.qbd.invoices
-  .list({ 'Conductor-End-User-Id': 'YOUR_END_USER_ID' })
+  .list({ conductorEndUserId: 'YOUR_END_USER_ID' })
   .catch(async (err) => {
     if (err instanceof Conductor.APIError) {
       console.log(err.status); // 400
@@ -98,7 +98,7 @@ const conductor = new Conductor({
 });
 
 // Or, configure per-request:
-await conductor.qbd.invoices.list({ 'Conductor-End-User-Id': 'YOUR_END_USER_ID' }, {
+await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }, {
   maxRetries: 5,
 });
 ```
@@ -115,7 +115,7 @@ const conductor = new Conductor({
 });
 
 // Override per-request:
-await conductor.qbd.invoices.list({ 'Conductor-End-User-Id': 'YOUR_END_USER_ID' }, {
+await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -133,7 +133,7 @@ You can use the `for await … of` syntax to iterate through items across all pa
 async function fetchAllInvoices(params) {
   const allInvoices = [];
   // Automatically fetches more pages as needed.
-  for await (const invoice of conductor.qbd.invoices.list({ 'Conductor-End-User-Id': 'YOUR_END_USER_ID' })) {
+  for await (const invoice of conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' })) {
     allInvoices.push(invoice);
   }
   return allInvoices;
@@ -143,7 +143,7 @@ async function fetchAllInvoices(params) {
 Alternatively, you can request a single page at a time:
 
 ```ts
-let page = await conductor.qbd.invoices.list({ 'Conductor-End-User-Id': 'YOUR_END_USER_ID' });
+let page = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' });
 for (const invoice of page.data) {
   console.log(invoice);
 }
@@ -169,14 +169,12 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const conductor = new Conductor();
 
-const response = await conductor.qbd.invoices
-  .list({ 'Conductor-End-User-Id': 'YOUR_END_USER_ID' })
-  .asResponse();
+const response = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }).asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
 const { data: page, response: raw } = await conductor.qbd.invoices
-  .list({ 'Conductor-End-User-Id': 'YOUR_END_USER_ID' })
+  .list({ conductorEndUserId: 'YOUR_END_USER_ID' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 for await (const invoice of page) {

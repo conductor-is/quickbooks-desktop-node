@@ -34,7 +34,7 @@ export const tool: Tool = {
         description: 'The date of this time tracking activity, in ISO 8601 format (YYYY-MM-DD).',
         format: 'date',
       },
-      'Conductor-End-User-Id': {
+      conductorEndUserId: {
         type: 'string',
         description:
           'The ID of the EndUser to receive this request (e.g., `"Conductor-End-User-Id: {{END_USER_ID}}"`).',
@@ -75,7 +75,7 @@ export const tool: Tool = {
           'The type of service performed during this time tracking activity, referring to billable or purchasable services such as specialized labor, consulting hours, and professional fees.\n\n**NOTE**: This field is not required if no `customer` is specified. However, if `billingStatus` is set to "billable", both this field and `customer` are required.',
       },
     },
-    required: ['duration', 'entityId', 'transactionDate', 'Conductor-End-User-Id'],
+    required: ['duration', 'entityId', 'transactionDate', 'conductorEndUserId'],
   },
   annotations: {},
 };

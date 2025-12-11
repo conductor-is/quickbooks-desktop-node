@@ -19,7 +19,7 @@ export class InventoryAssemblyItems extends APIResource {
    *     cogsAccountId: '80000001-1234567890',
    *     incomeAccountId: '80000001-1234567890',
    *     name: 'Deluxe Kit',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
@@ -27,11 +27,11 @@ export class InventoryAssemblyItems extends APIResource {
     params: InventoryAssemblyItemCreateParams,
     options?: RequestOptions,
   ): APIPromise<InventoryAssemblyItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/inventory-assembly-items', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -48,7 +48,7 @@ export class InventoryAssemblyItems extends APIResource {
    * const inventoryAssemblyItem =
    *   await conductor.qbd.inventoryAssemblyItems.retrieve(
    *     '80000001-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -57,10 +57,10 @@ export class InventoryAssemblyItems extends APIResource {
     params: InventoryAssemblyItemRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<InventoryAssemblyItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/inventory-assembly-items/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -76,7 +76,7 @@ export class InventoryAssemblyItems extends APIResource {
    *     '80000001-1234567890',
    *     {
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
@@ -86,11 +86,11 @@ export class InventoryAssemblyItems extends APIResource {
     params: InventoryAssemblyItemUpdateParams,
     options?: RequestOptions,
   ): APIPromise<InventoryAssemblyItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/inventory-assembly-items/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -102,7 +102,7 @@ export class InventoryAssemblyItems extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const inventoryAssemblyItem of conductor.qbd.inventoryAssemblyItems.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -112,14 +112,14 @@ export class InventoryAssemblyItems extends APIResource {
     params: InventoryAssemblyItemListParams,
     options?: RequestOptions,
   ): PagePromise<InventoryAssemblyItemsCursorPage, InventoryAssemblyItem> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList(
       '/quickbooks-desktop/inventory-assembly-items',
       CursorPage<InventoryAssemblyItem>,
       {
         query,
         ...options,
-        headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+        headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
       },
     );
   }
@@ -656,7 +656,7 @@ export interface InventoryAssemblyItemCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The inventory assembly item's barcode.
@@ -838,7 +838,7 @@ export interface InventoryAssemblyItemRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface InventoryAssemblyItemUpdateParams {
@@ -854,7 +854,7 @@ export interface InventoryAssemblyItemUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The asset account used to track the current value of this inventory
@@ -1070,7 +1070,7 @@ export interface InventoryAssemblyItemListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for inventory assembly items of these classes. A class is a

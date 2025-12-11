@@ -10,7 +10,7 @@ const conductor = new Conductor({
 describe('resource preferences', () => {
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.preferences.retrieve({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -23,7 +23,7 @@ describe('resource preferences', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.preferences.retrieve({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

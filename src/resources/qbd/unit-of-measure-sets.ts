@@ -23,16 +23,16 @@ export class UnitOfMeasureSets extends APIResource {
    *     baseUnit: { abbreviation: 'ea', name: 'Each' },
    *     name: 'Weight Units',
    *     unitOfMeasureType: 'count',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: UnitOfMeasureSetCreateParams, options?: RequestOptions): APIPromise<UnitOfMeasureSet> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/unit-of-measure-sets', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -49,7 +49,7 @@ export class UnitOfMeasureSets extends APIResource {
    * const unitOfMeasureSet =
    *   await conductor.qbd.unitOfMeasureSets.retrieve(
    *     '80000001-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -58,10 +58,10 @@ export class UnitOfMeasureSets extends APIResource {
     params: UnitOfMeasureSetRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<UnitOfMeasureSet> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/unit-of-measure-sets/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -77,7 +77,7 @@ export class UnitOfMeasureSets extends APIResource {
    * ```ts
    * const unitOfMeasureSets =
    *   await conductor.qbd.unitOfMeasureSets.list({
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
@@ -85,11 +85,11 @@ export class UnitOfMeasureSets extends APIResource {
     params: UnitOfMeasureSetListParams,
     options?: RequestOptions,
   ): APIPromise<UnitOfMeasureSetListResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/unit-of-measure-sets', {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -295,7 +295,7 @@ export interface UnitOfMeasureSetCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The unit-of-measure set's default units to appear in the U/M field
@@ -401,7 +401,7 @@ export interface UnitOfMeasureSetRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface UnitOfMeasureSetListParams {
@@ -409,7 +409,7 @@ export interface UnitOfMeasureSetListParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for specific unit-of-measure sets by their

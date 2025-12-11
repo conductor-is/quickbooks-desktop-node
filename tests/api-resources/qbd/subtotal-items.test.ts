@@ -11,7 +11,7 @@ describe('resource subtotalItems', () => {
   test('create: only required params', async () => {
     const responsePromise = conductor.qbd.subtotalItems.create({
       name: 'Labor subtotal',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,7 +25,7 @@ describe('resource subtotalItems', () => {
   test('create: required and optional params', async () => {
     const response = await conductor.qbd.subtotalItems.create({
       name: 'Labor subtotal',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
       description: 'Subtotal for all labor costs on this project',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
@@ -35,7 +35,7 @@ describe('resource subtotalItems', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.subtotalItems.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -48,14 +48,14 @@ describe('resource subtotalItems', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.subtotalItems.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.subtotalItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -69,7 +69,7 @@ describe('resource subtotalItems', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.subtotalItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
       description: 'Subtotal for all labor costs on this project',
       isActive: true,
@@ -79,7 +79,7 @@ describe('resource subtotalItems', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.subtotalItems.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -92,7 +92,7 @@ describe('resource subtotalItems', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.subtotalItems.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       ids: ['80000001-1234567890'],
       limit: 150,

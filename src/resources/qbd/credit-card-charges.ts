@@ -17,16 +17,16 @@ export class CreditCardCharges extends APIResource {
    *   await conductor.qbd.creditCardCharges.create({
    *     accountId: '80000001-1234567890',
    *     transactionDate: '2024-10-01',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: CreditCardChargeCreateParams, options?: RequestOptions): APIPromise<CreditCardCharge> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/credit-card-charges', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -43,7 +43,7 @@ export class CreditCardCharges extends APIResource {
    * const creditCardCharge =
    *   await conductor.qbd.creditCardCharges.retrieve(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -52,10 +52,10 @@ export class CreditCardCharges extends APIResource {
     params: CreditCardChargeRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<CreditCardCharge> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/credit-card-charges/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -71,7 +71,7 @@ export class CreditCardCharges extends APIResource {
    *     '123ABC-1234567890',
    *     {
    *       revisionNumber: '1721172183',
-   *       'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
    *     },
    *   );
    * ```
@@ -81,11 +81,11 @@ export class CreditCardCharges extends APIResource {
     params: CreditCardChargeUpdateParams,
     options?: RequestOptions,
   ): APIPromise<CreditCardCharge> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post(path`/quickbooks-desktop/credit-card-charges/${id}`, {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -97,7 +97,7 @@ export class CreditCardCharges extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const creditCardCharge of conductor.qbd.creditCardCharges.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -107,11 +107,11 @@ export class CreditCardCharges extends APIResource {
     params: CreditCardChargeListParams,
     options?: RequestOptions,
   ): PagePromise<CreditCardChargesCursorPage, CreditCardCharge> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList('/quickbooks-desktop/credit-card-charges', CursorPage<CreditCardCharge>, {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -124,7 +124,7 @@ export class CreditCardCharges extends APIResource {
    * const creditCardCharge =
    *   await conductor.qbd.creditCardCharges.delete(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -133,10 +133,10 @@ export class CreditCardCharges extends APIResource {
     params: CreditCardChargeDeleteParams,
     options?: RequestOptions,
   ): APIPromise<CreditCardChargeDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/credit-card-charges/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -1540,7 +1540,7 @@ export interface CreditCardChargeCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The market exchange rate between this credit card charge's currency
@@ -2011,7 +2011,7 @@ export interface CreditCardChargeRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface CreditCardChargeUpdateParams {
@@ -2027,7 +2027,7 @@ export interface CreditCardChargeUpdateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The bank or credit card account to which money is owed for this
@@ -2566,7 +2566,7 @@ export interface CreditCardChargeListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for credit card charges associated with these accounts.
@@ -2712,7 +2712,7 @@ export interface CreditCardChargeDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace CreditCardCharges {

@@ -14,7 +14,7 @@ describe('resource billCreditCardPayments', () => {
       creditCardAccountId: '80000001-1234567890',
       transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -46,7 +46,7 @@ describe('resource billCreditCardPayments', () => {
       creditCardAccountId: '80000001-1234567890',
       transactionDate: '2024-10-01',
       vendorId: '80000001-1234567890',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       exchangeRate: 1.2345,
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       memo: 'Payment for office supplies - Invoice INV-1234',
@@ -57,7 +57,7 @@ describe('resource billCreditCardPayments', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.billCreditCardPayments.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -70,13 +70,13 @@ describe('resource billCreditCardPayments', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.billCreditCardPayments.retrieve('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.billCreditCardPayments.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -89,7 +89,7 @@ describe('resource billCreditCardPayments', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.billCreditCardPayments.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
@@ -112,7 +112,7 @@ describe('resource billCreditCardPayments', () => {
 
   test('delete: only required params', async () => {
     const responsePromise = conductor.qbd.billCreditCardPayments.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -125,7 +125,7 @@ describe('resource billCreditCardPayments', () => {
 
   test('delete: required and optional params', async () => {
     const response = await conductor.qbd.billCreditCardPayments.delete('123ABC-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

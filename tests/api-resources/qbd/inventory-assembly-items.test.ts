@@ -14,7 +14,7 @@ describe('resource inventoryAssemblyItems', () => {
       cogsAccountId: '80000001-1234567890',
       incomeAccountId: '80000001-1234567890',
       name: 'Deluxe Kit',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -31,7 +31,7 @@ describe('resource inventoryAssemblyItems', () => {
       cogsAccountId: '80000001-1234567890',
       incomeAccountId: '80000001-1234567890',
       name: 'Deluxe Kit',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
       buildNotificationThreshold: 10,
       classId: '80000001-1234567890',
@@ -56,7 +56,7 @@ describe('resource inventoryAssemblyItems', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.inventoryAssemblyItems.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -69,14 +69,14 @@ describe('resource inventoryAssemblyItems', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.inventoryAssemblyItems.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.inventoryAssemblyItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -90,7 +90,7 @@ describe('resource inventoryAssemblyItems', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.inventoryAssemblyItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       assetAccountId: '80000001-1234567890',
       barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
       buildNotificationThreshold: 10,
@@ -119,7 +119,7 @@ describe('resource inventoryAssemblyItems', () => {
 
   test('list: only required params', async () => {
     const responsePromise = conductor.qbd.inventoryAssemblyItems.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -132,7 +132,7 @@ describe('resource inventoryAssemblyItems', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.inventoryAssemblyItems.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       classIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       fullNames: ['Assemblies:Deluxe Kit'],

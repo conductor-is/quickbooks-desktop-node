@@ -12,7 +12,7 @@ describe('resource currencies', () => {
     const responsePromise = conductor.qbd.currencies.create({
       currencyCode: 'USD',
       name: 'United States Dollar',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,7 +27,7 @@ describe('resource currencies', () => {
     const response = await conductor.qbd.currencies.create({
       currencyCode: 'USD',
       name: 'United States Dollar',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       currencyFormat: {
         decimalPlaces: '2',
         decimalSeparator: 'period',
@@ -40,7 +40,7 @@ describe('resource currencies', () => {
 
   test('retrieve: only required params', async () => {
     const responsePromise = conductor.qbd.currencies.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -53,14 +53,14 @@ describe('resource currencies', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.currencies.retrieve('80000001-1234567890', {
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = conductor.qbd.currencies.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -74,7 +74,7 @@ describe('resource currencies', () => {
   test('update: required and optional params', async () => {
     const response = await conductor.qbd.currencies.update('80000001-1234567890', {
       revisionNumber: '1721172183',
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       currencyCode: 'USD',
       currencyFormat: {
         decimalPlaces: '2',
@@ -88,9 +88,7 @@ describe('resource currencies', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = conductor.qbd.currencies.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
-    });
+    const responsePromise = conductor.qbd.currencies.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -102,7 +100,7 @@ describe('resource currencies', () => {
 
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.currencies.list({
-      'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
       ids: ['80000001-1234567890'],
       limit: 10,
       nameContains: 'ABC',

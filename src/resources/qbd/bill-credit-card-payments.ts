@@ -23,7 +23,7 @@ export class BillCreditCardPayments extends APIResource {
    *     creditCardAccountId: '80000001-1234567890',
    *     transactionDate: '2024-10-01',
    *     vendorId: '80000001-1234567890',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
@@ -31,11 +31,11 @@ export class BillCreditCardPayments extends APIResource {
     params: BillCreditCardPaymentCreateParams,
     options?: RequestOptions,
   ): APIPromise<BillCreditCardPayment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/bill-credit-card-payments', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -52,7 +52,7 @@ export class BillCreditCardPayments extends APIResource {
    * const billCreditCardPayment =
    *   await conductor.qbd.billCreditCardPayments.retrieve(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -61,10 +61,10 @@ export class BillCreditCardPayments extends APIResource {
     params: BillCreditCardPaymentRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<BillCreditCardPayment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/bill-credit-card-payments/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -76,7 +76,7 @@ export class BillCreditCardPayments extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const billCreditCardPayment of conductor.qbd.billCreditCardPayments.list(
-   *   { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
    * )) {
    *   // ...
    * }
@@ -86,14 +86,14 @@ export class BillCreditCardPayments extends APIResource {
     params: BillCreditCardPaymentListParams,
     options?: RequestOptions,
   ): PagePromise<BillCreditCardPaymentsCursorPage, BillCreditCardPayment> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.getAPIList(
       '/quickbooks-desktop/bill-credit-card-payments',
       CursorPage<BillCreditCardPayment>,
       {
         query,
         ...options,
-        headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+        headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
       },
     );
   }
@@ -108,7 +108,7 @@ export class BillCreditCardPayments extends APIResource {
    * const billCreditCardPayment =
    *   await conductor.qbd.billCreditCardPayments.delete(
    *     '123ABC-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -117,10 +117,10 @@ export class BillCreditCardPayments extends APIResource {
     params: BillCreditCardPaymentDeleteParams,
     options?: RequestOptions,
   ): APIPromise<BillCreditCardPaymentDeleteResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/bill-credit-card-payments/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -647,7 +647,7 @@ export interface BillCreditCardPaymentCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The market exchange rate between this bill credit card payment's
@@ -764,7 +764,7 @@ export interface BillCreditCardPaymentRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface BillCreditCardPaymentListParams extends CursorPageParams {
@@ -772,7 +772,7 @@ export interface BillCreditCardPaymentListParams extends CursorPageParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for bill credit card payments associated with these
@@ -918,7 +918,7 @@ export interface BillCreditCardPaymentDeleteParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export declare namespace BillCreditCardPayments {

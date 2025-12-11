@@ -19,16 +19,16 @@ export class DateDrivenTerms extends APIResource {
    *   await conductor.qbd.dateDrivenTerms.create({
    *     dueDayOfMonth: 15,
    *     name: '2% 5th Net 25th',
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   create(params: DateDrivenTermCreateParams, options?: RequestOptions): APIPromise<DateDrivenTerm> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...body } = params;
+    const { conductorEndUserId, ...body } = params;
     return this._client.post('/quickbooks-desktop/date-driven-terms', {
       body,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -45,7 +45,7 @@ export class DateDrivenTerms extends APIResource {
    * const dateDrivenTerm =
    *   await conductor.qbd.dateDrivenTerms.retrieve(
    *     '80000001-1234567890',
-   *     { 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' },
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
    *   );
    * ```
    */
@@ -54,10 +54,10 @@ export class DateDrivenTerms extends APIResource {
     params: DateDrivenTermRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<DateDrivenTerm> {
-    const { 'Conductor-End-User-Id': conductorEndUserID } = params;
+    const { conductorEndUserId } = params;
     return this._client.get(path`/quickbooks-desktop/date-driven-terms/${id}`, {
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
@@ -70,16 +70,16 @@ export class DateDrivenTerms extends APIResource {
    * ```ts
    * const dateDrivenTerms =
    *   await conductor.qbd.dateDrivenTerms.list({
-   *     'Conductor-End-User-Id': 'end_usr_1234567abcdefg',
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
    *   });
    * ```
    */
   list(params: DateDrivenTermListParams, options?: RequestOptions): APIPromise<DateDrivenTermListResponse> {
-    const { 'Conductor-End-User-Id': conductorEndUserID, ...query } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/date-driven-terms', {
       query,
       ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserID }, options?.headers]),
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
@@ -201,7 +201,7 @@ export interface DateDrivenTermCreateParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Body param: The day of the month within which payment must be received to
@@ -236,7 +236,7 @@ export interface DateDrivenTermRetrieveParams {
    * The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 }
 
 export interface DateDrivenTermListParams {
@@ -244,7 +244,7 @@ export interface DateDrivenTermListParams {
    * Header param: The ID of the EndUser to receive this request (e.g.,
    * `"Conductor-End-User-Id: {{END_USER_ID}}"`).
    */
-  'Conductor-End-User-Id': string;
+  conductorEndUserId: string;
 
   /**
    * Query param: Filter for specific date-driven terms by their QuickBooks-assigned

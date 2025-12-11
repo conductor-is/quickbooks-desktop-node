@@ -9,7 +9,7 @@ const conductor = new Conductor({
 
 describe('resource qbd', () => {
   test('healthCheck: only required params', async () => {
-    const responsePromise = conductor.qbd.healthCheck({ 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' });
+    const responsePromise = conductor.qbd.healthCheck({ conductorEndUserId: 'end_usr_1234567abcdefg' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,6 +20,6 @@ describe('resource qbd', () => {
   });
 
   test('healthCheck: required and optional params', async () => {
-    const response = await conductor.qbd.healthCheck({ 'Conductor-End-User-Id': 'end_usr_1234567abcdefg' });
+    const response = await conductor.qbd.healthCheck({ conductorEndUserId: 'end_usr_1234567abcdefg' });
   });
 });
