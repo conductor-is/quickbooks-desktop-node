@@ -1,8 +1,38 @@
-# QuickBooks Desktop Node.js API Library
+<!-- markdownlint-disable MD033 MD041 -->
+<div align="center">
+  <a href="https://conductor.is">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/conductor-is/quickbooks-desktop-api/assets/170023/162ee6a9-75ac-41e9-9f1e-2ecc1d88f841">
+      <img alt="Conductor logo" src="https://github.com/conductor-is/quickbooks-desktop-api/assets/170023/d67464b8-53a7-4d33-afeb-05a2efde1fa8" width="325">
+    </picture>
+  </a>
+  <h3>QuickBooks Desktop/Enterprise real-time API for Node.js, Python, and REST</h3>
+  <a href="https://docs.conductor.is/quickstart">Quickstart</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://conductor.is">Website</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://docs.conductor.is">Docs</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://docs.conductor.is/qbd-api">Examples</a>
+  <br />
+  <br />
+  <a href="https://npmjs.com/package/conductor-node"><img src="https://img.shields.io/npm/dm/conductor-node.svg?logo=npm" alt="NPM download count"></a>
+  <a href="https://npmjs.org/package/conductor-node"><img src="https://img.shields.io/npm/v/conductor-node.svg?logo=npm" alt="NPM version"></a>
+  <a href="https://npmjs.org/package/conductor-node"><img src="https://img.shields.io/bundlephobia/minzip/conductor-node" alt="NPM bundle size"></a>
+  <img src="https://img.shields.io/badge/coverage-100%25-brightgreen" alt="Code coverage">
+  <a href="LICENSE"><img src="https://img.shields.io/npm/l/conductor-node.svg?color=blue&logo=github" alt="License" /></a>
+  <hr />
+</div>
 
-[![NPM version](<https://img.shields.io/npm/v/conductor-node.svg?label=npm%20(stable)>)](https://npmjs.org/package/conductor-node) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/conductor-node)
+[Conductor](https://conductor.is) is a real-time, fully-typed API for **QuickBooks Desktop** (sometimes called QuickBooks Enterprise). In just a few lines, get real-time access to fetch, create, or update _any_ QuickBooks Desktop object type and receive a fully-typed response.
 
-This library provides convenient access to the Conductor REST API from server-side TypeScript or JavaScript.
+⭐ **Follow our [Quickstart guide](https://docs.conductor.is/quickstart) to get started.**
+
+This repository contains the official Conductor **Node.js** library, which provides convenient access to our QuickBooks Desktop API from any server-side TypeScript or JavaScript application.
+
+- For Python, see [conductor-python](https://github.com/conductor-is/quickbooks-desktop-python).
+
+## Documentation
 
 The REST API documentation can be found on [docs.conductor.is](https://docs.conductor.is/api-ref). The full API of this library can be found in [api.md](api.md).
 
@@ -12,9 +42,27 @@ The REST API documentation can be found on [docs.conductor.is](https://docs.cond
 npm install conductor-node
 ```
 
+> [!IMPORTANT]
+> If you're migrating from the old `conductor-node` package (v11 or earlier), please see the [upgrade guide](https://docs.conductor.is/qbd-api/upgrade-node).
+
+## Key features
+
+- **Any data type**: Query, create, or update any QuickBooks Desktop data type.
+- **Real-time**: Get real-time updates on your QuickBooks Desktop data. No queues, no jobs, no cache layer -- just direct access to the data.
+- **Modern API**: JSON-based REST API, replacing the old XML-based SOAP model.
+- **Typed client libraries**: Fully typed libraries in Node.js and Python with autocomplete, inline docs, and type validation for endpoints, parameters, and responses.
+- **Request handling**: Invisibly manages queues, timeouts, retries, and pagination.
+- **Auto-pagination**: Automatically handles paginated responses to retrieve complete datasets.
+- **Multi-company support**: Connects to multiple QuickBooks Desktop company files.
+- **Validation**: Sanitizes and validates all inputs and outputs.
+- **Unified error handling**: Streamlines error handling across the QuickBooks stack.
+- **Authentication flow UI**: Simple UI for securely connecting QuickBooks Desktop accounts.
+- **Dashboard**: UI to monitor and manage your QuickBooks Desktop connections and data.
+- **Error resolution**: Detailed guides and instructions for resolving errors and handling edge cases.
+
 ## Usage
 
-The full API of this library can be found in [api.md](api.md).
+The full API of this library can be found with code samples at [docs.conductor.is/qbd-api](https://docs.conductor.is/api-ref).
 
 <!-- prettier-ignore -->
 ```js
