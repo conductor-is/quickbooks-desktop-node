@@ -1,7 +1,7 @@
 {
   "dxt_version": "0.2",
   "name": "conductor-node-mcp",
-  "version": "13.0.0",
+  "version": "13.1.0",
   "description": "The official MCP Server for the Conductor API",
   "author": {
     "name": "Conductor",
