@@ -307,7 +307,7 @@ export interface Bill {
   /**
    * The vendor who sent this bill for goods or services purchased.
    */
-  vendor: Bill.Vendor;
+  vendor: Bill.Vendor | null;
 
   /**
    * The address of the vendor who sent this bill.
