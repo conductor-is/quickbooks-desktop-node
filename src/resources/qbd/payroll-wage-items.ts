@@ -132,6 +132,24 @@ export interface PayrollWageItem {
   objectType: 'qbd_payroll_wage_item';
 
   /**
+   * The overtime pay multiplier for this payroll wage item, represented as a decimal
+   * string. For example, `"1.5"` represents time-and-a-half pay.
+   */
+  overtimeMultiplier: string | null;
+
+  /**
+   * The default rate for this payroll wage item, represented as a decimal string.
+   * Only one of `rate` and `ratePercent` can be set.
+   */
+  rate: string | null;
+
+  /**
+   * The default rate for this payroll wage item expressed as a percentage. Only one
+   * of `rate` and `ratePercent` can be set.
+   */
+  ratePercent: string | null;
+
+  /**
    * The current QuickBooks-assigned revision number of this payroll wage item
    * object, which changes each time the object is modified. When updating this
    * object, you must provide the most recent `revisionNumber` to ensure you're
@@ -230,6 +248,24 @@ export interface PayrollWageItemCreateParams {
    * are typically hidden from views and reports in QuickBooks. Defaults to `true`.
    */
   isActive?: boolean;
+
+  /**
+   * Body param: The overtime pay multiplier for this payroll wage item, represented
+   * as a decimal string. For example, `"1.5"` represents time-and-a-half pay.
+   */
+  overtimeMultiplier?: string;
+
+  /**
+   * Body param: The default rate for this payroll wage item, represented as a
+   * decimal string. Only one of `rate` and `ratePercent` can be set.
+   */
+  rate?: string;
+
+  /**
+   * Body param: The default rate for this payroll wage item expressed as a
+   * percentage. Only one of `rate` and `ratePercent` can be set.
+   */
+  ratePercent?: string;
 }
 
 export interface PayrollWageItemRetrieveParams {

@@ -31,6 +31,9 @@ describe('resource payrollWageItems', () => {
       wageType: 'hourly_regular',
       conductorEndUserId: 'end_usr_1234567abcdefg',
       isActive: true,
+      overtimeMultiplier: '1.5',
+      rate: '15.00',
+      ratePercent: '10',
     });
   });
 
