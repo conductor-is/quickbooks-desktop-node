@@ -35,7 +35,10 @@ export async function codeTool() {
       headers: {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
-        client_envs: JSON.stringify({ CONDUCTOR_SECRET_KEY: readEnv('CONDUCTOR_SECRET_KEY') }),
+        client_envs: JSON.stringify({
+          CONDUCTOR_SECRET_KEY: readEnv('CONDUCTOR_SECRET_KEY'),
+          CONDUCTOR_BASE_URL: readEnv('CONDUCTOR_BASE_URL'),
+        }),
       },
       body: JSON.stringify({
         project_name: 'conductor',
