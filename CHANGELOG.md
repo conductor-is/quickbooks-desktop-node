@@ -1,5 +1,23 @@
 # Changelog
 
+## 14.0.0 (2025-12-19)
+
+Full Changelog: [v13.1.0...v14.0.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v13.1.0...v14.0.0)
+
+### ⚠ BREAKING CHANGES
+
+* **mcp:** remove deprecated tool schemes
+* **mcp:** **Migration:** To migrate, simply modify the command used to invoke the MCP server. Currently, the only supported tool scheme is code mode. Now, starting the server with just `node /path/to/mcp/server` or `npx package-name` will invoke code tools: changing your command to one of these is likely all you will need to do.
+
+### Bug Fixes
+
+* **mcp:** pass base url to code tool ([c5d3e3f](https://github.com/conductor-is/quickbooks-desktop-node/commit/c5d3e3febca69e4693d46bf151c3196566c28344))
+
+
+### Chores
+
+* **mcp:** remove deprecated tool schemes ([0ffe90e](https://github.com/conductor-is/quickbooks-desktop-node/commit/0ffe90e523d530f1659c261d2c7bb3a686487b62))
+
 ## 13.1.0 (2025-12-17)
 
 Full Changelog: [v13.0.0...v13.1.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v13.0.0...v13.1.0)
