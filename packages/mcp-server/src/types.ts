@@ -108,7 +108,7 @@ export type Metadata = {
   operationId?: string;
 };
 
-export type Endpoint = {
+export type McpTool = {
   metadata: Metadata;
   tool: Tool;
   handler: HandlerFunction;
