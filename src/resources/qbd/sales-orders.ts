@@ -168,7 +168,7 @@ export interface SalesOrder {
   /**
    * The customer or customer-job associated with this sales order.
    */
-  customer: SalesOrder.Customer;
+  customer: SalesOrder.Customer | null;
 
   /**
    * The message to display to the customer on the sales order.
