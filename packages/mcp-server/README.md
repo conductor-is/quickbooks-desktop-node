@@ -52,7 +52,7 @@ If you use Claude Code, you can install the MCP server by running the command be
 environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
 
 ```
-claude mcp add --transport stdio conductor_node_api --env CONDUCTOR_SECRET_KEY="Your CONDUCTOR_SECRET_KEY here." -- npx -y conductor-node-mcp
+claude mcp add conductor_node_mcp_api --env CONDUCTOR_SECRET_KEY="Your CONDUCTOR_SECRET_KEY here." -- npx -y conductor-node-mcp
 ```
 
 ## Code Mode
