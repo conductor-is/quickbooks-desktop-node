@@ -184,7 +184,7 @@ export interface ReceivePayment {
    * The customer or customer-job to which the payment for this receive-payment is
    * credited.
    */
-  customer: ReceivePayment.Customer;
+  customer: ReceivePayment.Customer | null;
 
   /**
    * The custom fields for the receive-payment object, added as user-defined data
