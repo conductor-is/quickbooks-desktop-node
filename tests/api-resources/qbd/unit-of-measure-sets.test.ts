@@ -32,7 +32,13 @@ describe('resource unitOfMeasureSets', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
       defaultUnits: [{ unit: 'Each', unitUsedFor: 'purchase' }],
       isActive: true,
-      relatedUnits: [{ abbreviation: 'ea', conversionRatio: '10', name: 'Case' }],
+      relatedUnits: [
+        {
+          abbreviation: 'ea',
+          conversionRatio: '10',
+          name: 'Case',
+        },
+      ],
     });
   });
 

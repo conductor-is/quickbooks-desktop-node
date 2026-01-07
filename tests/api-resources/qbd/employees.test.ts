@@ -45,12 +45,26 @@ describe('resource employees', () => {
       disabilityStatus: 'disabled',
       email: 'employee@example.com',
       emergencyContact: {
-        primaryContact: { name: 'Main Phone', value: '555-123-4567', relation: 'spouse' },
-        secondaryContact: { name: 'Main Phone', value: '555-123-4567', relation: 'spouse' },
+        primaryContact: {
+          name: 'Main Phone',
+          value: '555-123-4567',
+          relation: 'spouse',
+        },
+        secondaryContact: {
+          name: 'Main Phone',
+          value: '555-123-4567',
+          relation: 'spouse',
+        },
       },
       employeePayroll: {
         classId: '80000001-1234567890',
-        earnings: [{ payrollWageItemId: '80000001-1234567890', rate: '10.00', ratePercent: '10.5' }],
+        earnings: [
+          {
+            payrollWageItemId: '80000001-1234567890',
+            rate: '10.00',
+            ratePercent: '10.5',
+          },
+        ],
         payPeriod: 'weekly',
         sickHours: {
           accrualPeriod: 'accrues_per_paycheck',
@@ -166,13 +180,27 @@ describe('resource employees', () => {
       disabilityStatus: 'disabled',
       email: 'employee@example.com',
       emergencyContact: {
-        primaryContact: { name: 'Main Phone', value: '555-123-4567', relation: 'spouse' },
-        secondaryContact: { name: 'Main Phone', value: '555-123-4567', relation: 'spouse' },
+        primaryContact: {
+          name: 'Main Phone',
+          value: '555-123-4567',
+          relation: 'spouse',
+        },
+        secondaryContact: {
+          name: 'Main Phone',
+          value: '555-123-4567',
+          relation: 'spouse',
+        },
       },
       employeePayroll: {
         classId: '80000001-1234567890',
         deleteAllEarnings: false,
-        earnings: [{ payrollWageItemId: '80000001-1234567890', rate: '10.00', ratePercent: '10.5' }],
+        earnings: [
+          {
+            payrollWageItemId: '80000001-1234567890',
+            rate: '10.00',
+            ratePercent: '10.5',
+          },
+        ],
         payPeriod: 'weekly',
         sickHours: {
           accrualPeriod: 'accrues_per_paycheck',

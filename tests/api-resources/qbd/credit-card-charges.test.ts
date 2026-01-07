@@ -35,7 +35,13 @@ describe('resource creditCardCharges', () => {
           amount: '1000.00',
           billingStatus: 'billable',
           classId: '80000001-1234567890',
-          customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
+          customFields: [
+            {
+              name: 'Customer Rating',
+              ownerId: '0',
+              value: 'Premium',
+            },
+          ],
           memo: 'New office chair',
           payeeId: '80000001-1234567890',
           salesRepresentativeId: '80000001-1234567890',
@@ -46,7 +52,13 @@ describe('resource creditCardCharges', () => {
       itemGroupLines: [
         {
           itemGroupId: '80000001-1234567890',
-          customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
+          customFields: [
+            {
+              name: 'Customer Rating',
+              ownerId: '0',
+              value: 'Premium',
+            },
+          ],
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',
           quantity: 5,
@@ -60,7 +72,13 @@ describe('resource creditCardCharges', () => {
           classId: '80000001-1234567890',
           cost: '1000.00',
           customerId: '80000001-1234567890',
-          customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
+          customFields: [
+            {
+              name: 'Customer Rating',
+              ownerId: '0',
+              value: 'Premium',
+            },
+          ],
           description: 'High-quality widget with custom engraving',
           expirationDate: '2025-12-31',
           inventorySiteId: '80000001-1234567890',

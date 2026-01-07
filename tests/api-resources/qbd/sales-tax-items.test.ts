@@ -26,7 +26,11 @@ describe('resource salesTaxItems', () => {
     const response = await conductor.qbd.salesTaxItems.create({
       name: 'Standard Tax',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
+      barcode: {
+        allowOverride: false,
+        assignEvenIfUsed: false,
+        value: '012345678905',
+      },
       classId: '80000001-1234567890',
       description: 'Standard rate sales tax for California',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
@@ -74,7 +78,11 @@ describe('resource salesTaxItems', () => {
     const response = await conductor.qbd.salesTaxItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
+      barcode: {
+        allowOverride: false,
+        assignEvenIfUsed: false,
+        value: '012345678905',
+      },
       classId: '80000001-1234567890',
       description: 'Standard rate sales tax for California',
       isActive: true,
