@@ -26,7 +26,11 @@ describe('resource nonInventoryItems', () => {
     const response = await conductor.qbd.nonInventoryItems.create({
       name: 'Printer Ink Cartridge',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
+      barcode: {
+        allowOverride: false,
+        assignEvenIfUsed: false,
+        value: '012345678905',
+      },
       classId: '80000001-1234567890',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       isActive: true,
@@ -90,7 +94,11 @@ describe('resource nonInventoryItems', () => {
     const response = await conductor.qbd.nonInventoryItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
+      barcode: {
+        allowOverride: false,
+        assignEvenIfUsed: false,
+        value: '012345678905',
+      },
       classId: '80000001-1234567890',
       forceUnitOfMeasureChange: false,
       isActive: true,

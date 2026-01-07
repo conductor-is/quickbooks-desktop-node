@@ -82,7 +82,13 @@ describe('resource salesReceipts', () => {
       lineGroups: [
         {
           itemGroupId: '80000001-1234567890',
-          customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
+          customFields: [
+            {
+              name: 'Customer Rating',
+              ownerId: '0',
+              value: 'Premium',
+            },
+          ],
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',
           quantity: 5,
@@ -122,7 +128,13 @@ describe('resource salesReceipts', () => {
               transactionAuthorizationStamp: 2,
             },
           },
-          customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
+          customFields: [
+            {
+              name: 'Customer Rating',
+              ownerId: '0',
+              value: 'Premium',
+            },
+          ],
           description: 'New office chair',
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',

@@ -142,7 +142,9 @@ You can use the `for await … of` syntax to iterate through items across all pa
 async function fetchAllInvoices(params) {
   const allInvoices = [];
   // Automatically fetches more pages as needed.
-  for await (const invoice of conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' })) {
+  for await (const invoice of conductor.qbd.invoices.list({
+    conductorEndUserId: 'YOUR_END_USER_ID',
+  })) {
     allInvoices.push(invoice);
   }
   return allInvoices;
@@ -178,7 +180,9 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const conductor = new Conductor();
 
-const response = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }).asResponse();
+const response = await conductor.qbd.invoices
+  .list({ conductorEndUserId: 'YOUR_END_USER_ID' })
+  .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
