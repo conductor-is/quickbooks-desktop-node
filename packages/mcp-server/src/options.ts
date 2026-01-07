@@ -55,7 +55,7 @@ export function parseCLIOptions(): CLIOptions {
   const transport = argv.transport as 'stdio' | 'http';
 
   return {
-    includeDocsTools,
+    ...(includeDocsTools !== undefined && { includeDocsTools }),
     transport,
     port: argv.port,
     socket: argv.socket,
@@ -87,6 +87,6 @@ export function parseQueryOptions(defaultOptions: McpOptions, query: unknown): M
     : defaultOptions.includeDocsTools;
 
   return {
-    includeDocsTools: docsTools,
+    ...(docsTools !== undefined && { includeDocsTools: docsTools }),
   };
 }
