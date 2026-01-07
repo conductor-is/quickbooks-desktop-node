@@ -87,7 +87,11 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const conductor = new Conductor({ logger: logger, logLevel: 'debug', apiKey: 'sk_conductor_...' });
+      const conductor = new Conductor({
+        logger: logger,
+        logLevel: 'debug',
+        apiKey: 'sk_conductor_...',
+      });
 
       await forceAPIResponseForClient(conductor);
       expect(debugMock).toHaveBeenCalled();
@@ -107,7 +111,11 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const conductor = new Conductor({ logger: logger, logLevel: 'info', apiKey: 'sk_conductor_...' });
+      const conductor = new Conductor({
+        logger: logger,
+        logLevel: 'info',
+        apiKey: 'sk_conductor_...',
+      });
 
       await forceAPIResponseForClient(conductor);
       expect(debugMock).not.toHaveBeenCalled();
@@ -157,7 +165,11 @@ describe('instantiate client', () => {
       };
 
       process.env['CONDUCTOR_LOG'] = 'debug';
-      const conductor = new Conductor({ logger: logger, logLevel: 'off', apiKey: 'sk_conductor_...' });
+      const conductor = new Conductor({
+        logger: logger,
+        logLevel: 'off',
+        apiKey: 'sk_conductor_...',
+      });
 
       await forceAPIResponseForClient(conductor);
       expect(debugMock).not.toHaveBeenCalled();
@@ -173,7 +185,11 @@ describe('instantiate client', () => {
       };
 
       process.env['CONDUCTOR_LOG'] = 'not a log level';
-      const conductor = new Conductor({ logger: logger, logLevel: 'debug', apiKey: 'sk_conductor_...' });
+      const conductor = new Conductor({
+        logger: logger,
+        logLevel: 'debug',
+        apiKey: 'sk_conductor_...',
+      });
       expect(conductor.logLevel).toBe('debug');
       expect(warnMock).not.toHaveBeenCalled();
     });
@@ -556,7 +572,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const conductor = new Conductor({ apiKey: 'sk_conductor_...', timeout: 10, fetch: testFetch });
+    const conductor = new Conductor({
+      apiKey: 'sk_conductor_...',
+      timeout: 10,
+      fetch: testFetch,
+    });
 
     expect(await conductor.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -586,7 +606,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const conductor = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch, maxRetries: 4 });
+    const conductor = new Conductor({
+      apiKey: 'sk_conductor_...',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(await conductor.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
 
@@ -610,7 +634,11 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const conductor = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch, maxRetries: 4 });
+    const conductor = new Conductor({
+      apiKey: 'sk_conductor_...',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(
       await conductor.request({
@@ -672,7 +700,11 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const conductor = new Conductor({ apiKey: 'sk_conductor_...', fetch: testFetch, maxRetries: 4 });
+    const conductor = new Conductor({
+      apiKey: 'sk_conductor_...',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(
       await conductor.request({
