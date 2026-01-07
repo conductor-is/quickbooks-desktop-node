@@ -1,5 +1,24 @@
 # Changelog
 
+## 14.2.0 (2026-01-07)
+
+Full Changelog: [v14.1.0...v14.2.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.1.0...v14.2.0)
+
+### Features
+
+* **api:** api update ([1e8b26b](https://github.com/conductor-is/quickbooks-desktop-node/commit/1e8b26b055a7b69e0d7428a6ea3c2e0db0dfcd0c))
+* **api:** api update ([d6557cb](https://github.com/conductor-is/quickbooks-desktop-node/commit/d6557cb6dd1ce6c261854528303e30c090272c10))
+
+
+### Bug Fixes
+
+* **mcp:** correct code tool api output types ([78dc5ef](https://github.com/conductor-is/quickbooks-desktop-node/commit/78dc5efe756643f9ea668636fc48684277a1c997))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([5c05e5f](https://github.com/conductor-is/quickbooks-desktop-node/commit/5c05e5f0aa662da0cfcd54319377b0b7ea7f6f9a))
+
 ## 14.1.0 (2025-12-31)
 
 Full Changelog: [v14.0.0...v14.1.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.0.0...v14.1.0)
