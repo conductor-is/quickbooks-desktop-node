@@ -28,11 +28,21 @@ describe('resource itemGroups', () => {
       name: 'Office Supplies Bundle',
       shouldPrintItemsInGroup: true,
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
+      barcode: {
+        allowOverride: false,
+        assignEvenIfUsed: false,
+        value: '012345678905',
+      },
       description: 'Complete office starter kit with essential supplies for new employees.',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       isActive: true,
-      lines: [{ itemId: '80000001-1234567890', quantity: 5, unitOfMeasure: 'Each' }],
+      lines: [
+        {
+          itemId: '80000001-1234567890',
+          quantity: 5,
+          unitOfMeasure: 'Each',
+        },
+      ],
       unitOfMeasureSetId: '80000001-1234567890',
     });
   });
@@ -74,12 +84,22 @@ describe('resource itemGroups', () => {
     const response = await conductor.qbd.itemGroups.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
+      barcode: {
+        allowOverride: false,
+        assignEvenIfUsed: false,
+        value: '012345678905',
+      },
       clearItemLines: false,
       description: 'Complete office starter kit with essential supplies for new employees.',
       forceUnitOfMeasureChange: false,
       isActive: true,
-      lines: [{ itemId: '80000001-1234567890', quantity: 5, unitOfMeasure: 'Each' }],
+      lines: [
+        {
+          itemId: '80000001-1234567890',
+          quantity: 5,
+          unitOfMeasure: 'Each',
+        },
+      ],
       name: 'Office Supplies Bundle',
       shouldPrintItemsInGroup: true,
       unitOfMeasureSetId: '80000001-1234567890',

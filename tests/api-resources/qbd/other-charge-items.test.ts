@@ -26,7 +26,11 @@ describe('resource otherChargeItems', () => {
     const response = await conductor.qbd.otherChargeItems.create({
       name: 'Overnight Delivery',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
+      barcode: {
+        allowOverride: false,
+        assignEvenIfUsed: false,
+        value: '012345678905',
+      },
       classId: '80000001-1234567890',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       isActive: true,
@@ -88,7 +92,11 @@ describe('resource otherChargeItems', () => {
     const response = await conductor.qbd.otherChargeItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
+      barcode: {
+        allowOverride: false,
+        assignEvenIfUsed: false,
+        value: '012345678905',
+      },
       classId: '80000001-1234567890',
       isActive: true,
       name: 'Overnight Delivery',

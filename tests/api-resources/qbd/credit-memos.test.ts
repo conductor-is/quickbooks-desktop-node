@@ -52,7 +52,13 @@ describe('resource creditMemos', () => {
       lineGroups: [
         {
           itemGroupId: '80000001-1234567890',
-          customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
+          customFields: [
+            {
+              name: 'Customer Rating',
+              ownerId: '0',
+              value: 'Premium',
+            },
+          ],
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',
           quantity: 5,
@@ -63,7 +69,13 @@ describe('resource creditMemos', () => {
         {
           amount: '1000.00',
           classId: '80000001-1234567890',
-          customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
+          customFields: [
+            {
+              name: 'Customer Rating',
+              ownerId: '0',
+              value: 'Premium',
+            },
+          ],
           description: 'Return of defective product - Widget Model X123',
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',

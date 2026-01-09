@@ -38,7 +38,13 @@ describe('resource purchaseOrders', () => {
       lineGroups: [
         {
           itemGroupId: '80000001-1234567890',
-          customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
+          customFields: [
+            {
+              name: 'Customer Rating',
+              ownerId: '0',
+              value: 'Premium',
+            },
+          ],
           inventorySiteLocationId: '80000001-1234567890',
           quantity: 5,
           unitOfMeasure: 'Each',
@@ -48,7 +54,13 @@ describe('resource purchaseOrders', () => {
         {
           amount: '1000.00',
           classId: '80000001-1234567890',
-          customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
+          customFields: [
+            {
+              name: 'Customer Rating',
+              ownerId: '0',
+              value: 'Premium',
+            },
+          ],
           description: 'Office chairs - Herman Miller Aeron (Black)',
           inventorySiteLocationId: '80000001-1234567890',
           itemId: '80000001-1234567890',
