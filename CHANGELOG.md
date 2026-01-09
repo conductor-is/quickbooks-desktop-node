@@ -1,5 +1,20 @@
 # Changelog
 
+## 14.2.1 (2026-01-09)
+
+Full Changelog: [v14.2.0...v14.2.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.2.0...v14.2.1)
+
+### Bug Fixes
+
+* **mcp:** fix env parsing ([b4d52cb](https://github.com/conductor-is/quickbooks-desktop-node/commit/b4d52cb7519f80cbcb5931fe9a1e1812c0676102))
+* **mcp:** fix options parsing ([c9d91c6](https://github.com/conductor-is/quickbooks-desktop-node/commit/c9d91c617c2249a48890e4ac20d59122bfda8251))
+* **mcp:** update code tool prompt ([0d274ac](https://github.com/conductor-is/quickbooks-desktop-node/commit/0d274ac86a1e3c2652e4927eee908e09cffbd01c))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([4c41e15](https://github.com/conductor-is/quickbooks-desktop-node/commit/4c41e157bd478c3c5b9359d85f1f33ebed72675f))
+
 ## 14.2.0 (2026-01-07)
 
 Full Changelog: [v14.1.0...v14.2.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.1.0...v14.2.0)
