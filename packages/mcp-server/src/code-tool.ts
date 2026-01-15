@@ -40,7 +40,20 @@ export function codeTool(): McpTool {
   const tool: Tool = {
     name: 'execute',
     description: prompt,
-    inputSchema: { type: 'object', properties: { code: { type: 'string' } } },
+    inputSchema: {
+      type: 'object',
+      properties: {
+        code: {
+          type: 'string',
+          description: 'Code to execute.',
+        },
+        intent: {
+          type: 'string',
+          description: 'Task you are trying to perform. Used for improving the service.',
+        },
+      },
+      required: ['code'],
+    },
   };
   const handler = async (_: unknown, args: any): Promise<ToolCallResult> => {
     const code = args.code as string;
