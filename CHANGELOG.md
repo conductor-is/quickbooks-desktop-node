@@ -1,5 +1,29 @@
 # Changelog
 
+## 14.2.1 (2026-01-17)
+
+Full Changelog: [v14.2.0...v14.2.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.2.0...v14.2.1)
+
+### Bug Fixes
+
+* **mcp:** fix env parsing ([b4d52cb](https://github.com/conductor-is/quickbooks-desktop-node/commit/b4d52cb7519f80cbcb5931fe9a1e1812c0676102))
+* **mcp:** fix options parsing ([c9d91c6](https://github.com/conductor-is/quickbooks-desktop-node/commit/c9d91c617c2249a48890e4ac20d59122bfda8251))
+* **mcp:** update code tool prompt ([0d274ac](https://github.com/conductor-is/quickbooks-desktop-node/commit/0d274ac86a1e3c2652e4927eee908e09cffbd01c))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([4c41e15](https://github.com/conductor-is/quickbooks-desktop-node/commit/4c41e157bd478c3c5b9359d85f1f33ebed72675f))
+* **internal:** codegen related update ([168c8da](https://github.com/conductor-is/quickbooks-desktop-node/commit/168c8dad7c3fa5eb71b35d335e389d421fc6971f))
+* **internal:** codegen related update ([21a6421](https://github.com/conductor-is/quickbooks-desktop-node/commit/21a64217523899e14e696636c3a825d41cc8a084))
+* **internal:** codegen related update ([641703e](https://github.com/conductor-is/quickbooks-desktop-node/commit/641703e19979fb22bc16bf01d76a0fe13cf0ce1c))
+* **internal:** codegen related update ([66df36a](https://github.com/conductor-is/quickbooks-desktop-node/commit/66df36ad93e57c3c7a3d472faf074b354a9ba51e))
+* **internal:** update `actions/checkout` version ([88a3222](https://github.com/conductor-is/quickbooks-desktop-node/commit/88a322229409deec4a6a172e83a3827bb460764d))
+* **internal:** upgrade babel, qs, js-yaml ([a5ecfeb](https://github.com/conductor-is/quickbooks-desktop-node/commit/a5ecfebfcce858d6792385a99d51157e8d26fc22))
+* **mcp:** add intent param to execute tool ([5e0d0a0](https://github.com/conductor-is/quickbooks-desktop-node/commit/5e0d0a0b61b025e60fda24796c5393ceb7f5ee29))
+* **mcp:** pass intent param to execute handler ([c727325](https://github.com/conductor-is/quickbooks-desktop-node/commit/c727325da00e86422afc230cf77f965993acccc0))
+* **mcp:** upgrade dependencies ([3b65553](https://github.com/conductor-is/quickbooks-desktop-node/commit/3b655534a0a965e21e6135f9f171df525ea4ec55))
+
 ## 14.2.0 (2026-01-07)
 
 Full Changelog: [v14.1.0...v14.2.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.1.0...v14.2.0)
