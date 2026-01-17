@@ -26,7 +26,11 @@ describe('resource subtotalItems', () => {
     const response = await conductor.qbd.subtotalItems.create({
       name: 'Labor subtotal',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
+      barcode: {
+        allowOverride: false,
+        assignEvenIfUsed: false,
+        value: '012345678905',
+      },
       description: 'Subtotal for all labor costs on this project',
       externalId: '12345678-abcd-1234-abcd-1234567890ab',
       isActive: true,
@@ -70,7 +74,11 @@ describe('resource subtotalItems', () => {
     const response = await conductor.qbd.subtotalItems.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      barcode: { allowOverride: false, assignEvenIfUsed: false, value: '012345678905' },
+      barcode: {
+        allowOverride: false,
+        assignEvenIfUsed: false,
+        value: '012345678905',
+      },
       description: 'Subtotal for all labor costs on this project',
       isActive: true,
       name: 'Labor subtotal',

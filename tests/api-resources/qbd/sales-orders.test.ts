@@ -52,7 +52,13 @@ describe('resource salesOrders', () => {
       lineGroups: [
         {
           itemGroupId: '80000001-1234567890',
-          customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
+          customFields: [
+            {
+              name: 'Customer Rating',
+              ownerId: '0',
+              value: 'Premium',
+            },
+          ],
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',
           quantity: 5,
@@ -63,7 +69,13 @@ describe('resource salesOrders', () => {
         {
           amount: '1000.00',
           classId: '80000001-1234567890',
-          customFields: [{ name: 'Customer Rating', ownerId: '0', value: 'Premium' }],
+          customFields: [
+            {
+              name: 'Customer Rating',
+              ownerId: '0',
+              value: 'Premium',
+            },
+          ],
           description: 'Widget Model X100 - Blue',
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',

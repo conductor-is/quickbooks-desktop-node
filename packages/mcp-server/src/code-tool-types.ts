@@ -6,6 +6,7 @@ export type WorkerInput = {
   project_name: string;
   code: string;
   client_opts: ClientOptions;
+  intent?: string | undefined;
 };
 export type WorkerOutput = {
   is_error: boolean;

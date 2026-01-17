@@ -55,7 +55,12 @@ describe('resource inventoryAdjustments', () => {
             inventorySiteLocationId: '80000001-1234567890',
             removeSerialNumber: '123456',
           },
-          adjustValue: { newQuantity: 10, newValue: '100.00', quantityDifference: 5, valueDifference: 7 },
+          adjustValue: {
+            newQuantity: 10,
+            newValue: '100.00',
+            quantityDifference: 5,
+            valueDifference: 7,
+          },
         },
       ],
       memo: 'Adjusted quantity due to physical count discrepancy',
