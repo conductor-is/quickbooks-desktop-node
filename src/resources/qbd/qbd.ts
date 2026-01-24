@@ -464,6 +464,15 @@ import {
   ServiceItems,
   ServiceItemsCursorPage,
 } from './service-items';
+import * as ShippingMethodsAPI from './shipping-methods';
+import {
+  ShippingMethod,
+  ShippingMethodCreateParams,
+  ShippingMethodListParams,
+  ShippingMethodListResponse,
+  ShippingMethodRetrieveParams,
+  ShippingMethods,
+} from './shipping-methods';
 import * as StandardTermsAPI from './standard-terms';
 import {
   StandardTerm,
@@ -618,6 +627,7 @@ export class Qbd extends APIResource {
   salesTaxCodes: SalesTaxCodesAPI.SalesTaxCodes = new SalesTaxCodesAPI.SalesTaxCodes(this._client);
   salesTaxItems: SalesTaxItemsAPI.SalesTaxItems = new SalesTaxItemsAPI.SalesTaxItems(this._client);
   serviceItems: ServiceItemsAPI.ServiceItems = new ServiceItemsAPI.ServiceItems(this._client);
+  shippingMethods: ShippingMethodsAPI.ShippingMethods = new ShippingMethodsAPI.ShippingMethods(this._client);
   standardTerms: StandardTermsAPI.StandardTerms = new StandardTermsAPI.StandardTerms(this._client);
   subtotalItems: SubtotalItemsAPI.SubtotalItems = new SubtotalItemsAPI.SubtotalItems(this._client);
   templates: TemplatesAPI.Templates = new TemplatesAPI.Templates(this._client);
@@ -719,6 +729,7 @@ Qbd.SalesRepresentatives = SalesRepresentatives;
 Qbd.SalesTaxCodes = SalesTaxCodes;
 Qbd.SalesTaxItems = SalesTaxItems;
 Qbd.ServiceItems = ServiceItems;
+Qbd.ShippingMethods = ShippingMethods;
 Qbd.StandardTerms = StandardTerms;
 Qbd.SubtotalItems = SubtotalItems;
 Qbd.Templates = Templates;
@@ -1200,6 +1211,15 @@ export declare namespace Qbd {
     type ServiceItemRetrieveParams as ServiceItemRetrieveParams,
     type ServiceItemUpdateParams as ServiceItemUpdateParams,
     type ServiceItemListParams as ServiceItemListParams,
+  };
+
+  export {
+    ShippingMethods as ShippingMethods,
+    type ShippingMethod as ShippingMethod,
+    type ShippingMethodListResponse as ShippingMethodListResponse,
+    type ShippingMethodCreateParams as ShippingMethodCreateParams,
+    type ShippingMethodRetrieveParams as ShippingMethodRetrieveParams,
+    type ShippingMethodListParams as ShippingMethodListParams,
   };
 
   export {

@@ -662,6 +662,19 @@ Methods:
 - <code title="post /quickbooks-desktop/service-items/{id}">client.qbd.serviceItems.<a href="./src/resources/qbd/service-items.ts">update</a>(id, { ...params }) -> ServiceItem</code>
 - <code title="get /quickbooks-desktop/service-items">client.qbd.serviceItems.<a href="./src/resources/qbd/service-items.ts">list</a>({ ...params }) -> ServiceItemsCursorPage</code>
 
+## ShippingMethods
+
+Types:
+
+- <code><a href="./src/resources/qbd/shipping-methods.ts">ShippingMethod</a></code>
+- <code><a href="./src/resources/qbd/shipping-methods.ts">ShippingMethodListResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/shipping-methods">client.qbd.shippingMethods.<a href="./src/resources/qbd/shipping-methods.ts">create</a>({ ...params }) -> ShippingMethod</code>
+- <code title="get /quickbooks-desktop/shipping-methods/{id}">client.qbd.shippingMethods.<a href="./src/resources/qbd/shipping-methods.ts">retrieve</a>(id, { ...params }) -> ShippingMethod</code>
+- <code title="get /quickbooks-desktop/shipping-methods">client.qbd.shippingMethods.<a href="./src/resources/qbd/shipping-methods.ts">list</a>({ ...params }) -> ShippingMethodListResponse</code>
+
 ## StandardTerms
 
 Types:
