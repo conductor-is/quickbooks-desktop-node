@@ -419,6 +419,14 @@ export {
   type ServiceItemsCursorPage,
 } from './service-items';
 export {
+  ShippingMethods,
+  type ShippingMethod,
+  type ShippingMethodListResponse,
+  type ShippingMethodCreateParams,
+  type ShippingMethodRetrieveParams,
+  type ShippingMethodListParams,
+} from './shipping-methods';
+export {
   StandardTerms,
   type StandardTerm,
   type StandardTermListResponse,
