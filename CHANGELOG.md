@@ -1,5 +1,18 @@
 # Changelog
 
+## 14.5.1 (2026-01-28)
+
+Full Changelog: [v14.5.0...v14.5.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.5.0...v14.5.1)
+
+### Bug Fixes
+
+* **mcp:** allow falling back for required env variables ([18bf436](https://github.com/conductor-is/quickbooks-desktop-node/commit/18bf436df5d8b92e6260aa9e6aef39aa1dd174b7))
+
+
+### Chores
+
+* **internal:** codegen related update ([580f119](https://github.com/conductor-is/quickbooks-desktop-node/commit/580f11903dcdaf98c586992fea5f2299b0eb1093))
+
 ## 14.5.0 (2026-01-27)
 
 Full Changelog: [v14.4.0...v14.5.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.4.0...v14.5.0)
