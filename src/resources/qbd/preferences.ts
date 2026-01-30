@@ -575,7 +575,7 @@ export namespace Preferences {
     /**
      * The default tax code for sales for this company file.
      */
-    defaultItemSalesTax: SalesTax.DefaultItemSalesTax;
+    defaultItemSalesTax: SalesTax.DefaultItemSalesTax | null;
 
     /**
      * The default tax code for non-taxable sales for this company file.
