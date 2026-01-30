@@ -1,5 +1,27 @@
 # Changelog
 
+## 14.6.0 (2026-01-30)
+
+Full Changelog: [v14.5.0...v14.6.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.5.0...v14.6.0)
+
+### Features
+
+* **api:** api update ([41501e5](https://github.com/conductor-is/quickbooks-desktop-node/commit/41501e5022e1793cb7d36515bc268618130410d6))
+
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([2516f9e](https://github.com/conductor-is/quickbooks-desktop-node/commit/2516f9e33a560d6c924e6d774a4523e0f260c9c3))
+* **mcp:** allow falling back for required env variables ([18bf436](https://github.com/conductor-is/quickbooks-desktop-node/commit/18bf436df5d8b92e6260aa9e6aef39aa1dd174b7))
+* **publish:** use npm registry directly for trusted publishing support ([cc00939](https://github.com/conductor-is/quickbooks-desktop-node/commit/cc009396fa45f6e1d4928a8b5dffa16812879b34))
+
+
+### Chores
+
+* **internal:** codegen related update ([eab895b](https://github.com/conductor-is/quickbooks-desktop-node/commit/eab895b51ed13a73b634fa6e09c3d14b2248a225))
+* **internal:** codegen related update ([580f119](https://github.com/conductor-is/quickbooks-desktop-node/commit/580f11903dcdaf98c586992fea5f2299b0eb1093))
+* **mcp:** up tsconfig lib version to es2022 ([d6df377](https://github.com/conductor-is/quickbooks-desktop-node/commit/d6df37726aa33b46988d69c51d9da34a935af96e))
+
 ## 14.5.0 (2026-01-27)
 
 Full Changelog: [v14.4.0...v14.5.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.4.0...v14.5.0)
