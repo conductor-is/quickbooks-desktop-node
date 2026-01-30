@@ -2,8 +2,9 @@
 
 import { McpTool, Metadata, ToolCallResult, asErrorResult, asTextContentResult } from './types';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { readEnv, readEnvOrError } from './server';
+import { readEnv, requireValue } from './server';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
+import { Conductor } from 'conductor-node';
 
 const prompt = `Runs JavaScript code to interact with the Conductor API.
 
@@ -55,7 +56,7 @@ export function codeTool(): McpTool {
       required: ['code'],
     },
   };
-  const handler = async (_: unknown, args: any): Promise<ToolCallResult> => {
+  const handler = async (client: Conductor, args: any): Promise<ToolCallResult> => {
     const code = args.code as string;
     const intent = args.intent as string | undefined;
 
@@ -71,8 +72,11 @@ export function codeTool(): McpTool {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
-          CONDUCTOR_SECRET_KEY: readEnvOrError('CONDUCTOR_SECRET_KEY'),
-          CONDUCTOR_BASE_URL: readEnv('CONDUCTOR_BASE_URL'),
+          CONDUCTOR_SECRET_KEY: requireValue(
+            readEnv('CONDUCTOR_SECRET_KEY') ?? conductor.apiKey,
+            'set CONDUCTOR_SECRET_KEY environment variable or provide apiKey client option',
+          ),
+          CONDUCTOR_BASE_URL: readEnv('CONDUCTOR_BASE_URL') ?? conductor.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({
