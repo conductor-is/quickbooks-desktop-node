@@ -2,9 +2,9 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { initMcpServer, newMcpServer } from './server';
 
 export const launchStdioServer = async () => {
-  const server = newMcpServer();
+  const server = await newMcpServer();
 
-  initMcpServer({ server });
+  await initMcpServer({ server });
 
   const transport = new StdioServerTransport();
   await server.connect(transport);
