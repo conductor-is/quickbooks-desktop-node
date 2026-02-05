@@ -21,7 +21,11 @@ async function main() {
       await launchStdioServer();
       break;
     case 'http':
-      await launchStreamableHTTPServer(options, options.port ?? options.socket);
+      await launchStreamableHTTPServer({
+        mcpOptions: options,
+        debug: options.debug,
+        port: options.port ?? options.socket,
+      });
       break;
   }
 }

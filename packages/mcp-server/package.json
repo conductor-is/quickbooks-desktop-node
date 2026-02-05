@@ -40,6 +40,7 @@
     "fuse.js": "^7.1.0",
     "jq-web": "https://github.com/stainless-api/jq-web/releases/download/v0.8.8/jq-web.tar.gz",
     "morgan": "^1.10.0",
+    "morgan-body": "^2.6.9",
     "qs": "^6.14.1",
     "typescript": "5.8.3",
     "yargs": "^17.7.2",
