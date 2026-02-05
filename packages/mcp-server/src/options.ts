@@ -4,6 +4,7 @@ import { hideBin } from 'yargs/helpers';
 import z from 'zod';
 
 export type CLIOptions = McpOptions & {
+  debug: boolean;
   transport: 'stdio' | 'http';
   port: number | undefined;
   socket: string | undefined;
@@ -15,17 +16,24 @@ export type McpOptions = {
 
 export function parseCLIOptions(): CLIOptions {
   const opts = yargs(hideBin(process.argv))
-    .option('tools', {
-      type: 'string',
-      array: true,
-      choices: ['code', 'docs'],
-      description: 'Use dynamic tools or all tools',
-    })
+    .option('debug', { type: 'boolean', description: 'Enable debug logging' })
     .option('no-tools', {
       type: 'string',
       array: true,
       choices: ['code', 'docs'],
-      description: 'Do not use any dynamic or all tools',
+      description: 'Tools to explicitly disable',
+    })
+    .option('port', {
+      type: 'number',
+      default: 3000,
+      description: 'Port to serve on if using http transport',
+    })
+    .option('socket', { type: 'string', description: 'Unix socket to serve on if using http transport' })
+    .option('tools', {
+      type: 'string',
+      array: true,
+      choices: ['code', 'docs'],
+      description: 'Tools to explicitly enable',
     })
     .option('transport', {
       type: 'string',
@@ -33,15 +41,8 @@ export function parseCLIOptions(): CLIOptions {
       default: 'stdio',
       description: 'What transport to use; stdio for local servers or http for remote servers',
     })
-    .option('port', {
-      type: 'number',
-      default: 3000,
-      description: 'Port to serve on if using http transport',
-    })
-    .option('socket', {
-      type: 'string',
-      description: 'Unix socket to serve on if using http transport',
-    })
+    .env('MCP_SERVER')
+    .version(true)
     .help();
 
   const argv = opts.parseSync();
@@ -57,6 +58,7 @@ export function parseCLIOptions(): CLIOptions {
 
   return {
     ...(includeDocsTools !== undefined && { includeDocsTools }),
+    debug: !!argv.debug,
     transport,
     port: argv.port,
     socket: argv.socket,
