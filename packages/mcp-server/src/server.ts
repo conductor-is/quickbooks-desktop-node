@@ -17,23 +17,59 @@ import { HandlerFunction, McpTool } from './types';
 export { McpOptions } from './options';
 export { ClientOptions } from 'conductor-node';
 
-export const newMcpServer = () =>
+async function getInstructions() {
+  // This API key is optional; providing it allows the server to fetch instructions for unreleased versions.
+  const stainlessAPIKey = readEnv('STAINLESS_API_KEY');
+  const response = await fetch(
+    readEnv('CODE_MODE_INSTRUCTIONS_URL') ?? 'https://api.stainless.com/api/ai/instructions/conductor',
+    {
+      method: 'GET',
+      headers: { ...(stainlessAPIKey && { Authorization: stainlessAPIKey }) },
+    },
+  );
+
+  let instructions: string | undefined;
+  if (!response.ok) {
+    console.warn(
+      'Warning: failed to retrieve MCP server instructions. Proceeding with default instructions...',
+    );
+
+    instructions = `
+      This is the conductor MCP server. You will use Code Mode to help the user perform
+      actions. You can use search_docs tool to learn about how to take action with this server. Then,
+      you will write TypeScript code using the execute tool take action. It is CRITICAL that you be
+      thoughtful and deliberate when executing code. Always try to entirely solve the problem in code
+      block: it can be as long as you need to get the job done!
+    `;
+  }
+
+  instructions ??= ((await response.json()) as { instructions: string }).instructions;
+  instructions = `
+    The current time in Unix timestamps is ${Date.now()}.
+
+    ${instructions}
+  `;
+
+  return instructions;
+}
+
+export const newMcpServer = async () =>
   new McpServer(
     {
       name: 'conductor_node_api',
-      version: '14.5.0',
+      version: '14.6.0',
     },
-    { capabilities: { tools: {}, logging: {} } },
+    {
+      instructions: await getInstructions(),
+      capabilities: { tools: {}, logging: {} },
+    },
   );
-
-// Create server instance
-export const server = newMcpServer();
 
 /**
  * Initializes the provided MCP Server with the given tools and handlers.
  * If not provided, the default client, tools and handlers will be used.
  */
-export function initMcpServer(params: {
+export async function initMcpServer(params: {
   server: Server | McpServer;
   clientOptions?: ClientOptions;
   mcpOptions?: McpOptions;
@@ -144,4 +180,11 @@ export const readEnvOrError = (env: string): string => {
     throw new Error(`Environment variable ${env} is not set`);
   }
   return envValue;
+};
+
+export const requireValue = <T>(value: T | undefined, description: string): T => {
+  if (value === undefined) {
+    throw new Error(`Missing required value: ${description}`);
+  }
+  return value;
 };
