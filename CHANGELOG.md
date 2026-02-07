@@ -1,5 +1,36 @@
 # Changelog
 
+## 14.6.0 (2026-02-07)
+
+Full Changelog: [v14.5.0...v14.6.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.5.0...v14.6.0)
+
+### Features
+
+* **api:** api update ([41501e5](https://github.com/conductor-is/quickbooks-desktop-node/commit/41501e5022e1793cb7d36515bc268618130410d6))
+* **mcp:** add initial server instructions ([5f74578](https://github.com/conductor-is/quickbooks-desktop-node/commit/5f74578d5dbe787f25d2011e209b9d87f132937a))
+
+
+### Bug Fixes
+
+* **client:** avoid memory leak with abort signals ([9a0ae30](https://github.com/conductor-is/quickbooks-desktop-node/commit/9a0ae30854381b1c3b07652bfb67ef029faa352c))
+* **client:** avoid removing abort listener too early ([2e1b9c5](https://github.com/conductor-is/quickbooks-desktop-node/commit/2e1b9c5e93654917092150027d10a07b0e1603a6))
+* **docs:** fix mcp installation instructions for remote servers ([2516f9e](https://github.com/conductor-is/quickbooks-desktop-node/commit/2516f9e33a560d6c924e6d774a4523e0f260c9c3))
+* **mcp:** allow falling back for required env variables ([18bf436](https://github.com/conductor-is/quickbooks-desktop-node/commit/18bf436df5d8b92e6260aa9e6aef39aa1dd174b7))
+* **publish:** use npm registry directly for trusted publishing support ([cc00939](https://github.com/conductor-is/quickbooks-desktop-node/commit/cc009396fa45f6e1d4928a8b5dffa16812879b34))
+
+
+### Chores
+
+* **client:** do not parse responses with empty content-length ([72b0e71](https://github.com/conductor-is/quickbooks-desktop-node/commit/72b0e710e3397f9905f6fc1c2aaf6eafdab11e6e))
+* **client:** restructure abort controller binding ([5c034e0](https://github.com/conductor-is/quickbooks-desktop-node/commit/5c034e00d9864143df9bc2d75be9f6d2cb6d4909))
+* **internal:** add health check to MCP server when running in HTTP mode ([7eab85a](https://github.com/conductor-is/quickbooks-desktop-node/commit/7eab85a38a977eb1e4c951bd211d46fe7ebbc91f))
+* **internal:** codegen related update ([eab895b](https://github.com/conductor-is/quickbooks-desktop-node/commit/eab895b51ed13a73b634fa6e09c3d14b2248a225))
+* **internal:** codegen related update ([580f119](https://github.com/conductor-is/quickbooks-desktop-node/commit/580f11903dcdaf98c586992fea5f2299b0eb1093))
+* **internal:** fix pagination internals not accepting option promises ([eecad0a](https://github.com/conductor-is/quickbooks-desktop-node/commit/eecad0af408fc55c6d9192bd84c8be85fa23739c))
+* **internal:** refactor flag parsing for MCP servers and add debug flag ([c5a7d72](https://github.com/conductor-is/quickbooks-desktop-node/commit/c5a7d722f04e6ac3646e17d1587ff481729b6964))
+* **internal:** support oauth authorization code flow for MCP servers ([2a7bba1](https://github.com/conductor-is/quickbooks-desktop-node/commit/2a7bba1e7391fb78af3b9e5859e22a5e79100ef6))
+* **mcp:** up tsconfig lib version to es2022 ([d6df377](https://github.com/conductor-is/quickbooks-desktop-node/commit/d6df37726aa33b46988d69c51d9da34a935af96e))
+
 ## 14.5.0 (2026-01-27)
 
 Full Changelog: [v14.4.0...v14.5.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.4.0...v14.5.0)
