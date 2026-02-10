@@ -12,10 +12,30 @@ export type CLIOptions = McpOptions & {
 
 export type McpOptions = {
   includeDocsTools?: boolean | undefined;
+  codeAllowHttpGets?: boolean | undefined;
+  codeAllowedMethods?: string[] | undefined;
+  codeBlockedMethods?: string[] | undefined;
 };
 
 export function parseCLIOptions(): CLIOptions {
   const opts = yargs(hideBin(process.argv))
+    .option('code-allow-http-gets', {
+      type: 'boolean',
+      description:
+        'Allow all code tool methods that map to HTTP GET operations. If all code-allow-* flags are unset, then everything is allowed.',
+    })
+    .option('code-allowed-methods', {
+      type: 'string',
+      array: true,
+      description:
+        'Methods to explicitly allow for code tool. Evaluated as regular expressions against method fully qualified names. If all code-allow-* flags are unset, then everything is allowed.',
+    })
+    .option('code-blocked-methods', {
+      type: 'string',
+      array: true,
+      description:
+        'Methods to explicitly block for code tool. Evaluated as regular expressions against method fully qualified names. If all code-allow-* flags are unset, then everything is allowed.',
+    })
     .option('debug', { type: 'boolean', description: 'Enable debug logging' })
     .option('no-tools', {
       type: 'string',
@@ -59,6 +79,9 @@ export function parseCLIOptions(): CLIOptions {
   return {
     ...(includeDocsTools !== undefined && { includeDocsTools }),
     debug: !!argv.debug,
+    codeAllowHttpGets: argv.codeAllowHttpGets,
+    codeAllowedMethods: argv.codeAllowedMethods,
+    codeBlockedMethods: argv.codeBlockedMethods,
     transport,
     port: argv.port,
     socket: argv.socket,
