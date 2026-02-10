@@ -18,7 +18,7 @@ async function main() {
 
   switch (options.transport) {
     case 'stdio':
-      await launchStdioServer();
+      await launchStdioServer(options);
       break;
     case 'http':
       await launchStreamableHTTPServer({
