@@ -195,8 +195,8 @@ export interface BillCheckPayment {
 
   /**
    * The bill check payment's currency. For built-in currencies, the name and code
-   * are standard international values. For user-defined currencies, all values are
-   * editable.
+   * are standard ISO 4217 international values. For user-defined currencies, all
+   * values are editable.
    */
   currency: BillCheckPayment.Currency | null;
 
@@ -567,8 +567,8 @@ export namespace BillCheckPayment {
 
   /**
    * The bill check payment's currency. For built-in currencies, the name and code
-   * are standard international values. For user-defined currencies, all values are
-   * editable.
+   * are standard ISO 4217 international values. For user-defined currencies, all
+   * values are editable.
    */
   export interface Currency {
     /**

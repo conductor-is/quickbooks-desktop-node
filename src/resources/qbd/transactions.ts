@@ -91,8 +91,8 @@ export interface Transaction {
 
   /**
    * The transaction's currency. For built-in currencies, the name and code are
-   * standard international values. For user-defined currencies, all values are
-   * editable.
+   * standard ISO 4217 international values. For user-defined currencies, all values
+   * are editable.
    */
   currency: Transaction.Currency | null;
 
@@ -201,8 +201,8 @@ export namespace Transaction {
 
   /**
    * The transaction's currency. For built-in currencies, the name and code are
-   * standard international values. For user-defined currencies, all values are
-   * editable.
+   * standard ISO 4217 international values. For user-defined currencies, all values
+   * are editable.
    */
   export interface Currency {
     /**

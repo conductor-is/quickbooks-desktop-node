@@ -193,7 +193,8 @@ export interface Vendor {
 
   /**
    * The vendor's currency. For built-in currencies, the name and code are standard
-   * international values. For user-defined currencies, all values are editable.
+   * ISO 4217 international values. For user-defined currencies, all values are
+   * editable.
    */
   currency: Vendor.Currency | null;
 
@@ -609,7 +610,8 @@ export namespace Vendor {
 
   /**
    * The vendor's currency. For built-in currencies, the name and code are standard
-   * international values. For user-defined currencies, all values are editable.
+   * ISO 4217 international values. For user-defined currencies, all values are
+   * editable.
    */
   export interface Currency {
     /**
@@ -969,8 +971,8 @@ export interface VendorCreateParams {
 
   /**
    * Body param: The vendor's currency. For built-in currencies, the name and code
-   * are standard international values. For user-defined currencies, all values are
-   * editable.
+   * are standard ISO 4217 international values. For user-defined currencies, all
+   * values are editable.
    */
   currencyId?: string;
 
@@ -1485,8 +1487,8 @@ export interface VendorUpdateParams {
 
   /**
    * Body param: The vendor's currency. For built-in currencies, the name and code
-   * are standard international values. For user-defined currencies, all values are
-   * editable.
+   * are standard ISO 4217 international values. For user-defined currencies, all
+   * values are editable.
    */
   currencyId?: string;
 

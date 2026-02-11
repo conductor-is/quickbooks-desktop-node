@@ -111,8 +111,8 @@ export interface PriceLevel {
 
   /**
    * The price level's currency. For built-in currencies, the name and code are
-   * standard international values. For user-defined currencies, all values are
-   * editable.
+   * standard ISO 4217 international values. For user-defined currencies, all values
+   * are editable.
    */
   currency: PriceLevel.Currency | null;
 
@@ -179,8 +179,8 @@ export interface PriceLevel {
 export namespace PriceLevel {
   /**
    * The price level's currency. For built-in currencies, the name and code are
-   * standard international values. For user-defined currencies, all values are
-   * editable.
+   * standard ISO 4217 international values. For user-defined currencies, all values
+   * are editable.
    */
   export interface Currency {
     /**
@@ -284,8 +284,8 @@ export interface PriceLevelCreateParams {
 
   /**
    * Body param: The price level's currency. For built-in currencies, the name and
-   * code are standard international values. For user-defined currencies, all values
-   * are editable.
+   * code are standard ISO 4217 international values. For user-defined currencies,
+   * all values are editable.
    */
   currencyId?: string;
 
@@ -383,8 +383,8 @@ export interface PriceLevelUpdateParams {
 
   /**
    * Body param: The price level's currency. For built-in currencies, the name and
-   * code are standard international values. For user-defined currencies, all values
-   * are editable.
+   * code are standard ISO 4217 international values. For user-defined currencies,
+   * all values are editable.
    */
   currencyId?: string;
 

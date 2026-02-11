@@ -168,8 +168,8 @@ export interface JournalEntry {
 
   /**
    * The journal entry's currency. For built-in currencies, the name and code are
-   * standard international values. For user-defined currencies, all values are
-   * editable.
+   * standard ISO 4217 international values. For user-defined currencies, all values
+   * are editable.
    */
   currency: JournalEntry.Currency | null;
 
@@ -404,8 +404,8 @@ export namespace JournalEntry {
 
   /**
    * The journal entry's currency. For built-in currencies, the name and code are
-   * standard international values. For user-defined currencies, all values are
-   * editable.
+   * standard ISO 4217 international values. For user-defined currencies, all values
+   * are editable.
    */
   export interface Currency {
     /**
@@ -665,8 +665,8 @@ export interface JournalEntryCreateParams {
 
   /**
    * Body param: The journal entry's currency. For built-in currencies, the name and
-   * code are standard international values. For user-defined currencies, all values
-   * are editable.
+   * code are standard ISO 4217 international values. For user-defined currencies,
+   * all values are editable.
    */
   currencyId?: string;
 
@@ -854,8 +854,8 @@ export interface JournalEntryUpdateParams {
 
   /**
    * Body param: The journal entry's currency. For built-in currencies, the name and
-   * code are standard international values. For user-defined currencies, all values
-   * are editable.
+   * code are standard ISO 4217 international values. For user-defined currencies,
+   * all values are editable.
    */
   currencyId?: string;
 
