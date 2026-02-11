@@ -156,7 +156,8 @@ export interface Estimate {
 
   /**
    * The estimate's currency. For built-in currencies, the name and code are standard
-   * international values. For user-defined currencies, all values are editable.
+   * ISO 4217 international values. For user-defined currencies, all values are
+   * editable.
    */
   currency: Estimate.Currency | null;
 
@@ -448,7 +449,8 @@ export namespace Estimate {
 
   /**
    * The estimate's currency. For built-in currencies, the name and code are standard
-   * international values. For user-defined currencies, all values are editable.
+   * ISO 4217 international values. For user-defined currencies, all values are
+   * editable.
    */
   export interface Currency {
     /**

@@ -166,8 +166,8 @@ export interface BillCreditCardPayment {
 
   /**
    * The bill credit card payment's currency. For built-in currencies, the name and
-   * code are standard international values. For user-defined currencies, all values
-   * are editable.
+   * code are standard ISO 4217 international values. For user-defined currencies,
+   * all values are editable.
    */
   currency: BillCreditCardPayment.Currency | null;
 
@@ -475,8 +475,8 @@ export namespace BillCreditCardPayment {
 
   /**
    * The bill credit card payment's currency. For built-in currencies, the name and
-   * code are standard international values. For user-defined currencies, all values
-   * are editable.
+   * code are standard ISO 4217 international values. For user-defined currencies,
+   * all values are editable.
    */
   export interface Currency {
     /**

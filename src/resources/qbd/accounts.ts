@@ -173,7 +173,8 @@ export interface Account {
 
   /**
    * The account's currency. For built-in currencies, the name and code are standard
-   * international values. For user-defined currencies, all values are editable.
+   * ISO 4217 international values. For user-defined currencies, all values are
+   * editable.
    */
   currency: Account.Currency | null;
 
@@ -314,7 +315,8 @@ export interface Account {
 export namespace Account {
   /**
    * The account's currency. For built-in currencies, the name and code are standard
-   * international values. For user-defined currencies, all values are editable.
+   * ISO 4217 international values. For user-defined currencies, all values are
+   * editable.
    */
   export interface Currency {
     /**
@@ -514,8 +516,8 @@ export interface AccountCreateParams {
 
   /**
    * Body param: The account's currency. For built-in currencies, the name and code
-   * are standard international values. For user-defined currencies, all values are
-   * editable.
+   * are standard ISO 4217 international values. For user-defined currencies, all
+   * values are editable.
    */
   currencyId?: string;
 
@@ -635,8 +637,8 @@ export interface AccountUpdateParams {
 
   /**
    * Body param: The account's currency. For built-in currencies, the name and code
-   * are standard international values. For user-defined currencies, all values are
-   * editable.
+   * are standard ISO 4217 international values. For user-defined currencies, all
+   * values are editable.
    */
   currencyId?: string;
 

@@ -162,8 +162,8 @@ export interface PurchaseOrder {
 
   /**
    * The purchase order's currency. For built-in currencies, the name and code are
-   * standard international values. For user-defined currencies, all values are
-   * editable.
+   * standard ISO 4217 international values. For user-defined currencies, all values
+   * are editable.
    */
   currency: PurchaseOrder.Currency | null;
 
@@ -415,8 +415,8 @@ export namespace PurchaseOrder {
 
   /**
    * The purchase order's currency. For built-in currencies, the name and code are
-   * standard international values. For user-defined currencies, all values are
-   * editable.
+   * standard ISO 4217 international values. For user-defined currencies, all values
+   * are editable.
    */
   export interface Currency {
     /**
