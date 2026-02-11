@@ -175,8 +175,8 @@ export interface CreditCardCredit {
 
   /**
    * The credit card credit's currency. For built-in currencies, the name and code
-   * are standard international values. For user-defined currencies, all values are
-   * editable.
+   * are standard ISO 4217 international values. For user-defined currencies, all
+   * values are editable.
    */
   currency: CreditCardCredit.Currency | null;
 
@@ -297,8 +297,8 @@ export namespace CreditCardCredit {
 
   /**
    * The credit card credit's currency. For built-in currencies, the name and code
-   * are standard international values. For user-defined currencies, all values are
-   * editable.
+   * are standard ISO 4217 international values. For user-defined currencies, all
+   * values are editable.
    */
   export interface Currency {
     /**

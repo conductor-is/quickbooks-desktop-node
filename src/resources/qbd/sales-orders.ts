@@ -160,8 +160,8 @@ export interface SalesOrder {
 
   /**
    * The sales order's currency. For built-in currencies, the name and code are
-   * standard international values. For user-defined currencies, all values are
-   * editable.
+   * standard ISO 4217 international values. For user-defined currencies, all values
+   * are editable.
    */
   currency: SalesOrder.Currency | null;
 
@@ -493,8 +493,8 @@ export namespace SalesOrder {
 
   /**
    * The sales order's currency. For built-in currencies, the name and code are
-   * standard international values. For user-defined currencies, all values are
-   * editable.
+   * standard ISO 4217 international values. For user-defined currencies, all values
+   * are editable.
    */
   export interface Currency {
     /**
