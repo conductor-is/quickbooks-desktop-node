@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { Metadata, asTextContentResult } from './types';
+import { readEnv } from './server';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 
@@ -45,7 +46,12 @@ const docsSearchURL =
 export const handler = async (_: unknown, args: Record<string, unknown> | undefined) => {
   const body = args as any;
   const query = new URLSearchParams(body).toString();
-  const result = await fetch(`${docsSearchURL}?${query}`);
+  const stainlessAPIKey = readEnv('STAINLESS_API_KEY');
+  const result = await fetch(`${docsSearchURL}?${query}`, {
+    headers: {
+      ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
+    },
+  });
 
   if (!result.ok) {
     throw new Error(
