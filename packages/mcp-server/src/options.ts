@@ -1,3 +1,5 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
 import qs from 'qs';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';

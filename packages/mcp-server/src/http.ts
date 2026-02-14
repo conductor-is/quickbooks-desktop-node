@@ -2,12 +2,13 @@
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import { ClientOptions } from 'conductor-node';
 import express from 'express';
 import morgan from 'morgan';
 import morganBody from 'morgan-body';
+import { parseAuthHeaders } from './auth';
 import { McpOptions } from './options';
-import { ClientOptions, initMcpServer, newMcpServer } from './server';
-import { parseAuthHeaders } from './headers';
+import { initMcpServer, newMcpServer } from './server';
 
 const newServer = async ({
   clientOptions,
