@@ -4,6 +4,7 @@ import qs from 'qs';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import z from 'zod';
+import { readEnv } from './util';
 
 export type CLIOptions = McpOptions & {
   debug: boolean;
@@ -14,6 +15,7 @@ export type CLIOptions = McpOptions & {
 
 export type McpOptions = {
   includeDocsTools?: boolean | undefined;
+  stainlessApiKey?: string | undefined;
   codeAllowHttpGets?: boolean | undefined;
   codeAllowedMethods?: string[] | undefined;
   codeBlockedMethods?: string[] | undefined;
@@ -51,6 +53,12 @@ export function parseCLIOptions(): CLIOptions {
       description: 'Port to serve on if using http transport',
     })
     .option('socket', { type: 'string', description: 'Unix socket to serve on if using http transport' })
+    .option('stainless-api-key', {
+      type: 'string',
+      default: readEnv('STAINLESS_API_KEY'),
+      description:
+        'API key for Stainless. Used to authenticate requests to Stainless-hosted tools endpoints.',
+    })
     .option('tools', {
       type: 'string',
       array: true,
@@ -81,6 +89,7 @@ export function parseCLIOptions(): CLIOptions {
   return {
     ...(includeDocsTools !== undefined && { includeDocsTools }),
     debug: !!argv.debug,
+    stainlessApiKey: argv.stainlessApiKey,
     codeAllowHttpGets: argv.codeAllowHttpGets,
     codeAllowedMethods: argv.codeAllowedMethods,
     codeBlockedMethods: argv.codeBlockedMethods,
