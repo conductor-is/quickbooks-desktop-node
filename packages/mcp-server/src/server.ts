@@ -11,46 +11,10 @@ import { ClientOptions } from 'conductor-node';
 import Conductor from 'conductor-node';
 import { codeTool } from './code-tool';
 import docsSearchTool from './docs-search-tool';
+import { getInstructions } from './instructions';
 import { McpOptions } from './options';
 import { blockedMethodsForCodeTool } from './methods';
 import { HandlerFunction, McpRequestContext, ToolCallResult, McpTool } from './types';
-import { readEnv } from './util';
-
-async function getInstructions(stainlessApiKey: string | undefined): Promise<string> {
-  // Setting the stainless API key is optional, but may be required
-  // to authenticate requests to the Stainless API.
-  const response = await fetch(
-    readEnv('CODE_MODE_INSTRUCTIONS_URL') ?? 'https://api.stainless.com/api/ai/instructions/conductor',
-    {
-      method: 'GET',
-      headers: { ...(stainlessApiKey && { Authorization: stainlessApiKey }) },
-    },
-  );
-
-  let instructions: string | undefined;
-  if (!response.ok) {
-    console.warn(
-      'Warning: failed to retrieve MCP server instructions. Proceeding with default instructions...',
-    );
-
-    instructions = `
-      This is the conductor MCP server. You will use Code Mode to help the user perform
-      actions. You can use search_docs tool to learn about how to take action with this server. Then,
-      you will write TypeScript code using the execute tool take action. It is CRITICAL that you be
-      thoughtful and deliberate when executing code. Always try to entirely solve the problem in code
-      block: it can be as long as you need to get the job done!
-    `;
-  }
-
-  instructions ??= ((await response.json()) as { instructions: string }).instructions;
-  instructions = `
-    The current time in Unix timestamps is ${Date.now()}.
-
-    ${instructions}
-  `;
-
-  return instructions;
-}
 
 export const newMcpServer = async (stainlessApiKey: string | undefined) =>
   new McpServer(
