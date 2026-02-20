@@ -68,6 +68,11 @@
       "type": "json",
       "path": "packages/mcp-server/package.json",
       "jsonpath": "$.version"
+    },
+    {
+      "type": "json",
+      "path": "packages/mcp-server/manifest.json",
+      "jsonpath": "$.version"
     }
   ]
 }
