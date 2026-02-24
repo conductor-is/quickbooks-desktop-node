@@ -60,7 +60,7 @@ $ yarn link conductor-node
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global conductor-node
+$ pnpm link --global conductor-node
 ```
 
 ## Running tests
