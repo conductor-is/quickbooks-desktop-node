@@ -19,7 +19,10 @@ export type McpOptions = {
   codeAllowHttpGets?: boolean | undefined;
   codeAllowedMethods?: string[] | undefined;
   codeBlockedMethods?: string[] | undefined;
+  codeExecutionMode: McpCodeExecutionMode;
 };
+
+export type McpCodeExecutionMode = 'stainless-sandbox' | 'local';
 
 export function parseCLIOptions(): CLIOptions {
   const opts = yargs(hideBin(process.argv))
@@ -39,6 +42,13 @@ export function parseCLIOptions(): CLIOptions {
       array: true,
       description:
         'Methods to explicitly block for code tool. Evaluated as regular expressions against method fully qualified names. If all code-allow-* flags are unset, then everything is allowed.',
+    })
+    .option('code-execution-mode', {
+      type: 'string',
+      choices: ['stainless-sandbox', 'local'],
+      default: 'stainless-sandbox',
+      description:
+        "Where to run code execution in code tool; 'stainless-sandbox' will execute code in Stainless-hosted sandboxes whereas 'local' will execute code locally on the MCP server machine.",
     })
     .option('debug', { type: 'boolean', description: 'Enable debug logging' })
     .option('no-tools', {
@@ -93,6 +103,7 @@ export function parseCLIOptions(): CLIOptions {
     codeAllowHttpGets: argv.codeAllowHttpGets,
     codeAllowedMethods: argv.codeAllowedMethods,
     codeBlockedMethods: argv.codeBlockedMethods,
+    codeExecutionMode: argv.codeExecutionMode as McpCodeExecutionMode,
     transport,
     port: argv.port,
     socket: argv.socket,
@@ -124,6 +135,7 @@ export function parseQueryOptions(defaultOptions: McpOptions, query: unknown): M
     : defaultOptions.includeDocsTools;
 
   return {
+    codeExecutionMode: defaultOptions.codeExecutionMode,
     ...(docsTools !== undefined && { includeDocsTools: docsTools }),
   };
 }
