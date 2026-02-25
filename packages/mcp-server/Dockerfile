@@ -37,8 +37,20 @@ COPY . .
 RUN yarn install --frozen-lockfile && \
     yarn build
 
-# Production stage
+FROM denoland/deno:bin-2.6.10 AS deno_installer
+FROM gcr.io/distroless/cc@sha256:66d87e170bc2c5e2b8cf853501141c3c55b4e502b8677595c57534df54a68cc5 AS cc
+
 FROM node:24-alpine
+
+# Install deno
+COPY --from=deno_installer /deno /usr/local/bin/deno
+
+# Add in shared libraries needed by Deno
+COPY --from=cc --chown=root:root --chmod=755 /lib/*-linux-gnu/* /usr/local/lib/
+COPY --from=cc --chown=root:root --chmod=755 /lib/ld-linux-* /lib/
+
+RUN mkdir /lib64 && ln -s /usr/local/lib/ld-linux-* /lib64/
+ENV LD_LIBRARY_PATH=/usr/lib:/usr/local/lib
 
 # Add non-root user
 RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
