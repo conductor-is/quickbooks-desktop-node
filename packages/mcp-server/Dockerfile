@@ -46,8 +46,8 @@ FROM node:24-alpine
 COPY --from=deno_installer /deno /usr/local/bin/deno
 
 # Add in shared libraries needed by Deno
-COPY --from=cc --chown=root:root --chmod=755 /lib/*-linux-gnu/* /usr/local/lib/
-COPY --from=cc --chown=root:root --chmod=755 /lib/ld-linux-* /lib/
+COPY --from=cc /lib/*-linux-gnu/* /usr/local/lib/
+COPY --from=cc /lib/ld-linux-* /lib/
 
 RUN mkdir /lib64 && ln -s /usr/local/lib/ld-linux-* /lib64/
 ENV LD_LIBRARY_PATH=/usr/lib:/usr/local/lib
