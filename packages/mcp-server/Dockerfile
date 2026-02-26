@@ -37,19 +37,11 @@ COPY . .
 RUN yarn install --frozen-lockfile && \
     yarn build
 
-FROM denoland/deno:bin-2.6.10 AS deno_installer
-FROM gcr.io/distroless/cc@sha256:66d87e170bc2c5e2b8cf853501141c3c55b4e502b8677595c57534df54a68cc5 AS cc
+FROM denoland/deno:alpine-2.7.1
 
-FROM node:24-alpine
+# Install node and npm
+RUN apk add --no-cache nodejs npm
 
-# Install deno
-COPY --from=deno_installer /deno /usr/local/bin/deno
-
-# Add in shared libraries needed by Deno
-COPY --from=cc /lib/*-linux-gnu/* /usr/local/lib/
-COPY --from=cc /lib/ld-linux-* /lib/
-
-RUN mkdir /lib64 && ln -s /usr/local/lib/ld-linux-* /lib64/
 ENV LD_LIBRARY_PATH=/usr/lib:/usr/local/lib
 
 # Add non-root user
@@ -69,6 +61,7 @@ COPY --from=builder /build/dist ./node_modules/conductor-node
 
 # Change ownership to nodejs user
 RUN chown -R nodejs:nodejs /app
+RUN chown -R nodejs:nodejs /deno-dir
 
 # Switch to non-root user
 USER nodejs
