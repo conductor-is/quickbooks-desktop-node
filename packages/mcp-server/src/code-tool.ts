@@ -23,7 +23,7 @@ import { ClientOptions } from 'conductor-node';
 
 const prompt = `Runs JavaScript code to interact with the Conductor API.
 
-You are a skilled programmer writing code to interface with the service.
+You are a skilled TypeScript programmer writing code to interface with the service.
 Define an async function named "run" that takes a single parameter of an initialized SDK client and it will be run.
 For example:
 
@@ -40,7 +40,9 @@ You will be returned anything that your function returns, plus the results of an
 Do not add try-catch blocks for single API calls. The tool will handle errors for you.
 Do not add comments unless necessary for generating better code.
 Code will run in a container, and cannot interact with the network outside of the given SDK client.
-Variables will not persist between calls, so make sure to return or log any data you might need later.`;
+Variables will not persist between calls, so make sure to return or log any data you might need later.
+Remember that you are writing TypeScript code, so you need to be careful with your types.
+Always type dynamic key-value stores explicitly as Record<string, YourValueType> instead of {}.`;
 
 /**
  * A tool that runs code against a copy of the SDK.
