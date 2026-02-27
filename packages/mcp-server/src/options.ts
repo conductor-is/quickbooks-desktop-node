@@ -14,6 +14,7 @@ export type CLIOptions = McpOptions & {
 };
 
 export type McpOptions = {
+  includeCodeTool?: boolean | undefined;
   includeDocsTools?: boolean | undefined;
   stainlessApiKey?: string | undefined;
   codeAllowHttpGets?: boolean | undefined;
@@ -92,11 +93,13 @@ export function parseCLIOptions(): CLIOptions {
     : argv.tools?.includes(toolType) ? true
     : undefined;
 
+  const includeCodeTool = shouldIncludeToolType('code');
   const includeDocsTools = shouldIncludeToolType('docs');
 
   const transport = argv.transport as 'stdio' | 'http';
 
   return {
+    ...(includeCodeTool !== undefined && { includeCodeTool }),
     ...(includeDocsTools !== undefined && { includeDocsTools }),
     debug: !!argv.debug,
     stainlessApiKey: argv.stainlessApiKey,
@@ -129,13 +132,19 @@ export function parseQueryOptions(defaultOptions: McpOptions, query: unknown): M
   const queryObject = typeof query === 'string' ? qs.parse(query) : query;
   const queryOptions = QueryOptions.parse(queryObject);
 
+  let codeTool: boolean | undefined =
+    queryOptions.no_tools && queryOptions.no_tools?.includes('code') ? false
+    : queryOptions.tools?.includes('code') ? true
+    : defaultOptions.includeCodeTool;
+
   let docsTools: boolean | undefined =
     queryOptions.no_tools && queryOptions.no_tools?.includes('docs') ? false
     : queryOptions.tools?.includes('docs') ? true
     : defaultOptions.includeDocsTools;
 
   return {
-    codeExecutionMode: defaultOptions.codeExecutionMode,
+    ...(codeTool !== undefined && { includeCodeTool: codeTool }),
     ...(docsTools !== undefined && { includeDocsTools: docsTools }),
+    codeExecutionMode: defaultOptions.codeExecutionMode,
   };
 }
