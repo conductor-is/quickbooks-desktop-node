@@ -180,7 +180,7 @@ export interface CreditMemo {
   /**
    * The customer or customer-job associated with this credit memo.
    */
-  customer: CreditMemo.Customer;
+  customer: CreditMemo.Customer | null;
 
   /**
    * The message to display to the customer on the credit memo.
