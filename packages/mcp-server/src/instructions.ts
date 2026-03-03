@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { readEnv } from './util';
+import { getLogger } from './logger';
 
 const INSTRUCTIONS_CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
@@ -50,7 +51,7 @@ async function fetchLatestInstructions(stainlessApiKey: string | undefined): Pro
 
   let instructions: string | undefined;
   if (!response.ok) {
-    console.warn(
+    getLogger().warn(
       'Warning: failed to retrieve MCP server instructions. Proceeding with default instructions...',
     );
 
