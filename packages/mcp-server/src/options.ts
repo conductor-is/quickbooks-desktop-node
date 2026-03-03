@@ -8,6 +8,7 @@ import { readEnv } from './util';
 
 export type CLIOptions = McpOptions & {
   debug: boolean;
+  logFormat: 'json' | 'pretty';
   transport: 'stdio' | 'http';
   port: number | undefined;
   socket: string | undefined;
@@ -52,6 +53,11 @@ export function parseCLIOptions(): CLIOptions {
         "Where to run code execution in code tool; 'stainless-sandbox' will execute code in Stainless-hosted sandboxes whereas 'local' will execute code locally on the MCP server machine.",
     })
     .option('debug', { type: 'boolean', description: 'Enable debug logging' })
+    .option('log-format', {
+      type: 'string',
+      choices: ['json', 'pretty'],
+      description: 'Format for log output; defaults to json unless tty is detected',
+    })
     .option('no-tools', {
       type: 'string',
       array: true,
@@ -97,6 +103,10 @@ export function parseCLIOptions(): CLIOptions {
   const includeDocsTools = shouldIncludeToolType('docs');
 
   const transport = argv.transport as 'stdio' | 'http';
+  const logFormat =
+    argv.logFormat ? (argv.logFormat as 'json' | 'pretty')
+    : process.stderr.isTTY ? 'pretty'
+    : 'json';
 
   return {
     ...(includeCodeTool !== undefined && { includeCodeTool }),
@@ -108,6 +118,7 @@ export function parseCLIOptions(): CLIOptions {
     codeBlockedMethods: argv.codeBlockedMethods,
     codeExecutionMode: argv.codeExecutionMode as McpCodeExecutionMode,
     transport,
+    logFormat,
     port: argv.port,
     socket: argv.socket,
   };
