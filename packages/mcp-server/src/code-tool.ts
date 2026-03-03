@@ -17,6 +17,7 @@ import {
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { readEnv, requireValue } from './util';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
+import { getLogger } from './logger';
 import { SdkMethod } from './methods';
 import { McpCodeExecutionMode } from './options';
 import { ClientOptions } from 'conductor-node';
@@ -84,6 +85,8 @@ export function codeTool({
     },
   };
 
+  const logger = getLogger();
+
   const handler = async ({
     reqContext,
     args,
@@ -108,11 +111,27 @@ export function codeTool({
       }
     }
 
+    let result: ToolCallResult;
+    const startTime = Date.now();
+
     if (codeExecutionMode === 'local') {
-      return await localDenoHandler({ reqContext, args });
+      logger.debug('Executing code in local Deno environment');
+      result = await localDenoHandler({ reqContext, args });
     } else {
-      return await remoteStainlessHandler({ reqContext, args });
+      logger.debug('Executing code in remote Stainless environment');
+      result = await remoteStainlessHandler({ reqContext, args });
     }
+
+    logger.info(
+      {
+        codeExecutionMode,
+        durationMs: Date.now() - startTime,
+        isError: result.isError,
+        contentRows: result.content?.length ?? 0,
+      },
+      'Got code tool execution result',
+    );
+    return result;
   };
 
   return { metadata, tool, handler };
