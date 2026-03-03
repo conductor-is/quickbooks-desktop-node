@@ -173,6 +173,11 @@ const remoteStainlessHandler = async ({
   });
 
   if (!res.ok) {
+    if (res.status === 404 && !reqContext.stainlessApiKey) {
+      throw new Error(
+        'Could not access code tool for this project. You may need to provide a Stainless API key via the STAINLESS_API_KEY environment variable, the --stainless-api-key flag, or the x-stainless-api-key HTTP header.',
+      );
+    }
     throw new Error(
       `${res.status}: ${
         res.statusText
