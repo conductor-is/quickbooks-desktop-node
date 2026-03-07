@@ -13,7 +13,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'search_docs',
-  description: 'Search for documentation for how to use the client to interact with the API.',
+  description:
+    'Search SDK documentation to find methods, parameters, and usage examples for interacting with the API. Use this before writing code when you need to discover the right approach.',
   inputSchema: {
     type: 'object',
     properties: {
