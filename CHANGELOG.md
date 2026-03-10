@@ -1,5 +1,67 @@
 # Changelog
 
+## 14.6.0 (2026-03-10)
+
+Full Changelog: [v14.5.0...v14.6.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.5.0...v14.6.0)
+
+### Features
+
+* **api:** api update ([37c67c2](https://github.com/conductor-is/quickbooks-desktop-node/commit/37c67c22551b0860721fc420298b6a6acf177864))
+* **api:** api update ([88bb3e3](https://github.com/conductor-is/quickbooks-desktop-node/commit/88bb3e35a92bbe08ef4ea3a85b8389087c47358b))
+* **api:** api update ([41501e5](https://github.com/conductor-is/quickbooks-desktop-node/commit/41501e5022e1793cb7d36515bc268618130410d6))
+* **mcp:** add an option to disable code tool ([bb05cd4](https://github.com/conductor-is/quickbooks-desktop-node/commit/bb05cd435b45dfff915f67bdff1ca1176ac1f8e0))
+* **mcp:** add initial server instructions ([5f74578](https://github.com/conductor-is/quickbooks-desktop-node/commit/5f74578d5dbe787f25d2011e209b9d87f132937a))
+
+
+### Bug Fixes
+
+* **client:** avoid memory leak with abort signals ([9a0ae30](https://github.com/conductor-is/quickbooks-desktop-node/commit/9a0ae30854381b1c3b07652bfb67ef029faa352c))
+* **client:** avoid removing abort listener too early ([2e1b9c5](https://github.com/conductor-is/quickbooks-desktop-node/commit/2e1b9c5e93654917092150027d10a07b0e1603a6))
+* **client:** preserve URL params already embedded in path ([fc998e0](https://github.com/conductor-is/quickbooks-desktop-node/commit/fc998e0d9b9a87116a7993da860f418e9f2d97b5))
+* **docs/contributing:** correct pnpm link command ([6cc0ef4](https://github.com/conductor-is/quickbooks-desktop-node/commit/6cc0ef423bbf22ecc2e3464b7a78a7a7c0b79dab))
+* **docs:** fix mcp installation instructions for remote servers ([2516f9e](https://github.com/conductor-is/quickbooks-desktop-node/commit/2516f9e33a560d6c924e6d774a4523e0f260c9c3))
+* **mcp:** allow falling back for required env variables ([18bf436](https://github.com/conductor-is/quickbooks-desktop-node/commit/18bf436df5d8b92e6260aa9e6aef39aa1dd174b7))
+* **mcp:** client reference in code tool ([dec4471](https://github.com/conductor-is/quickbooks-desktop-node/commit/dec4471f1c8f3766929b60fdda21bcca1e3310a3))
+* **mcp:** initialize SDK lazily to avoid failing the connection on init errors ([ec71118](https://github.com/conductor-is/quickbooks-desktop-node/commit/ec71118bf28e76e50df980e38c6a02c52ca0845b))
+* **mcp:** update prompt ([5e27ab5](https://github.com/conductor-is/quickbooks-desktop-node/commit/5e27ab57b831603fac3583139c2457086713d655))
+* **publish:** use npm registry directly for trusted publishing support ([cc00939](https://github.com/conductor-is/quickbooks-desktop-node/commit/cc009396fa45f6e1d4928a8b5dffa16812879b34))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([7f9af1d](https://github.com/conductor-is/quickbooks-desktop-node/commit/7f9af1d4945071fee8e5deeec4335cdf9314d9bc))
+* **client:** do not parse responses with empty content-length ([72b0e71](https://github.com/conductor-is/quickbooks-desktop-node/commit/72b0e710e3397f9905f6fc1c2aaf6eafdab11e6e))
+* **client:** restructure abort controller binding ([5c034e0](https://github.com/conductor-is/quickbooks-desktop-node/commit/5c034e00d9864143df9bc2d75be9f6d2cb6d4909))
+* **internal/client:** fix form-urlencoded requests ([e7dd36c](https://github.com/conductor-is/quickbooks-desktop-node/commit/e7dd36c5eca8347fc4b2e0c1c0e3c43dcaa41937))
+* **internal:** add health check to MCP server when running in HTTP mode ([7eab85a](https://github.com/conductor-is/quickbooks-desktop-node/commit/7eab85a38a977eb1e4c951bd211d46fe7ebbc91f))
+* **internal:** allow basic filtering of methods allowed for MCP code mode ([cf1f560](https://github.com/conductor-is/quickbooks-desktop-node/commit/cf1f560d72433ecac3f2b82e834e1e60e0b3c206))
+* **internal:** allow setting x-stainless-api-key header on mcp server requests ([38a5872](https://github.com/conductor-is/quickbooks-desktop-node/commit/38a5872c71c622047249d87a6cfd390478d33714))
+* **internal:** always generate MCP server dockerfiles and upgrade associated dependencies ([a8fe26a](https://github.com/conductor-is/quickbooks-desktop-node/commit/a8fe26aa9f863201cefb6215b20e70d98c044f0c))
+* **internal:** avoid type checking errors with ts-reset ([4dc4e22](https://github.com/conductor-is/quickbooks-desktop-node/commit/4dc4e2262594f9dbcc5152a4b28284c9d2fd2392))
+* **internal:** cache fetch instruction calls in MCP server ([0ef74ec](https://github.com/conductor-is/quickbooks-desktop-node/commit/0ef74ece179ec2d995707547ebdd5f7fb7747a9a))
+* **internal:** codegen related update ([dae7eed](https://github.com/conductor-is/quickbooks-desktop-node/commit/dae7eed6b7cdcf1dae7a052f9c1feb750505ec58))
+* **internal:** codegen related update ([89cb550](https://github.com/conductor-is/quickbooks-desktop-node/commit/89cb550127eba235f972011874340a9cef5530b9))
+* **internal:** codegen related update ([eab895b](https://github.com/conductor-is/quickbooks-desktop-node/commit/eab895b51ed13a73b634fa6e09c3d14b2248a225))
+* **internal:** codegen related update ([580f119](https://github.com/conductor-is/quickbooks-desktop-node/commit/580f11903dcdaf98c586992fea5f2299b0eb1093))
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([a364483](https://github.com/conductor-is/quickbooks-desktop-node/commit/a36448357ba070f2f10581ef78ed2c90816c5067))
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([4a035f2](https://github.com/conductor-is/quickbooks-desktop-node/commit/4a035f25d449844dd563301978a3e50cb5204805))
+* **internal:** fix pagination internals not accepting option promises ([eecad0a](https://github.com/conductor-is/quickbooks-desktop-node/commit/eecad0af408fc55c6d9192bd84c8be85fa23739c))
+* **internal:** improve layout of generated MCP server files ([9a6b8b6](https://github.com/conductor-is/quickbooks-desktop-node/commit/9a6b8b6e6b300903b2507e2a677b824b8ccd08c5))
+* **internal:** make MCP code execution location configurable via a flag ([b162a64](https://github.com/conductor-is/quickbooks-desktop-node/commit/b162a640d84cf523e9e5ad3f9efb563a61e53fff))
+* **internal:** move stringifyQuery implementation to internal function ([dda853c](https://github.com/conductor-is/quickbooks-desktop-node/commit/dda853ce5dbaa2ca677007cab4be11eae3aa45c8))
+* **internal:** refactor flag parsing for MCP servers and add debug flag ([c5a7d72](https://github.com/conductor-is/quickbooks-desktop-node/commit/c5a7d722f04e6ac3646e17d1587ff481729b6964))
+* **internal:** support oauth authorization code flow for MCP servers ([2a7bba1](https://github.com/conductor-is/quickbooks-desktop-node/commit/2a7bba1e7391fb78af3b9e5859e22a5e79100ef6))
+* **internal:** update dependencies to address dependabot vulnerabilities ([f111f53](https://github.com/conductor-is/quickbooks-desktop-node/commit/f111f53aed77527a94575aa7bed51aeb4f604113))
+* **internal:** upgrade @modelcontextprotocol/sdk and hono ([e71ee97](https://github.com/conductor-is/quickbooks-desktop-node/commit/e71ee974bec08c5e2d66ccd72d45868413a60615))
+* **internal:** use x-stainless-mcp-client-envs header for MCP remote code tool calls ([e177d74](https://github.com/conductor-is/quickbooks-desktop-node/commit/e177d7475508f0c39405a02972fbf184821c6b09))
+* **mcp-server:** improve instructions ([ee1a22c](https://github.com/conductor-is/quickbooks-desktop-node/commit/ee1a22cf6a368a9ed7460ae4b50390b6eb579db0))
+* **mcp-server:** return access instructions for 404 without API key ([8bef7fd](https://github.com/conductor-is/quickbooks-desktop-node/commit/8bef7fd15e5febfcec14881adde61e12b77b0289))
+* **mcp:** correctly update version in sync with sdk ([8315522](https://github.com/conductor-is/quickbooks-desktop-node/commit/8315522e05b22a897e85a30aaa8316806f8a9bcc))
+* **mcp:** forward STAINLESS_API_KEY to docs search endpoint ([e4a0cf9](https://github.com/conductor-is/quickbooks-desktop-node/commit/e4a0cf94a7d3bfe9318585db54235c80722001fc))
+* **mcp:** up tsconfig lib version to es2022 ([d6df377](https://github.com/conductor-is/quickbooks-desktop-node/commit/d6df37726aa33b46988d69c51d9da34a935af96e))
+* **test:** do not count install time for mock server timeout ([0d7c313](https://github.com/conductor-is/quickbooks-desktop-node/commit/0d7c313ab62763af4365340c1ffafc6c8b80d8ff))
+* update mock server docs ([0540ba0](https://github.com/conductor-is/quickbooks-desktop-node/commit/0540ba03f97a47bf731179d8758552034571fa30))
+
 ## 14.5.0 (2026-01-27)
 
 Full Changelog: [v14.4.0...v14.5.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.4.0...v14.5.0)
