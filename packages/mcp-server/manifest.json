@@ -1,7 +1,7 @@
 {
   "dxt_version": "0.2",
   "name": "conductor-node-mcp",
-  "version": "0.0.1",
+  "version": "14.6.0",
   "description": "The official MCP Server for the Conductor API",
   "author": {
     "name": "Conductor",
@@ -18,7 +18,9 @@
     "entry_point": "index.js",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/index.js"],
+      "args": [
+        "${__dirname}/index.js"
+      ],
       "env": {
         "CONDUCTOR_SECRET_KEY": "${user_config.CONDUCTOR_SECRET_KEY}"
       }
@@ -39,5 +41,7 @@
       "node": ">=18.0.0"
     }
   },
-  "keywords": ["api"]
+  "keywords": [
+    "api"
+  ]
 }
