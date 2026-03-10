@@ -158,10 +158,10 @@ const remoteStainlessHandler = async ({
       'Content-Type': 'application/json',
       'x-stainless-mcp-client-envs': JSON.stringify({
         CONDUCTOR_SECRET_KEY: requireValue(
-          readEnv('CONDUCTOR_SECRET_KEY') ?? conductor.apiKey,
+          readEnv('CONDUCTOR_SECRET_KEY') ?? client.apiKey,
           'set CONDUCTOR_SECRET_KEY environment variable or provide apiKey client option',
         ),
-        CONDUCTOR_BASE_URL: readEnv('CONDUCTOR_BASE_URL') ?? conductor.baseURL ?? undefined,
+        CONDUCTOR_BASE_URL: readEnv('CONDUCTOR_BASE_URL') ?? client.baseURL ?? undefined,
       }),
     },
     body: JSON.stringify({
