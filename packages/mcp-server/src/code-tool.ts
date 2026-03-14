@@ -1,10 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import fs from 'node:fs';
-import path from 'node:path';
-import url from 'node:url';
-import { newDenoHTTPWorker } from '@valtown/deno-http-worker';
-import { workerPath } from './code-tool-paths.cjs';
 import {
   ContentBlock,
   McpRequestContext,
@@ -205,6 +200,13 @@ const localDenoHandler = async ({
   reqContext: McpRequestContext;
   args: unknown;
 }): Promise<ToolCallResult> => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const url = await import('node:url');
+  const { newDenoHTTPWorker } = await import('@valtown/deno-http-worker');
+  const { getWorkerPath } = await import('./code-tool-paths.cjs');
+  const workerPath = getWorkerPath();
+
   const client = reqContext.client;
   const baseURLHostname = new URL(client.baseURL).hostname;
   const { code } = args as { code: string };
