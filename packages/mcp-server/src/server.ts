@@ -20,7 +20,7 @@ export const newMcpServer = async (stainlessApiKey: string | undefined) =>
   new McpServer(
     {
       name: 'conductor_node_api',
-      version: '14.6.0',
+      version: '14.7.0',
     },
     {
       instructions: await getInstructions(stainlessApiKey),
@@ -37,6 +37,7 @@ export async function initMcpServer(params: {
   clientOptions?: ClientOptions;
   mcpOptions?: McpOptions;
   stainlessApiKey?: string | undefined;
+  upstreamClientEnvs?: Record<string, string> | undefined;
 }) {
   const server = params.server instanceof McpServer ? params.server.server : params.server;
 
@@ -118,6 +119,7 @@ export async function initMcpServer(params: {
       reqContext: {
         client,
         stainlessApiKey: params.stainlessApiKey ?? params.mcpOptions?.stainlessApiKey,
+        upstreamClientEnvs: params.upstreamClientEnvs,
       },
       args,
     });
