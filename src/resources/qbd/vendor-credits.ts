@@ -298,7 +298,7 @@ export interface VendorCredit {
   /**
    * The vendor who sent this vendor credit for goods or services purchased.
    */
-  vendor: VendorCredit.Vendor;
+  vendor: VendorCredit.Vendor | null;
 }
 
 export namespace VendorCredit {

@@ -184,7 +184,7 @@ export interface Invoice {
   /**
    * The customer or customer-job associated with this invoice.
    */
-  customer: Invoice.Customer;
+  customer: Invoice.Customer | null;
 
   /**
    * The message to display to the customer on the invoice.
