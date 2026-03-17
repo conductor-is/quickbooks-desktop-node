@@ -40,9 +40,37 @@ const newServer = async ({
     }
   }
 
+  // Parse x-stainless-mcp-client-permissions header to override permission options
+  //
+  // Note: Permissions are best-effort and intended to prevent clients from doing unexpected things;
+  // they're not a hard security boundary, so we allow arbitrary, client-driven overrides.
+  //
+  // See the Stainless MCP documentation for more details.
+  let effectiveMcpOptions = mcpOptions;
+  const clientPermissionsHeader = req.headers['x-stainless-mcp-client-permissions'];
+  if (typeof clientPermissionsHeader === 'string') {
+    try {
+      const parsed = JSON.parse(clientPermissionsHeader);
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+        effectiveMcpOptions = {
+          ...mcpOptions,
+          ...(typeof parsed.allow_http_gets === 'boolean' && { codeAllowHttpGets: parsed.allow_http_gets }),
+          ...(Array.isArray(parsed.allowed_methods) && { codeAllowedMethods: parsed.allowed_methods }),
+          ...(Array.isArray(parsed.blocked_methods) && { codeBlockedMethods: parsed.blocked_methods }),
+        };
+        getLogger().info(
+          { clientPermissions: parsed },
+          'Overriding code execution permissions from x-stainless-mcp-client-permissions header',
+        );
+      }
+    } catch (error) {
+      getLogger().warn({ error }, 'Failed to parse x-stainless-mcp-client-permissions header');
+    }
+  }
+
   await initMcpServer({
     server: server,
-    mcpOptions: mcpOptions,
+    mcpOptions: effectiveMcpOptions,
     clientOptions: {
       ...clientOptions,
       ...authOptions,
