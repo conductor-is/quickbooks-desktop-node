@@ -1,5 +1,28 @@
 # Changelog
 
+## 14.7.0 (2026-03-20)
+
+Full Changelog: [v14.6.0...v14.7.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.6.0...v14.7.0)
+
+### Features
+
+* **api:** api update ([ce7367e](https://github.com/conductor-is/quickbooks-desktop-node/commit/ce7367e1581b9fed6c2747cb1ece1eee333e6f89))
+* **api:** api update ([9499f9b](https://github.com/conductor-is/quickbooks-desktop-node/commit/9499f9bb5ff06610284c20250a7f5b231b1b4670))
+
+
+### Chores
+
+* **internal:** bump @modelcontextprotocol/sdk, @hono/node-server, and minimatch ([72e8e9f](https://github.com/conductor-is/quickbooks-desktop-node/commit/72e8e9faa489b2af6954802073a8d9040158baca))
+* **internal:** make generated MCP servers compatible with Cloudflare worker environments ([7520482](https://github.com/conductor-is/quickbooks-desktop-node/commit/752048247be1a6f8f0d5b15f231f032bb15ba1ec))
+* **internal:** support x-stainless-mcp-client-envs header in MCP servers ([3c74fb1](https://github.com/conductor-is/quickbooks-desktop-node/commit/3c74fb1ed0fe85857c7ca7e16d63f4e28c7d084b))
+* **internal:** support x-stainless-mcp-client-permissions headers in MCP servers ([c7f49a3](https://github.com/conductor-is/quickbooks-desktop-node/commit/c7f49a34ebb443e22317b2894e40bb8aa1594dfd))
+* **internal:** tweak CI branches ([530f891](https://github.com/conductor-is/quickbooks-desktop-node/commit/530f891be26be8cd7d969afdc01507d91992f2a7))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([f8924d8](https://github.com/conductor-is/quickbooks-desktop-node/commit/f8924d879f6cb98848b659ed787a43116436abdb))
+
 ## 14.6.0 (2026-03-10)
 
 Full Changelog: [v14.5.0...v14.6.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.5.0...v14.6.0)
