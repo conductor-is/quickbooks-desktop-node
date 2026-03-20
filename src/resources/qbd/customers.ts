@@ -618,7 +618,7 @@ export namespace Customer {
      * hierarchical objects, which is why `name` is unique for them but not for objects
      * that have parents.
      */
-    name: string;
+    name: string | null;
 
     /**
      * A note written at the bottom of the shipping address in the form in which it
