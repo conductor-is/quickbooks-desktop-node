@@ -22,6 +22,7 @@ export type McpOptions = {
   codeAllowedMethods?: string[] | undefined;
   codeBlockedMethods?: string[] | undefined;
   codeExecutionMode: McpCodeExecutionMode;
+  customInstructionsPath?: string | undefined;
 };
 
 export type McpCodeExecutionMode = 'stainless-sandbox' | 'local';
@@ -51,6 +52,10 @@ export function parseCLIOptions(): CLIOptions {
       default: 'stainless-sandbox',
       description:
         "Where to run code execution in code tool; 'stainless-sandbox' will execute code in Stainless-hosted sandboxes whereas 'local' will execute code locally on the MCP server machine.",
+    })
+    .option('custom-instructions-path', {
+      type: 'string',
+      description: 'Path to custom instructions for the MCP server',
     })
     .option('debug', { type: 'boolean', description: 'Enable debug logging' })
     .option('log-format', {
@@ -117,6 +122,7 @@ export function parseCLIOptions(): CLIOptions {
     codeAllowedMethods: argv.codeAllowedMethods,
     codeBlockedMethods: argv.codeBlockedMethods,
     codeExecutionMode: argv.codeExecutionMode as McpCodeExecutionMode,
+    customInstructionsPath: argv.customInstructionsPath,
     transport,
     logFormat,
     port: argv.port,

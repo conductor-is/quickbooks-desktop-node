@@ -23,7 +23,8 @@ const newServer = async ({
   res: express.Response;
 }): Promise<McpServer | null> => {
   const stainlessApiKey = getStainlessApiKey(req, mcpOptions);
-  const server = await newMcpServer(stainlessApiKey);
+  const customInstructionsPath = mcpOptions.customInstructionsPath;
+  const server = await newMcpServer({ stainlessApiKey, customInstructionsPath });
 
   const authOptions = parseClientAuthHeaders(req, false);
 
