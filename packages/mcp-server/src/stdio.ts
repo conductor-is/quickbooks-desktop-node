@@ -4,7 +4,10 @@ import { initMcpServer, newMcpServer } from './server';
 import { getLogger } from './logger';
 
 export const launchStdioServer = async (mcpOptions: McpOptions) => {
-  const server = await newMcpServer(mcpOptions.stainlessApiKey);
+  const server = await newMcpServer({
+    stainlessApiKey: mcpOptions.stainlessApiKey,
+    customInstructionsPath: mcpOptions.customInstructionsPath,
+  });
 
   await initMcpServer({ server, mcpOptions, stainlessApiKey: mcpOptions.stainlessApiKey });
 

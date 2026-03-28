@@ -34,12 +34,14 @@ jobs:
 
       - name: Publish to NPM
         run: |
-          if [ -n "${{ github.event.inputs.path }}" ]; then
-            PATHS_RELEASED='[\"${{ github.event.inputs.path }}\"]'
+          if [ -n "$INPUT_PATH" ]; then
+            PATHS_RELEASED="[\"$INPUT_PATH\"]"
           else
             PATHS_RELEASED='[\".\", \"packages/mcp-server\"]'
           fi
           yarn tsn scripts/publish-packages.ts "{ \"paths_released\": \"$PATHS_RELEASED\" }"
+        env:
+          INPUT_PATH: ${{ github.event.inputs.path }}
 
       - name: Upload MCP Server DXT GitHub release asset
         run: |

@@ -11,19 +11,27 @@ import { ClientOptions } from 'conductor-node';
 import Conductor from 'conductor-node';
 import { codeTool } from './code-tool';
 import docsSearchTool from './docs-search-tool';
+import { setLocalSearch } from './docs-search-tool';
+import { LocalDocsSearch } from './local-docs-search';
 import { getInstructions } from './instructions';
 import { McpOptions } from './options';
 import { blockedMethodsForCodeTool } from './methods';
 import { HandlerFunction, McpRequestContext, ToolCallResult, McpTool } from './types';
 
-export const newMcpServer = async (stainlessApiKey: string | undefined) =>
+export const newMcpServer = async ({
+  stainlessApiKey,
+  customInstructionsPath,
+}: {
+  stainlessApiKey?: string | undefined;
+  customInstructionsPath?: string | undefined;
+}) =>
   new McpServer(
     {
       name: 'conductor_node_api',
-      version: '14.7.0',
+      version: '14.7.1',
     },
     {
-      instructions: await getInstructions(stainlessApiKey),
+      instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),
       capabilities: { tools: {}, logging: {} },
     },
   );
@@ -55,6 +63,12 @@ export async function initMcpServer(params: {
     warn: logAtLevel('warning'),
     error: logAtLevel('error'),
   };
+
+  if (params.mcpOptions?.docsSearchMode === 'local') {
+    const docsDir = params.mcpOptions?.docsDir;
+    const localSearch = await LocalDocsSearch.create(docsDir ? { docsDir } : undefined);
+    setLocalSearch(localSearch);
+  }
 
   let _client: Conductor | undefined;
   let _clientError: Error | undefined;

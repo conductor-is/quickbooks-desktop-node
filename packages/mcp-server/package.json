@@ -1,6 +1,6 @@
 {
   "name": "conductor-node-mcp",
-  "version": "14.7.0",
+  "version": "14.7.1",
   "description": "The official MCP Server for the Conductor API",
   "author": "Conductor <support@conductor.is>",
   "types": "dist/index.d.ts",
@@ -41,6 +41,7 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "fuse.js": "^7.1.0",
+    "minisearch": "^7.2.0",
     "jq-web": "https://github.com/stainless-api/jq-web/releases/download/v0.8.8/jq-web.tar.gz",
     "pino": "^10.3.1",
     "pino-http": "^11.0.0",
