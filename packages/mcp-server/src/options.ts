@@ -18,6 +18,8 @@ export type McpOptions = {
   includeCodeTool?: boolean | undefined;
   includeDocsTools?: boolean | undefined;
   stainlessApiKey?: string | undefined;
+  docsSearchMode?: 'stainless-api' | 'local' | undefined;
+  docsDir?: string | undefined;
   codeAllowHttpGets?: boolean | undefined;
   codeAllowedMethods?: string[] | undefined;
   codeBlockedMethods?: string[] | undefined;
@@ -58,6 +60,18 @@ export function parseCLIOptions(): CLIOptions {
       description: 'Path to custom instructions for the MCP server',
     })
     .option('debug', { type: 'boolean', description: 'Enable debug logging' })
+    .option('docs-dir', {
+      type: 'string',
+      description:
+        'Path to a directory of local documentation files (markdown/JSON) to include in local docs search.',
+    })
+    .option('docs-search-mode', {
+      type: 'string',
+      choices: ['stainless-api', 'local'],
+      default: 'stainless-api',
+      description:
+        "Where to search documentation; 'stainless-api' uses the Stainless-hosted search API whereas 'local' uses an in-memory search index built from embedded SDK method data and optional local docs files.",
+    })
     .option('log-format', {
       type: 'string',
       choices: ['json', 'pretty'],
@@ -118,6 +132,8 @@ export function parseCLIOptions(): CLIOptions {
     ...(includeDocsTools !== undefined && { includeDocsTools }),
     debug: !!argv.debug,
     stainlessApiKey: argv.stainlessApiKey,
+    docsSearchMode: argv.docsSearchMode as 'stainless-api' | 'local' | undefined,
+    docsDir: argv.docsDir,
     codeAllowHttpGets: argv.codeAllowHttpGets,
     codeAllowedMethods: argv.codeAllowedMethods,
     codeBlockedMethods: argv.codeBlockedMethods,
@@ -163,5 +179,7 @@ export function parseQueryOptions(defaultOptions: McpOptions, query: unknown): M
     ...(codeTool !== undefined && { includeCodeTool: codeTool }),
     ...(docsTools !== undefined && { includeDocsTools: docsTools }),
     codeExecutionMode: defaultOptions.codeExecutionMode,
+    docsSearchMode: defaultOptions.docsSearchMode,
+    docsDir: defaultOptions.docsDir,
   };
 }
