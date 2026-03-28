@@ -1,5 +1,24 @@
 # Changelog
 
+## 14.7.1 (2026-03-28)
+
+Full Changelog: [v14.7.0...v14.7.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.7.0...v14.7.1)
+
+### Chores
+
+* **ci:** escape input path in publish-npm workflow ([f030968](https://github.com/conductor-is/quickbooks-desktop-node/commit/f0309683c4ec6319301ebd34f69ddd04c54a1841))
+* **ci:** skip lint on metadata-only changes ([ec291e5](https://github.com/conductor-is/quickbooks-desktop-node/commit/ec291e5cc4d5b08c06bb4c29bd4cdfb9967c9b7b))
+* **internal:** codegen related update ([c90b50d](https://github.com/conductor-is/quickbooks-desktop-node/commit/c90b50d63a7bc2b6c66db7ea7d5c98576eac076d))
+* **internal:** fix MCP server TS errors that occur with required client options ([70e7446](https://github.com/conductor-is/quickbooks-desktop-node/commit/70e7446afb5605a1efc80e5d6cb22bd0a7600c76))
+* **internal:** support custom-instructions-path flag in MCP servers ([4336070](https://github.com/conductor-is/quickbooks-desktop-node/commit/433607026e44191beabf657191a76955f452fc37))
+* **internal:** support local docs search in MCP servers ([8701acf](https://github.com/conductor-is/quickbooks-desktop-node/commit/8701acf01773ac842ad82529a6898d0c2e6e45e5))
+* **internal:** update gitignore ([4fb72d4](https://github.com/conductor-is/quickbooks-desktop-node/commit/4fb72d406561523c9ac1bb1a34f05eb8b38bf606))
+* **internal:** update multipart form array serialization ([c717678](https://github.com/conductor-is/quickbooks-desktop-node/commit/c7176781ce92eb1badc16a4768b3690b613f3559))
+* **tests:** bump steady to v0.19.4 ([a62f8c9](https://github.com/conductor-is/quickbooks-desktop-node/commit/a62f8c93e1a3b07c7c7948171b37e411f3f3a50a))
+* **tests:** bump steady to v0.19.5 ([ffeea33](https://github.com/conductor-is/quickbooks-desktop-node/commit/ffeea33589f0cf2c5991b3760949865059d42d13))
+* **tests:** bump steady to v0.19.6 ([d742ff5](https://github.com/conductor-is/quickbooks-desktop-node/commit/d742ff582f8a497ef411159e030f2a0fedcda94f))
+* **tests:** bump steady to v0.19.7 ([5ea6c55](https://github.com/conductor-is/quickbooks-desktop-node/commit/5ea6c55e950032132e88fae3f7a096aa28bb33ea))
+
 ## 14.7.0 (2026-03-20)
 
 Full Changelog: [v14.6.0...v14.7.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.6.0...v14.7.0)
