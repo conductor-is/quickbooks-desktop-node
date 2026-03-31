@@ -5,6 +5,11 @@ import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { getLogger } from './logger';
 
+type PerLanguageData = {
+  method?: string;
+  example?: string;
+};
+
 type MethodEntry = {
   name: string;
   endpoint: string;
@@ -16,6 +21,7 @@ type MethodEntry = {
   params?: string[];
   response?: string;
   markdown?: string;
+  perLanguage?: Record<string, PerLanguageData>;
 };
 
 type ProseChunk = {
@@ -5564,6 +5570,8 @@ const EMBEDDED_METHODS: MethodEntry[] = [
   },
 ];
 
+const EMBEDDED_READMES: { language: string; content: string }[] = [];
+
 const INDEX_OPTIONS = {
   fields: [
     'name',
@@ -5578,13 +5586,15 @@ const INDEX_OPTIONS = {
   storeFields: ['kind', '_original'],
   searchOptions: {
     prefix: true,
-    fuzzy: 0.2,
+    fuzzy: 0.1,
     boost: {
-      name: 3,
-      endpoint: 2,
+      name: 5,
+      stainlessPath: 3,
+      endpoint: 3,
+      qualified: 3,
       summary: 2,
-      qualified: 2,
       content: 1,
+      description: 1,
     } as Record<string, number>,
   },
 };
@@ -5606,14 +5616,15 @@ export class LocalDocsSearch {
   static async create(opts?: { docsDir?: string }): Promise<LocalDocsSearch> {
     const instance = new LocalDocsSearch();
     instance.indexMethods(EMBEDDED_METHODS);
+    for (const readme of EMBEDDED_READMES) {
+      instance.indexProse(readme.content, `readme:${readme.language}`);
+    }
     if (opts?.docsDir) {
       await instance.loadDocsDirectory(opts.docsDir);
     }
     return instance;
   }
 
-  // Note: Language is accepted for interface consistency with remote search, but currently has no
-  // effect since this local search only supports TypeScript docs.
   search(props: {
     query: string;
     language?: string;
@@ -5621,15 +5632,29 @@ export class LocalDocsSearch {
     maxResults?: number;
     maxLength?: number;
   }): SearchResult {
-    const { query, detail = 'default', maxResults = 5, maxLength = 100_000 } = props;
+    const { query, language = 'typescript', detail = 'default', maxResults = 5, maxLength = 100_000 } = props;
 
     const useMarkdown = detail === 'verbose' || detail === 'high';
 
-    // Search both indices and merge results by score
+    // Search both indices and merge results by score.
+    // Filter prose hits so language-tagged content (READMEs and docs with
+    // frontmatter) only matches the requested language.
     const methodHits = this.methodIndex
       .search(query)
       .map((hit) => ({ ...hit, _kind: 'http_method' as const }));
-    const proseHits = this.proseIndex.search(query).map((hit) => ({ ...hit, _kind: 'prose' as const }));
+    const proseHits = this.proseIndex
+      .search(query)
+      .filter((hit) => {
+        const source = ((hit as Record<string, unknown>)['_original'] as ProseChunk | undefined)?.source;
+        if (!source) return true;
+        // Check for language-tagged sources: "readme:<lang>" or "lang:<lang>:<filename>"
+        let taggedLang: string | undefined;
+        if (source.startsWith('readme:')) taggedLang = source.slice('readme:'.length);
+        else if (source.startsWith('lang:')) taggedLang = source.split(':')[1];
+        if (!taggedLang) return true;
+        return taggedLang === language || (language === 'javascript' && taggedLang === 'typescript');
+      })
+      .map((hit) => ({ ...hit, _kind: 'prose' as const }));
     const merged = [...methodHits, ...proseHits].sort((a, b) => b.score - a.score);
     const top = merged.slice(0, maxResults);
 
@@ -5642,11 +5667,16 @@ export class LocalDocsSearch {
         if (useMarkdown && m.markdown) {
           fullResults.push(m.markdown);
         } else {
+          // Use per-language data when available, falling back to the
+          // top-level fields (which are TypeScript-specific in the
+          // legacy codepath).
+          const langData = m.perLanguage?.[language];
           fullResults.push({
-            method: m.qualified,
+            method: langData?.method ?? m.qualified,
             summary: m.summary,
             description: m.description,
             endpoint: `${m.httpMethod.toUpperCase()} ${m.endpoint}`,
+            ...(langData?.example ? { example: langData.example } : {}),
             ...(m.params ? { params: m.params } : {}),
             ...(m.response ? { response: m.response } : {}),
           });
@@ -5717,7 +5747,19 @@ export class LocalDocsSearch {
             this.indexProse(texts.join('\n\n'), file.name);
           }
         } else {
-          this.indexProse(content, file.name);
+          // Parse optional YAML frontmatter for language tagging.
+          // Files with a "language" field in frontmatter will only
+          // surface in searches for that language.
+          //
+          // Example:
+          //   ---
+          //   language: python
+          //   ---
+          //   # Error handling in Python
+          //   ...
+          const frontmatter = parseFrontmatter(content);
+          const source = frontmatter.language ? `lang:${frontmatter.language}:${file.name}` : file.name;
+          this.indexProse(content, source);
         }
       } catch (err) {
         getLogger().warn({ err, file: file.name }, 'Failed to index docs file');
@@ -5794,4 +5836,13 @@ function extractTexts(data: unknown, depth = 0): string[] {
     return Object.values(data).flatMap((v) => extractTexts(v, depth + 1));
   }
   return [];
+}
+
+/** Parses YAML frontmatter from a markdown string, extracting the language field if present. */
+function parseFrontmatter(markdown: string): { language?: string } {
+  const match = markdown.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) return {};
+  const body = match[1] ?? '';
+  const langMatch = body.match(/^language:\s*(.+)$/m);
+  return langMatch ? { language: langMatch[1]!.trim() } : {};
 }
