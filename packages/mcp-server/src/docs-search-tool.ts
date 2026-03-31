@@ -50,8 +50,6 @@ export function setLocalSearch(search: LocalDocsSearch): void {
   _localSearch = search;
 }
 
-const SUPPORTED_LANGUAGES = new Set(['http', 'typescript', 'javascript']);
-
 async function searchLocal(args: Record<string, unknown>): Promise<unknown> {
   if (!_localSearch) {
     throw new Error('Local search not initialized');
@@ -59,20 +57,13 @@ async function searchLocal(args: Record<string, unknown>): Promise<unknown> {
 
   const query = (args['query'] as string) ?? '';
   const language = (args['language'] as string) ?? 'typescript';
-  const detail = (args['detail'] as string) ?? 'verbose';
-
-  if (!SUPPORTED_LANGUAGES.has(language)) {
-    throw new Error(
-      `Local docs search only supports HTTP, TypeScript, and JavaScript. Got language="${language}". ` +
-        `Use --docs-search-mode stainless-api for other languages, or set language to "http", "typescript", or "javascript".`,
-    );
-  }
+  const detail = (args['detail'] as string) ?? 'default';
 
   return _localSearch.search({
     query,
     language,
     detail,
-    maxResults: 10,
+    maxResults: 5,
   }).results;
 }
 
