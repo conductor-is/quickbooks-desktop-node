@@ -76,17 +76,18 @@ async function searchLocal(args: Record<string, unknown>): Promise<unknown> {
   }).results;
 }
 
-async function searchRemote(
-  args: Record<string, unknown>,
-  stainlessApiKey: string | undefined,
-): Promise<unknown> {
+async function searchRemote(args: Record<string, unknown>, reqContext: McpRequestContext): Promise<unknown> {
   const body = args as any;
   const query = new URLSearchParams(body).toString();
 
   const startTime = Date.now();
   const result = await fetch(`${docsSearchURL}?${query}`, {
     headers: {
-      ...(stainlessApiKey && { Authorization: stainlessApiKey }),
+      ...(reqContext.stainlessApiKey && { Authorization: reqContext.stainlessApiKey }),
+      ...(reqContext.mcpSessionId && { 'x-stainless-mcp-session-id': reqContext.mcpSessionId }),
+      ...(reqContext.mcpClientInfo && {
+        'x-stainless-mcp-client-info': JSON.stringify(reqContext.mcpClientInfo),
+      }),
     },
   });
 
@@ -105,7 +106,7 @@ async function searchRemote(
       'Got error response from docs search tool',
     );
 
-    if (result.status === 404 && !stainlessApiKey) {
+    if (result.status === 404 && !reqContext.stainlessApiKey) {
       throw new Error(
         'Could not find docs for this project. You may need to provide a Stainless API key via the STAINLESS_API_KEY environment variable, the --stainless-api-key flag, or the x-stainless-api-key HTTP header.',
       );
@@ -140,7 +141,7 @@ export const handler = async ({
     return asTextContentResult(await searchLocal(body));
   }
 
-  return asTextContentResult(await searchRemote(body, reqContext.stainlessApiKey));
+  return asTextContentResult(await searchRemote(body, reqContext));
 };
 
 export default { metadata, tool, handler };
