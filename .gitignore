@@ -11,3 +11,4 @@ dist-deno
 .eslintcache
 dist-bundle
 *.mcpb
+oidc
