@@ -855,6 +855,13 @@ export namespace SalesReceipt {
     quantity: number | null;
 
     /**
+     * The date on which the service for this sales receipt line group was or will be
+     * performed, in ISO 8601 format (YYYY-MM-DD). This is particularly relevant for
+     * service items.
+     */
+    serviceDate: string | null;
+
+    /**
      * Indicates whether the individual items in this sales receipt line group and
      * their separate amounts appear on printed forms.
      */
@@ -2663,6 +2670,13 @@ export namespace SalesReceiptCreateParams {
      * group.
      */
     quantity?: number;
+
+    /**
+     * The date on which the service for this sales receipt line group was or will be
+     * performed, in ISO 8601 format (YYYY-MM-DD). This is particularly relevant for
+     * service items.
+     */
+    serviceDate?: string;
 
     /**
      * The unit-of-measure used for the `quantity` in this sales receipt line group.
