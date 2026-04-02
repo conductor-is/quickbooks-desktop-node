@@ -92,6 +92,7 @@ describe('resource salesReceipts', () => {
           inventorySiteId: '80000001-1234567890',
           inventorySiteLocationId: '80000001-1234567890',
           quantity: 5,
+          serviceDate: '2024-03-15',
           unitOfMeasure: 'Each',
         },
       ],
