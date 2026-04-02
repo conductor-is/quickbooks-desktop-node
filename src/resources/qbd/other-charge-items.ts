@@ -359,7 +359,7 @@ export namespace OtherChargeItem {
     /**
      * The income account used to track revenue from sales of this item.
      */
-    incomeAccount: SalesAndPurchaseDetails.IncomeAccount;
+    incomeAccount: SalesAndPurchaseDetails.IncomeAccount | null;
 
     /**
      * The preferred vendor from whom this item is typically purchased.
