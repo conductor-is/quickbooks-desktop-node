@@ -69,6 +69,11 @@ const newServer = async ({
     }
   }
 
+  const mcpClientInfo =
+    typeof req.body?.params?.clientInfo?.name === 'string' ?
+      { name: req.body.params.clientInfo.name, version: String(req.body.params.clientInfo.version ?? '') }
+    : undefined;
+
   await initMcpServer({
     server: server,
     mcpOptions: effectiveMcpOptions,
@@ -79,11 +84,12 @@ const newServer = async ({
     stainlessApiKey: stainlessApiKey,
     upstreamClientEnvs,
     mcpSessionId: (req as any).mcpSessionId,
-    mcpClientInfo:
-      typeof req.body?.params?.clientInfo?.name === 'string' ?
-        { name: req.body.params.clientInfo.name, version: String(req.body.params.clientInfo.version ?? '') }
-      : undefined,
+    mcpClientInfo,
   });
+
+  if (mcpClientInfo) {
+    getLogger().info({ mcpSessionId: (req as any).mcpSessionId, mcpClientInfo }, 'MCP client connected');
+  }
 
   return server;
 };
@@ -154,6 +160,9 @@ export const streamableHTTPApp = ({
   app.use(
     pinoHttp({
       logger: getLogger(),
+      customProps: (req) => ({
+        mcpSessionId: (req as any).mcpSessionId,
+      }),
       customLogLevel: (req, res) => {
         if (res.statusCode >= 500) {
           return 'error';
