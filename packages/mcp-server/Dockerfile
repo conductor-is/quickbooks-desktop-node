@@ -35,7 +35,9 @@ COPY . .
 
 # Install all dependencies and build everything
 RUN yarn install --frozen-lockfile && \
-    yarn build
+    yarn build && \
+    # Remove the symlink to the SDK so it doesn't interfere with the explicit COPY below
+    rm -Rf packages/mcp-server/node_modules/conductor-node
 
 FROM denoland/deno:alpine-2.7.1
 
