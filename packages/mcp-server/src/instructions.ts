@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import fs from 'fs/promises';
-import { readEnv } from './util';
 import { getLogger } from './logger';
+import { readEnv } from './util';
 
 const INSTRUCTIONS_CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
