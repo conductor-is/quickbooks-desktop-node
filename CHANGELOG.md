@@ -1,5 +1,50 @@
 # Changelog
 
+## 14.8.0 (2026-04-15)
+
+Full Changelog: [v14.7.0...v14.8.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.7.0...v14.8.0)
+
+### Features
+
+* **api:** api update ([17956a8](https://github.com/conductor-is/quickbooks-desktop-node/commit/17956a8ae30fabd064f4bf2398c0df9afcac14be))
+* **api:** api update ([4cc6f71](https://github.com/conductor-is/quickbooks-desktop-node/commit/4cc6f718fa88a6a4668f158f91846ba24707143b))
+* **api:** api update ([049f185](https://github.com/conductor-is/quickbooks-desktop-node/commit/049f185c498a2bf8e1451af360bb0da7a0f69300))
+
+
+### Bug Fixes
+
+* **internal:** gitignore generated `oidc` dir ([08fe51f](https://github.com/conductor-is/quickbooks-desktop-node/commit/08fe51f611dd1d67e4c58f224c367fe51b2814ea))
+
+
+### Chores
+
+* **ci:** escape input path in publish-npm workflow ([f030968](https://github.com/conductor-is/quickbooks-desktop-node/commit/f0309683c4ec6319301ebd34f69ddd04c54a1841))
+* **ci:** skip lint on metadata-only changes ([ec291e5](https://github.com/conductor-is/quickbooks-desktop-node/commit/ec291e5cc4d5b08c06bb4c29bd4cdfb9967c9b7b))
+* **internal:** codegen related update ([ef1652b](https://github.com/conductor-is/quickbooks-desktop-node/commit/ef1652b7f92a4b892ef91f4f1de6728622c25acf))
+* **internal:** codegen related update ([0bafd31](https://github.com/conductor-is/quickbooks-desktop-node/commit/0bafd3132d8bd2d20dfd85832cf67326c4b78b04))
+* **internal:** codegen related update ([c90b50d](https://github.com/conductor-is/quickbooks-desktop-node/commit/c90b50d63a7bc2b6c66db7ea7d5c98576eac076d))
+* **internal:** fix MCP docker image builds in yarn projects ([b6d7ba4](https://github.com/conductor-is/quickbooks-desktop-node/commit/b6d7ba4a22400d930db8fedb561a122cf6072f6a))
+* **internal:** fix MCP server import ordering ([0e6597e](https://github.com/conductor-is/quickbooks-desktop-node/commit/0e6597ed9abcdba08fbc102ff536c0e672a4fea5))
+* **internal:** fix MCP server TS errors that occur with required client options ([70e7446](https://github.com/conductor-is/quickbooks-desktop-node/commit/70e7446afb5605a1efc80e5d6cb22bd0a7600c76))
+* **internal:** improve local docs search for MCP servers ([314b6d3](https://github.com/conductor-is/quickbooks-desktop-node/commit/314b6d3bb844a581e85a2998c115d855cabec977))
+* **internal:** improve local docs search for MCP servers ([477d18b](https://github.com/conductor-is/quickbooks-desktop-node/commit/477d18bff6cd05a3c4346728e99d50c880ac01ca))
+* **internal:** show error causes in MCP servers when running in local mode ([dfab121](https://github.com/conductor-is/quickbooks-desktop-node/commit/dfab1212f2b91ba70bfa2e6015cbb2538cd4d1fd))
+* **internal:** support custom-instructions-path flag in MCP servers ([4336070](https://github.com/conductor-is/quickbooks-desktop-node/commit/433607026e44191beabf657191a76955f452fc37))
+* **internal:** support local docs search in MCP servers ([8701acf](https://github.com/conductor-is/quickbooks-desktop-node/commit/8701acf01773ac842ad82529a6898d0c2e6e45e5))
+* **internal:** support type annotations when running MCP in local execution mode ([1b4bf0f](https://github.com/conductor-is/quickbooks-desktop-node/commit/1b4bf0f66cfe372dcf40533b3573805943841c63))
+* **internal:** update gitignore ([4fb72d4](https://github.com/conductor-is/quickbooks-desktop-node/commit/4fb72d406561523c9ac1bb1a34f05eb8b38bf606))
+* **internal:** update multipart form array serialization ([c717678](https://github.com/conductor-is/quickbooks-desktop-node/commit/c7176781ce92eb1badc16a4768b3690b613f3559))
+* **internal:** use link instead of file in MCP server package.json files ([ac9b38d](https://github.com/conductor-is/quickbooks-desktop-node/commit/ac9b38d8d69cae69c634caad3da805f25f61e541))
+* **mcp-server:** add support for session id, forward client info ([98b896d](https://github.com/conductor-is/quickbooks-desktop-node/commit/98b896dc991e920196a107f2fac1f4e0468d82ef))
+* **mcp-server:** increase local docs search result count from 5 to 10 ([1bf8cc1](https://github.com/conductor-is/quickbooks-desktop-node/commit/1bf8cc19746aa22c4969064279249006d78c2cde))
+* **mcp-server:** log client info ([523003e](https://github.com/conductor-is/quickbooks-desktop-node/commit/523003e23b94c653c4e946c7beaf3c8a0281bf4e))
+* **tests:** bump steady to v0.19.4 ([a62f8c9](https://github.com/conductor-is/quickbooks-desktop-node/commit/a62f8c93e1a3b07c7c7948171b37e411f3f3a50a))
+* **tests:** bump steady to v0.19.5 ([ffeea33](https://github.com/conductor-is/quickbooks-desktop-node/commit/ffeea33589f0cf2c5991b3760949865059d42d13))
+* **tests:** bump steady to v0.19.6 ([d742ff5](https://github.com/conductor-is/quickbooks-desktop-node/commit/d742ff582f8a497ef411159e030f2a0fedcda94f))
+* **tests:** bump steady to v0.19.7 ([5ea6c55](https://github.com/conductor-is/quickbooks-desktop-node/commit/5ea6c55e950032132e88fae3f7a096aa28bb33ea))
+* **tests:** bump steady to v0.20.1 ([78cfb37](https://github.com/conductor-is/quickbooks-desktop-node/commit/78cfb37b3c7f041e3f232183568c62c479e5bb01))
+* **tests:** bump steady to v0.20.2 ([a3f98bd](https://github.com/conductor-is/quickbooks-desktop-node/commit/a3f98bd1c22f44b9a5ab8fad47987338c695c9e3))
+
 ## 14.7.0 (2026-03-20)
 
 Full Changelog: [v14.6.0...v14.7.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.6.0...v14.7.0)
