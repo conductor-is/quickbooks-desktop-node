@@ -188,7 +188,7 @@ export interface InventoryItem {
   /**
    * The income account used to track revenue from sales of this inventory item.
    */
-  incomeAccount: InventoryItem.IncomeAccount;
+  incomeAccount: InventoryItem.IncomeAccount | null;
 
   /**
    * Indicates whether this inventory item is active. Inactive objects are typically

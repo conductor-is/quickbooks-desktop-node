@@ -211,7 +211,7 @@ export interface InventoryAssemblyItem {
    * The income account used to track revenue from sales of this inventory assembly
    * item.
    */
-  incomeAccount: InventoryAssemblyItem.IncomeAccount;
+  incomeAccount: InventoryAssemblyItem.IncomeAccount | null;
 
   /**
    * Indicates whether this inventory assembly item is active. Inactive objects are
