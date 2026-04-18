@@ -1,5 +1,13 @@
 # Changelog
 
+## 14.8.1 (2026-04-18)
+
+Full Changelog: [v14.8.0...v14.8.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.8.0...v14.8.1)
+
+### Chores
+
+* **tests:** bump steady to v0.22.1 ([42175f6](https://github.com/conductor-is/quickbooks-desktop-node/commit/42175f661d0464e0f3a2c5c6fbae4f69959f8794))
+
 ## 14.8.0 (2026-04-15)
 
 Full Changelog: [v14.7.0...v14.8.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.7.0...v14.8.0)
