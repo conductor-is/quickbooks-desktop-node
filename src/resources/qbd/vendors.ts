@@ -326,7 +326,7 @@ export interface Vendor {
   /**
    * The vendor's tax reporting period, for use in Canada or the UK.
    */
-  reportingPeriod: 'monthly' | 'quarterly' | null;
+  reportingPeriod: 'annual' | 'monthly' | 'quarterly' | null;
 
   /**
    * The current QuickBooks-assigned revision number of this vendor object, which
@@ -1106,7 +1106,7 @@ export interface VendorCreateParams {
   /**
    * Body param: The vendor's tax reporting period, for use in Canada or the UK.
    */
-  reportingPeriod?: 'monthly' | 'quarterly';
+  reportingPeriod?: 'annual' | 'monthly' | 'quarterly';
 
   /**
    * Body param: The account used for tracking taxes on sales for this vendor, for
@@ -1612,7 +1612,7 @@ export interface VendorUpdateParams {
   /**
    * Body param: The vendor's tax reporting period, for use in Canada or the UK.
    */
-  reportingPeriod?: 'monthly' | 'quarterly';
+  reportingPeriod?: 'annual' | 'monthly' | 'quarterly';
 
   /**
    * Body param: The account used for tracking taxes on sales for this vendor, for
