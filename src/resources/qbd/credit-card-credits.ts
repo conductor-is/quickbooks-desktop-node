@@ -139,8 +139,8 @@ export class CreditCardCredits extends APIResource {
   }
 
   /**
-   * Voids a credit card credit by setting its amount to zero while keeping a record
-   * of it in QuickBooks. The void will fail if the credit card credit is currently
+   * Voids a credit card credit by setting its amount to zero while preserving its
+   * record in QuickBooks. The void will fail if the credit card credit is currently
    * in use or has any linked transactions that are in use.
    *
    * @example
