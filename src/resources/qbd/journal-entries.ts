@@ -138,7 +138,7 @@ export class JournalEntries extends APIResource {
   }
 
   /**
-   * Voids a journal entry by setting its amount to zero while keeping a record of it
+   * Voids a journal entry by setting its amount to zero while preserving its record
    * in QuickBooks. The void will fail if the journal entry is currently in use or
    * has any linked transactions that are in use.
    *
