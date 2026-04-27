@@ -123,6 +123,28 @@ export class Checks extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids a check by setting its amount to zero while keeping a record of it in
+   * QuickBooks. The void will fail if the check is currently in use or has any
+   * linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response = await conductor.qbd.checks.void(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  void(id: string, params: CheckVoidParams, options?: RequestOptions): APIPromise<CheckVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/checks/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type ChecksCursorPage = CursorPage<Check>;
@@ -1659,6 +1681,42 @@ export interface CheckDeleteResponse {
   refNumber: string | null;
 }
 
+export interface CheckVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided check.
+   */
+  id: string;
+
+  /**
+   * The date and time when this check was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_check"`.
+   */
+  objectType: 'qbd_check';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided check.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this check was last updated, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the check was voided.
+   */
+  voided: boolean;
+}
+
 export interface CheckCreateParams {
   /**
    * Body param: The bank account from which the funds are being drawn for this
@@ -3068,15 +3126,24 @@ export interface CheckDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface CheckVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace Checks {
   export {
     type Check as Check,
     type CheckDeleteResponse as CheckDeleteResponse,
+    type CheckVoidResponse as CheckVoidResponse,
     type ChecksCursorPage as ChecksCursorPage,
     type CheckCreateParams as CheckCreateParams,
     type CheckRetrieveParams as CheckRetrieveParams,
     type CheckUpdateParams as CheckUpdateParams,
     type CheckListParams as CheckListParams,
     type CheckDeleteParams as CheckDeleteParams,
+    type CheckVoidParams as CheckVoidParams,
   };
 }

@@ -113,6 +113,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/bill-check-payments/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.billCheckPayments.void',
+    fullyQualifiedName: 'qbd.billCheckPayments.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/bill-check-payments/{id}/void',
+  },
+  {
     clientCallName: 'conductor.qbd.billCreditCardPayments.create',
     fullyQualifiedName: 'qbd.billCreditCardPayments.create',
     httpMethod: 'post',
@@ -135,6 +141,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.billCreditCardPayments.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/bill-credit-card-payments/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.billCreditCardPayments.void',
+    fullyQualifiedName: 'qbd.billCreditCardPayments.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/bill-credit-card-payments/{id}/void',
   },
   {
     clientCallName: 'conductor.qbd.bills.create',
@@ -165,6 +177,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.bills.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/bills/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.bills.void',
+    fullyQualifiedName: 'qbd.bills.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/bills/{id}/void',
   },
   {
     clientCallName: 'conductor.qbd.buildAssemblies.create',
@@ -227,6 +245,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/checks/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.checks.void',
+    fullyQualifiedName: 'qbd.checks.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/checks/{id}/void',
+  },
+  {
     clientCallName: 'conductor.qbd.classes.create',
     fullyQualifiedName: 'qbd.classes.create',
     httpMethod: 'post',
@@ -287,6 +311,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/credit-card-charges/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.creditCardCharges.void',
+    fullyQualifiedName: 'qbd.creditCardCharges.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/credit-card-charges/{id}/void',
+  },
+  {
     clientCallName: 'conductor.qbd.creditCardCredits.create',
     fullyQualifiedName: 'qbd.creditCardCredits.create',
     httpMethod: 'post',
@@ -317,6 +347,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/credit-card-credits/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.creditCardCredits.void',
+    fullyQualifiedName: 'qbd.creditCardCredits.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/credit-card-credits/{id}/void',
+  },
+  {
     clientCallName: 'conductor.qbd.creditCardRefunds.create',
     fullyQualifiedName: 'qbd.creditCardRefunds.create',
     httpMethod: 'post',
@@ -339,6 +375,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.creditCardRefunds.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/credit-card-refunds/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.creditCardRefunds.void',
+    fullyQualifiedName: 'qbd.creditCardRefunds.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/credit-card-refunds/{id}/void',
   },
   {
     clientCallName: 'conductor.qbd.creditMemos.create',
@@ -369,6 +411,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.creditMemos.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/credit-memos/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.creditMemos.void',
+    fullyQualifiedName: 'qbd.creditMemos.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/credit-memos/{id}/void',
   },
   {
     clientCallName: 'conductor.qbd.currencies.create',
@@ -575,6 +623,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/inventory-adjustments/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.inventoryAdjustments.void',
+    fullyQualifiedName: 'qbd.inventoryAdjustments.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/inventory-adjustments/{id}/void',
+  },
+  {
     clientCallName: 'conductor.qbd.inventoryAssemblyItems.create',
     fullyQualifiedName: 'qbd.inventoryAssemblyItems.create',
     httpMethod: 'post',
@@ -677,6 +731,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/invoices/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.invoices.void',
+    fullyQualifiedName: 'qbd.invoices.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/invoices/{id}/void',
+  },
+  {
     clientCallName: 'conductor.qbd.itemGroups.create',
     fullyQualifiedName: 'qbd.itemGroups.create',
     httpMethod: 'post',
@@ -731,6 +791,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/item-receipts/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.itemReceipts.void',
+    fullyQualifiedName: 'qbd.itemReceipts.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/item-receipts/{id}/void',
+  },
+  {
     clientCallName: 'conductor.qbd.itemSites.retrieve',
     fullyQualifiedName: 'qbd.itemSites.retrieve',
     httpMethod: 'get',
@@ -771,6 +837,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.journalEntries.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/journal-entries/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.journalEntries.void',
+    fullyQualifiedName: 'qbd.journalEntries.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/journal-entries/{id}/void',
   },
   {
     clientCallName: 'conductor.qbd.nonInventoryItems.create',
@@ -1029,6 +1101,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.salesReceipts.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/sales-receipts/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.salesReceipts.void',
+    fullyQualifiedName: 'qbd.salesReceipts.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/sales-receipts/{id}/void',
   },
   {
     clientCallName: 'conductor.qbd.salesRepresentatives.create',
@@ -1305,6 +1383,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.vendorCredits.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/vendor-credits/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.vendorCredits.void',
+    fullyQualifiedName: 'qbd.vendorCredits.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/vendor-credits/{id}/void',
   },
   {
     clientCallName: 'conductor.qbd.vendors.create',

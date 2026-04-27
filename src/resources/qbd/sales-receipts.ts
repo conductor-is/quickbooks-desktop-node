@@ -136,6 +136,32 @@ export class SalesReceipts extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids a sales receipt by setting its amount to zero while keeping a record of it
+   * in QuickBooks. The void will fail if the sales receipt is currently in use or
+   * has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response = await conductor.qbd.salesReceipts.void(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  void(
+    id: string,
+    params: SalesReceiptVoidParams,
+    options?: RequestOptions,
+  ): APIPromise<SalesReceiptVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/sales-receipts/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type SalesReceiptsCursorPage = CursorPage<SalesReceipt>;
@@ -2176,6 +2202,42 @@ export interface SalesReceiptDeleteResponse {
   refNumber: string | null;
 }
 
+export interface SalesReceiptVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided sales receipt.
+   */
+  id: string;
+
+  /**
+   * The date and time when this sales receipt was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_sales_receipt"`.
+   */
+  objectType: 'qbd_sales_receipt';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided sales receipt.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this sales receipt was last updated, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the sales receipt was voided.
+   */
+  voided: boolean;
+}
+
 export interface SalesReceiptCreateParams {
   /**
    * Body param: The date of this sales receipt, in ISO 8601 format (YYYY-MM-DD).
@@ -4055,15 +4117,24 @@ export interface SalesReceiptDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface SalesReceiptVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace SalesReceipts {
   export {
     type SalesReceipt as SalesReceipt,
     type SalesReceiptDeleteResponse as SalesReceiptDeleteResponse,
+    type SalesReceiptVoidResponse as SalesReceiptVoidResponse,
     type SalesReceiptsCursorPage as SalesReceiptsCursorPage,
     type SalesReceiptCreateParams as SalesReceiptCreateParams,
     type SalesReceiptRetrieveParams as SalesReceiptRetrieveParams,
     type SalesReceiptUpdateParams as SalesReceiptUpdateParams,
     type SalesReceiptListParams as SalesReceiptListParams,
     type SalesReceiptDeleteParams as SalesReceiptDeleteParams,
+    type SalesReceiptVoidParams as SalesReceiptVoidParams,
   };
 }

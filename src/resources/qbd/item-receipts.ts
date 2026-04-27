@@ -132,6 +132,32 @@ export class ItemReceipts extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids an item receipt by setting its amount to zero while keeping a record of it
+   * in QuickBooks. The void will fail if the item receipt is currently in use or has
+   * any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response = await conductor.qbd.itemReceipts.void(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  void(
+    id: string,
+    params: ItemReceiptVoidParams,
+    options?: RequestOptions,
+  ): APIPromise<ItemReceiptVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/item-receipts/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type ItemReceiptsCursorPage = CursorPage<ItemReceipt>;
@@ -1625,6 +1651,42 @@ export interface ItemReceiptDeleteResponse {
   refNumber: string | null;
 }
 
+export interface ItemReceiptVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided item receipt.
+   */
+  id: string;
+
+  /**
+   * The date and time when this item receipt was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_item_receipt"`.
+   */
+  objectType: 'qbd_item_receipt';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided item receipt.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this item receipt was last updated, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the item receipt was voided.
+   */
+  voided: boolean;
+}
+
 export interface ItemReceiptCreateParams {
   /**
    * Body param: The date of this item receipt, in ISO 8601 format (YYYY-MM-DD).
@@ -2843,15 +2905,24 @@ export interface ItemReceiptDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface ItemReceiptVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace ItemReceipts {
   export {
     type ItemReceipt as ItemReceipt,
     type ItemReceiptDeleteResponse as ItemReceiptDeleteResponse,
+    type ItemReceiptVoidResponse as ItemReceiptVoidResponse,
     type ItemReceiptsCursorPage as ItemReceiptsCursorPage,
     type ItemReceiptCreateParams as ItemReceiptCreateParams,
     type ItemReceiptRetrieveParams as ItemReceiptRetrieveParams,
     type ItemReceiptUpdateParams as ItemReceiptUpdateParams,
     type ItemReceiptListParams as ItemReceiptListParams,
     type ItemReceiptDeleteParams as ItemReceiptDeleteParams,
+    type ItemReceiptVoidParams as ItemReceiptVoidParams,
   };
 }

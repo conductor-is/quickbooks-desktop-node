@@ -631,6 +631,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/bill-check-payments/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a bill check payment',
+    description:
+      'Voids a bill check payment by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the bill check payment is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.bill_check_payments > (method) void',
+    qualified: 'client.qbd.billCheckPayments.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_bill_check_payment'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.billCheckPayments.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_bill_check_payment'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/bill-check-payments/{id}/void`\n\nVoids a bill check payment by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the bill check payment is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the bill check payment to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_bill_check_payment'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_bill_check_payment'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.billCheckPayments.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.bill_check_payments.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.bill_check_payments.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.billCheckPayments.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.billCheckPayments.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
+      },
+    },
+  },
+  {
     name: 'delete',
     endpoint: '/quickbooks-desktop/bill-check-payments/{id}',
     httpMethod: 'delete',
@@ -780,6 +811,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.qbd.billCreditCardPayments.retrieve',
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst billCreditCardPayment = await conductor.qbd.billCreditCardPayments.retrieve(\n  '123ABC-1234567890',\n  { conductorEndUserId: 'end_usr_1234567abcdefg' },\n);\n\nconsole.log(billCreditCardPayment.id);",
+      },
+    },
+  },
+  {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/bill-credit-card-payments/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a bill credit card payment',
+    description:
+      'Voids a bill credit card payment by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the bill credit card payment is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.bill_credit_card_payments > (method) void',
+    qualified: 'client.qbd.billCreditCardPayments.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_bill_credit_card_payment'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.billCreditCardPayments.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_bill_credit_card_payment'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/bill-credit-card-payments/{id}/void`\n\nVoids a bill credit card payment by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the bill credit card payment is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the bill credit card payment to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_bill_credit_card_payment'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_bill_credit_card_payment'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.billCreditCardPayments.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.bill_credit_card_payments.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.bill_credit_card_payments.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.billCreditCardPayments.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.billCreditCardPayments.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
     },
   },
@@ -991,6 +1053,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.qbd.bills.update',
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst bill = await conductor.qbd.bills.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(bill.id);",
+      },
+    },
+  },
+  {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/bills/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a bill',
+    description:
+      'Voids a bill by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the bill is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.bills > (method) void',
+    qualified: 'client.qbd.bills.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_bill'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.bills.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_bill'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/bills/{id}/void`\n\nVoids a bill by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the bill is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the bill to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_bill'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_bill'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.bills.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/bills/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.bills.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.bills.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.bills.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.bills.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
     },
   },
@@ -1403,6 +1496,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/checks/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a check',
+    description:
+      'Voids a check by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the check is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.checks > (method) void',
+    qualified: 'client.qbd.checks.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_check'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.checks.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_check'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/checks/{id}/void`\n\nVoids a check by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the check is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the check to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_check'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_check'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.checks.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/checks/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.checks.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.checks.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.checks.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.checks.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
+      },
+    },
+  },
+  {
     name: 'delete',
     endpoint: '/quickbooks-desktop/checks/{id}',
     httpMethod: 'delete',
@@ -1777,6 +1901,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/credit-card-charges/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a credit card charge',
+    description:
+      'Voids a credit card charge by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the credit card charge is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.credit_card_charges > (method) void',
+    qualified: 'client.qbd.creditCardCharges.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_credit_card_charge'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.creditCardCharges.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_credit_card_charge'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/credit-card-charges/{id}/void`\n\nVoids a credit card charge by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the credit card charge is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit card charge to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_credit_card_charge'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_credit_card_charge'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.creditCardCharges.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.credit_card_charges.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.credit_card_charges.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.creditCardCharges.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.creditCardCharges.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
+      },
+    },
+  },
+  {
     name: 'delete',
     endpoint: '/quickbooks-desktop/credit-card-charges/{id}',
     httpMethod: 'delete',
@@ -1977,6 +2132,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/credit-card-credits/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a credit card credit',
+    description:
+      'Voids a credit card credit by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the credit card credit is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.credit_card_credits > (method) void',
+    qualified: 'client.qbd.creditCardCredits.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_credit_card_credit'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.creditCardCredits.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_credit_card_credit'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/credit-card-credits/{id}/void`\n\nVoids a credit card credit by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the credit card credit is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit card credit to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_credit_card_credit'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_credit_card_credit'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.creditCardCredits.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.credit_card_credits.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.credit_card_credits.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.creditCardCredits.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.creditCardCredits.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
+      },
+    },
+  },
+  {
     name: 'delete',
     endpoint: '/quickbooks-desktop/credit-card-credits/{id}',
     httpMethod: 'delete',
@@ -2129,6 +2315,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.qbd.creditCardRefunds.retrieve',
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardRefund = await conductor.qbd.creditCardRefunds.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardRefund.id);",
+      },
+    },
+  },
+  {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/credit-card-refunds/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a credit card refund',
+    description:
+      'Voids a credit card refund by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the credit card refund is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.credit_card_refunds > (method) void',
+    qualified: 'client.qbd.creditCardRefunds.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_credit_card_refund'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.creditCardRefunds.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_credit_card_refund'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/credit-card-refunds/{id}/void`\n\nVoids a credit card refund by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the credit card refund is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit card refund to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_credit_card_refund'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_credit_card_refund'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.creditCardRefunds.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.credit_card_refunds.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.credit_card_refunds.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.creditCardRefunds.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.creditCardRefunds.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
     },
   },
@@ -2360,6 +2577,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.qbd.creditMemos.update',
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditMemo = await conductor.qbd.creditMemos.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditMemo.id);",
+      },
+    },
+  },
+  {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/credit-memos/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a credit memo',
+    description:
+      'Voids a credit memo by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the credit memo is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.credit_memos > (method) void',
+    qualified: 'client.qbd.creditMemos.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_credit_memo'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.creditMemos.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_credit_memo'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/credit-memos/{id}/void`\n\nVoids a credit memo by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the credit memo is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit memo to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_credit_memo'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_credit_memo'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.creditMemos.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.credit_memos.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.credit_memos.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.creditMemos.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.creditMemos.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
     },
   },
@@ -3855,6 +4103,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/inventory-adjustments/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void an inventory adjustment',
+    description:
+      'Voids an inventory adjustment by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the inventory adjustment is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.inventory_adjustments > (method) void',
+    qualified: 'client.qbd.inventoryAdjustments.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_inventory_adjustment'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.inventoryAdjustments.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_inventory_adjustment'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/inventory-adjustments/{id}/void`\n\nVoids an inventory adjustment by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the inventory adjustment is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the inventory adjustment to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_inventory_adjustment'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_inventory_adjustment'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.inventoryAdjustments.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.inventory_adjustments.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.inventory_adjustments.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.inventoryAdjustments.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.inventoryAdjustments.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
+      },
+    },
+  },
+  {
     name: 'delete',
     endpoint: '/quickbooks-desktop/inventory-adjustments/{id}',
     httpMethod: 'delete',
@@ -4626,6 +4905,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/invoices/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void an invoice',
+    description:
+      'Voids an invoice by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the invoice is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.invoices > (method) void',
+    qualified: 'client.qbd.invoices.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_invoice'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.invoices.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_invoice'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/invoices/{id}/void`\n\nVoids an invoice by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the invoice is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the invoice to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_invoice'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_invoice'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.invoices.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/invoices/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.invoices.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.invoices.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.invoices.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.invoices.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
+      },
+    },
+  },
+  {
     name: 'delete',
     endpoint: '/quickbooks-desktop/invoices/{id}',
     httpMethod: 'delete',
@@ -4987,6 +5297,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/item-receipts/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void an item receipt',
+    description:
+      'Voids an item receipt by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the item receipt is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.item_receipts > (method) void',
+    qualified: 'client.qbd.itemReceipts.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_item_receipt'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.itemReceipts.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_item_receipt'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/item-receipts/{id}/void`\n\nVoids an item receipt by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the item receipt is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the item receipt to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_item_receipt'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_item_receipt'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.itemReceipts.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.item_receipts.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.item_receipts.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.itemReceipts.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.itemReceipts.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
+      },
+    },
+  },
+  {
     name: 'delete',
     endpoint: '/quickbooks-desktop/item-receipts/{id}',
     httpMethod: 'delete',
@@ -5249,6 +5590,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.qbd.journalEntries.update',
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst journalEntry = await conductor.qbd.journalEntries.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(journalEntry.id);",
+      },
+    },
+  },
+  {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/journal-entries/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a journal entry',
+    description:
+      'Voids a journal entry by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the journal entry is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.journal_entries > (method) void',
+    qualified: 'client.qbd.journalEntries.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_journal_entry'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.journalEntries.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_journal_entry'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/journal-entries/{id}/void`\n\nVoids a journal entry by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the journal entry is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the journal entry to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_journal_entry'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_journal_entry'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.journalEntries.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.journal_entries.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.journal_entries.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.journalEntries.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.journalEntries.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
     },
   },
@@ -7061,6 +7433,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/sales-receipts/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a sales receipt',
+    description:
+      'Voids a sales receipt by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the sales receipt is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.sales_receipts > (method) void',
+    qualified: 'client.qbd.salesReceipts.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_sales_receipt'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.salesReceipts.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_sales_receipt'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/sales-receipts/{id}/void`\n\nVoids a sales receipt by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the sales receipt is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the sales receipt to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_sales_receipt'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_sales_receipt'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.salesReceipts.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.sales_receipts.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.sales_receipts.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.salesReceipts.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.salesReceipts.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
+      },
+    },
+  },
+  {
     name: 'delete',
     endpoint: '/quickbooks-desktop/sales-receipts/{id}',
     httpMethod: 'delete',
@@ -8818,6 +9221,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.qbd.vendorCredits.update',
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst vendorCredit = await conductor.qbd.vendorCredits.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(vendorCredit.id);",
+      },
+    },
+  },
+  {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/vendor-credits/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a vendor credit',
+    description:
+      'Voids a vendor credit by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the vendor credit is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.vendor_credits > (method) void',
+    qualified: 'client.qbd.vendorCredits.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_vendor_credit'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.vendorCredits.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_vendor_credit'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/vendor-credits/{id}/void`\n\nVoids a vendor credit by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the vendor credit is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the vendor credit to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_vendor_credit'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_vendor_credit'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.vendorCredits.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'qbd.vendor_credits.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.vendor_credits.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.qbd.vendorCredits.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.vendorCredits.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
     },
   },

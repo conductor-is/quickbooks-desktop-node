@@ -126,6 +126,32 @@ export class CreditMemos extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids a credit memo by setting its amount to zero while keeping a record of it
+   * in QuickBooks. The void will fail if the credit memo is currently in use or has
+   * any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response = await conductor.qbd.creditMemos.void(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  void(
+    id: string,
+    params: CreditMemoVoidParams,
+    options?: RequestOptions,
+  ): APIPromise<CreditMemoVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/credit-memos/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type CreditMemosCursorPage = CursorPage<CreditMemo>;
@@ -1724,6 +1750,42 @@ export interface CreditMemoDeleteResponse {
   refNumber: string | null;
 }
 
+export interface CreditMemoVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided credit memo.
+   */
+  id: string;
+
+  /**
+   * The date and time when this credit memo was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_credit_memo"`.
+   */
+  objectType: 'qbd_credit_memo';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided credit memo.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this credit memo was last updated, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the credit memo was voided.
+   */
+  voided: boolean;
+}
+
 export interface CreditMemoCreateParams {
   /**
    * Body param: The customer or customer-job associated with this credit memo.
@@ -3220,15 +3282,24 @@ export interface CreditMemoDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface CreditMemoVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace CreditMemos {
   export {
     type CreditMemo as CreditMemo,
     type CreditMemoDeleteResponse as CreditMemoDeleteResponse,
+    type CreditMemoVoidResponse as CreditMemoVoidResponse,
     type CreditMemosCursorPage as CreditMemosCursorPage,
     type CreditMemoCreateParams as CreditMemoCreateParams,
     type CreditMemoRetrieveParams as CreditMemoRetrieveParams,
     type CreditMemoUpdateParams as CreditMemoUpdateParams,
     type CreditMemoListParams as CreditMemoListParams,
     type CreditMemoDeleteParams as CreditMemoDeleteParams,
+    type CreditMemoVoidParams as CreditMemoVoidParams,
   };
 }

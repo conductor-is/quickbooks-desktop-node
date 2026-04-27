@@ -147,6 +147,32 @@ export class BillCheckPayments extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids a bill check payment by setting its amount to zero while keeping a record
+   * of it in QuickBooks. The void will fail if the bill check payment is currently
+   * in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response = await conductor.qbd.billCheckPayments.void(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  void(
+    id: string,
+    params: BillCheckPaymentVoidParams,
+    options?: RequestOptions,
+  ): APIPromise<BillCheckPaymentVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/bill-check-payments/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type BillCheckPaymentsCursorPage = CursorPage<BillCheckPayment>;
@@ -695,6 +721,43 @@ export interface BillCheckPaymentDeleteResponse {
   refNumber: string | null;
 }
 
+export interface BillCheckPaymentVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided bill check payment.
+   */
+  id: string;
+
+  /**
+   * The date and time when this bill check payment was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_bill_check_payment"`.
+   */
+  objectType: 'qbd_bill_check_payment';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided bill check
+   * payment.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this bill check payment was last updated, in ISO 8601
+   * format (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the
+   * local timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the bill check payment was voided.
+   */
+  voided: boolean;
+}
+
 export interface BillCheckPaymentCreateParams {
   /**
    * Body param: The bills to be paid by this bill check payment. This will create a
@@ -1158,15 +1221,24 @@ export interface BillCheckPaymentDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface BillCheckPaymentVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace BillCheckPayments {
   export {
     type BillCheckPayment as BillCheckPayment,
     type BillCheckPaymentDeleteResponse as BillCheckPaymentDeleteResponse,
+    type BillCheckPaymentVoidResponse as BillCheckPaymentVoidResponse,
     type BillCheckPaymentsCursorPage as BillCheckPaymentsCursorPage,
     type BillCheckPaymentCreateParams as BillCheckPaymentCreateParams,
     type BillCheckPaymentRetrieveParams as BillCheckPaymentRetrieveParams,
     type BillCheckPaymentUpdateParams as BillCheckPaymentUpdateParams,
     type BillCheckPaymentListParams as BillCheckPaymentListParams,
     type BillCheckPaymentDeleteParams as BillCheckPaymentDeleteParams,
+    type BillCheckPaymentVoidParams as BillCheckPaymentVoidParams,
   };
 }
