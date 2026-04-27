@@ -124,6 +124,28 @@ export class Bills extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids a bill by setting its amount to zero while keeping a record of it in
+   * QuickBooks. The void will fail if the bill is currently in use or has any linked
+   * transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response = await conductor.qbd.bills.void(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  void(id: string, params: BillVoidParams, options?: RequestOptions): APIPromise<BillVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/bills/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type BillsCursorPage = CursorPage<Bill>;
@@ -1709,6 +1731,42 @@ export interface BillDeleteResponse {
   refNumber: string | null;
 }
 
+export interface BillVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided bill.
+   */
+  id: string;
+
+  /**
+   * The date and time when this bill was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_bill"`.
+   */
+  objectType: 'qbd_bill';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided bill.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this bill was last updated, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the bill was voided.
+   */
+  voided: boolean;
+}
+
 export interface BillCreateParams {
   /**
    * Body param: The date of this bill, in ISO 8601 format (YYYY-MM-DD).
@@ -3106,15 +3164,24 @@ export interface BillDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface BillVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace Bills {
   export {
     type Bill as Bill,
     type BillDeleteResponse as BillDeleteResponse,
+    type BillVoidResponse as BillVoidResponse,
     type BillsCursorPage as BillsCursorPage,
     type BillCreateParams as BillCreateParams,
     type BillRetrieveParams as BillRetrieveParams,
     type BillUpdateParams as BillUpdateParams,
     type BillListParams as BillListParams,
     type BillDeleteParams as BillDeleteParams,
+    type BillVoidParams as BillVoidParams,
   };
 }

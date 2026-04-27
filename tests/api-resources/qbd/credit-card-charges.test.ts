@@ -275,4 +275,23 @@ describe('resource creditCardCharges', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
+
+  test('void: only required params', async () => {
+    const responsePromise = conductor.qbd.creditCardCharges.void('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('void: required and optional params', async () => {
+    const response = await conductor.qbd.creditCardCharges.void('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+  });
 });

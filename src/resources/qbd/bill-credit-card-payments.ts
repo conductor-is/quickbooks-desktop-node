@@ -123,6 +123,33 @@ export class BillCreditCardPayments extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids a bill credit card payment by setting its amount to zero while keeping a
+   * record of it in QuickBooks. The void will fail if the bill credit card payment
+   * is currently in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await conductor.qbd.billCreditCardPayments.void(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  void(
+    id: string,
+    params: BillCreditCardPaymentVoidParams,
+    options?: RequestOptions,
+  ): APIPromise<BillCreditCardPaymentVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/bill-credit-card-payments/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type BillCreditCardPaymentsCursorPage = CursorPage<BillCreditCardPayment>;
@@ -605,6 +632,44 @@ export interface BillCreditCardPaymentDeleteResponse {
   refNumber: string | null;
 }
 
+export interface BillCreditCardPaymentVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided bill credit card
+   * payment.
+   */
+  id: string;
+
+  /**
+   * The date and time when this bill credit card payment was created, in ISO 8601
+   * format (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the
+   * local timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_bill_credit_card_payment"`.
+   */
+  objectType: 'qbd_bill_credit_card_payment';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided bill credit card
+   * payment.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this bill credit card payment was last updated, in ISO
+   * 8601 format (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in
+   * the local timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the bill credit card payment was voided.
+   */
+  voided: boolean;
+}
+
 export interface BillCreditCardPaymentCreateParams {
   /**
    * Body param: The bills to be paid by this bill credit card payment. This will
@@ -917,14 +982,23 @@ export interface BillCreditCardPaymentDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface BillCreditCardPaymentVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace BillCreditCardPayments {
   export {
     type BillCreditCardPayment as BillCreditCardPayment,
     type BillCreditCardPaymentDeleteResponse as BillCreditCardPaymentDeleteResponse,
+    type BillCreditCardPaymentVoidResponse as BillCreditCardPaymentVoidResponse,
     type BillCreditCardPaymentsCursorPage as BillCreditCardPaymentsCursorPage,
     type BillCreditCardPaymentCreateParams as BillCreditCardPaymentCreateParams,
     type BillCreditCardPaymentRetrieveParams as BillCreditCardPaymentRetrieveParams,
     type BillCreditCardPaymentListParams as BillCreditCardPaymentListParams,
     type BillCreditCardPaymentDeleteParams as BillCreditCardPaymentDeleteParams,
+    type BillCreditCardPaymentVoidParams as BillCreditCardPaymentVoidParams,
   };
 }

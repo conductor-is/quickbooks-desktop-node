@@ -138,6 +138,33 @@ export class InventoryAdjustments extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids an inventory adjustment by setting its amount to zero while keeping a
+   * record of it in QuickBooks. The void will fail if the inventory adjustment is
+   * currently in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await conductor.qbd.inventoryAdjustments.void(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  void(
+    id: string,
+    params: InventoryAdjustmentVoidParams,
+    options?: RequestOptions,
+  ): APIPromise<InventoryAdjustmentVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/inventory-adjustments/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export interface InventoryAdjustment {
@@ -504,6 +531,43 @@ export interface InventoryAdjustmentDeleteResponse {
    * adjustment.
    */
   refNumber: string | null;
+}
+
+export interface InventoryAdjustmentVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided inventory adjustment.
+   */
+  id: string;
+
+  /**
+   * The date and time when this inventory adjustment was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_inventory_adjustment"`.
+   */
+  objectType: 'qbd_inventory_adjustment';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided inventory
+   * adjustment.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this inventory adjustment was last updated, in ISO 8601
+   * format (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the
+   * local timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the inventory adjustment was voided.
+   */
+  voided: boolean;
 }
 
 export interface InventoryAdjustmentCreateParams {
@@ -1072,15 +1136,24 @@ export interface InventoryAdjustmentDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface InventoryAdjustmentVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace InventoryAdjustments {
   export {
     type InventoryAdjustment as InventoryAdjustment,
     type InventoryAdjustmentListResponse as InventoryAdjustmentListResponse,
     type InventoryAdjustmentDeleteResponse as InventoryAdjustmentDeleteResponse,
+    type InventoryAdjustmentVoidResponse as InventoryAdjustmentVoidResponse,
     type InventoryAdjustmentCreateParams as InventoryAdjustmentCreateParams,
     type InventoryAdjustmentRetrieveParams as InventoryAdjustmentRetrieveParams,
     type InventoryAdjustmentUpdateParams as InventoryAdjustmentUpdateParams,
     type InventoryAdjustmentListParams as InventoryAdjustmentListParams,
     type InventoryAdjustmentDeleteParams as InventoryAdjustmentDeleteParams,
+    type InventoryAdjustmentVoidParams as InventoryAdjustmentVoidParams,
   };
 }

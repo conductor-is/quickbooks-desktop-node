@@ -27,6 +27,8 @@ import {
   BillCheckPaymentListParams,
   BillCheckPaymentRetrieveParams,
   BillCheckPaymentUpdateParams,
+  BillCheckPaymentVoidParams,
+  BillCheckPaymentVoidResponse,
   BillCheckPayments,
   BillCheckPaymentsCursorPage,
 } from './bill-check-payments';
@@ -38,6 +40,8 @@ import {
   BillCreditCardPaymentDeleteResponse,
   BillCreditCardPaymentListParams,
   BillCreditCardPaymentRetrieveParams,
+  BillCreditCardPaymentVoidParams,
+  BillCreditCardPaymentVoidResponse,
   BillCreditCardPayments,
   BillCreditCardPaymentsCursorPage,
 } from './bill-credit-card-payments';
@@ -50,6 +54,8 @@ import {
   BillListParams,
   BillRetrieveParams,
   BillUpdateParams,
+  BillVoidParams,
+  BillVoidResponse,
   Bills,
   BillsCursorPage,
 } from './bills';
@@ -74,6 +80,8 @@ import {
   CheckListParams,
   CheckRetrieveParams,
   CheckUpdateParams,
+  CheckVoidParams,
+  CheckVoidResponse,
   Checks,
   ChecksCursorPage,
 } from './checks';
@@ -98,6 +106,8 @@ import {
   CreditCardChargeListParams,
   CreditCardChargeRetrieveParams,
   CreditCardChargeUpdateParams,
+  CreditCardChargeVoidParams,
+  CreditCardChargeVoidResponse,
   CreditCardCharges,
   CreditCardChargesCursorPage,
 } from './credit-card-charges';
@@ -110,6 +120,8 @@ import {
   CreditCardCreditListParams,
   CreditCardCreditRetrieveParams,
   CreditCardCreditUpdateParams,
+  CreditCardCreditVoidParams,
+  CreditCardCreditVoidResponse,
   CreditCardCredits,
   CreditCardCreditsCursorPage,
 } from './credit-card-credits';
@@ -121,6 +133,8 @@ import {
   CreditCardRefundDeleteResponse,
   CreditCardRefundListParams,
   CreditCardRefundRetrieveParams,
+  CreditCardRefundVoidParams,
+  CreditCardRefundVoidResponse,
   CreditCardRefunds,
   CreditCardRefundsCursorPage,
 } from './credit-card-refunds';
@@ -133,6 +147,8 @@ import {
   CreditMemoListParams,
   CreditMemoRetrieveParams,
   CreditMemoUpdateParams,
+  CreditMemoVoidParams,
+  CreditMemoVoidResponse,
   CreditMemos,
   CreditMemosCursorPage,
 } from './credit-memos';
@@ -230,6 +246,8 @@ import {
   InventoryAdjustmentListResponse,
   InventoryAdjustmentRetrieveParams,
   InventoryAdjustmentUpdateParams,
+  InventoryAdjustmentVoidParams,
+  InventoryAdjustmentVoidResponse,
   InventoryAdjustments,
 } from './inventory-adjustments';
 import * as InventoryAssemblyItemsAPI from './inventory-assembly-items';
@@ -271,6 +289,8 @@ import {
   InvoiceListParams,
   InvoiceRetrieveParams,
   InvoiceUpdateParams,
+  InvoiceVoidParams,
+  InvoiceVoidResponse,
   Invoices,
   InvoicesCursorPage,
 } from './invoices';
@@ -293,6 +313,8 @@ import {
   ItemReceiptListParams,
   ItemReceiptRetrieveParams,
   ItemReceiptUpdateParams,
+  ItemReceiptVoidParams,
+  ItemReceiptVoidResponse,
   ItemReceipts,
   ItemReceiptsCursorPage,
 } from './item-receipts';
@@ -315,6 +337,8 @@ import {
   JournalEntryListParams,
   JournalEntryRetrieveParams,
   JournalEntryUpdateParams,
+  JournalEntryVoidParams,
+  JournalEntryVoidResponse,
 } from './journal-entries';
 import * as NonInventoryItemsAPI from './non-inventory-items';
 import {
@@ -421,6 +445,8 @@ import {
   SalesReceiptListParams,
   SalesReceiptRetrieveParams,
   SalesReceiptUpdateParams,
+  SalesReceiptVoidParams,
+  SalesReceiptVoidResponse,
   SalesReceipts,
   SalesReceiptsCursorPage,
 } from './sales-receipts';
@@ -542,6 +568,8 @@ import {
   VendorCreditListParams,
   VendorCreditRetrieveParams,
   VendorCreditUpdateParams,
+  VendorCreditVoidParams,
+  VendorCreditVoidResponse,
   VendorCredits,
   VendorCreditsCursorPage,
 } from './vendor-credits';
@@ -767,35 +795,41 @@ export declare namespace Qbd {
     BillCheckPayments as BillCheckPayments,
     type BillCheckPayment as BillCheckPayment,
     type BillCheckPaymentDeleteResponse as BillCheckPaymentDeleteResponse,
+    type BillCheckPaymentVoidResponse as BillCheckPaymentVoidResponse,
     type BillCheckPaymentsCursorPage as BillCheckPaymentsCursorPage,
     type BillCheckPaymentCreateParams as BillCheckPaymentCreateParams,
     type BillCheckPaymentRetrieveParams as BillCheckPaymentRetrieveParams,
     type BillCheckPaymentUpdateParams as BillCheckPaymentUpdateParams,
     type BillCheckPaymentListParams as BillCheckPaymentListParams,
     type BillCheckPaymentDeleteParams as BillCheckPaymentDeleteParams,
+    type BillCheckPaymentVoidParams as BillCheckPaymentVoidParams,
   };
 
   export {
     BillCreditCardPayments as BillCreditCardPayments,
     type BillCreditCardPayment as BillCreditCardPayment,
     type BillCreditCardPaymentDeleteResponse as BillCreditCardPaymentDeleteResponse,
+    type BillCreditCardPaymentVoidResponse as BillCreditCardPaymentVoidResponse,
     type BillCreditCardPaymentsCursorPage as BillCreditCardPaymentsCursorPage,
     type BillCreditCardPaymentCreateParams as BillCreditCardPaymentCreateParams,
     type BillCreditCardPaymentRetrieveParams as BillCreditCardPaymentRetrieveParams,
     type BillCreditCardPaymentListParams as BillCreditCardPaymentListParams,
     type BillCreditCardPaymentDeleteParams as BillCreditCardPaymentDeleteParams,
+    type BillCreditCardPaymentVoidParams as BillCreditCardPaymentVoidParams,
   };
 
   export {
     Bills as Bills,
     type Bill as Bill,
     type BillDeleteResponse as BillDeleteResponse,
+    type BillVoidResponse as BillVoidResponse,
     type BillsCursorPage as BillsCursorPage,
     type BillCreateParams as BillCreateParams,
     type BillRetrieveParams as BillRetrieveParams,
     type BillUpdateParams as BillUpdateParams,
     type BillListParams as BillListParams,
     type BillDeleteParams as BillDeleteParams,
+    type BillVoidParams as BillVoidParams,
   };
 
   export {
@@ -814,12 +848,14 @@ export declare namespace Qbd {
     Checks as Checks,
     type Check as Check,
     type CheckDeleteResponse as CheckDeleteResponse,
+    type CheckVoidResponse as CheckVoidResponse,
     type ChecksCursorPage as ChecksCursorPage,
     type CheckCreateParams as CheckCreateParams,
     type CheckRetrieveParams as CheckRetrieveParams,
     type CheckUpdateParams as CheckUpdateParams,
     type CheckListParams as CheckListParams,
     type CheckDeleteParams as CheckDeleteParams,
+    type CheckVoidParams as CheckVoidParams,
   };
 
   export {
@@ -842,47 +878,55 @@ export declare namespace Qbd {
     CreditCardCharges as CreditCardCharges,
     type CreditCardCharge as CreditCardCharge,
     type CreditCardChargeDeleteResponse as CreditCardChargeDeleteResponse,
+    type CreditCardChargeVoidResponse as CreditCardChargeVoidResponse,
     type CreditCardChargesCursorPage as CreditCardChargesCursorPage,
     type CreditCardChargeCreateParams as CreditCardChargeCreateParams,
     type CreditCardChargeRetrieveParams as CreditCardChargeRetrieveParams,
     type CreditCardChargeUpdateParams as CreditCardChargeUpdateParams,
     type CreditCardChargeListParams as CreditCardChargeListParams,
     type CreditCardChargeDeleteParams as CreditCardChargeDeleteParams,
+    type CreditCardChargeVoidParams as CreditCardChargeVoidParams,
   };
 
   export {
     CreditCardCredits as CreditCardCredits,
     type CreditCardCredit as CreditCardCredit,
     type CreditCardCreditDeleteResponse as CreditCardCreditDeleteResponse,
+    type CreditCardCreditVoidResponse as CreditCardCreditVoidResponse,
     type CreditCardCreditsCursorPage as CreditCardCreditsCursorPage,
     type CreditCardCreditCreateParams as CreditCardCreditCreateParams,
     type CreditCardCreditRetrieveParams as CreditCardCreditRetrieveParams,
     type CreditCardCreditUpdateParams as CreditCardCreditUpdateParams,
     type CreditCardCreditListParams as CreditCardCreditListParams,
     type CreditCardCreditDeleteParams as CreditCardCreditDeleteParams,
+    type CreditCardCreditVoidParams as CreditCardCreditVoidParams,
   };
 
   export {
     CreditCardRefunds as CreditCardRefunds,
     type CreditCardRefund as CreditCardRefund,
     type CreditCardRefundDeleteResponse as CreditCardRefundDeleteResponse,
+    type CreditCardRefundVoidResponse as CreditCardRefundVoidResponse,
     type CreditCardRefundsCursorPage as CreditCardRefundsCursorPage,
     type CreditCardRefundCreateParams as CreditCardRefundCreateParams,
     type CreditCardRefundRetrieveParams as CreditCardRefundRetrieveParams,
     type CreditCardRefundListParams as CreditCardRefundListParams,
     type CreditCardRefundDeleteParams as CreditCardRefundDeleteParams,
+    type CreditCardRefundVoidParams as CreditCardRefundVoidParams,
   };
 
   export {
     CreditMemos as CreditMemos,
     type CreditMemo as CreditMemo,
     type CreditMemoDeleteResponse as CreditMemoDeleteResponse,
+    type CreditMemoVoidResponse as CreditMemoVoidResponse,
     type CreditMemosCursorPage as CreditMemosCursorPage,
     type CreditMemoCreateParams as CreditMemoCreateParams,
     type CreditMemoRetrieveParams as CreditMemoRetrieveParams,
     type CreditMemoUpdateParams as CreditMemoUpdateParams,
     type CreditMemoListParams as CreditMemoListParams,
     type CreditMemoDeleteParams as CreditMemoDeleteParams,
+    type CreditMemoVoidParams as CreditMemoVoidParams,
   };
 
   export {
@@ -974,11 +1018,13 @@ export declare namespace Qbd {
     type InventoryAdjustment as InventoryAdjustment,
     type InventoryAdjustmentListResponse as InventoryAdjustmentListResponse,
     type InventoryAdjustmentDeleteResponse as InventoryAdjustmentDeleteResponse,
+    type InventoryAdjustmentVoidResponse as InventoryAdjustmentVoidResponse,
     type InventoryAdjustmentCreateParams as InventoryAdjustmentCreateParams,
     type InventoryAdjustmentRetrieveParams as InventoryAdjustmentRetrieveParams,
     type InventoryAdjustmentUpdateParams as InventoryAdjustmentUpdateParams,
     type InventoryAdjustmentListParams as InventoryAdjustmentListParams,
     type InventoryAdjustmentDeleteParams as InventoryAdjustmentDeleteParams,
+    type InventoryAdjustmentVoidParams as InventoryAdjustmentVoidParams,
   };
 
   export {
@@ -1015,12 +1061,14 @@ export declare namespace Qbd {
     Invoices as Invoices,
     type Invoice as Invoice,
     type InvoiceDeleteResponse as InvoiceDeleteResponse,
+    type InvoiceVoidResponse as InvoiceVoidResponse,
     type InvoicesCursorPage as InvoicesCursorPage,
     type InvoiceCreateParams as InvoiceCreateParams,
     type InvoiceRetrieveParams as InvoiceRetrieveParams,
     type InvoiceUpdateParams as InvoiceUpdateParams,
     type InvoiceListParams as InvoiceListParams,
     type InvoiceDeleteParams as InvoiceDeleteParams,
+    type InvoiceVoidParams as InvoiceVoidParams,
   };
 
   export {
@@ -1037,12 +1085,14 @@ export declare namespace Qbd {
     ItemReceipts as ItemReceipts,
     type ItemReceipt as ItemReceipt,
     type ItemReceiptDeleteResponse as ItemReceiptDeleteResponse,
+    type ItemReceiptVoidResponse as ItemReceiptVoidResponse,
     type ItemReceiptsCursorPage as ItemReceiptsCursorPage,
     type ItemReceiptCreateParams as ItemReceiptCreateParams,
     type ItemReceiptRetrieveParams as ItemReceiptRetrieveParams,
     type ItemReceiptUpdateParams as ItemReceiptUpdateParams,
     type ItemReceiptListParams as ItemReceiptListParams,
     type ItemReceiptDeleteParams as ItemReceiptDeleteParams,
+    type ItemReceiptVoidParams as ItemReceiptVoidParams,
   };
 
   export {
@@ -1057,12 +1107,14 @@ export declare namespace Qbd {
     JournalEntries as JournalEntries,
     type JournalEntry as JournalEntry,
     type JournalEntryDeleteResponse as JournalEntryDeleteResponse,
+    type JournalEntryVoidResponse as JournalEntryVoidResponse,
     type JournalEntriesCursorPage as JournalEntriesCursorPage,
     type JournalEntryCreateParams as JournalEntryCreateParams,
     type JournalEntryRetrieveParams as JournalEntryRetrieveParams,
     type JournalEntryUpdateParams as JournalEntryUpdateParams,
     type JournalEntryListParams as JournalEntryListParams,
     type JournalEntryDeleteParams as JournalEntryDeleteParams,
+    type JournalEntryVoidParams as JournalEntryVoidParams,
   };
 
   export {
@@ -1165,12 +1217,14 @@ export declare namespace Qbd {
     SalesReceipts as SalesReceipts,
     type SalesReceipt as SalesReceipt,
     type SalesReceiptDeleteResponse as SalesReceiptDeleteResponse,
+    type SalesReceiptVoidResponse as SalesReceiptVoidResponse,
     type SalesReceiptsCursorPage as SalesReceiptsCursorPage,
     type SalesReceiptCreateParams as SalesReceiptCreateParams,
     type SalesReceiptRetrieveParams as SalesReceiptRetrieveParams,
     type SalesReceiptUpdateParams as SalesReceiptUpdateParams,
     type SalesReceiptListParams as SalesReceiptListParams,
     type SalesReceiptDeleteParams as SalesReceiptDeleteParams,
+    type SalesReceiptVoidParams as SalesReceiptVoidParams,
   };
 
   export {
@@ -1291,12 +1345,14 @@ export declare namespace Qbd {
     VendorCredits as VendorCredits,
     type VendorCredit as VendorCredit,
     type VendorCreditDeleteResponse as VendorCreditDeleteResponse,
+    type VendorCreditVoidResponse as VendorCreditVoidResponse,
     type VendorCreditsCursorPage as VendorCreditsCursorPage,
     type VendorCreditCreateParams as VendorCreditCreateParams,
     type VendorCreditRetrieveParams as VendorCreditRetrieveParams,
     type VendorCreditUpdateParams as VendorCreditUpdateParams,
     type VendorCreditListParams as VendorCreditListParams,
     type VendorCreditDeleteParams as VendorCreditDeleteParams,
+    type VendorCreditVoidParams as VendorCreditVoidParams,
   };
 
   export {
