@@ -136,6 +136,32 @@ export class JournalEntries extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids a journal entry by setting its amount to zero while keeping a record of it
+   * in QuickBooks. The void will fail if the journal entry is currently in use or
+   * has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response = await conductor.qbd.journalEntries.void(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  void(
+    id: string,
+    params: JournalEntryVoidParams,
+    options?: RequestOptions,
+  ): APIPromise<JournalEntryVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/journal-entries/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type JournalEntriesCursorPage = CursorPage<JournalEntry>;
@@ -640,6 +666,42 @@ export interface JournalEntryDeleteResponse {
   refNumber: string | null;
 }
 
+export interface JournalEntryVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided journal entry.
+   */
+  id: string;
+
+  /**
+   * The date and time when this journal entry was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_journal_entry"`.
+   */
+  objectType: 'qbd_journal_entry';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided journal entry.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this journal entry was last updated, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the journal entry was voided.
+   */
+  voided: boolean;
+}
+
 export interface JournalEntryCreateParams {
   /**
    * Body param: The date of this journal entry, in ISO 8601 format (YYYY-MM-DD).
@@ -1115,15 +1177,24 @@ export interface JournalEntryDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface JournalEntryVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace JournalEntries {
   export {
     type JournalEntry as JournalEntry,
     type JournalEntryDeleteResponse as JournalEntryDeleteResponse,
+    type JournalEntryVoidResponse as JournalEntryVoidResponse,
     type JournalEntriesCursorPage as JournalEntriesCursorPage,
     type JournalEntryCreateParams as JournalEntryCreateParams,
     type JournalEntryRetrieveParams as JournalEntryRetrieveParams,
     type JournalEntryUpdateParams as JournalEntryUpdateParams,
     type JournalEntryListParams as JournalEntryListParams,
     type JournalEntryDeleteParams as JournalEntryDeleteParams,
+    type JournalEntryVoidParams as JournalEntryVoidParams,
   };
 }

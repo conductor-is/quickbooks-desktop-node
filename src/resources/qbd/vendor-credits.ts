@@ -136,6 +136,32 @@ export class VendorCredits extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids a vendor credit by setting its amount to zero while keeping a record of it
+   * in QuickBooks. The void will fail if the vendor credit is currently in use or
+   * has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response = await conductor.qbd.vendorCredits.void(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  void(
+    id: string,
+    params: VendorCreditVoidParams,
+    options?: RequestOptions,
+  ): APIPromise<VendorCreditVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/vendor-credits/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type VendorCreditsCursorPage = CursorPage<VendorCredit>;
@@ -1619,6 +1645,42 @@ export interface VendorCreditDeleteResponse {
   refNumber: string | null;
 }
 
+export interface VendorCreditVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided vendor credit.
+   */
+  id: string;
+
+  /**
+   * The date and time when this vendor credit was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_vendor_credit"`.
+   */
+  objectType: 'qbd_vendor_credit';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided vendor credit.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this vendor credit was last updated, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the vendor credit was voided.
+   */
+  voided: boolean;
+}
+
 export interface VendorCreditCreateParams {
   /**
    * Body param: The date of this vendor credit, in ISO 8601 format (YYYY-MM-DD).
@@ -2815,15 +2877,24 @@ export interface VendorCreditDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface VendorCreditVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace VendorCredits {
   export {
     type VendorCredit as VendorCredit,
     type VendorCreditDeleteResponse as VendorCreditDeleteResponse,
+    type VendorCreditVoidResponse as VendorCreditVoidResponse,
     type VendorCreditsCursorPage as VendorCreditsCursorPage,
     type VendorCreditCreateParams as VendorCreditCreateParams,
     type VendorCreditRetrieveParams as VendorCreditRetrieveParams,
     type VendorCreditUpdateParams as VendorCreditUpdateParams,
     type VendorCreditListParams as VendorCreditListParams,
     type VendorCreditDeleteParams as VendorCreditDeleteParams,
+    type VendorCreditVoidParams as VendorCreditVoidParams,
   };
 }

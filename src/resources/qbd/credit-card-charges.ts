@@ -139,6 +139,32 @@ export class CreditCardCharges extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids a credit card charge by setting its amount to zero while keeping a record
+   * of it in QuickBooks. The void will fail if the credit card charge is currently
+   * in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response = await conductor.qbd.creditCardCharges.void(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  void(
+    id: string,
+    params: CreditCardChargeVoidParams,
+    options?: RequestOptions,
+  ): APIPromise<CreditCardChargeVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/credit-card-charges/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type CreditCardChargesCursorPage = CursorPage<CreditCardCharge>;
@@ -1523,6 +1549,43 @@ export interface CreditCardChargeDeleteResponse {
   refNumber: string | null;
 }
 
+export interface CreditCardChargeVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided credit card charge.
+   */
+  id: string;
+
+  /**
+   * The date and time when this credit card charge was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_credit_card_charge"`.
+   */
+  objectType: 'qbd_credit_card_charge';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided credit card
+   * charge.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this credit card charge was last updated, in ISO 8601
+   * format (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the
+   * local timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the credit card charge was voided.
+   */
+  voided: boolean;
+}
+
 export interface CreditCardChargeCreateParams {
   /**
    * Body param: The bank or credit card account to which money is owed for this
@@ -2710,15 +2773,24 @@ export interface CreditCardChargeDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface CreditCardChargeVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace CreditCardCharges {
   export {
     type CreditCardCharge as CreditCardCharge,
     type CreditCardChargeDeleteResponse as CreditCardChargeDeleteResponse,
+    type CreditCardChargeVoidResponse as CreditCardChargeVoidResponse,
     type CreditCardChargesCursorPage as CreditCardChargesCursorPage,
     type CreditCardChargeCreateParams as CreditCardChargeCreateParams,
     type CreditCardChargeRetrieveParams as CreditCardChargeRetrieveParams,
     type CreditCardChargeUpdateParams as CreditCardChargeUpdateParams,
     type CreditCardChargeListParams as CreditCardChargeListParams,
     type CreditCardChargeDeleteParams as CreditCardChargeDeleteParams,
+    type CreditCardChargeVoidParams as CreditCardChargeVoidParams,
   };
 }

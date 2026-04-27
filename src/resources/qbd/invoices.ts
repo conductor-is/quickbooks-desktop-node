@@ -124,6 +124,28 @@ export class Invoices extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids an invoice by setting its amount to zero while keeping a record of it in
+   * QuickBooks. The void will fail if the invoice is currently in use or has any
+   * linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response = await conductor.qbd.invoices.void(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  void(id: string, params: InvoiceVoidParams, options?: RequestOptions): APIPromise<InvoiceVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/invoices/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type InvoicesCursorPage = CursorPage<Invoice>;
@@ -1758,6 +1780,42 @@ export interface InvoiceDeleteResponse {
    * The case-sensitive user-defined reference number of the deleted invoice.
    */
   refNumber: string | null;
+}
+
+export interface InvoiceVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided invoice.
+   */
+  id: string;
+
+  /**
+   * The date and time when this invoice was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_invoice"`.
+   */
+  objectType: 'qbd_invoice';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided invoice.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this invoice was last updated, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the invoice was voided.
+   */
+  voided: boolean;
 }
 
 export interface InvoiceCreateParams {
@@ -3464,15 +3522,24 @@ export interface InvoiceDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface InvoiceVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace Invoices {
   export {
     type Invoice as Invoice,
     type InvoiceDeleteResponse as InvoiceDeleteResponse,
+    type InvoiceVoidResponse as InvoiceVoidResponse,
     type InvoicesCursorPage as InvoicesCursorPage,
     type InvoiceCreateParams as InvoiceCreateParams,
     type InvoiceRetrieveParams as InvoiceRetrieveParams,
     type InvoiceUpdateParams as InvoiceUpdateParams,
     type InvoiceListParams as InvoiceListParams,
     type InvoiceDeleteParams as InvoiceDeleteParams,
+    type InvoiceVoidParams as InvoiceVoidParams,
   };
 }

@@ -118,6 +118,32 @@ export class CreditCardRefunds extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Voids a credit card refund by setting its amount to zero while keeping a record
+   * of it in QuickBooks. The void will fail if the credit card refund is currently
+   * in use or has any linked transactions that are in use.
+   *
+   * @example
+   * ```ts
+   * const response = await conductor.qbd.creditCardRefunds.void(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  void(
+    id: string,
+    params: CreditCardRefundVoidParams,
+    options?: RequestOptions,
+  ): APIPromise<CreditCardRefundVoidResponse> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/credit-card-refunds/${id}/void`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type CreditCardRefundsCursorPage = CursorPage<CreditCardRefund>;
@@ -724,6 +750,43 @@ export interface CreditCardRefundDeleteResponse {
   refNumber: string | null;
 }
 
+export interface CreditCardRefundVoidResponse {
+  /**
+   * The QuickBooks-assigned unique identifier of the voided credit card refund.
+   */
+  id: string;
+
+  /**
+   * The date and time when this credit card refund was created, in ISO 8601 format
+   * (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the local
+   * timezone of the end-user's computer.
+   */
+  createdAt: string | null;
+
+  /**
+   * The type of object. This value is always `"qbd_credit_card_refund"`.
+   */
+  objectType: 'qbd_credit_card_refund';
+
+  /**
+   * The case-sensitive user-defined reference number of the voided credit card
+   * refund.
+   */
+  refNumber: string | null;
+
+  /**
+   * The date and time when this credit card refund was last updated, in ISO 8601
+   * format (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the
+   * local timezone of the end-user's computer.
+   */
+  updatedAt: string | null;
+
+  /**
+   * Indicates whether the credit card refund was voided.
+   */
+  voided: boolean;
+}
+
 export interface CreditCardRefundCreateParams {
   /**
    * Body param: The customer or customer-job associated with this credit card
@@ -1238,14 +1301,23 @@ export interface CreditCardRefundDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface CreditCardRefundVoidParams {
+  /**
+   * The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+}
+
 export declare namespace CreditCardRefunds {
   export {
     type CreditCardRefund as CreditCardRefund,
     type CreditCardRefundDeleteResponse as CreditCardRefundDeleteResponse,
+    type CreditCardRefundVoidResponse as CreditCardRefundVoidResponse,
     type CreditCardRefundsCursorPage as CreditCardRefundsCursorPage,
     type CreditCardRefundCreateParams as CreditCardRefundCreateParams,
     type CreditCardRefundRetrieveParams as CreditCardRefundRetrieveParams,
     type CreditCardRefundListParams as CreditCardRefundListParams,
     type CreditCardRefundDeleteParams as CreditCardRefundDeleteParams,
+    type CreditCardRefundVoidParams as CreditCardRefundVoidParams,
   };
 }

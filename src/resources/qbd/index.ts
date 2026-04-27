@@ -19,32 +19,38 @@ export {
   BillCheckPayments,
   type BillCheckPayment,
   type BillCheckPaymentDeleteResponse,
+  type BillCheckPaymentVoidResponse,
   type BillCheckPaymentCreateParams,
   type BillCheckPaymentRetrieveParams,
   type BillCheckPaymentUpdateParams,
   type BillCheckPaymentListParams,
   type BillCheckPaymentDeleteParams,
+  type BillCheckPaymentVoidParams,
   type BillCheckPaymentsCursorPage,
 } from './bill-check-payments';
 export {
   BillCreditCardPayments,
   type BillCreditCardPayment,
   type BillCreditCardPaymentDeleteResponse,
+  type BillCreditCardPaymentVoidResponse,
   type BillCreditCardPaymentCreateParams,
   type BillCreditCardPaymentRetrieveParams,
   type BillCreditCardPaymentListParams,
   type BillCreditCardPaymentDeleteParams,
+  type BillCreditCardPaymentVoidParams,
   type BillCreditCardPaymentsCursorPage,
 } from './bill-credit-card-payments';
 export {
   Bills,
   type Bill,
   type BillDeleteResponse,
+  type BillVoidResponse,
   type BillCreateParams,
   type BillRetrieveParams,
   type BillUpdateParams,
   type BillListParams,
   type BillDeleteParams,
+  type BillVoidParams,
   type BillsCursorPage,
 } from './bills';
 export {
@@ -62,11 +68,13 @@ export {
   Checks,
   type Check,
   type CheckDeleteResponse,
+  type CheckVoidResponse,
   type CheckCreateParams,
   type CheckRetrieveParams,
   type CheckUpdateParams,
   type CheckListParams,
   type CheckDeleteParams,
+  type CheckVoidParams,
   type ChecksCursorPage,
 } from './checks';
 export {
@@ -83,43 +91,51 @@ export {
   CreditCardCharges,
   type CreditCardCharge,
   type CreditCardChargeDeleteResponse,
+  type CreditCardChargeVoidResponse,
   type CreditCardChargeCreateParams,
   type CreditCardChargeRetrieveParams,
   type CreditCardChargeUpdateParams,
   type CreditCardChargeListParams,
   type CreditCardChargeDeleteParams,
+  type CreditCardChargeVoidParams,
   type CreditCardChargesCursorPage,
 } from './credit-card-charges';
 export {
   CreditCardCredits,
   type CreditCardCredit,
   type CreditCardCreditDeleteResponse,
+  type CreditCardCreditVoidResponse,
   type CreditCardCreditCreateParams,
   type CreditCardCreditRetrieveParams,
   type CreditCardCreditUpdateParams,
   type CreditCardCreditListParams,
   type CreditCardCreditDeleteParams,
+  type CreditCardCreditVoidParams,
   type CreditCardCreditsCursorPage,
 } from './credit-card-credits';
 export {
   CreditCardRefunds,
   type CreditCardRefund,
   type CreditCardRefundDeleteResponse,
+  type CreditCardRefundVoidResponse,
   type CreditCardRefundCreateParams,
   type CreditCardRefundRetrieveParams,
   type CreditCardRefundListParams,
   type CreditCardRefundDeleteParams,
+  type CreditCardRefundVoidParams,
   type CreditCardRefundsCursorPage,
 } from './credit-card-refunds';
 export {
   CreditMemos,
   type CreditMemo,
   type CreditMemoDeleteResponse,
+  type CreditMemoVoidResponse,
   type CreditMemoCreateParams,
   type CreditMemoRetrieveParams,
   type CreditMemoUpdateParams,
   type CreditMemoListParams,
   type CreditMemoDeleteParams,
+  type CreditMemoVoidParams,
   type CreditMemosCursorPage,
 } from './credit-memos';
 export {
@@ -202,11 +218,13 @@ export {
   type InventoryAdjustment,
   type InventoryAdjustmentListResponse,
   type InventoryAdjustmentDeleteResponse,
+  type InventoryAdjustmentVoidResponse,
   type InventoryAdjustmentCreateParams,
   type InventoryAdjustmentRetrieveParams,
   type InventoryAdjustmentUpdateParams,
   type InventoryAdjustmentListParams,
   type InventoryAdjustmentDeleteParams,
+  type InventoryAdjustmentVoidParams,
 } from './inventory-adjustments';
 export {
   InventoryAssemblyItems,
@@ -239,11 +257,13 @@ export {
   Invoices,
   type Invoice,
   type InvoiceDeleteResponse,
+  type InvoiceVoidResponse,
   type InvoiceCreateParams,
   type InvoiceRetrieveParams,
   type InvoiceUpdateParams,
   type InvoiceListParams,
   type InvoiceDeleteParams,
+  type InvoiceVoidParams,
   type InvoicesCursorPage,
 } from './invoices';
 export {
@@ -259,11 +279,13 @@ export {
   ItemReceipts,
   type ItemReceipt,
   type ItemReceiptDeleteResponse,
+  type ItemReceiptVoidResponse,
   type ItemReceiptCreateParams,
   type ItemReceiptRetrieveParams,
   type ItemReceiptUpdateParams,
   type ItemReceiptListParams,
   type ItemReceiptDeleteParams,
+  type ItemReceiptVoidParams,
   type ItemReceiptsCursorPage,
 } from './item-receipts';
 export {
@@ -277,11 +299,13 @@ export {
   JournalEntries,
   type JournalEntry,
   type JournalEntryDeleteResponse,
+  type JournalEntryVoidResponse,
   type JournalEntryCreateParams,
   type JournalEntryRetrieveParams,
   type JournalEntryUpdateParams,
   type JournalEntryListParams,
   type JournalEntryDeleteParams,
+  type JournalEntryVoidParams,
   type JournalEntriesCursorPage,
 } from './journal-entries';
 export {
@@ -375,11 +399,13 @@ export {
   SalesReceipts,
   type SalesReceipt,
   type SalesReceiptDeleteResponse,
+  type SalesReceiptVoidResponse,
   type SalesReceiptCreateParams,
   type SalesReceiptRetrieveParams,
   type SalesReceiptUpdateParams,
   type SalesReceiptListParams,
   type SalesReceiptDeleteParams,
+  type SalesReceiptVoidParams,
   type SalesReceiptsCursorPage,
 } from './sales-receipts';
 export {
@@ -483,11 +509,13 @@ export {
   VendorCredits,
   type VendorCredit,
   type VendorCreditDeleteResponse,
+  type VendorCreditVoidResponse,
   type VendorCreditCreateParams,
   type VendorCreditRetrieveParams,
   type VendorCreditUpdateParams,
   type VendorCreditListParams,
   type VendorCreditDeleteParams,
+  type VendorCreditVoidParams,
   type VendorCreditsCursorPage,
 } from './vendor-credits';
 export {

@@ -66,6 +66,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/bill-check-payments.ts">BillCheckPayment</a></code>
 - <code><a href="./src/resources/qbd/bill-check-payments.ts">BillCheckPaymentDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/bill-check-payments.ts">BillCheckPaymentVoidResponse</a></code>
 
 Methods:
 
@@ -74,6 +75,7 @@ Methods:
 - <code title="post /quickbooks-desktop/bill-check-payments/{id}">client.qbd.billCheckPayments.<a href="./src/resources/qbd/bill-check-payments.ts">update</a>(id, { ...params }) -> BillCheckPayment</code>
 - <code title="get /quickbooks-desktop/bill-check-payments">client.qbd.billCheckPayments.<a href="./src/resources/qbd/bill-check-payments.ts">list</a>({ ...params }) -> BillCheckPaymentsCursorPage</code>
 - <code title="delete /quickbooks-desktop/bill-check-payments/{id}">client.qbd.billCheckPayments.<a href="./src/resources/qbd/bill-check-payments.ts">delete</a>(id, { ...params }) -> BillCheckPaymentDeleteResponse</code>
+- <code title="post /quickbooks-desktop/bill-check-payments/{id}/void">client.qbd.billCheckPayments.<a href="./src/resources/qbd/bill-check-payments.ts">void</a>(id, { ...params }) -> BillCheckPaymentVoidResponse</code>
 
 ## BillCreditCardPayments
 
@@ -81,6 +83,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/bill-credit-card-payments.ts">BillCreditCardPayment</a></code>
 - <code><a href="./src/resources/qbd/bill-credit-card-payments.ts">BillCreditCardPaymentDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/bill-credit-card-payments.ts">BillCreditCardPaymentVoidResponse</a></code>
 
 Methods:
 
@@ -88,6 +91,7 @@ Methods:
 - <code title="get /quickbooks-desktop/bill-credit-card-payments/{id}">client.qbd.billCreditCardPayments.<a href="./src/resources/qbd/bill-credit-card-payments.ts">retrieve</a>(id, { ...params }) -> BillCreditCardPayment</code>
 - <code title="get /quickbooks-desktop/bill-credit-card-payments">client.qbd.billCreditCardPayments.<a href="./src/resources/qbd/bill-credit-card-payments.ts">list</a>({ ...params }) -> BillCreditCardPaymentsCursorPage</code>
 - <code title="delete /quickbooks-desktop/bill-credit-card-payments/{id}">client.qbd.billCreditCardPayments.<a href="./src/resources/qbd/bill-credit-card-payments.ts">delete</a>(id, { ...params }) -> BillCreditCardPaymentDeleteResponse</code>
+- <code title="post /quickbooks-desktop/bill-credit-card-payments/{id}/void">client.qbd.billCreditCardPayments.<a href="./src/resources/qbd/bill-credit-card-payments.ts">void</a>(id, { ...params }) -> BillCreditCardPaymentVoidResponse</code>
 
 ## Bills
 
@@ -95,6 +99,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/bills.ts">Bill</a></code>
 - <code><a href="./src/resources/qbd/bills.ts">BillDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/bills.ts">BillVoidResponse</a></code>
 
 Methods:
 
@@ -103,6 +108,7 @@ Methods:
 - <code title="post /quickbooks-desktop/bills/{id}">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">update</a>(id, { ...params }) -> Bill</code>
 - <code title="get /quickbooks-desktop/bills">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">list</a>({ ...params }) -> BillsCursorPage</code>
 - <code title="delete /quickbooks-desktop/bills/{id}">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">delete</a>(id, { ...params }) -> BillDeleteResponse</code>
+- <code title="post /quickbooks-desktop/bills/{id}/void">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">void</a>(id, { ...params }) -> BillVoidResponse</code>
 
 ## BuildAssemblies
 
@@ -125,6 +131,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/checks.ts">Check</a></code>
 - <code><a href="./src/resources/qbd/checks.ts">CheckDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/checks.ts">CheckVoidResponse</a></code>
 
 Methods:
 
@@ -133,6 +140,7 @@ Methods:
 - <code title="post /quickbooks-desktop/checks/{id}">client.qbd.checks.<a href="./src/resources/qbd/checks.ts">update</a>(id, { ...params }) -> Check</code>
 - <code title="get /quickbooks-desktop/checks">client.qbd.checks.<a href="./src/resources/qbd/checks.ts">list</a>({ ...params }) -> ChecksCursorPage</code>
 - <code title="delete /quickbooks-desktop/checks/{id}">client.qbd.checks.<a href="./src/resources/qbd/checks.ts">delete</a>(id, { ...params }) -> CheckDeleteResponse</code>
+- <code title="post /quickbooks-desktop/checks/{id}/void">client.qbd.checks.<a href="./src/resources/qbd/checks.ts">void</a>(id, { ...params }) -> CheckVoidResponse</code>
 
 ## Classes
 
@@ -164,6 +172,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/credit-card-charges.ts">CreditCardCharge</a></code>
 - <code><a href="./src/resources/qbd/credit-card-charges.ts">CreditCardChargeDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/credit-card-charges.ts">CreditCardChargeVoidResponse</a></code>
 
 Methods:
 
@@ -172,6 +181,7 @@ Methods:
 - <code title="post /quickbooks-desktop/credit-card-charges/{id}">client.qbd.creditCardCharges.<a href="./src/resources/qbd/credit-card-charges.ts">update</a>(id, { ...params }) -> CreditCardCharge</code>
 - <code title="get /quickbooks-desktop/credit-card-charges">client.qbd.creditCardCharges.<a href="./src/resources/qbd/credit-card-charges.ts">list</a>({ ...params }) -> CreditCardChargesCursorPage</code>
 - <code title="delete /quickbooks-desktop/credit-card-charges/{id}">client.qbd.creditCardCharges.<a href="./src/resources/qbd/credit-card-charges.ts">delete</a>(id, { ...params }) -> CreditCardChargeDeleteResponse</code>
+- <code title="post /quickbooks-desktop/credit-card-charges/{id}/void">client.qbd.creditCardCharges.<a href="./src/resources/qbd/credit-card-charges.ts">void</a>(id, { ...params }) -> CreditCardChargeVoidResponse</code>
 
 ## CreditCardCredits
 
@@ -179,6 +189,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/credit-card-credits.ts">CreditCardCredit</a></code>
 - <code><a href="./src/resources/qbd/credit-card-credits.ts">CreditCardCreditDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/credit-card-credits.ts">CreditCardCreditVoidResponse</a></code>
 
 Methods:
 
@@ -187,6 +198,7 @@ Methods:
 - <code title="post /quickbooks-desktop/credit-card-credits/{id}">client.qbd.creditCardCredits.<a href="./src/resources/qbd/credit-card-credits.ts">update</a>(id, { ...params }) -> CreditCardCredit</code>
 - <code title="get /quickbooks-desktop/credit-card-credits">client.qbd.creditCardCredits.<a href="./src/resources/qbd/credit-card-credits.ts">list</a>({ ...params }) -> CreditCardCreditsCursorPage</code>
 - <code title="delete /quickbooks-desktop/credit-card-credits/{id}">client.qbd.creditCardCredits.<a href="./src/resources/qbd/credit-card-credits.ts">delete</a>(id, { ...params }) -> CreditCardCreditDeleteResponse</code>
+- <code title="post /quickbooks-desktop/credit-card-credits/{id}/void">client.qbd.creditCardCredits.<a href="./src/resources/qbd/credit-card-credits.ts">void</a>(id, { ...params }) -> CreditCardCreditVoidResponse</code>
 
 ## CreditCardRefunds
 
@@ -194,6 +206,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/credit-card-refunds.ts">CreditCardRefund</a></code>
 - <code><a href="./src/resources/qbd/credit-card-refunds.ts">CreditCardRefundDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/credit-card-refunds.ts">CreditCardRefundVoidResponse</a></code>
 
 Methods:
 
@@ -201,6 +214,7 @@ Methods:
 - <code title="get /quickbooks-desktop/credit-card-refunds/{id}">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">retrieve</a>(id, { ...params }) -> CreditCardRefund</code>
 - <code title="get /quickbooks-desktop/credit-card-refunds">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">list</a>({ ...params }) -> CreditCardRefundsCursorPage</code>
 - <code title="delete /quickbooks-desktop/credit-card-refunds/{id}">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">delete</a>(id, { ...params }) -> CreditCardRefundDeleteResponse</code>
+- <code title="post /quickbooks-desktop/credit-card-refunds/{id}/void">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">void</a>(id, { ...params }) -> CreditCardRefundVoidResponse</code>
 
 ## CreditMemos
 
@@ -208,6 +222,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/credit-memos.ts">CreditMemo</a></code>
 - <code><a href="./src/resources/qbd/credit-memos.ts">CreditMemoDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/credit-memos.ts">CreditMemoVoidResponse</a></code>
 
 Methods:
 
@@ -216,6 +231,7 @@ Methods:
 - <code title="post /quickbooks-desktop/credit-memos/{id}">client.qbd.creditMemos.<a href="./src/resources/qbd/credit-memos.ts">update</a>(id, { ...params }) -> CreditMemo</code>
 - <code title="get /quickbooks-desktop/credit-memos">client.qbd.creditMemos.<a href="./src/resources/qbd/credit-memos.ts">list</a>({ ...params }) -> CreditMemosCursorPage</code>
 - <code title="delete /quickbooks-desktop/credit-memos/{id}">client.qbd.creditMemos.<a href="./src/resources/qbd/credit-memos.ts">delete</a>(id, { ...params }) -> CreditMemoDeleteResponse</code>
+- <code title="post /quickbooks-desktop/credit-memos/{id}/void">client.qbd.creditMemos.<a href="./src/resources/qbd/credit-memos.ts">void</a>(id, { ...params }) -> CreditMemoVoidResponse</code>
 
 ## Currencies
 
@@ -341,6 +357,7 @@ Types:
 - <code><a href="./src/resources/qbd/inventory-adjustments.ts">InventoryAdjustment</a></code>
 - <code><a href="./src/resources/qbd/inventory-adjustments.ts">InventoryAdjustmentListResponse</a></code>
 - <code><a href="./src/resources/qbd/inventory-adjustments.ts">InventoryAdjustmentDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/inventory-adjustments.ts">InventoryAdjustmentVoidResponse</a></code>
 
 Methods:
 
@@ -349,6 +366,7 @@ Methods:
 - <code title="post /quickbooks-desktop/inventory-adjustments/{id}">client.qbd.inventoryAdjustments.<a href="./src/resources/qbd/inventory-adjustments.ts">update</a>(id, { ...params }) -> InventoryAdjustment</code>
 - <code title="get /quickbooks-desktop/inventory-adjustments">client.qbd.inventoryAdjustments.<a href="./src/resources/qbd/inventory-adjustments.ts">list</a>({ ...params }) -> InventoryAdjustmentListResponse</code>
 - <code title="delete /quickbooks-desktop/inventory-adjustments/{id}">client.qbd.inventoryAdjustments.<a href="./src/resources/qbd/inventory-adjustments.ts">delete</a>(id, { ...params }) -> InventoryAdjustmentDeleteResponse</code>
+- <code title="post /quickbooks-desktop/inventory-adjustments/{id}/void">client.qbd.inventoryAdjustments.<a href="./src/resources/qbd/inventory-adjustments.ts">void</a>(id, { ...params }) -> InventoryAdjustmentVoidResponse</code>
 
 ## InventoryAssemblyItems
 
@@ -396,6 +414,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/invoices.ts">Invoice</a></code>
 - <code><a href="./src/resources/qbd/invoices.ts">InvoiceDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/invoices.ts">InvoiceVoidResponse</a></code>
 
 Methods:
 
@@ -404,6 +423,7 @@ Methods:
 - <code title="post /quickbooks-desktop/invoices/{id}">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">update</a>(id, { ...params }) -> Invoice</code>
 - <code title="get /quickbooks-desktop/invoices">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">list</a>({ ...params }) -> InvoicesCursorPage</code>
 - <code title="delete /quickbooks-desktop/invoices/{id}">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">delete</a>(id, { ...params }) -> InvoiceDeleteResponse</code>
+- <code title="post /quickbooks-desktop/invoices/{id}/void">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">void</a>(id, { ...params }) -> InvoiceVoidResponse</code>
 
 ## ItemGroups
 
@@ -424,6 +444,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/item-receipts.ts">ItemReceipt</a></code>
 - <code><a href="./src/resources/qbd/item-receipts.ts">ItemReceiptDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/item-receipts.ts">ItemReceiptVoidResponse</a></code>
 
 Methods:
 
@@ -432,6 +453,7 @@ Methods:
 - <code title="post /quickbooks-desktop/item-receipts/{id}">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">update</a>(id, { ...params }) -> ItemReceipt</code>
 - <code title="get /quickbooks-desktop/item-receipts">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">list</a>({ ...params }) -> ItemReceiptsCursorPage</code>
 - <code title="delete /quickbooks-desktop/item-receipts/{id}">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">delete</a>(id, { ...params }) -> ItemReceiptDeleteResponse</code>
+- <code title="post /quickbooks-desktop/item-receipts/{id}/void">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">void</a>(id, { ...params }) -> ItemReceiptVoidResponse</code>
 
 ## ItemSites
 
@@ -450,6 +472,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/journal-entries.ts">JournalEntry</a></code>
 - <code><a href="./src/resources/qbd/journal-entries.ts">JournalEntryDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/journal-entries.ts">JournalEntryVoidResponse</a></code>
 
 Methods:
 
@@ -458,6 +481,7 @@ Methods:
 - <code title="post /quickbooks-desktop/journal-entries/{id}">client.qbd.journalEntries.<a href="./src/resources/qbd/journal-entries.ts">update</a>(id, { ...params }) -> JournalEntry</code>
 - <code title="get /quickbooks-desktop/journal-entries">client.qbd.journalEntries.<a href="./src/resources/qbd/journal-entries.ts">list</a>({ ...params }) -> JournalEntriesCursorPage</code>
 - <code title="delete /quickbooks-desktop/journal-entries/{id}">client.qbd.journalEntries.<a href="./src/resources/qbd/journal-entries.ts">delete</a>(id, { ...params }) -> JournalEntryDeleteResponse</code>
+- <code title="post /quickbooks-desktop/journal-entries/{id}/void">client.qbd.journalEntries.<a href="./src/resources/qbd/journal-entries.ts">void</a>(id, { ...params }) -> JournalEntryVoidResponse</code>
 
 ## NonInventoryItems
 
@@ -599,6 +623,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/sales-receipts.ts">SalesReceipt</a></code>
 - <code><a href="./src/resources/qbd/sales-receipts.ts">SalesReceiptDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/sales-receipts.ts">SalesReceiptVoidResponse</a></code>
 
 Methods:
 
@@ -607,6 +632,7 @@ Methods:
 - <code title="post /quickbooks-desktop/sales-receipts/{id}">client.qbd.salesReceipts.<a href="./src/resources/qbd/sales-receipts.ts">update</a>(id, { ...params }) -> SalesReceipt</code>
 - <code title="get /quickbooks-desktop/sales-receipts">client.qbd.salesReceipts.<a href="./src/resources/qbd/sales-receipts.ts">list</a>({ ...params }) -> SalesReceiptsCursorPage</code>
 - <code title="delete /quickbooks-desktop/sales-receipts/{id}">client.qbd.salesReceipts.<a href="./src/resources/qbd/sales-receipts.ts">delete</a>(id, { ...params }) -> SalesReceiptDeleteResponse</code>
+- <code title="post /quickbooks-desktop/sales-receipts/{id}/void">client.qbd.salesReceipts.<a href="./src/resources/qbd/sales-receipts.ts">void</a>(id, { ...params }) -> SalesReceiptVoidResponse</code>
 
 ## SalesRepresentatives
 
@@ -770,6 +796,7 @@ Types:
 
 - <code><a href="./src/resources/qbd/vendor-credits.ts">VendorCredit</a></code>
 - <code><a href="./src/resources/qbd/vendor-credits.ts">VendorCreditDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/vendor-credits.ts">VendorCreditVoidResponse</a></code>
 
 Methods:
 
@@ -778,6 +805,7 @@ Methods:
 - <code title="post /quickbooks-desktop/vendor-credits/{id}">client.qbd.vendorCredits.<a href="./src/resources/qbd/vendor-credits.ts">update</a>(id, { ...params }) -> VendorCredit</code>
 - <code title="get /quickbooks-desktop/vendor-credits">client.qbd.vendorCredits.<a href="./src/resources/qbd/vendor-credits.ts">list</a>({ ...params }) -> VendorCreditsCursorPage</code>
 - <code title="delete /quickbooks-desktop/vendor-credits/{id}">client.qbd.vendorCredits.<a href="./src/resources/qbd/vendor-credits.ts">delete</a>(id, { ...params }) -> VendorCreditDeleteResponse</code>
+- <code title="post /quickbooks-desktop/vendor-credits/{id}/void">client.qbd.vendorCredits.<a href="./src/resources/qbd/vendor-credits.ts">void</a>(id, { ...params }) -> VendorCreditVoidResponse</code>
 
 ## Vendors
 
