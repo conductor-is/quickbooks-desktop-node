@@ -126,7 +126,7 @@ export class Invoices extends APIResource {
   }
 
   /**
-   * Voids an invoice by setting its amount to zero while preserving its record in
+   * Voids an invoice by setting its amount to zero while keeping a record of it in
    * QuickBooks. The void will fail if the invoice is currently in use or has any
    * linked transactions that are in use.
    *

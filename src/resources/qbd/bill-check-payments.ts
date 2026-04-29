@@ -149,8 +149,8 @@ export class BillCheckPayments extends APIResource {
   }
 
   /**
-   * Voids a bill check payment by setting its amount to zero while preserving its
-   * record in QuickBooks. The void will fail if the bill check payment is currently
+   * Voids a bill check payment by setting its amount to zero while keeping a record
+   * of it in QuickBooks. The void will fail if the bill check payment is currently
    * in use or has any linked transactions that are in use.
    *
    * @example

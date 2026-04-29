@@ -138,7 +138,7 @@ export class SalesReceipts extends APIResource {
   }
 
   /**
-   * Voids a sales receipt by setting its amount to zero while preserving its record
+   * Voids a sales receipt by setting its amount to zero while keeping a record of it
    * in QuickBooks. The void will fail if the sales receipt is currently in use or
    * has any linked transactions that are in use.
    *
