@@ -143,9 +143,8 @@ export class BillCreditCardPayments extends APIResource {
     params: BillCreditCardPaymentVoidParams,
     options?: RequestOptions,
   ): APIPromise<BillCreditCardPaymentVoidResponse> {
-    const { conductorEndUserId, ...body } = params;
+    const { conductorEndUserId } = params;
     return this._client.post(path`/quickbooks-desktop/bill-credit-card-payments/${id}/void`, {
-      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });

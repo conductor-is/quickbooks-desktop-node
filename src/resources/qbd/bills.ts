@@ -139,9 +139,8 @@ export class Bills extends APIResource {
    * ```
    */
   void(id: string, params: BillVoidParams, options?: RequestOptions): APIPromise<BillVoidResponse> {
-    const { conductorEndUserId, ...body } = params;
+    const { conductorEndUserId } = params;
     return this._client.post(path`/quickbooks-desktop/bills/${id}/void`, {
-      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });

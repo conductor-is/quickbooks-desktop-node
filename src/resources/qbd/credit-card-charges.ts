@@ -158,9 +158,8 @@ export class CreditCardCharges extends APIResource {
     params: CreditCardChargeVoidParams,
     options?: RequestOptions,
   ): APIPromise<CreditCardChargeVoidResponse> {
-    const { conductorEndUserId, ...body } = params;
+    const { conductorEndUserId } = params;
     return this._client.post(path`/quickbooks-desktop/credit-card-charges/${id}/void`, {
-      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });

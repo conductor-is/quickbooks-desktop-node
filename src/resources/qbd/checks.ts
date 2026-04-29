@@ -138,9 +138,8 @@ export class Checks extends APIResource {
    * ```
    */
   void(id: string, params: CheckVoidParams, options?: RequestOptions): APIPromise<CheckVoidResponse> {
-    const { conductorEndUserId, ...body } = params;
+    const { conductorEndUserId } = params;
     return this._client.post(path`/quickbooks-desktop/checks/${id}/void`, {
-      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });

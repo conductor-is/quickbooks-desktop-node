@@ -158,9 +158,8 @@ export class InventoryAdjustments extends APIResource {
     params: InventoryAdjustmentVoidParams,
     options?: RequestOptions,
   ): APIPromise<InventoryAdjustmentVoidResponse> {
-    const { conductorEndUserId, ...body } = params;
+    const { conductorEndUserId } = params;
     return this._client.post(path`/quickbooks-desktop/inventory-adjustments/${id}/void`, {
-      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
