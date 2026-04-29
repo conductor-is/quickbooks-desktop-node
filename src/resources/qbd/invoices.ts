@@ -139,9 +139,8 @@ export class Invoices extends APIResource {
    * ```
    */
   void(id: string, params: InvoiceVoidParams, options?: RequestOptions): APIPromise<InvoiceVoidResponse> {
-    const { conductorEndUserId, ...body } = params;
+    const { conductorEndUserId } = params;
     return this._client.post(path`/quickbooks-desktop/invoices/${id}/void`, {
-      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });

@@ -166,9 +166,8 @@ export class BillCheckPayments extends APIResource {
     params: BillCheckPaymentVoidParams,
     options?: RequestOptions,
   ): APIPromise<BillCheckPaymentVoidResponse> {
-    const { conductorEndUserId, ...body } = params;
+    const { conductorEndUserId } = params;
     return this._client.post(path`/quickbooks-desktop/bill-check-payments/${id}/void`, {
-      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });

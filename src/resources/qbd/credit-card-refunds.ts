@@ -137,9 +137,8 @@ export class CreditCardRefunds extends APIResource {
     params: CreditCardRefundVoidParams,
     options?: RequestOptions,
   ): APIPromise<CreditCardRefundVoidResponse> {
-    const { conductorEndUserId, ...body } = params;
+    const { conductorEndUserId } = params;
     return this._client.post(path`/quickbooks-desktop/credit-card-refunds/${id}/void`, {
-      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });

@@ -657,7 +657,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -841,7 +841,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1083,7 +1083,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/bills/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bills/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1522,7 +1522,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/checks/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/checks/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1927,7 +1927,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2158,7 +2158,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2345,7 +2345,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2607,7 +2607,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4129,7 +4129,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4931,7 +4931,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/invoices/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5323,7 +5323,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5620,7 +5620,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7459,7 +7459,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9251,7 +9251,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits/$ID/void \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $CONDUCTOR_SECRET_KEY\" \\\n    -d '{}'",
+          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
