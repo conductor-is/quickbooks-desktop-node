@@ -145,9 +145,8 @@ export class CreditMemos extends APIResource {
     params: CreditMemoVoidParams,
     options?: RequestOptions,
   ): APIPromise<CreditMemoVoidResponse> {
-    const { conductorEndUserId, ...body } = params;
+    const { conductorEndUserId } = params;
     return this._client.post(path`/quickbooks-desktop/credit-memos/${id}/void`, {
-      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });

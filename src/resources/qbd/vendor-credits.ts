@@ -155,9 +155,8 @@ export class VendorCredits extends APIResource {
     params: VendorCreditVoidParams,
     options?: RequestOptions,
   ): APIPromise<VendorCreditVoidResponse> {
-    const { conductorEndUserId, ...body } = params;
+    const { conductorEndUserId } = params;
     return this._client.post(path`/quickbooks-desktop/vendor-credits/${id}/void`, {
-      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });

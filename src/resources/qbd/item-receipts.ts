@@ -151,9 +151,8 @@ export class ItemReceipts extends APIResource {
     params: ItemReceiptVoidParams,
     options?: RequestOptions,
   ): APIPromise<ItemReceiptVoidResponse> {
-    const { conductorEndUserId, ...body } = params;
+    const { conductorEndUserId } = params;
     return this._client.post(path`/quickbooks-desktop/item-receipts/${id}/void`, {
-      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
