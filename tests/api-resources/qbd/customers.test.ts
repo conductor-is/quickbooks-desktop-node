@@ -286,6 +286,7 @@ describe('resource customers', () => {
       classIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      excludeAlternateShippingAddresses: true,
       fullNames: ['ABC Corporation:Website Redesign Project'],
       ids: ['80000001-1234567890'],
       limit: 150,
