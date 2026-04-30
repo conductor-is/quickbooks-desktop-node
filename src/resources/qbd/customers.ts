@@ -78,6 +78,9 @@ export class Customers extends APIResource {
    * Returns a list of customers. Use the `cursor` parameter to paginate through the
    * results.
    *
+   * **IMPORTANT**: If this request times out or is slow, set
+   * `excludeAlternateShippingAddresses=true` to significantly improve performance.
+   *
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
@@ -2422,6 +2425,14 @@ export interface CustomerListParams extends CursorPageParams {
    * Query param: Filter for customers in these currencies.
    */
   currencyIds?: Array<string>;
+
+  /**
+   * Query param: Excludes the `alternateShippingAddresses` array from each customer
+   * returned by the list request. Use this when you do not need alternate shipping
+   * addresses. This significantly improves performance for company files where some
+   * customers have many saved shipping addresses (sometimes dozens or hundreds).
+   */
+  excludeAlternateShippingAddresses?: boolean;
 
   /**
    * Query param: Filter for specific customers by their full-name(s),
