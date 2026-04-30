@@ -142,9 +142,11 @@ export interface Customer {
 
   /**
    * A list of additional shipping addresses for this customer. Useful when the
-   * customer has multiple shipping locations.
+   * customer has multiple shipping locations. If
+   * `excludeAlternateShippingAddresses=true` is set on a customer list request, this
+   * field is `null` because the addresses were not fetched.
    */
-  alternateShippingAddresses: Array<Customer.AlternateShippingAddress>;
+  alternateShippingAddresses: Array<Customer.AlternateShippingAddress> | null;
 
   /**
    * The current balance owed by this customer, excluding balances from any jobs
@@ -2427,10 +2429,12 @@ export interface CustomerListParams extends CursorPageParams {
   currencyIds?: Array<string>;
 
   /**
-   * Query param: Excludes the `alternateShippingAddresses` array from each customer
-   * returned by the list request. Use this when you do not need alternate shipping
-   * addresses. This significantly improves performance for company files where some
-   * customers have many saved shipping addresses (sometimes dozens or hundreds).
+   * Query param: Excludes alternate shipping addresses from each customer returned
+   * by the list request. When true, the response returns
+   * `alternateShippingAddresses` as `null` instead of fetching the address array.
+   * Use this when you do not need alternate shipping addresses. This significantly
+   * improves performance for company files where some customers have many saved
+   * shipping addresses (sometimes dozens or hundreds).
    */
   excludeAlternateShippingAddresses?: boolean;
 
