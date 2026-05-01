@@ -1,5 +1,29 @@
 # Changelog
 
+## 14.10.0 (2026-05-01)
+
+Full Changelog: [v14.9.0...v14.10.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.9.0...v14.10.0)
+
+### Features
+
+* **api:** api update ([8803c30](https://github.com/conductor-is/quickbooks-desktop-node/commit/8803c309a80879b19e484bb13312e5585613df2c))
+* **api:** api update ([d487a9f](https://github.com/conductor-is/quickbooks-desktop-node/commit/d487a9fc53b7324935fffa7ebe4564f967a496ea))
+* **api:** api update ([5fdd3fd](https://github.com/conductor-is/quickbooks-desktop-node/commit/5fdd3fd77d862d446e76dd01cae8f0619ce681eb))
+* **api:** api update ([e276fe6](https://github.com/conductor-is/quickbooks-desktop-node/commit/e276fe6911f07e48486efcefbd99c254de3bc9b2))
+* **api:** api update ([a8f4430](https://github.com/conductor-is/quickbooks-desktop-node/commit/a8f4430a6f4acb39081534b18386a6fb078cb65a))
+* **api:** api update ([c55a021](https://github.com/conductor-is/quickbooks-desktop-node/commit/c55a021affb7981978bd4a1453e1e6dcd9c64692))
+* **api:** api update ([7ce3705](https://github.com/conductor-is/quickbooks-desktop-node/commit/7ce3705194f280d775670b1ef715e75303eb24e6))
+* support setting headers via env ([86baed8](https://github.com/conductor-is/quickbooks-desktop-node/commit/86baed8bf202ec434a23fde15452988e74d2d4f6))
+
+
+### Chores
+
+* avoid formatting file that gets changed during releases ([68e0fbe](https://github.com/conductor-is/quickbooks-desktop-node/commit/68e0fbe74df2a8d2478b2ced75be546e3c96d427))
+* **format:** run eslint and prettier separately ([3fc3daf](https://github.com/conductor-is/quickbooks-desktop-node/commit/3fc3daf78d77b6a6edb91c019dc54d23b64627d2))
+* **internal:** codegen related update ([59d3dbb](https://github.com/conductor-is/quickbooks-desktop-node/commit/59d3dbbf5380226d611858f935aebd2dcd674be7))
+* **internal:** more robust bootstrap script ([6362171](https://github.com/conductor-is/quickbooks-desktop-node/commit/6362171962d328f11e94648d38665a22719ff2ad))
+* restructure docs search code ([d7b5642](https://github.com/conductor-is/quickbooks-desktop-node/commit/d7b564275ca13face3441385a30ee42b7be2d210))
+
 ## 14.9.0 (2026-04-20)
 
 Full Changelog: [v14.8.1...v14.9.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.8.1...v14.9.0)
