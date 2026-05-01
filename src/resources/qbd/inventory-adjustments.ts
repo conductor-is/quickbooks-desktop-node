@@ -63,6 +63,10 @@ export class InventoryAdjustments extends APIResource {
   /**
    * Updates an existing inventory adjustment.
    *
+   * **NOTE:** If you include `lines`, QuickBooks Desktop replaces that line list
+   * with the array you send, so include unchanged lines you want to keep and use
+   * `id: "-1"` for new lines.
+   *
    * @example
    * ```ts
    * const inventoryAdjustment =
@@ -89,9 +93,11 @@ export class InventoryAdjustments extends APIResource {
   }
 
   /**
-   * Returns a list of inventory adjustments. NOTE: QuickBooks Desktop does not
-   * support pagination for inventory adjustments; hence, there is no `cursor`
-   * parameter. Users typically have few inventory adjustments.
+   * Returns a list of inventory adjustments.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for inventory
+   * adjustments; hence, there is no `cursor` parameter. Users typically have few
+   * inventory adjustments.
    *
    * @example
    * ```ts

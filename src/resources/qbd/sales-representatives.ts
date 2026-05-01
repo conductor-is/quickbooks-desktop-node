@@ -88,9 +88,11 @@ export class SalesRepresentatives extends APIResource {
   }
 
   /**
-   * Returns a list of sales representatives. NOTE: QuickBooks Desktop does not
-   * support pagination for sales representatives; hence, there is no `cursor`
-   * parameter. Users typically have few sales representatives.
+   * Returns a list of sales representatives.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for sales
+   * representatives; hence, there is no `cursor` parameter. Users typically have few
+   * sales representatives.
    *
    * @example
    * ```ts

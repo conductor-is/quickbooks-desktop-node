@@ -38,7 +38,8 @@ export class Transactions extends APIResource {
    * dates, account, and reference numbers. For more details specific to that
    * transaction type, make a subsequent call to the relevant transaction-specific
    * endpoint (such as invoices, bills, etc.). NOTE: This endpoint does not support
-   * time tracking activities.
+   * time tracking activities. Use the `cursor` parameter to paginate through the
+   * results.
    *
    * @example
    * ```ts

@@ -57,9 +57,10 @@ export class StandardTerms extends APIResource {
   }
 
   /**
-   * Returns a list of standard terms. NOTE: QuickBooks Desktop does not support
-   * pagination for standard terms; hence, there is no `cursor` parameter. Users
-   * typically have few standard terms.
+   * Returns a list of standard terms.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for standard terms;
+   * hence, there is no `cursor` parameter. Users typically have few standard terms.
    *
    * @example
    * ```ts

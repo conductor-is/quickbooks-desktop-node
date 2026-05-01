@@ -79,9 +79,10 @@ export class Accounts extends APIResource {
   }
 
   /**
-   * Returns a list of accounts. NOTE: QuickBooks Desktop does not support pagination
-   * for accounts; hence, there is no `cursor` parameter. Users typically have few
-   * accounts.
+   * Returns a list of accounts.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for accounts; hence,
+   * there is no `cursor` parameter. Users typically have few accounts.
    *
    * @example
    * ```ts

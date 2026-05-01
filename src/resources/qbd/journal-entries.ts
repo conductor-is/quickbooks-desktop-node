@@ -65,6 +65,10 @@ export class JournalEntries extends APIResource {
    * include the related customer or vendor on any A/R or A/P line you submit in the
    * update body.
    *
+   * **NOTE:** If you include `lines`, QuickBooks Desktop replaces that line list
+   * with the array you send, so include unchanged lines you want to keep and use
+   * `id: "-1"` for new lines.
+   *
    * @example
    * ```ts
    * const journalEntry =

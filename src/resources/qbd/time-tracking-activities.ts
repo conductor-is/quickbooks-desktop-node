@@ -399,12 +399,6 @@ export interface TimeTrackingActivityDeleteResponse {
    * The type of object. This value is always `"qbd_time_tracking_activity"`.
    */
   objectType: 'qbd_time_tracking_activity';
-
-  /**
-   * The case-sensitive user-defined reference number of the deleted time tracking
-   * activity.
-   */
-  refNumber: string | null;
 }
 
 export interface TimeTrackingActivityCreateParams {

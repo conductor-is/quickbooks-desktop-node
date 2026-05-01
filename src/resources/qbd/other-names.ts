@@ -74,9 +74,10 @@ export class OtherNames extends APIResource {
   }
 
   /**
-   * Returns a list of other-names. NOTE: QuickBooks Desktop does not support
-   * pagination for other-names; hence, there is no `cursor` parameter. Users
-   * typically have few other-names.
+   * Returns a list of other-names.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for other-names; hence,
+   * there is no `cursor` parameter. Users typically have few other-names.
    *
    * @example
    * ```ts

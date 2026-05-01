@@ -308,6 +308,23 @@ Methods:
 
 - <code title="get /quickbooks-desktop/deleted-transactions">client.qbd.deletedTransactions.<a href="./src/resources/qbd/deleted-transactions.ts">list</a>({ ...params }) -> DeletedTransactionListResponse</code>
 
+## Deposits
+
+Types:
+
+- <code><a href="./src/resources/qbd/deposits.ts">Deposit</a></code>
+- <code><a href="./src/resources/qbd/deposits.ts">DepositDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/deposits.ts">DepositVoidResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/deposits">client.qbd.deposits.<a href="./src/resources/qbd/deposits.ts">create</a>({ ...params }) -> Deposit</code>
+- <code title="get /quickbooks-desktop/deposits/{id}">client.qbd.deposits.<a href="./src/resources/qbd/deposits.ts">retrieve</a>(id, { ...params }) -> Deposit</code>
+- <code title="post /quickbooks-desktop/deposits/{id}">client.qbd.deposits.<a href="./src/resources/qbd/deposits.ts">update</a>(id, { ...params }) -> Deposit</code>
+- <code title="get /quickbooks-desktop/deposits">client.qbd.deposits.<a href="./src/resources/qbd/deposits.ts">list</a>({ ...params }) -> DepositsCursorPage</code>
+- <code title="delete /quickbooks-desktop/deposits/{id}">client.qbd.deposits.<a href="./src/resources/qbd/deposits.ts">delete</a>(id, { ...params }) -> DepositDeleteResponse</code>
+- <code title="post /quickbooks-desktop/deposits/{id}/void">client.qbd.deposits.<a href="./src/resources/qbd/deposits.ts">void</a>(id, { ...params }) -> DepositVoidResponse</code>
+
 ## DiscountItems
 
 Types:
@@ -535,6 +552,17 @@ Methods:
 - <code title="post /quickbooks-desktop/payment-methods">client.qbd.paymentMethods.<a href="./src/resources/qbd/payment-methods.ts">create</a>({ ...params }) -> PaymentMethod</code>
 - <code title="get /quickbooks-desktop/payment-methods/{id}">client.qbd.paymentMethods.<a href="./src/resources/qbd/payment-methods.ts">retrieve</a>(id, { ...params }) -> PaymentMethod</code>
 - <code title="get /quickbooks-desktop/payment-methods">client.qbd.paymentMethods.<a href="./src/resources/qbd/payment-methods.ts">list</a>({ ...params }) -> PaymentMethodListResponse</code>
+
+## PaymentsToDeposit
+
+Types:
+
+- <code><a href="./src/resources/qbd/payments-to-deposit.ts">PaymentToDeposit</a></code>
+- <code><a href="./src/resources/qbd/payments-to-deposit.ts">PaymentsToDepositListResponse</a></code>
+
+Methods:
+
+- <code title="get /quickbooks-desktop/payments-to-deposit">client.qbd.paymentsToDeposit.<a href="./src/resources/qbd/payments-to-deposit.ts">list</a>({ ...params }) -> PaymentsToDepositListResponse</code>
 
 ## PayrollWageItems
 
