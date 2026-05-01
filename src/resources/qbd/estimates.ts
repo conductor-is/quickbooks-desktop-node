@@ -57,6 +57,10 @@ export class Estimates extends APIResource {
   /**
    * Updates an existing estimate.
    *
+   * **NOTE:** If you include `lines` or `lineGroups`, QuickBooks Desktop replaces
+   * each included line list with the array you send, so include unchanged lines you
+   * want to keep and use `id: "-1"` for new lines.
+   *
    * @example
    * ```ts
    * const estimate = await conductor.qbd.estimates.update(

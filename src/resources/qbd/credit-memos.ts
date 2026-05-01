@@ -57,6 +57,10 @@ export class CreditMemos extends APIResource {
   /**
    * Updates an existing credit memo.
    *
+   * **NOTE:** If you include `lines` or `lineGroups`, QuickBooks Desktop replaces
+   * each included line list with the array you send, so include unchanged lines you
+   * want to keep and use `id: "-1"` for new lines.
+   *
    * @example
    * ```ts
    * const creditMemo = await conductor.qbd.creditMemos.update(

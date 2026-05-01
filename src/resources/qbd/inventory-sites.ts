@@ -82,9 +82,10 @@ export class InventorySites extends APIResource {
   }
 
   /**
-   * Returns a list of inventory sites. NOTE: QuickBooks Desktop does not support
-   * pagination for inventory sites; hence, there is no `cursor` parameter. Users
-   * typically have few inventory sites.
+   * Returns a list of inventory sites.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for inventory sites;
+   * hence, there is no `cursor` parameter. Users typically have few inventory sites.
    *
    * @example
    * ```ts

@@ -58,9 +58,11 @@ export class ShippingMethods extends APIResource {
   }
 
   /**
-   * Returns a list of shipping methods. NOTE: QuickBooks Desktop does not support
-   * pagination for shipping methods; hence, there is no `cursor` parameter. Users
-   * typically have few shipping methods.
+   * Returns a list of shipping methods.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for shipping methods;
+   * hence, there is no `cursor` parameter. Users typically have few shipping
+   * methods.
    *
    * @example
    * ```ts

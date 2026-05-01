@@ -74,9 +74,10 @@ export class Classes extends APIResource {
   }
 
   /**
-   * Returns a list of classes. NOTE: QuickBooks Desktop does not support pagination
-   * for classes; hence, there is no `cursor` parameter. Users typically have few
-   * classes.
+   * Returns a list of classes.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for classes; hence,
+   * there is no `cursor` parameter. Users typically have few classes.
    *
    * @example
    * ```ts

@@ -77,9 +77,10 @@ export class Employees extends APIResource {
   }
 
   /**
-   * Returns a list of employees. NOTE: QuickBooks Desktop does not support
-   * pagination for employees; hence, there is no `cursor` parameter. Users typically
-   * have few employees.
+   * Returns a list of employees.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for employees; hence,
+   * there is no `cursor` parameter. Users typically have few employees.
    *
    * @example
    * ```ts

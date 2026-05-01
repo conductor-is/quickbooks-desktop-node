@@ -80,6 +80,7 @@ export class Customers extends APIResource {
    *
    * **IMPORTANT**: If this request times out or is slow, set
    * `excludeAlternateShippingAddresses=true` to significantly improve performance.
+   * Use the `cursor` parameter to paginate through the results.
    *
    * @example
    * ```ts

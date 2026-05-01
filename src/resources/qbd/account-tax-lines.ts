@@ -7,9 +7,11 @@ import { RequestOptions } from '../../internal/request-options';
 
 export class AccountTaxLines extends APIResource {
   /**
-   * Returns a list of account tax lines. NOTE: QuickBooks Desktop does not support
-   * pagination for account tax lines; hence, there is no `cursor` parameter. Users
-   * typically have few account tax lines.
+   * Returns a list of account tax lines.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for account tax lines;
+   * hence, there is no `cursor` parameter. Users typically have few account tax
+   * lines.
    *
    * @example
    * ```ts

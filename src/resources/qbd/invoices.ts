@@ -58,6 +58,10 @@ export class Invoices extends APIResource {
   /**
    * Updates an existing invoice.
    *
+   * **NOTE:** If you include `lines` or `lineGroups`, QuickBooks Desktop replaces
+   * each included line list with the array you send, so include unchanged lines you
+   * want to keep and use `id: "-1"` for new lines.
+   *
    * @example
    * ```ts
    * const invoice = await conductor.qbd.invoices.update(

@@ -62,6 +62,10 @@ export class Bills extends APIResource {
    * you must continue to supply the vendor, accounts payable account, and at least
    * one expense or item line when you resubmit the bill.
    *
+   * **NOTE:** If you include `expenseLines`, `itemLines`, or `itemGroupLines`,
+   * QuickBooks Desktop replaces each included line list with the array you send, so
+   * include unchanged lines you want to keep and use `id: "-1"` for new lines.
+   *
    * @example
    * ```ts
    * const bill = await conductor.qbd.bills.update(

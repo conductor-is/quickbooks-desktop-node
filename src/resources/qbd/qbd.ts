@@ -204,6 +204,20 @@ import {
   DeletedTransactionListResponse,
   DeletedTransactions,
 } from './deleted-transactions';
+import * as DepositsAPI from './deposits';
+import {
+  Deposit,
+  DepositCreateParams,
+  DepositDeleteParams,
+  DepositDeleteResponse,
+  DepositListParams,
+  DepositRetrieveParams,
+  DepositUpdateParams,
+  DepositVoidParams,
+  DepositVoidResponse,
+  Deposits,
+  DepositsCursorPage,
+} from './deposits';
 import * as DiscountItemsAPI from './discount-items';
 import {
   DiscountItem,
@@ -379,6 +393,13 @@ import {
   PaymentMethodRetrieveParams,
   PaymentMethods,
 } from './payment-methods';
+import * as PaymentsToDepositAPI from './payments-to-deposit';
+import {
+  PaymentToDeposit,
+  PaymentsToDeposit,
+  PaymentsToDepositListParams,
+  PaymentsToDepositListResponse,
+} from './payments-to-deposit';
 import * as PayrollWageItemsAPI from './payroll-wage-items';
 import {
   PayrollWageItem,
@@ -619,6 +640,7 @@ export class Qbd extends APIResource {
   );
   deletedTransactions: DeletedTransactionsAPI.DeletedTransactions =
     new DeletedTransactionsAPI.DeletedTransactions(this._client);
+  deposits: DepositsAPI.Deposits = new DepositsAPI.Deposits(this._client);
   discountItems: DiscountItemsAPI.DiscountItems = new DiscountItemsAPI.DiscountItems(this._client);
   employees: EmployeesAPI.Employees = new EmployeesAPI.Employees(this._client);
   estimates: EstimatesAPI.Estimates = new EstimatesAPI.Estimates(this._client);
@@ -641,6 +663,9 @@ export class Qbd extends APIResource {
   );
   otherNames: OtherNamesAPI.OtherNames = new OtherNamesAPI.OtherNames(this._client);
   paymentMethods: PaymentMethodsAPI.PaymentMethods = new PaymentMethodsAPI.PaymentMethods(this._client);
+  paymentsToDeposit: PaymentsToDepositAPI.PaymentsToDeposit = new PaymentsToDepositAPI.PaymentsToDeposit(
+    this._client,
+  );
   payrollWageItems: PayrollWageItemsAPI.PayrollWageItems = new PayrollWageItemsAPI.PayrollWageItems(
     this._client,
   );
@@ -731,6 +756,7 @@ Qbd.Customers = Customers;
 Qbd.DateDrivenTerms = DateDrivenTerms;
 Qbd.DeletedListObjects = DeletedListObjects;
 Qbd.DeletedTransactions = DeletedTransactions;
+Qbd.Deposits = Deposits;
 Qbd.DiscountItems = DiscountItems;
 Qbd.Employees = Employees;
 Qbd.Estimates = Estimates;
@@ -747,6 +773,7 @@ Qbd.NonInventoryItems = NonInventoryItems;
 Qbd.OtherChargeItems = OtherChargeItems;
 Qbd.OtherNames = OtherNames;
 Qbd.PaymentMethods = PaymentMethods;
+Qbd.PaymentsToDeposit = PaymentsToDeposit;
 Qbd.PayrollWageItems = PayrollWageItems;
 Qbd.PriceLevels = PriceLevels;
 Qbd.PurchaseOrders = PurchaseOrders;
@@ -982,6 +1009,20 @@ export declare namespace Qbd {
   };
 
   export {
+    Deposits as Deposits,
+    type Deposit as Deposit,
+    type DepositDeleteResponse as DepositDeleteResponse,
+    type DepositVoidResponse as DepositVoidResponse,
+    type DepositsCursorPage as DepositsCursorPage,
+    type DepositCreateParams as DepositCreateParams,
+    type DepositRetrieveParams as DepositRetrieveParams,
+    type DepositUpdateParams as DepositUpdateParams,
+    type DepositListParams as DepositListParams,
+    type DepositDeleteParams as DepositDeleteParams,
+    type DepositVoidParams as DepositVoidParams,
+  };
+
+  export {
     DiscountItems as DiscountItems,
     type DiscountItem as DiscountItem,
     type DiscountItemsCursorPage as DiscountItemsCursorPage,
@@ -1154,6 +1195,13 @@ export declare namespace Qbd {
     type PaymentMethodCreateParams as PaymentMethodCreateParams,
     type PaymentMethodRetrieveParams as PaymentMethodRetrieveParams,
     type PaymentMethodListParams as PaymentMethodListParams,
+  };
+
+  export {
+    PaymentsToDeposit as PaymentsToDeposit,
+    type PaymentToDeposit as PaymentToDeposit,
+    type PaymentsToDepositListResponse as PaymentsToDepositListResponse,
+    type PaymentsToDepositListParams as PaymentsToDepositListParams,
   };
 
   export {

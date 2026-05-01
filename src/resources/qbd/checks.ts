@@ -61,6 +61,10 @@ export class Checks extends APIResource {
    * memo, transaction date, or expense and item lines. This request cannot modify
    * checks created through the bill-payment workflow.
    *
+   * **NOTE:** If you include `expenseLines`, `itemLines`, or `itemGroupLines`,
+   * QuickBooks Desktop replaces each included line list with the array you send, so
+   * include unchanged lines you want to keep and use `id: "-1"` for new lines.
+   *
    * @example
    * ```ts
    * const check = await conductor.qbd.checks.update(

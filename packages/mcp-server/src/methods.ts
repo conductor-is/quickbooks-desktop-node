@@ -515,6 +515,42 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/deleted-transactions',
   },
   {
+    clientCallName: 'conductor.qbd.deposits.create',
+    fullyQualifiedName: 'qbd.deposits.create',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/deposits',
+  },
+  {
+    clientCallName: 'conductor.qbd.deposits.retrieve',
+    fullyQualifiedName: 'qbd.deposits.retrieve',
+    httpMethod: 'get',
+    httpPath: '/quickbooks-desktop/deposits/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.deposits.update',
+    fullyQualifiedName: 'qbd.deposits.update',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/deposits/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.deposits.list',
+    fullyQualifiedName: 'qbd.deposits.list',
+    httpMethod: 'get',
+    httpPath: '/quickbooks-desktop/deposits',
+  },
+  {
+    clientCallName: 'conductor.qbd.deposits.delete',
+    fullyQualifiedName: 'qbd.deposits.delete',
+    httpMethod: 'delete',
+    httpPath: '/quickbooks-desktop/deposits/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.deposits.void',
+    fullyQualifiedName: 'qbd.deposits.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/deposits/{id}/void',
+  },
+  {
     clientCallName: 'conductor.qbd.discountItems.create',
     fullyQualifiedName: 'qbd.discountItems.create',
     httpMethod: 'post',
@@ -933,6 +969,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.paymentMethods.list',
     httpMethod: 'get',
     httpPath: '/quickbooks-desktop/payment-methods',
+  },
+  {
+    clientCallName: 'conductor.qbd.paymentsToDeposit.list',
+    fullyQualifiedName: 'qbd.paymentsToDeposit.list',
+    httpMethod: 'get',
+    httpPath: '/quickbooks-desktop/payments-to-deposit',
   },
   {
     clientCallName: 'conductor.qbd.payrollWageItems.create',

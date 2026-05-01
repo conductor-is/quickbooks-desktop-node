@@ -13,6 +13,10 @@ export class DeletedTransactions extends APIResource {
    * list-objects (e.g., customer, vendor, employee), see the deleted-list-objects
    * endpoint.
    *
+   * **NOTE:** QuickBooks Desktop does not support pagination for deleted
+   * transactions; hence, there is no `cursor` parameter. Users typically have few
+   * deleted transactions.
+   *
    * @example
    * ```ts
    * const deletedTransactions =

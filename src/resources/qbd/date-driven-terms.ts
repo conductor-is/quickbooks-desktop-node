@@ -62,9 +62,11 @@ export class DateDrivenTerms extends APIResource {
   }
 
   /**
-   * Returns a list of date-driven terms. NOTE: QuickBooks Desktop does not support
-   * pagination for date-driven terms; hence, there is no `cursor` parameter. Users
-   * typically have few date-driven terms.
+   * Returns a list of date-driven terms.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for date-driven terms;
+   * hence, there is no `cursor` parameter. Users typically have few date-driven
+   * terms.
    *
    * @example
    * ```ts
