@@ -79,9 +79,10 @@ export class Currencies extends APIResource {
   }
 
   /**
-   * Returns a list of currencies. NOTE: QuickBooks Desktop does not support
-   * pagination for currencies; hence, there is no `cursor` parameter. Users
-   * typically have few currencies.
+   * Returns a list of currencies.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for currencies; hence,
+   * there is no `cursor` parameter. Users typically have few currencies.
    *
    * @example
    * ```ts

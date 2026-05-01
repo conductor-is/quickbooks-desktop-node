@@ -12,6 +12,10 @@ export class DeletedListObjects extends APIResource {
    * ordered by actual delete time (ascending). For deleted transactions (e.g.,
    * invoices, bills, estimates), see the deleted-transactions endpoint.
    *
+   * **NOTE:** QuickBooks Desktop does not support pagination for deleted
+   * list-objects; hence, there is no `cursor` parameter. Users typically have few
+   * deleted list-objects.
+   *
    * @example
    * ```ts
    * const deletedListObjects =

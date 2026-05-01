@@ -73,6 +73,10 @@ export class UnitOfMeasureSets extends APIResource {
    * NOTE: The QuickBooks company file must have unit-of-measure enabled (either a
    * single unit per item or multiple units per item).
    *
+   * **NOTE:** QuickBooks Desktop does not support pagination for unit-of-measure
+   * sets; hence, there is no `cursor` parameter. Users typically have few
+   * unit-of-measure sets.
+   *
    * @example
    * ```ts
    * const unitOfMeasureSets =

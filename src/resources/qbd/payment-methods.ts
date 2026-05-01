@@ -58,9 +58,10 @@ export class PaymentMethods extends APIResource {
   }
 
   /**
-   * Returns a list of payment methods. NOTE: QuickBooks Desktop does not support
-   * pagination for payment methods; hence, there is no `cursor` parameter. Users
-   * typically have few payment methods.
+   * Returns a list of payment methods.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for payment methods;
+   * hence, there is no `cursor` parameter. Users typically have few payment methods.
    *
    * @example
    * ```ts

@@ -57,9 +57,10 @@ export class CustomerTypes extends APIResource {
   }
 
   /**
-   * Returns a list of customer types. NOTE: QuickBooks Desktop does not support
-   * pagination for customer types; hence, there is no `cursor` parameter. Users
-   * typically have few customer types.
+   * Returns a list of customer types.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for customer types;
+   * hence, there is no `cursor` parameter. Users typically have few customer types.
    *
    * @example
    * ```ts

@@ -1,0 +1,191 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import Conductor from 'conductor-node';
+
+const conductor = new Conductor({
+  apiKey: 'sk_conductor_...',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
+
+describe('resource deposits', () => {
+  test('create: only required params', async () => {
+    const responsePromise = conductor.qbd.deposits.create({
+      depositToAccountId: '80000001-1234567890',
+      transactionDate: '2024-10-01',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('create: required and optional params', async () => {
+    const response = await conductor.qbd.deposits.create({
+      depositToAccountId: '80000001-1234567890',
+      transactionDate: '2024-10-01',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+      cashBack: {
+        accountId: '80000001-1234567890',
+        amount: '1000.00',
+        memo: 'Cash back from deposit',
+      },
+      currencyId: '80000001-1234567890',
+      exchangeRate: 1.2345,
+      externalId: '12345678-abcd-1234-abcd-1234567890ab',
+      lines: [
+        {
+          accountId: '80000001-1234567890',
+          amount: '1000.00',
+          checkNumber: '1234567890',
+          classId: '80000001-1234567890',
+          entityId: '80000001-1234567890',
+          memo: 'Payment batched into settlement deposit',
+          overrideCheckNumber: '1234567890',
+          overrideClassId: '80000001-1234567890',
+          overrideMemo: 'Batch settlement deposit',
+          paymentMethodId: '80000001-1234567890',
+          paymentTransactionId: '123ABC-1234567890',
+          paymentTransactionLineId: '456DEF-1234567890',
+        },
+      ],
+      memo: 'Batch settlement deposit',
+    });
+  });
+
+  test('retrieve: only required params', async () => {
+    const responsePromise = conductor.qbd.deposits.retrieve('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('retrieve: required and optional params', async () => {
+    const response = await conductor.qbd.deposits.retrieve('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+  });
+
+  test('update: only required params', async () => {
+    const responsePromise = conductor.qbd.deposits.update('123ABC-1234567890', {
+      revisionNumber: '1721172183',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('update: required and optional params', async () => {
+    const response = await conductor.qbd.deposits.update('123ABC-1234567890', {
+      revisionNumber: '1721172183',
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+      cashBack: {
+        accountId: '80000001-1234567890',
+        amount: '1000.00',
+        memo: 'Cash back from deposit',
+      },
+      currencyId: '80000001-1234567890',
+      depositToAccountId: '80000001-1234567890',
+      exchangeRate: 1.2345,
+      lines: [
+        {
+          id: '456DEF-1234567890',
+          accountId: '80000001-1234567890',
+          amount: '1000.00',
+          checkNumber: '1234567890',
+          classId: '80000001-1234567890',
+          entityId: '80000001-1234567890',
+          memo: 'Payment batched into settlement deposit',
+          overrideCheckNumber: '1234567890',
+          overrideClassId: '80000001-1234567890',
+          overrideMemo: 'Batch settlement deposit',
+          paymentMethodId: '80000001-1234567890',
+          paymentTransactionId: '123ABC-1234567890',
+          paymentTransactionLineId: '456DEF-1234567890',
+        },
+      ],
+      memo: 'Batch settlement deposit',
+      transactionDate: '2024-10-01',
+    });
+  });
+
+  test('list: only required params', async () => {
+    const responsePromise = conductor.qbd.deposits.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await conductor.qbd.deposits.list({
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+      accountIds: ['80000001-1234567890'],
+      currencyIds: ['80000001-1234567890'],
+      cursor: '12345678-abcd-abcd-example-1234567890ab',
+      entityIds: ['80000001-1234567890'],
+      ids: ['123ABC-1234567890'],
+      includeLineItems: true,
+      limit: 150,
+      transactionDateFrom: '2025-01-01',
+      transactionDateTo: '2025-02-01',
+      updatedAfter: '2025-01-01T12:34:56+00:00',
+      updatedBefore: '2025-02-01T12:34:56+00:00',
+    });
+  });
+
+  test('delete: only required params', async () => {
+    const responsePromise = conductor.qbd.deposits.delete('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('delete: required and optional params', async () => {
+    const response = await conductor.qbd.deposits.delete('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+  });
+
+  test('void: only required params', async () => {
+    const responsePromise = conductor.qbd.deposits.void('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('void: required and optional params', async () => {
+    const response = await conductor.qbd.deposits.void('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+  });
+});

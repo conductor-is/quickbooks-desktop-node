@@ -185,6 +185,19 @@ export {
   type DeletedTransactionListParams,
 } from './deleted-transactions';
 export {
+  Deposits,
+  type Deposit,
+  type DepositDeleteResponse,
+  type DepositVoidResponse,
+  type DepositCreateParams,
+  type DepositRetrieveParams,
+  type DepositUpdateParams,
+  type DepositListParams,
+  type DepositDeleteParams,
+  type DepositVoidParams,
+  type DepositsCursorPage,
+} from './deposits';
+export {
   DiscountItems,
   type DiscountItem,
   type DiscountItemCreateParams,
@@ -343,6 +356,12 @@ export {
   type PaymentMethodRetrieveParams,
   type PaymentMethodListParams,
 } from './payment-methods';
+export {
+  PaymentsToDeposit,
+  type PaymentToDeposit,
+  type PaymentsToDepositListResponse,
+  type PaymentsToDepositListParams,
+} from './payments-to-deposit';
 export {
   PayrollWageItems,
   type PayrollWageItem,

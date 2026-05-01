@@ -62,6 +62,10 @@ export class CreditCardCredits extends APIResource {
   /**
    * Updates an existing credit card credit.
    *
+   * **NOTE:** If you include `expenseLines`, `itemLines`, or `itemGroupLines`,
+   * QuickBooks Desktop replaces each included line list with the array you send, so
+   * include unchanged lines you want to keep and use `id: "-1"` for new lines.
+   *
    * @example
    * ```ts
    * const creditCardCredit =

@@ -64,6 +64,10 @@ export class CreditCardCharges extends APIResource {
    * account, payee, memo, transaction date, and expense or item lines. The total is
    * recalculated from the line details.
    *
+   * **NOTE:** If you include `expenseLines`, `itemLines`, or `itemGroupLines`,
+   * QuickBooks Desktop replaces each included line list with the array you send, so
+   * include unchanged lines you want to keep and use `id: "-1"` for new lines.
+   *
    * @example
    * ```ts
    * const creditCardCharge =

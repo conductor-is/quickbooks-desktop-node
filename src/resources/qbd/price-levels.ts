@@ -74,9 +74,10 @@ export class PriceLevels extends APIResource {
   }
 
   /**
-   * Returns a list of price levels. NOTE: QuickBooks Desktop does not support
-   * pagination for price levels; hence, there is no `cursor` parameter. Users
-   * typically have few price levels.
+   * Returns a list of price levels.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for price levels;
+   * hence, there is no `cursor` parameter. Users typically have few price levels.
    *
    * @example
    * ```ts

@@ -65,6 +65,10 @@ export class VendorCredits extends APIResource {
    * Updates a vendor credit before you apply it to bills, letting you adjust the
    * amounts, memo, or line allocations that make up the credit.
    *
+   * **NOTE:** If you include `expenseLines`, `itemLines`, or `itemGroupLines`,
+   * QuickBooks Desktop replaces each included line list with the array you send, so
+   * include unchanged lines you want to keep and use `id: "-1"` for new lines.
+   *
    * @example
    * ```ts
    * const vendorCredit =
