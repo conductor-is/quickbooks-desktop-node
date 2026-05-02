@@ -780,11 +780,14 @@ export interface InventoryAssemblyItemCreateParams {
   salesTaxCodeId?: string;
 
   /**
-   * Body param: The total value of this inventory assembly item. If `totalValue` is
-   * provided, `quantityOnHand` must also be provided and must be greater than zero.
-   * If both `quantityOnHand` and `purchaseCost` are provided, then `totalValue` will
-   * be set to `quantityOnHand` times `purchaseCost`, regardless of what `totalValue`
-   * is explicitly set to.
+   * Body param: The total value of this inventory assembly item, represented as a
+   * decimal string. If `totalValue` is provided, `quantityOnHand` must also be
+   * provided and must be greater than zero. If both `quantityOnHand` and
+   * `purchaseCost` are provided, then `totalValue` will be set to `quantityOnHand`
+   * times `purchaseCost`, regardless of what `totalValue` is explicitly set to.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   totalValue?: string;
 

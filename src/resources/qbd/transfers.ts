@@ -245,6 +245,9 @@ export interface TransferCreateParams {
   /**
    * Body param: The monetary amount of this transfer, represented as a decimal
    * string.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   amount: string;
 
@@ -305,6 +308,9 @@ export interface TransferUpdateParams {
   /**
    * Body param: The monetary amount of this transfer, represented as a decimal
    * string.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   amount?: string;
 

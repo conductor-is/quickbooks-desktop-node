@@ -896,6 +896,9 @@ export namespace CreditCardRefundCreateParams {
     /**
      * The monetary amount to refund from the linked credit transaction within this
      * credit transaction, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     refundAmount: string;
 

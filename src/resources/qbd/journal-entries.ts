@@ -795,6 +795,9 @@ export namespace JournalEntryCreateParams {
     /**
      * The monetary amount of this journal credit line, represented as a decimal
      * string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -847,6 +850,9 @@ export namespace JournalEntryCreateParams {
 
     /**
      * The monetary amount of this journal debit line, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -985,6 +991,9 @@ export namespace JournalEntryUpdateParams {
 
     /**
      * The monetary amount of this journal line, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 

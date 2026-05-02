@@ -2152,6 +2152,9 @@ export namespace CreditMemoCreateParams {
      * use them to calculate `amount`. If `amount`, `rate`, and `quantity` are all
      * unspecified, then QuickBooks will calculate `amount` based on a `quantity` of
      * `1` and the suggested `rate`. This field cannot be cleared.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -2246,6 +2249,9 @@ export namespace CreditMemoCreateParams {
      * specified, `rate` will be ignored. If both `quantity` and `amount` are specified
      * but not `rate`, QuickBooks will use them to calculate `rate`. Represented as a
      * decimal string. This field cannot be cleared.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     rate?: string;
 
@@ -2768,6 +2774,9 @@ export namespace CreditMemoUpdateParams {
        * use them to calculate `amount`. If `amount`, `rate`, and `quantity` are all
        * unspecified, then QuickBooks will calculate `amount` based on a `quantity` of
        * `1` and the suggested `rate`. This field cannot be cleared.
+       *
+       * Decimal string format: exactly 2 decimal places when cents are included and up
+       * to 13 digits before the decimal point (for example, "123.45").
        */
       amount?: string;
 
@@ -2867,6 +2876,9 @@ export namespace CreditMemoUpdateParams {
        * specified, `rate` will be ignored. If both `quantity` and `amount` are specified
        * but not `rate`, QuickBooks will use them to calculate `rate`. Represented as a
        * decimal string. This field cannot be cleared.
+       *
+       * Decimal string format: up to 5 decimal places and up to 10 digits before the
+       * decimal point (for example, "123.45").
        */
       rate?: string;
 
@@ -2924,6 +2936,9 @@ export namespace CreditMemoUpdateParams {
      * use them to calculate `amount`. If `amount`, `rate`, and `quantity` are all
      * unspecified, then QuickBooks will calculate `amount` based on a `quantity` of
      * `1` and the suggested `rate`. This field cannot be cleared.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -3023,6 +3038,9 @@ export namespace CreditMemoUpdateParams {
      * specified, `rate` will be ignored. If both `quantity` and `amount` are specified
      * but not `rate`, QuickBooks will use them to calculate `rate`. Represented as a
      * decimal string. This field cannot be cleared.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     rate?: string;
 

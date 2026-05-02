@@ -698,6 +698,9 @@ export namespace DepositCreateParams {
     /**
      * The cash-back amount taken out of the deposit and recorded to this deposit
      * cash-back line's account, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -718,6 +721,9 @@ export namespace DepositCreateParams {
     /**
      * For a manual deposit line, the amount transferred from the line's account into
      * the deposit's destination account, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -882,6 +888,9 @@ export namespace DepositUpdateParams {
     /**
      * The cash-back amount taken out of the deposit and recorded to this deposit
      * cash-back line's account, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -910,6 +919,9 @@ export namespace DepositUpdateParams {
     /**
      * For a manual deposit line, the amount transferred from the line's account into
      * the deposit's destination account, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
