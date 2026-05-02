@@ -1688,6 +1688,9 @@ export namespace CreditCardCreditCreateParams {
 
     /**
      * The monetary amount of this expense line, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -1844,6 +1847,9 @@ export namespace CreditCardCreditCreateParams {
      * to calculate `amount`. If `amount`, `cost`, and `quantity` are all unspecified,
      * then QuickBooks will calculate `amount` based on a `quantity` of `1` and the
      * suggested `cost`. This field cannot be cleared.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -1865,6 +1871,9 @@ export namespace CreditCardCreditCreateParams {
      * The cost of this item line, represented as a decimal string. If both `quantity`
      * and `amount` are specified but not `cost`, QuickBooks will use them to calculate
      * `cost`.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     cost?: string;
 
@@ -2235,6 +2244,9 @@ export namespace CreditCardCreditUpdateParams {
 
     /**
      * The monetary amount of this expense line, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -2359,6 +2371,9 @@ export namespace CreditCardCreditUpdateParams {
        * to calculate `amount`. If `amount`, `cost`, and `quantity` are all unspecified,
        * then QuickBooks will calculate `amount` based on a `quantity` of `1` and the
        * suggested `cost`. This field cannot be cleared.
+       *
+       * Decimal string format: exactly 2 decimal places when cents are included and up
+       * to 13 digits before the decimal point (for example, "123.45").
        */
       amount?: string;
 
@@ -2380,6 +2395,9 @@ export namespace CreditCardCreditUpdateParams {
        * The cost of this item line, represented as a decimal string. If both `quantity`
        * and `amount` are specified but not `cost`, QuickBooks will use them to calculate
        * `cost`.
+       *
+       * Decimal string format: up to 5 decimal places and up to 10 digits before the
+       * decimal point (for example, "123.45").
        */
       cost?: string;
 
@@ -2499,6 +2517,9 @@ export namespace CreditCardCreditUpdateParams {
      * to calculate `amount`. If `amount`, `cost`, and `quantity` are all unspecified,
      * then QuickBooks will calculate `amount` based on a `quantity` of `1` and the
      * suggested `cost`. This field cannot be cleared.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -2520,6 +2541,9 @@ export namespace CreditCardCreditUpdateParams {
      * The cost of this item line, represented as a decimal string. If both `quantity`
      * and `amount` are specified but not `cost`, QuickBooks will use them to calculate
      * `cost`.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     cost?: string;
 

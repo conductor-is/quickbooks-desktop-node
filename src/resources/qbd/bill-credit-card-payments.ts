@@ -787,6 +787,9 @@ export namespace BillCreditCardPaymentCreateParams {
     /**
      * The monetary amount by which to reduce the receivable transaction's receivable
      * amount, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     discountAmount?: string;
 
@@ -798,6 +801,9 @@ export namespace BillCreditCardPaymentCreateParams {
     /**
      * The monetary amount to apply to the receivable transaction, represented as a
      * decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     paymentAmount?: string;
   }
@@ -807,6 +813,9 @@ export namespace BillCreditCardPaymentCreateParams {
       /**
        * The amount of credit applied to this transaction. This could include customer
        * deposits, payments, or credits. Represented as a decimal string.
+       *
+       * Decimal string format: exactly 2 decimal places when cents are included and up
+       * to 13 digits before the decimal point (for example, "123.45").
        */
       appliedAmount: string;
 

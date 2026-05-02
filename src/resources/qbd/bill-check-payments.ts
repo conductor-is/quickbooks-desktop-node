@@ -882,6 +882,9 @@ export namespace BillCheckPaymentCreateParams {
     /**
      * The monetary amount by which to reduce the receivable transaction's receivable
      * amount, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     discountAmount?: string;
 
@@ -893,6 +896,9 @@ export namespace BillCheckPaymentCreateParams {
     /**
      * The monetary amount to apply to the receivable transaction, represented as a
      * decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     paymentAmount?: string;
   }
@@ -902,6 +908,9 @@ export namespace BillCheckPaymentCreateParams {
       /**
        * The amount of credit applied to this transaction. This could include customer
        * deposits, payments, or credits. Represented as a decimal string.
+       *
+       * Decimal string format: exactly 2 decimal places when cents are included and up
+       * to 13 digits before the decimal point (for example, "123.45").
        */
       appliedAmount: string;
 
@@ -943,6 +952,9 @@ export interface BillCheckPaymentUpdateParams {
   /**
    * Body param: The monetary amount of this bill check payment, represented as a
    * decimal string.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   amount?: string;
 
@@ -1034,6 +1046,9 @@ export namespace BillCheckPaymentUpdateParams {
     /**
      * The monetary amount by which to reduce the receivable transaction's receivable
      * amount, represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     discountAmount?: string;
 
@@ -1045,6 +1060,9 @@ export namespace BillCheckPaymentUpdateParams {
     /**
      * The monetary amount to apply to the receivable transaction, represented as a
      * decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     paymentAmount?: string;
   }
@@ -1054,6 +1072,9 @@ export namespace BillCheckPaymentUpdateParams {
       /**
        * The amount of credit applied to this transaction. This could include customer
        * deposits, payments, or credits. Represented as a decimal string.
+       *
+       * Decimal string format: exactly 2 decimal places when cents are included and up
+       * to 13 digits before the decimal point (for example, "123.45").
        */
       appliedAmount: string;
 
