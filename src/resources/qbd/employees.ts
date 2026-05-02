@@ -926,6 +926,8 @@ export interface EmployeeCreateParams {
 
   /**
    * Body param: The employee's alternate telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   alternatePhone?: string;
 
@@ -1014,6 +1016,8 @@ export interface EmployeeCreateParams {
 
   /**
    * Body param: The employee's fax number.
+   *
+   * Maximum length: 21 characters.
    */
   fax?: string;
 
@@ -1076,6 +1080,8 @@ export interface EmployeeCreateParams {
 
   /**
    * Body param: The employee's mobile phone number.
+   *
+   * Maximum length: 21 characters.
    */
   mobile?: string;
 
@@ -1098,6 +1104,8 @@ export interface EmployeeCreateParams {
 
   /**
    * Body param: The employee's pager number.
+   *
+   * Maximum length: 21 characters.
    */
   pager?: string;
 
@@ -1108,6 +1116,8 @@ export interface EmployeeCreateParams {
 
   /**
    * Body param: The employee's primary telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   phone?: string;
 
@@ -1603,6 +1613,8 @@ export interface EmployeeUpdateParams {
 
   /**
    * Body param: The employee's alternate telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   alternatePhone?: string;
 
@@ -1681,6 +1693,8 @@ export interface EmployeeUpdateParams {
 
   /**
    * Body param: The employee's fax number.
+   *
+   * Maximum length: 21 characters.
    */
   fax?: string;
 
@@ -1738,6 +1752,8 @@ export interface EmployeeUpdateParams {
 
   /**
    * Body param: The employee's mobile phone number.
+   *
+   * Maximum length: 21 characters.
    */
   mobile?: string;
 
@@ -1760,6 +1776,8 @@ export interface EmployeeUpdateParams {
 
   /**
    * Body param: The employee's pager number.
+   *
+   * Maximum length: 21 characters.
    */
   pager?: string;
 
@@ -1770,6 +1788,8 @@ export interface EmployeeUpdateParams {
 
   /**
    * Body param: The employee's primary telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   phone?: string;
 

@@ -2396,6 +2396,8 @@ export interface SalesReceiptCreateParams {
    * is not required to be unique and can be arbitrarily changed by the QuickBooks
    * user. When left blank in this create request, this field will be left blank in
    * QuickBooks (i.e., it does _not_ auto-increment).
+   *
+   * Maximum length: 11 characters.
    */
   refNumber?: string;
 
@@ -2440,6 +2442,8 @@ export interface SalesReceiptCreateParams {
    * goods transfer from seller to buyer. Internally, QuickBooks uses the term "FOB"
    * for this field, which stands for "freight on board". This field is informational
    * and has no accounting implications.
+   *
+   * Maximum length: 13 characters.
    */
   shipmentOrigin?: string;
 
@@ -3362,6 +3366,8 @@ export interface SalesReceiptUpdateParams {
    * receipt, which can be used to identify the transaction in QuickBooks. This value
    * is not required to be unique and can be arbitrarily changed by the QuickBooks
    * user.
+   *
+   * Maximum length: 11 characters.
    */
   refNumber?: string;
 
@@ -3406,6 +3412,8 @@ export interface SalesReceiptUpdateParams {
    * goods transfer from seller to buyer. Internally, QuickBooks uses the term "FOB"
    * for this field, which stands for "freight on board". This field is informational
    * and has no accounting implications.
+   *
+   * Maximum length: 13 characters.
    */
   shipmentOrigin?: string;
 

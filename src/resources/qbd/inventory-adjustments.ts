@@ -641,6 +641,8 @@ export interface InventoryAdjustmentCreateParams {
    * value is not required to be unique and can be arbitrarily changed by the
    * QuickBooks user. When left blank in this create request, this field will be left
    * blank in QuickBooks (i.e., it does _not_ auto-increment).
+   *
+   * Maximum length: 11 characters.
    */
   refNumber?: string;
 }
@@ -901,6 +903,8 @@ export interface InventoryAdjustmentUpdateParams {
    * adjustment, which can be used to identify the transaction in QuickBooks. This
    * value is not required to be unique and can be arbitrarily changed by the
    * QuickBooks user.
+   *
+   * Maximum length: 11 characters.
    */
   refNumber?: string;
 

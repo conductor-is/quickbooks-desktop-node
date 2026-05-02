@@ -847,6 +847,8 @@ export interface BillCheckPaymentCreateParams {
    * QuickBooks (i.e., it does _not_ auto-increment).
    *
    * **IMPORTANT**: For checks, this field is the check number.
+   *
+   * Maximum length: 11 characters.
    */
   refNumber?: string;
 }
@@ -991,6 +993,8 @@ export interface BillCheckPaymentUpdateParams {
    * user.
    *
    * **IMPORTANT**: For checks, this field is the check number.
+   *
+   * Maximum length: 11 characters.
    */
   refNumber?: string;
 
