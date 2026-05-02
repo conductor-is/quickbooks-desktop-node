@@ -163,7 +163,7 @@ export interface DiscountItem {
 
   /**
    * The monetary amount to subtract from the total or subtotal when applying this
-   * discount item to a transaction.
+   * discount item to a transaction, represented as a decimal string.
    *
    * **NOTE**: A flat rate discount applies to ALL lines recorded above it and
    * distributes the discount amount equally across those lines, which affects tax
@@ -436,13 +436,16 @@ export interface DiscountItemCreateParams {
 
   /**
    * Body param: The monetary amount to subtract from the total or subtotal when
-   * applying this discount item to a transaction.
+   * applying this discount item to a transaction, represented as a decimal string.
    *
    * **NOTE**: A flat rate discount applies to ALL lines recorded above it and
    * distributes the discount amount equally across those lines, which affects tax
    * calculations. For example, a $10 discount applied to a $100 taxable item and
    * $100 non-taxable item would result in a $5 taxable discount and $5 non-taxable
    * discount.
+   *
+   * Decimal string format: up to 5 decimal places and up to 10 digits before the
+   * decimal point (for example, "123.45").
    */
   discountRate?: string;
 
@@ -561,13 +564,16 @@ export interface DiscountItemUpdateParams {
 
   /**
    * Body param: The monetary amount to subtract from the total or subtotal when
-   * applying this discount item to a transaction.
+   * applying this discount item to a transaction, represented as a decimal string.
    *
    * **NOTE**: A flat rate discount applies to ALL lines recorded above it and
    * distributes the discount amount equally across those lines, which affects tax
    * calculations. For example, a $10 discount applied to a $100 taxable item and
    * $100 non-taxable item would result in a $5 taxable discount and $5 non-taxable
    * discount.
+   *
+   * Decimal string format: up to 5 decimal places and up to 10 digits before the
+   * decimal point (for example, "123.45").
    */
   discountRate?: string;
 

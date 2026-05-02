@@ -1446,6 +1446,9 @@ export namespace EmployeeCreateParams {
 
       /**
        * The hourly rate for this employee, represented as a decimal string.
+       *
+       * Decimal string format: up to 5 decimal places and up to 10 digits before the
+       * decimal point (for example, "123.45").
        */
       rate?: string;
 
@@ -2127,6 +2130,9 @@ export namespace EmployeeUpdateParams {
 
       /**
        * The hourly rate for this employee, represented as a decimal string.
+       *
+       * Decimal string format: up to 5 decimal places and up to 10 digits before the
+       * decimal point (for example, "123.45").
        */
       rate?: string;
 

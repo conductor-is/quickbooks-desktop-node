@@ -2084,6 +2084,9 @@ export namespace InvoiceCreateParams {
     /**
      * The amount of credit applied to this transaction. This could include customer
      * deposits, payments, or credits. Represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     appliedAmount: string;
 
@@ -2255,6 +2258,9 @@ export namespace InvoiceCreateParams {
      * them to calculate `amount`. If `amount`, `rate`, and `quantity` are all
      * unspecified, then QuickBooks will calculate `amount` based on a `quantity` of
      * `1` and the suggested `rate`. This field cannot be cleared.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -2388,6 +2394,9 @@ export namespace InvoiceCreateParams {
      * specified, `rate` will be ignored. If both `quantity` and `amount` are specified
      * but not `rate`, QuickBooks will use them to calculate `rate`. Represented as a
      * decimal string. This field cannot be cleared.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     rate?: string;
 
@@ -2829,6 +2838,9 @@ export namespace InvoiceUpdateParams {
     /**
      * The amount of credit applied to this transaction. This could include customer
      * deposits, payments, or credits. Represented as a decimal string.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     appliedAmount: string;
 
@@ -2995,6 +3007,9 @@ export namespace InvoiceUpdateParams {
        * them to calculate `amount`. If `amount`, `rate`, and `quantity` are all
        * unspecified, then QuickBooks will calculate `amount` based on a `quantity` of
        * `1` and the suggested `rate`. This field cannot be cleared.
+       *
+       * Decimal string format: exactly 2 decimal places when cents are included and up
+       * to 13 digits before the decimal point (for example, "123.45").
        */
       amount?: string;
 
@@ -3100,6 +3115,9 @@ export namespace InvoiceUpdateParams {
        * specified, `rate` will be ignored. If both `quantity` and `amount` are specified
        * but not `rate`, QuickBooks will use them to calculate `rate`. Represented as a
        * decimal string. This field cannot be cleared.
+       *
+       * Decimal string format: up to 5 decimal places and up to 10 digits before the
+       * decimal point (for example, "123.45").
        */
       rate?: string;
 
@@ -3156,6 +3174,9 @@ export namespace InvoiceUpdateParams {
      * them to calculate `amount`. If `amount`, `rate`, and `quantity` are all
      * unspecified, then QuickBooks will calculate `amount` based on a `quantity` of
      * `1` and the suggested `rate`. This field cannot be cleared.
+     *
+     * Decimal string format: exactly 2 decimal places when cents are included and up
+     * to 13 digits before the decimal point (for example, "123.45").
      */
     amount?: string;
 
@@ -3261,6 +3282,9 @@ export namespace InvoiceUpdateParams {
      * specified, `rate` will be ignored. If both `quantity` and `amount` are specified
      * but not `rate`, QuickBooks will use them to calculate `rate`. Represented as a
      * decimal string. This field cannot be cleared.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     rate?: string;
 
