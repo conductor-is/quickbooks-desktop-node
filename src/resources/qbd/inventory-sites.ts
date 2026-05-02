@@ -444,6 +444,8 @@ export interface InventorySiteUpdateParams {
 
   /**
    * Body param: The inventory site's fax number.
+   *
+   * Maximum length: 21 characters.
    */
   fax?: string;
 
@@ -472,6 +474,8 @@ export interface InventorySiteUpdateParams {
 
   /**
    * Body param: The inventory site's primary telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   phone?: string;
 }

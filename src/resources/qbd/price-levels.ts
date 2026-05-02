@@ -318,12 +318,20 @@ export interface PriceLevelCreateParams {
 export namespace PriceLevelCreateParams {
   export interface PerItemPriceLevel {
     /**
+     * The item associated with this per-item price level. This can refer to any good
+     * or service that the business buys or sells, including item types such as a
+     * service item, inventory item, or special calculation item like a discount item
+     * or sales-tax item.
+     */
+    itemId: string;
+
+    /**
      * The percentage adjustment for this per-item price level when using relative
      * pricing. Specifies a percentage to modify pricing, using positive values (e.g.,
      * "20") to increase prices by that percentage, or negative values (e.g., "-10") to
      * apply a discount.
      */
-    adjustPercentage: string;
+    adjustPercentage?: string;
 
     /**
      * The base value reference for this per-item price level's percentage adjustment.
@@ -335,15 +343,7 @@ export namespace PriceLevelCreateParams {
      * (`adjustPercentage` with `adjustRelativeTo`) when configuring per-item price
      * levels.
      */
-    adjustRelativeTo: 'cost' | 'current_custom_price' | 'standard_price';
-
-    /**
-     * The item associated with this per-item price level. This can refer to any good
-     * or service that the business buys or sells, including item types such as a
-     * service item, inventory item, or special calculation item like a discount item
-     * or sales-tax item.
-     */
-    itemId: string;
+    adjustRelativeTo?: 'cost' | 'current_custom_price' | 'standard_price';
 
     /**
      * The fixed amount custom price for this per-item price level that overrides the
@@ -429,12 +429,20 @@ export interface PriceLevelUpdateParams {
 export namespace PriceLevelUpdateParams {
   export interface PerItemPriceLevel {
     /**
+     * The item associated with this per-item price level. This can refer to any good
+     * or service that the business buys or sells, including item types such as a
+     * service item, inventory item, or special calculation item like a discount item
+     * or sales-tax item.
+     */
+    itemId: string;
+
+    /**
      * The percentage adjustment for this per-item price level when using relative
      * pricing. Specifies a percentage to modify pricing, using positive values (e.g.,
      * "20") to increase prices by that percentage, or negative values (e.g., "-10") to
      * apply a discount.
      */
-    adjustPercentage: string;
+    adjustPercentage?: string;
 
     /**
      * The base value reference for this per-item price level's percentage adjustment.
@@ -446,15 +454,7 @@ export namespace PriceLevelUpdateParams {
      * (`adjustPercentage` with `adjustRelativeTo`) when configuring per-item price
      * levels.
      */
-    adjustRelativeTo: 'cost' | 'current_custom_price' | 'standard_price';
-
-    /**
-     * The item associated with this per-item price level. This can refer to any good
-     * or service that the business buys or sells, including item types such as a
-     * service item, inventory item, or special calculation item like a discount item
-     * or sales-tax item.
-     */
-    itemId: string;
+    adjustRelativeTo?: 'cost' | 'current_custom_price' | 'standard_price';
 
     /**
      * The fixed amount custom price for this per-item price level that overrides the

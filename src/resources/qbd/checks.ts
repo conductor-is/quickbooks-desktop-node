@@ -1816,6 +1816,8 @@ export interface CheckCreateParams {
    * QuickBooks (i.e., it does _not_ auto-increment).
    *
    * **IMPORTANT**: For checks, this field is the check number.
+   *
+   * Maximum length: 11 characters.
    */
   refNumber?: string;
 
@@ -2456,6 +2458,8 @@ export interface CheckUpdateParams {
    * required to be unique and can be arbitrarily changed by the QuickBooks user.
    *
    * **IMPORTANT**: For checks, this field is the check number.
+   *
+   * Maximum length: 11 characters.
    */
   refNumber?: string;
 

@@ -82,7 +82,7 @@ describe('resource purchaseOrders', () => {
       otherCustomField2: 'Always ship with a spare',
       refNumber: 'PO-1234',
       salesTaxCodeId: '80000001-1234567890',
-      shipmentOrigin: 'San Francisco, CA',
+      shipmentOrigin: 'shipmentOrigin',
       shippingAddress: {
         city: 'San Francisco',
         country: 'United States',
@@ -219,7 +219,7 @@ describe('resource purchaseOrders', () => {
       otherCustomField2: 'Always ship with a spare',
       refNumber: 'PO-1234',
       salesTaxCodeId: '80000001-1234567890',
-      shipmentOrigin: 'San Francisco, CA',
+      shipmentOrigin: 'shipmentOrigin',
       shippingAddress: {
         city: 'San Francisco',
         country: 'United States',

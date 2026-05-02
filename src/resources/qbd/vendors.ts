@@ -924,6 +924,8 @@ export interface VendorCreateParams {
 
   /**
    * Body param: The vendor's alternate telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   alternatePhone?: string;
 
@@ -1004,6 +1006,8 @@ export interface VendorCreateParams {
 
   /**
    * Body param: The vendor's fax number.
+   *
+   * Maximum length: 21 characters.
    */
   fax?: string;
 
@@ -1072,6 +1076,8 @@ export interface VendorCreateParams {
   /**
    * Body param: The vendor's name as it should appear on checks issued to this
    * vendor.
+   *
+   * Maximum length: 41 characters.
    */
   nameOnCheck?: string;
 
@@ -1094,6 +1100,8 @@ export interface VendorCreateParams {
 
   /**
    * Body param: The vendor's primary telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   phone?: string;
 
@@ -1440,6 +1448,8 @@ export interface VendorUpdateParams {
 
   /**
    * Body param: The vendor's alternate telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   alternatePhone?: string;
 
@@ -1510,6 +1520,8 @@ export interface VendorUpdateParams {
 
   /**
    * Body param: The vendor's fax number.
+   *
+   * Maximum length: 21 characters.
    */
   fax?: string;
 
@@ -1590,6 +1602,8 @@ export interface VendorUpdateParams {
   /**
    * Body param: The vendor's name as it should appear on checks issued to this
    * vendor.
+   *
+   * Maximum length: 41 characters.
    */
   nameOnCheck?: string;
 
@@ -1600,6 +1614,8 @@ export interface VendorUpdateParams {
 
   /**
    * Body param: The vendor's primary telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   phone?: string;
 
