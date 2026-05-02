@@ -391,6 +391,8 @@ export interface OtherNameCreateParams {
 
   /**
    * Body param: The other-name's alternate telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   alternatePhone?: string;
 
@@ -422,6 +424,8 @@ export interface OtherNameCreateParams {
 
   /**
    * Body param: The other-name's fax number.
+   *
+   * Maximum length: 21 characters.
    */
   fax?: string;
 
@@ -459,6 +463,8 @@ export interface OtherNameCreateParams {
 
   /**
    * Body param: The other-name's primary telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   phone?: string;
 
@@ -587,6 +593,8 @@ export interface OtherNameUpdateParams {
 
   /**
    * Body param: The other-name's alternate telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   alternatePhone?: string;
 
@@ -608,6 +616,8 @@ export interface OtherNameUpdateParams {
 
   /**
    * Body param: The other-name's fax number.
+   *
+   * Maximum length: 21 characters.
    */
   fax?: string;
 
@@ -657,6 +667,8 @@ export interface OtherNameUpdateParams {
 
   /**
    * Body param: The other-name's primary telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   phone?: string;
 

@@ -104,7 +104,7 @@ describe('resource salesOrders', () => {
       salesStoreType: 'Retail',
       salesTaxCodeId: '80000001-1234567890',
       salesTaxItemId: '80000001-1234567890',
-      shipmentOrigin: 'San Francisco, CA',
+      shipmentOrigin: 'shipmentOrigin',
       shippingAddress: {
         city: 'San Francisco',
         country: 'United States',
@@ -248,7 +248,7 @@ describe('resource salesOrders', () => {
       salesStoreType: 'Retail',
       salesTaxCodeId: '80000001-1234567890',
       salesTaxItemId: '80000001-1234567890',
-      shipmentOrigin: 'San Francisco, CA',
+      shipmentOrigin: 'shipmentOrigin',
       shippingAddress: {
         city: 'San Francisco',
         country: 'United States',

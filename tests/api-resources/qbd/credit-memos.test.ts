@@ -103,7 +103,7 @@ describe('resource creditMemos', () => {
       salesRepresentativeId: '80000001-1234567890',
       salesTaxCodeId: '80000001-1234567890',
       salesTaxItemId: '80000001-1234567890',
-      shipmentOrigin: 'San Francisco, CA',
+      shipmentOrigin: 'shipmentOrigin',
       shippingAddress: {
         city: 'San Francisco',
         country: 'United States',
@@ -245,7 +245,7 @@ describe('resource creditMemos', () => {
       salesRepresentativeId: '80000001-1234567890',
       salesTaxCodeId: '80000001-1234567890',
       salesTaxItemId: '80000001-1234567890',
-      shipmentOrigin: 'San Francisco, CA',
+      shipmentOrigin: 'shipmentOrigin',
       shippingAddress: {
         city: 'San Francisco',
         country: 'United States',

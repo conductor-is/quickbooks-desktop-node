@@ -1124,6 +1124,8 @@ export interface CustomerCreateParams {
 
   /**
    * Body param: The customer's alternate telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   alternatePhone?: string;
 
@@ -1211,6 +1213,8 @@ export interface CustomerCreateParams {
 
   /**
    * Body param: The customer's fax number.
+   *
+   * Maximum length: 21 characters.
    */
   fax?: string;
 
@@ -1310,6 +1314,8 @@ export interface CustomerCreateParams {
 
   /**
    * Body param: The customer's primary telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   phone?: string;
 
@@ -1788,6 +1794,8 @@ export interface CustomerUpdateParams {
 
   /**
    * Body param: The customer's alternate telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   alternatePhone?: string;
 
@@ -1865,6 +1873,8 @@ export interface CustomerUpdateParams {
 
   /**
    * Body param: The customer's fax number.
+   *
+   * Maximum length: 21 characters.
    */
   fax?: string;
 
@@ -1964,6 +1974,8 @@ export interface CustomerUpdateParams {
 
   /**
    * Body param: The customer's primary telephone number.
+   *
+   * Maximum length: 21 characters.
    */
   phone?: string;
 

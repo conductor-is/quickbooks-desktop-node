@@ -31,9 +31,9 @@ describe('resource priceLevels', () => {
       isActive: true,
       perItemPriceLevels: [
         {
+          itemId: '80000001-1234567890',
           adjustPercentage: '-10.0',
           adjustRelativeTo: 'standard_price',
-          itemId: '80000001-1234567890',
           customPrice: '19.99',
           customPricePercent: '15.0',
         },
@@ -84,9 +84,9 @@ describe('resource priceLevels', () => {
       name: 'Wholesale 20% Discount',
       perItemPriceLevels: [
         {
+          itemId: '80000001-1234567890',
           adjustPercentage: '-10.0',
           adjustRelativeTo: 'standard_price',
-          itemId: '80000001-1234567890',
           customPrice: '19.99',
           customPricePercent: '15.0',
         },
