@@ -1838,8 +1838,8 @@ export interface InvoiceCreateParams {
   conductorEndUserId: string;
 
   /**
-   * Body param: Credit memos to apply to this invoice, reducing its balance. This
-   * creates a link between this invoice and the specified credit memos.
+   * Body param: Credits to apply to this invoice, reducing its balance. This creates
+   * a link between this invoice and the specified credit transactions.
    *
    * **IMPORTANT**: By default, QuickBooks will not return any information about the
    * linked transactions in this endpoint's response even when this request is
@@ -2091,8 +2091,8 @@ export namespace InvoiceCreateParams {
     appliedAmount: string;
 
     /**
-     * The unique identifier of the credit transaction (credit memo or vendor credit)
-     * to apply to this transaction.
+     * The unique identifier of the credit transaction to apply to this transaction,
+     * such as a credit memo, vendor credit, or journal-entry credit.
      */
     creditTransactionId: string;
 
@@ -2603,8 +2603,10 @@ export interface InvoiceUpdateParams {
   conductorEndUserId: string;
 
   /**
-   * Body param: Credit memos to apply to this invoice, reducing its balance. This
-   * creates a link between this invoice and the specified credit memos.
+   * Body param: Credits to apply to this invoice, reducing its balance. This creates
+   * a link between this invoice and the specified credit transactions. For
+   * credit-only applications with no received payment amount, update the invoice
+   * using this field.
    *
    * **IMPORTANT**: By default, QuickBooks will not return any information about the
    * linked transactions in this endpoint's response even when this request is
@@ -2845,8 +2847,8 @@ export namespace InvoiceUpdateParams {
     appliedAmount: string;
 
     /**
-     * The unique identifier of the credit transaction (credit memo or vendor credit)
-     * to apply to this transaction.
+     * The unique identifier of the credit transaction to apply to this transaction,
+     * such as a credit memo, vendor credit, or journal-entry credit.
      */
     creditTransactionId: string;
 
