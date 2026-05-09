@@ -9,10 +9,10 @@ import { path } from '../../internal/utils/path';
 
 export class ReceivePayments extends APIResource {
   /**
-   * Records a customer payment and optionally applies it to specific invoices or
-   * credits. All allocations must target the same accounts receivable account as
-   * those invoices, and each one has to include a payment amount, discount, or
-   * credit so QuickBooks can close out the balance.
+   * Records a customer payment and optionally applies it to specific invoices,
+   * discounts, or credits. All allocations must target the same accounts receivable
+   * account as those invoices, and each one has to include a payment amount,
+   * discount, or credit so QuickBooks can close out the balance.
    *
    * @example
    * ```ts
@@ -965,9 +965,9 @@ export namespace ReceivePaymentCreateParams {
     transactionId: string;
 
     /**
-     * Credit memos to apply to this receivable transaction, reducing its balance. This
+     * Credits to apply to this receivable transaction, reducing its balance. This
      * creates a link between this receivable transaction and the specified credit
-     * memos.
+     * transactions.
      *
      * **IMPORTANT**: By default, QuickBooks will not return any information about the
      * linked transactions in this endpoint's response even when this request is
@@ -1019,8 +1019,8 @@ export namespace ReceivePaymentCreateParams {
       appliedAmount: string;
 
       /**
-       * The unique identifier of the credit transaction (credit memo or vendor credit)
-       * to apply to this transaction.
+       * The unique identifier of the credit transaction to apply to this transaction,
+       * such as a credit memo, vendor credit, or journal-entry credit.
        */
       creditTransactionId: string;
 
@@ -1318,9 +1318,9 @@ export namespace ReceivePaymentUpdateParams {
     transactionId: string;
 
     /**
-     * Credit memos to apply to this receivable transaction, reducing its balance. This
+     * Credits to apply to this receivable transaction, reducing its balance. This
      * creates a link between this receivable transaction and the specified credit
-     * memos.
+     * transactions.
      *
      * **IMPORTANT**: By default, QuickBooks will not return any information about the
      * linked transactions in this endpoint's response even when this request is
@@ -1372,8 +1372,8 @@ export namespace ReceivePaymentUpdateParams {
       appliedAmount: string;
 
       /**
-       * The unique identifier of the credit transaction (credit memo or vendor credit)
-       * to apply to this transaction.
+       * The unique identifier of the credit transaction to apply to this transaction,
+       * such as a credit memo, vendor credit, or journal-entry credit.
        */
       creditTransactionId: string;
 
