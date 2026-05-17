@@ -445,6 +445,8 @@ import {
   ReceivePayments,
   ReceivePaymentsCursorPage,
 } from './receive-payments';
+import * as ReportsAPI from './reports';
+import { Reports } from './reports';
 import * as SalesOrdersAPI from './sales-orders';
 import {
   SalesOrder,
@@ -673,6 +675,7 @@ export class Qbd extends APIResource {
   priceLevels: PriceLevelsAPI.PriceLevels = new PriceLevelsAPI.PriceLevels(this._client);
   purchaseOrders: PurchaseOrdersAPI.PurchaseOrders = new PurchaseOrdersAPI.PurchaseOrders(this._client);
   receivePayments: ReceivePaymentsAPI.ReceivePayments = new ReceivePaymentsAPI.ReceivePayments(this._client);
+  reports: ReportsAPI.Reports = new ReportsAPI.Reports(this._client);
   salesOrders: SalesOrdersAPI.SalesOrders = new SalesOrdersAPI.SalesOrders(this._client);
   salesReceipts: SalesReceiptsAPI.SalesReceipts = new SalesReceiptsAPI.SalesReceipts(this._client);
   salesRepresentatives: SalesRepresentativesAPI.SalesRepresentatives =
@@ -778,6 +781,7 @@ Qbd.PayrollWageItems = PayrollWageItems;
 Qbd.PriceLevels = PriceLevels;
 Qbd.PurchaseOrders = PurchaseOrders;
 Qbd.ReceivePayments = ReceivePayments;
+Qbd.Reports = Reports;
 Qbd.SalesOrders = SalesOrders;
 Qbd.SalesReceipts = SalesReceipts;
 Qbd.SalesRepresentatives = SalesRepresentatives;
@@ -1248,6 +1252,8 @@ export declare namespace Qbd {
     type ReceivePaymentListParams as ReceivePaymentListParams,
     type ReceivePaymentDeleteParams as ReceivePaymentDeleteParams,
   };
+
+  export { Reports as Reports };
 
   export {
     SalesOrders as SalesOrders,
