@@ -403,6 +403,7 @@ export {
   type ReceivePaymentDeleteParams,
   type ReceivePaymentsCursorPage,
 } from './receive-payments';
+export { Reports } from './reports';
 export {
   SalesOrders,
   type SalesOrder,
