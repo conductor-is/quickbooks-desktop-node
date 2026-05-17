@@ -630,8 +630,6 @@ Methods:
 - <code title="get /quickbooks-desktop/receive-payments">client.qbd.receivePayments.<a href="./src/resources/qbd/receive-payments.ts">list</a>({ ...params }) -> ReceivePaymentsCursorPage</code>
 - <code title="delete /quickbooks-desktop/receive-payments/{id}">client.qbd.receivePayments.<a href="./src/resources/qbd/receive-payments.ts">delete</a>(id, { ...params }) -> ReceivePaymentDeleteResponse</code>
 
-## Reports
-
 ## SalesOrders
 
 Types:
