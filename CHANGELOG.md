@@ -1,5 +1,27 @@
 # Changelog
 
+## 14.13.0 (2026-05-18)
+
+Full Changelog: [v14.12.0...v14.13.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.12.0...v14.13.0)
+
+### Features
+
+* **api:** api update ([7a4c6b2](https://github.com/conductor-is/quickbooks-desktop-node/commit/7a4c6b20e17ad62b84dcbb213018a044d7c92d62))
+* **api:** api update ([25d08e6](https://github.com/conductor-is/quickbooks-desktop-node/commit/25d08e63a9488d4e6fd276af37e4c80ece392fb7))
+* **api:** api update ([d3e6529](https://github.com/conductor-is/quickbooks-desktop-node/commit/d3e6529d5a4d61cb17db399999baf2572669a4da))
+* **api:** api update ([8494b38](https://github.com/conductor-is/quickbooks-desktop-node/commit/8494b38ca8b16fa4a9466113339efa577e2a0836))
+* **api:** api update ([d3eba64](https://github.com/conductor-is/quickbooks-desktop-node/commit/d3eba64c51041c81be6851b8adfa074551f6973c))
+
+
+### Chores
+
+* redact api-key headers in debug logs ([58ad8fa](https://github.com/conductor-is/quickbooks-desktop-node/commit/58ad8faf88dee5b48eefcccac7b42613f0b7b516))
+
+
+### Documentation
+
+* update http mcp docs ([fc0eacc](https://github.com/conductor-is/quickbooks-desktop-node/commit/fc0eaccbad24a0498093002b7d67686779ff2665))
+
 ## 14.12.0 (2026-05-02)
 
 Full Changelog: [v14.11.0...v14.12.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.11.0...v14.12.0)
