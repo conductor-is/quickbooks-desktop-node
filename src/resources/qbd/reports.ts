@@ -649,18 +649,18 @@ export interface ReportAgingParams {
   conductorEndUserId: string;
 
   /**
-   * Query param: Filter for report data by account `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple accounts. Use only one account filter per
-   * request.
+   * Query param: Filter report rows by account `fullName` values, case-insensitive.
+   * A `fullName` is a fully qualified QuickBooks name formed by joining parent
+   * object names with the object's `name` using colons. Accepts one or more account
+   * full names. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned account IDs. Repeat
-   * this query parameter to include multiple accounts. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned account IDs. Accepts one
+   * or more account IDs. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountIds?: Array<string>;
 
@@ -670,8 +670,8 @@ export interface ReportAgingParams {
   accountsToInclude?: 'all' | 'in_use';
 
   /**
-   * Query param: Filter for report data by account type. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by account type. Choose only one account filter
+   * per request: `accountType`, `accountIds`, or `accountFullNames`.
    */
   accountType?:
     | 'accounts_payable'
@@ -718,18 +718,17 @@ export interface ReportAgingParams {
   agingAsOf?: 'report_end_date' | 'today';
 
   /**
-   * Query param: Filter for report data by class `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by class `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more class full
+   * names. Choose only one class filter per request: `classIds` or `classFullNames`.
    */
   classFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned class IDs. Repeat
-   * this query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by QuickBooks-assigned class IDs. Accepts one or
+   * more class IDs. Choose only one class filter per request: `classIds` or
+   * `classFullNames`.
    */
   classIds?: Array<string>;
 
@@ -741,32 +740,32 @@ export interface ReportAgingParams {
   detailLevel?: 'all' | 'all_except_summary' | 'summary_only';
 
   /**
-   * Query param: Filter for report data by entity `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple entities. Use only one entity filter per
-   * request.
+   * Query param: Filter report rows by entity `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more entity full
+   * names. Choose only one entity filter per request: `entityType`, `entityIds`, or
+   * `entityFullNames`.
    */
   entityFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned entity IDs. Repeat
-   * this query parameter to include multiple entities. Use only one entity filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned entity IDs. Accepts one
+   * or more entity IDs. Choose only one entity filter per request: `entityType`,
+   * `entityIds`, or `entityFullNames`.
    */
   entityIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by entity type, such as customer, vendor,
-   * employee, or other name. Use only one entity filter per request.
+   * Query param: Filter report rows by entity type, such as customer, vendor,
+   * employee, or other name. Choose only one entity filter per request:
+   * `entityType`, `entityIds`, or `entityFullNames`.
    */
   entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';
 
   /**
-   * Query param: The specific report columns to include, by column type. Repeat this
-   * query parameter to request multiple columns. When this parameter is present,
-   * QuickBooks Desktop omits its default report columns unless you include them
-   * here.
+   * Query param: The report columns to include, by column type. Accepts one or more
+   * columns. When this parameter is present, QuickBooks Desktop omits its default
+   * report columns unless you include them here.
    */
   includeColumns?: Array<
     | 'account'
@@ -847,22 +846,24 @@ export interface ReportAgingParams {
   >;
 
   /**
-   * Query param: Filter for report data by item `fullName` values, case-insensitive.
-   * A `fullName` is a fully-qualified QuickBooks name formed by joining parent
-   * object names with the object's `name` using colons. Repeat this query parameter
-   * to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by item `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more item full
+   * names. Choose only one item filter per request: `itemType`, `itemIds`, or
+   * `itemFullNames`.
    */
   itemFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned item IDs. Repeat this
-   * query parameter to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by QuickBooks-assigned item IDs. Accepts one or
+   * more item IDs. Choose only one item filter per request: `itemType`, `itemIds`,
+   * or `itemFullNames`.
    */
   itemIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by item type. Use only one item filter per
-   * request.
+   * Query param: Filter report rows by item type. Choose only one item filter per
+   * request: `itemType`, `itemIds`, or `itemFullNames`.
    */
   itemType?:
     | 'all_except_fixed_asset'
@@ -879,23 +880,23 @@ export interface ReportAgingParams {
     | 'service';
 
   /**
-   * Query param: Filter for report data that is posting, non-posting, or either.
+   * Query param: Filter report rows that are posting, non-posting, or either.
    * Posting status refers to whether QuickBooks records the transaction in an
    * account register.
    */
   postingStatus?: 'either' | 'non_posting' | 'posting';
 
   /**
-   * Query param: Filter for report data dated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or after this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateFrom?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative date macro. This cannot be combined
-   * with `reportDateFrom` or `reportDateTo`.
+   * Query param: A QuickBooks Desktop relative date macro for the report period.
+   * Choose either `reportDateMacro` or `reportDateFrom`/`reportDateTo`.
    */
   reportDateMacro?:
     | 'all'
@@ -924,16 +925,16 @@ export interface ReportAgingParams {
     | 'next_year';
 
   /**
-   * Query param: Filter for report data dated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or before this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateTo?: string;
 
   /**
-   * Query param: Filter for report data by transaction type(s). Repeat this query
-   * parameter to include multiple transaction types.
+   * Query param: Filter report rows by transaction type. Accepts one or more
+   * transaction types.
    */
   transactionTypes?: Array<
     | 'all'
@@ -967,20 +968,22 @@ export interface ReportAgingParams {
   >;
 
   /**
-   * Query param: Filter for report data updated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or after this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedAfter?: string;
 
   /**
-   * Query param: Filter for report data updated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or before this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedBefore?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative updated-date macro. This cannot be
-   * combined with `updatedAfter` or `updatedBefore`.
+   * Query param: A QuickBooks Desktop relative updated-date macro. Choose either
+   * `updatedDateMacro` or `updatedAfter`/`updatedBefore`.
    */
   updatedDateMacro?:
     | 'all'
@@ -1039,32 +1042,31 @@ export interface ReportBudgetSummaryParams {
   budgetCriterion?: 'accounts' | 'accounts_and_classes' | 'accounts_and_customers';
 
   /**
-   * Query param: Filter for report data by class `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by class `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more class full
+   * names. Choose only one class filter per request: `classIds` or `classFullNames`.
    */
   classFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned class IDs. Repeat
-   * this query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by QuickBooks-assigned class IDs. Accepts one or
+   * more class IDs. Choose only one class filter per request: `classIds` or
+   * `classFullNames`.
    */
   classIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data dated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or after this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateFrom?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative date macro. This cannot be combined
-   * with `reportDateFrom` or `reportDateTo`.
+   * Query param: A QuickBooks Desktop relative date macro for the report period.
+   * Choose either `reportDateMacro` or `reportDateFrom`/`reportDateTo`.
    */
   reportDateMacro?:
     | 'all'
@@ -1093,10 +1095,10 @@ export interface ReportBudgetSummaryParams {
     | 'next_year';
 
   /**
-   * Query param: Filter for report data dated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or before this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateTo?: string;
 
@@ -1114,10 +1116,9 @@ export interface ReportBudgetSummaryParams {
 
 export interface ReportCustomDetailParams {
   /**
-   * Query param: The specific report columns to include, by column type. Repeat this
-   * query parameter to request multiple columns. When this parameter is present,
-   * QuickBooks Desktop omits its default report columns unless you include them
-   * here.
+   * Query param: The report columns to include, by column type. Accepts one or more
+   * columns. When this parameter is present, QuickBooks Desktop omits its default
+   * report columns unless you include them here.
    */
   includeColumns: Array<
     | 'account'
@@ -1238,18 +1239,18 @@ export interface ReportCustomDetailParams {
   conductorEndUserId: string;
 
   /**
-   * Query param: Filter for report data by account `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple accounts. Use only one account filter per
-   * request.
+   * Query param: Filter report rows by account `fullName` values, case-insensitive.
+   * A `fullName` is a fully qualified QuickBooks name formed by joining parent
+   * object names with the object's `name` using colons. Accepts one or more account
+   * full names. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned account IDs. Repeat
-   * this query parameter to include multiple accounts. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned account IDs. Accepts one
+   * or more account IDs. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountIds?: Array<string>;
 
@@ -1259,8 +1260,8 @@ export interface ReportCustomDetailParams {
   accountsToInclude?: 'all' | 'in_use';
 
   /**
-   * Query param: Filter for report data by account type. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by account type. Choose only one account filter
+   * per request: `accountType`, `accountIds`, or `accountFullNames`.
    */
   accountType?:
     | 'accounts_payable'
@@ -1309,18 +1310,17 @@ export interface ReportCustomDetailParams {
   basis?: 'accrual' | 'cash' | 'none';
 
   /**
-   * Query param: Filter for report data by class `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by class `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more class full
+   * names. Choose only one class filter per request: `classIds` or `classFullNames`.
    */
   classFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned class IDs. Repeat
-   * this query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by QuickBooks-assigned class IDs. Accepts one or
+   * more class IDs. Choose only one class filter per request: `classIds` or
+   * `classFullNames`.
    */
   classIds?: Array<string>;
 
@@ -1332,44 +1332,47 @@ export interface ReportCustomDetailParams {
   detailLevel?: 'all' | 'all_except_summary' | 'summary_only';
 
   /**
-   * Query param: Filter for report data by entity `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple entities. Use only one entity filter per
-   * request.
+   * Query param: Filter report rows by entity `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more entity full
+   * names. Choose only one entity filter per request: `entityType`, `entityIds`, or
+   * `entityFullNames`.
    */
   entityFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned entity IDs. Repeat
-   * this query parameter to include multiple entities. Use only one entity filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned entity IDs. Accepts one
+   * or more entity IDs. Choose only one entity filter per request: `entityType`,
+   * `entityIds`, or `entityFullNames`.
    */
   entityIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by entity type, such as customer, vendor,
-   * employee, or other name. Use only one entity filter per request.
+   * Query param: Filter report rows by entity type, such as customer, vendor,
+   * employee, or other name. Choose only one entity filter per request:
+   * `entityType`, `entityIds`, or `entityFullNames`.
    */
   entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';
 
   /**
-   * Query param: Filter for report data by item `fullName` values, case-insensitive.
-   * A `fullName` is a fully-qualified QuickBooks name formed by joining parent
-   * object names with the object's `name` using colons. Repeat this query parameter
-   * to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by item `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more item full
+   * names. Choose only one item filter per request: `itemType`, `itemIds`, or
+   * `itemFullNames`.
    */
   itemFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned item IDs. Repeat this
-   * query parameter to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by QuickBooks-assigned item IDs. Accepts one or
+   * more item IDs. Choose only one item filter per request: `itemType`, `itemIds`,
+   * or `itemFullNames`.
    */
   itemIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by item type. Use only one item filter per
-   * request.
+   * Query param: Filter report rows by item type. Choose only one item filter per
+   * request: `itemType`, `itemIds`, or `itemFullNames`.
    */
   itemType?:
     | 'all_except_fixed_asset'
@@ -1392,23 +1395,23 @@ export interface ReportCustomDetailParams {
   openBalanceAsOf?: 'report_end_date' | 'today';
 
   /**
-   * Query param: Filter for report data that is posting, non-posting, or either.
+   * Query param: Filter report rows that are posting, non-posting, or either.
    * Posting status refers to whether QuickBooks records the transaction in an
    * account register.
    */
   postingStatus?: 'either' | 'non_posting' | 'posting';
 
   /**
-   * Query param: Filter for report data dated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or after this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateFrom?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative date macro. This cannot be combined
-   * with `reportDateFrom` or `reportDateTo`.
+   * Query param: A QuickBooks Desktop relative date macro for the report period.
+   * Choose either `reportDateMacro` or `reportDateFrom`/`reportDateTo`.
    */
   reportDateMacro?:
     | 'all'
@@ -1437,10 +1440,10 @@ export interface ReportCustomDetailParams {
     | 'next_year';
 
   /**
-   * Query param: Filter for report data dated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or before this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateTo?: string;
 
@@ -1452,8 +1455,8 @@ export interface ReportCustomDetailParams {
   reportType?: 'custom_transaction_detail';
 
   /**
-   * Query param: Filter for report data by transaction type(s). Repeat this query
-   * parameter to include multiple transaction types.
+   * Query param: Filter report rows by transaction type. Accepts one or more
+   * transaction types.
    */
   transactionTypes?: Array<
     | 'all'
@@ -1487,20 +1490,22 @@ export interface ReportCustomDetailParams {
   >;
 
   /**
-   * Query param: Filter for report data updated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or after this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedAfter?: string;
 
   /**
-   * Query param: Filter for report data updated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or before this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedBefore?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative updated-date macro. This cannot be
-   * combined with `updatedAfter` or `updatedBefore`.
+   * Query param: A QuickBooks Desktop relative updated-date macro. Choose either
+   * `updatedDateMacro` or `updatedAfter`/`updatedBefore`.
    */
   updatedDateMacro?:
     | 'all'
@@ -1605,24 +1610,24 @@ export interface ReportCustomSummaryParams {
   conductorEndUserId: string;
 
   /**
-   * Query param: Filter for report data by account `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple accounts. Use only one account filter per
-   * request.
+   * Query param: Filter report rows by account `fullName` values, case-insensitive.
+   * A `fullName` is a fully qualified QuickBooks name formed by joining parent
+   * object names with the object's `name` using colons. Accepts one or more account
+   * full names. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned account IDs. Repeat
-   * this query parameter to include multiple accounts. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned account IDs. Accepts one
+   * or more account IDs. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by account type. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by account type. Choose only one account filter
+   * per request: `accountType`, `accountIds`, or `accountFullNames`.
    */
   accountType?:
     | 'accounts_payable'
@@ -1671,18 +1676,17 @@ export interface ReportCustomSummaryParams {
   basis?: 'accrual' | 'cash' | 'none';
 
   /**
-   * Query param: Filter for report data by class `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by class `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more class full
+   * names. Choose only one class filter per request: `classIds` or `classFullNames`.
    */
   classFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned class IDs. Repeat
-   * this query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by QuickBooks-assigned class IDs. Accepts one or
+   * more class IDs. Choose only one class filter per request: `classIds` or
+   * `classFullNames`.
    */
   classIds?: Array<string>;
 
@@ -1701,24 +1705,25 @@ export interface ReportCustomSummaryParams {
   detailLevel?: 'all' | 'all_except_summary' | 'summary_only';
 
   /**
-   * Query param: Filter for report data by entity `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple entities. Use only one entity filter per
-   * request.
+   * Query param: Filter report rows by entity `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more entity full
+   * names. Choose only one entity filter per request: `entityType`, `entityIds`, or
+   * `entityFullNames`.
    */
   entityFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned entity IDs. Repeat
-   * this query parameter to include multiple entities. Use only one entity filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned entity IDs. Accepts one
+   * or more entity IDs. Choose only one entity filter per request: `entityType`,
+   * `entityIds`, or `entityFullNames`.
    */
   entityIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by entity type, such as customer, vendor,
-   * employee, or other name. Use only one entity filter per request.
+   * Query param: Filter report rows by entity type, such as customer, vendor,
+   * employee, or other name. Choose only one entity filter per request:
+   * `entityType`, `entityIds`, or `entityFullNames`.
    */
   entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';
 
@@ -1729,22 +1734,24 @@ export interface ReportCustomSummaryParams {
   includeSubcolumns?: boolean;
 
   /**
-   * Query param: Filter for report data by item `fullName` values, case-insensitive.
-   * A `fullName` is a fully-qualified QuickBooks name formed by joining parent
-   * object names with the object's `name` using colons. Repeat this query parameter
-   * to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by item `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more item full
+   * names. Choose only one item filter per request: `itemType`, `itemIds`, or
+   * `itemFullNames`.
    */
   itemFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned item IDs. Repeat this
-   * query parameter to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by QuickBooks-assigned item IDs. Accepts one or
+   * more item IDs. Choose only one item filter per request: `itemType`, `itemIds`,
+   * or `itemFullNames`.
    */
   itemIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by item type. Use only one item filter per
-   * request.
+   * Query param: Filter report rows by item type. Choose only one item filter per
+   * request: `itemType`, `itemIds`, or `itemFullNames`.
    */
   itemType?:
     | 'all_except_fixed_asset'
@@ -1761,7 +1768,7 @@ export interface ReportCustomSummaryParams {
     | 'service';
 
   /**
-   * Query param: Filter for report data that is posting, non-posting, or either.
+   * Query param: Filter report rows that are posting, non-posting, or either.
    * Posting status refers to whether QuickBooks records the transaction in an
    * account register.
    */
@@ -1773,16 +1780,16 @@ export interface ReportCustomSummaryParams {
   reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year';
 
   /**
-   * Query param: Filter for report data dated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or after this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateFrom?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative date macro. This cannot be combined
-   * with `reportDateFrom` or `reportDateTo`.
+   * Query param: A QuickBooks Desktop relative date macro for the report period.
+   * Choose either `reportDateMacro` or `reportDateFrom`/`reportDateTo`.
    */
   reportDateMacro?:
     | 'all'
@@ -1811,10 +1818,10 @@ export interface ReportCustomSummaryParams {
     | 'next_year';
 
   /**
-   * Query param: Filter for report data dated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or before this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateTo?: string;
 
@@ -1832,8 +1839,8 @@ export interface ReportCustomSummaryParams {
   rowsToReturn?: 'active_only' | 'non_zero' | 'all';
 
   /**
-   * Query param: Filter for report data by transaction type(s). Repeat this query
-   * parameter to include multiple transaction types.
+   * Query param: Filter report rows by transaction type. Accepts one or more
+   * transaction types.
    */
   transactionTypes?: Array<
     | 'all'
@@ -1867,20 +1874,22 @@ export interface ReportCustomSummaryParams {
   >;
 
   /**
-   * Query param: Filter for report data updated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or after this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedAfter?: string;
 
   /**
-   * Query param: Filter for report data updated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or before this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedBefore?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative updated-date macro. This cannot be
-   * combined with `updatedAfter` or `updatedBefore`.
+   * Query param: A QuickBooks Desktop relative updated-date macro. Choose either
+   * `updatedDateMacro` or `updatedAfter`/`updatedBefore`.
    */
   updatedDateMacro?:
     | 'all'
@@ -1955,18 +1964,18 @@ export interface ReportGeneralDetailParams {
   conductorEndUserId: string;
 
   /**
-   * Query param: Filter for report data by account `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple accounts. Use only one account filter per
-   * request.
+   * Query param: Filter report rows by account `fullName` values, case-insensitive.
+   * A `fullName` is a fully qualified QuickBooks name formed by joining parent
+   * object names with the object's `name` using colons. Accepts one or more account
+   * full names. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned account IDs. Repeat
-   * this query parameter to include multiple accounts. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned account IDs. Accepts one
+   * or more account IDs. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountIds?: Array<string>;
 
@@ -1976,8 +1985,8 @@ export interface ReportGeneralDetailParams {
   accountsToInclude?: 'all' | 'in_use';
 
   /**
-   * Query param: Filter for report data by account type. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by account type. Choose only one account filter
+   * per request: `accountType`, `accountIds`, or `accountFullNames`.
    */
   accountType?:
     | 'accounts_payable'
@@ -2026,18 +2035,17 @@ export interface ReportGeneralDetailParams {
   basis?: 'accrual' | 'cash' | 'none';
 
   /**
-   * Query param: Filter for report data by class `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by class `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more class full
+   * names. Choose only one class filter per request: `classIds` or `classFullNames`.
    */
   classFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned class IDs. Repeat
-   * this query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by QuickBooks-assigned class IDs. Accepts one or
+   * more class IDs. Choose only one class filter per request: `classIds` or
+   * `classFullNames`.
    */
   classIds?: Array<string>;
 
@@ -2049,32 +2057,32 @@ export interface ReportGeneralDetailParams {
   detailLevel?: 'all' | 'all_except_summary' | 'summary_only';
 
   /**
-   * Query param: Filter for report data by entity `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple entities. Use only one entity filter per
-   * request.
+   * Query param: Filter report rows by entity `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more entity full
+   * names. Choose only one entity filter per request: `entityType`, `entityIds`, or
+   * `entityFullNames`.
    */
   entityFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned entity IDs. Repeat
-   * this query parameter to include multiple entities. Use only one entity filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned entity IDs. Accepts one
+   * or more entity IDs. Choose only one entity filter per request: `entityType`,
+   * `entityIds`, or `entityFullNames`.
    */
   entityIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by entity type, such as customer, vendor,
-   * employee, or other name. Use only one entity filter per request.
+   * Query param: Filter report rows by entity type, such as customer, vendor,
+   * employee, or other name. Choose only one entity filter per request:
+   * `entityType`, `entityIds`, or `entityFullNames`.
    */
   entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';
 
   /**
-   * Query param: The specific report columns to include, by column type. Repeat this
-   * query parameter to request multiple columns. When this parameter is present,
-   * QuickBooks Desktop omits its default report columns unless you include them
-   * here.
+   * Query param: The report columns to include, by column type. Accepts one or more
+   * columns. When this parameter is present, QuickBooks Desktop omits its default
+   * report columns unless you include them here.
    */
   includeColumns?: Array<
     | 'account'
@@ -2155,22 +2163,24 @@ export interface ReportGeneralDetailParams {
   >;
 
   /**
-   * Query param: Filter for report data by item `fullName` values, case-insensitive.
-   * A `fullName` is a fully-qualified QuickBooks name formed by joining parent
-   * object names with the object's `name` using colons. Repeat this query parameter
-   * to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by item `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more item full
+   * names. Choose only one item filter per request: `itemType`, `itemIds`, or
+   * `itemFullNames`.
    */
   itemFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned item IDs. Repeat this
-   * query parameter to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by QuickBooks-assigned item IDs. Accepts one or
+   * more item IDs. Choose only one item filter per request: `itemType`, `itemIds`,
+   * or `itemFullNames`.
    */
   itemIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by item type. Use only one item filter per
-   * request.
+   * Query param: Filter report rows by item type. Choose only one item filter per
+   * request: `itemType`, `itemIds`, or `itemFullNames`.
    */
   itemType?:
     | 'all_except_fixed_asset'
@@ -2193,23 +2203,23 @@ export interface ReportGeneralDetailParams {
   openBalanceAsOf?: 'report_end_date' | 'today';
 
   /**
-   * Query param: Filter for report data that is posting, non-posting, or either.
+   * Query param: Filter report rows that are posting, non-posting, or either.
    * Posting status refers to whether QuickBooks records the transaction in an
    * account register.
    */
   postingStatus?: 'either' | 'non_posting' | 'posting';
 
   /**
-   * Query param: Filter for report data dated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or after this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateFrom?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative date macro. This cannot be combined
-   * with `reportDateFrom` or `reportDateTo`.
+   * Query param: A QuickBooks Desktop relative date macro for the report period.
+   * Choose either `reportDateMacro` or `reportDateFrom`/`reportDateTo`.
    */
   reportDateMacro?:
     | 'all'
@@ -2238,10 +2248,10 @@ export interface ReportGeneralDetailParams {
     | 'next_year';
 
   /**
-   * Query param: Filter for report data dated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or before this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateTo?: string;
 
@@ -2281,8 +2291,8 @@ export interface ReportGeneralDetailParams {
     | 'year';
 
   /**
-   * Query param: Filter for report data by transaction type(s). Repeat this query
-   * parameter to include multiple transaction types.
+   * Query param: Filter report rows by transaction type. Accepts one or more
+   * transaction types.
    */
   transactionTypes?: Array<
     | 'all'
@@ -2316,20 +2326,22 @@ export interface ReportGeneralDetailParams {
   >;
 
   /**
-   * Query param: Filter for report data updated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or after this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedAfter?: string;
 
   /**
-   * Query param: Filter for report data updated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or before this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedBefore?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative updated-date macro. This cannot be
-   * combined with `updatedAfter` or `updatedBefore`.
+   * Query param: A QuickBooks Desktop relative updated-date macro. Choose either
+   * `updatedDateMacro` or `updatedAfter`/`updatedBefore`.
    */
   updatedDateMacro?:
     | 'all'
@@ -2399,24 +2411,24 @@ export interface ReportGeneralSummaryParams {
   conductorEndUserId: string;
 
   /**
-   * Query param: Filter for report data by account `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple accounts. Use only one account filter per
-   * request.
+   * Query param: Filter report rows by account `fullName` values, case-insensitive.
+   * A `fullName` is a fully qualified QuickBooks name formed by joining parent
+   * object names with the object's `name` using colons. Accepts one or more account
+   * full names. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned account IDs. Repeat
-   * this query parameter to include multiple accounts. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned account IDs. Accepts one
+   * or more account IDs. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by account type. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by account type. Choose only one account filter
+   * per request: `accountType`, `accountIds`, or `accountFullNames`.
    */
   accountType?:
     | 'accounts_payable'
@@ -2465,18 +2477,17 @@ export interface ReportGeneralSummaryParams {
   basis?: 'accrual' | 'cash' | 'none';
 
   /**
-   * Query param: Filter for report data by class `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by class `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more class full
+   * names. Choose only one class filter per request: `classIds` or `classFullNames`.
    */
   classFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned class IDs. Repeat
-   * this query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by QuickBooks-assigned class IDs. Accepts one or
+   * more class IDs. Choose only one class filter per request: `classIds` or
+   * `classFullNames`.
    */
   classIds?: Array<string>;
 
@@ -2495,24 +2506,25 @@ export interface ReportGeneralSummaryParams {
   detailLevel?: 'all' | 'all_except_summary' | 'summary_only';
 
   /**
-   * Query param: Filter for report data by entity `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple entities. Use only one entity filter per
-   * request.
+   * Query param: Filter report rows by entity `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more entity full
+   * names. Choose only one entity filter per request: `entityType`, `entityIds`, or
+   * `entityFullNames`.
    */
   entityFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned entity IDs. Repeat
-   * this query parameter to include multiple entities. Use only one entity filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned entity IDs. Accepts one
+   * or more entity IDs. Choose only one entity filter per request: `entityType`,
+   * `entityIds`, or `entityFullNames`.
    */
   entityIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by entity type, such as customer, vendor,
-   * employee, or other name. Use only one entity filter per request.
+   * Query param: Filter report rows by entity type, such as customer, vendor,
+   * employee, or other name. Choose only one entity filter per request:
+   * `entityType`, `entityIds`, or `entityFullNames`.
    */
   entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';
 
@@ -2523,22 +2535,24 @@ export interface ReportGeneralSummaryParams {
   includeSubcolumns?: boolean;
 
   /**
-   * Query param: Filter for report data by item `fullName` values, case-insensitive.
-   * A `fullName` is a fully-qualified QuickBooks name formed by joining parent
-   * object names with the object's `name` using colons. Repeat this query parameter
-   * to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by item `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more item full
+   * names. Choose only one item filter per request: `itemType`, `itemIds`, or
+   * `itemFullNames`.
    */
   itemFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned item IDs. Repeat this
-   * query parameter to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by QuickBooks-assigned item IDs. Accepts one or
+   * more item IDs. Choose only one item filter per request: `itemType`, `itemIds`,
+   * or `itemFullNames`.
    */
   itemIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by item type. Use only one item filter per
-   * request.
+   * Query param: Filter report rows by item type. Choose only one item filter per
+   * request: `itemType`, `itemIds`, or `itemFullNames`.
    */
   itemType?:
     | 'all_except_fixed_asset'
@@ -2555,7 +2569,7 @@ export interface ReportGeneralSummaryParams {
     | 'service';
 
   /**
-   * Query param: Filter for report data that is posting, non-posting, or either.
+   * Query param: Filter report rows that are posting, non-posting, or either.
    * Posting status refers to whether QuickBooks records the transaction in an
    * account register.
    */
@@ -2567,16 +2581,16 @@ export interface ReportGeneralSummaryParams {
   reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year';
 
   /**
-   * Query param: Filter for report data dated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or after this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateFrom?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative date macro. This cannot be combined
-   * with `reportDateFrom` or `reportDateTo`.
+   * Query param: A QuickBooks Desktop relative date macro for the report period.
+   * Choose either `reportDateMacro` or `reportDateFrom`/`reportDateTo`.
    */
   reportDateMacro?:
     | 'all'
@@ -2605,10 +2619,10 @@ export interface ReportGeneralSummaryParams {
     | 'next_year';
 
   /**
-   * Query param: Filter for report data dated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or before this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateTo?: string;
 
@@ -2653,8 +2667,8 @@ export interface ReportGeneralSummaryParams {
     | 'year';
 
   /**
-   * Query param: Filter for report data by transaction type(s). Repeat this query
-   * parameter to include multiple transaction types.
+   * Query param: Filter report rows by transaction type. Accepts one or more
+   * transaction types.
    */
   transactionTypes?: Array<
     | 'all'
@@ -2688,20 +2702,22 @@ export interface ReportGeneralSummaryParams {
   >;
 
   /**
-   * Query param: Filter for report data updated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or after this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedAfter?: string;
 
   /**
-   * Query param: Filter for report data updated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or before this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedBefore?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative updated-date macro. This cannot be
-   * combined with `updatedAfter` or `updatedBefore`.
+   * Query param: A QuickBooks Desktop relative updated-date macro. Choose either
+   * `updatedDateMacro` or `updatedAfter`/`updatedBefore`.
    */
   updatedDateMacro?:
     | 'all'
@@ -2748,24 +2764,24 @@ export interface ReportJobParams {
   conductorEndUserId: string;
 
   /**
-   * Query param: Filter for report data by account `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple accounts. Use only one account filter per
-   * request.
+   * Query param: Filter report rows by account `fullName` values, case-insensitive.
+   * A `fullName` is a fully qualified QuickBooks name formed by joining parent
+   * object names with the object's `name` using colons. Accepts one or more account
+   * full names. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned account IDs. Repeat
-   * this query parameter to include multiple accounts. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned account IDs. Accepts one
+   * or more account IDs. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by account type. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by account type. Choose only one account filter
+   * per request: `accountType`, `accountIds`, or `accountFullNames`.
    */
   accountType?:
     | 'accounts_payable'
@@ -2806,18 +2822,17 @@ export interface ReportJobParams {
     | 'other_income_or_expense';
 
   /**
-   * Query param: Filter for report data by class `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by class `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more class full
+   * names. Choose only one class filter per request: `classIds` or `classFullNames`.
    */
   classFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned class IDs. Repeat
-   * this query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by QuickBooks-assigned class IDs. Accepts one or
+   * more class IDs. Choose only one class filter per request: `classIds` or
+   * `classFullNames`.
    */
   classIds?: Array<string>;
 
@@ -2829,24 +2844,25 @@ export interface ReportJobParams {
   detailLevel?: 'all' | 'all_except_summary' | 'summary_only';
 
   /**
-   * Query param: Filter for report data by entity `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple entities. Use only one entity filter per
-   * request.
+   * Query param: Filter report rows by entity `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more entity full
+   * names. Choose only one entity filter per request: `entityType`, `entityIds`, or
+   * `entityFullNames`.
    */
   entityFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned entity IDs. Repeat
-   * this query parameter to include multiple entities. Use only one entity filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned entity IDs. Accepts one
+   * or more entity IDs. Choose only one entity filter per request: `entityType`,
+   * `entityIds`, or `entityFullNames`.
    */
   entityIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by entity type, such as customer, vendor,
-   * employee, or other name. Use only one entity filter per request.
+   * Query param: Filter report rows by entity type, such as customer, vendor,
+   * employee, or other name. Choose only one entity filter per request:
+   * `entityType`, `entityIds`, or `entityFullNames`.
    */
   entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';
 
@@ -2857,22 +2873,24 @@ export interface ReportJobParams {
   includeSubcolumns?: boolean;
 
   /**
-   * Query param: Filter for report data by item `fullName` values, case-insensitive.
-   * A `fullName` is a fully-qualified QuickBooks name formed by joining parent
-   * object names with the object's `name` using colons. Repeat this query parameter
-   * to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by item `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more item full
+   * names. Choose only one item filter per request: `itemType`, `itemIds`, or
+   * `itemFullNames`.
    */
   itemFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned item IDs. Repeat this
-   * query parameter to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by QuickBooks-assigned item IDs. Accepts one or
+   * more item IDs. Choose only one item filter per request: `itemType`, `itemIds`,
+   * or `itemFullNames`.
    */
   itemIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by item type. Use only one item filter per
-   * request.
+   * Query param: Filter report rows by item type. Choose only one item filter per
+   * request: `itemType`, `itemIds`, or `itemFullNames`.
    */
   itemType?:
     | 'all_except_fixed_asset'
@@ -2889,23 +2907,23 @@ export interface ReportJobParams {
     | 'service';
 
   /**
-   * Query param: Filter for report data that is posting, non-posting, or either.
+   * Query param: Filter report rows that are posting, non-posting, or either.
    * Posting status refers to whether QuickBooks records the transaction in an
    * account register.
    */
   postingStatus?: 'either' | 'non_posting' | 'posting';
 
   /**
-   * Query param: Filter for report data dated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or after this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateFrom?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative date macro. This cannot be combined
-   * with `reportDateFrom` or `reportDateTo`.
+   * Query param: A QuickBooks Desktop relative date macro for the report period.
+   * Choose either `reportDateMacro` or `reportDateFrom`/`reportDateTo`.
    */
   reportDateMacro?:
     | 'all'
@@ -2934,10 +2952,10 @@ export interface ReportJobParams {
     | 'next_year';
 
   /**
-   * Query param: Filter for report data dated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or before this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateTo?: string;
 
@@ -2976,8 +2994,8 @@ export interface ReportJobParams {
     | 'year';
 
   /**
-   * Query param: Filter for report data by transaction type(s). Repeat this query
-   * parameter to include multiple transaction types.
+   * Query param: Filter report rows by transaction type. Accepts one or more
+   * transaction types.
    */
   transactionTypes?: Array<
     | 'all'
@@ -3011,20 +3029,22 @@ export interface ReportJobParams {
   >;
 
   /**
-   * Query param: Filter for report data updated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or after this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedAfter?: string;
 
   /**
-   * Query param: Filter for report data updated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or before this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedBefore?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative updated-date macro. This cannot be
-   * combined with `updatedAfter` or `updatedBefore`.
+   * Query param: A QuickBooks Desktop relative updated-date macro. Choose either
+   * `updatedDateMacro` or `updatedAfter`/`updatedBefore`.
    */
   updatedDateMacro?:
     | 'all'
@@ -3070,18 +3090,18 @@ export interface ReportPayrollDetailParams {
   conductorEndUserId: string;
 
   /**
-   * Query param: Filter for report data by account `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple accounts. Use only one account filter per
-   * request.
+   * Query param: Filter report rows by account `fullName` values, case-insensitive.
+   * A `fullName` is a fully qualified QuickBooks name formed by joining parent
+   * object names with the object's `name` using colons. Accepts one or more account
+   * full names. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned account IDs. Repeat
-   * this query parameter to include multiple accounts. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned account IDs. Accepts one
+   * or more account IDs. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountIds?: Array<string>;
 
@@ -3091,8 +3111,8 @@ export interface ReportPayrollDetailParams {
   accountsToInclude?: 'all' | 'in_use';
 
   /**
-   * Query param: Filter for report data by account type. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by account type. Choose only one account filter
+   * per request: `accountType`, `accountIds`, or `accountFullNames`.
    */
   accountType?:
     | 'accounts_payable'
@@ -3133,18 +3153,17 @@ export interface ReportPayrollDetailParams {
     | 'other_income_or_expense';
 
   /**
-   * Query param: Filter for report data by class `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by class `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more class full
+   * names. Choose only one class filter per request: `classIds` or `classFullNames`.
    */
   classFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned class IDs. Repeat
-   * this query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by QuickBooks-assigned class IDs. Accepts one or
+   * more class IDs. Choose only one class filter per request: `classIds` or
+   * `classFullNames`.
    */
   classIds?: Array<string>;
 
@@ -3156,32 +3175,32 @@ export interface ReportPayrollDetailParams {
   detailLevel?: 'all' | 'all_except_summary' | 'summary_only';
 
   /**
-   * Query param: Filter for report data by entity `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple entities. Use only one entity filter per
-   * request.
+   * Query param: Filter report rows by entity `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more entity full
+   * names. Choose only one entity filter per request: `entityType`, `entityIds`, or
+   * `entityFullNames`.
    */
   entityFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned entity IDs. Repeat
-   * this query parameter to include multiple entities. Use only one entity filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned entity IDs. Accepts one
+   * or more entity IDs. Choose only one entity filter per request: `entityType`,
+   * `entityIds`, or `entityFullNames`.
    */
   entityIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by entity type, such as customer, vendor,
-   * employee, or other name. Use only one entity filter per request.
+   * Query param: Filter report rows by entity type, such as customer, vendor,
+   * employee, or other name. Choose only one entity filter per request:
+   * `entityType`, `entityIds`, or `entityFullNames`.
    */
   entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';
 
   /**
-   * Query param: The specific report columns to include, by column type. Repeat this
-   * query parameter to request multiple columns. When this parameter is present,
-   * QuickBooks Desktop omits its default report columns unless you include them
-   * here.
+   * Query param: The report columns to include, by column type. Accepts one or more
+   * columns. When this parameter is present, QuickBooks Desktop omits its default
+   * report columns unless you include them here.
    */
   includeColumns?: Array<
     | 'account'
@@ -3262,22 +3281,24 @@ export interface ReportPayrollDetailParams {
   >;
 
   /**
-   * Query param: Filter for report data by item `fullName` values, case-insensitive.
-   * A `fullName` is a fully-qualified QuickBooks name formed by joining parent
-   * object names with the object's `name` using colons. Repeat this query parameter
-   * to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by item `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more item full
+   * names. Choose only one item filter per request: `itemType`, `itemIds`, or
+   * `itemFullNames`.
    */
   itemFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned item IDs. Repeat this
-   * query parameter to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by QuickBooks-assigned item IDs. Accepts one or
+   * more item IDs. Choose only one item filter per request: `itemType`, `itemIds`,
+   * or `itemFullNames`.
    */
   itemIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by item type. Use only one item filter per
-   * request.
+   * Query param: Filter report rows by item type. Choose only one item filter per
+   * request: `itemType`, `itemIds`, or `itemFullNames`.
    */
   itemType?:
     | 'all_except_fixed_asset'
@@ -3300,23 +3321,23 @@ export interface ReportPayrollDetailParams {
   openBalanceAsOf?: 'report_end_date' | 'today';
 
   /**
-   * Query param: Filter for report data that is posting, non-posting, or either.
+   * Query param: Filter report rows that are posting, non-posting, or either.
    * Posting status refers to whether QuickBooks records the transaction in an
    * account register.
    */
   postingStatus?: 'either' | 'non_posting' | 'posting';
 
   /**
-   * Query param: Filter for report data dated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or after this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateFrom?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative date macro. This cannot be combined
-   * with `reportDateFrom` or `reportDateTo`.
+   * Query param: A QuickBooks Desktop relative date macro for the report period.
+   * Choose either `reportDateMacro` or `reportDateFrom`/`reportDateTo`.
    */
   reportDateMacro?:
     | 'all'
@@ -3345,10 +3366,10 @@ export interface ReportPayrollDetailParams {
     | 'next_year';
 
   /**
-   * Query param: Filter for report data dated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or before this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateTo?: string;
 
@@ -3388,20 +3409,22 @@ export interface ReportPayrollDetailParams {
     | 'year';
 
   /**
-   * Query param: Filter for report data updated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or after this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedAfter?: string;
 
   /**
-   * Query param: Filter for report data updated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or before this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedBefore?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative updated-date macro. This cannot be
-   * combined with `updatedAfter` or `updatedBefore`.
+   * Query param: A QuickBooks Desktop relative updated-date macro. Choose either
+   * `updatedDateMacro` or `updatedAfter`/`updatedBefore`.
    */
   updatedDateMacro?:
     | 'all'
@@ -3442,24 +3465,24 @@ export interface ReportPayrollSummaryParams {
   conductorEndUserId: string;
 
   /**
-   * Query param: Filter for report data by account `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple accounts. Use only one account filter per
-   * request.
+   * Query param: Filter report rows by account `fullName` values, case-insensitive.
+   * A `fullName` is a fully qualified QuickBooks name formed by joining parent
+   * object names with the object's `name` using colons. Accepts one or more account
+   * full names. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned account IDs. Repeat
-   * this query parameter to include multiple accounts. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned account IDs. Accepts one
+   * or more account IDs. Choose only one account filter per request: `accountType`,
+   * `accountIds`, or `accountFullNames`.
    */
   accountIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by account type. Use only one account filter
-   * per request.
+   * Query param: Filter report rows by account type. Choose only one account filter
+   * per request: `accountType`, `accountIds`, or `accountFullNames`.
    */
   accountType?:
     | 'accounts_payable'
@@ -3500,18 +3523,17 @@ export interface ReportPayrollSummaryParams {
     | 'other_income_or_expense';
 
   /**
-   * Query param: Filter for report data by class `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by class `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more class full
+   * names. Choose only one class filter per request: `classIds` or `classFullNames`.
    */
   classFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned class IDs. Repeat
-   * this query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by QuickBooks-assigned class IDs. Accepts one or
+   * more class IDs. Choose only one class filter per request: `classIds` or
+   * `classFullNames`.
    */
   classIds?: Array<string>;
 
@@ -3530,24 +3552,25 @@ export interface ReportPayrollSummaryParams {
   detailLevel?: 'all' | 'all_except_summary' | 'summary_only';
 
   /**
-   * Query param: Filter for report data by entity `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple entities. Use only one entity filter per
-   * request.
+   * Query param: Filter report rows by entity `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more entity full
+   * names. Choose only one entity filter per request: `entityType`, `entityIds`, or
+   * `entityFullNames`.
    */
   entityFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned entity IDs. Repeat
-   * this query parameter to include multiple entities. Use only one entity filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned entity IDs. Accepts one
+   * or more entity IDs. Choose only one entity filter per request: `entityType`,
+   * `entityIds`, or `entityFullNames`.
    */
   entityIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by entity type, such as customer, vendor,
-   * employee, or other name. Use only one entity filter per request.
+   * Query param: Filter report rows by entity type, such as customer, vendor,
+   * employee, or other name. Choose only one entity filter per request:
+   * `entityType`, `entityIds`, or `entityFullNames`.
    */
   entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';
 
@@ -3558,22 +3581,24 @@ export interface ReportPayrollSummaryParams {
   includeSubcolumns?: boolean;
 
   /**
-   * Query param: Filter for report data by item `fullName` values, case-insensitive.
-   * A `fullName` is a fully-qualified QuickBooks name formed by joining parent
-   * object names with the object's `name` using colons. Repeat this query parameter
-   * to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by item `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more item full
+   * names. Choose only one item filter per request: `itemType`, `itemIds`, or
+   * `itemFullNames`.
    */
   itemFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned item IDs. Repeat this
-   * query parameter to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by QuickBooks-assigned item IDs. Accepts one or
+   * more item IDs. Choose only one item filter per request: `itemType`, `itemIds`,
+   * or `itemFullNames`.
    */
   itemIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by item type. Use only one item filter per
-   * request.
+   * Query param: Filter report rows by item type. Choose only one item filter per
+   * request: `itemType`, `itemIds`, or `itemFullNames`.
    */
   itemType?:
     | 'all_except_fixed_asset'
@@ -3590,7 +3615,7 @@ export interface ReportPayrollSummaryParams {
     | 'service';
 
   /**
-   * Query param: Filter for report data that is posting, non-posting, or either.
+   * Query param: Filter report rows that are posting, non-posting, or either.
    * Posting status refers to whether QuickBooks records the transaction in an
    * account register.
    */
@@ -3602,16 +3627,16 @@ export interface ReportPayrollSummaryParams {
   reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year';
 
   /**
-   * Query param: Filter for report data dated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or after this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateFrom?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative date macro. This cannot be combined
-   * with `reportDateFrom` or `reportDateTo`.
+   * Query param: A QuickBooks Desktop relative date macro for the report period.
+   * Choose either `reportDateMacro` or `reportDateFrom`/`reportDateTo`.
    */
   reportDateMacro?:
     | 'all'
@@ -3640,10 +3665,10 @@ export interface ReportPayrollSummaryParams {
     | 'next_year';
 
   /**
-   * Query param: Filter for report data dated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or before this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateTo?: string;
 
@@ -3688,20 +3713,22 @@ export interface ReportPayrollSummaryParams {
     | 'year';
 
   /**
-   * Query param: Filter for report data updated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or after this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedAfter?: string;
 
   /**
-   * Query param: Filter for report data updated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.
+   * Query param: Filter report rows updated on or before this date, in ISO 8601
+   * format (YYYY-MM-DD). Choose either `updatedDateMacro` or
+   * `updatedAfter`/`updatedBefore`.
    */
   updatedBefore?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative updated-date macro. This cannot be
-   * combined with `updatedAfter` or `updatedBefore`.
+   * Query param: A QuickBooks Desktop relative updated-date macro. Choose either
+   * `updatedDateMacro` or `updatedAfter`/`updatedBefore`.
    */
   updatedDateMacro?:
     | 'all'
@@ -3742,18 +3769,17 @@ export interface ReportTimeParams {
   conductorEndUserId: string;
 
   /**
-   * Query param: Filter for report data by class `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by class `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more class full
+   * names. Choose only one class filter per request: `classIds` or `classFullNames`.
    */
   classFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned class IDs. Repeat
-   * this query parameter to include multiple classes. Use only one class filter per
-   * request.
+   * Query param: Filter report rows by QuickBooks-assigned class IDs. Accepts one or
+   * more class IDs. Choose only one class filter per request: `classIds` or
+   * `classFullNames`.
    */
   classIds?: Array<string>;
 
@@ -3765,24 +3791,25 @@ export interface ReportTimeParams {
   columnsToReturn?: 'active_only' | 'non_zero' | 'all';
 
   /**
-   * Query param: Filter for report data by entity `fullName` values,
-   * case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by
-   * joining parent object names with the object's `name` using colons. Repeat this
-   * query parameter to include multiple entities. Use only one entity filter per
-   * request.
+   * Query param: Filter report rows by entity `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more entity full
+   * names. Choose only one entity filter per request: `entityType`, `entityIds`, or
+   * `entityFullNames`.
    */
   entityFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned entity IDs. Repeat
-   * this query parameter to include multiple entities. Use only one entity filter
-   * per request.
+   * Query param: Filter report rows by QuickBooks-assigned entity IDs. Accepts one
+   * or more entity IDs. Choose only one entity filter per request: `entityType`,
+   * `entityIds`, or `entityFullNames`.
    */
   entityIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by entity type, such as customer, vendor,
-   * employee, or other name. Use only one entity filter per request.
+   * Query param: Filter report rows by entity type, such as customer, vendor,
+   * employee, or other name. Choose only one entity filter per request:
+   * `entityType`, `entityIds`, or `entityFullNames`.
    */
   entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';
 
@@ -3793,22 +3820,24 @@ export interface ReportTimeParams {
   includeSubcolumns?: boolean;
 
   /**
-   * Query param: Filter for report data by item `fullName` values, case-insensitive.
-   * A `fullName` is a fully-qualified QuickBooks name formed by joining parent
-   * object names with the object's `name` using colons. Repeat this query parameter
-   * to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by item `fullName` values, case-insensitive. A
+   * `fullName` is a fully qualified QuickBooks name formed by joining parent object
+   * names with the object's `name` using colons. Accepts one or more item full
+   * names. Choose only one item filter per request: `itemType`, `itemIds`, or
+   * `itemFullNames`.
    */
   itemFullNames?: Array<string>;
 
   /**
-   * Query param: Filter for report data by QuickBooks-assigned item IDs. Repeat this
-   * query parameter to include multiple items. Use only one item filter per request.
+   * Query param: Filter report rows by QuickBooks-assigned item IDs. Accepts one or
+   * more item IDs. Choose only one item filter per request: `itemType`, `itemIds`,
+   * or `itemFullNames`.
    */
   itemIds?: Array<string>;
 
   /**
-   * Query param: Filter for report data by item type. Use only one item filter per
-   * request.
+   * Query param: Filter report rows by item type. Choose only one item filter per
+   * request: `itemType`, `itemIds`, or `itemFullNames`.
    */
   itemType?:
     | 'all_except_fixed_asset'
@@ -3830,16 +3859,16 @@ export interface ReportTimeParams {
   reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year';
 
   /**
-   * Query param: Filter for report data dated on or after this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or after this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateFrom?: string;
 
   /**
-   * Query param: A QuickBooks Desktop relative date macro. This cannot be combined
-   * with `reportDateFrom` or `reportDateTo`.
+   * Query param: A QuickBooks Desktop relative date macro for the report period.
+   * Choose either `reportDateMacro` or `reportDateFrom`/`reportDateTo`.
    */
   reportDateMacro?:
     | 'all'
@@ -3868,10 +3897,10 @@ export interface ReportTimeParams {
     | 'next_year';
 
   /**
-   * Query param: Filter for report data dated on or before this date, in ISO 8601
-   * format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit
-   * `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses
-   * the current fiscal year to date.
+   * Query param: Filter report rows dated on or before this date, in ISO 8601 format
+   * (YYYY-MM-DD). Choose either `reportDateMacro` or
+   * `reportDateFrom`/`reportDateTo`. If you omit `reportDateFrom`, `reportDateTo`,
+   * and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.
    */
   reportDateTo?: string;
 
