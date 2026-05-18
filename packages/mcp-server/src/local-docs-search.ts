@@ -7254,6 +7254,556 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'aging',
+    endpoint: '/quickbooks-desktop/reports/aging',
+    httpMethod: 'get',
+    summary: 'Retrieve an aging report',
+    description: 'Retrieves an aging report.',
+    stainlessPath: '(resource) qbd.reports > (method) aging',
+    qualified: 'client.qbd.reports.aging',
+    params: [
+      'reportType: string;',
+      'Conductor-End-User-Id: string;',
+      'accountFullNames?: string[];',
+      'accountIds?: string[];',
+      "accountsToInclude?: 'all' | 'in_use';",
+      'accountType?: string;',
+      "agingAsOf?: 'report_end_date' | 'today';",
+      'classFullNames?: string[];',
+      'classIds?: string[];',
+      "detailLevel?: 'all' | 'all_except_summary' | 'summary_only';",
+      'entityFullNames?: string[];',
+      'entityIds?: string[];',
+      "entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';",
+      'includeColumns?: string[];',
+      'itemFullNames?: string[];',
+      'itemIds?: string[];',
+      'itemType?: string;',
+      "postingStatus?: 'either' | 'non_posting' | 'posting';",
+      'reportDateFrom?: string;',
+      'reportDateMacro?: string;',
+      'reportDateTo?: string;',
+      'transactionTypes?: string[];',
+      'updatedAfter?: string;',
+      'updatedBefore?: string;',
+      'updatedDateMacro?: string;',
+    ],
+    response:
+      "{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }",
+    markdown:
+      "## aging\n\n`conductor.qbd.reports.aging(reportType: string, Conductor-End-User-Id: string, accountFullNames?: string[], accountIds?: string[], accountsToInclude?: 'all' | 'in_use', accountType?: string, agingAsOf?: 'report_end_date' | 'today', classFullNames?: string[], classIds?: string[], detailLevel?: 'all' | 'all_except_summary' | 'summary_only', entityFullNames?: string[], entityIds?: string[], entityType?: 'customer' | 'employee' | 'other_name' | 'vendor', includeColumns?: string[], itemFullNames?: string[], itemIds?: string[], itemType?: string, postingStatus?: 'either' | 'non_posting' | 'posting', reportDateFrom?: string, reportDateMacro?: string, reportDateTo?: string, transactionTypes?: string[], updatedAfter?: string, updatedBefore?: string, updatedDateMacro?: string): object`\n\n**get** `/quickbooks-desktop/reports/aging`\n\nRetrieves an aging report.\n\n### Parameters\n\n- `reportType: string`\n  The aging report type to retrieve.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountFullNames?: string[]`\n  Filter for report data by account `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountIds?: string[]`\n  Filter for report data by QuickBooks-assigned account IDs. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountsToInclude?: 'all' | 'in_use'`\n  Whether to include all accounts or only accounts in use.\n\n- `accountType?: string`\n  Filter for report data by account type. Use only one account filter per request.\n\n- `agingAsOf?: 'report_end_date' | 'today'`\n  The date through which QuickBooks Desktop calculates aging information.\n\n- `classFullNames?: string[]`\n  Filter for report data by class `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `classIds?: string[]`\n  Filter for report data by QuickBooks-assigned class IDs. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `detailLevel?: 'all' | 'all_except_summary' | 'summary_only'`\n  The report detail level to include. Use `all` for all rows, `all_except_summary` to omit summary rows, or `summary_only` to return only summary rows.\n\n- `entityFullNames?: string[]`\n  Filter for report data by entity `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityIds?: string[]`\n  Filter for report data by QuickBooks-assigned entity IDs. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityType?: 'customer' | 'employee' | 'other_name' | 'vendor'`\n  Filter for report data by entity type, such as customer, vendor, employee, or other name. Use only one entity filter per request.\n\n- `includeColumns?: string[]`\n  The specific report columns to include, by column type. Repeat this query parameter to request multiple columns. When this parameter is present, QuickBooks Desktop omits its default report columns unless you include them here.\n\n- `itemFullNames?: string[]`\n  Filter for report data by item `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemIds?: string[]`\n  Filter for report data by QuickBooks-assigned item IDs. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemType?: string`\n  Filter for report data by item type. Use only one item filter per request.\n\n- `postingStatus?: 'either' | 'non_posting' | 'posting'`\n  Filter for report data that is posting, non-posting, or either. Posting status refers to whether QuickBooks records the transaction in an account register.\n\n- `reportDateFrom?: string`\n  Filter for report data dated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportDateMacro?: string`\n  A QuickBooks Desktop relative date macro. This cannot be combined with `reportDateFrom` or `reportDateTo`.\n\n- `reportDateTo?: string`\n  Filter for report data dated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `transactionTypes?: string[]`\n  Filter for report data by transaction type(s). Repeat this query parameter to include multiple transaction types.\n\n- `updatedAfter?: string`\n  Filter for report data updated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedBefore?: string`\n  Filter for report data updated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedDateMacro?: string`\n  A QuickBooks Desktop relative updated-date macro. This cannot be combined with `updatedAfter` or `updatedBefore`.\n\n### Returns\n\n- `{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.reports.aging({ reportType: 'ap_aging_detail', conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.reports.aging',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.reports.aging({\n  reportType: 'ap_aging_detail',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'qbd.reports.aging',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.reports.aging(\n    report_type="ap_aging_detail",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/aging \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'budget_summary',
+    endpoint: '/quickbooks-desktop/reports/budget-summary',
+    httpMethod: 'get',
+    summary: 'Retrieve a budget summary report',
+    description: 'Retrieves a budget summary report.',
+    stainlessPath: '(resource) qbd.reports > (method) budget_summary',
+    qualified: 'client.qbd.reports.budgetSummary',
+    params: [
+      'fiscalYear: number;',
+      'reportType: string;',
+      'Conductor-End-User-Id: string;',
+      "budgetCriterion?: 'accounts' | 'accounts_and_classes' | 'accounts_and_customers';",
+      'classFullNames?: string[];',
+      'classIds?: string[];',
+      'reportDateFrom?: string;',
+      'reportDateMacro?: string;',
+      'reportDateTo?: string;',
+      "summarizeColumnsBy?: 'class' | 'customer' | 'date';",
+      "summarizeRowsBy?: 'account' | 'class' | 'customer';",
+    ],
+    response:
+      "{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }",
+    markdown:
+      "## budget_summary\n\n`conductor.qbd.reports.budgetSummary(fiscalYear: number, reportType: string, Conductor-End-User-Id: string, budgetCriterion?: 'accounts' | 'accounts_and_classes' | 'accounts_and_customers', classFullNames?: string[], classIds?: string[], reportDateFrom?: string, reportDateMacro?: string, reportDateTo?: string, summarizeColumnsBy?: 'class' | 'customer' | 'date', summarizeRowsBy?: 'account' | 'class' | 'customer'): object`\n\n**get** `/quickbooks-desktop/reports/budget-summary`\n\nRetrieves a budget summary report.\n\n### Parameters\n\n- `fiscalYear: number`\n  The fiscal year of the QuickBooks budget. QuickBooks Desktop returns the full fiscal year for prior years and year-to-date data for the current fiscal year.\n\n- `reportType: string`\n  The budget summary report type to retrieve.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `budgetCriterion?: 'accounts' | 'accounts_and_classes' | 'accounts_and_customers'`\n  What the budget covers, such as accounts, accounts and classes, or accounts and customers.\n\n- `classFullNames?: string[]`\n  Filter for report data by class `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `classIds?: string[]`\n  Filter for report data by QuickBooks-assigned class IDs. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `reportDateFrom?: string`\n  Filter for report data dated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportDateMacro?: string`\n  A QuickBooks Desktop relative date macro. This cannot be combined with `reportDateFrom` or `reportDateTo`.\n\n- `reportDateTo?: string`\n  Filter for report data dated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `summarizeColumnsBy?: 'class' | 'customer' | 'date'`\n  How QuickBooks Desktop calculates budget report columns and labels column headers.\n\n- `summarizeRowsBy?: 'account' | 'class' | 'customer'`\n  How QuickBooks Desktop labels budget report rows.\n\n### Returns\n\n- `{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.reports.budgetSummary({\n  fiscalYear: 2026,\n  reportType: 'balance_sheet_budget_overview',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.reports.budgetSummary',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.reports.budgetSummary({\n  fiscalYear: 2026,\n  reportType: 'balance_sheet_budget_overview',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'qbd.reports.budget_summary',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.reports.budget_summary(\n    fiscal_year=2026,\n    report_type="balance_sheet_budget_overview",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/budget-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'custom_detail',
+    endpoint: '/quickbooks-desktop/reports/custom-detail',
+    httpMethod: 'get',
+    summary: 'Retrieve a custom detail report',
+    description: 'Retrieves a custom detail report.',
+    stainlessPath: '(resource) qbd.reports > (method) custom_detail',
+    qualified: 'client.qbd.reports.customDetail',
+    params: [
+      'includeColumns: string[];',
+      'summarizeRowsBy: string;',
+      'Conductor-End-User-Id: string;',
+      'accountFullNames?: string[];',
+      'accountIds?: string[];',
+      "accountsToInclude?: 'all' | 'in_use';",
+      'accountType?: string;',
+      "basis?: 'accrual' | 'cash' | 'none';",
+      'classFullNames?: string[];',
+      'classIds?: string[];',
+      "detailLevel?: 'all' | 'all_except_summary' | 'summary_only';",
+      'entityFullNames?: string[];',
+      'entityIds?: string[];',
+      "entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';",
+      'itemFullNames?: string[];',
+      'itemIds?: string[];',
+      'itemType?: string;',
+      "openBalanceAsOf?: 'report_end_date' | 'today';",
+      "postingStatus?: 'either' | 'non_posting' | 'posting';",
+      'reportDateFrom?: string;',
+      'reportDateMacro?: string;',
+      'reportDateTo?: string;',
+      "reportType?: 'custom_transaction_detail';",
+      'transactionTypes?: string[];',
+      'updatedAfter?: string;',
+      'updatedBefore?: string;',
+      'updatedDateMacro?: string;',
+    ],
+    response:
+      "{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }",
+    markdown:
+      "## custom_detail\n\n`conductor.qbd.reports.customDetail(includeColumns: string[], summarizeRowsBy: string, Conductor-End-User-Id: string, accountFullNames?: string[], accountIds?: string[], accountsToInclude?: 'all' | 'in_use', accountType?: string, basis?: 'accrual' | 'cash' | 'none', classFullNames?: string[], classIds?: string[], detailLevel?: 'all' | 'all_except_summary' | 'summary_only', entityFullNames?: string[], entityIds?: string[], entityType?: 'customer' | 'employee' | 'other_name' | 'vendor', itemFullNames?: string[], itemIds?: string[], itemType?: string, openBalanceAsOf?: 'report_end_date' | 'today', postingStatus?: 'either' | 'non_posting' | 'posting', reportDateFrom?: string, reportDateMacro?: string, reportDateTo?: string, reportType?: 'custom_transaction_detail', transactionTypes?: string[], updatedAfter?: string, updatedBefore?: string, updatedDateMacro?: string): object`\n\n**get** `/quickbooks-desktop/reports/custom-detail`\n\nRetrieves a custom detail report.\n\n### Parameters\n\n- `includeColumns: string[]`\n  The specific report columns to include, by column type. Repeat this query parameter to request multiple columns. When this parameter is present, QuickBooks Desktop omits its default report columns unless you include them here.\n\n- `summarizeRowsBy: string`\n  How QuickBooks Desktop calculates report data and labels report rows.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountFullNames?: string[]`\n  Filter for report data by account `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountIds?: string[]`\n  Filter for report data by QuickBooks-assigned account IDs. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountsToInclude?: 'all' | 'in_use'`\n  Whether to include all accounts or only accounts in use.\n\n- `accountType?: string`\n  Filter for report data by account type. Use only one account filter per request.\n\n- `basis?: 'accrual' | 'cash' | 'none'`\n  The accounting basis to use for the report. Use `cash` to base income and expenses on when money changes hands, `accrual` to base them on invoice and bill dates, or `none` to use the QuickBooks Desktop default for the report.\n\n- `classFullNames?: string[]`\n  Filter for report data by class `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `classIds?: string[]`\n  Filter for report data by QuickBooks-assigned class IDs. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `detailLevel?: 'all' | 'all_except_summary' | 'summary_only'`\n  The report detail level to include. Use `all` for all rows, `all_except_summary` to omit summary rows, or `summary_only` to return only summary rows.\n\n- `entityFullNames?: string[]`\n  Filter for report data by entity `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityIds?: string[]`\n  Filter for report data by QuickBooks-assigned entity IDs. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityType?: 'customer' | 'employee' | 'other_name' | 'vendor'`\n  Filter for report data by entity type, such as customer, vendor, employee, or other name. Use only one entity filter per request.\n\n- `itemFullNames?: string[]`\n  Filter for report data by item `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemIds?: string[]`\n  Filter for report data by QuickBooks-assigned item IDs. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemType?: string`\n  Filter for report data by item type. Use only one item filter per request.\n\n- `openBalanceAsOf?: 'report_end_date' | 'today'`\n  The date through which QuickBooks Desktop calculates open balance information.\n\n- `postingStatus?: 'either' | 'non_posting' | 'posting'`\n  Filter for report data that is posting, non-posting, or either. Posting status refers to whether QuickBooks records the transaction in an account register.\n\n- `reportDateFrom?: string`\n  Filter for report data dated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportDateMacro?: string`\n  A QuickBooks Desktop relative date macro. This cannot be combined with `reportDateFrom` or `reportDateTo`.\n\n- `reportDateTo?: string`\n  Filter for report data dated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportType?: 'custom_transaction_detail'`\n  The custom detail report type to retrieve. This endpoint supports only `custom_transaction_detail`, so this parameter is optional and defaults to `custom_transaction_detail`.\n\n- `transactionTypes?: string[]`\n  Filter for report data by transaction type(s). Repeat this query parameter to include multiple transaction types.\n\n- `updatedAfter?: string`\n  Filter for report data updated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedBefore?: string`\n  Filter for report data updated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedDateMacro?: string`\n  A QuickBooks Desktop relative updated-date macro. This cannot be combined with `updatedAfter` or `updatedBefore`.\n\n### Returns\n\n- `{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.reports.customDetail({\n  includeColumns: ['date', 'transaction_type', 'amount'],\n  summarizeRowsBy: 'account',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.reports.customDetail',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.reports.customDetail({\n  includeColumns: ['date', 'transaction_type', 'amount'],\n  summarizeRowsBy: 'account',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'qbd.reports.custom_detail',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.reports.custom_detail(\n    include_columns=["date", "transaction_type", "amount"],\n    summarize_rows_by="account",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/custom-detail \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'custom_summary',
+    endpoint: '/quickbooks-desktop/reports/custom-summary',
+    httpMethod: 'get',
+    summary: 'Retrieve a custom summary report',
+    description: 'Retrieves a custom summary report.',
+    stainlessPath: '(resource) qbd.reports > (method) custom_summary',
+    qualified: 'client.qbd.reports.customSummary',
+    params: [
+      'summarizeColumnsBy: string;',
+      'summarizeRowsBy: string;',
+      'Conductor-End-User-Id: string;',
+      'accountFullNames?: string[];',
+      'accountIds?: string[];',
+      'accountType?: string;',
+      "basis?: 'accrual' | 'cash' | 'none';",
+      'classFullNames?: string[];',
+      'classIds?: string[];',
+      "columnsToReturn?: 'active_only' | 'non_zero' | 'all';",
+      "detailLevel?: 'all' | 'all_except_summary' | 'summary_only';",
+      'entityFullNames?: string[];',
+      'entityIds?: string[];',
+      "entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';",
+      'includeSubcolumns?: boolean;',
+      'itemFullNames?: string[];',
+      'itemIds?: string[];',
+      'itemType?: string;',
+      "postingStatus?: 'either' | 'non_posting' | 'posting';",
+      "reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year';",
+      'reportDateFrom?: string;',
+      'reportDateMacro?: string;',
+      'reportDateTo?: string;',
+      "reportType?: 'custom_summary';",
+      "rowsToReturn?: 'active_only' | 'non_zero' | 'all';",
+      'transactionTypes?: string[];',
+      'updatedAfter?: string;',
+      'updatedBefore?: string;',
+      'updatedDateMacro?: string;',
+    ],
+    response:
+      "{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }",
+    markdown:
+      "## custom_summary\n\n`conductor.qbd.reports.customSummary(summarizeColumnsBy: string, summarizeRowsBy: string, Conductor-End-User-Id: string, accountFullNames?: string[], accountIds?: string[], accountType?: string, basis?: 'accrual' | 'cash' | 'none', classFullNames?: string[], classIds?: string[], columnsToReturn?: 'active_only' | 'non_zero' | 'all', detailLevel?: 'all' | 'all_except_summary' | 'summary_only', entityFullNames?: string[], entityIds?: string[], entityType?: 'customer' | 'employee' | 'other_name' | 'vendor', includeSubcolumns?: boolean, itemFullNames?: string[], itemIds?: string[], itemType?: string, postingStatus?: 'either' | 'non_posting' | 'posting', reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year', reportDateFrom?: string, reportDateMacro?: string, reportDateTo?: string, reportType?: 'custom_summary', rowsToReturn?: 'active_only' | 'non_zero' | 'all', transactionTypes?: string[], updatedAfter?: string, updatedBefore?: string, updatedDateMacro?: string): object`\n\n**get** `/quickbooks-desktop/reports/custom-summary`\n\nRetrieves a custom summary report.\n\n### Parameters\n\n- `summarizeColumnsBy: string`\n  How QuickBooks Desktop calculates report data and labels report column headers.\n\n- `summarizeRowsBy: string`\n  How QuickBooks Desktop calculates report data and labels report rows.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountFullNames?: string[]`\n  Filter for report data by account `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountIds?: string[]`\n  Filter for report data by QuickBooks-assigned account IDs. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountType?: string`\n  Filter for report data by account type. Use only one account filter per request.\n\n- `basis?: 'accrual' | 'cash' | 'none'`\n  The accounting basis to use for the report. Use `cash` to base income and expenses on when money changes hands, `accrual` to base them on invoice and bill dates, or `none` to use the QuickBooks Desktop default for the report.\n\n- `classFullNames?: string[]`\n  Filter for report data by class `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `classIds?: string[]`\n  Filter for report data by QuickBooks-assigned class IDs. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `columnsToReturn?: 'active_only' | 'non_zero' | 'all'`\n  Filters which report columns QuickBooks returns. Use `active_only` for active columns, `non_zero` for columns with non-zero values, or `all` for all columns.\n\n- `detailLevel?: 'all' | 'all_except_summary' | 'summary_only'`\n  The report detail level to include. Use `all` for all rows, `all_except_summary` to omit summary rows, or `summary_only` to return only summary rows.\n\n- `entityFullNames?: string[]`\n  Filter for report data by entity `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityIds?: string[]`\n  Filter for report data by QuickBooks-assigned entity IDs. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityType?: 'customer' | 'employee' | 'other_name' | 'vendor'`\n  Filter for report data by entity type, such as customer, vendor, employee, or other name. Use only one entity filter per request.\n\n- `includeSubcolumns?: boolean`\n  Whether to include subcolumns in the report. QuickBooks Desktop may still omit subcolumns that it can easily compute from other returned values.\n\n- `itemFullNames?: string[]`\n  Filter for report data by item `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemIds?: string[]`\n  Filter for report data by QuickBooks-assigned item IDs. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemType?: string`\n  Filter for report data by item type. Use only one item filter per request.\n\n- `postingStatus?: 'either' | 'non_posting' | 'posting'`\n  Filter for report data that is posting, non-posting, or either. Posting status refers to whether QuickBooks records the transaction in an account register.\n\n- `reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year'`\n  The type of year to use for the report.\n\n- `reportDateFrom?: string`\n  Filter for report data dated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportDateMacro?: string`\n  A QuickBooks Desktop relative date macro. This cannot be combined with `reportDateFrom` or `reportDateTo`.\n\n- `reportDateTo?: string`\n  Filter for report data dated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportType?: 'custom_summary'`\n  The custom summary report type to retrieve. This endpoint supports only `custom_summary`, so this parameter is optional and defaults to `custom_summary`.\n\n- `rowsToReturn?: 'active_only' | 'non_zero' | 'all'`\n  Filters which report rows QuickBooks returns. Use `active_only` for active rows, `non_zero` for rows with non-zero values, or `all` for all rows.\n\n- `transactionTypes?: string[]`\n  Filter for report data by transaction type(s). Repeat this query parameter to include multiple transaction types.\n\n- `updatedAfter?: string`\n  Filter for report data updated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedBefore?: string`\n  Filter for report data updated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedDateMacro?: string`\n  A QuickBooks Desktop relative updated-date macro. This cannot be combined with `updatedAfter` or `updatedBefore`.\n\n### Returns\n\n- `{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.reports.customSummary({\n  summarizeColumnsBy: 'month',\n  summarizeRowsBy: 'account',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.reports.customSummary',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.reports.customSummary({\n  summarizeColumnsBy: 'month',\n  summarizeRowsBy: 'account',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'qbd.reports.custom_summary',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.reports.custom_summary(\n    summarize_columns_by="month",\n    summarize_rows_by="account",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/custom-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'general_detail',
+    endpoint: '/quickbooks-desktop/reports/general-detail',
+    httpMethod: 'get',
+    summary: 'Retrieve a general detail report',
+    description: 'Retrieves a general detail report.',
+    stainlessPath: '(resource) qbd.reports > (method) general_detail',
+    qualified: 'client.qbd.reports.generalDetail',
+    params: [
+      'reportType: string;',
+      'Conductor-End-User-Id: string;',
+      'accountFullNames?: string[];',
+      'accountIds?: string[];',
+      "accountsToInclude?: 'all' | 'in_use';",
+      'accountType?: string;',
+      "basis?: 'accrual' | 'cash' | 'none';",
+      'classFullNames?: string[];',
+      'classIds?: string[];',
+      "detailLevel?: 'all' | 'all_except_summary' | 'summary_only';",
+      'entityFullNames?: string[];',
+      'entityIds?: string[];',
+      "entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';",
+      'includeColumns?: string[];',
+      'itemFullNames?: string[];',
+      'itemIds?: string[];',
+      'itemType?: string;',
+      "openBalanceAsOf?: 'report_end_date' | 'today';",
+      "postingStatus?: 'either' | 'non_posting' | 'posting';",
+      'reportDateFrom?: string;',
+      'reportDateMacro?: string;',
+      'reportDateTo?: string;',
+      'summarizeRowsBy?: string;',
+      'transactionTypes?: string[];',
+      'updatedAfter?: string;',
+      'updatedBefore?: string;',
+      'updatedDateMacro?: string;',
+    ],
+    response:
+      "{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }",
+    markdown:
+      "## general_detail\n\n`conductor.qbd.reports.generalDetail(reportType: string, Conductor-End-User-Id: string, accountFullNames?: string[], accountIds?: string[], accountsToInclude?: 'all' | 'in_use', accountType?: string, basis?: 'accrual' | 'cash' | 'none', classFullNames?: string[], classIds?: string[], detailLevel?: 'all' | 'all_except_summary' | 'summary_only', entityFullNames?: string[], entityIds?: string[], entityType?: 'customer' | 'employee' | 'other_name' | 'vendor', includeColumns?: string[], itemFullNames?: string[], itemIds?: string[], itemType?: string, openBalanceAsOf?: 'report_end_date' | 'today', postingStatus?: 'either' | 'non_posting' | 'posting', reportDateFrom?: string, reportDateMacro?: string, reportDateTo?: string, summarizeRowsBy?: string, transactionTypes?: string[], updatedAfter?: string, updatedBefore?: string, updatedDateMacro?: string): object`\n\n**get** `/quickbooks-desktop/reports/general-detail`\n\nRetrieves a general detail report.\n\n### Parameters\n\n- `reportType: string`\n  The general detail report type to retrieve.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountFullNames?: string[]`\n  Filter for report data by account `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountIds?: string[]`\n  Filter for report data by QuickBooks-assigned account IDs. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountsToInclude?: 'all' | 'in_use'`\n  Whether to include all accounts or only accounts in use.\n\n- `accountType?: string`\n  Filter for report data by account type. Use only one account filter per request.\n\n- `basis?: 'accrual' | 'cash' | 'none'`\n  The accounting basis to use for the report. Use `cash` to base income and expenses on when money changes hands, `accrual` to base them on invoice and bill dates, or `none` to use the QuickBooks Desktop default for the report.\n\n- `classFullNames?: string[]`\n  Filter for report data by class `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `classIds?: string[]`\n  Filter for report data by QuickBooks-assigned class IDs. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `detailLevel?: 'all' | 'all_except_summary' | 'summary_only'`\n  The report detail level to include. Use `all` for all rows, `all_except_summary` to omit summary rows, or `summary_only` to return only summary rows.\n\n- `entityFullNames?: string[]`\n  Filter for report data by entity `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityIds?: string[]`\n  Filter for report data by QuickBooks-assigned entity IDs. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityType?: 'customer' | 'employee' | 'other_name' | 'vendor'`\n  Filter for report data by entity type, such as customer, vendor, employee, or other name. Use only one entity filter per request.\n\n- `includeColumns?: string[]`\n  The specific report columns to include, by column type. Repeat this query parameter to request multiple columns. When this parameter is present, QuickBooks Desktop omits its default report columns unless you include them here.\n\n- `itemFullNames?: string[]`\n  Filter for report data by item `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemIds?: string[]`\n  Filter for report data by QuickBooks-assigned item IDs. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemType?: string`\n  Filter for report data by item type. Use only one item filter per request.\n\n- `openBalanceAsOf?: 'report_end_date' | 'today'`\n  The date through which QuickBooks Desktop calculates open balance information.\n\n- `postingStatus?: 'either' | 'non_posting' | 'posting'`\n  Filter for report data that is posting, non-posting, or either. Posting status refers to whether QuickBooks records the transaction in an account register.\n\n- `reportDateFrom?: string`\n  Filter for report data dated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportDateMacro?: string`\n  A QuickBooks Desktop relative date macro. This cannot be combined with `reportDateFrom` or `reportDateTo`.\n\n- `reportDateTo?: string`\n  Filter for report data dated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `summarizeRowsBy?: string`\n  How QuickBooks Desktop calculates report data and labels report rows.\n\n- `transactionTypes?: string[]`\n  Filter for report data by transaction type(s). Repeat this query parameter to include multiple transaction types.\n\n- `updatedAfter?: string`\n  Filter for report data updated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedBefore?: string`\n  Filter for report data updated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedDateMacro?: string`\n  A QuickBooks Desktop relative updated-date macro. This cannot be combined with `updatedAfter` or `updatedBefore`.\n\n### Returns\n\n- `{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.reports.generalDetail({ reportType: '1099_detail', conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.reports.generalDetail',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.reports.generalDetail({\n  reportType: '1099_detail',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'qbd.reports.general_detail',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.reports.general_detail(\n    report_type="1099_detail",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/general-detail \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'general_summary',
+    endpoint: '/quickbooks-desktop/reports/general-summary',
+    httpMethod: 'get',
+    summary: 'Retrieve a general summary report',
+    description: 'Retrieves a general summary report.',
+    stainlessPath: '(resource) qbd.reports > (method) general_summary',
+    qualified: 'client.qbd.reports.generalSummary',
+    params: [
+      'reportType: string;',
+      'Conductor-End-User-Id: string;',
+      'accountFullNames?: string[];',
+      'accountIds?: string[];',
+      'accountType?: string;',
+      "basis?: 'accrual' | 'cash' | 'none';",
+      'classFullNames?: string[];',
+      'classIds?: string[];',
+      "columnsToReturn?: 'active_only' | 'non_zero' | 'all';",
+      "detailLevel?: 'all' | 'all_except_summary' | 'summary_only';",
+      'entityFullNames?: string[];',
+      'entityIds?: string[];',
+      "entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';",
+      'includeSubcolumns?: boolean;',
+      'itemFullNames?: string[];',
+      'itemIds?: string[];',
+      'itemType?: string;',
+      "postingStatus?: 'either' | 'non_posting' | 'posting';",
+      "reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year';",
+      'reportDateFrom?: string;',
+      'reportDateMacro?: string;',
+      'reportDateTo?: string;',
+      "rowsToReturn?: 'active_only' | 'non_zero' | 'all';",
+      'summarizeColumnsBy?: string;',
+      'transactionTypes?: string[];',
+      'updatedAfter?: string;',
+      'updatedBefore?: string;',
+      'updatedDateMacro?: string;',
+    ],
+    response:
+      "{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }",
+    markdown:
+      "## general_summary\n\n`conductor.qbd.reports.generalSummary(reportType: string, Conductor-End-User-Id: string, accountFullNames?: string[], accountIds?: string[], accountType?: string, basis?: 'accrual' | 'cash' | 'none', classFullNames?: string[], classIds?: string[], columnsToReturn?: 'active_only' | 'non_zero' | 'all', detailLevel?: 'all' | 'all_except_summary' | 'summary_only', entityFullNames?: string[], entityIds?: string[], entityType?: 'customer' | 'employee' | 'other_name' | 'vendor', includeSubcolumns?: boolean, itemFullNames?: string[], itemIds?: string[], itemType?: string, postingStatus?: 'either' | 'non_posting' | 'posting', reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year', reportDateFrom?: string, reportDateMacro?: string, reportDateTo?: string, rowsToReturn?: 'active_only' | 'non_zero' | 'all', summarizeColumnsBy?: string, transactionTypes?: string[], updatedAfter?: string, updatedBefore?: string, updatedDateMacro?: string): object`\n\n**get** `/quickbooks-desktop/reports/general-summary`\n\nRetrieves a general summary report.\n\n### Parameters\n\n- `reportType: string`\n  The general summary report type to retrieve.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountFullNames?: string[]`\n  Filter for report data by account `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountIds?: string[]`\n  Filter for report data by QuickBooks-assigned account IDs. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountType?: string`\n  Filter for report data by account type. Use only one account filter per request.\n\n- `basis?: 'accrual' | 'cash' | 'none'`\n  The accounting basis to use for the report. Use `cash` to base income and expenses on when money changes hands, `accrual` to base them on invoice and bill dates, or `none` to use the QuickBooks Desktop default for the report.\n\n- `classFullNames?: string[]`\n  Filter for report data by class `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `classIds?: string[]`\n  Filter for report data by QuickBooks-assigned class IDs. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `columnsToReturn?: 'active_only' | 'non_zero' | 'all'`\n  Filters which report columns QuickBooks returns. Use `active_only` for active columns, `non_zero` for columns with non-zero values, or `all` for all columns.\n\n- `detailLevel?: 'all' | 'all_except_summary' | 'summary_only'`\n  The report detail level to include. Use `all` for all rows, `all_except_summary` to omit summary rows, or `summary_only` to return only summary rows.\n\n- `entityFullNames?: string[]`\n  Filter for report data by entity `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityIds?: string[]`\n  Filter for report data by QuickBooks-assigned entity IDs. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityType?: 'customer' | 'employee' | 'other_name' | 'vendor'`\n  Filter for report data by entity type, such as customer, vendor, employee, or other name. Use only one entity filter per request.\n\n- `includeSubcolumns?: boolean`\n  Whether to include subcolumns in the report. QuickBooks Desktop may still omit subcolumns that it can easily compute from other returned values.\n\n- `itemFullNames?: string[]`\n  Filter for report data by item `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemIds?: string[]`\n  Filter for report data by QuickBooks-assigned item IDs. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemType?: string`\n  Filter for report data by item type. Use only one item filter per request.\n\n- `postingStatus?: 'either' | 'non_posting' | 'posting'`\n  Filter for report data that is posting, non-posting, or either. Posting status refers to whether QuickBooks records the transaction in an account register.\n\n- `reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year'`\n  The type of year to use for the report.\n\n- `reportDateFrom?: string`\n  Filter for report data dated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportDateMacro?: string`\n  A QuickBooks Desktop relative date macro. This cannot be combined with `reportDateFrom` or `reportDateTo`.\n\n- `reportDateTo?: string`\n  Filter for report data dated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `rowsToReturn?: 'active_only' | 'non_zero' | 'all'`\n  Filters which report rows QuickBooks returns. Use `active_only` for active rows, `non_zero` for rows with non-zero values, or `all` for all rows.\n\n- `summarizeColumnsBy?: string`\n  How QuickBooks Desktop calculates report data and labels report column headers.\n\n- `transactionTypes?: string[]`\n  Filter for report data by transaction type(s). Repeat this query parameter to include multiple transaction types.\n\n- `updatedAfter?: string`\n  Filter for report data updated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedBefore?: string`\n  Filter for report data updated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedDateMacro?: string`\n  A QuickBooks Desktop relative updated-date macro. This cannot be combined with `updatedAfter` or `updatedBefore`.\n\n### Returns\n\n- `{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.reports.generalSummary({ reportType: 'balance_sheet_by_class', conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.reports.generalSummary',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.reports.generalSummary({\n  reportType: 'balance_sheet_by_class',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'qbd.reports.general_summary',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.reports.general_summary(\n    report_type="balance_sheet_by_class",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/general-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'job',
+    endpoint: '/quickbooks-desktop/reports/job',
+    httpMethod: 'get',
+    summary: 'Retrieve a job report',
+    description: 'Retrieves a job report.',
+    stainlessPath: '(resource) qbd.reports > (method) job',
+    qualified: 'client.qbd.reports.job',
+    params: [
+      'reportType: string;',
+      'Conductor-End-User-Id: string;',
+      'accountFullNames?: string[];',
+      'accountIds?: string[];',
+      'accountType?: string;',
+      'classFullNames?: string[];',
+      'classIds?: string[];',
+      "detailLevel?: 'all' | 'all_except_summary' | 'summary_only';",
+      'entityFullNames?: string[];',
+      'entityIds?: string[];',
+      "entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';",
+      'includeSubcolumns?: boolean;',
+      'itemFullNames?: string[];',
+      'itemIds?: string[];',
+      'itemType?: string;',
+      "postingStatus?: 'either' | 'non_posting' | 'posting';",
+      'reportDateFrom?: string;',
+      'reportDateMacro?: string;',
+      'reportDateTo?: string;',
+      'summarizeColumnsBy?: string;',
+      'transactionTypes?: string[];',
+      'updatedAfter?: string;',
+      'updatedBefore?: string;',
+      'updatedDateMacro?: string;',
+    ],
+    response:
+      "{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }",
+    markdown:
+      "## job\n\n`conductor.qbd.reports.job(reportType: string, Conductor-End-User-Id: string, accountFullNames?: string[], accountIds?: string[], accountType?: string, classFullNames?: string[], classIds?: string[], detailLevel?: 'all' | 'all_except_summary' | 'summary_only', entityFullNames?: string[], entityIds?: string[], entityType?: 'customer' | 'employee' | 'other_name' | 'vendor', includeSubcolumns?: boolean, itemFullNames?: string[], itemIds?: string[], itemType?: string, postingStatus?: 'either' | 'non_posting' | 'posting', reportDateFrom?: string, reportDateMacro?: string, reportDateTo?: string, summarizeColumnsBy?: string, transactionTypes?: string[], updatedAfter?: string, updatedBefore?: string, updatedDateMacro?: string): object`\n\n**get** `/quickbooks-desktop/reports/job`\n\nRetrieves a job report.\n\n### Parameters\n\n- `reportType: string`\n  The job report type to retrieve.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountFullNames?: string[]`\n  Filter for report data by account `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountIds?: string[]`\n  Filter for report data by QuickBooks-assigned account IDs. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountType?: string`\n  Filter for report data by account type. Use only one account filter per request.\n\n- `classFullNames?: string[]`\n  Filter for report data by class `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `classIds?: string[]`\n  Filter for report data by QuickBooks-assigned class IDs. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `detailLevel?: 'all' | 'all_except_summary' | 'summary_only'`\n  The report detail level to include. Use `all` for all rows, `all_except_summary` to omit summary rows, or `summary_only` to return only summary rows.\n\n- `entityFullNames?: string[]`\n  Filter for report data by entity `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityIds?: string[]`\n  Filter for report data by QuickBooks-assigned entity IDs. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityType?: 'customer' | 'employee' | 'other_name' | 'vendor'`\n  Filter for report data by entity type, such as customer, vendor, employee, or other name. Use only one entity filter per request.\n\n- `includeSubcolumns?: boolean`\n  Whether to include subcolumns in the report. QuickBooks Desktop may still omit subcolumns that it can easily compute from other returned values.\n\n- `itemFullNames?: string[]`\n  Filter for report data by item `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemIds?: string[]`\n  Filter for report data by QuickBooks-assigned item IDs. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemType?: string`\n  Filter for report data by item type. Use only one item filter per request.\n\n- `postingStatus?: 'either' | 'non_posting' | 'posting'`\n  Filter for report data that is posting, non-posting, or either. Posting status refers to whether QuickBooks records the transaction in an account register.\n\n- `reportDateFrom?: string`\n  Filter for report data dated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportDateMacro?: string`\n  A QuickBooks Desktop relative date macro. This cannot be combined with `reportDateFrom` or `reportDateTo`.\n\n- `reportDateTo?: string`\n  Filter for report data dated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `summarizeColumnsBy?: string`\n  How QuickBooks Desktop calculates report data and labels report column headers.\n\n- `transactionTypes?: string[]`\n  Filter for report data by transaction type(s). Repeat this query parameter to include multiple transaction types.\n\n- `updatedAfter?: string`\n  Filter for report data updated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedBefore?: string`\n  Filter for report data updated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedDateMacro?: string`\n  A QuickBooks Desktop relative updated-date macro. This cannot be combined with `updatedAfter` or `updatedBefore`.\n\n### Returns\n\n- `{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.reports.job({ reportType: 'item_estimates_vs_actuals', conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.reports.job',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.reports.job({\n  reportType: 'item_estimates_vs_actuals',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'qbd.reports.job',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.reports.job(\n    report_type="item_estimates_vs_actuals",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/job \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'payroll_detail',
+    endpoint: '/quickbooks-desktop/reports/payroll-detail',
+    httpMethod: 'get',
+    summary: 'Retrieve a payroll detail report',
+    description: 'Retrieves a payroll detail report.',
+    stainlessPath: '(resource) qbd.reports > (method) payroll_detail',
+    qualified: 'client.qbd.reports.payrollDetail',
+    params: [
+      'reportType: string;',
+      'Conductor-End-User-Id: string;',
+      'accountFullNames?: string[];',
+      'accountIds?: string[];',
+      "accountsToInclude?: 'all' | 'in_use';",
+      'accountType?: string;',
+      'classFullNames?: string[];',
+      'classIds?: string[];',
+      "detailLevel?: 'all' | 'all_except_summary' | 'summary_only';",
+      'entityFullNames?: string[];',
+      'entityIds?: string[];',
+      "entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';",
+      'includeColumns?: string[];',
+      'itemFullNames?: string[];',
+      'itemIds?: string[];',
+      'itemType?: string;',
+      "openBalanceAsOf?: 'report_end_date' | 'today';",
+      "postingStatus?: 'either' | 'non_posting' | 'posting';",
+      'reportDateFrom?: string;',
+      'reportDateMacro?: string;',
+      'reportDateTo?: string;',
+      'summarizeRowsBy?: string;',
+      'updatedAfter?: string;',
+      'updatedBefore?: string;',
+      'updatedDateMacro?: string;',
+    ],
+    response:
+      "{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }",
+    markdown:
+      "## payroll_detail\n\n`conductor.qbd.reports.payrollDetail(reportType: string, Conductor-End-User-Id: string, accountFullNames?: string[], accountIds?: string[], accountsToInclude?: 'all' | 'in_use', accountType?: string, classFullNames?: string[], classIds?: string[], detailLevel?: 'all' | 'all_except_summary' | 'summary_only', entityFullNames?: string[], entityIds?: string[], entityType?: 'customer' | 'employee' | 'other_name' | 'vendor', includeColumns?: string[], itemFullNames?: string[], itemIds?: string[], itemType?: string, openBalanceAsOf?: 'report_end_date' | 'today', postingStatus?: 'either' | 'non_posting' | 'posting', reportDateFrom?: string, reportDateMacro?: string, reportDateTo?: string, summarizeRowsBy?: string, updatedAfter?: string, updatedBefore?: string, updatedDateMacro?: string): object`\n\n**get** `/quickbooks-desktop/reports/payroll-detail`\n\nRetrieves a payroll detail report.\n\n### Parameters\n\n- `reportType: string`\n  The payroll detail report type to retrieve.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountFullNames?: string[]`\n  Filter for report data by account `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountIds?: string[]`\n  Filter for report data by QuickBooks-assigned account IDs. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountsToInclude?: 'all' | 'in_use'`\n  Whether to include all accounts or only accounts in use.\n\n- `accountType?: string`\n  Filter for report data by account type. Use only one account filter per request.\n\n- `classFullNames?: string[]`\n  Filter for report data by class `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `classIds?: string[]`\n  Filter for report data by QuickBooks-assigned class IDs. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `detailLevel?: 'all' | 'all_except_summary' | 'summary_only'`\n  The report detail level to include. Use `all` for all rows, `all_except_summary` to omit summary rows, or `summary_only` to return only summary rows.\n\n- `entityFullNames?: string[]`\n  Filter for report data by entity `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityIds?: string[]`\n  Filter for report data by QuickBooks-assigned entity IDs. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityType?: 'customer' | 'employee' | 'other_name' | 'vendor'`\n  Filter for report data by entity type, such as customer, vendor, employee, or other name. Use only one entity filter per request.\n\n- `includeColumns?: string[]`\n  The specific report columns to include, by column type. Repeat this query parameter to request multiple columns. When this parameter is present, QuickBooks Desktop omits its default report columns unless you include them here.\n\n- `itemFullNames?: string[]`\n  Filter for report data by item `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemIds?: string[]`\n  Filter for report data by QuickBooks-assigned item IDs. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemType?: string`\n  Filter for report data by item type. Use only one item filter per request.\n\n- `openBalanceAsOf?: 'report_end_date' | 'today'`\n  The date through which QuickBooks Desktop calculates open balance information.\n\n- `postingStatus?: 'either' | 'non_posting' | 'posting'`\n  Filter for report data that is posting, non-posting, or either. Posting status refers to whether QuickBooks records the transaction in an account register.\n\n- `reportDateFrom?: string`\n  Filter for report data dated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportDateMacro?: string`\n  A QuickBooks Desktop relative date macro. This cannot be combined with `reportDateFrom` or `reportDateTo`.\n\n- `reportDateTo?: string`\n  Filter for report data dated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `summarizeRowsBy?: string`\n  How QuickBooks Desktop calculates report data and labels report rows.\n\n- `updatedAfter?: string`\n  Filter for report data updated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedBefore?: string`\n  Filter for report data updated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedDateMacro?: string`\n  A QuickBooks Desktop relative updated-date macro. This cannot be combined with `updatedAfter` or `updatedBefore`.\n\n### Returns\n\n- `{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.reports.payrollDetail({ reportType: 'employee_state_taxes_detail', conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.reports.payrollDetail',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.reports.payrollDetail({\n  reportType: 'employee_state_taxes_detail',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'qbd.reports.payroll_detail',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.reports.payroll_detail(\n    report_type="employee_state_taxes_detail",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/payroll-detail \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'payroll_summary',
+    endpoint: '/quickbooks-desktop/reports/payroll-summary',
+    httpMethod: 'get',
+    summary: 'Retrieve a payroll summary report',
+    description: 'Retrieves a payroll summary report.',
+    stainlessPath: '(resource) qbd.reports > (method) payroll_summary',
+    qualified: 'client.qbd.reports.payrollSummary',
+    params: [
+      "reportType: 'employee_earnings_summary' | 'payroll_liability_balances' | 'payroll_summary';",
+      'Conductor-End-User-Id: string;',
+      'accountFullNames?: string[];',
+      'accountIds?: string[];',
+      'accountType?: string;',
+      'classFullNames?: string[];',
+      'classIds?: string[];',
+      "columnsToReturn?: 'active_only' | 'non_zero' | 'all';",
+      "detailLevel?: 'all' | 'all_except_summary' | 'summary_only';",
+      'entityFullNames?: string[];',
+      'entityIds?: string[];',
+      "entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';",
+      'includeSubcolumns?: boolean;',
+      'itemFullNames?: string[];',
+      'itemIds?: string[];',
+      'itemType?: string;',
+      "postingStatus?: 'either' | 'non_posting' | 'posting';",
+      "reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year';",
+      'reportDateFrom?: string;',
+      'reportDateMacro?: string;',
+      'reportDateTo?: string;',
+      "rowsToReturn?: 'active_only' | 'non_zero' | 'all';",
+      'summarizeColumnsBy?: string;',
+      'updatedAfter?: string;',
+      'updatedBefore?: string;',
+      'updatedDateMacro?: string;',
+    ],
+    response:
+      "{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }",
+    markdown:
+      "## payroll_summary\n\n`conductor.qbd.reports.payrollSummary(reportType: 'employee_earnings_summary' | 'payroll_liability_balances' | 'payroll_summary', Conductor-End-User-Id: string, accountFullNames?: string[], accountIds?: string[], accountType?: string, classFullNames?: string[], classIds?: string[], columnsToReturn?: 'active_only' | 'non_zero' | 'all', detailLevel?: 'all' | 'all_except_summary' | 'summary_only', entityFullNames?: string[], entityIds?: string[], entityType?: 'customer' | 'employee' | 'other_name' | 'vendor', includeSubcolumns?: boolean, itemFullNames?: string[], itemIds?: string[], itemType?: string, postingStatus?: 'either' | 'non_posting' | 'posting', reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year', reportDateFrom?: string, reportDateMacro?: string, reportDateTo?: string, rowsToReturn?: 'active_only' | 'non_zero' | 'all', summarizeColumnsBy?: string, updatedAfter?: string, updatedBefore?: string, updatedDateMacro?: string): object`\n\n**get** `/quickbooks-desktop/reports/payroll-summary`\n\nRetrieves a payroll summary report.\n\n### Parameters\n\n- `reportType: 'employee_earnings_summary' | 'payroll_liability_balances' | 'payroll_summary'`\n  The payroll summary report type to retrieve.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountFullNames?: string[]`\n  Filter for report data by account `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountIds?: string[]`\n  Filter for report data by QuickBooks-assigned account IDs. Repeat this query parameter to include multiple accounts. Use only one account filter per request.\n\n- `accountType?: string`\n  Filter for report data by account type. Use only one account filter per request.\n\n- `classFullNames?: string[]`\n  Filter for report data by class `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `classIds?: string[]`\n  Filter for report data by QuickBooks-assigned class IDs. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `columnsToReturn?: 'active_only' | 'non_zero' | 'all'`\n  Filters which report columns QuickBooks returns. Use `active_only` for active columns, `non_zero` for columns with non-zero values, or `all` for all columns.\n\n- `detailLevel?: 'all' | 'all_except_summary' | 'summary_only'`\n  The report detail level to include. Use `all` for all rows, `all_except_summary` to omit summary rows, or `summary_only` to return only summary rows.\n\n- `entityFullNames?: string[]`\n  Filter for report data by entity `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityIds?: string[]`\n  Filter for report data by QuickBooks-assigned entity IDs. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityType?: 'customer' | 'employee' | 'other_name' | 'vendor'`\n  Filter for report data by entity type, such as customer, vendor, employee, or other name. Use only one entity filter per request.\n\n- `includeSubcolumns?: boolean`\n  Whether to include subcolumns in the report. QuickBooks Desktop may still omit subcolumns that it can easily compute from other returned values.\n\n- `itemFullNames?: string[]`\n  Filter for report data by item `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemIds?: string[]`\n  Filter for report data by QuickBooks-assigned item IDs. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemType?: string`\n  Filter for report data by item type. Use only one item filter per request.\n\n- `postingStatus?: 'either' | 'non_posting' | 'posting'`\n  Filter for report data that is posting, non-posting, or either. Posting status refers to whether QuickBooks records the transaction in an account register.\n\n- `reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year'`\n  The type of year to use for the report.\n\n- `reportDateFrom?: string`\n  Filter for report data dated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportDateMacro?: string`\n  A QuickBooks Desktop relative date macro. This cannot be combined with `reportDateFrom` or `reportDateTo`.\n\n- `reportDateTo?: string`\n  Filter for report data dated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `rowsToReturn?: 'active_only' | 'non_zero' | 'all'`\n  Filters which report rows QuickBooks returns. Use `active_only` for active rows, `non_zero` for rows with non-zero values, or `all` for all rows.\n\n- `summarizeColumnsBy?: string`\n  How QuickBooks Desktop calculates report data and labels report column headers.\n\n- `updatedAfter?: string`\n  Filter for report data updated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedBefore?: string`\n  Filter for report data updated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `updatedDateMacro`.\n\n- `updatedDateMacro?: string`\n  A QuickBooks Desktop relative updated-date macro. This cannot be combined with `updatedAfter` or `updatedBefore`.\n\n### Returns\n\n- `{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.reports.payrollSummary({ reportType: 'employee_earnings_summary', conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.reports.payrollSummary',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.reports.payrollSummary({\n  reportType: 'employee_earnings_summary',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'qbd.reports.payroll_summary',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.reports.payroll_summary(\n    report_type="employee_earnings_summary",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/payroll-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'time',
+    endpoint: '/quickbooks-desktop/reports/time',
+    httpMethod: 'get',
+    summary: 'Retrieve a time report',
+    description: 'Retrieves a time report.',
+    stainlessPath: '(resource) qbd.reports > (method) time',
+    qualified: 'client.qbd.reports.time',
+    params: [
+      "reportType: 'time_by_item' | 'time_by_job_detail' | 'time_by_job_summary' | 'time_by_name';",
+      'Conductor-End-User-Id: string;',
+      'classFullNames?: string[];',
+      'classIds?: string[];',
+      "columnsToReturn?: 'active_only' | 'non_zero' | 'all';",
+      'entityFullNames?: string[];',
+      'entityIds?: string[];',
+      "entityType?: 'customer' | 'employee' | 'other_name' | 'vendor';",
+      'includeSubcolumns?: boolean;',
+      'itemFullNames?: string[];',
+      'itemIds?: string[];',
+      'itemType?: string;',
+      "reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year';",
+      'reportDateFrom?: string;',
+      'reportDateMacro?: string;',
+      'reportDateTo?: string;',
+      "rowsToReturn?: 'active_only' | 'non_zero' | 'all';",
+      'summarizeColumnsBy?: string;',
+    ],
+    response:
+      "{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }",
+    markdown:
+      "## time\n\n`conductor.qbd.reports.time(reportType: 'time_by_item' | 'time_by_job_detail' | 'time_by_job_summary' | 'time_by_name', Conductor-End-User-Id: string, classFullNames?: string[], classIds?: string[], columnsToReturn?: 'active_only' | 'non_zero' | 'all', entityFullNames?: string[], entityIds?: string[], entityType?: 'customer' | 'employee' | 'other_name' | 'vendor', includeSubcolumns?: boolean, itemFullNames?: string[], itemIds?: string[], itemType?: string, reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year', reportDateFrom?: string, reportDateMacro?: string, reportDateTo?: string, rowsToReturn?: 'active_only' | 'non_zero' | 'all', summarizeColumnsBy?: string): object`\n\n**get** `/quickbooks-desktop/reports/time`\n\nRetrieves a time report.\n\n### Parameters\n\n- `reportType: 'time_by_item' | 'time_by_job_detail' | 'time_by_job_summary' | 'time_by_name'`\n  The time report type to retrieve.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `classFullNames?: string[]`\n  Filter for report data by class `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `classIds?: string[]`\n  Filter for report data by QuickBooks-assigned class IDs. Repeat this query parameter to include multiple classes. Use only one class filter per request.\n\n- `columnsToReturn?: 'active_only' | 'non_zero' | 'all'`\n  Filters which report columns QuickBooks returns. Use `active_only` for active columns, `non_zero` for columns with non-zero values, or `all` for all columns.\n\n- `entityFullNames?: string[]`\n  Filter for report data by entity `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityIds?: string[]`\n  Filter for report data by QuickBooks-assigned entity IDs. Repeat this query parameter to include multiple entities. Use only one entity filter per request.\n\n- `entityType?: 'customer' | 'employee' | 'other_name' | 'vendor'`\n  Filter for report data by entity type, such as customer, vendor, employee, or other name. Use only one entity filter per request.\n\n- `includeSubcolumns?: boolean`\n  Whether to include subcolumns in the report. QuickBooks Desktop may still omit subcolumns that it can easily compute from other returned values.\n\n- `itemFullNames?: string[]`\n  Filter for report data by item `fullName` values, case-insensitive. A `fullName` is a fully-qualified QuickBooks name formed by joining parent object names with the object's `name` using colons. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemIds?: string[]`\n  Filter for report data by QuickBooks-assigned item IDs. Repeat this query parameter to include multiple items. Use only one item filter per request.\n\n- `itemType?: string`\n  Filter for report data by item type. Use only one item filter per request.\n\n- `reportCalendar?: 'calendar_year' | 'fiscal_year' | 'tax_year'`\n  The type of year to use for the report.\n\n- `reportDateFrom?: string`\n  Filter for report data dated on or after this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `reportDateMacro?: string`\n  A QuickBooks Desktop relative date macro. This cannot be combined with `reportDateFrom` or `reportDateTo`.\n\n- `reportDateTo?: string`\n  Filter for report data dated on or before this date, in ISO 8601 format (YYYY-MM-DD). This cannot be combined with `reportDateMacro`. If you omit `reportDateFrom`, `reportDateTo`, and `reportDateMacro`, QuickBooks Desktop uses the current fiscal year to date.\n\n- `rowsToReturn?: 'active_only' | 'non_zero' | 'all'`\n  Filters which report rows QuickBooks returns. Use `active_only` for active rows, `non_zero` for rows with non-zero values, or `all` for all rows.\n\n- `summarizeColumnsBy?: string`\n  How QuickBooks Desktop calculates report data and labels report column headers.\n\n### Returns\n\n- `{ basis: 'accrual' | 'cash' | 'none'; category: string; columnCount: number; columns: { columnId: string; columnType: string; dataType: string; titles: object[]; }[]; columnTitleRowCount: number; objectType: 'qbd_report'; reportType: string; rowCount: number; rows: { kind: 'text'; rowNumber: number; text: string; } | { cells: object[]; kind: 'data'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'subtotal'; rowDescriptor: object; rowNumber: number; } | { cells: object[]; kind: 'total'; rowDescriptor: object; rowNumber: number; }[]; subtitle: string; title: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.reports.time({ reportType: 'time_by_item', conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.reports.time',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.reports.time({\n  reportType: 'time_by_item',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'qbd.reports.time',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.reports.time(\n    report_type="time_by_item",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/time \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
     name: 'create',
     endpoint: '/quickbooks-desktop/sales-orders',
     httpMethod: 'post',
