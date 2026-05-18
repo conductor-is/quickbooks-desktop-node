@@ -11,13 +11,13 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.qbd.reports.aging({
+   * const report = await conductor.qbd.reports.aging({
    *   reportType: 'ap_aging_detail',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
-  aging(params: ReportAgingParams, options?: RequestOptions): APIPromise<ReportAgingResponse> {
+  aging(params: ReportAgingParams, options?: RequestOptions): APIPromise<Report> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/reports/aging', {
       query,
@@ -31,17 +31,14 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.qbd.reports.budgetSummary({
+   * const report = await conductor.qbd.reports.budgetSummary({
    *   fiscalYear: 2026,
    *   reportType: 'balance_sheet_budget_overview',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
-  budgetSummary(
-    params: ReportBudgetSummaryParams,
-    options?: RequestOptions,
-  ): APIPromise<ReportBudgetSummaryResponse> {
+  budgetSummary(params: ReportBudgetSummaryParams, options?: RequestOptions): APIPromise<Report> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/reports/budget-summary', {
       query,
@@ -55,17 +52,14 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.qbd.reports.customDetail({
+   * const report = await conductor.qbd.reports.customDetail({
    *   includeColumns: ['date', 'transaction_type', 'amount'],
    *   summarizeRowsBy: 'account',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
-  customDetail(
-    params: ReportCustomDetailParams,
-    options?: RequestOptions,
-  ): APIPromise<ReportCustomDetailResponse> {
+  customDetail(params: ReportCustomDetailParams, options?: RequestOptions): APIPromise<Report> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/reports/custom-detail', {
       query,
@@ -79,17 +73,14 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.qbd.reports.customSummary({
+   * const report = await conductor.qbd.reports.customSummary({
    *   summarizeColumnsBy: 'month',
    *   summarizeRowsBy: 'account',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
-  customSummary(
-    params: ReportCustomSummaryParams,
-    options?: RequestOptions,
-  ): APIPromise<ReportCustomSummaryResponse> {
+  customSummary(params: ReportCustomSummaryParams, options?: RequestOptions): APIPromise<Report> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/reports/custom-summary', {
       query,
@@ -103,16 +94,13 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.qbd.reports.generalDetail({
+   * const report = await conductor.qbd.reports.generalDetail({
    *   reportType: '1099_detail',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
-  generalDetail(
-    params: ReportGeneralDetailParams,
-    options?: RequestOptions,
-  ): APIPromise<ReportGeneralDetailResponse> {
+  generalDetail(params: ReportGeneralDetailParams, options?: RequestOptions): APIPromise<Report> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/reports/general-detail', {
       query,
@@ -126,18 +114,13 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.qbd.reports.generalSummary(
-   *   {
-   *     reportType: 'balance_sheet_by_class',
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   },
-   * );
+   * const report = await conductor.qbd.reports.generalSummary({
+   *   reportType: 'balance_sheet_by_class',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
    * ```
    */
-  generalSummary(
-    params: ReportGeneralSummaryParams,
-    options?: RequestOptions,
-  ): APIPromise<ReportGeneralSummaryResponse> {
+  generalSummary(params: ReportGeneralSummaryParams, options?: RequestOptions): APIPromise<Report> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/reports/general-summary', {
       query,
@@ -151,13 +134,13 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.qbd.reports.job({
+   * const report = await conductor.qbd.reports.job({
    *   reportType: 'item_estimates_vs_actuals',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
-  job(params: ReportJobParams, options?: RequestOptions): APIPromise<ReportJobResponse> {
+  job(params: ReportJobParams, options?: RequestOptions): APIPromise<Report> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/reports/job', {
       query,
@@ -171,16 +154,13 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.qbd.reports.payrollDetail({
+   * const report = await conductor.qbd.reports.payrollDetail({
    *   reportType: 'employee_state_taxes_detail',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
-  payrollDetail(
-    params: ReportPayrollDetailParams,
-    options?: RequestOptions,
-  ): APIPromise<ReportPayrollDetailResponse> {
+  payrollDetail(params: ReportPayrollDetailParams, options?: RequestOptions): APIPromise<Report> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/reports/payroll-detail', {
       query,
@@ -194,18 +174,13 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.qbd.reports.payrollSummary(
-   *   {
-   *     reportType: 'employee_earnings_summary',
-   *     conductorEndUserId: 'end_usr_1234567abcdefg',
-   *   },
-   * );
+   * const report = await conductor.qbd.reports.payrollSummary({
+   *   reportType: 'employee_earnings_summary',
+   *   conductorEndUserId: 'end_usr_1234567abcdefg',
+   * });
    * ```
    */
-  payrollSummary(
-    params: ReportPayrollSummaryParams,
-    options?: RequestOptions,
-  ): APIPromise<ReportPayrollSummaryResponse> {
+  payrollSummary(params: ReportPayrollSummaryParams, options?: RequestOptions): APIPromise<Report> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/reports/payroll-summary', {
       query,
@@ -219,13 +194,13 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await conductor.qbd.reports.time({
+   * const report = await conductor.qbd.reports.time({
    *   reportType: 'time_by_item',
    *   conductorEndUserId: 'end_usr_1234567abcdefg',
    * });
    * ```
    */
-  time(params: ReportTimeParams, options?: RequestOptions): APIPromise<ReportTimeResponse> {
+  time(params: ReportTimeParams, options?: RequestOptions): APIPromise<Report> {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/reports/time', {
       query,
@@ -655,150 +630,6 @@ export namespace Report {
       value: string | null;
     }
   }
-}
-
-export interface ReportAgingResponse extends Omit<Report, 'category' | 'reportType'> {
-  category: 'aging';
-
-  reportType:
-    | 'ap_aging_detail'
-    | 'ap_aging_summary'
-    | 'ar_aging_detail'
-    | 'ar_aging_summary'
-    | 'collections_report';
-}
-
-export interface ReportBudgetSummaryResponse extends Omit<Report, 'category' | 'reportType'> {
-  category: 'budget_summary';
-
-  reportType:
-    | 'balance_sheet_budget_overview'
-    | 'balance_sheet_budget_vs_actual'
-    | 'profit_and_loss_budget_overview'
-    | 'profit_and_loss_budget_performance'
-    | 'profit_and_loss_budget_vs_actual';
-}
-
-export interface ReportCustomDetailResponse extends Omit<Report, 'category' | 'reportType'> {
-  category: 'custom_detail';
-
-  reportType: 'custom_transaction_detail';
-}
-
-export interface ReportCustomSummaryResponse extends Omit<Report, 'category' | 'reportType'> {
-  category: 'custom_summary';
-
-  reportType: 'custom_summary';
-}
-
-export interface ReportGeneralDetailResponse extends Omit<Report, 'category' | 'reportType'> {
-  category: 'general_detail';
-
-  reportType:
-    | '1099_detail'
-    | 'audit_trail'
-    | 'balance_sheet_detail'
-    | 'check_detail'
-    | 'customer_balance_detail'
-    | 'deposit_detail'
-    | 'estimates_by_job'
-    | 'expense_by_vendor_detail'
-    | 'general_ledger'
-    | 'income_by_customer_detail'
-    | 'income_tax_detail'
-    | 'inventory_valuation_detail'
-    | 'job_progress_invoices_vs_estimates'
-    | 'journal'
-    | 'missing_checks'
-    | 'open_invoices'
-    | 'open_purchase_orders'
-    | 'open_purchase_orders_by_job'
-    | 'open_sales_order_by_customer'
-    | 'open_sales_order_by_item'
-    | 'pending_sales'
-    | 'profit_and_loss_detail'
-    | 'purchase_by_item_detail'
-    | 'purchase_by_vendor_detail'
-    | 'sales_by_customer_detail'
-    | 'sales_by_item_detail'
-    | 'sales_by_sales_representative_detail'
-    | 'transaction_detail_by_account'
-    | 'transaction_list_by_customer'
-    | 'transaction_list_by_date'
-    | 'transaction_list_by_vendor'
-    | 'unpaid_bills_detail'
-    | 'unbilled_costs_by_job'
-    | 'vendor_balance_detail';
-}
-
-export interface ReportGeneralSummaryResponse extends Omit<Report, 'category' | 'reportType'> {
-  category: 'general_summary';
-
-  reportType:
-    | 'balance_sheet_by_class'
-    | 'balance_sheet_previous_year_comparison'
-    | 'balance_sheet_standard'
-    | 'balance_sheet_summary'
-    | 'customer_balance_summary'
-    | 'expense_by_vendor_summary'
-    | 'income_by_customer_summary'
-    | 'inventory_stock_status_by_item'
-    | 'inventory_stock_status_by_vendor'
-    | 'income_tax_summary'
-    | 'inventory_valuation_summary'
-    | 'inventory_valuation_summary_by_site'
-    | 'lot_number_in_stock_by_site'
-    | 'physical_inventory_worksheet'
-    | 'profit_and_loss_by_class'
-    | 'profit_and_loss_by_job'
-    | 'profit_and_loss_previous_year_comparison'
-    | 'profit_and_loss_standard'
-    | 'profit_and_loss_ytd_comparison'
-    | 'purchase_by_item_summary'
-    | 'purchase_by_vendor_summary'
-    | 'sales_by_customer_summary'
-    | 'sales_by_item_summary'
-    | 'sales_by_sales_representative_summary'
-    | 'sales_tax_liability'
-    | 'sales_tax_revenue_summary'
-    | 'serial_number_in_stock_by_site'
-    | 'trial_balance'
-    | 'vendor_balance_summary';
-}
-
-export interface ReportJobResponse extends Omit<Report, 'category' | 'reportType'> {
-  category: 'job';
-
-  reportType:
-    | 'item_estimates_vs_actuals'
-    | 'item_profitability'
-    | 'job_estimates_vs_actuals_detail'
-    | 'job_estimates_vs_actuals_summary'
-    | 'job_profitability_detail'
-    | 'job_profitability_summary';
-}
-
-export interface ReportPayrollDetailResponse extends Omit<Report, 'category' | 'reportType'> {
-  category: 'payroll_detail';
-
-  reportType:
-    | 'employee_state_taxes_detail'
-    | 'payroll_item_detail'
-    | 'payroll_review_detail'
-    | 'payroll_transaction_detail'
-    | 'payroll_transactions_by_payee';
-}
-
-export interface ReportPayrollSummaryResponse extends Omit<Report, 'category' | 'reportType'> {
-  category: 'payroll_summary';
-
-  reportType: 'employee_earnings_summary' | 'payroll_liability_balances' | 'payroll_summary';
-}
-
-export interface ReportTimeResponse extends Omit<Report, 'category' | 'reportType'> {
-  category: 'time';
-
-  reportType: 'time_by_item' | 'time_by_job_detail' | 'time_by_job_summary' | 'time_by_name';
 }
 
 export interface ReportAgingParams {
@@ -4088,16 +3919,6 @@ export interface ReportTimeParams {
 export declare namespace Reports {
   export {
     type Report as Report,
-    type ReportAgingResponse as ReportAgingResponse,
-    type ReportBudgetSummaryResponse as ReportBudgetSummaryResponse,
-    type ReportCustomDetailResponse as ReportCustomDetailResponse,
-    type ReportCustomSummaryResponse as ReportCustomSummaryResponse,
-    type ReportGeneralDetailResponse as ReportGeneralDetailResponse,
-    type ReportGeneralSummaryResponse as ReportGeneralSummaryResponse,
-    type ReportJobResponse as ReportJobResponse,
-    type ReportPayrollDetailResponse as ReportPayrollDetailResponse,
-    type ReportPayrollSummaryResponse as ReportPayrollSummaryResponse,
-    type ReportTimeResponse as ReportTimeResponse,
     type ReportAgingParams as ReportAgingParams,
     type ReportBudgetSummaryParams as ReportBudgetSummaryParams,
     type ReportCustomDetailParams as ReportCustomDetailParams,
