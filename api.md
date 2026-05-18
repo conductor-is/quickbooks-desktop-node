@@ -635,29 +635,19 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/qbd/reports.ts">Report</a></code>
-- <code><a href="./src/resources/qbd/reports.ts">ReportAgingResponse</a></code>
-- <code><a href="./src/resources/qbd/reports.ts">ReportBudgetSummaryResponse</a></code>
-- <code><a href="./src/resources/qbd/reports.ts">ReportCustomDetailResponse</a></code>
-- <code><a href="./src/resources/qbd/reports.ts">ReportCustomSummaryResponse</a></code>
-- <code><a href="./src/resources/qbd/reports.ts">ReportGeneralDetailResponse</a></code>
-- <code><a href="./src/resources/qbd/reports.ts">ReportGeneralSummaryResponse</a></code>
-- <code><a href="./src/resources/qbd/reports.ts">ReportJobResponse</a></code>
-- <code><a href="./src/resources/qbd/reports.ts">ReportPayrollDetailResponse</a></code>
-- <code><a href="./src/resources/qbd/reports.ts">ReportPayrollSummaryResponse</a></code>
-- <code><a href="./src/resources/qbd/reports.ts">ReportTimeResponse</a></code>
 
 Methods:
 
-- <code title="get /quickbooks-desktop/reports/aging">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">aging</a>({ ...params }) -> ReportAgingResponse</code>
-- <code title="get /quickbooks-desktop/reports/budget-summary">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">budgetSummary</a>({ ...params }) -> ReportBudgetSummaryResponse</code>
-- <code title="get /quickbooks-desktop/reports/custom-detail">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">customDetail</a>({ ...params }) -> ReportCustomDetailResponse</code>
-- <code title="get /quickbooks-desktop/reports/custom-summary">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">customSummary</a>({ ...params }) -> ReportCustomSummaryResponse</code>
-- <code title="get /quickbooks-desktop/reports/general-detail">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">generalDetail</a>({ ...params }) -> ReportGeneralDetailResponse</code>
-- <code title="get /quickbooks-desktop/reports/general-summary">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">generalSummary</a>({ ...params }) -> ReportGeneralSummaryResponse</code>
-- <code title="get /quickbooks-desktop/reports/job">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">job</a>({ ...params }) -> ReportJobResponse</code>
-- <code title="get /quickbooks-desktop/reports/payroll-detail">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">payrollDetail</a>({ ...params }) -> ReportPayrollDetailResponse</code>
-- <code title="get /quickbooks-desktop/reports/payroll-summary">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">payrollSummary</a>({ ...params }) -> ReportPayrollSummaryResponse</code>
-- <code title="get /quickbooks-desktop/reports/time">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">time</a>({ ...params }) -> ReportTimeResponse</code>
+- <code title="get /quickbooks-desktop/reports/aging">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">aging</a>({ ...params }) -> Report</code>
+- <code title="get /quickbooks-desktop/reports/budget-summary">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">budgetSummary</a>({ ...params }) -> Report</code>
+- <code title="get /quickbooks-desktop/reports/custom-detail">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">customDetail</a>({ ...params }) -> Report</code>
+- <code title="get /quickbooks-desktop/reports/custom-summary">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">customSummary</a>({ ...params }) -> Report</code>
+- <code title="get /quickbooks-desktop/reports/general-detail">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">generalDetail</a>({ ...params }) -> Report</code>
+- <code title="get /quickbooks-desktop/reports/general-summary">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">generalSummary</a>({ ...params }) -> Report</code>
+- <code title="get /quickbooks-desktop/reports/job">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">job</a>({ ...params }) -> Report</code>
+- <code title="get /quickbooks-desktop/reports/payroll-detail">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">payrollDetail</a>({ ...params }) -> Report</code>
+- <code title="get /quickbooks-desktop/reports/payroll-summary">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">payrollSummary</a>({ ...params }) -> Report</code>
+- <code title="get /quickbooks-desktop/reports/time">client.qbd.reports.<a href="./src/resources/qbd/reports.ts">time</a>({ ...params }) -> Report</code>
 
 ## SalesOrders
 
