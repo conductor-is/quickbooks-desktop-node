@@ -445,6 +445,31 @@ import {
   ReceivePayments,
   ReceivePaymentsCursorPage,
 } from './receive-payments';
+import * as ReportsAPI from './reports';
+import {
+  Report,
+  ReportAgingParams,
+  ReportAgingResponse,
+  ReportBudgetSummaryParams,
+  ReportBudgetSummaryResponse,
+  ReportCustomDetailParams,
+  ReportCustomDetailResponse,
+  ReportCustomSummaryParams,
+  ReportCustomSummaryResponse,
+  ReportGeneralDetailParams,
+  ReportGeneralDetailResponse,
+  ReportGeneralSummaryParams,
+  ReportGeneralSummaryResponse,
+  ReportJobParams,
+  ReportJobResponse,
+  ReportPayrollDetailParams,
+  ReportPayrollDetailResponse,
+  ReportPayrollSummaryParams,
+  ReportPayrollSummaryResponse,
+  ReportTimeParams,
+  ReportTimeResponse,
+  Reports,
+} from './reports';
 import * as SalesOrdersAPI from './sales-orders';
 import {
   SalesOrder,
@@ -673,6 +698,7 @@ export class Qbd extends APIResource {
   priceLevels: PriceLevelsAPI.PriceLevels = new PriceLevelsAPI.PriceLevels(this._client);
   purchaseOrders: PurchaseOrdersAPI.PurchaseOrders = new PurchaseOrdersAPI.PurchaseOrders(this._client);
   receivePayments: ReceivePaymentsAPI.ReceivePayments = new ReceivePaymentsAPI.ReceivePayments(this._client);
+  reports: ReportsAPI.Reports = new ReportsAPI.Reports(this._client);
   salesOrders: SalesOrdersAPI.SalesOrders = new SalesOrdersAPI.SalesOrders(this._client);
   salesReceipts: SalesReceiptsAPI.SalesReceipts = new SalesReceiptsAPI.SalesReceipts(this._client);
   salesRepresentatives: SalesRepresentativesAPI.SalesRepresentatives =
@@ -778,6 +804,7 @@ Qbd.PayrollWageItems = PayrollWageItems;
 Qbd.PriceLevels = PriceLevels;
 Qbd.PurchaseOrders = PurchaseOrders;
 Qbd.ReceivePayments = ReceivePayments;
+Qbd.Reports = Reports;
 Qbd.SalesOrders = SalesOrders;
 Qbd.SalesReceipts = SalesReceipts;
 Qbd.SalesRepresentatives = SalesRepresentatives;
@@ -1247,6 +1274,31 @@ export declare namespace Qbd {
     type ReceivePaymentUpdateParams as ReceivePaymentUpdateParams,
     type ReceivePaymentListParams as ReceivePaymentListParams,
     type ReceivePaymentDeleteParams as ReceivePaymentDeleteParams,
+  };
+
+  export {
+    Reports as Reports,
+    type Report as Report,
+    type ReportAgingResponse as ReportAgingResponse,
+    type ReportBudgetSummaryResponse as ReportBudgetSummaryResponse,
+    type ReportCustomDetailResponse as ReportCustomDetailResponse,
+    type ReportCustomSummaryResponse as ReportCustomSummaryResponse,
+    type ReportGeneralDetailResponse as ReportGeneralDetailResponse,
+    type ReportGeneralSummaryResponse as ReportGeneralSummaryResponse,
+    type ReportJobResponse as ReportJobResponse,
+    type ReportPayrollDetailResponse as ReportPayrollDetailResponse,
+    type ReportPayrollSummaryResponse as ReportPayrollSummaryResponse,
+    type ReportTimeResponse as ReportTimeResponse,
+    type ReportAgingParams as ReportAgingParams,
+    type ReportBudgetSummaryParams as ReportBudgetSummaryParams,
+    type ReportCustomDetailParams as ReportCustomDetailParams,
+    type ReportCustomSummaryParams as ReportCustomSummaryParams,
+    type ReportGeneralDetailParams as ReportGeneralDetailParams,
+    type ReportGeneralSummaryParams as ReportGeneralSummaryParams,
+    type ReportJobParams as ReportJobParams,
+    type ReportPayrollDetailParams as ReportPayrollDetailParams,
+    type ReportPayrollSummaryParams as ReportPayrollSummaryParams,
+    type ReportTimeParams as ReportTimeParams,
   };
 
   export {
