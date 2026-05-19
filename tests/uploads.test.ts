@@ -1,7 +1,6 @@
 import fs from 'fs';
 import type { ResponseLike } from 'conductor-node/internal/to-file';
 import { toFile } from 'conductor-node/core/uploads';
-import { File } from 'node:buffer';
 
 class MyClass {
   name: string = 'foo';
