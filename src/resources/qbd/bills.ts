@@ -265,12 +265,26 @@ export interface Bill {
    * The remaining amount still owed on this bill, represented as a decimal string.
    * This equals the bill's amount minus any credits or discounts.
    *
-   * **NOTE**: This field is almost always present, but due to a known QBD bug, it
-   * can be absent in rare cases. If you ever encounter `openAmount` as `null`, we
-   * recommend the following fallback procedure: Re-query the bills with
-   * `includeLinkedTransactions=true` and compute a fallback open amount as
-   * `amountDue` minus the sum of `linkedTransactions[].amount` for all entries where
-   * `linkedTransactions[].linkType` is `"amount"`.
+   * **NOTE**: Two rare QuickBooks Desktop behaviors can make `openAmount` unreliable
+   * on bills:
+   *
+   * - `openAmount` can be omitted from bill query responses.
+   * - A known QuickBooks Desktop bug can cause `openAmount` to reflect the vendor's
+   *   aggregate open accounts-payable balance rather than the documented remaining
+   *   balance for that individual bill.
+   *
+   * If you need the amount currently payable on each open bill, we recommend calling
+   * QuickBooks Desktop's `BillToPayQuery` through Conductor's passthrough API and
+   * reading `BillToPay.AmountDue` instead of relying on `openAmount` from the
+   * Conductor bills endpoint. `BillToPayQuery` is not a general replacement for the
+   * Conductor bills endpoint, because it is scoped to open bills and available
+   * credits for a payee and returns bill-payment data rather than full bill records.
+   *
+   * If you cannot use `BillToPayQuery` through the passthrough API and must derive a
+   * fallback from Conductor bills endpoint results, re-query the bills with
+   * `includeLinkedTransactions=true` and compute a best-effort open amount as
+   * `amountDue` plus the sum of signed `linkedTransactions[].amount` values for all
+   * entries where `linkedTransactions[].linkType` is `"amount"`.
    */
   openAmount: string | null;
 
