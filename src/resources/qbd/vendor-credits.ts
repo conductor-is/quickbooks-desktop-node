@@ -266,12 +266,12 @@ export interface VendorCredit {
    * string. This equals the original credit amount minus any amounts that have been
    * applied to bills.
    *
-   * **NOTE**: This field is almost always present, but due to a known QBD bug, it
-   * can be absent in rare cases. If you ever encounter `openAmount` as `null`, we
-   * recommend the following fallback procedure: Re-query the vendor credits with
-   * `includeLinkedTransactions=true` and compute a fallback open amount as
-   * `creditAmount` minus the sum of `linkedTransactions[].amount` for all entries
-   * where `linkedTransactions[].linkType` is `"amount"`.
+   * **NOTE**: QuickBooks Desktop can omit this field in rare cases. If you ever
+   * encounter `openAmount` as `null`, we recommend the following fallback procedure:
+   * Re-query the vendor credits with `includeLinkedTransactions=true` and compute a
+   * fallback open amount as `creditAmount` minus the sum of
+   * `linkedTransactions[].amount` for all entries where
+   * `linkedTransactions[].linkType` is `"amount"`.
    */
   openAmount: string | null;
 
