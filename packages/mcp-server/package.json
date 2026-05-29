@@ -1,6 +1,6 @@
 {
   "name": "conductor-node-mcp",
-  "version": "14.15.0",
+  "version": "14.16.0",
   "description": "The official MCP Server for the Conductor API",
   "author": "Conductor <support@conductor.is>",
   "types": "dist/index.d.ts",
@@ -74,7 +74,7 @@
     "ts-jest": "^29.1.0",
     "ts-morph": "^19.0.0",
     "ts-node": "^10.5.0",
-    "tsc-multi": "https://github.com/stainless-api/tsc-multi/releases/download/v1.1.9/tsc-multi.tgz",
+    "tsc-multi": "https://github.com/stainless-api/tsc-multi/releases/download/v1.1.11/tsc-multi.tgz",
     "tsconfig-paths": "^4.0.0"
   },
   "imports": {

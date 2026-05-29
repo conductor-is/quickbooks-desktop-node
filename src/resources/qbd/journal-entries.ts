@@ -285,7 +285,7 @@ export namespace JournalEntry {
      * The account to which this journal credit line is being credited. This will
      * increase the balance of this account.
      */
-    account: CreditLine.Account;
+    account: CreditLine.Account | null;
 
     /**
      * The monetary amount of this journal credit line, represented as a decimal
