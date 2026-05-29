@@ -1,5 +1,26 @@
 # Changelog
 
+## 14.16.0 (2026-05-29)
+
+Full Changelog: [v14.15.0...v14.16.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.15.0...v14.16.0)
+
+### Features
+
+* **api:** api update ([77f2e94](https://github.com/conductor-is/quickbooks-desktop-node/commit/77f2e9400d8200bc8e4667715f3f62abb0f8443a))
+* **api:** api update ([062c34e](https://github.com/conductor-is/quickbooks-desktop-node/commit/062c34e0eea9ed92bb642304a01781f97c848c7e))
+
+
+### Bug Fixes
+
+* **mcp:** use `pure-lockfile` when building mcp server ([316dd86](https://github.com/conductor-is/quickbooks-desktop-node/commit/316dd86a26fbaf3166d2e8a4f09bb144b71f0b44))
+* **typescript:** upgrade tsc-multi so that it works with Node 26 ([c8d7674](https://github.com/conductor-is/quickbooks-desktop-node/commit/c8d7674952e214b0a34a15379207a965c8c19eaf))
+
+
+### Chores
+
+* **internal:** codegen related update ([8b0dcef](https://github.com/conductor-is/quickbooks-desktop-node/commit/8b0dcef463ffad3d9a9924f5405c1293b2ea4882))
+* **tests:** remove redundant File import ([240cfd9](https://github.com/conductor-is/quickbooks-desktop-node/commit/240cfd940f330f3e2aa7790a03b61fe1985b0758))
+
 ## 14.15.0 (2026-05-18)
 
 Full Changelog: [v14.14.0...v14.15.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.14.0...v14.15.0)
