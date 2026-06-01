@@ -399,6 +399,8 @@ export interface OtherNameCreateParams {
   /**
    * Body param: The name of the company associated with this other-name. This name
    * is used on invoices, checks, and other forms.
+   *
+   * Maximum length: 41 characters.
    */
   companyName?: string;
 
@@ -601,6 +603,8 @@ export interface OtherNameUpdateParams {
   /**
    * Body param: The name of the company associated with this other-name. This name
    * is used on invoices, checks, and other forms.
+   *
+   * Maximum length: 41 characters.
    */
   companyName?: string;
 
