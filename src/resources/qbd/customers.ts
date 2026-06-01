@@ -1156,6 +1156,8 @@ export interface CustomerCreateParams {
   /**
    * Body param: The name of the company associated with this customer. This name is
    * used on invoices, checks, and other forms.
+   *
+   * Maximum length: 41 characters.
    */
   companyName?: string;
 
@@ -1826,6 +1828,8 @@ export interface CustomerUpdateParams {
   /**
    * Body param: The name of the company associated with this customer. This name is
    * used on invoices, checks, and other forms.
+   *
+   * Maximum length: 41 characters.
    */
   companyName?: string;
 

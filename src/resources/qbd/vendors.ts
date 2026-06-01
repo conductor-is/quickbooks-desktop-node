@@ -956,6 +956,8 @@ export interface VendorCreateParams {
   /**
    * Body param: The name of the company associated with this vendor. This name is
    * used on invoices, checks, and other forms.
+   *
+   * Maximum length: 41 characters.
    */
   companyName?: string;
 
@@ -1480,6 +1482,8 @@ export interface VendorUpdateParams {
   /**
    * Body param: The name of the company associated with this vendor. This name is
    * used on invoices, checks, and other forms.
+   *
+   * Maximum length: 41 characters.
    */
   companyName?: string;
 
