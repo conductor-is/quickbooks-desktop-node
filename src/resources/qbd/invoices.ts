@@ -161,8 +161,7 @@ export interface Invoice {
   id: string;
 
   /**
-   * The amount of credit applied to this invoice. This could include customer
-   * deposits, payments, or credits. Represented as a decimal string.
+   * The total amount applied to this invoice, represented as a decimal string.
    */
   appliedAmount: string | null;
 
@@ -328,8 +327,8 @@ export interface Invoice {
 
   /**
    * The Accounts-Receivable (A/R) account to which this invoice is assigned, used to
-   * track the amount owed. If not specified, QuickBooks Desktop will use its default
-   * A/R account.
+   * track the amount owed. If omitted, QuickBooks Desktop uses the default A/R
+   * account configured in the company file.
    *
    * **IMPORTANT**: If this invoice is linked to other transactions, this A/R account
    * must match the `receivablesAccount` used in all linked transactions.
@@ -362,9 +361,10 @@ export interface Invoice {
    * non-taxable. This can be overridden at the transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCode: Invoice.SalesTaxCode | null;
 
@@ -932,9 +932,10 @@ export namespace Invoice {
        * transaction or the associated item.
        *
        * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-       * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-       * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-       * non-taxable code to all sales.
+       * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+       * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+       * the default non-taxable sales-tax code configured in the company file to all
+       * sales.
        */
       salesTaxCode: Line.SalesTaxCode | null;
 
@@ -1112,9 +1113,10 @@ export namespace Invoice {
        * transaction or the associated item.
        *
        * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-       * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-       * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-       * non-taxable code to all sales.
+       * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+       * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+       * the default non-taxable sales-tax code configured in the company file to all
+       * sales.
        */
       export interface SalesTaxCode {
         /**
@@ -1292,9 +1294,10 @@ export namespace Invoice {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCode: Line.SalesTaxCode | null;
 
@@ -1472,9 +1475,10 @@ export namespace Invoice {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     export interface SalesTaxCode {
       /**
@@ -1566,8 +1570,8 @@ export namespace Invoice {
 
   /**
    * The Accounts-Receivable (A/R) account to which this invoice is assigned, used to
-   * track the amount owed. If not specified, QuickBooks Desktop will use its default
-   * A/R account.
+   * track the amount owed. If omitted, QuickBooks Desktop uses the default A/R
+   * account configured in the company file.
    *
    * **IMPORTANT**: If this invoice is linked to other transactions, this A/R account
    * must match the `receivablesAccount` used in all linked transactions.
@@ -1613,9 +1617,10 @@ export namespace Invoice {
    * non-taxable. This can be overridden at the transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   export interface SalesTaxCode {
     /**
@@ -1990,8 +1995,8 @@ export interface InvoiceCreateParams {
 
   /**
    * Body param: The Accounts-Receivable (A/R) account to which this invoice is
-   * assigned, used to track the amount owed. If not specified, QuickBooks Desktop
-   * will use its default A/R account.
+   * assigned, used to track the amount owed. If omitted, QuickBooks Desktop uses the
+   * default A/R account configured in the company file.
    *
    * **IMPORTANT**: If this invoice is linked to other transactions, this A/R account
    * must match the `receivablesAccount` used in all linked transactions.
@@ -2020,9 +2025,10 @@ export interface InvoiceCreateParams {
    * taxable or non-taxable. This can be overridden at the transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCodeId?: string;
 
@@ -2082,8 +2088,8 @@ export interface InvoiceCreateParams {
 export namespace InvoiceCreateParams {
   export interface ApplyCredit {
     /**
-     * The amount of credit applied to this transaction. This could include customer
-     * deposits, payments, or credits. Represented as a decimal string.
+     * The amount of the selected credit transaction to apply to this transaction,
+     * represented as a decimal string.
      *
      * Decimal string format: exactly 2 decimal places when cents are included and up
      * to 13 digits before the decimal point (for example, "123.45").
@@ -2412,9 +2418,10 @@ export namespace InvoiceCreateParams {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCodeId?: string;
 
@@ -2743,8 +2750,8 @@ export interface InvoiceUpdateParams {
 
   /**
    * Body param: The Accounts-Receivable (A/R) account to which this invoice is
-   * assigned, used to track the amount owed. If not specified, QuickBooks Desktop
-   * will use its default A/R account.
+   * assigned, used to track the amount owed. If omitted, QuickBooks Desktop uses the
+   * default A/R account configured in the company file.
    *
    * **IMPORTANT**: If this invoice is linked to other transactions, this A/R account
    * must match the `receivablesAccount` used in all linked transactions.
@@ -2771,9 +2778,10 @@ export interface InvoiceUpdateParams {
    * taxable or non-taxable. This can be overridden at the transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCodeId?: string;
 
@@ -2838,8 +2846,8 @@ export interface InvoiceUpdateParams {
 export namespace InvoiceUpdateParams {
   export interface ApplyCredit {
     /**
-     * The amount of credit applied to this transaction. This could include customer
-     * deposits, payments, or credits. Represented as a decimal string.
+     * The amount of the selected credit transaction to apply to this transaction,
+     * represented as a decimal string.
      *
      * Decimal string format: exactly 2 decimal places when cents are included and up
      * to 13 digits before the decimal point (for example, "123.45").
@@ -3135,9 +3143,10 @@ export namespace InvoiceUpdateParams {
        * transaction or the associated item.
        *
        * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-       * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-       * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-       * non-taxable code to all sales.
+       * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+       * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+       * the default non-taxable sales-tax code configured in the company file to all
+       * sales.
        */
       salesTaxCodeId?: string;
 
@@ -3302,9 +3311,10 @@ export namespace InvoiceUpdateParams {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCodeId?: string;
 

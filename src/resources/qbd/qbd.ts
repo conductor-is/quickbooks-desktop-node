@@ -59,6 +59,8 @@ import {
   Bills,
   BillsCursorPage,
 } from './bills';
+import * as BillsToPayAPI from './bills-to-pay';
+import { BillToPay, BillsToPay, BillsToPayListParams, BillsToPayListResponse } from './bills-to-pay';
 import * as BuildAssembliesAPI from './build-assemblies';
 import {
   BuildAssemblies,
@@ -632,6 +634,7 @@ export class Qbd extends APIResource {
   billCreditCardPayments: BillCreditCardPaymentsAPI.BillCreditCardPayments =
     new BillCreditCardPaymentsAPI.BillCreditCardPayments(this._client);
   bills: BillsAPI.Bills = new BillsAPI.Bills(this._client);
+  billsToPay: BillsToPayAPI.BillsToPay = new BillsToPayAPI.BillsToPay(this._client);
   buildAssemblies: BuildAssembliesAPI.BuildAssemblies = new BuildAssembliesAPI.BuildAssemblies(this._client);
   checks: ChecksAPI.Checks = new ChecksAPI.Checks(this._client);
   classes: ClassesAPI.Classes = new ClassesAPI.Classes(this._client);
@@ -758,6 +761,7 @@ Qbd.Accounts = Accounts;
 Qbd.BillCheckPayments = BillCheckPayments;
 Qbd.BillCreditCardPayments = BillCreditCardPayments;
 Qbd.Bills = Bills;
+Qbd.BillsToPay = BillsToPay;
 Qbd.BuildAssemblies = BuildAssemblies;
 Qbd.Checks = Checks;
 Qbd.Classes = Classes;
@@ -874,6 +878,13 @@ export declare namespace Qbd {
     type BillListParams as BillListParams,
     type BillDeleteParams as BillDeleteParams,
     type BillVoidParams as BillVoidParams,
+  };
+
+  export {
+    BillsToPay as BillsToPay,
+    type BillToPay as BillToPay,
+    type BillsToPayListResponse as BillsToPayListResponse,
+    type BillsToPayListParams as BillsToPayListParams,
   };
 
   export {
