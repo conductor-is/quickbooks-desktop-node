@@ -163,7 +163,8 @@ export interface Bill {
   /**
    * The total monetary amount due for this bill, represented as a decimal string.
    * This equals the sum of the amounts in the bill's expense lines, item lines, and
-   * item group lines. It also equals `openAmount` plus any credits or discounts.
+   * item group lines. The amount due minus any credits or discounts equals the open
+   * amount.
    */
   amountDue: string | null;
 
@@ -273,15 +274,15 @@ export interface Bill {
    *   aggregate open accounts-payable balance rather than the documented remaining
    *   balance for that individual bill.
    *
-   * If you need the amount currently payable on each open bill, we recommend calling
-   * QuickBooks Desktop's `BillToPayQuery` through Conductor's passthrough API and
-   * reading `BillToPay.AmountDue` instead of relying on `openAmount` from the
-   * Conductor bills endpoint. `BillToPayQuery` is not a general replacement for the
-   * Conductor bills endpoint, because it is scoped to open bills and available
-   * credits for a payee and returns bill-payment data rather than full bill records.
+   * If you need the amount currently payable on each open bill, use Conductor's
+   * `/quickbooks-desktop/bills-to-pay` endpoint and read `bill.amountDue` instead of
+   * relying on `openAmount` from the Conductor bills endpoint. The bills-to-pay
+   * endpoint is not a general replacement for the Conductor bills endpoint, because
+   * it is scoped to open bills and available credits for a vendor and returns
+   * bill-payment data rather than full bill records.
    *
-   * If you cannot use `BillToPayQuery` through the passthrough API and must derive a
-   * fallback from Conductor bills endpoint results, re-query the bills with
+   * If you cannot use `/quickbooks-desktop/bills-to-pay` and must derive a fallback
+   * from Conductor bills endpoint results, re-query the bills with
    * `includeLinkedTransactions=true` and compute a best-effort open amount as
    * `amountDue` plus the sum of signed `linkedTransactions[].amount` values for all
    * entries where `linkedTransactions[].linkType` is `"amount"`.
@@ -289,9 +290,8 @@ export interface Bill {
   openAmount: string | null;
 
   /**
-   * The Accounts-Payable (A/P) account to which this bill is assigned, used to track
-   * the amount owed. If not specified, QuickBooks Desktop will use its default A/P
-   * account.
+   * The Accounts-Payable (A/P) account to which this bill is assigned, used for
+   * accounts-payable tracking.
    *
    * **IMPORTANT**: If this bill is linked to other transactions, this A/P account
    * must match the `payablesAccount` used in those other transactions.
@@ -319,9 +319,10 @@ export interface Bill {
    * This can be overridden on the bill's individual lines.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCode: Bill.SalesTaxCode | null;
 
@@ -482,9 +483,10 @@ export namespace Bill {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCode: ExpenseLine.SalesTaxCode | null;
   }
@@ -620,9 +622,10 @@ export namespace Bill {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     export interface SalesTaxCode {
       /**
@@ -891,9 +894,10 @@ export namespace Bill {
        * transaction or the associated item.
        *
        * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-       * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-       * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-       * non-taxable code to all sales.
+       * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+       * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+       * the default non-taxable sales-tax code configured in the company file to all
+       * sales.
        */
       salesTaxCode: ItemLine.SalesTaxCode | null;
 
@@ -1104,9 +1108,10 @@ export namespace Bill {
        * transaction or the associated item.
        *
        * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-       * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-       * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-       * non-taxable code to all sales.
+       * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+       * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+       * the default non-taxable sales-tax code configured in the company file to all
+       * sales.
        */
       export interface SalesTaxCode {
         /**
@@ -1274,9 +1279,10 @@ export namespace Bill {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCode: ItemLine.SalesTaxCode | null;
 
@@ -1487,9 +1493,10 @@ export namespace Bill {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     export interface SalesTaxCode {
       /**
@@ -1580,9 +1587,8 @@ export namespace Bill {
   }
 
   /**
-   * The Accounts-Payable (A/P) account to which this bill is assigned, used to track
-   * the amount owed. If not specified, QuickBooks Desktop will use its default A/P
-   * account.
+   * The Accounts-Payable (A/P) account to which this bill is assigned, used for
+   * accounts-payable tracking.
    *
    * **IMPORTANT**: If this bill is linked to other transactions, this A/P account
    * must match the `payablesAccount` used in those other transactions.
@@ -1609,9 +1615,10 @@ export namespace Bill {
    * This can be overridden on the bill's individual lines.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   export interface SalesTaxCode {
     /**
@@ -1874,8 +1881,8 @@ export interface BillCreateParams {
 
   /**
    * Body param: The Accounts-Payable (A/P) account to which this bill is assigned,
-   * used to track the amount owed. If not specified, QuickBooks Desktop will use its
-   * default A/P account.
+   * used for accounts-payable tracking. If omitted, QuickBooks Desktop uses the
+   * default A/P account configured in the company file.
    *
    * **IMPORTANT**: If this bill is linked to other transactions, this A/P account
    * must match the `payablesAccount` used in those other transactions.
@@ -1899,9 +1906,10 @@ export interface BillCreateParams {
    * vendor. This can be overridden on the bill's individual lines.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCodeId?: string;
 
@@ -1979,9 +1987,10 @@ export namespace BillCreateParams {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCodeId?: string;
   }
@@ -2228,9 +2237,10 @@ export namespace BillCreateParams {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCodeId?: string;
 
@@ -2503,8 +2513,8 @@ export interface BillUpdateParams {
 
   /**
    * Body param: The Accounts-Payable (A/P) account to which this bill is assigned,
-   * used to track the amount owed. If not specified, QuickBooks Desktop will use its
-   * default A/P account.
+   * used for accounts-payable tracking. If omitted, QuickBooks Desktop uses the
+   * default A/P account configured in the company file.
    *
    * **IMPORTANT**: If this bill is linked to other transactions, this A/P account
    * must match the `payablesAccount` used in those other transactions.
@@ -2526,9 +2536,10 @@ export interface BillUpdateParams {
    * vendor. This can be overridden on the bill's individual lines.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCodeId?: string;
 
@@ -2618,9 +2629,10 @@ export namespace BillUpdateParams {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCodeId?: string;
   }
@@ -2812,9 +2824,10 @@ export namespace BillUpdateParams {
        * transaction or the associated item.
        *
        * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-       * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-       * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-       * non-taxable code to all sales.
+       * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+       * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+       * the default non-taxable sales-tax code configured in the company file to all
+       * sales.
        */
       salesTaxCodeId?: string;
 
@@ -2958,9 +2971,10 @@ export namespace BillUpdateParams {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCodeId?: string;
 

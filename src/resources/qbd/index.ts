@@ -54,6 +54,12 @@ export {
   type BillsCursorPage,
 } from './bills';
 export {
+  BillsToPay,
+  type BillToPay,
+  type BillsToPayListResponse,
+  type BillsToPayListParams,
+} from './bills-to-pay';
+export {
   BuildAssemblies,
   type BuildAssembly,
   type BuildAssemblyDeleteResponse,

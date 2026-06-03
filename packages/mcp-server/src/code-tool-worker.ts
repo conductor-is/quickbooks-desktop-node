@@ -137,6 +137,7 @@ const fuse = new Fuse(
     'conductor.qbd.bills.retrieve',
     'conductor.qbd.bills.update',
     'conductor.qbd.bills.void',
+    'conductor.qbd.billsToPay.list',
     'conductor.qbd.buildAssemblies.create',
     'conductor.qbd.buildAssemblies.delete',
     'conductor.qbd.buildAssemblies.list',

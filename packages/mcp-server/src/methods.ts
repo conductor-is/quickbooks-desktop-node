@@ -185,6 +185,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/bills/{id}/void',
   },
   {
+    clientCallName: 'conductor.qbd.billsToPay.list',
+    fullyQualifiedName: 'qbd.billsToPay.list',
+    httpMethod: 'get',
+    httpPath: '/quickbooks-desktop/bills-to-pay',
+  },
+  {
     clientCallName: 'conductor.qbd.buildAssemblies.create',
     fullyQualifiedName: 'qbd.buildAssemblies.create',
     httpMethod: 'post',
