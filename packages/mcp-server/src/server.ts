@@ -28,7 +28,7 @@ export const newMcpServer = async ({
   new McpServer(
     {
       name: 'conductor_node_api',
-      version: '14.16.0',
+      version: '14.17.0',
     },
     {
       instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),
