@@ -221,8 +221,8 @@ export interface CreditCardRefund {
 
   /**
    * The Accounts-Receivable (A/R) account to which this credit card refund is
-   * assigned, used to track the amount owed. If not specified, QuickBooks Desktop
-   * will use its default A/R account.
+   * assigned, used to track the amount owed. If omitted, QuickBooks Desktop uses the
+   * default A/R account configured in the company file.
    *
    * **IMPORTANT**: If this credit card refund is linked to other transactions, this
    * A/R account must match the `receivablesAccount` used in all linked transactions.
@@ -604,8 +604,8 @@ export namespace CreditCardRefund {
 
   /**
    * The Accounts-Receivable (A/R) account to which this credit card refund is
-   * assigned, used to track the amount owed. If not specified, QuickBooks Desktop
-   * will use its default A/R account.
+   * assigned, used to track the amount owed. If omitted, QuickBooks Desktop uses the
+   * default A/R account configured in the company file.
    *
    * **IMPORTANT**: If this credit card refund is linked to other transactions, this
    * A/R account must match the `receivablesAccount` used in all linked transactions.
@@ -862,8 +862,8 @@ export interface CreditCardRefundCreateParams {
 
   /**
    * Body param: The Accounts-Receivable (A/R) account to which this credit card
-   * refund is assigned, used to track the amount owed. If not specified, QuickBooks
-   * Desktop will use its default A/R account.
+   * refund is assigned, used to track the amount owed. If omitted, QuickBooks
+   * Desktop uses the default A/R account configured in the company file.
    *
    * **IMPORTANT**: If this credit card refund is linked to other transactions, this
    * A/R account must match the `receivablesAccount` used in all linked transactions.
@@ -886,7 +886,8 @@ export interface CreditCardRefundCreateParams {
   /**
    * Body param: The account providing funds for this credit card refund. This is
    * typically the Undeposited Funds account used to hold customer payments. If
-   * omitted, QuickBooks Desktop will use the default Undeposited Funds account.
+   * omitted, QuickBooks Desktop uses the default Undeposited Funds account
+   * configured in the company file.
    */
   refundFromAccountId?: string;
 }

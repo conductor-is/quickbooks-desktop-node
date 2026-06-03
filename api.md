@@ -110,6 +110,17 @@ Methods:
 - <code title="delete /quickbooks-desktop/bills/{id}">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">delete</a>(id, { ...params }) -> BillDeleteResponse</code>
 - <code title="post /quickbooks-desktop/bills/{id}/void">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">void</a>(id, { ...params }) -> BillVoidResponse</code>
 
+## BillsToPay
+
+Types:
+
+- <code><a href="./src/resources/qbd/bills-to-pay.ts">BillToPay</a></code>
+- <code><a href="./src/resources/qbd/bills-to-pay.ts">BillsToPayListResponse</a></code>
+
+Methods:
+
+- <code title="get /quickbooks-desktop/bills-to-pay">client.qbd.billsToPay.<a href="./src/resources/qbd/bills-to-pay.ts">list</a>({ ...params }) -> BillsToPayListResponse</code>
+
 ## BuildAssemblies
 
 Types:

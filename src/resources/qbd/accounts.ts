@@ -249,9 +249,10 @@ export interface Account {
    * the transaction or transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCode: Account.SalesTaxCode | null;
 
@@ -401,9 +402,10 @@ export namespace Account {
    * the transaction or transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   export interface SalesTaxCode {
     /**
@@ -560,9 +562,10 @@ export interface AccountCreateParams {
    * overridden at the transaction or transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCodeId?: string;
 
@@ -692,9 +695,10 @@ export interface AccountUpdateParams {
    * overridden at the transaction or transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCodeId?: string;
 

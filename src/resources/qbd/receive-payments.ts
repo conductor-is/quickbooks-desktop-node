@@ -230,8 +230,8 @@ export interface ReceivePayment {
 
   /**
    * The Accounts-Receivable (A/R) account to which this receive-payment is assigned,
-   * used to track the amount owed. If not specified, QuickBooks Desktop will use its
-   * default A/R account.
+   * used to track the amount owed. If omitted, QuickBooks Desktop uses the default
+   * A/R account configured in the company file.
    *
    * **IMPORTANT**: If this receive-payment is linked to other transactions, this A/R
    * account must match the `receivablesAccount` used in all linked transactions.
@@ -299,63 +299,61 @@ export interface ReceivePayment {
 export namespace ReceivePayment {
   export interface AppliedToTransaction {
     /**
-     * The monetary amount of this receivable transaction, represented as a decimal
-     * string.
+     * The monetary amount of this target transaction, represented as a decimal string.
      */
     amount: string | null;
 
     /**
-     * The outstanding balance of this receivable transaction after applying any
-     * credits or payments. Represented as a decimal string.
+     * The outstanding balance of this target transaction after applying any credits or
+     * payments. Represented as a decimal string.
      */
     balanceRemaining: string | null;
 
     /**
-     * The financial account used to track this receivable transaction's discount.
+     * The financial account used to track this target transaction's discount.
      */
     discountAccount: AppliedToTransaction.DiscountAccount | null;
 
     /**
-     * The monetary amount by which to reduce the receivable transaction's receivable
-     * amount, represented as a decimal string.
+     * The monetary amount by which to reduce this target transaction's balance,
+     * represented as a decimal string.
      */
     discountAmount: string | null;
 
     /**
-     * The class used to track this receivable transaction's discount.
+     * The class used to track this target transaction's discount.
      */
     discountClass: AppliedToTransaction.DiscountClass | null;
 
     /**
-     * The receivable transaction's linked transactions, such as payments applied,
-     * credits used, or associated purchase orders.
+     * The target transaction's linked transactions, such as payments applied, credits
+     * used, or associated purchase orders.
      *
      * **IMPORTANT**: You must specify the parameter `includeLinkedTransactions` when
-     * fetching a list of receivable transactions to receive this field because it is
-     * not returned by default.
+     * fetching a list of target transactions to receive this field because it is not
+     * returned by default.
      */
     linkedTransactions: Array<AppliedToTransaction.LinkedTransaction>;
 
     /**
-     * The case-sensitive user-defined reference number for this receivable
-     * transaction, which can be used to identify the transaction in QuickBooks. This
-     * value is not required to be unique and can be arbitrarily changed by the
-     * QuickBooks user.
+     * The case-sensitive user-defined reference number for this target transaction,
+     * which can be used to identify the transaction in QuickBooks. This value is not
+     * required to be unique and can be arbitrarily changed by the QuickBooks user.
      */
     refNumber: string | null;
 
     /**
-     * The date of this receivable transaction, in ISO 8601 format (YYYY-MM-DD).
+     * The date of this target transaction, in ISO 8601 format (YYYY-MM-DD).
      */
     transactionDate: string | null;
 
     /**
-     * The ID of the receivable transaction to which this payment is applied.
+     * The ID of the target transaction to which this payment is applied.
      */
     transactionId: string;
 
     /**
-     * The type of transaction for this receivable transaction.
+     * The type of transaction for this target transaction.
      */
     transactionType:
       | 'ar_refund_credit_card'
@@ -389,7 +387,7 @@ export namespace ReceivePayment {
 
   export namespace AppliedToTransaction {
     /**
-     * The financial account used to track this receivable transaction's discount.
+     * The financial account used to track this target transaction's discount.
      */
     export interface DiscountAccount {
       /**
@@ -408,7 +406,7 @@ export namespace ReceivePayment {
     }
 
     /**
-     * The class used to track this receivable transaction's discount.
+     * The class used to track this target transaction's discount.
      */
     export interface DiscountClass {
       /**
@@ -783,8 +781,8 @@ export namespace ReceivePayment {
 
   /**
    * The Accounts-Receivable (A/R) account to which this receive-payment is assigned,
-   * used to track the amount owed. If not specified, QuickBooks Desktop will use its
-   * default A/R account.
+   * used to track the amount owed. If omitted, QuickBooks Desktop uses the default
+   * A/R account configured in the company file.
    *
    * **IMPORTANT**: If this receive-payment is linked to other transactions, this A/R
    * account must match the `receivablesAccount` used in all linked transactions.
@@ -883,8 +881,8 @@ export interface ReceivePaymentCreateParams {
 
   /**
    * Body param: The account where the funds for this receive-payment will be or have
-   * been deposited. If omitted, QuickBooks will use the default Undeposited Funds
-   * account.
+   * been deposited. If omitted, QuickBooks Desktop uses the default Undeposited
+   * Funds account configured in the company file.
    */
   depositToAccountId?: string;
 
@@ -937,8 +935,8 @@ export interface ReceivePaymentCreateParams {
 
   /**
    * Body param: The Accounts-Receivable (A/R) account to which this receive-payment
-   * is assigned, used to track the amount owed. If not specified, QuickBooks Desktop
-   * will use its default A/R account.
+   * is assigned, used to track the amount owed. If omitted, QuickBooks Desktop uses
+   * the default A/R account configured in the company file.
    *
    * **IMPORTANT**: If this receive-payment is linked to other transactions, this A/R
    * account must match the `receivablesAccount` used in all linked transactions.
@@ -960,32 +958,31 @@ export interface ReceivePaymentCreateParams {
 export namespace ReceivePaymentCreateParams {
   export interface ApplyToTransaction {
     /**
-     * The ID of the receivable transaction to which this payment is applied.
+     * The ID of the target transaction to which this payment is applied.
      */
     transactionId: string;
 
     /**
-     * Credits to apply to this receivable transaction, reducing its balance. This
-     * creates a link between this receivable transaction and the specified credit
-     * transactions.
+     * Credits to apply to this target transaction, reducing its balance. This creates
+     * a link between this target transaction and the specified credit transactions.
      *
      * **IMPORTANT**: By default, QuickBooks will not return any information about the
      * linked transactions in this endpoint's response even when this request is
-     * successful. To see the transactions linked via this field, refetch the
-     * receivable transaction and check the `linkedTransactions` response field. If
-     * fetching a list of receivable transactions, you must also specify the parameter
+     * successful. To see the transactions linked via this field, refetch the target
+     * transaction and check the `linkedTransactions` response field. If fetching a
+     * list of target transactions, you must also specify the parameter
      * `includeLinkedTransactions=true` to see the `linkedTransactions` response field.
      */
     applyCredits?: Array<ApplyToTransaction.ApplyCredit>;
 
     /**
-     * The financial account used to track this receivable transaction's discount.
+     * The financial account used to track this target transaction's discount.
      */
     discountAccountId?: string;
 
     /**
-     * The monetary amount by which to reduce the receivable transaction's receivable
-     * amount, represented as a decimal string.
+     * The monetary amount by which to reduce this target transaction's balance,
+     * represented as a decimal string.
      *
      * Decimal string format: exactly 2 decimal places when cents are included and up
      * to 13 digits before the decimal point (for example, "123.45").
@@ -993,13 +990,13 @@ export namespace ReceivePaymentCreateParams {
     discountAmount?: string;
 
     /**
-     * The class used to track this receivable transaction's discount.
+     * The class used to track this target transaction's discount.
      */
     discountClassId?: string;
 
     /**
-     * The monetary amount to apply to the receivable transaction, represented as a
-     * decimal string.
+     * The monetary amount to apply to the target transaction, represented as a decimal
+     * string.
      *
      * Decimal string format: exactly 2 decimal places when cents are included and up
      * to 13 digits before the decimal point (for example, "123.45").
@@ -1010,8 +1007,8 @@ export namespace ReceivePaymentCreateParams {
   export namespace ApplyToTransaction {
     export interface ApplyCredit {
       /**
-       * The amount of credit applied to this transaction. This could include customer
-       * deposits, payments, or credits. Represented as a decimal string.
+       * The amount of the selected credit transaction to apply to this transaction,
+       * represented as a decimal string.
        *
        * Decimal string format: exactly 2 decimal places when cents are included and up
        * to 13 digits before the decimal point (for example, "123.45").
@@ -1274,8 +1271,8 @@ export interface ReceivePaymentUpdateParams {
 
   /**
    * Body param: The Accounts-Receivable (A/R) account to which this receive-payment
-   * is assigned, used to track the amount owed. If not specified, QuickBooks Desktop
-   * will use its default A/R account.
+   * is assigned, used to track the amount owed. If omitted, QuickBooks Desktop uses
+   * the default A/R account configured in the company file.
    *
    * **IMPORTANT**: If this receive-payment is linked to other transactions, this A/R
    * account must match the `receivablesAccount` used in all linked transactions.
@@ -1313,32 +1310,31 @@ export interface ReceivePaymentUpdateParams {
 export namespace ReceivePaymentUpdateParams {
   export interface ApplyToTransaction {
     /**
-     * The ID of the receivable transaction to which this payment is applied.
+     * The ID of the target transaction to which this payment is applied.
      */
     transactionId: string;
 
     /**
-     * Credits to apply to this receivable transaction, reducing its balance. This
-     * creates a link between this receivable transaction and the specified credit
-     * transactions.
+     * Credits to apply to this target transaction, reducing its balance. This creates
+     * a link between this target transaction and the specified credit transactions.
      *
      * **IMPORTANT**: By default, QuickBooks will not return any information about the
      * linked transactions in this endpoint's response even when this request is
-     * successful. To see the transactions linked via this field, refetch the
-     * receivable transaction and check the `linkedTransactions` response field. If
-     * fetching a list of receivable transactions, you must also specify the parameter
+     * successful. To see the transactions linked via this field, refetch the target
+     * transaction and check the `linkedTransactions` response field. If fetching a
+     * list of target transactions, you must also specify the parameter
      * `includeLinkedTransactions=true` to see the `linkedTransactions` response field.
      */
     applyCredits?: Array<ApplyToTransaction.ApplyCredit>;
 
     /**
-     * The financial account used to track this receivable transaction's discount.
+     * The financial account used to track this target transaction's discount.
      */
     discountAccountId?: string;
 
     /**
-     * The monetary amount by which to reduce the receivable transaction's receivable
-     * amount, represented as a decimal string.
+     * The monetary amount by which to reduce this target transaction's balance,
+     * represented as a decimal string.
      *
      * Decimal string format: exactly 2 decimal places when cents are included and up
      * to 13 digits before the decimal point (for example, "123.45").
@@ -1346,13 +1342,13 @@ export namespace ReceivePaymentUpdateParams {
     discountAmount?: string;
 
     /**
-     * The class used to track this receivable transaction's discount.
+     * The class used to track this target transaction's discount.
      */
     discountClassId?: string;
 
     /**
-     * The monetary amount to apply to the receivable transaction, represented as a
-     * decimal string.
+     * The monetary amount to apply to the target transaction, represented as a decimal
+     * string.
      *
      * Decimal string format: exactly 2 decimal places when cents are included and up
      * to 13 digits before the decimal point (for example, "123.45").
@@ -1363,8 +1359,8 @@ export namespace ReceivePaymentUpdateParams {
   export namespace ApplyToTransaction {
     export interface ApplyCredit {
       /**
-       * The amount of credit applied to this transaction. This could include customer
-       * deposits, payments, or credits. Represented as a decimal string.
+       * The amount of the selected credit transaction to apply to this transaction,
+       * represented as a decimal string.
        *
        * Decimal string format: exactly 2 decimal places when cents are included and up
        * to 13 digits before the decimal point (for example, "123.45").

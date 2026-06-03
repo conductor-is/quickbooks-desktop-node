@@ -318,8 +318,8 @@ export interface CreditMemo {
 
   /**
    * The Accounts-Receivable (A/R) account to which this credit memo is assigned,
-   * used to track the amount owed. If not specified, QuickBooks Desktop will use its
-   * default A/R account.
+   * used to track the amount owed. If omitted, QuickBooks Desktop uses the default
+   * A/R account configured in the company file.
    *
    * **IMPORTANT**: If this credit memo is linked to other transactions, this A/R
    * account must match the `receivablesAccount` used in all linked transactions.
@@ -352,9 +352,10 @@ export interface CreditMemo {
    * non-taxable. This can be overridden at the transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCode: CreditMemo.SalesTaxCode | null;
 
@@ -908,9 +909,10 @@ export namespace CreditMemo {
        * transaction or the associated item.
        *
        * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-       * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-       * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-       * non-taxable code to all sales.
+       * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+       * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+       * the default non-taxable sales-tax code configured in the company file to all
+       * sales.
        */
       salesTaxCode: Line.SalesTaxCode | null;
 
@@ -1089,9 +1091,10 @@ export namespace CreditMemo {
        * transaction or the associated item.
        *
        * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-       * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-       * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-       * non-taxable code to all sales.
+       * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+       * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+       * the default non-taxable sales-tax code configured in the company file to all
+       * sales.
        */
       export interface SalesTaxCode {
         /**
@@ -1269,9 +1272,10 @@ export namespace CreditMemo {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCode: Line.SalesTaxCode | null;
 
@@ -1450,9 +1454,10 @@ export namespace CreditMemo {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     export interface SalesTaxCode {
       /**
@@ -1544,8 +1549,8 @@ export namespace CreditMemo {
 
   /**
    * The Accounts-Receivable (A/R) account to which this credit memo is assigned,
-   * used to track the amount owed. If not specified, QuickBooks Desktop will use its
-   * default A/R account.
+   * used to track the amount owed. If omitted, QuickBooks Desktop uses the default
+   * A/R account configured in the company file.
    *
    * **IMPORTANT**: If this credit memo is linked to other transactions, this A/R
    * account must match the `receivablesAccount` used in all linked transactions.
@@ -1591,9 +1596,10 @@ export namespace CreditMemo {
    * non-taxable. This can be overridden at the transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   export interface SalesTaxCode {
     /**
@@ -1916,8 +1922,8 @@ export interface CreditMemoCreateParams {
 
   /**
    * Body param: The Accounts-Receivable (A/R) account to which this credit memo is
-   * assigned, used to track the amount owed. If not specified, QuickBooks Desktop
-   * will use its default A/R account.
+   * assigned, used to track the amount owed. If omitted, QuickBooks Desktop uses the
+   * default A/R account configured in the company file.
    *
    * **IMPORTANT**: If this credit memo is linked to other transactions, this A/R
    * account must match the `receivablesAccount` used in all linked transactions.
@@ -1946,9 +1952,10 @@ export interface CreditMemoCreateParams {
    * taxable or non-taxable. This can be overridden at the transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCodeId?: string;
 
@@ -2267,9 +2274,10 @@ export namespace CreditMemoCreateParams {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCodeId?: string;
 
@@ -2540,8 +2548,8 @@ export interface CreditMemoUpdateParams {
 
   /**
    * Body param: The Accounts-Receivable (A/R) account to which this credit memo is
-   * assigned, used to track the amount owed. If not specified, QuickBooks Desktop
-   * will use its default A/R account.
+   * assigned, used to track the amount owed. If omitted, QuickBooks Desktop uses the
+   * default A/R account configured in the company file.
    *
    * **IMPORTANT**: If this credit memo is linked to other transactions, this A/R
    * account must match the `receivablesAccount` used in all linked transactions.
@@ -2568,9 +2576,10 @@ export interface CreditMemoUpdateParams {
    * taxable or non-taxable. This can be overridden at the transaction-line level.
    *
    * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-   * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-   * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-   * non-taxable code to all sales.
+   * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+   * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+   * the default non-taxable sales-tax code configured in the company file to all
+   * sales.
    */
   salesTaxCodeId?: string;
 
@@ -2894,9 +2903,10 @@ export namespace CreditMemoUpdateParams {
        * transaction or the associated item.
        *
        * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-       * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-       * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-       * non-taxable code to all sales.
+       * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+       * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+       * the default non-taxable sales-tax code configured in the company file to all
+       * sales.
        */
       salesTaxCodeId?: string;
 
@@ -3056,9 +3066,10 @@ export namespace CreditMemoUpdateParams {
      * transaction or the associated item.
      *
      * Default codes include "Non" (non-taxable) and "Tax" (taxable), but custom codes
-     * can also be created in QuickBooks. If QuickBooks is not set up to charge sales
-     * tax (via the "Do You Charge Sales Tax?" preference), it will assign the default
-     * non-taxable code to all sales.
+     * can also be created in QuickBooks Desktop. If QuickBooks Desktop is not set up
+     * to charge sales tax (via the "Do You Charge Sales Tax?" preference), it assigns
+     * the default non-taxable sales-tax code configured in the company file to all
+     * sales.
      */
     salesTaxCodeId?: string;
 
