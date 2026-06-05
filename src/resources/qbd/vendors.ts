@@ -358,7 +358,7 @@ export interface Vendor {
   /**
    * The country for which sales tax is collected for this vendor.
    */
-  salesTaxCountry: 'australia' | 'canada' | 'uk' | 'us' | null;
+  salesTaxCountry: 'australia' | 'canada' | 'uk' | 'us' | 'united_arab_emirates' | null;
 
   /**
    * The vendor's sales tax return information, used for tracking and reporting sales
