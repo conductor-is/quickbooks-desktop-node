@@ -413,7 +413,7 @@ export interface Customer {
   /**
    * The country for which sales tax is collected for this customer.
    */
-  salesTaxCountry: 'australia' | 'canada' | 'uk' | 'us' | 'united_arab_emirates' | null;
+  salesTaxCountry: string | null;
 
   /**
    * The sales-tax item used to calculate the actual tax amount for this customer's
