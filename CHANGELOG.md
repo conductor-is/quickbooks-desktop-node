@@ -1,5 +1,14 @@
 # Changelog
 
+## 14.20.0 (2026-06-15)
+
+Full Changelog: [v14.19.0...v14.20.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.19.0...v14.20.0)
+
+### Features
+
+* **api:** api update ([0c274ba](https://github.com/conductor-is/quickbooks-desktop-node/commit/0c274baeee66fa33d1be339880095aa18dc56720))
+* **api:** api update ([239c96b](https://github.com/conductor-is/quickbooks-desktop-node/commit/239c96baf006005bdf95d712315b1ff5018cf32b))
+
 ## 14.19.0 (2026-06-15)
 
 Full Changelog: [v14.18.0...v14.19.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.18.0...v14.19.0)
