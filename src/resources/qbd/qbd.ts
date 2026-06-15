@@ -508,6 +508,16 @@ import {
   SalesTaxCodeUpdateParams,
   SalesTaxCodes,
 } from './sales-tax-codes';
+import * as SalesTaxGroupItemsAPI from './sales-tax-group-items';
+import {
+  SalesTaxGroupItem,
+  SalesTaxGroupItemCreateParams,
+  SalesTaxGroupItemListParams,
+  SalesTaxGroupItemRetrieveParams,
+  SalesTaxGroupItemUpdateParams,
+  SalesTaxGroupItems,
+  SalesTaxGroupItemsCursorPage,
+} from './sales-tax-group-items';
 import * as SalesTaxItemsAPI from './sales-tax-items';
 import {
   SalesTaxItem,
@@ -697,6 +707,9 @@ export class Qbd extends APIResource {
   salesRepresentatives: SalesRepresentativesAPI.SalesRepresentatives =
     new SalesRepresentativesAPI.SalesRepresentatives(this._client);
   salesTaxCodes: SalesTaxCodesAPI.SalesTaxCodes = new SalesTaxCodesAPI.SalesTaxCodes(this._client);
+  salesTaxGroupItems: SalesTaxGroupItemsAPI.SalesTaxGroupItems = new SalesTaxGroupItemsAPI.SalesTaxGroupItems(
+    this._client,
+  );
   salesTaxItems: SalesTaxItemsAPI.SalesTaxItems = new SalesTaxItemsAPI.SalesTaxItems(this._client);
   serviceItems: ServiceItemsAPI.ServiceItems = new ServiceItemsAPI.ServiceItems(this._client);
   shippingMethods: ShippingMethodsAPI.ShippingMethods = new ShippingMethodsAPI.ShippingMethods(this._client);
@@ -803,6 +816,7 @@ Qbd.SalesOrders = SalesOrders;
 Qbd.SalesReceipts = SalesReceipts;
 Qbd.SalesRepresentatives = SalesRepresentatives;
 Qbd.SalesTaxCodes = SalesTaxCodes;
+Qbd.SalesTaxGroupItems = SalesTaxGroupItems;
 Qbd.SalesTaxItems = SalesTaxItems;
 Qbd.ServiceItems = ServiceItems;
 Qbd.ShippingMethods = ShippingMethods;
@@ -1336,6 +1350,16 @@ export declare namespace Qbd {
     type SalesTaxCodeRetrieveParams as SalesTaxCodeRetrieveParams,
     type SalesTaxCodeUpdateParams as SalesTaxCodeUpdateParams,
     type SalesTaxCodeListParams as SalesTaxCodeListParams,
+  };
+
+  export {
+    SalesTaxGroupItems as SalesTaxGroupItems,
+    type SalesTaxGroupItem as SalesTaxGroupItem,
+    type SalesTaxGroupItemsCursorPage as SalesTaxGroupItemsCursorPage,
+    type SalesTaxGroupItemCreateParams as SalesTaxGroupItemCreateParams,
+    type SalesTaxGroupItemRetrieveParams as SalesTaxGroupItemRetrieveParams,
+    type SalesTaxGroupItemUpdateParams as SalesTaxGroupItemUpdateParams,
+    type SalesTaxGroupItemListParams as SalesTaxGroupItemListParams,
   };
 
   export {

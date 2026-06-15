@@ -466,6 +466,15 @@ export {
   type SalesTaxCodeListParams,
 } from './sales-tax-codes';
 export {
+  SalesTaxGroupItems,
+  type SalesTaxGroupItem,
+  type SalesTaxGroupItemCreateParams,
+  type SalesTaxGroupItemRetrieveParams,
+  type SalesTaxGroupItemUpdateParams,
+  type SalesTaxGroupItemListParams,
+  type SalesTaxGroupItemsCursorPage,
+} from './sales-tax-group-items';
+export {
   SalesTaxItems,
   type SalesTaxItem,
   type SalesTaxItemCreateParams,

@@ -1265,6 +1265,30 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/sales-tax-codes',
   },
   {
+    clientCallName: 'conductor.qbd.salesTaxGroupItems.create',
+    fullyQualifiedName: 'qbd.salesTaxGroupItems.create',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/sales-tax-group-items',
+  },
+  {
+    clientCallName: 'conductor.qbd.salesTaxGroupItems.retrieve',
+    fullyQualifiedName: 'qbd.salesTaxGroupItems.retrieve',
+    httpMethod: 'get',
+    httpPath: '/quickbooks-desktop/sales-tax-group-items/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.salesTaxGroupItems.update',
+    fullyQualifiedName: 'qbd.salesTaxGroupItems.update',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/sales-tax-group-items/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.salesTaxGroupItems.list',
+    fullyQualifiedName: 'qbd.salesTaxGroupItems.list',
+    httpMethod: 'get',
+    httpPath: '/quickbooks-desktop/sales-tax-group-items',
+  },
+  {
     clientCallName: 'conductor.qbd.salesTaxItems.create',
     fullyQualifiedName: 'qbd.salesTaxItems.create',
     httpMethod: 'post',

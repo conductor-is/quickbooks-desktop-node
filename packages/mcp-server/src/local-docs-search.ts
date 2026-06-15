@@ -8650,6 +8650,159 @@ const EMBEDDED_METHODS: MethodEntry[] = [
   },
   {
     name: 'create',
+    endpoint: '/quickbooks-desktop/sales-tax-group-items',
+    httpMethod: 'post',
+    summary: 'Create a sales-tax group item',
+    description: 'Creates a new sales-tax group item.',
+    stainlessPath: '(resource) qbd.sales_tax_group_items > (method) create',
+    qualified: 'client.qbd.salesTaxGroupItems.create',
+    params: [
+      'name: string;',
+      'salesTaxItemIds: string[];',
+      'Conductor-End-User-Id: string;',
+      'barcode?: { allowOverride?: boolean; assignEvenIfUsed?: boolean; value?: string; };',
+      'description?: string;',
+      'externalId?: string;',
+      'isActive?: boolean;',
+    ],
+    response:
+      "{ id: string; barcode: string; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: { id: string; fullName: string; }[]; updatedAt: string; }",
+    markdown:
+      "## create\n\n`conductor.qbd.salesTaxGroupItems.create(name: string, salesTaxItemIds: string[], Conductor-End-User-Id: string, barcode?: { allowOverride?: boolean; assignEvenIfUsed?: boolean; value?: string; }, description?: string, externalId?: string, isActive?: boolean): { id: string; barcode: string; createdAt: string; customFields: object[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: object[]; updatedAt: string; }`\n\n**post** `/quickbooks-desktop/sales-tax-group-items`\n\nCreates a new sales-tax group item.\n\n### Parameters\n\n- `name: string`\n  The case-insensitive unique name of this sales-tax group item, unique across all sales-tax group items.\n\n**NOTE**: Sales-tax group items do not have a `fullName` field because they are not hierarchical objects, which is why `name` is unique for them but not for objects that have parents.\n\nMaximum length: 31 characters.\n\n- `salesTaxItemIds: string[]`\n  The sales-tax items that make up this sales-tax group item. QuickBooks Desktop applies these sales-tax items together as one tax selection while tracking each sales tax separately.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `barcode?: { allowOverride?: boolean; assignEvenIfUsed?: boolean; value?: string; }`\n  The sales-tax group item's barcode.\n  - `allowOverride?: boolean`\n    Indicates whether to allow the barcode to be overridden.\n  - `assignEvenIfUsed?: boolean`\n    Indicates whether to assign the barcode even if it is already used.\n  - `value?: string`\n    The item's barcode value.\n\n- `description?: string`\n  The sales-tax group item's description that will appear on sales forms that include this item.\n\n- `externalId?: string`\n  A globally unique identifier (GUID) you, the developer, can provide for tracking this object in your external system. This field is immutable and can only be set during object creation.\n\n**IMPORTANT**: This field must be formatted as a valid GUID; otherwise, QuickBooks will return an error.\n\n- `isActive?: boolean`\n  Indicates whether this sales-tax group item is active. Inactive objects are typically hidden from views and reports in QuickBooks. Defaults to `true`.\n\n### Returns\n\n- `{ id: string; barcode: string; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: { id: string; fullName: string; }[]; updatedAt: string; }`\n\n  - `id: string`\n  - `barcode: string`\n  - `createdAt: string`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `description: string`\n  - `externalId: string`\n  - `isActive: boolean`\n  - `name: string`\n  - `objectType: 'qbd_sales_tax_group_item'`\n  - `revisionNumber: string`\n  - `salesTaxItems: { id: string; fullName: string; }[]`\n  - `updatedAt: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst salesTaxGroupItem = await conductor.qbd.salesTaxGroupItems.create({\n  name: 'Standard Tax Group',\n  salesTaxItemIds: ['80000001-1234567890'],\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxGroupItem);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.salesTaxGroupItems.create',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxGroupItem = await conductor.qbd.salesTaxGroupItems.create({\n  name: 'Standard Tax Group',\n  salesTaxItemIds: ['80000001-1234567890'],\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxGroupItem.id);",
+      },
+      python: {
+        method: 'qbd.sales_tax_group_items.create',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_group_item = conductor.qbd.sales_tax_group_items.create(\n    name="Standard Tax Group",\n    sales_tax_item_ids=["80000001-1234567890"],\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_group_item.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Standard Tax Group",\n          "salesTaxItemIds": [\n            "80000001-1234567890"\n          ],\n          "description": "Combined city, county, and state sales tax",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/quickbooks-desktop/sales-tax-group-items',
+    httpMethod: 'get',
+    summary: 'List all sales-tax group items',
+    description:
+      'Returns a list of sales-tax group items. Use the `cursor` parameter to paginate through the results.',
+    stainlessPath: '(resource) qbd.sales_tax_group_items > (method) list',
+    qualified: 'client.qbd.salesTaxGroupItems.list',
+    params: [
+      'Conductor-End-User-Id: string;',
+      'cursor?: string;',
+      'ids?: string[];',
+      'limit?: number;',
+      'nameContains?: string;',
+      'nameEndsWith?: string;',
+      'nameFrom?: string;',
+      'names?: string[];',
+      'nameStartsWith?: string;',
+      'nameTo?: string;',
+      "status?: 'active' | 'all' | 'inactive';",
+      'updatedAfter?: string;',
+      'updatedBefore?: string;',
+    ],
+    response:
+      "{ id: string; barcode: string; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: { id: string; fullName: string; }[]; updatedAt: string; }",
+    markdown:
+      "## list\n\n`conductor.qbd.salesTaxGroupItems.list(Conductor-End-User-Id: string, cursor?: string, ids?: string[], limit?: number, nameContains?: string, nameEndsWith?: string, nameFrom?: string, names?: string[], nameStartsWith?: string, nameTo?: string, status?: 'active' | 'all' | 'inactive', updatedAfter?: string, updatedBefore?: string): { id: string; barcode: string; createdAt: string; customFields: object[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: object[]; updatedAt: string; }`\n\n**get** `/quickbooks-desktop/sales-tax-group-items`\n\nReturns a list of sales-tax group items. Use the `cursor` parameter to paginate through the results.\n\n### Parameters\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `cursor?: string`\n  The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.\n\n- `ids?: string[]`\n  Filter for specific sales-tax group items by their QuickBooks-assigned unique identifier(s).\n\n**IMPORTANT**: If you include this parameter, QuickBooks will ignore all other query parameters for this request.\n\n**NOTE**: If any of the values you specify in this parameter are not found, the request will return an error.\n\n- `limit?: number`\n  The maximum number of objects to return. Accepts values ranging from 1 to 150, defaults to 150. When used with cursor-based pagination, this parameter controls how many results are returned per page. To paginate through results, combine this with the `cursor` parameter. Each response will include a `nextCursor` value that can be passed to subsequent requests to retrieve the next page of results.\n\n- `nameContains?: string`\n  Filter for sales-tax group items whose `name` contains this substring, case-insensitive.\n\n**NOTE**: If you use this parameter, you cannot also use `nameStartsWith` or `nameEndsWith`.\n\n- `nameEndsWith?: string`\n  Filter for sales-tax group items whose `name` ends with this substring, case-insensitive.\n\n**NOTE**: If you use this parameter, you cannot also use `nameContains` or `nameStartsWith`.\n\n- `nameFrom?: string`\n  Filter for sales-tax group items whose `name` is alphabetically greater than or equal to this value.\n\n- `names?: string[]`\n  Filter for specific sales-tax group items by their name(s), case-insensitive. Like `id`, `name` is a unique identifier for a sales-tax group item.\n\n**IMPORTANT**: If you include this parameter, QuickBooks will ignore all other query parameters for this request.\n\n**NOTE**: If any of the values you specify in this parameter are not found, the request will return an error.\n\n- `nameStartsWith?: string`\n  Filter for sales-tax group items whose `name` starts with this substring, case-insensitive.\n\n**NOTE**: If you use this parameter, you cannot also use `nameContains` or `nameEndsWith`.\n\n- `nameTo?: string`\n  Filter for sales-tax group items whose `name` is alphabetically less than or equal to this value.\n\n- `status?: 'active' | 'all' | 'inactive'`\n  Filter for sales-tax group items that are active, inactive, or both.\n\n- `updatedAfter?: string`\n  Filter for sales-tax group items updated on or after this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets the date as the **start of the specified day** in the local timezone of the end-user's computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop interprets the timestamp in the local timezone of the end-user's computer.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop interprets the timestamp using the specified timezone.\n\n- `updatedBefore?: string`\n  Filter for sales-tax group items updated on or before this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets the date as the **end of the specified day** in the local timezone of the end-user's computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop interprets the timestamp in the local timezone of the end-user's computer.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop interprets the timestamp using the specified timezone.\n\n### Returns\n\n- `{ id: string; barcode: string; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: { id: string; fullName: string; }[]; updatedAt: string; }`\n\n  - `id: string`\n  - `barcode: string`\n  - `createdAt: string`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `description: string`\n  - `externalId: string`\n  - `isActive: boolean`\n  - `name: string`\n  - `objectType: 'qbd_sales_tax_group_item'`\n  - `revisionNumber: string`\n  - `salesTaxItems: { id: string; fullName: string; }[]`\n  - `updatedAt: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\n// Automatically fetches more pages as needed.\nfor await (const salesTaxGroupItem of conductor.qbd.salesTaxGroupItems.list({ conductorEndUserId: 'end_usr_1234567abcdefg' })) {\n  console.log(salesTaxGroupItem);\n}\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.salesTaxGroupItems.list',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const salesTaxGroupItem of conductor.qbd.salesTaxGroupItems.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(salesTaxGroupItem.id);\n}",
+      },
+      python: {
+        method: 'qbd.sales_tax_group_items.list',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.sales_tax_group_items.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'retrieve',
+    endpoint: '/quickbooks-desktop/sales-tax-group-items/{id}',
+    httpMethod: 'get',
+    summary: 'Retrieve a sales-tax group item',
+    description:
+      'Retrieves a sales-tax group item by ID.\n\n**IMPORTANT:** If you need to fetch multiple specific sales-tax group items by ID, use the list endpoint instead with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.',
+    stainlessPath: '(resource) qbd.sales_tax_group_items > (method) retrieve',
+    qualified: 'client.qbd.salesTaxGroupItems.retrieve',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; barcode: string; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: { id: string; fullName: string; }[]; updatedAt: string; }",
+    markdown:
+      "## retrieve\n\n`conductor.qbd.salesTaxGroupItems.retrieve(id: string, Conductor-End-User-Id: string): { id: string; barcode: string; createdAt: string; customFields: object[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: object[]; updatedAt: string; }`\n\n**get** `/quickbooks-desktop/sales-tax-group-items/{id}`\n\nRetrieves a sales-tax group item by ID.\n\n**IMPORTANT:** If you need to fetch multiple specific sales-tax group items by ID, use the list endpoint instead with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the sales-tax group item to retrieve.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; barcode: string; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: { id: string; fullName: string; }[]; updatedAt: string; }`\n\n  - `id: string`\n  - `barcode: string`\n  - `createdAt: string`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `description: string`\n  - `externalId: string`\n  - `isActive: boolean`\n  - `name: string`\n  - `objectType: 'qbd_sales_tax_group_item'`\n  - `revisionNumber: string`\n  - `salesTaxItems: { id: string; fullName: string; }[]`\n  - `updatedAt: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst salesTaxGroupItem = await conductor.qbd.salesTaxGroupItems.retrieve('80000001-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(salesTaxGroupItem);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.salesTaxGroupItems.retrieve',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxGroupItem = await conductor.qbd.salesTaxGroupItems.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxGroupItem.id);",
+      },
+      python: {
+        method: 'qbd.sales_tax_group_items.retrieve',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_group_item = conductor.qbd.sales_tax_group_items.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_group_item.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'update',
+    endpoint: '/quickbooks-desktop/sales-tax-group-items/{id}',
+    httpMethod: 'post',
+    summary: 'Update a sales-tax group item',
+    description: 'Updates an existing sales-tax group item.',
+    stainlessPath: '(resource) qbd.sales_tax_group_items > (method) update',
+    qualified: 'client.qbd.salesTaxGroupItems.update',
+    params: [
+      'id: string;',
+      'revisionNumber: string;',
+      'Conductor-End-User-Id: string;',
+      'barcode?: { allowOverride?: boolean; assignEvenIfUsed?: boolean; value?: string; };',
+      'description?: string;',
+      'isActive?: boolean;',
+      'name?: string;',
+      'salesTaxItemIds?: string[];',
+    ],
+    response:
+      "{ id: string; barcode: string; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: { id: string; fullName: string; }[]; updatedAt: string; }",
+    markdown:
+      "## update\n\n`conductor.qbd.salesTaxGroupItems.update(id: string, revisionNumber: string, Conductor-End-User-Id: string, barcode?: { allowOverride?: boolean; assignEvenIfUsed?: boolean; value?: string; }, description?: string, isActive?: boolean, name?: string, salesTaxItemIds?: string[]): { id: string; barcode: string; createdAt: string; customFields: object[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: object[]; updatedAt: string; }`\n\n**post** `/quickbooks-desktop/sales-tax-group-items/{id}`\n\nUpdates an existing sales-tax group item.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the sales-tax group item to update.\n\n- `revisionNumber: string`\n  The current QuickBooks-assigned revision number of the sales-tax group item object you are updating, which you can get by fetching the object first. Provide the most recent `revisionNumber` to ensure you're working with the latest data; otherwise, the update will return an error.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `barcode?: { allowOverride?: boolean; assignEvenIfUsed?: boolean; value?: string; }`\n  The sales-tax group item's barcode.\n  - `allowOverride?: boolean`\n    Indicates whether to allow the barcode to be overridden.\n  - `assignEvenIfUsed?: boolean`\n    Indicates whether to assign the barcode even if it is already used.\n  - `value?: string`\n    The item's barcode value.\n\n- `description?: string`\n  The sales-tax group item's description that will appear on sales forms that include this item.\n\n- `isActive?: boolean`\n  Indicates whether this sales-tax group item is active. Inactive objects are typically hidden from views and reports in QuickBooks. Defaults to `true`.\n\n- `name?: string`\n  The case-insensitive unique name of this sales-tax group item, unique across all sales-tax group items.\n\n**NOTE**: Sales-tax group items do not have a `fullName` field because they are not hierarchical objects, which is why `name` is unique for them but not for objects that have parents.\n\nMaximum length: 31 characters.\n\n- `salesTaxItemIds?: string[]`\n  The sales-tax items that make up this sales-tax group item. QuickBooks Desktop applies these sales-tax items together as one tax selection while tracking each sales tax separately.\n\n### Returns\n\n- `{ id: string; barcode: string; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; description: string; externalId: string; isActive: boolean; name: string; objectType: 'qbd_sales_tax_group_item'; revisionNumber: string; salesTaxItems: { id: string; fullName: string; }[]; updatedAt: string; }`\n\n  - `id: string`\n  - `barcode: string`\n  - `createdAt: string`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `description: string`\n  - `externalId: string`\n  - `isActive: boolean`\n  - `name: string`\n  - `objectType: 'qbd_sales_tax_group_item'`\n  - `revisionNumber: string`\n  - `salesTaxItems: { id: string; fullName: string; }[]`\n  - `updatedAt: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst salesTaxGroupItem = await conductor.qbd.salesTaxGroupItems.update('80000001-1234567890', { revisionNumber: '1721172183', conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(salesTaxGroupItem);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.salesTaxGroupItems.update',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxGroupItem = await conductor.qbd.salesTaxGroupItems.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxGroupItem.id);",
+      },
+      python: {
+        method: 'qbd.sales_tax_group_items.update',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_group_item = conductor.qbd.sales_tax_group_items.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_group_item.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "description": "Combined city, county, and state sales tax",\n          "isActive": true,\n          "name": "Standard Tax Group",\n          "salesTaxItemIds": [\n            "80000001-1234567890"\n          ]\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create',
     endpoint: '/quickbooks-desktop/sales-tax-items',
     httpMethod: 'post',
     summary: 'Create a sales-tax item',
