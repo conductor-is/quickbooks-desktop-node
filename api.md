@@ -720,6 +720,19 @@ Methods:
 - <code title="post /quickbooks-desktop/sales-tax-codes/{id}">client.qbd.salesTaxCodes.<a href="./src/resources/qbd/sales-tax-codes.ts">update</a>(id, { ...params }) -> SalesTaxCode</code>
 - <code title="get /quickbooks-desktop/sales-tax-codes">client.qbd.salesTaxCodes.<a href="./src/resources/qbd/sales-tax-codes.ts">list</a>({ ...params }) -> SalesTaxCodeListResponse</code>
 
+## SalesTaxGroupItems
+
+Types:
+
+- <code><a href="./src/resources/qbd/sales-tax-group-items.ts">SalesTaxGroupItem</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/sales-tax-group-items">client.qbd.salesTaxGroupItems.<a href="./src/resources/qbd/sales-tax-group-items.ts">create</a>({ ...params }) -> SalesTaxGroupItem</code>
+- <code title="get /quickbooks-desktop/sales-tax-group-items/{id}">client.qbd.salesTaxGroupItems.<a href="./src/resources/qbd/sales-tax-group-items.ts">retrieve</a>(id, { ...params }) -> SalesTaxGroupItem</code>
+- <code title="post /quickbooks-desktop/sales-tax-group-items/{id}">client.qbd.salesTaxGroupItems.<a href="./src/resources/qbd/sales-tax-group-items.ts">update</a>(id, { ...params }) -> SalesTaxGroupItem</code>
+- <code title="get /quickbooks-desktop/sales-tax-group-items">client.qbd.salesTaxGroupItems.<a href="./src/resources/qbd/sales-tax-group-items.ts">list</a>({ ...params }) -> SalesTaxGroupItemsCursorPage</code>
+
 ## SalesTaxItems
 
 Types:
