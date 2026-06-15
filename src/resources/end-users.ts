@@ -63,8 +63,15 @@ export class EndUsers extends APIResource {
   }
 
   /**
-   * Sends a request directly to the specified integration connection (e.g.,
-   * QuickBooks Desktop) on behalf of the end-user.
+   * Rare escape hatch for sending raw QuickBooks Desktop qbXML request objects
+   * directly. Prefer Conductor's native QuickBooks Desktop endpoints whenever
+   * possible: Conductor already exposes more than 250 typed QBD endpoints, covers
+   * nearly the entire underlying qbXML API surface, returns all documented response
+   * fields in a stable typed JSON shape, and powers Conductor SDK types,
+   * documentation, IDE autocomplete, and the API Playground. Use passthrough only
+   * when you need one of the few qbXML operations that is not yet available as a
+   * native Conductor endpoint, or while testing an unsupported qbXML operation.
+   * Known gaps are listed in [Missing QBD types](/api-ref/missing-qbd-types).
    *
    * @example
    * ```ts
@@ -201,7 +208,8 @@ export interface EndUserDeleteResponse {
 }
 
 /**
- * The response from the integration connection.
+ * The raw response from the integration connection. For QuickBooks Desktop, this
+ * is the qbXML response converted to JSON.
  */
 export type EndUserPassthroughResponse = { [key: string]: unknown };
 
@@ -232,7 +240,10 @@ export interface EndUserPassthroughParams {
   id: string;
 
   /**
-   * Body param: The request body to send to the integration connection.
+   * Body param: The raw qbXML request object to send to the integration connection.
+   * For QuickBooks Desktop, use a qbXML request wrapper such as `InvoiceQueryRq` or
+   * `CustomerQueryRq`. This body is forwarded directly and does not use Conductor
+   * field names.
    */
   qbd_payload: { [key: string]: unknown };
 }
