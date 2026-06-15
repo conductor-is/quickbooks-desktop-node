@@ -113,7 +113,7 @@ export class BuildAssemblies extends APIResource {
   }
 
   /**
-   * Permanently deletes a a build assembly. The deletion will fail if the build
+   * Permanently deletes a build assembly. The deletion will fail if the build
    * assembly is currently in use or has any linked transactions that are in use.
    *
    * @example

@@ -110,7 +110,7 @@ export class Bills extends APIResource {
   }
 
   /**
-   * Permanently deletes a a bill. The deletion will fail if the bill is currently in
+   * Permanently deletes a bill. The deletion will fail if the bill is currently in
    * use or has any linked transactions that are in use.
    *
    * @example

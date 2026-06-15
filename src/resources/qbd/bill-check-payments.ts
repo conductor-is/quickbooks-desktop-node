@@ -123,7 +123,7 @@ export class BillCheckPayments extends APIResource {
   }
 
   /**
-   * Permanently deletes a a bill check payment. The deletion will fail if the bill
+   * Permanently deletes a bill check payment. The deletion will fail if the bill
    * check payment is currently in use or has any linked transactions that are in
    * use.
    *

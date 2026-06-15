@@ -106,7 +106,7 @@ export class Deposits extends APIResource {
   }
 
   /**
-   * Permanently deletes a a deposit. The deletion will fail if the deposit is
+   * Permanently deletes a deposit. The deletion will fail if the deposit is
    * currently in use or has any linked transactions that are in use.
    *
    * @example

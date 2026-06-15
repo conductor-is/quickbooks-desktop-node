@@ -105,7 +105,7 @@ export class Estimates extends APIResource {
   }
 
   /**
-   * Permanently deletes a an estimate. The deletion will fail if the estimate is
+   * Permanently deletes an estimate. The deletion will fail if the estimate is
    * currently in use or has any linked transactions that are in use.
    *
    * @example
