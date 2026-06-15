@@ -106,7 +106,7 @@ export class Invoices extends APIResource {
   }
 
   /**
-   * Permanently deletes a an invoice. The deletion will fail if the invoice is
+   * Permanently deletes an invoice. The deletion will fail if the invoice is
    * currently in use or has any linked transactions that are in use.
    *
    * @example

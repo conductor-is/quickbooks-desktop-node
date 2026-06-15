@@ -114,7 +114,7 @@ export class PurchaseOrders extends APIResource {
   }
 
   /**
-   * Permanently deletes a a purchase order. The deletion will fail if the purchase
+   * Permanently deletes a purchase order. The deletion will fail if the purchase
    * order is currently in use or has any linked transactions that are in use.
    *
    * @example

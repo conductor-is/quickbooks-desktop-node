@@ -99,7 +99,7 @@ export class BillCreditCardPayments extends APIResource {
   }
 
   /**
-   * Permanently deletes a a bill credit card payment. The deletion will fail if the
+   * Permanently deletes a bill credit card payment. The deletion will fail if the
    * bill credit card payment is currently in use or has any linked transactions that
    * are in use.
    *

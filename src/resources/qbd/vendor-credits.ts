@@ -117,8 +117,8 @@ export class VendorCredits extends APIResource {
   }
 
   /**
-   * Permanently deletes a a vendor credit. The deletion will fail if the vendor
-   * credit is currently in use or has any linked transactions that are in use.
+   * Permanently deletes a vendor credit. The deletion will fail if the vendor credit
+   * is currently in use or has any linked transactions that are in use.
    *
    * @example
    * ```ts

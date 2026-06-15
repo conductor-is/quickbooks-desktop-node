@@ -108,8 +108,8 @@ export class CreditMemos extends APIResource {
   }
 
   /**
-   * Permanently deletes a a credit memo. The deletion will fail if the credit memo
-   * is currently in use or has any linked transactions that are in use.
+   * Permanently deletes a credit memo. The deletion will fail if the credit memo is
+   * currently in use or has any linked transactions that are in use.
    *
    * @example
    * ```ts

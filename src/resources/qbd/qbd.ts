@@ -528,6 +528,20 @@ import {
   SalesTaxItems,
   SalesTaxItemsCursorPage,
 } from './sales-tax-items';
+import * as SalesTaxPaymentChecksAPI from './sales-tax-payment-checks';
+import {
+  SalesTaxPaymentCheck,
+  SalesTaxPaymentCheckCreateParams,
+  SalesTaxPaymentCheckDeleteParams,
+  SalesTaxPaymentCheckDeleteResponse,
+  SalesTaxPaymentCheckListParams,
+  SalesTaxPaymentCheckRetrieveParams,
+  SalesTaxPaymentCheckUpdateParams,
+  SalesTaxPaymentCheckVoidParams,
+  SalesTaxPaymentCheckVoidResponse,
+  SalesTaxPaymentChecks,
+  SalesTaxPaymentChecksCursorPage,
+} from './sales-tax-payment-checks';
 import * as ServiceItemsAPI from './service-items';
 import {
   ServiceItem,
@@ -711,6 +725,8 @@ export class Qbd extends APIResource {
     this._client,
   );
   salesTaxItems: SalesTaxItemsAPI.SalesTaxItems = new SalesTaxItemsAPI.SalesTaxItems(this._client);
+  salesTaxPaymentChecks: SalesTaxPaymentChecksAPI.SalesTaxPaymentChecks =
+    new SalesTaxPaymentChecksAPI.SalesTaxPaymentChecks(this._client);
   serviceItems: ServiceItemsAPI.ServiceItems = new ServiceItemsAPI.ServiceItems(this._client);
   shippingMethods: ShippingMethodsAPI.ShippingMethods = new ShippingMethodsAPI.ShippingMethods(this._client);
   standardTerms: StandardTermsAPI.StandardTerms = new StandardTermsAPI.StandardTerms(this._client);
@@ -818,6 +834,7 @@ Qbd.SalesRepresentatives = SalesRepresentatives;
 Qbd.SalesTaxCodes = SalesTaxCodes;
 Qbd.SalesTaxGroupItems = SalesTaxGroupItems;
 Qbd.SalesTaxItems = SalesTaxItems;
+Qbd.SalesTaxPaymentChecks = SalesTaxPaymentChecks;
 Qbd.ServiceItems = ServiceItems;
 Qbd.ShippingMethods = ShippingMethods;
 Qbd.StandardTerms = StandardTerms;
@@ -1370,6 +1387,20 @@ export declare namespace Qbd {
     type SalesTaxItemRetrieveParams as SalesTaxItemRetrieveParams,
     type SalesTaxItemUpdateParams as SalesTaxItemUpdateParams,
     type SalesTaxItemListParams as SalesTaxItemListParams,
+  };
+
+  export {
+    SalesTaxPaymentChecks as SalesTaxPaymentChecks,
+    type SalesTaxPaymentCheck as SalesTaxPaymentCheck,
+    type SalesTaxPaymentCheckDeleteResponse as SalesTaxPaymentCheckDeleteResponse,
+    type SalesTaxPaymentCheckVoidResponse as SalesTaxPaymentCheckVoidResponse,
+    type SalesTaxPaymentChecksCursorPage as SalesTaxPaymentChecksCursorPage,
+    type SalesTaxPaymentCheckCreateParams as SalesTaxPaymentCheckCreateParams,
+    type SalesTaxPaymentCheckRetrieveParams as SalesTaxPaymentCheckRetrieveParams,
+    type SalesTaxPaymentCheckUpdateParams as SalesTaxPaymentCheckUpdateParams,
+    type SalesTaxPaymentCheckListParams as SalesTaxPaymentCheckListParams,
+    type SalesTaxPaymentCheckDeleteParams as SalesTaxPaymentCheckDeleteParams,
+    type SalesTaxPaymentCheckVoidParams as SalesTaxPaymentCheckVoidParams,
   };
 
   export {

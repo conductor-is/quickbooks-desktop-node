@@ -1313,6 +1313,42 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/sales-tax-items',
   },
   {
+    clientCallName: 'conductor.qbd.salesTaxPaymentChecks.create',
+    fullyQualifiedName: 'qbd.salesTaxPaymentChecks.create',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/sales-tax-payment-checks',
+  },
+  {
+    clientCallName: 'conductor.qbd.salesTaxPaymentChecks.retrieve',
+    fullyQualifiedName: 'qbd.salesTaxPaymentChecks.retrieve',
+    httpMethod: 'get',
+    httpPath: '/quickbooks-desktop/sales-tax-payment-checks/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.salesTaxPaymentChecks.update',
+    fullyQualifiedName: 'qbd.salesTaxPaymentChecks.update',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/sales-tax-payment-checks/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.salesTaxPaymentChecks.list',
+    fullyQualifiedName: 'qbd.salesTaxPaymentChecks.list',
+    httpMethod: 'get',
+    httpPath: '/quickbooks-desktop/sales-tax-payment-checks',
+  },
+  {
+    clientCallName: 'conductor.qbd.salesTaxPaymentChecks.delete',
+    fullyQualifiedName: 'qbd.salesTaxPaymentChecks.delete',
+    httpMethod: 'delete',
+    httpPath: '/quickbooks-desktop/sales-tax-payment-checks/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.salesTaxPaymentChecks.void',
+    fullyQualifiedName: 'qbd.salesTaxPaymentChecks.void',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/sales-tax-payment-checks/{id}/void',
+  },
+  {
     clientCallName: 'conductor.qbd.serviceItems.create',
     fullyQualifiedName: 'qbd.serviceItems.create',
     httpMethod: 'post',

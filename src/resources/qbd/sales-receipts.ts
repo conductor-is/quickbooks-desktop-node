@@ -117,8 +117,8 @@ export class SalesReceipts extends APIResource {
   }
 
   /**
-   * Permanently deletes a a sales receipt. The deletion will fail if the sales
-   * receipt is currently in use or has any linked transactions that are in use.
+   * Permanently deletes a sales receipt. The deletion will fail if the sales receipt
+   * is currently in use or has any linked transactions that are in use.
    *
    * @example
    * ```ts

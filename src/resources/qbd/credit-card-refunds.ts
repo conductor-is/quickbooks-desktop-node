@@ -95,7 +95,7 @@ export class CreditCardRefunds extends APIResource {
   }
 
   /**
-   * Permanently deletes a a credit card refund. The deletion will fail if the credit
+   * Permanently deletes a credit card refund. The deletion will fail if the credit
    * card refund is currently in use or has any linked transactions that are in use.
    *
    * @example
