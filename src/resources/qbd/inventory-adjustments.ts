@@ -120,7 +120,7 @@ export class InventoryAdjustments extends APIResource {
   }
 
   /**
-   * Permanently deletes a an inventory adjustment. The deletion will fail if the
+   * Permanently deletes an inventory adjustment. The deletion will fail if the
    * inventory adjustment is currently in use or has any linked transactions that are
    * in use.
    *

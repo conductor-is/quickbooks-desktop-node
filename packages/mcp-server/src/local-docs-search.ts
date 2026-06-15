@@ -667,13 +667,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a bill check payment',
     description:
-      'Permanently deletes a a bill check payment. The deletion will fail if the bill check payment is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a bill check payment. The deletion will fail if the bill check payment is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.bill_check_payments > (method) delete',
     qualified: 'client.qbd.billCheckPayments.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_bill_check_payment'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.billCheckPayments.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_bill_check_payment'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/bill-check-payments/{id}`\n\nPermanently deletes a a bill check payment. The deletion will fail if the bill check payment is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the bill check payment to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_bill_check_payment'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_bill_check_payment'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst billCheckPayment = await conductor.qbd.billCheckPayments.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(billCheckPayment);\n```",
+      "## delete\n\n`conductor.qbd.billCheckPayments.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_bill_check_payment'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/bill-check-payments/{id}`\n\nPermanently deletes a bill check payment. The deletion will fail if the bill check payment is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the bill check payment to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_bill_check_payment'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_bill_check_payment'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst billCheckPayment = await conductor.qbd.billCheckPayments.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(billCheckPayment);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.billCheckPayments.delete',
@@ -851,14 +851,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a bill credit card payment',
     description:
-      'Permanently deletes a a bill credit card payment. The deletion will fail if the bill credit card payment is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a bill credit card payment. The deletion will fail if the bill credit card payment is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.bill_credit_card_payments > (method) delete',
     qualified: 'client.qbd.billCreditCardPayments.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response:
       "{ id: string; deleted: boolean; objectType: 'qbd_bill_credit_card_payment'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.billCreditCardPayments.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_bill_credit_card_payment'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/bill-credit-card-payments/{id}`\n\nPermanently deletes a a bill credit card payment. The deletion will fail if the bill credit card payment is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the bill credit card payment to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_bill_credit_card_payment'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_bill_credit_card_payment'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst billCreditCardPayment = await conductor.qbd.billCreditCardPayments.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(billCreditCardPayment);\n```",
+      "## delete\n\n`conductor.qbd.billCreditCardPayments.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_bill_credit_card_payment'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/bill-credit-card-payments/{id}`\n\nPermanently deletes a bill credit card payment. The deletion will fail if the bill credit card payment is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the bill credit card payment to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_bill_credit_card_payment'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_bill_credit_card_payment'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst billCreditCardPayment = await conductor.qbd.billCreditCardPayments.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(billCreditCardPayment);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.billCreditCardPayments.delete',
@@ -1093,13 +1093,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a bill',
     description:
-      'Permanently deletes a a bill. The deletion will fail if the bill is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a bill. The deletion will fail if the bill is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.bills > (method) delete',
     qualified: 'client.qbd.bills.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_bill'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.bills.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_bill'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/bills/{id}`\n\nPermanently deletes a a bill. The deletion will fail if the bill is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the bill to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_bill'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_bill'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst bill = await conductor.qbd.bills.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(bill);\n```",
+      "## delete\n\n`conductor.qbd.bills.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_bill'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/bills/{id}`\n\nPermanently deletes a bill. The deletion will fail if the bill is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the bill to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_bill'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_bill'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst bill = await conductor.qbd.bills.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(bill);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.bills.delete',
@@ -1329,13 +1329,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a build assembly',
     description:
-      'Permanently deletes a a build assembly. The deletion will fail if the build assembly is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a build assembly. The deletion will fail if the build assembly is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.build_assemblies > (method) delete',
     qualified: 'client.qbd.buildAssemblies.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_build_assembly'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.buildAssemblies.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_build_assembly'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/build-assemblies/{id}`\n\nPermanently deletes a a build assembly. The deletion will fail if the build assembly is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the build assembly to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_build_assembly'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_build_assembly'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst buildAssembly = await conductor.qbd.buildAssemblies.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(buildAssembly);\n```",
+      "## delete\n\n`conductor.qbd.buildAssemblies.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_build_assembly'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/build-assemblies/{id}`\n\nPermanently deletes a build assembly. The deletion will fail if the build assembly is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the build assembly to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_build_assembly'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_build_assembly'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst buildAssembly = await conductor.qbd.buildAssemblies.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(buildAssembly);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.buildAssemblies.delete',
@@ -1568,13 +1568,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a check',
     description:
-      'Permanently deletes a a check. The deletion will fail if the check is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a check. The deletion will fail if the check is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.checks > (method) delete',
     qualified: 'client.qbd.checks.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_check'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.checks.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_check'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/checks/{id}`\n\nPermanently deletes a a check. The deletion will fail if the check is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the check to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_check'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_check'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst check = await conductor.qbd.checks.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(check);\n```",
+      "## delete\n\n`conductor.qbd.checks.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_check'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/checks/{id}`\n\nPermanently deletes a check. The deletion will fail if the check is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the check to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_check'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_check'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst check = await conductor.qbd.checks.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(check);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.checks.delete',
@@ -1973,13 +1973,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a credit card charge',
     description:
-      'Permanently deletes a a credit card charge. The deletion will fail if the credit card charge is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a credit card charge. The deletion will fail if the credit card charge is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.credit_card_charges > (method) delete',
     qualified: 'client.qbd.creditCardCharges.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_credit_card_charge'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.creditCardCharges.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_credit_card_charge'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/credit-card-charges/{id}`\n\nPermanently deletes a a credit card charge. The deletion will fail if the credit card charge is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit card charge to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_credit_card_charge'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_credit_card_charge'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst creditCardCharge = await conductor.qbd.creditCardCharges.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(creditCardCharge);\n```",
+      "## delete\n\n`conductor.qbd.creditCardCharges.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_credit_card_charge'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/credit-card-charges/{id}`\n\nPermanently deletes a credit card charge. The deletion will fail if the credit card charge is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit card charge to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_credit_card_charge'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_credit_card_charge'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst creditCardCharge = await conductor.qbd.creditCardCharges.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(creditCardCharge);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.creditCardCharges.delete',
@@ -2205,13 +2205,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a credit card credit',
     description:
-      'Permanently deletes a a credit card credit. The deletion will fail if the credit card credit is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a credit card credit. The deletion will fail if the credit card credit is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.credit_card_credits > (method) delete',
     qualified: 'client.qbd.creditCardCredits.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_credit_card_credit'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.creditCardCredits.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_credit_card_credit'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/credit-card-credits/{id}`\n\nPermanently deletes a a credit card credit. The deletion will fail if the credit card credit is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit card credit to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_credit_card_credit'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_credit_card_credit'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst creditCardCredit = await conductor.qbd.creditCardCredits.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(creditCardCredit);\n```",
+      "## delete\n\n`conductor.qbd.creditCardCredits.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_credit_card_credit'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/credit-card-credits/{id}`\n\nPermanently deletes a credit card credit. The deletion will fail if the credit card credit is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit card credit to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_credit_card_credit'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_credit_card_credit'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst creditCardCredit = await conductor.qbd.creditCardCredits.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(creditCardCredit);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.creditCardCredits.delete',
@@ -2392,13 +2392,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a credit card refund',
     description:
-      'Permanently deletes a a credit card refund. The deletion will fail if the credit card refund is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a credit card refund. The deletion will fail if the credit card refund is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.credit_card_refunds > (method) delete',
     qualified: 'client.qbd.creditCardRefunds.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_credit_card_refund'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.creditCardRefunds.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_credit_card_refund'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/credit-card-refunds/{id}`\n\nPermanently deletes a a credit card refund. The deletion will fail if the credit card refund is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit card refund to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_credit_card_refund'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_credit_card_refund'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst creditCardRefund = await conductor.qbd.creditCardRefunds.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(creditCardRefund);\n```",
+      "## delete\n\n`conductor.qbd.creditCardRefunds.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_credit_card_refund'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/credit-card-refunds/{id}`\n\nPermanently deletes a credit card refund. The deletion will fail if the credit card refund is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit card refund to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_credit_card_refund'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_credit_card_refund'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst creditCardRefund = await conductor.qbd.creditCardRefunds.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(creditCardRefund);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.creditCardRefunds.delete',
@@ -2655,13 +2655,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a credit memo',
     description:
-      'Permanently deletes a a credit memo. The deletion will fail if the credit memo is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a credit memo. The deletion will fail if the credit memo is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.credit_memos > (method) delete',
     qualified: 'client.qbd.creditMemos.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_credit_memo'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.creditMemos.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_credit_memo'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/credit-memos/{id}`\n\nPermanently deletes a a credit memo. The deletion will fail if the credit memo is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit memo to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_credit_memo'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_credit_memo'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst creditMemo = await conductor.qbd.creditMemos.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(creditMemo);\n```",
+      "## delete\n\n`conductor.qbd.creditMemos.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_credit_memo'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/credit-memos/{id}`\n\nPermanently deletes a credit memo. The deletion will fail if the credit memo is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the credit memo to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_credit_memo'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_credit_memo'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst creditMemo = await conductor.qbd.creditMemos.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(creditMemo);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.creditMemos.delete',
@@ -3554,13 +3554,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a deposit',
     description:
-      'Permanently deletes a a deposit. The deletion will fail if the deposit is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a deposit. The deletion will fail if the deposit is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.deposits > (method) delete',
     qualified: 'client.qbd.deposits.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_deposit'; }",
     markdown:
-      "## delete\n\n`conductor.qbd.deposits.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_deposit'; }`\n\n**delete** `/quickbooks-desktop/deposits/{id}`\n\nPermanently deletes a a deposit. The deletion will fail if the deposit is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the deposit to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_deposit'; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_deposit'`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst deposit = await conductor.qbd.deposits.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(deposit);\n```",
+      "## delete\n\n`conductor.qbd.deposits.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_deposit'; }`\n\n**delete** `/quickbooks-desktop/deposits/{id}`\n\nPermanently deletes a deposit. The deletion will fail if the deposit is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the deposit to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_deposit'; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_deposit'`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst deposit = await conductor.qbd.deposits.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(deposit);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.deposits.delete',
@@ -4173,13 +4173,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete an estimate',
     description:
-      'Permanently deletes a an estimate. The deletion will fail if the estimate is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes an estimate. The deletion will fail if the estimate is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.estimates > (method) delete',
     qualified: 'client.qbd.estimates.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_estimate'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.estimates.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_estimate'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/estimates/{id}`\n\nPermanently deletes a an estimate. The deletion will fail if the estimate is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the estimate to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_estimate'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_estimate'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst estimate = await conductor.qbd.estimates.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(estimate);\n```",
+      "## delete\n\n`conductor.qbd.estimates.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_estimate'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/estimates/{id}`\n\nPermanently deletes an estimate. The deletion will fail if the estimate is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the estimate to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_estimate'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_estimate'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst estimate = await conductor.qbd.estimates.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(estimate);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.estimates.delete',
@@ -4399,13 +4399,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete an inventory adjustment',
     description:
-      'Permanently deletes a an inventory adjustment. The deletion will fail if the inventory adjustment is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes an inventory adjustment. The deletion will fail if the inventory adjustment is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.inventory_adjustments > (method) delete',
     qualified: 'client.qbd.inventoryAdjustments.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_inventory_adjustment'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.inventoryAdjustments.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_inventory_adjustment'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/inventory-adjustments/{id}`\n\nPermanently deletes a an inventory adjustment. The deletion will fail if the inventory adjustment is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the inventory adjustment to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_inventory_adjustment'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_inventory_adjustment'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst inventoryAdjustment = await conductor.qbd.inventoryAdjustments.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(inventoryAdjustment);\n```",
+      "## delete\n\n`conductor.qbd.inventoryAdjustments.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_inventory_adjustment'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/inventory-adjustments/{id}`\n\nPermanently deletes an inventory adjustment. The deletion will fail if the inventory adjustment is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the inventory adjustment to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_inventory_adjustment'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_inventory_adjustment'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst inventoryAdjustment = await conductor.qbd.inventoryAdjustments.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(inventoryAdjustment);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.inventoryAdjustments.delete',
@@ -5202,13 +5202,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete an invoice',
     description:
-      'Permanently deletes a an invoice. The deletion will fail if the invoice is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes an invoice. The deletion will fail if the invoice is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.invoices > (method) delete',
     qualified: 'client.qbd.invoices.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_invoice'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.invoices.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_invoice'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/invoices/{id}`\n\nPermanently deletes a an invoice. The deletion will fail if the invoice is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the invoice to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_invoice'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_invoice'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst invoice = await conductor.qbd.invoices.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(invoice);\n```",
+      "## delete\n\n`conductor.qbd.invoices.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_invoice'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/invoices/{id}`\n\nPermanently deletes an invoice. The deletion will fail if the invoice is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the invoice to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_invoice'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_invoice'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst invoice = await conductor.qbd.invoices.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(invoice);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.invoices.delete',
@@ -5595,13 +5595,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete an item receipt',
     description:
-      'Permanently deletes a an item receipt. The deletion will fail if the item receipt is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes an item receipt. The deletion will fail if the item receipt is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.item_receipts > (method) delete',
     qualified: 'client.qbd.itemReceipts.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_item_receipt'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.itemReceipts.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_item_receipt'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/item-receipts/{id}`\n\nPermanently deletes a an item receipt. The deletion will fail if the item receipt is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the item receipt to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_item_receipt'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_item_receipt'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst itemReceipt = await conductor.qbd.itemReceipts.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(itemReceipt);\n```",
+      "## delete\n\n`conductor.qbd.itemReceipts.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_item_receipt'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/item-receipts/{id}`\n\nPermanently deletes an item receipt. The deletion will fail if the item receipt is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the item receipt to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_item_receipt'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_item_receipt'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst itemReceipt = await conductor.qbd.itemReceipts.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(itemReceipt);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.itemReceipts.delete',
@@ -5892,13 +5892,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a journal entry',
     description:
-      'Permanently deletes a a journal entry. The deletion will fail if the journal entry is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a journal entry. The deletion will fail if the journal entry is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.journal_entries > (method) delete',
     qualified: 'client.qbd.journalEntries.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_journal_entry'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.journalEntries.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_journal_entry'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/journal-entries/{id}`\n\nPermanently deletes a a journal entry. The deletion will fail if the journal entry is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the journal entry to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_journal_entry'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_journal_entry'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst journalEntry = await conductor.qbd.journalEntries.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(journalEntry);\n```",
+      "## delete\n\n`conductor.qbd.journalEntries.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_journal_entry'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/journal-entries/{id}`\n\nPermanently deletes a journal entry. The deletion will fail if the journal entry is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the journal entry to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_journal_entry'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_journal_entry'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst journalEntry = await conductor.qbd.journalEntries.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(journalEntry);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.journalEntries.delete',
@@ -7062,13 +7062,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a purchase order',
     description:
-      'Permanently deletes a a purchase order. The deletion will fail if the purchase order is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a purchase order. The deletion will fail if the purchase order is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.purchase_orders > (method) delete',
     qualified: 'client.qbd.purchaseOrders.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_purchase_order'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.purchaseOrders.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_purchase_order'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/purchase-orders/{id}`\n\nPermanently deletes a a purchase order. The deletion will fail if the purchase order is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the purchase order to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_purchase_order'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_purchase_order'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst purchaseOrder = await conductor.qbd.purchaseOrders.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(purchaseOrder);\n```",
+      "## delete\n\n`conductor.qbd.purchaseOrders.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_purchase_order'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/purchase-orders/{id}`\n\nPermanently deletes a purchase order. The deletion will fail if the purchase order is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the purchase order to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_purchase_order'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_purchase_order'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst purchaseOrder = await conductor.qbd.purchaseOrders.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(purchaseOrder);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.purchaseOrders.delete',
@@ -7265,13 +7265,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a receive-payment',
     description:
-      'Permanently deletes a a receive-payment. The deletion will fail if the receive-payment is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a receive-payment. The deletion will fail if the receive-payment is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.receive_payments > (method) delete',
     qualified: 'client.qbd.receivePayments.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_receive_payment'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.receivePayments.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_receive_payment'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/receive-payments/{id}`\n\nPermanently deletes a a receive-payment. The deletion will fail if the receive-payment is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the receive-payment to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_receive_payment'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_receive_payment'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst receivePayment = await conductor.qbd.receivePayments.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(receivePayment);\n```",
+      "## delete\n\n`conductor.qbd.receivePayments.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_receive_payment'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/receive-payments/{id}`\n\nPermanently deletes a receive-payment. The deletion will fail if the receive-payment is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the receive-payment to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_receive_payment'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_receive_payment'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst receivePayment = await conductor.qbd.receivePayments.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(receivePayment);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.receivePayments.delete',
@@ -8060,13 +8060,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a sales order',
     description:
-      'Permanently deletes a a sales order. The deletion will fail if the sales order is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a sales order. The deletion will fail if the sales order is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.sales_orders > (method) delete',
     qualified: 'client.qbd.salesOrders.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_sales_order'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.salesOrders.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_sales_order'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/sales-orders/{id}`\n\nPermanently deletes a a sales order. The deletion will fail if the sales order is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the sales order to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_sales_order'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_sales_order'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst salesOrder = await conductor.qbd.salesOrders.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(salesOrder);\n```",
+      "## delete\n\n`conductor.qbd.salesOrders.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_sales_order'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/sales-orders/{id}`\n\nPermanently deletes a sales order. The deletion will fail if the sales order is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the sales order to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_sales_order'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_sales_order'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst salesOrder = await conductor.qbd.salesOrders.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(salesOrder);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.salesOrders.delete',
@@ -8324,13 +8324,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a sales receipt',
     description:
-      'Permanently deletes a a sales receipt. The deletion will fail if the sales receipt is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a sales receipt. The deletion will fail if the sales receipt is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.sales_receipts > (method) delete',
     qualified: 'client.qbd.salesReceipts.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_sales_receipt'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.salesReceipts.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_sales_receipt'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/sales-receipts/{id}`\n\nPermanently deletes a a sales receipt. The deletion will fail if the sales receipt is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the sales receipt to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_sales_receipt'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_sales_receipt'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst salesReceipt = await conductor.qbd.salesReceipts.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(salesReceipt);\n```",
+      "## delete\n\n`conductor.qbd.salesReceipts.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_sales_receipt'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/sales-receipts/{id}`\n\nPermanently deletes a sales receipt. The deletion will fail if the sales receipt is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the sales receipt to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_sales_receipt'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_sales_receipt'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst salesReceipt = await conductor.qbd.salesReceipts.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(salesReceipt);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.salesReceipts.delete',
@@ -8958,6 +8958,230 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "description": "Standard rate sales tax for California",\n          "isActive": true,\n          "name": "Standard Tax",\n          "salesTaxReturnLineId": "80000001-1234567890",\n          "taxRate": "7.5",\n          "taxVendorId": "80000001-1234567890"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create',
+    endpoint: '/quickbooks-desktop/sales-tax-payment-checks',
+    httpMethod: 'post',
+    summary: 'Create a sales-tax payment check',
+    description: 'Creates a new sales-tax payment check.',
+    stainlessPath: '(resource) qbd.sales_tax_payment_checks > (method) create',
+    qualified: 'client.qbd.salesTaxPaymentChecks.create',
+    params: [
+      'bankAccountId: string;',
+      'lines: { amount: string; salesTaxItemId?: string; }[];',
+      'transactionDate: string;',
+      'vendorId: string;',
+      'Conductor-End-User-Id: string;',
+      'address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; line5?: string; note?: string; postalCode?: string; state?: string; };',
+      'externalId?: string;',
+      'isQueuedForPrint?: boolean;',
+      'memo?: string;',
+      'refNumber?: string;',
+    ],
+    response:
+      "{ id: string; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }; amount: string; bankAccount: { id: string; fullName: string; }; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; externalId: string; isQueuedForPrint: boolean; lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: { id: string; fullName: string; }; }",
+    markdown:
+      "## create\n\n`conductor.qbd.salesTaxPaymentChecks.create(bankAccountId: string, lines: { amount: string; salesTaxItemId?: string; }[], transactionDate: string, vendorId: string, Conductor-End-User-Id: string, address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; line5?: string; note?: string; postalCode?: string; state?: string; }, externalId?: string, isQueuedForPrint?: boolean, memo?: string, refNumber?: string): { id: string; address: object; amount: string; bankAccount: object; createdAt: string; customFields: object[]; externalId: string; isQueuedForPrint: boolean; lines: object[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: object; }`\n\n**post** `/quickbooks-desktop/sales-tax-payment-checks`\n\nCreates a new sales-tax payment check.\n\n### Parameters\n\n- `bankAccountId: string`\n  The bank account from which the funds are being drawn for this sales-tax payment check; e.g., Checking or Savings. This sales-tax payment check will decrease the balance of this account.\n\n- `lines: { amount: string; salesTaxItemId?: string; }[]`\n  The payment lines in this sales-tax payment check, each recording an amount paid toward a sales-tax item.\n\n- `transactionDate: string`\n  The date of this sales-tax payment check, in ISO 8601 format (YYYY-MM-DD).\n\n- `vendorId: string`\n  The sales-tax agency, represented as a QuickBooks vendor, receiving this sales-tax payment check. This must match the tax vendor associated with the sales-tax items in the payment lines.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; line5?: string; note?: string; postalCode?: string; state?: string; }`\n  The address that is printed on the sales-tax payment check.\n  - `city?: string`\n    The city, district, suburb, town, or village name of the address.\n\nMaximum length: 31 characters.\n  - `country?: string`\n    The country name of the address.\n  - `line1?: string`\n    The first line of the address (e.g., street, PO Box, or company name).\n\nMaximum length: 41 characters.\n  - `line2?: string`\n    The second line of the address, if needed (e.g., apartment, suite, unit, or building).\n\nMaximum length: 41 characters.\n  - `line3?: string`\n    The third line of the address, if needed.\n\nMaximum length: 41 characters.\n  - `line4?: string`\n    The fourth line of the address, if needed.\n\nMaximum length: 41 characters.\n  - `line5?: string`\n    The fifth line of the address, if needed.\n\nMaximum length: 41 characters.\n  - `note?: string`\n    A note written at the bottom of the address in the form in which it appears, such as the invoice form.\n  - `postalCode?: string`\n    The postal code or ZIP code of the address.\n\nMaximum length: 13 characters.\n  - `state?: string`\n    The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.\n\n- `externalId?: string`\n  A globally unique identifier (GUID) you, the developer, can provide for tracking this object in your external system. This field is immutable and can only be set during object creation.\n\n**IMPORTANT**: This field must be formatted as a valid GUID; otherwise, QuickBooks will return an error.\n\n- `isQueuedForPrint?: boolean`\n  Indicates whether this sales-tax payment check is included in the queue of documents for QuickBooks to print.\n\n- `memo?: string`\n  A memo or note for this sales-tax payment check.\n\n- `refNumber?: string`\n  The case-sensitive user-defined reference number for this sales-tax payment check, which can be used to identify the transaction in QuickBooks. This value is not required to be unique and can be arbitrarily changed by the QuickBooks user. When left blank in this create request, this field will be left blank in QuickBooks (i.e., it does *not* auto-increment).\n\n**IMPORTANT**: For checks, this field is the check number.\n\nMaximum length: 11 characters.\n\n### Returns\n\n- `{ id: string; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }; amount: string; bankAccount: { id: string; fullName: string; }; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; externalId: string; isQueuedForPrint: boolean; lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: { id: string; fullName: string; }; }`\n\n  - `id: string`\n  - `address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }`\n  - `amount: string`\n  - `bankAccount: { id: string; fullName: string; }`\n  - `createdAt: string`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `externalId: string`\n  - `isQueuedForPrint: boolean`\n  - `lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]`\n  - `memo: string`\n  - `objectType: 'qbd_sales_tax_payment_check'`\n  - `refNumber: string`\n  - `revisionNumber: string`\n  - `transactionDate: string`\n  - `updatedAt: string`\n  - `vendor: { id: string; fullName: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.create({\n  bankAccountId: '80000001-1234567890',\n  lines: [{ amount: '1000.00' }],\n  transactionDate: '2024-10-01',\n  vendorId: '80000001-1234567890',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxPaymentCheck);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.salesTaxPaymentChecks.create',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.create({\n  bankAccountId: '80000001-1234567890',\n  lines: [{ amount: '1000.00' }],\n  transactionDate: '2024-10-01',\n  vendorId: '80000001-1234567890',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxPaymentCheck.id);",
+      },
+      python: {
+        method: 'qbd.sales_tax_payment_checks.create',
+        example:
+          'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_payment_check = conductor.qbd.sales_tax_payment_checks.create(\n    bank_account_id="80000001-1234567890",\n    lines=[{\n        "amount": "1000.00"\n    }],\n    transaction_date=date.fromisoformat("2024-10-01"),\n    vendor_id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_payment_check.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "bankAccountId": "80000001-1234567890",\n          "lines": [\n            {\n              "amount": "1000.00"\n            }\n          ],\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isQueuedForPrint": true,\n          "memo": "Sales tax payment for Q3 2024",\n          "refNumber": "TAXPMT-1234"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/quickbooks-desktop/sales-tax-payment-checks',
+    httpMethod: 'get',
+    summary: 'List all sales-tax payment checks',
+    description:
+      'Returns a list of sales-tax payment checks. Use the `cursor` parameter to paginate through the results.',
+    stainlessPath: '(resource) qbd.sales_tax_payment_checks > (method) list',
+    qualified: 'client.qbd.salesTaxPaymentChecks.list',
+    params: [
+      'Conductor-End-User-Id: string;',
+      'accountIds?: string[];',
+      'cursor?: string;',
+      'ids?: string[];',
+      'includeLineItems?: boolean;',
+      'itemIds?: string[];',
+      'limit?: number;',
+      'refNumberContains?: string;',
+      'refNumberEndsWith?: string;',
+      'refNumberFrom?: string;',
+      'refNumbers?: string[];',
+      'refNumberStartsWith?: string;',
+      'refNumberTo?: string;',
+      'transactionDateFrom?: string;',
+      'transactionDateTo?: string;',
+      'updatedAfter?: string;',
+      'updatedBefore?: string;',
+      'vendorIds?: string[];',
+    ],
+    response:
+      "{ id: string; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }; amount: string; bankAccount: { id: string; fullName: string; }; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; externalId: string; isQueuedForPrint: boolean; lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: { id: string; fullName: string; }; }",
+    markdown:
+      "## list\n\n`conductor.qbd.salesTaxPaymentChecks.list(Conductor-End-User-Id: string, accountIds?: string[], cursor?: string, ids?: string[], includeLineItems?: boolean, itemIds?: string[], limit?: number, refNumberContains?: string, refNumberEndsWith?: string, refNumberFrom?: string, refNumbers?: string[], refNumberStartsWith?: string, refNumberTo?: string, transactionDateFrom?: string, transactionDateTo?: string, updatedAfter?: string, updatedBefore?: string, vendorIds?: string[]): { id: string; address: object; amount: string; bankAccount: object; createdAt: string; customFields: object[]; externalId: string; isQueuedForPrint: boolean; lines: object[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: object; }`\n\n**get** `/quickbooks-desktop/sales-tax-payment-checks`\n\nReturns a list of sales-tax payment checks. Use the `cursor` parameter to paginate through the results.\n\n### Parameters\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountIds?: string[]`\n  Filter for sales-tax payment checks associated with these accounts.\n\n- `cursor?: string`\n  The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.\n\n- `ids?: string[]`\n  Filter for specific sales-tax payment checks by their QuickBooks-assigned unique identifier(s).\n\n**IMPORTANT**: If you include this parameter, QuickBooks will ignore all other query parameters for this request.\n\n**NOTE**: If any of the values you specify in this parameter are not found, the request will return an error.\n\n- `includeLineItems?: boolean`\n  Whether to include line items in the response. Defaults to `true`.\n\n- `itemIds?: string[]`\n  Filter for sales-tax payment checks containing these items.\n\n- `limit?: number`\n  The maximum number of objects to return. Accepts values ranging from 1 to 150, defaults to 150. When used with cursor-based pagination, this parameter controls how many results are returned per page. To paginate through results, combine this with the `cursor` parameter. Each response will include a `nextCursor` value that can be passed to subsequent requests to retrieve the next page of results.\n\n- `refNumberContains?: string`\n  Filter for sales-tax payment checks whose `refNumber` contains this substring.\n\n**NOTE**: If you use this parameter, you cannot also use `refNumberStartsWith` or `refNumberEndsWith`.\n\n- `refNumberEndsWith?: string`\n  Filter for sales-tax payment checks whose `refNumber` ends with this substring.\n\n**NOTE**: If you use this parameter, you cannot also use `refNumberContains` or `refNumberStartsWith`.\n\n- `refNumberFrom?: string`\n  Filter for sales-tax payment checks whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.\n\n- `refNumbers?: string[]`\n  Filter for specific sales-tax payment checks by their ref-number(s), case-sensitive. In QuickBooks, ref-numbers are not required to be unique and can be arbitrarily changed by the QuickBooks user.\n\n**IMPORTANT**: If you include this parameter, QuickBooks will ignore all other query parameters for this request.\n\n**NOTE**: If any of the values you specify in this parameter are not found, the request will return an error.\n\n- `refNumberStartsWith?: string`\n  Filter for sales-tax payment checks whose `refNumber` starts with this substring.\n\n**NOTE**: If you use this parameter, you cannot also use `refNumberContains` or `refNumberEndsWith`.\n\n- `refNumberTo?: string`\n  Filter for sales-tax payment checks whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.\n\n- `transactionDateFrom?: string`\n  Filter for sales-tax payment checks whose `date` field is on or after this date, in ISO 8601 format (YYYY-MM-DD).\n\n**NOTE:** QuickBooks Desktop interprets this date as the **start of the specified day** in the local timezone of the end-user's computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).\n\n- `transactionDateTo?: string`\n  Filter for sales-tax payment checks whose `date` field is on or before this date, in ISO 8601 format (YYYY-MM-DD).\n\n**NOTE:** QuickBooks Desktop interprets this date as the **end of the specified day** in the local timezone of the end-user's computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).\n\n- `updatedAfter?: string`\n  Filter for sales-tax payment checks updated on or after this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets the date as the **start of the specified day** in the local timezone of the end-user's computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop interprets the timestamp in the local timezone of the end-user's computer.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop interprets the timestamp using the specified timezone.\n\n- `updatedBefore?: string`\n  Filter for sales-tax payment checks updated on or before this date/time. Accepts the following ISO 8601 formats:\n- **date-only** (YYYY-MM-DD) - QuickBooks Desktop interprets the date as the **end of the specified day** in the local timezone of the end-user's computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).\n- **datetime without timezone** (YYYY-MM-DDTHH:mm:ss) - QuickBooks Desktop interprets the timestamp in the local timezone of the end-user's computer.\n- **datetime with timezone** (YYYY-MM-DDTHH:mm:ss±HH:mm) - QuickBooks Desktop interprets the timestamp using the specified timezone.\n\n- `vendorIds?: string[]`\n  Filter for sales-tax payment checks paid to these vendors. These are the sales-tax agencies, represented as QuickBooks vendors, paid by these checks.\n\n### Returns\n\n- `{ id: string; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }; amount: string; bankAccount: { id: string; fullName: string; }; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; externalId: string; isQueuedForPrint: boolean; lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: { id: string; fullName: string; }; }`\n\n  - `id: string`\n  - `address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }`\n  - `amount: string`\n  - `bankAccount: { id: string; fullName: string; }`\n  - `createdAt: string`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `externalId: string`\n  - `isQueuedForPrint: boolean`\n  - `lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]`\n  - `memo: string`\n  - `objectType: 'qbd_sales_tax_payment_check'`\n  - `refNumber: string`\n  - `revisionNumber: string`\n  - `transactionDate: string`\n  - `updatedAt: string`\n  - `vendor: { id: string; fullName: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\n// Automatically fetches more pages as needed.\nfor await (const salesTaxPaymentCheck of conductor.qbd.salesTaxPaymentChecks.list({ conductorEndUserId: 'end_usr_1234567abcdefg' })) {\n  console.log(salesTaxPaymentCheck);\n}\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.salesTaxPaymentChecks.list',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const salesTaxPaymentCheck of conductor.qbd.salesTaxPaymentChecks.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(salesTaxPaymentCheck.id);\n}",
+      },
+      python: {
+        method: 'qbd.sales_tax_payment_checks.list',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.sales_tax_payment_checks.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'retrieve',
+    endpoint: '/quickbooks-desktop/sales-tax-payment-checks/{id}',
+    httpMethod: 'get',
+    summary: 'Retrieve a sales-tax payment check',
+    description:
+      'Retrieves a sales-tax payment check by ID.\n\n**IMPORTANT:** If you need to fetch multiple specific sales-tax payment checks by ID, use the list endpoint instead with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.',
+    stainlessPath: '(resource) qbd.sales_tax_payment_checks > (method) retrieve',
+    qualified: 'client.qbd.salesTaxPaymentChecks.retrieve',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }; amount: string; bankAccount: { id: string; fullName: string; }; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; externalId: string; isQueuedForPrint: boolean; lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: { id: string; fullName: string; }; }",
+    markdown:
+      "## retrieve\n\n`conductor.qbd.salesTaxPaymentChecks.retrieve(id: string, Conductor-End-User-Id: string): { id: string; address: object; amount: string; bankAccount: object; createdAt: string; customFields: object[]; externalId: string; isQueuedForPrint: boolean; lines: object[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: object; }`\n\n**get** `/quickbooks-desktop/sales-tax-payment-checks/{id}`\n\nRetrieves a sales-tax payment check by ID.\n\n**IMPORTANT:** If you need to fetch multiple specific sales-tax payment checks by ID, use the list endpoint instead with the `ids` parameter. It accepts an array of IDs so you can batch the request into a single call, which is significantly faster.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the sales-tax payment check to retrieve.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }; amount: string; bankAccount: { id: string; fullName: string; }; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; externalId: string; isQueuedForPrint: boolean; lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: { id: string; fullName: string; }; }`\n\n  - `id: string`\n  - `address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }`\n  - `amount: string`\n  - `bankAccount: { id: string; fullName: string; }`\n  - `createdAt: string`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `externalId: string`\n  - `isQueuedForPrint: boolean`\n  - `lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]`\n  - `memo: string`\n  - `objectType: 'qbd_sales_tax_payment_check'`\n  - `refNumber: string`\n  - `revisionNumber: string`\n  - `transactionDate: string`\n  - `updatedAt: string`\n  - `vendor: { id: string; fullName: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.retrieve('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(salesTaxPaymentCheck);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.salesTaxPaymentChecks.retrieve',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.retrieve(\n  '123ABC-1234567890',\n  { conductorEndUserId: 'end_usr_1234567abcdefg' },\n);\n\nconsole.log(salesTaxPaymentCheck.id);",
+      },
+      python: {
+        method: 'qbd.sales_tax_payment_checks.retrieve',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_payment_check = conductor.qbd.sales_tax_payment_checks.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_payment_check.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'update',
+    endpoint: '/quickbooks-desktop/sales-tax-payment-checks/{id}',
+    httpMethod: 'post',
+    summary: 'Update a sales-tax payment check',
+    description: 'Updates an existing sales-tax payment check.',
+    stainlessPath: '(resource) qbd.sales_tax_payment_checks > (method) update',
+    qualified: 'client.qbd.salesTaxPaymentChecks.update',
+    params: [
+      'id: string;',
+      'revisionNumber: string;',
+      'Conductor-End-User-Id: string;',
+      'address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; line5?: string; note?: string; postalCode?: string; state?: string; };',
+      'bankAccountId?: string;',
+      'isQueuedForPrint?: boolean;',
+      'memo?: string;',
+      'refNumber?: string;',
+      'transactionDate?: string;',
+    ],
+    response:
+      "{ id: string; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }; amount: string; bankAccount: { id: string; fullName: string; }; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; externalId: string; isQueuedForPrint: boolean; lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: { id: string; fullName: string; }; }",
+    markdown:
+      "## update\n\n`conductor.qbd.salesTaxPaymentChecks.update(id: string, revisionNumber: string, Conductor-End-User-Id: string, address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; line5?: string; note?: string; postalCode?: string; state?: string; }, bankAccountId?: string, isQueuedForPrint?: boolean, memo?: string, refNumber?: string, transactionDate?: string): { id: string; address: object; amount: string; bankAccount: object; createdAt: string; customFields: object[]; externalId: string; isQueuedForPrint: boolean; lines: object[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: object; }`\n\n**post** `/quickbooks-desktop/sales-tax-payment-checks/{id}`\n\nUpdates an existing sales-tax payment check.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the sales-tax payment check to update.\n\n- `revisionNumber: string`\n  The current QuickBooks-assigned revision number of the sales-tax payment check object you are updating, which you can get by fetching the object first. Provide the most recent `revisionNumber` to ensure you're working with the latest data; otherwise, the update will return an error.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; line5?: string; note?: string; postalCode?: string; state?: string; }`\n  The address that is printed on the sales-tax payment check.\n  - `city?: string`\n    The city, district, suburb, town, or village name of the address.\n\nMaximum length: 31 characters.\n  - `country?: string`\n    The country name of the address.\n  - `line1?: string`\n    The first line of the address (e.g., street, PO Box, or company name).\n\nMaximum length: 41 characters.\n  - `line2?: string`\n    The second line of the address, if needed (e.g., apartment, suite, unit, or building).\n\nMaximum length: 41 characters.\n  - `line3?: string`\n    The third line of the address, if needed.\n\nMaximum length: 41 characters.\n  - `line4?: string`\n    The fourth line of the address, if needed.\n\nMaximum length: 41 characters.\n  - `line5?: string`\n    The fifth line of the address, if needed.\n\nMaximum length: 41 characters.\n  - `note?: string`\n    A note written at the bottom of the address in the form in which it appears, such as the invoice form.\n  - `postalCode?: string`\n    The postal code or ZIP code of the address.\n\nMaximum length: 13 characters.\n  - `state?: string`\n    The state, county, province, or region name of the address.\n\nMaximum length: 21 characters.\n\n- `bankAccountId?: string`\n  The bank account from which the funds are being drawn for this sales-tax payment check; e.g., Checking or Savings. This sales-tax payment check will decrease the balance of this account.\n\n- `isQueuedForPrint?: boolean`\n  Indicates whether this sales-tax payment check is included in the queue of documents for QuickBooks to print.\n\n- `memo?: string`\n  A memo or note for this sales-tax payment check.\n\n- `refNumber?: string`\n  The case-sensitive user-defined reference number for this sales-tax payment check, which can be used to identify the transaction in QuickBooks. This value is not required to be unique and can be arbitrarily changed by the QuickBooks user.\n\n**IMPORTANT**: For checks, this field is the check number.\n\nMaximum length: 11 characters.\n\n- `transactionDate?: string`\n  The date of this sales-tax payment check, in ISO 8601 format (YYYY-MM-DD).\n\n### Returns\n\n- `{ id: string; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }; amount: string; bankAccount: { id: string; fullName: string; }; createdAt: string; customFields: { name: string; ownerId: string; type: string; value: string; }[]; externalId: string; isQueuedForPrint: boolean; lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]; memo: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; revisionNumber: string; transactionDate: string; updatedAt: string; vendor: { id: string; fullName: string; }; }`\n\n  - `id: string`\n  - `address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; line5: string; note: string; postalCode: string; state: string; }`\n  - `amount: string`\n  - `bankAccount: { id: string; fullName: string; }`\n  - `createdAt: string`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `externalId: string`\n  - `isQueuedForPrint: boolean`\n  - `lines: { id: string; amount: string; objectType: 'qbd_sales_tax_payment_check_line'; salesTaxItem: { id: string; fullName: string; }; taxAmount: string; }[]`\n  - `memo: string`\n  - `objectType: 'qbd_sales_tax_payment_check'`\n  - `refNumber: string`\n  - `revisionNumber: string`\n  - `transactionDate: string`\n  - `updatedAt: string`\n  - `vendor: { id: string; fullName: string; }`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.update('123ABC-1234567890', { revisionNumber: '1721172183', conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(salesTaxPaymentCheck);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.salesTaxPaymentChecks.update',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxPaymentCheck.id);",
+      },
+      python: {
+        method: 'qbd.sales_tax_payment_checks.update',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_payment_check = conductor.qbd.sales_tax_payment_checks.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_payment_check.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "bankAccountId": "80000001-1234567890",\n          "isQueuedForPrint": true,\n          "memo": "Sales tax payment for Q3 2024",\n          "refNumber": "TAXPMT-1234",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'void',
+    endpoint: '/quickbooks-desktop/sales-tax-payment-checks/{id}/void',
+    httpMethod: 'post',
+    summary: 'Void a sales-tax payment check',
+    description:
+      'Voids a sales-tax payment check by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the sales-tax payment check is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.sales_tax_payment_checks > (method) void',
+    qualified: 'client.qbd.salesTaxPaymentChecks.void',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; createdAt: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; updatedAt: string; voided: boolean; }",
+    markdown:
+      "## void\n\n`conductor.qbd.salesTaxPaymentChecks.void(id: string, Conductor-End-User-Id: string): { id: string; createdAt: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n**post** `/quickbooks-desktop/sales-tax-payment-checks/{id}/void`\n\nVoids a sales-tax payment check by setting its amount to zero while keeping a record of it in QuickBooks. The void will fail if the sales-tax payment check is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the sales-tax payment check to void.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; createdAt: string; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; updatedAt: string; voided: boolean; }`\n\n  - `id: string`\n  - `createdAt: string`\n  - `objectType: 'qbd_sales_tax_payment_check'`\n  - `refNumber: string`\n  - `updatedAt: string`\n  - `voided: boolean`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst response = await conductor.qbd.salesTaxPaymentChecks.void('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.salesTaxPaymentChecks.void',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.salesTaxPaymentChecks.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
+      },
+      python: {
+        method: 'qbd.sales_tax_payment_checks.void',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.sales_tax_payment_checks.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'delete',
+    endpoint: '/quickbooks-desktop/sales-tax-payment-checks/{id}',
+    httpMethod: 'delete',
+    summary: 'Delete a sales-tax payment check',
+    description:
+      'Permanently deletes a sales-tax payment check. The deletion will fail if the sales-tax payment check is currently in use or has any linked transactions that are in use.',
+    stainlessPath: '(resource) qbd.sales_tax_payment_checks > (method) delete',
+    qualified: 'client.qbd.salesTaxPaymentChecks.delete',
+    params: ['id: string;', 'Conductor-End-User-Id: string;'],
+    response:
+      "{ id: string; deleted: boolean; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; }",
+    markdown:
+      "## delete\n\n`conductor.qbd.salesTaxPaymentChecks.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/sales-tax-payment-checks/{id}`\n\nPermanently deletes a sales-tax payment check. The deletion will fail if the sales-tax payment check is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the sales-tax payment check to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_sales_tax_payment_check'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_sales_tax_payment_check'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(salesTaxPaymentCheck);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.salesTaxPaymentChecks.delete',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxPaymentCheck.id);",
+      },
+      python: {
+        method: 'qbd.sales_tax_payment_checks.delete',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_payment_check = conductor.qbd.sales_tax_payment_checks.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_payment_check.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9686,13 +9910,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a time tracking activity',
     description:
-      'Permanently deletes a a time tracking activity. The deletion will fail if the time tracking activity is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a time tracking activity. The deletion will fail if the time tracking activity is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.time_tracking_activities > (method) delete',
     qualified: 'client.qbd.timeTrackingActivities.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_time_tracking_activity'; }",
     markdown:
-      "## delete\n\n`conductor.qbd.timeTrackingActivities.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_time_tracking_activity'; }`\n\n**delete** `/quickbooks-desktop/time-tracking-activities/{id}`\n\nPermanently deletes a a time tracking activity. The deletion will fail if the time tracking activity is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the time tracking activity to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_time_tracking_activity'; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_time_tracking_activity'`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst timeTrackingActivity = await conductor.qbd.timeTrackingActivities.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(timeTrackingActivity);\n```",
+      "## delete\n\n`conductor.qbd.timeTrackingActivities.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_time_tracking_activity'; }`\n\n**delete** `/quickbooks-desktop/time-tracking-activities/{id}`\n\nPermanently deletes a time tracking activity. The deletion will fail if the time tracking activity is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the time tracking activity to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_time_tracking_activity'; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_time_tracking_activity'`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst timeTrackingActivity = await conductor.qbd.timeTrackingActivities.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(timeTrackingActivity);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.timeTrackingActivities.delete',
@@ -10268,13 +10492,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     httpMethod: 'delete',
     summary: 'Delete a vendor credit',
     description:
-      'Permanently deletes a a vendor credit. The deletion will fail if the vendor credit is currently in use or has any linked transactions that are in use.',
+      'Permanently deletes a vendor credit. The deletion will fail if the vendor credit is currently in use or has any linked transactions that are in use.',
     stainlessPath: '(resource) qbd.vendor_credits > (method) delete',
     qualified: 'client.qbd.vendorCredits.delete',
     params: ['id: string;', 'Conductor-End-User-Id: string;'],
     response: "{ id: string; deleted: boolean; objectType: 'qbd_vendor_credit'; refNumber: string; }",
     markdown:
-      "## delete\n\n`conductor.qbd.vendorCredits.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_vendor_credit'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/vendor-credits/{id}`\n\nPermanently deletes a a vendor credit. The deletion will fail if the vendor credit is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the vendor credit to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_vendor_credit'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_vendor_credit'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst vendorCredit = await conductor.qbd.vendorCredits.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(vendorCredit);\n```",
+      "## delete\n\n`conductor.qbd.vendorCredits.delete(id: string, Conductor-End-User-Id: string): { id: string; deleted: boolean; objectType: 'qbd_vendor_credit'; refNumber: string; }`\n\n**delete** `/quickbooks-desktop/vendor-credits/{id}`\n\nPermanently deletes a vendor credit. The deletion will fail if the vendor credit is currently in use or has any linked transactions that are in use.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the vendor credit to delete.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n### Returns\n\n- `{ id: string; deleted: boolean; objectType: 'qbd_vendor_credit'; refNumber: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `objectType: 'qbd_vendor_credit'`\n  - `refNumber: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst vendorCredit = await conductor.qbd.vendorCredits.delete('123ABC-1234567890', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(vendorCredit);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.vendorCredits.delete',

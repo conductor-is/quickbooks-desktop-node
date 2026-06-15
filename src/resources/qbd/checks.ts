@@ -109,8 +109,8 @@ export class Checks extends APIResource {
   }
 
   /**
-   * Permanently deletes a a check. The deletion will fail if the check is currently
-   * in use or has any linked transactions that are in use.
+   * Permanently deletes a check. The deletion will fail if the check is currently in
+   * use or has any linked transactions that are in use.
    *
    * @example
    * ```ts

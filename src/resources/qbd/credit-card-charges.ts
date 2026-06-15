@@ -120,7 +120,7 @@ export class CreditCardCharges extends APIResource {
   }
 
   /**
-   * Permanently deletes a a credit card charge. The deletion will fail if the credit
+   * Permanently deletes a credit card charge. The deletion will fail if the credit
    * card charge is currently in use or has any linked transactions that are in use.
    *
    * @example

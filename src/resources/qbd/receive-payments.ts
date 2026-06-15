@@ -120,7 +120,7 @@ export class ReceivePayments extends APIResource {
   }
 
   /**
-   * Permanently deletes a a receive-payment. The deletion will fail if the
+   * Permanently deletes a receive-payment. The deletion will fail if the
    * receive-payment is currently in use or has any linked transactions that are in
    * use.
    *

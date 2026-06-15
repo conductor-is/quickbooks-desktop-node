@@ -117,8 +117,8 @@ export class JournalEntries extends APIResource {
   }
 
   /**
-   * Permanently deletes a a journal entry. The deletion will fail if the journal
-   * entry is currently in use or has any linked transactions that are in use.
+   * Permanently deletes a journal entry. The deletion will fail if the journal entry
+   * is currently in use or has any linked transactions that are in use.
    *
    * @example
    * ```ts

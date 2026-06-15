@@ -114,8 +114,8 @@ export class ItemReceipts extends APIResource {
   }
 
   /**
-   * Permanently deletes a an item receipt. The deletion will fail if the item
-   * receipt is currently in use or has any linked transactions that are in use.
+   * Permanently deletes an item receipt. The deletion will fail if the item receipt
+   * is currently in use or has any linked transactions that are in use.
    *
    * @example
    * ```ts

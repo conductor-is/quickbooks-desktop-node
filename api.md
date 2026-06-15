@@ -746,6 +746,23 @@ Methods:
 - <code title="post /quickbooks-desktop/sales-tax-items/{id}">client.qbd.salesTaxItems.<a href="./src/resources/qbd/sales-tax-items.ts">update</a>(id, { ...params }) -> SalesTaxItem</code>
 - <code title="get /quickbooks-desktop/sales-tax-items">client.qbd.salesTaxItems.<a href="./src/resources/qbd/sales-tax-items.ts">list</a>({ ...params }) -> SalesTaxItemsCursorPage</code>
 
+## SalesTaxPaymentChecks
+
+Types:
+
+- <code><a href="./src/resources/qbd/sales-tax-payment-checks.ts">SalesTaxPaymentCheck</a></code>
+- <code><a href="./src/resources/qbd/sales-tax-payment-checks.ts">SalesTaxPaymentCheckDeleteResponse</a></code>
+- <code><a href="./src/resources/qbd/sales-tax-payment-checks.ts">SalesTaxPaymentCheckVoidResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/sales-tax-payment-checks">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">create</a>({ ...params }) -> SalesTaxPaymentCheck</code>
+- <code title="get /quickbooks-desktop/sales-tax-payment-checks/{id}">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">retrieve</a>(id, { ...params }) -> SalesTaxPaymentCheck</code>
+- <code title="post /quickbooks-desktop/sales-tax-payment-checks/{id}">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">update</a>(id, { ...params }) -> SalesTaxPaymentCheck</code>
+- <code title="get /quickbooks-desktop/sales-tax-payment-checks">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">list</a>({ ...params }) -> SalesTaxPaymentChecksCursorPage</code>
+- <code title="delete /quickbooks-desktop/sales-tax-payment-checks/{id}">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">delete</a>(id, { ...params }) -> SalesTaxPaymentCheckDeleteResponse</code>
+- <code title="post /quickbooks-desktop/sales-tax-payment-checks/{id}/void">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">void</a>(id, { ...params }) -> SalesTaxPaymentCheckVoidResponse</code>
+
 ## ServiceItems
 
 Types:

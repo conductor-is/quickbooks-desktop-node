@@ -118,7 +118,7 @@ export class CreditCardCredits extends APIResource {
   }
 
   /**
-   * Permanently deletes a a credit card credit. The deletion will fail if the credit
+   * Permanently deletes a credit card credit. The deletion will fail if the credit
    * card credit is currently in use or has any linked transactions that are in use.
    *
    * @example

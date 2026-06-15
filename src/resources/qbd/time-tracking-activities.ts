@@ -124,9 +124,9 @@ export class TimeTrackingActivities extends APIResource {
   }
 
   /**
-   * Permanently deletes a a time tracking activity. The deletion will fail if the
-   * time tracking activity is currently in use or has any linked transactions that
-   * are in use.
+   * Permanently deletes a time tracking activity. The deletion will fail if the time
+   * tracking activity is currently in use or has any linked transactions that are in
+   * use.
    *
    * @example
    * ```ts
