@@ -1,5 +1,18 @@
 # Changelog
 
+## 14.21.0 (2026-06-20)
+
+Full Changelog: [v14.20.0...v14.21.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.20.0...v14.21.0)
+
+### Features
+
+* **api:** api update ([738d58b](https://github.com/conductor-is/quickbooks-desktop-node/commit/738d58b32ed9bc7981f7b44ed4522b99a2c45e9a))
+
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([8af5a96](https://github.com/conductor-is/quickbooks-desktop-node/commit/8af5a96b2c6f9b151fb27a66e0dc728909cc5a13))
+
 ## 14.20.0 (2026-06-15)
 
 Full Changelog: [v14.19.0...v14.20.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.19.0...v14.20.0)
