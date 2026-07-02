@@ -452,7 +452,8 @@ export namespace BillCheckPayment {
       | 'sales_tax_payment_check'
       | 'transfer'
       | 'vendor_credit'
-      | 'ytd_adjustment';
+      | 'ytd_adjustment'
+      | 'unknown';
   }
 
   export namespace AppliedToTransaction {

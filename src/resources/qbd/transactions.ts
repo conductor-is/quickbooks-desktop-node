@@ -170,7 +170,8 @@ export interface Transaction {
     | 'sales_tax_payment_check'
     | 'transfer'
     | 'vendor_credit'
-    | 'ytd_adjustment';
+    | 'ytd_adjustment'
+    | 'unknown';
 
   /**
    * The date and time when this transaction was last updated, in ISO 8601 format

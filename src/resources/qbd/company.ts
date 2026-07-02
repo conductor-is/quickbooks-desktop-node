@@ -170,8 +170,6 @@ export interface Company {
    */
   taxForm:
     | 'form_1040'
-    | 'form_t1'
-    | 'form_t2'
     | 'form_1065'
     | 'form_1120'
     | 'form_1120s'
@@ -179,6 +177,8 @@ export interface Company {
     | 'form_990pf'
     | 'form_990t'
     | 'other_or_none'
+    | 'form_t1'
+    | 'form_t2'
     | null;
 
   /**
