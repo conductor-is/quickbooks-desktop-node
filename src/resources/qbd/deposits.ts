@@ -488,6 +488,7 @@ export namespace Deposit {
       | 'transfer'
       | 'vendor_credit'
       | 'ytd_adjustment'
+      | 'unknown'
       | null;
   }
 
