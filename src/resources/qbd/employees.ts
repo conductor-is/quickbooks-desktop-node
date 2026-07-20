@@ -490,15 +490,16 @@ export namespace Employee {
     postalCode: string | null;
 
     /**
-     * The U.S. state of the employee address. QuickBooks requires this field to be a
-     * U.S. state abbreviation (e.g., "CA" for California). See enum for all possible
-     * values.
+     * The U.S. state or Canadian province of the employee address. QuickBooks requires
+     * this field to be a two-letter abbreviation (e.g., "CA" for California or "ON"
+     * for Ontario). See enum for all possible values. QuickBooks may reject values
+     * that the connected company file's edition does not support (e.g., a Canadian
+     * province on a U.S. company file).
      *
      * **NOTE:** This `state` field stays enum-constrained when creating or updating an
-     * employee because QuickBooks Desktop rejects non-standard values on input. In
-     * responses, though, we've seen QuickBooks return values outside its own enum
-     * (like 'ON'), so Conductor surfaces the raw QuickBooks string unchanged instead
-     * of enforcing the enum.
+     * employee, but we've seen QuickBooks return values outside its own enum in
+     * responses, so Conductor surfaces the raw QuickBooks string unchanged instead of
+     * enforcing the enum.
      */
     state: string | null;
   }
@@ -1259,19 +1260,23 @@ export namespace EmployeeCreateParams {
     postalCode?: string;
 
     /**
-     * The U.S. state of the employee address. QuickBooks requires this field to be a
-     * U.S. state abbreviation (e.g., "CA" for California). See enum for all possible
-     * values.
+     * The U.S. state or Canadian province of the employee address. QuickBooks requires
+     * this field to be a two-letter abbreviation (e.g., "CA" for California or "ON"
+     * for Ontario). See enum for all possible values. QuickBooks may reject values
+     * that the connected company file's edition does not support (e.g., a Canadian
+     * province on a U.S. company file).
      */
     state?:
       | 'none'
       | 'armed_forces_americas'
       | 'armed_forces_europe'
       | 'armed_forces_pacific'
+      | 'AB'
       | 'AK'
       | 'AL'
       | 'AR'
       | 'AZ'
+      | 'BC'
       | 'CA'
       | 'CO'
       | 'CT'
@@ -1288,6 +1293,7 @@ export namespace EmployeeCreateParams {
       | 'KY'
       | 'LA'
       | 'MA'
+      | 'MB'
       | 'MD'
       | 'ME'
       | 'MI'
@@ -1301,17 +1307,25 @@ export namespace EmployeeCreateParams {
       | 'NE'
       | 'NH'
       | 'NJ'
+      | 'NL'
       | 'NM'
+      | 'NS'
+      | 'NT'
+      | 'NU'
       | 'NV'
       | 'NY'
       | 'OH'
       | 'OK'
+      | 'ON'
       | 'OR'
       | 'PA'
+      | 'PE'
       | 'PR'
+      | 'QC'
       | 'RI'
       | 'SC'
       | 'SD'
+      | 'SK'
       | 'TN'
       | 'TX'
       | 'UT'
@@ -1320,7 +1334,8 @@ export namespace EmployeeCreateParams {
       | 'WA'
       | 'WI'
       | 'WV'
-      | 'WY';
+      | 'WY'
+      | 'YT';
   }
 
   export interface CustomContactField {
@@ -1939,19 +1954,23 @@ export namespace EmployeeUpdateParams {
     postalCode?: string;
 
     /**
-     * The U.S. state of the employee address. QuickBooks requires this field to be a
-     * U.S. state abbreviation (e.g., "CA" for California). See enum for all possible
-     * values.
+     * The U.S. state or Canadian province of the employee address. QuickBooks requires
+     * this field to be a two-letter abbreviation (e.g., "CA" for California or "ON"
+     * for Ontario). See enum for all possible values. QuickBooks may reject values
+     * that the connected company file's edition does not support (e.g., a Canadian
+     * province on a U.S. company file).
      */
     state?:
       | 'none'
       | 'armed_forces_americas'
       | 'armed_forces_europe'
       | 'armed_forces_pacific'
+      | 'AB'
       | 'AK'
       | 'AL'
       | 'AR'
       | 'AZ'
+      | 'BC'
       | 'CA'
       | 'CO'
       | 'CT'
@@ -1968,6 +1987,7 @@ export namespace EmployeeUpdateParams {
       | 'KY'
       | 'LA'
       | 'MA'
+      | 'MB'
       | 'MD'
       | 'ME'
       | 'MI'
@@ -1981,17 +2001,25 @@ export namespace EmployeeUpdateParams {
       | 'NE'
       | 'NH'
       | 'NJ'
+      | 'NL'
       | 'NM'
+      | 'NS'
+      | 'NT'
+      | 'NU'
       | 'NV'
       | 'NY'
       | 'OH'
       | 'OK'
+      | 'ON'
       | 'OR'
       | 'PA'
+      | 'PE'
       | 'PR'
+      | 'QC'
       | 'RI'
       | 'SC'
       | 'SD'
+      | 'SK'
       | 'TN'
       | 'TX'
       | 'UT'
@@ -2000,7 +2028,8 @@ export namespace EmployeeUpdateParams {
       | 'WA'
       | 'WI'
       | 'WV'
-      | 'WY';
+      | 'WY'
+      | 'YT';
   }
 
   export interface CustomContactField {
