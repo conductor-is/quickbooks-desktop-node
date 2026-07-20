@@ -1,5 +1,25 @@
 # Changelog
 
+## 14.23.0 (2026-07-20)
+
+Full Changelog: [v14.22.0...v14.23.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.22.0...v14.23.0)
+
+### Features
+
+* **api:** api update ([031adc5](https://github.com/conductor-is/quickbooks-desktop-node/commit/031adc59d2d13855af08862d3718eb0b47a8fdeb))
+* **api:** api update ([ea49eaa](https://github.com/conductor-is/quickbooks-desktop-node/commit/ea49eaa64f579ca5b1e070d8c697cb8accde9e94))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([44fdcae](https://github.com/conductor-is/quickbooks-desktop-node/commit/44fdcae329924fb611c12d19331696fa80265253))
+
+
+### Bug Fixes
+
+* **ci:** bump @arethetypeswrong/cli to ^0.18.0 and run CI workflows on Node 24 ([717344a](https://github.com/conductor-is/quickbooks-desktop-node/commit/717344a94cf3d329bd9b51924aad13f48e4aace8))
+
+
+### Chores
+
+* **internal:** codegen related update ([f3c8af1](https://github.com/conductor-is/quickbooks-desktop-node/commit/f3c8af1b325e38ad1a22cf333c01df495e693b2a))
+
 ## 14.22.0 (2026-07-02)
 
 Full Changelog: [v14.21.0...v14.22.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.21.0...v14.22.0)
