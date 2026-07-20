@@ -417,9 +417,10 @@ export namespace Bill {
   export interface ExpenseLine {
     /**
      * The unique identifier assigned by QuickBooks to this expense line. This ID is
-     * unique across all transaction line types.
+     * unique across all transaction line types. If QuickBooks omits the identifier,
+     * this is null.
      */
-    id: string;
+    id: string | null;
 
     /**
      * The expense account being debited (increased) for this expense line. The
