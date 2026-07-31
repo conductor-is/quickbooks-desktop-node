@@ -1,5 +1,18 @@
 # Changelog
 
+## 14.23.1 (2026-07-31)
+
+Full Changelog: [v14.23.0...v14.23.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.0...v14.23.1)
+
+### Bug Fixes
+
+* **stlc:** stop hand-edited CI workflows from blocking seals and builds ([479c3a2](https://github.com/conductor-is/quickbooks-desktop-node/commit/479c3a28fc0b83e37cc5d99b3e40a60382235846))
+
+
+### Chores
+
+* **internal:** codegen related update ([32f1dcb](https://github.com/conductor-is/quickbooks-desktop-node/commit/32f1dcb6634c40b19a05b267bec6875b44630370))
+
 ## 14.23.0 (2026-07-20)
 
 Full Changelog: [v14.22.0...v14.23.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.22.0...v14.23.0)
