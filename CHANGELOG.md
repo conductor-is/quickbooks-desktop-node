@@ -1,5 +1,9 @@
 # Changelog
 
+## 14.23.3 (2026-08-18)
+
+Full Changelog: [v14.23.2...v14.23.3](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.2...v14.23.3)
+
 ## 14.23.2 (2026-08-18)
 
 Full Changelog: [v14.23.1...v14.23.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.1...v14.23.2)
