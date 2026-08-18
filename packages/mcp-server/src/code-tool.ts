@@ -1,17 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import {
-  ContentBlock,
-  McpRequestContext,
-  McpTool,
-  Metadata,
-  ToolCallResult,
-  asErrorResult,
-  asTextContentResult,
-} from './types';
+import { ContentBlock, McpRequestContext, McpTool, Metadata, ToolCallResult, asErrorResult } from './types';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { readEnv, requireValue } from './util';
-import { WorkerInput, WorkerOutput } from './code-tool-types';
+import { WorkerOutput } from './code-tool-types';
 import { getLogger } from './logger';
 import { SdkMethod } from './methods';
 import { McpCodeExecutionMode } from './options';
@@ -109,13 +100,8 @@ export function codeTool({
     let result: ToolCallResult;
     const startTime = Date.now();
 
-    if (codeExecutionMode === 'local') {
-      logger.debug('Executing code in local Deno environment');
-      result = await localDenoHandler({ reqContext, args });
-    } else {
-      logger.debug('Executing code in remote Stainless environment');
-      result = await remoteStainlessHandler({ reqContext, args });
-    }
+    logger.debug('Executing code in local Deno environment');
+    result = await localDenoHandler({ reqContext, args });
 
     logger.info(
       {
@@ -131,71 +117,6 @@ export function codeTool({
 
   return { metadata, tool, handler };
 }
-
-const remoteStainlessHandler = async ({
-  reqContext,
-  args,
-}: {
-  reqContext: McpRequestContext;
-  args: any;
-}): Promise<ToolCallResult> => {
-  const code = args.code as string;
-  const intent = args.intent as string | undefined;
-  const client = reqContext.client;
-
-  const codeModeEndpoint = readEnv('CODE_MODE_ENDPOINT_URL') ?? 'https://api.stainless.com/api/ai/code-tool';
-
-  const localClientEnvs = {
-    CONDUCTOR_SECRET_KEY: requireValue(
-      readEnv('CONDUCTOR_SECRET_KEY') ?? conductor.apiKey,
-      'set CONDUCTOR_SECRET_KEY environment variable or provide apiKey client option',
-    ),
-    CONDUCTOR_BASE_URL: readEnv('CONDUCTOR_BASE_URL') ?? conductor.baseURL ?? undefined,
-  };
-  // Merge any upstream client envs from the request header, with upstream values taking precedence.
-  const mergedClientEnvs = { ...localClientEnvs, ...reqContext.upstreamClientEnvs };
-
-  // Setting a Stainless API key authenticates requests to the code tool endpoint.
-  const res = await fetch(codeModeEndpoint, {
-    method: 'POST',
-    headers: {
-      ...(reqContext.stainlessApiKey && { Authorization: reqContext.stainlessApiKey }),
-      'Content-Type': 'application/json',
-      'x-stainless-mcp-client-envs': JSON.stringify(mergedClientEnvs),
-    },
-    body: JSON.stringify({
-      project_name: 'conductor',
-      code,
-      intent,
-      client_opts: {},
-    } satisfies WorkerInput),
-  });
-
-  if (!res.ok) {
-    if (res.status === 404 && !reqContext.stainlessApiKey) {
-      throw new Error(
-        'Could not access code tool for this project. You may need to provide a Stainless API key via the STAINLESS_API_KEY environment variable, the --stainless-api-key flag, or the x-stainless-api-key HTTP header.',
-      );
-    }
-    throw new Error(
-      `${res.status}: ${
-        res.statusText
-      } error when trying to contact Code Tool server. Details: ${await res.text()}`,
-    );
-  }
-
-  const { is_error, result, log_lines, err_lines } = (await res.json()) as WorkerOutput;
-  const hasLogs = log_lines.length > 0 || err_lines.length > 0;
-  const output = {
-    result,
-    ...(log_lines.length > 0 && { log_lines }),
-    ...(err_lines.length > 0 && { err_lines }),
-  };
-  if (is_error) {
-    return asErrorResult(typeof result === 'string' && !hasLogs ? result : JSON.stringify(output, null, 2));
-  }
-  return asTextContentResult(output);
-};
 
 const localDenoHandler = async ({
   reqContext,

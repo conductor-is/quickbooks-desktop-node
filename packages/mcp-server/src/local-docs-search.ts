@@ -75,14 +75,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst authSession = await conductor.authSessions.create({\n  endUserId: 'end_usr_1234567abcdefg',\n  publishableKey: '{{YOUR_PUBLISHABLE_KEY}}',\n});\n\nconsole.log(authSession.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/auth-sessions \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "endUserId": "end_usr_1234567abcdefg",\n          "publishableKey": "{{YOUR_PUBLISHABLE_KEY}}",\n          "redirectUrl": "https://example.com/auth/conductor-callback"\n        }\'',
+      },
       python: {
         method: 'auth_sessions.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nauth_session = conductor.auth_sessions.create(\n    end_user_id="end_usr_1234567abcdefg",\n    publishable_key="{{YOUR_PUBLISHABLE_KEY}}",\n)\nprint(auth_session.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/auth-sessions \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "endUserId": "end_usr_1234567abcdefg",\n          "publishableKey": "{{YOUR_PUBLISHABLE_KEY}}",\n          "redirectUrl": "https://example.com/auth/conductor-callback"\n        }\'',
       },
     },
   },
@@ -105,14 +105,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst endUser = await conductor.endUsers.create({\n  companyName: 'Acme Inc.',\n  email: 'alice@acme.com',\n  sourceId: '12345678-abcd-abcd-example-1234567890ab',\n});\n\nconsole.log(endUser.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/end-users \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "companyName": "Acme Inc.",\n          "email": "alice@acme.com",\n          "sourceId": "12345678-abcd-abcd-example-1234567890ab"\n        }\'',
+      },
       python: {
         method: 'end_users.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nend_user = conductor.end_users.create(\n    company_name="Acme Inc.",\n    email="alice@acme.com",\n    source_id="12345678-abcd-abcd-example-1234567890ab",\n)\nprint(end_user.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/end-users \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "companyName": "Acme Inc.",\n          "email": "alice@acme.com",\n          "sourceId": "12345678-abcd-abcd-example-1234567890ab"\n        }\'',
       },
     },
   },
@@ -134,14 +134,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst endUsers = await conductor.endUsers.list();\n\nconsole.log(endUsers.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/end-users \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'end_users.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nend_users = conductor.end_users.list()\nprint(end_users.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/end-users \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -164,14 +164,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst endUser = await conductor.endUsers.retrieve('end_usr_1234567abcdefg');\n\nconsole.log(endUser.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/end-users/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'end_users.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nend_user = conductor.end_users.retrieve(\n    "end_usr_1234567abcdefg",\n)\nprint(end_user.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/end-users/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -193,14 +193,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst endUser = await conductor.endUsers.delete('end_usr_1234567abcdefg');\n\nconsole.log(endUser.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/end-users/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'end_users.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nend_user = conductor.end_users.delete(\n    "end_usr_1234567abcdefg",\n)\nprint(end_user.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/end-users/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -223,14 +223,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.endUsers.passthrough('quickbooks_desktop', {\n  id: 'end_usr_1234567abcdefg',\n  qbd_payload: { foo: 'bar' },\n});\n\nconsole.log(response);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/end-users/$ID/passthrough/$INTEGRATION_SLUG \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "foo": "bar"\n        }\'',
+      },
       python: {
         method: 'end_users.passthrough',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.end_users.passthrough(\n    integration_slug="quickbooks_desktop",\n    id="end_usr_1234567abcdefg",\n    qbd_payload={\n        "foo": "bar"\n    },\n)\nprint(response)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/end-users/$ID/passthrough/$INTEGRATION_SLUG \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "foo": "bar"\n        }\'',
       },
     },
   },
@@ -253,14 +253,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.healthCheck({ conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(response.duration);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/health-check \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.health_check',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.health_check(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.duration)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/health-check \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -283,14 +283,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst accountTaxLines = await conductor.qbd.accountTaxLines.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(accountTaxLines.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/account-tax-lines \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.account_tax_lines.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\naccount_tax_lines = conductor.qbd.account_tax_lines.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(account_tax_lines.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/account-tax-lines \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -328,14 +328,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst account = await conductor.qbd.accounts.create({\n  accountType: 'bank',\n  name: 'Accounts-Payable',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(account.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/accounts \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountType": "bank",\n          "name": "Accounts-Payable",\n          "accountNumber": "1010",\n          "bankAccountNumber": "123456789",\n          "currencyId": "80000001-1234567890",\n          "description": "Accounts-payable are the amounts owed to suppliers for goods and services purchased on credit.",\n          "isActive": true,\n          "openingBalance": "1000.00",\n          "openingBalanceDate": "2023-01-01",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "taxLineId": 123\n        }\'',
+      },
       python: {
         method: 'qbd.accounts.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\naccount = conductor.qbd.accounts.create(\n    account_type="bank",\n    name="Accounts-Payable",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(account.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/accounts \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountType": "bank",\n          "name": "Accounts-Payable",\n          "accountNumber": "1010",\n          "bankAccountNumber": "123456789",\n          "currencyId": "80000001-1234567890",\n          "description": "Accounts-payable are the amounts owed to suppliers for goods and services purchased on credit.",\n          "isActive": true,\n          "openingBalance": "1000.00",\n          "openingBalanceDate": "2023-01-01",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "taxLineId": 123\n        }\'',
       },
     },
   },
@@ -374,14 +374,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst accounts = await conductor.qbd.accounts.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(accounts.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/accounts \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.accounts.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\naccounts = conductor.qbd.accounts.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(accounts.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/accounts \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -405,14 +405,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst account = await conductor.qbd.accounts.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(account.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/accounts/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.accounts.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\naccount = conductor.qbd.accounts.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(account.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/accounts/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -452,14 +452,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst account = await conductor.qbd.accounts.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(account.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/accounts/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountNumber": "1010",\n          "accountType": "bank",\n          "bankAccountNumber": "123456789",\n          "currencyId": "80000001-1234567890",\n          "description": "Accounts-payable are the amounts owed to suppliers for goods and services purchased on credit.",\n          "isActive": true,\n          "name": "Accounts-Payable",\n          "openingBalance": "1000.00",\n          "openingBalanceDate": "2023-01-01",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "taxLineId": 123\n        }\'',
+      },
       python: {
         method: 'qbd.accounts.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\naccount = conductor.qbd.accounts.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(account.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/accounts/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountNumber": "1010",\n          "accountType": "bank",\n          "bankAccountNumber": "123456789",\n          "currencyId": "80000001-1234567890",\n          "description": "Accounts-payable are the amounts owed to suppliers for goods and services purchased on credit.",\n          "isActive": true,\n          "name": "Accounts-Payable",\n          "openingBalance": "1000.00",\n          "openingBalanceDate": "2023-01-01",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "taxLineId": 123\n        }\'',
       },
     },
   },
@@ -495,14 +495,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst billCheckPayment = await conductor.qbd.billCheckPayments.create({\n  applyToTransactions: [{ transactionId: '123ABC-1234567890' }],\n  bankAccountId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  vendorId: '80000001-1234567890',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(billCheckPayment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "applyToTransactions": [\n            {\n              "transactionId": "123ABC-1234567890"\n            }\n          ],\n          "bankAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isQueuedForPrint": true,\n          "memo": "Payment for office supplies - Invoice INV-1234",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "CHECK-1234"\n        }\'',
+      },
       python: {
         method: 'qbd.bill_check_payments.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbill_check_payment = conductor.qbd.bill_check_payments.create(\n    apply_to_transactions=[{\n        "transaction_id": "123ABC-1234567890"\n    }],\n    bank_account_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    vendor_id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bill_check_payment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "applyToTransactions": [\n            {\n              "transactionId": "123ABC-1234567890"\n            }\n          ],\n          "bankAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isQueuedForPrint": true,\n          "memo": "Payment for office supplies - Invoice INV-1234",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "CHECK-1234"\n        }\'',
       },
     },
   },
@@ -545,14 +545,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const billCheckPayment of conductor.qbd.billCheckPayments.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(billCheckPayment.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bill_check_payments.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.bill_check_payments.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -576,14 +576,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst billCheckPayment = await conductor.qbd.billCheckPayments.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(billCheckPayment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bill_check_payments.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbill_check_payment = conductor.qbd.bill_check_payments.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bill_check_payment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -619,14 +619,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst billCheckPayment = await conductor.qbd.billCheckPayments.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(billCheckPayment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "amount": "1000.00",\n          "bankAccountId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "isQueuedForPrint": true,\n          "memo": "Payment for office supplies - Invoice INV-1234",\n          "refNumber": "CHECK-1234",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.bill_check_payments.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbill_check_payment = conductor.qbd.bill_check_payments.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bill_check_payment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "amount": "1000.00",\n          "bankAccountId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "isQueuedForPrint": true,\n          "memo": "Payment for office supplies - Invoice INV-1234",\n          "refNumber": "CHECK-1234",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -650,14 +650,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.billCheckPayments.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bill_check_payments.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.bill_check_payments.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -680,14 +680,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst billCheckPayment = await conductor.qbd.billCheckPayments.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(billCheckPayment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bill_check_payments.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbill_check_payment = conductor.qbd.bill_check_payments.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bill_check_payment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-check-payments/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -722,14 +722,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst billCreditCardPayment = await conductor.qbd.billCreditCardPayments.create({\n  applyToTransactions: [{ transactionId: '123ABC-1234567890' }],\n  creditCardAccountId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  vendorId: '80000001-1234567890',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(billCreditCardPayment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "applyToTransactions": [\n            {\n              "transactionId": "123ABC-1234567890"\n            }\n          ],\n          "creditCardAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Payment for office supplies - Invoice INV-1234",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "CARD-1234"\n        }\'',
+      },
       python: {
         method: 'qbd.bill_credit_card_payments.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbill_credit_card_payment = conductor.qbd.bill_credit_card_payments.create(\n    apply_to_transactions=[{\n        "transaction_id": "123ABC-1234567890"\n    }],\n    credit_card_account_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    vendor_id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bill_credit_card_payment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "applyToTransactions": [\n            {\n              "transactionId": "123ABC-1234567890"\n            }\n          ],\n          "creditCardAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Payment for office supplies - Invoice INV-1234",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "CARD-1234"\n        }\'',
       },
     },
   },
@@ -772,14 +772,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const billCreditCardPayment of conductor.qbd.billCreditCardPayments.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(billCreditCardPayment.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bill_credit_card_payments.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.bill_credit_card_payments.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -803,14 +803,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst billCreditCardPayment = await conductor.qbd.billCreditCardPayments.retrieve(\n  '123ABC-1234567890',\n  { conductorEndUserId: 'end_usr_1234567abcdefg' },\n);\n\nconsole.log(billCreditCardPayment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bill_credit_card_payments.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbill_credit_card_payment = conductor.qbd.bill_credit_card_payments.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bill_credit_card_payment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -834,14 +834,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.billCreditCardPayments.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bill_credit_card_payments.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.bill_credit_card_payments.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -865,14 +865,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst billCreditCardPayment = await conductor.qbd.billCreditCardPayments.delete(\n  '123ABC-1234567890',\n  { conductorEndUserId: 'end_usr_1234567abcdefg' },\n);\n\nconsole.log(billCreditCardPayment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bill_credit_card_payments.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbill_credit_card_payment = conductor.qbd.bill_credit_card_payments.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bill_credit_card_payment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bill-credit-card-payments/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -913,14 +913,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst bill = await conductor.qbd.bills.create({\n  transactionDate: '2024-10-01',\n  vendorId: '80000001-1234567890',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(bill.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bills \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Office supplies for September",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "BILL-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "termsId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.bills.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbill = conductor.qbd.bills.create(\n    transaction_date=date.fromisoformat("2024-10-01"),\n    vendor_id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bill.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bills \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Office supplies for September",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "BILL-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "termsId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -964,14 +964,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const bill of conductor.qbd.bills.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(bill.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bills \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bills.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.bills.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bills \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -995,14 +995,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst bill = await conductor.qbd.bills.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(bill.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bills/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bills.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbill = conductor.qbd.bills.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bill.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bills/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1045,14 +1045,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst bill = await conductor.qbd.bills.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(bill.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bills/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "memo": "Office supplies for September",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "BILL-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.bills.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbill = conductor.qbd.bills.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bill.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bills/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "memo": "Office supplies for September",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "BILL-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -1076,14 +1076,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.bills.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bills/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bills.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.bills.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bills/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1106,14 +1106,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst bill = await conductor.qbd.bills.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(bill.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bills/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bills.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbill = conductor.qbd.bills.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bill.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bills/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1142,14 +1142,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst billsToPays = await conductor.qbd.billsToPay.list({\n  vendorId: '80000001-1234567890',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(billsToPays.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/bills-to-pay \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.bills_to_pay.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbills_to_pays = conductor.qbd.bills_to_pay.list(\n    vendor_id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(bills_to_pays.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/bills-to-pay \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1187,14 +1187,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst buildAssembly = await conductor.qbd.buildAssemblies.create({\n  inventoryAssemblyItemId: '80000001-1234567890',\n  quantityToBuild: 7,\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(buildAssembly.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/build-assemblies \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "inventoryAssemblyItemId": "80000001-1234567890",\n          "quantityToBuild": 7,\n          "transactionDate": "2024-10-01",\n          "expirationDate": "2025-12-31",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "inventorySiteId": "80000001-1234567890",\n          "inventorySiteLocationId": "80000001-1234567890",\n          "lotNumber": "LOT2023-001",\n          "markPendingIfRequired": true,\n          "memo": "Assembled 25 units of Model ABC-123 Office Chair",\n          "refNumber": "BUILD-1234",\n          "serialNumber": "SN1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.build_assemblies.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbuild_assembly = conductor.qbd.build_assemblies.create(\n    inventory_assembly_item_id="80000001-1234567890",\n    quantity_to_build=7,\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(build_assembly.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/build-assemblies \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "inventoryAssemblyItemId": "80000001-1234567890",\n          "quantityToBuild": 7,\n          "transactionDate": "2024-10-01",\n          "expirationDate": "2025-12-31",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "inventorySiteId": "80000001-1234567890",\n          "inventorySiteLocationId": "80000001-1234567890",\n          "lotNumber": "LOT2023-001",\n          "markPendingIfRequired": true,\n          "memo": "Assembled 25 units of Model ABC-123 Office Chair",\n          "refNumber": "BUILD-1234",\n          "serialNumber": "SN1234567890"\n        }\'',
       },
     },
   },
@@ -1236,14 +1236,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const buildAssembly of conductor.qbd.buildAssemblies.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(buildAssembly.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/build-assemblies \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.build_assemblies.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.build_assemblies.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/build-assemblies \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1267,14 +1267,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst buildAssembly = await conductor.qbd.buildAssemblies.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(buildAssembly.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/build-assemblies/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.build_assemblies.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbuild_assembly = conductor.qbd.build_assemblies.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(build_assembly.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/build-assemblies/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1312,14 +1312,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst buildAssembly = await conductor.qbd.buildAssemblies.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(buildAssembly.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/build-assemblies/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "expirationDate": "2025-12-31",\n          "inventorySiteId": "80000001-1234567890",\n          "inventorySiteLocationId": "80000001-1234567890",\n          "lotNumber": "LOT2023-001",\n          "markPendingIfRequired": true,\n          "memo": "Assembled 25 units of Model ABC-123 Office Chair",\n          "quantityToBuild": 7,\n          "refNumber": "BUILD-1234",\n          "removePending": true,\n          "serialNumber": "SN1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.build_assemblies.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbuild_assembly = conductor.qbd.build_assemblies.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(build_assembly.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/build-assemblies/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "expirationDate": "2025-12-31",\n          "inventorySiteId": "80000001-1234567890",\n          "inventorySiteLocationId": "80000001-1234567890",\n          "lotNumber": "LOT2023-001",\n          "markPendingIfRequired": true,\n          "memo": "Assembled 25 units of Model ABC-123 Office Chair",\n          "quantityToBuild": 7,\n          "refNumber": "BUILD-1234",\n          "removePending": true,\n          "serialNumber": "SN1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -1342,14 +1342,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst buildAssembly = await conductor.qbd.buildAssemblies.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(buildAssembly.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/build-assemblies/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.build_assemblies.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nbuild_assembly = conductor.qbd.build_assemblies.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(build_assembly.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/build-assemblies/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1389,14 +1389,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst check = await conductor.qbd.checks.create({\n  bankAccountId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(check.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/checks \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "bankAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isQueuedForPrint": true,\n          "memo": "Payment for office supplies - Invoice INV-1234",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CHECK-1234",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.checks.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncheck = conductor.qbd.checks.create(\n    bank_account_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(check.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/checks \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "bankAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isQueuedForPrint": true,\n          "memo": "Payment for office supplies - Invoice INV-1234",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CHECK-1234",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -1439,14 +1439,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const check of conductor.qbd.checks.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(check.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/checks \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.checks.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.checks.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/checks \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1470,14 +1470,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst check = await conductor.qbd.checks.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(check.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/checks/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.checks.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncheck = conductor.qbd.checks.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(check.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/checks/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1520,14 +1520,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst check = await conductor.qbd.checks.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(check.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/checks/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "bankAccountId": "80000001-1234567890",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "exchangeRate": 1.2345,\n          "isQueuedForPrint": true,\n          "memo": "Payment for office supplies - Invoice INV-1234",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CHECK-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.checks.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncheck = conductor.qbd.checks.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(check.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/checks/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "bankAccountId": "80000001-1234567890",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "exchangeRate": 1.2345,\n          "isQueuedForPrint": true,\n          "memo": "Payment for office supplies - Invoice INV-1234",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CHECK-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -1551,14 +1551,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.checks.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/checks/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.checks.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.checks.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/checks/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1581,14 +1581,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst check = await conductor.qbd.checks.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(check.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/checks/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.checks.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncheck = conductor.qbd.checks.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(check.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/checks/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1611,14 +1611,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst _class = await conductor.qbd.classes.create({\n  name: 'Marketing',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(_class.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/classes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Marketing",\n          "isActive": true,\n          "parentId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.classes.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nclass_ = conductor.qbd.classes.create(\n    name="Marketing",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(class_.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/classes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Marketing",\n          "isActive": true,\n          "parentId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -1655,14 +1655,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst classes = await conductor.qbd.classes.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(classes.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/classes \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.classes.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nclasses = conductor.qbd.classes.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(classes.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/classes \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1686,14 +1686,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst _class = await conductor.qbd.classes.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(_class.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/classes/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.classes.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nclass_ = conductor.qbd.classes.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(class_.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/classes/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1723,14 +1723,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst _class = await conductor.qbd.classes.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(_class.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/classes/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "isActive": true,\n          "name": "Marketing",\n          "parentId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.classes.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nclass_ = conductor.qbd.classes.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(class_.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/classes/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "isActive": true,\n          "name": "Marketing",\n          "parentId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -1754,14 +1754,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst company = await conductor.qbd.company.retrieve({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(company.accountantCopy);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/company \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.company.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncompany = conductor.qbd.company.retrieve(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(company.accountant_copy)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/company \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1797,14 +1797,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardCharge = await conductor.qbd.creditCardCharges.create({\n  accountId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardCharge.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Office supplies for Q3 marketing campaign",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CARD-1234",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.credit_card_charges.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_card_charge = conductor.qbd.credit_card_charges.create(\n    account_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_card_charge.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Office supplies for Q3 marketing campaign",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CARD-1234",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -1847,14 +1847,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const creditCardCharge of conductor.qbd.creditCardCharges.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(creditCardCharge.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_charges.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.credit_card_charges.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1878,14 +1878,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardCharge = await conductor.qbd.creditCardCharges.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardCharge.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_charges.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_card_charge = conductor.qbd.credit_card_charges.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_card_charge.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1925,14 +1925,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardCharge = await conductor.qbd.creditCardCharges.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardCharge.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountId": "80000001-1234567890",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "exchangeRate": 1.2345,\n          "memo": "Office supplies for Q3 marketing campaign",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CARD-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.credit_card_charges.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_card_charge = conductor.qbd.credit_card_charges.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_card_charge.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountId": "80000001-1234567890",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "exchangeRate": 1.2345,\n          "memo": "Office supplies for Q3 marketing campaign",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CARD-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -1956,14 +1956,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.creditCardCharges.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_charges.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.credit_card_charges.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -1986,14 +1986,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardCharge = await conductor.qbd.creditCardCharges.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardCharge.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_charges.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_card_charge = conductor.qbd.credit_card_charges.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_card_charge.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-charges/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2029,14 +2029,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardCredit = await conductor.qbd.creditCardCredits.create({\n  accountId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardCredit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Refund for returned office supplies",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CREDIT-1234",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.credit_card_credits.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_card_credit = conductor.qbd.credit_card_credits.create(\n    account_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_card_credit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Refund for returned office supplies",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CREDIT-1234",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -2079,14 +2079,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const creditCardCredit of conductor.qbd.creditCardCredits.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(creditCardCredit.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_credits.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.credit_card_credits.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2110,14 +2110,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardCredit = await conductor.qbd.creditCardCredits.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardCredit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_credits.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_card_credit = conductor.qbd.credit_card_credits.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_card_credit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2157,14 +2157,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardCredit = await conductor.qbd.creditCardCredits.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardCredit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountId": "80000001-1234567890",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "exchangeRate": 1.2345,\n          "memo": "Refund for returned office supplies",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CREDIT-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.credit_card_credits.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_card_credit = conductor.qbd.credit_card_credits.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_card_credit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountId": "80000001-1234567890",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "exchangeRate": 1.2345,\n          "memo": "Refund for returned office supplies",\n          "payeeId": "80000001-1234567890",\n          "refNumber": "CREDIT-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -2188,14 +2188,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.creditCardCredits.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_credits.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.credit_card_credits.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2218,14 +2218,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardCredit = await conductor.qbd.creditCardCredits.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardCredit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_credits.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_card_credit = conductor.qbd.credit_card_credits.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_card_credit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-credits/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2263,14 +2263,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardRefund = await conductor.qbd.creditCardRefunds.create({\n  customerId: '80000001-1234567890',\n  refundAppliedToTransactions: [{ refundAmount: '15.00', transactionId: '123ABC-1234567890' }],\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardRefund.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "refundAppliedToTransactions": [\n            {\n              "refundAmount": "15.00",\n              "transactionId": "123ABC-1234567890"\n            }\n          ],\n          "transactionDate": "2024-10-01",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Refund to customer for duplicate credit card charge",\n          "paymentMethodId": "80000001-1234567890",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "REFUND-1234",\n          "refundFromAccountId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.credit_card_refunds.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_card_refund = conductor.qbd.credit_card_refunds.create(\n    customer_id="80000001-1234567890",\n    refund_applied_to_transactions=[{\n        "refund_amount": "15.00",\n        "transaction_id": "123ABC-1234567890",\n    }],\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_card_refund.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "refundAppliedToTransactions": [\n            {\n              "refundAmount": "15.00",\n              "transactionId": "123ABC-1234567890"\n            }\n          ],\n          "transactionDate": "2024-10-01",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Refund to customer for duplicate credit card charge",\n          "paymentMethodId": "80000001-1234567890",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "REFUND-1234",\n          "refundFromAccountId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -2313,14 +2313,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const creditCardRefund of conductor.qbd.creditCardRefunds.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(creditCardRefund.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_refunds.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.credit_card_refunds.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2344,14 +2344,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardRefund = await conductor.qbd.creditCardRefunds.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardRefund.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_refunds.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_card_refund = conductor.qbd.credit_card_refunds.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_card_refund.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2375,14 +2375,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.creditCardRefunds.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_refunds.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.credit_card_refunds.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2405,14 +2405,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditCardRefund = await conductor.qbd.creditCardRefunds.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditCardRefund.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_card_refunds.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_card_refund = conductor.qbd.credit_card_refunds.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_card_refund.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-card-refunds/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2464,14 +2464,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditMemo = await conductor.qbd.creditMemos.create({\n  customerId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditMemo.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer refund for damaged shipment",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "CM-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.credit_memos.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_memo = conductor.qbd.credit_memos.create(\n    customer_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_memo.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer refund for damaged shipment",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "CM-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -2515,14 +2515,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const creditMemo of conductor.qbd.creditMemos.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(creditMemo.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_memos.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.credit_memos.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2546,14 +2546,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditMemo = await conductor.qbd.creditMemos.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditMemo.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_memos.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_memo = conductor.qbd.credit_memos.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_memo.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2607,14 +2607,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditMemo = await conductor.qbd.creditMemos.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditMemo.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer refund for damaged shipment",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "CM-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.credit_memos.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_memo = conductor.qbd.credit_memos.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_memo.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer refund for damaged shipment",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "CM-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -2638,14 +2638,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.creditMemos.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_memos.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.credit_memos.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2668,14 +2668,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst creditMemo = await conductor.qbd.creditMemos.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(creditMemo.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.credit_memos.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncredit_memo = conductor.qbd.credit_memos.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(credit_memo.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/credit-memos/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2705,14 +2705,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst currency = await conductor.qbd.currencies.create({\n  currencyCode: 'USD',\n  name: 'United States Dollar',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(currency.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/currencies \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "currencyCode": "USD",\n          "name": "United States Dollar",\n          "isActive": true\n        }\'',
+      },
       python: {
         method: 'qbd.currencies.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncurrency = conductor.qbd.currencies.create(\n    currency_code="USD",\n    name="United States Dollar",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(currency.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/currencies \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "currencyCode": "USD",\n          "name": "United States Dollar",\n          "isActive": true\n        }\'',
       },
     },
   },
@@ -2749,14 +2749,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst currencies = await conductor.qbd.currencies.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(currencies.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/currencies \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.currencies.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncurrencies = conductor.qbd.currencies.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(currencies.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/currencies \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2780,14 +2780,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst currency = await conductor.qbd.currencies.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(currency.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/currencies/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.currencies.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncurrency = conductor.qbd.currencies.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(currency.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/currencies/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2819,14 +2819,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst currency = await conductor.qbd.currencies.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(currency.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/currencies/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "currencyCode": "USD",\n          "isActive": true,\n          "name": "United States Dollar"\n        }\'',
+      },
       python: {
         method: 'qbd.currencies.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncurrency = conductor.qbd.currencies.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(currency.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/currencies/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "currencyCode": "USD",\n          "isActive": true,\n          "name": "United States Dollar"\n        }\'',
       },
     },
   },
@@ -2849,14 +2849,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst customerType = await conductor.qbd.customerTypes.create({\n  name: 'Healthcare',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(customerType.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/customer-types \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Healthcare",\n          "isActive": true,\n          "parentId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.customer_types.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncustomer_type = conductor.qbd.customer_types.create(\n    name="Healthcare",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(customer_type.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/customer-types \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Healthcare",\n          "isActive": true,\n          "parentId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -2893,14 +2893,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst customerTypes = await conductor.qbd.customerTypes.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(customerTypes.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/customer-types \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.customer_types.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncustomer_types = conductor.qbd.customer_types.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(customer_types.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/customer-types \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -2924,14 +2924,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst customerType = await conductor.qbd.customerTypes.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(customerType.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/customer-types/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.customer_types.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncustomer_type = conductor.qbd.customer_types.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(customer_type.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/customer-types/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3003,14 +3003,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst customer = await conductor.qbd.customers.create({\n  name: 'Website Redesign Project',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(customer.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/customers \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Website Redesign Project",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "ccEmail": "manager@example.com",\n          "classId": "80000001-1234567890",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "creditLimit": "5000.00",\n          "currencyId": "80000001-1234567890",\n          "customerTypeId": "80000001-1234567890",\n          "email": "customer@example.com",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "jobDescription": "Kitchen renovation project for residential client.",\n          "jobEndDate": "2024-11-30",\n          "jobProjectedEndDate": "2024-12-31",\n          "jobStartDate": "2024-01-15",\n          "jobStatus": "in_progress",\n          "jobTitle": "Purchasing Manager",\n          "jobTypeId": "80000001-1234567890",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "note": "Our favorite customer.",\n          "openingBalance": "1000.00",\n          "openingBalanceDate": "2023-01-01",\n          "parentId": "80000001-1234567890",\n          "phone": "+1-555-123-4567",\n          "preferredDeliveryMethod": "email",\n          "preferredPaymentMethodId": "80000001-1234567890",\n          "priceLevelId": "80000001-1234567890",\n          "resaleNumber": "123456789",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxCountry": "us",\n          "salesTaxItemId": "80000001-1234567890",\n          "salutation": "Dr.",\n          "taxRegistrationNumber": "GB123456789",\n          "termsId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.customers.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncustomer = conductor.qbd.customers.create(\n    name="Website Redesign Project",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(customer.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/customers \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Website Redesign Project",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "ccEmail": "manager@example.com",\n          "classId": "80000001-1234567890",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "creditLimit": "5000.00",\n          "currencyId": "80000001-1234567890",\n          "customerTypeId": "80000001-1234567890",\n          "email": "customer@example.com",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "jobDescription": "Kitchen renovation project for residential client.",\n          "jobEndDate": "2024-11-30",\n          "jobProjectedEndDate": "2024-12-31",\n          "jobStartDate": "2024-01-15",\n          "jobStatus": "in_progress",\n          "jobTitle": "Purchasing Manager",\n          "jobTypeId": "80000001-1234567890",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "note": "Our favorite customer.",\n          "openingBalance": "1000.00",\n          "openingBalanceDate": "2023-01-01",\n          "parentId": "80000001-1234567890",\n          "phone": "+1-555-123-4567",\n          "preferredDeliveryMethod": "email",\n          "preferredPaymentMethodId": "80000001-1234567890",\n          "priceLevelId": "80000001-1234567890",\n          "resaleNumber": "123456789",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxCountry": "us",\n          "salesTaxItemId": "80000001-1234567890",\n          "salutation": "Dr.",\n          "taxRegistrationNumber": "GB123456789",\n          "termsId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -3055,14 +3055,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const customer of conductor.qbd.customers.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(customer.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/customers \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.customers.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.customers.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/customers \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3085,14 +3085,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst customer = await conductor.qbd.customers.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(customer.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/customers/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.customers.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncustomer = conductor.qbd.customers.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(customer.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/customers/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3163,14 +3163,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst customer = await conductor.qbd.customers.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(customer.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/customers/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "ccEmail": "manager@example.com",\n          "classId": "80000001-1234567890",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "creditLimit": "5000.00",\n          "currencyId": "80000001-1234567890",\n          "customerTypeId": "80000001-1234567890",\n          "email": "customer@example.com",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "jobDescription": "Kitchen renovation project for residential client.",\n          "jobEndDate": "2024-11-30",\n          "jobProjectedEndDate": "2024-12-31",\n          "jobStartDate": "2024-01-15",\n          "jobStatus": "in_progress",\n          "jobTitle": "Purchasing Manager",\n          "jobTypeId": "80000001-1234567890",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "name": "Website Redesign Project",\n          "note": "Our favorite customer.",\n          "parentId": "80000001-1234567890",\n          "phone": "+1-555-123-4567",\n          "preferredDeliveryMethod": "email",\n          "preferredPaymentMethodId": "80000001-1234567890",\n          "priceLevelId": "80000001-1234567890",\n          "resaleNumber": "123456789",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxCountry": "us",\n          "salesTaxItemId": "80000001-1234567890",\n          "salutation": "Dr.",\n          "taxRegistrationNumber": "GB123456789",\n          "termsId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.customers.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncustomer = conductor.qbd.customers.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(customer.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/customers/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "ccEmail": "manager@example.com",\n          "classId": "80000001-1234567890",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "creditLimit": "5000.00",\n          "currencyId": "80000001-1234567890",\n          "customerTypeId": "80000001-1234567890",\n          "email": "customer@example.com",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "jobDescription": "Kitchen renovation project for residential client.",\n          "jobEndDate": "2024-11-30",\n          "jobProjectedEndDate": "2024-12-31",\n          "jobStartDate": "2024-01-15",\n          "jobStatus": "in_progress",\n          "jobTitle": "Purchasing Manager",\n          "jobTypeId": "80000001-1234567890",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "name": "Website Redesign Project",\n          "note": "Our favorite customer.",\n          "parentId": "80000001-1234567890",\n          "phone": "+1-555-123-4567",\n          "preferredDeliveryMethod": "email",\n          "preferredPaymentMethodId": "80000001-1234567890",\n          "priceLevelId": "80000001-1234567890",\n          "resaleNumber": "123456789",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxCountry": "us",\n          "salesTaxItemId": "80000001-1234567890",\n          "salutation": "Dr.",\n          "taxRegistrationNumber": "GB123456789",\n          "termsId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -3202,14 +3202,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst dateDrivenTerm = await conductor.qbd.dateDrivenTerms.create({\n  dueDayOfMonth: 15,\n  name: '2% 5th Net 25th',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(dateDrivenTerm.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/date-driven-terms \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "dueDayOfMonth": 15,\n          "name": "2% 5th Net 25th",\n          "discountDayOfMonth": 5,\n          "discountPercentage": "10",\n          "gracePeriodDays": 2,\n          "isActive": true\n        }\'',
+      },
       python: {
         method: 'qbd.date_driven_terms.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndate_driven_term = conductor.qbd.date_driven_terms.create(\n    due_day_of_month=15,\n    name="2% 5th Net 25th",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(date_driven_term.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/date-driven-terms \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "dueDayOfMonth": 15,\n          "name": "2% 5th Net 25th",\n          "discountDayOfMonth": 5,\n          "discountPercentage": "10",\n          "gracePeriodDays": 2,\n          "isActive": true\n        }\'',
       },
     },
   },
@@ -3246,14 +3246,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst dateDrivenTerms = await conductor.qbd.dateDrivenTerms.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(dateDrivenTerms.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/date-driven-terms \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.date_driven_terms.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndate_driven_terms = conductor.qbd.date_driven_terms.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(date_driven_terms.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/date-driven-terms \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3277,14 +3277,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst dateDrivenTerm = await conductor.qbd.dateDrivenTerms.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(dateDrivenTerm.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/date-driven-terms/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.date_driven_terms.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndate_driven_term = conductor.qbd.date_driven_terms.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(date_driven_term.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/date-driven-terms/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3313,14 +3313,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst deletedListObjects = await conductor.qbd.deletedListObjects.list({\n  objectTypes: ['customer'],\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(deletedListObjects.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/deleted-list-objects \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.deleted_list_objects.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndeleted_list_objects = conductor.qbd.deleted_list_objects.list(\n    object_types=["customer"],\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(deleted_list_objects.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/deleted-list-objects \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3349,14 +3349,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst deletedTransactions = await conductor.qbd.deletedTransactions.list({\n  transactionTypes: ['invoice'],\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(deletedTransactions.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/deleted-transactions \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.deleted_transactions.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndeleted_transactions = conductor.qbd.deleted_transactions.list(\n    transaction_types=["invoice"],\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(deleted_transactions.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/deleted-transactions \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3390,14 +3390,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst deposit = await conductor.qbd.deposits.create({\n  depositToAccountId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(deposit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "depositToAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "currencyId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Batch settlement deposit"\n        }\'',
+      },
       python: {
         method: 'qbd.deposits.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndeposit = conductor.qbd.deposits.create(\n    deposit_to_account_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(deposit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "depositToAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "currencyId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Batch settlement deposit"\n        }\'',
       },
     },
   },
@@ -3433,14 +3433,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const deposit of conductor.qbd.deposits.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(deposit.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.deposits.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.deposits.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3464,14 +3464,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst deposit = await conductor.qbd.deposits.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(deposit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.deposits.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndeposit = conductor.qbd.deposits.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(deposit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3506,14 +3506,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst deposit = await conductor.qbd.deposits.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(deposit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "currencyId": "80000001-1234567890",\n          "depositToAccountId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "memo": "Batch settlement deposit",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.deposits.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndeposit = conductor.qbd.deposits.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(deposit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "currencyId": "80000001-1234567890",\n          "depositToAccountId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "memo": "Batch settlement deposit",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -3537,14 +3537,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.deposits.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.deposits.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.deposits.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3567,14 +3567,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst deposit = await conductor.qbd.deposits.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(deposit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.deposits.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndeposit = conductor.qbd.deposits.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(deposit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/deposits/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3611,14 +3611,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst discountItem = await conductor.qbd.discountItems.create({\n  accountId: '80000001-1234567890',\n  name: '10% labor discount',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(discountItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/discount-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountId": "80000001-1234567890",\n          "name": "10% labor discount",\n          "classId": "80000001-1234567890",\n          "description": "10% discount for early payment on labor charges",\n          "discountRate": "25.00",\n          "discountRatePercent": "10.5",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.discount_items.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndiscount_item = conductor.qbd.discount_items.create(\n    account_id="80000001-1234567890",\n    name="10% labor discount",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(discount_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/discount-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountId": "80000001-1234567890",\n          "name": "10% labor discount",\n          "classId": "80000001-1234567890",\n          "description": "10% discount for early payment on labor charges",\n          "discountRate": "25.00",\n          "discountRatePercent": "10.5",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -3657,14 +3657,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const discountItem of conductor.qbd.discountItems.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(discountItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/discount-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.discount_items.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.discount_items.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/discount-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3688,14 +3688,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst discountItem = await conductor.qbd.discountItems.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(discountItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/discount-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.discount_items.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndiscount_item = conductor.qbd.discount_items.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(discount_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/discount-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3734,14 +3734,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst discountItem = await conductor.qbd.discountItems.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(discountItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/discount-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountId": "80000001-1234567890",\n          "classId": "80000001-1234567890",\n          "description": "10% discount for early payment on labor charges",\n          "discountRate": "25.00",\n          "discountRatePercent": "10.5",\n          "isActive": true,\n          "name": "10% labor discount",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "updateExistingTransactionsAccount": false\n        }\'',
+      },
       python: {
         method: 'qbd.discount_items.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ndiscount_item = conductor.qbd.discount_items.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(discount_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/discount-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountId": "80000001-1234567890",\n          "classId": "80000001-1234567890",\n          "description": "10% discount for early payment on labor charges",\n          "discountRate": "25.00",\n          "discountRatePercent": "10.5",\n          "isActive": true,\n          "name": "10% labor discount",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "updateExistingTransactionsAccount": false\n        }\'',
       },
     },
   },
@@ -3805,21 +3805,21 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     ],
     response: 'object',
     markdown:
-      "## create\n\n`conductor.qbd.employees.create(Conductor-End-User-Id: string, accountNumber?: string, additionalNotes?: { note: string; }[], address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; postalCode?: string; state?: string; }, adjustedServiceDate?: string, alternatePhone?: string, billingRateId?: string, birthDate?: string, customContactFields?: { name: string; value: string; }[], department?: string, description?: string, disabilityDescription?: string, disabilityStatus?: 'disabled' | 'non_disabled', email?: string, emergencyContact?: { primaryContact?: { name: string; value: string; relation?: string; }; secondaryContact?: { name: string; value: string; relation?: string; }; }, employeePayroll?: { classId?: string; earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]; payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; }, employeeType?: 'officer' | 'owner' | 'regular' | 'statutory', employmentStatus?: 'full_time' | 'part_time', ethnicity?: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races', externalId?: string, fax?: string, firstName?: string, gender?: 'male' | 'female', hiredDate?: string, i9OnFileStatus?: 'on_file' | 'not_on_file', isActive?: boolean, jobTitle?: string, keyEmployeeStatus?: 'key_employee' | 'non_key_employee', lastName?: string, middleName?: string, militaryStatus?: 'active' | 'reserve', mobile?: string, note?: string, originalHireDate?: string, overtimeExemptStatus?: 'exempt' | 'non_exempt', pager?: string, pagerPin?: string, phone?: string, printAs?: string, salutation?: string, ssn?: string, supervisorId?: string, targetBonus?: string, terminationDate?: string, usCitizenshipStatus?: 'citizen' | 'non_citizen', usVeteranStatus?: 'veteran' | 'non_veteran', workAuthorizationExpirationDate?: string): { id: string; accountNumber: string; additionalNotes: object[]; address: object; adjustedServiceDate: string; alternatePhone: string; billingRate: object; birthDate: string; createdAt: string; customContactFields: object[]; customFields: object[]; department: string; description: string; disabilityDescription: string; disabilityStatus: 'disabled' | 'non_disabled'; email: string; emergencyContact: object; employeePayroll: object; employeeType: 'officer' | 'owner' | 'regular' | 'statutory'; employmentStatus: 'full_time' | 'part_time'; ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'; externalId: string; fax: string; firstName: string; gender: 'male' | 'female'; hiredDate: string; i9OnFileStatus: 'on_file' | 'not_on_file'; isActive: boolean; jobTitle: string; keyEmployeeStatus: 'key_employee' | 'non_key_employee'; lastName: string; middleName: string; militaryStatus: 'active' | 'reserve'; mobile: string; name: string; note: string; objectType: 'qbd_employee'; originalHireDate: string; overtimeExemptStatus: 'exempt' | 'non_exempt'; pager: string; pagerPin: string; phone: string; printAs: string; revisionNumber: string; salutation: string; ssn: string; supervisor: object; targetBonus: string; terminationDate: string; updatedAt: string; usCitizenshipStatus: 'citizen' | 'non_citizen'; usVeteranStatus: 'veteran' | 'non_veteran'; workAuthorizationExpirationDate: string; }`\n\n**post** `/quickbooks-desktop/employees`\n\nCreates an employee record that captures personal details, contact information, employment dates, and payroll settings in a single request so the employee is ready for scheduling, time tracking, and payroll processing.\n\n### Parameters\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountNumber?: string`\n  The employee's account number, which appears in the QuickBooks chart of accounts, reports, and graphs.\n\nNote that if the \"Use Account Numbers\" preference is turned off in QuickBooks, the account number may not be visible in the user interface, but it can still be set and retrieved through the API.\n\n- `additionalNotes?: { note: string; }[]`\n  Additional notes about this employee.\n\n- `address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; postalCode?: string; state?: string; }`\n  The employee's address.\n\nIf the company uses QuickBooks Payroll for this employee, this address must specify a complete address, including city, state, ZIP (or postal) code, and at least one line of the street address.\n  - `city?: string`\n    The city, district, suburb, town, or village name of the employee address.\n\nMaximum length: 31 characters.\n  - `country?: string`\n    The country name of the employee address.\n  - `line1?: string`\n    The first line of the employee address (e.g., street, PO Box, or company name).\n\nMaximum length: 41 characters.\n  - `line2?: string`\n    The second line of the employee address, if needed (e.g., apartment, suite, unit, or building).\n\nMaximum length: 41 characters.\n  - `line3?: string`\n    The third line of the employee address, if needed.\n\nMaximum length: 41 characters.\n  - `line4?: string`\n    The fourth line of the employee address, if needed.\n\nMaximum length: 41 characters.\n  - `postalCode?: string`\n    The postal code or ZIP code of the employee address.\n\nMaximum length: 13 characters.\n  - `state?: string`\n    The U.S. state or Canadian province of the employee address. QuickBooks requires this field to be a two-letter abbreviation (e.g., \"CA\" for California or \"ON\" for Ontario). See enum for all possible values. QuickBooks may reject values that the connected company file's edition does not support (e.g., a Canadian province on a U.S. company file).\n\n- `adjustedServiceDate?: string`\n  The adjusted service date for this employee, in ISO 8601 format (YYYY-MM-DD). This date accounts for previous employment periods or leaves that affect seniority.\n\n- `alternatePhone?: string`\n  The employee's alternate telephone number.\n\nMaximum length: 21 characters.\n\n- `billingRateId?: string`\n  The employee's billing rate, used to override service item rates in time tracking activities.\n\n- `birthDate?: string`\n  This employee's date of birth, in ISO 8601 format (YYYY-MM-DD).\n\n- `customContactFields?: { name: string; value: string; }[]`\n  Additional custom contact fields for this employee, such as phone numbers or email addresses.\n\n- `department?: string`\n  The employee's department. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `description?: string`\n  A description of this employee. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `disabilityDescription?: string`\n  A description of this employee's disability.\n\n- `disabilityStatus?: 'disabled' | 'non_disabled'`\n  Indicates whether this employee is disabled.\n\n- `email?: string`\n  The employee's email address.\n\n- `emergencyContact?: { primaryContact?: { name: string; value: string; relation?: string; }; secondaryContact?: { name: string; value: string; relation?: string; }; }`\n  The employee's emergency contacts.\n  - `primaryContact?: { name: string; value: string; relation?: string; }`\n    The employee's primary emergency contact.\n  - `secondaryContact?: { name: string; value: string; relation?: string; }`\n    The employee's secondary emergency contact.\n\n- `employeePayroll?: { classId?: string; earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]; payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; }`\n  The employee's payroll information.\n  - `classId?: string`\n    The employee's class. Classes can be used to categorize objects into meaningful segments, such as department, location, or type of work. In QuickBooks, class tracking is off by default.\n  - `earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]`\n    The employee's earnings.\n  - `payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'`\n    How frequently this employee is paid (e.g., weekly, biweekly, monthly). This determines the schedule for generating paychecks.\n  - `sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }`\n    The employee's sick hours, including how sick time is accrued and the total hours accrued.\n  - `useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'`\n    Indicates whether this employee is using time-tracking data to create paychecks.\n  - `vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }`\n    The employee's vacation hours, including how vacation time is accrued and the total hours accrued.\n\n- `employeeType?: 'officer' | 'owner' | 'regular' | 'statutory'`\n  The employee type. This affects payroll taxes - a statutory employee is defined as an employee by statute. Note that owners/partners are typically on the \"Other Names\" list in QuickBooks, but if listed as an employee their type will be `owner`.\n\n- `employmentStatus?: 'full_time' | 'part_time'`\n  Indicates whether this employee is a part-time or full-time employee.\n\n- `ethnicity?: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'`\n  This employee's ethnicity.\n\n- `externalId?: string`\n  A globally unique identifier (GUID) you, the developer, can provide for tracking this object in your external system. This field is immutable and can only be set during object creation.\n\n**IMPORTANT**: This field must be formatted as a valid GUID; otherwise, QuickBooks will return an error.\n\n- `fax?: string`\n  The employee's fax number.\n\nMaximum length: 21 characters.\n\n- `firstName?: string`\n  The employee's first name.\n\nMaximum length: 25 characters.\n\n- `gender?: 'male' | 'female'`\n  This employee's gender.\n\n- `hiredDate?: string`\n  The date this employee was hired, in ISO 8601 format (YYYY-MM-DD).\n\n- `i9OnFileStatus?: 'on_file' | 'not_on_file'`\n  Indicates whether this employee's I-9 is on file.\n\n- `isActive?: boolean`\n  Indicates whether this employee is active. Inactive objects are typically hidden from views and reports in QuickBooks. Defaults to `true`.\n\n- `jobTitle?: string`\n  The employee's job title.\n\n- `keyEmployeeStatus?: 'key_employee' | 'non_key_employee'`\n  Indicates whether this employee is a key employee.\n\n- `lastName?: string`\n  The employee's last name.\n\nMaximum length: 25 characters.\n\n- `middleName?: string`\n  The employee's middle name.\n\nMaximum length: 5 characters.\n\n- `militaryStatus?: 'active' | 'reserve'`\n  This employee's military status if they are a U.S. veteran.\n\n- `mobile?: string`\n  The employee's mobile phone number.\n\nMaximum length: 21 characters.\n\n- `note?: string`\n  A note or comment about this employee.\n\n- `originalHireDate?: string`\n  The original hire date for this employee, in ISO 8601 format (YYYY-MM-DD).\n\n- `overtimeExemptStatus?: 'exempt' | 'non_exempt'`\n  Indicates whether this employee is exempt from overtime pay. This classification is based on U.S. labor laws (FLSA).\n\n- `pager?: string`\n  The employee's pager number.\n\nMaximum length: 21 characters.\n\n- `pagerPin?: string`\n  The employee's pager PIN.\n\n- `phone?: string`\n  The employee's primary telephone number.\n\nMaximum length: 21 characters.\n\n- `printAs?: string`\n  The name to use when printing this employee from QuickBooks. By default, this is the same as the `name` field.\n\n- `salutation?: string`\n  The employee's formal salutation title that precedes their name, such as \"Mr.\", \"Ms.\", or \"Dr.\".\n\n- `ssn?: string`\n  The employee's Social Security Number. The value can be with or without dashes.\n\n**NOTE**: This field cannot be changed after the employee is created.\n\n- `supervisorId?: string`\n  The employee's supervisor. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `targetBonus?: string`\n  The target bonus for this employee, represented as a decimal string. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `terminationDate?: string`\n  The date this employee's employment ended with the company, in ISO 8601 format (YYYY-MM-DD). This is also known as the released date or separation date.\n\n- `usCitizenshipStatus?: 'citizen' | 'non_citizen'`\n  Indicates whether this employee is a U.S. citizen.\n\n- `usVeteranStatus?: 'veteran' | 'non_veteran'`\n  Indicates whether this employee is a U.S. veteran.\n\n- `workAuthorizationExpirationDate?: string`\n  The date this employee's work authorization expires, in ISO 8601 format (YYYY-MM-DD).\n\n### Returns\n\n- `{ id: string; accountNumber: string; additionalNotes: { id: number; date: string; note: string; }[]; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; postalCode: string; state: string; }; adjustedServiceDate: string; alternatePhone: string; billingRate: { id: string; fullName: string; }; birthDate: string; createdAt: string; customContactFields: { name: string; value: string; }[]; customFields: { name: string; ownerId: string; type: string; value: string; }[]; department: string; description: string; disabilityDescription: string; disabilityStatus: 'disabled' | 'non_disabled'; email: string; emergencyContact: { primaryContact: { name: string; relation: string; value: string; }; secondaryContact: { name: string; relation: string; value: string; }; }; employeePayroll: { class: { id: string; fullName: string; }; earnings: { payrollWageItem: object; rate: string; ratePercent: string; }[]; payPeriod: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; useTimeDataToCreatePaychecks: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; }; employeeType: 'officer' | 'owner' | 'regular' | 'statutory'; employmentStatus: 'full_time' | 'part_time'; ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'; externalId: string; fax: string; firstName: string; gender: 'male' | 'female'; hiredDate: string; i9OnFileStatus: 'on_file' | 'not_on_file'; isActive: boolean; jobTitle: string; keyEmployeeStatus: 'key_employee' | 'non_key_employee'; lastName: string; middleName: string; militaryStatus: 'active' | 'reserve'; mobile: string; name: string; note: string; objectType: 'qbd_employee'; originalHireDate: string; overtimeExemptStatus: 'exempt' | 'non_exempt'; pager: string; pagerPin: string; phone: string; printAs: string; revisionNumber: string; salutation: string; ssn: string; supervisor: { id: string; fullName: string; }; targetBonus: string; terminationDate: string; updatedAt: string; usCitizenshipStatus: 'citizen' | 'non_citizen'; usVeteranStatus: 'veteran' | 'non_veteran'; workAuthorizationExpirationDate: string; }`\n\n  - `id: string`\n  - `accountNumber: string`\n  - `additionalNotes: { id: number; date: string; note: string; }[]`\n  - `address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; postalCode: string; state: string; }`\n  - `adjustedServiceDate: string`\n  - `alternatePhone: string`\n  - `billingRate: { id: string; fullName: string; }`\n  - `birthDate: string`\n  - `createdAt: string`\n  - `customContactFields: { name: string; value: string; }[]`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `department: string`\n  - `description: string`\n  - `disabilityDescription: string`\n  - `disabilityStatus: 'disabled' | 'non_disabled'`\n  - `email: string`\n  - `emergencyContact: { primaryContact: { name: string; relation: string; value: string; }; secondaryContact: { name: string; relation: string; value: string; }; }`\n  - `employeePayroll: { class: { id: string; fullName: string; }; earnings: { payrollWageItem: { id: string; fullName: string; }; rate: string; ratePercent: string; }[]; payPeriod: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; useTimeDataToCreatePaychecks: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; }`\n  - `employeeType: 'officer' | 'owner' | 'regular' | 'statutory'`\n  - `employmentStatus: 'full_time' | 'part_time'`\n  - `ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'`\n  - `externalId: string`\n  - `fax: string`\n  - `firstName: string`\n  - `gender: 'male' | 'female'`\n  - `hiredDate: string`\n  - `i9OnFileStatus: 'on_file' | 'not_on_file'`\n  - `isActive: boolean`\n  - `jobTitle: string`\n  - `keyEmployeeStatus: 'key_employee' | 'non_key_employee'`\n  - `lastName: string`\n  - `middleName: string`\n  - `militaryStatus: 'active' | 'reserve'`\n  - `mobile: string`\n  - `name: string`\n  - `note: string`\n  - `objectType: 'qbd_employee'`\n  - `originalHireDate: string`\n  - `overtimeExemptStatus: 'exempt' | 'non_exempt'`\n  - `pager: string`\n  - `pagerPin: string`\n  - `phone: string`\n  - `printAs: string`\n  - `revisionNumber: string`\n  - `salutation: string`\n  - `ssn: string`\n  - `supervisor: { id: string; fullName: string; }`\n  - `targetBonus: string`\n  - `terminationDate: string`\n  - `updatedAt: string`\n  - `usCitizenshipStatus: 'citizen' | 'non_citizen'`\n  - `usVeteranStatus: 'veteran' | 'non_veteran'`\n  - `workAuthorizationExpirationDate: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst employee = await conductor.qbd.employees.create({ conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(employee);\n```",
+      "## create\n\n`conductor.qbd.employees.create(Conductor-End-User-Id: string, accountNumber?: string, additionalNotes?: { note: string; }[], address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; postalCode?: string; state?: string; }, adjustedServiceDate?: string, alternatePhone?: string, billingRateId?: string, birthDate?: string, customContactFields?: { name: string; value: string; }[], department?: string, description?: string, disabilityDescription?: string, disabilityStatus?: 'disabled' | 'non_disabled', email?: string, emergencyContact?: { primaryContact?: { name: string; value: string; relation?: string; }; secondaryContact?: { name: string; value: string; relation?: string; }; }, employeePayroll?: { classId?: string; earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]; payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; }, employeeType?: 'officer' | 'owner' | 'regular' | 'statutory', employmentStatus?: 'full_time' | 'part_time', ethnicity?: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races', externalId?: string, fax?: string, firstName?: string, gender?: 'male' | 'female', hiredDate?: string, i9OnFileStatus?: 'on_file' | 'not_on_file', isActive?: boolean, jobTitle?: string, keyEmployeeStatus?: 'key_employee' | 'non_key_employee', lastName?: string, middleName?: string, militaryStatus?: 'active' | 'reserve', mobile?: string, note?: string, originalHireDate?: string, overtimeExemptStatus?: 'exempt' | 'non_exempt', pager?: string, pagerPin?: string, phone?: string, printAs?: string, salutation?: string, ssn?: string, supervisorId?: string, targetBonus?: string, terminationDate?: string, usCitizenshipStatus?: 'citizen' | 'non_citizen', usVeteranStatus?: 'veteran' | 'non_veteran', workAuthorizationExpirationDate?: string): { id: string; accountNumber: string; additionalNotes: object[]; address: object; adjustedServiceDate: string; alternatePhone: string; billingRate: object; birthDate: string; createdAt: string; customContactFields: object[]; customFields: object[]; department: string; description: string; disabilityDescription: string; disabilityStatus: 'disabled' | 'non_disabled'; email: string; emergencyContact: object; employeePayroll: object; employeeType: 'officer' | 'owner' | 'regular' | 'statutory'; employmentStatus: 'full_time' | 'part_time'; ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'; externalId: string; fax: string; firstName: string; gender: 'male' | 'female'; hiredDate: string; i9OnFileStatus: 'on_file' | 'not_on_file'; isActive: boolean; jobTitle: string; keyEmployeeStatus: 'key_employee' | 'non_key_employee'; lastName: string; middleName: string; militaryStatus: 'active' | 'reserve'; mobile: string; name: string; note: string; objectType: 'qbd_employee'; originalHireDate: string; overtimeExemptStatus: 'exempt' | 'non_exempt'; pager: string; pagerPin: string; phone: string; printAs: string; revisionNumber: string; salutation: string; ssn: string; supervisor: object; targetBonus: string; terminationDate: string; updatedAt: string; usCitizenshipStatus: 'citizen' | 'non_citizen'; usVeteranStatus: 'veteran' | 'non_veteran'; workAuthorizationExpirationDate: string; }`\n\n**post** `/quickbooks-desktop/employees`\n\nCreates an employee record that captures personal details, contact information, employment dates, and payroll settings in a single request so the employee is ready for scheduling, time tracking, and payroll processing.\n\n### Parameters\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountNumber?: string`\n  The employee's account number, which appears in the QuickBooks chart of accounts, reports, and graphs.\n\nNote that if the \"Use Account Numbers\" preference is turned off in QuickBooks, the account number may not be visible in the user interface, but it can still be set and retrieved through the API.\n\n- `additionalNotes?: { note: string; }[]`\n  Additional notes about this employee.\n\n- `address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; postalCode?: string; state?: string; }`\n  The employee's address.\n\nIf the company uses QuickBooks Payroll for this employee, this address must specify a complete address, including city, state, ZIP (or postal) code, and at least one line of the street address.\n  - `city?: string`\n    The city, district, suburb, town, or village name of the employee address.\n\nMaximum length: 31 characters.\n  - `country?: string`\n    The country name of the employee address.\n  - `line1?: string`\n    The first line of the employee address (e.g., street, PO Box, or company name).\n\nMaximum length: 41 characters.\n  - `line2?: string`\n    The second line of the employee address, if needed (e.g., apartment, suite, unit, or building).\n\nMaximum length: 41 characters.\n  - `line3?: string`\n    The third line of the employee address, if needed.\n\nMaximum length: 41 characters.\n  - `line4?: string`\n    The fourth line of the employee address, if needed.\n\nMaximum length: 41 characters.\n  - `postalCode?: string`\n    The postal code or ZIP code of the employee address.\n\nMaximum length: 13 characters.\n  - `state?: string`\n    The U.S. state or Canadian province of the employee address. QuickBooks requires this field to be a two-letter abbreviation (e.g., \"CA\" for California or \"ON\" for Ontario). See enum for all possible values. QuickBooks may reject values that the connected company file's edition does not support (e.g., a Canadian province on a U.S. company file).\n\n- `adjustedServiceDate?: string`\n  The adjusted service date for this employee, in ISO 8601 format (YYYY-MM-DD). This date accounts for previous employment periods or leaves that affect seniority.\n\n- `alternatePhone?: string`\n  The employee's alternate telephone number.\n\nMaximum length: 21 characters.\n\n- `billingRateId?: string`\n  The employee's billing rate, used to override service item rates in time tracking activities.\n\n- `birthDate?: string`\n  This employee's date of birth, in ISO 8601 format (YYYY-MM-DD).\n\n- `customContactFields?: { name: string; value: string; }[]`\n  Additional custom contact fields for this employee, such as phone numbers or email addresses.\n\n- `department?: string`\n  The employee's department. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `description?: string`\n  A description of this employee. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `disabilityDescription?: string`\n  A description of this employee's disability.\n\n- `disabilityStatus?: 'disabled' | 'non_disabled'`\n  Indicates whether this employee is disabled.\n\n- `email?: string`\n  The employee's email address.\n\n- `emergencyContact?: { primaryContact?: { name: string; value: string; relation?: string; }; secondaryContact?: { name: string; value: string; relation?: string; }; }`\n  The employee's emergency contacts.\n  - `primaryContact?: { name: string; value: string; relation?: string; }`\n    The employee's primary emergency contact.\n  - `secondaryContact?: { name: string; value: string; relation?: string; }`\n    The employee's secondary emergency contact.\n\n- `employeePayroll?: { classId?: string; earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]; payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; }`\n  The employee's payroll information.\n  - `classId?: string`\n    The employee's class. Classes can be used to categorize objects into meaningful segments, such as department, location, or type of work. In QuickBooks, class tracking is off by default.\n  - `earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]`\n    The employee's earnings.\n  - `payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'`\n    How frequently this employee is paid (e.g., weekly, biweekly, monthly). This determines the schedule for generating paychecks.\n  - `sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }`\n    The employee's sick hours, including how sick time is accrued and the total hours accrued.\n  - `useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'`\n    Indicates whether this employee is using time-tracking data to create paychecks.\n  - `vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }`\n    The employee's vacation hours, including how vacation time is accrued and the total hours accrued.\n\n- `employeeType?: 'officer' | 'owner' | 'regular' | 'statutory'`\n  The employee type. This affects payroll taxes - a statutory employee is defined as an employee by statute. Note that owners/partners are typically on the \"Other Names\" list in QuickBooks, but if listed as an employee their type will be `owner`.\n\n- `employmentStatus?: 'full_time' | 'part_time'`\n  Indicates whether this employee is a part-time or full-time employee.\n\n- `ethnicity?: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'`\n  This employee's ethnicity.\n\n- `externalId?: string`\n  A globally unique identifier (GUID) you, the developer, can provide for tracking this object in your external system. This field is immutable and can only be set during object creation.\n\n**IMPORTANT**: This field must be formatted as a valid GUID; otherwise, QuickBooks will return an error.\n\n- `fax?: string`\n  The employee's fax number.\n\nMaximum length: 21 characters.\n\n- `firstName?: string`\n  The employee's first name.\n\nMaximum length: 25 characters.\n\n- `gender?: 'male' | 'female'`\n  This employee's gender.\n\n- `hiredDate?: string`\n  The date this employee was hired, in ISO 8601 format (YYYY-MM-DD).\n\n- `i9OnFileStatus?: 'on_file' | 'not_on_file'`\n  Indicates whether this employee's I-9 is on file.\n\n- `isActive?: boolean`\n  Indicates whether this employee is active. Inactive objects are typically hidden from views and reports in QuickBooks. Defaults to `true`.\n\n- `jobTitle?: string`\n  The employee's job title.\n\n- `keyEmployeeStatus?: 'key_employee' | 'non_key_employee'`\n  Indicates whether this employee is a key employee.\n\n- `lastName?: string`\n  The employee's last name.\n\nMaximum length: 25 characters.\n\n- `middleName?: string`\n  The employee's middle name.\n\nMaximum length: 5 characters.\n\n- `militaryStatus?: 'active' | 'reserve'`\n  This employee's military status if they are a U.S. veteran.\n\n- `mobile?: string`\n  The employee's mobile phone number.\n\nMaximum length: 21 characters.\n\n- `note?: string`\n  A note or comment about this employee.\n\n- `originalHireDate?: string`\n  The original hire date for this employee, in ISO 8601 format (YYYY-MM-DD).\n\n- `overtimeExemptStatus?: 'exempt' | 'non_exempt'`\n  Indicates whether this employee is exempt from overtime pay. This classification is based on U.S. labor laws (FLSA).\n\n\n- `pager?: string`\n  The employee's pager number.\n\nMaximum length: 21 characters.\n\n- `pagerPin?: string`\n  The employee's pager PIN.\n\n- `phone?: string`\n  The employee's primary telephone number.\n\nMaximum length: 21 characters.\n\n- `printAs?: string`\n  The name to use when printing this employee from QuickBooks. By default, this is the same as the `name` field.\n\n- `salutation?: string`\n  The employee's formal salutation title that precedes their name, such as \"Mr.\", \"Ms.\", or \"Dr.\".\n\n- `ssn?: string`\n  The employee's Social Security Number. The value can be with or without dashes.\n\n**NOTE**: This field cannot be changed after the employee is created.\n\n- `supervisorId?: string`\n  The employee's supervisor. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `targetBonus?: string`\n  The target bonus for this employee, represented as a decimal string. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `terminationDate?: string`\n  The date this employee's employment ended with the company, in ISO 8601 format (YYYY-MM-DD). This is also known as the released date or separation date.\n\n- `usCitizenshipStatus?: 'citizen' | 'non_citizen'`\n  Indicates whether this employee is a U.S. citizen.\n\n- `usVeteranStatus?: 'veteran' | 'non_veteran'`\n  Indicates whether this employee is a U.S. veteran.\n\n- `workAuthorizationExpirationDate?: string`\n  The date this employee's work authorization expires, in ISO 8601 format (YYYY-MM-DD).\n\n### Returns\n\n- `{ id: string; accountNumber: string; additionalNotes: { id: number; date: string; note: string; }[]; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; postalCode: string; state: string; }; adjustedServiceDate: string; alternatePhone: string; billingRate: { id: string; fullName: string; }; birthDate: string; createdAt: string; customContactFields: { name: string; value: string; }[]; customFields: { name: string; ownerId: string; type: string; value: string; }[]; department: string; description: string; disabilityDescription: string; disabilityStatus: 'disabled' | 'non_disabled'; email: string; emergencyContact: { primaryContact: { name: string; relation: string; value: string; }; secondaryContact: { name: string; relation: string; value: string; }; }; employeePayroll: { class: { id: string; fullName: string; }; earnings: { payrollWageItem: object; rate: string; ratePercent: string; }[]; payPeriod: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; useTimeDataToCreatePaychecks: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; }; employeeType: 'officer' | 'owner' | 'regular' | 'statutory'; employmentStatus: 'full_time' | 'part_time'; ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'; externalId: string; fax: string; firstName: string; gender: 'male' | 'female'; hiredDate: string; i9OnFileStatus: 'on_file' | 'not_on_file'; isActive: boolean; jobTitle: string; keyEmployeeStatus: 'key_employee' | 'non_key_employee'; lastName: string; middleName: string; militaryStatus: 'active' | 'reserve'; mobile: string; name: string; note: string; objectType: 'qbd_employee'; originalHireDate: string; overtimeExemptStatus: 'exempt' | 'non_exempt'; pager: string; pagerPin: string; phone: string; printAs: string; revisionNumber: string; salutation: string; ssn: string; supervisor: { id: string; fullName: string; }; targetBonus: string; terminationDate: string; updatedAt: string; usCitizenshipStatus: 'citizen' | 'non_citizen'; usVeteranStatus: 'veteran' | 'non_veteran'; workAuthorizationExpirationDate: string; }`\n\n  - `id: string`\n  - `accountNumber: string`\n  - `additionalNotes: { id: number; date: string; note: string; }[]`\n  - `address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; postalCode: string; state: string; }`\n  - `adjustedServiceDate: string`\n  - `alternatePhone: string`\n  - `billingRate: { id: string; fullName: string; }`\n  - `birthDate: string`\n  - `createdAt: string`\n  - `customContactFields: { name: string; value: string; }[]`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `department: string`\n  - `description: string`\n  - `disabilityDescription: string`\n  - `disabilityStatus: 'disabled' | 'non_disabled'`\n  - `email: string`\n  - `emergencyContact: { primaryContact: { name: string; relation: string; value: string; }; secondaryContact: { name: string; relation: string; value: string; }; }`\n  - `employeePayroll: { class: { id: string; fullName: string; }; earnings: { payrollWageItem: { id: string; fullName: string; }; rate: string; ratePercent: string; }[]; payPeriod: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; useTimeDataToCreatePaychecks: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; }`\n  - `employeeType: 'officer' | 'owner' | 'regular' | 'statutory'`\n  - `employmentStatus: 'full_time' | 'part_time'`\n  - `ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'`\n  - `externalId: string`\n  - `fax: string`\n  - `firstName: string`\n  - `gender: 'male' | 'female'`\n  - `hiredDate: string`\n  - `i9OnFileStatus: 'on_file' | 'not_on_file'`\n  - `isActive: boolean`\n  - `jobTitle: string`\n  - `keyEmployeeStatus: 'key_employee' | 'non_key_employee'`\n  - `lastName: string`\n  - `middleName: string`\n  - `militaryStatus: 'active' | 'reserve'`\n  - `mobile: string`\n  - `name: string`\n  - `note: string`\n  - `objectType: 'qbd_employee'`\n  - `originalHireDate: string`\n  - `overtimeExemptStatus: 'exempt' | 'non_exempt'`\n  - `pager: string`\n  - `pagerPin: string`\n  - `phone: string`\n  - `printAs: string`\n  - `revisionNumber: string`\n  - `salutation: string`\n  - `ssn: string`\n  - `supervisor: { id: string; fullName: string; }`\n  - `targetBonus: string`\n  - `terminationDate: string`\n  - `updatedAt: string`\n  - `usCitizenshipStatus: 'citizen' | 'non_citizen'`\n  - `usVeteranStatus: 'veteran' | 'non_veteran'`\n  - `workAuthorizationExpirationDate: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst employee = await conductor.qbd.employees.create({ conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(employee);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.employees.create',
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst employee = await conductor.qbd.employees.create({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(employee.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/employees \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountNumber": "1010",\n          "adjustedServiceDate": "2024-01-01",\n          "alternatePhone": "+1-555-987-6543",\n          "billingRateId": "80000001-1234567890",\n          "birthDate": "1990-01-01",\n          "department": "Sales",\n          "description": "This employee is a key employee.",\n          "disabilityDescription": "Cerebral Palsy",\n          "disabilityStatus": "disabled",\n          "email": "employee@example.com",\n          "employeeType": "regular",\n          "employmentStatus": "full_time",\n          "ethnicity": "asian",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "gender": "male",\n          "hiredDate": "2024-01-01",\n          "i9OnFileStatus": "on_file",\n          "isActive": true,\n          "jobTitle": "Purchasing Manager",\n          "keyEmployeeStatus": "key_employee",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "militaryStatus": "active",\n          "mobile": "+1-555-555-1212",\n          "note": "This employee is a key employee.",\n          "originalHireDate": "2024-01-01",\n          "overtimeExemptStatus": "exempt",\n          "pager": "+1-555-555-1212",\n          "pagerPin": "1234",\n          "phone": "+1-555-123-4567",\n          "printAs": "John Doe",\n          "salutation": "Dr.",\n          "ssn": "123-45-6789",\n          "supervisorId": "80000001-1234567890",\n          "targetBonus": "10000.00",\n          "terminationDate": "2024-01-01",\n          "usCitizenshipStatus": "citizen",\n          "usVeteranStatus": "veteran",\n          "workAuthorizationExpirationDate": "2024-01-01"\n        }\'',
+      },
       python: {
         method: 'qbd.employees.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nemployee = conductor.qbd.employees.create(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(employee.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/employees \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountNumber": "1010",\n          "adjustedServiceDate": "2024-01-01",\n          "alternatePhone": "+1-555-987-6543",\n          "billingRateId": "80000001-1234567890",\n          "birthDate": "1990-01-01",\n          "department": "Sales",\n          "description": "This employee is a key employee.",\n          "disabilityDescription": "Cerebral Palsy",\n          "disabilityStatus": "disabled",\n          "email": "employee@example.com",\n          "employeeType": "regular",\n          "employmentStatus": "full_time",\n          "ethnicity": "asian",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "gender": "male",\n          "hiredDate": "2024-01-01",\n          "i9OnFileStatus": "on_file",\n          "isActive": true,\n          "jobTitle": "Purchasing Manager",\n          "keyEmployeeStatus": "key_employee",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "militaryStatus": "active",\n          "mobile": "+1-555-555-1212",\n          "note": "This employee is a key employee.",\n          "originalHireDate": "2024-01-01",\n          "overtimeExemptStatus": "exempt",\n          "pager": "+1-555-555-1212",\n          "pagerPin": "1234",\n          "phone": "+1-555-123-4567",\n          "printAs": "John Doe",\n          "salutation": "Dr.",\n          "ssn": "123-45-6789",\n          "supervisorId": "80000001-1234567890",\n          "targetBonus": "10000.00",\n          "terminationDate": "2024-01-01",\n          "usCitizenshipStatus": "citizen",\n          "usVeteranStatus": "veteran",\n          "workAuthorizationExpirationDate": "2024-01-01"\n        }\'',
       },
     },
   },
@@ -3855,14 +3855,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst employees = await conductor.qbd.employees.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(employees.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/employees \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.employees.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nemployees = conductor.qbd.employees.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(employees.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/employees \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3885,14 +3885,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst employee = await conductor.qbd.employees.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(employee.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/employees/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.employees.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nemployee = conductor.qbd.employees.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(employee.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/employees/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -3955,21 +3955,21 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     ],
     response: 'object',
     markdown:
-      "## update\n\n`conductor.qbd.employees.update(id: string, revisionNumber: string, Conductor-End-User-Id: string, accountNumber?: string, additionalNotes?: { id: number; note: string; }[], address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; postalCode?: string; state?: string; }, adjustedServiceDate?: string, alternatePhone?: string, billingRateId?: string, birthDate?: string, customContactFields?: { name: string; value: string; }[], department?: string, description?: string, disabilityDescription?: string, disabilityStatus?: 'disabled' | 'non_disabled', email?: string, emergencyContact?: { primaryContact?: { name: string; value: string; relation?: string; }; secondaryContact?: { name: string; value: string; relation?: string; }; }, employeePayroll?: { classId?: string; deleteAllEarnings?: boolean; earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]; payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; }, employeeType?: 'officer' | 'owner' | 'regular' | 'statutory', employmentStatus?: 'full_time' | 'part_time', ethnicity?: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races', fax?: string, firstName?: string, hiredDate?: string, i9OnFileStatus?: 'on_file' | 'not_on_file', isActive?: boolean, jobTitle?: string, keyEmployeeStatus?: 'key_employee' | 'non_key_employee', lastName?: string, middleName?: string, militaryStatus?: 'active' | 'reserve', mobile?: string, note?: string, originalHireDate?: string, overtimeExemptStatus?: 'exempt' | 'non_exempt', pager?: string, pagerPin?: string, phone?: string, printAs?: string, salutation?: string, supervisorId?: string, targetBonus?: string, terminationDate?: string, usCitizenshipStatus?: 'citizen' | 'non_citizen', usVeteranStatus?: 'veteran' | 'non_veteran', workAuthorizationExpirationDate?: string): { id: string; accountNumber: string; additionalNotes: object[]; address: object; adjustedServiceDate: string; alternatePhone: string; billingRate: object; birthDate: string; createdAt: string; customContactFields: object[]; customFields: object[]; department: string; description: string; disabilityDescription: string; disabilityStatus: 'disabled' | 'non_disabled'; email: string; emergencyContact: object; employeePayroll: object; employeeType: 'officer' | 'owner' | 'regular' | 'statutory'; employmentStatus: 'full_time' | 'part_time'; ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'; externalId: string; fax: string; firstName: string; gender: 'male' | 'female'; hiredDate: string; i9OnFileStatus: 'on_file' | 'not_on_file'; isActive: boolean; jobTitle: string; keyEmployeeStatus: 'key_employee' | 'non_key_employee'; lastName: string; middleName: string; militaryStatus: 'active' | 'reserve'; mobile: string; name: string; note: string; objectType: 'qbd_employee'; originalHireDate: string; overtimeExemptStatus: 'exempt' | 'non_exempt'; pager: string; pagerPin: string; phone: string; printAs: string; revisionNumber: string; salutation: string; ssn: string; supervisor: object; targetBonus: string; terminationDate: string; updatedAt: string; usCitizenshipStatus: 'citizen' | 'non_citizen'; usVeteranStatus: 'veteran' | 'non_veteran'; workAuthorizationExpirationDate: string; }`\n\n**post** `/quickbooks-desktop/employees/{id}`\n\nUpdates an employee record, allowing you to revise contact details, employment status dates, supervisory assignments, payroll configuration, and additional notes to keep workforce data current.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the employee to update.\n\n- `revisionNumber: string`\n  The current QuickBooks-assigned revision number of the employee object you are updating, which you can get by fetching the object first. Provide the most recent `revisionNumber` to ensure you're working with the latest data; otherwise, the update will return an error.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountNumber?: string`\n  The employee's account number, which appears in the QuickBooks chart of accounts, reports, and graphs.\n\nNote that if the \"Use Account Numbers\" preference is turned off in QuickBooks, the account number may not be visible in the user interface, but it can still be set and retrieved through the API.\n\n- `additionalNotes?: { id: number; note: string; }[]`\n  Additional notes about this employee.\n\n- `address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; postalCode?: string; state?: string; }`\n  The employee's address.\n\nIf the company uses QuickBooks Payroll for this employee, this address must specify a complete address, including city, state, ZIP (or postal) code, and at least one line of the street address.\n  - `city?: string`\n    The city, district, suburb, town, or village name of the employee address.\n\nMaximum length: 31 characters.\n  - `country?: string`\n    The country name of the employee address.\n  - `line1?: string`\n    The first line of the employee address (e.g., street, PO Box, or company name).\n\nMaximum length: 41 characters.\n  - `line2?: string`\n    The second line of the employee address, if needed (e.g., apartment, suite, unit, or building).\n\nMaximum length: 41 characters.\n  - `line3?: string`\n    The third line of the employee address, if needed.\n\nMaximum length: 41 characters.\n  - `line4?: string`\n    The fourth line of the employee address, if needed.\n\nMaximum length: 41 characters.\n  - `postalCode?: string`\n    The postal code or ZIP code of the employee address.\n\nMaximum length: 13 characters.\n  - `state?: string`\n    The U.S. state or Canadian province of the employee address. QuickBooks requires this field to be a two-letter abbreviation (e.g., \"CA\" for California or \"ON\" for Ontario). See enum for all possible values. QuickBooks may reject values that the connected company file's edition does not support (e.g., a Canadian province on a U.S. company file).\n\n- `adjustedServiceDate?: string`\n  The adjusted service date for this employee, in ISO 8601 format (YYYY-MM-DD). This date accounts for previous employment periods or leaves that affect seniority.\n\n- `alternatePhone?: string`\n  The employee's alternate telephone number.\n\nMaximum length: 21 characters.\n\n- `billingRateId?: string`\n  The employee's billing rate, used to override service item rates in time tracking activities.\n\n- `birthDate?: string`\n  This employee's date of birth, in ISO 8601 format (YYYY-MM-DD).\n\n- `customContactFields?: { name: string; value: string; }[]`\n  Additional custom contact fields for this employee, such as phone numbers or email addresses.\n\n- `department?: string`\n  The employee's department. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `description?: string`\n  A description of this employee. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `disabilityDescription?: string`\n  A description of this employee's disability.\n\n- `disabilityStatus?: 'disabled' | 'non_disabled'`\n  Indicates whether this employee is disabled.\n\n- `email?: string`\n  The employee's email address.\n\n- `emergencyContact?: { primaryContact?: { name: string; value: string; relation?: string; }; secondaryContact?: { name: string; value: string; relation?: string; }; }`\n  The employee's emergency contacts.\n  - `primaryContact?: { name: string; value: string; relation?: string; }`\n    The employee's primary emergency contact.\n  - `secondaryContact?: { name: string; value: string; relation?: string; }`\n    The employee's secondary emergency contact.\n\n- `employeePayroll?: { classId?: string; deleteAllEarnings?: boolean; earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]; payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; }`\n  The employee's payroll information.\n\n**IMPORTANT**: QuickBooks Desktop requires the connected app to have personal data access enabled to update this field. If updating this field fails with a personal data permission error, confirm this setting is enabled in QuickBooks Desktop: sign in as Admin in Single-User Mode and go to `Edit > Preferences > Integrated Applications > Company Preferences`, select the app, click `Properties`, then check \"Allow this application to access personal data such as Social Security Numbers and customer credit card information\".\n  - `classId?: string`\n    The employee's class. Classes can be used to categorize objects into meaningful segments, such as department, location, or type of work. In QuickBooks, class tracking is off by default.\n  - `deleteAllEarnings?: boolean`\n    When `true`, deletes all earnings records for this employee.\n  - `earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]`\n    The employee's earnings.\n\n**IMPORTANT**: When updating employees, if you include any earnings records in your update request, QuickBooks will delete all existing earnings records for this employee and replace them with the new records you provide. If you do not include any earnings records, the existing earnings records will remain unchanged. To delete all earnings records without adding new ones, set the `deleteAllEarnings` field to `true`.\n  - `payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'`\n    How frequently this employee is paid (e.g., weekly, biweekly, monthly). This determines the schedule for generating paychecks.\n  - `sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }`\n    The employee's sick hours, including how sick time is accrued and the total hours accrued.\n  - `useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'`\n    Indicates whether this employee is using time-tracking data to create paychecks.\n  - `vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }`\n    The employee's vacation hours, including how vacation time is accrued and the total hours accrued.\n\n- `employeeType?: 'officer' | 'owner' | 'regular' | 'statutory'`\n  The employee type. This affects payroll taxes - a statutory employee is defined as an employee by statute. Note that owners/partners are typically on the \"Other Names\" list in QuickBooks, but if listed as an employee their type will be `owner`.\n\n- `employmentStatus?: 'full_time' | 'part_time'`\n  Indicates whether this employee is a part-time or full-time employee.\n\n- `ethnicity?: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'`\n  This employee's ethnicity.\n\n- `fax?: string`\n  The employee's fax number.\n\nMaximum length: 21 characters.\n\n- `firstName?: string`\n  The employee's first name.\n\nMaximum length: 25 characters.\n\n- `hiredDate?: string`\n  The date this employee was hired, in ISO 8601 format (YYYY-MM-DD).\n\n- `i9OnFileStatus?: 'on_file' | 'not_on_file'`\n  Indicates whether this employee's I-9 is on file.\n\n- `isActive?: boolean`\n  Indicates whether this employee is active. Inactive objects are typically hidden from views and reports in QuickBooks. Defaults to `true`.\n\n- `jobTitle?: string`\n  The employee's job title.\n\n- `keyEmployeeStatus?: 'key_employee' | 'non_key_employee'`\n  Indicates whether this employee is a key employee.\n\n- `lastName?: string`\n  The employee's last name.\n\nMaximum length: 25 characters.\n\n- `middleName?: string`\n  The employee's middle name.\n\nMaximum length: 5 characters.\n\n- `militaryStatus?: 'active' | 'reserve'`\n  This employee's military status if they are a U.S. veteran.\n\n- `mobile?: string`\n  The employee's mobile phone number.\n\nMaximum length: 21 characters.\n\n- `note?: string`\n  A note or comment about this employee.\n\n- `originalHireDate?: string`\n  The original hire date for this employee, in ISO 8601 format (YYYY-MM-DD).\n\n- `overtimeExemptStatus?: 'exempt' | 'non_exempt'`\n  Indicates whether this employee is exempt from overtime pay. This classification is based on U.S. labor laws (FLSA).\n\n- `pager?: string`\n  The employee's pager number.\n\nMaximum length: 21 characters.\n\n- `pagerPin?: string`\n  The employee's pager PIN.\n\n- `phone?: string`\n  The employee's primary telephone number.\n\nMaximum length: 21 characters.\n\n- `printAs?: string`\n  The name to use when printing this employee from QuickBooks. By default, this is the same as the `name` field.\n\n- `salutation?: string`\n  The employee's formal salutation title that precedes their name, such as \"Mr.\", \"Ms.\", or \"Dr.\".\n\n- `supervisorId?: string`\n  The employee's supervisor. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `targetBonus?: string`\n  The target bonus for this employee, represented as a decimal string. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `terminationDate?: string`\n  The date this employee's employment ended with the company, in ISO 8601 format (YYYY-MM-DD). This is also known as the released date or separation date.\n\n- `usCitizenshipStatus?: 'citizen' | 'non_citizen'`\n  Indicates whether this employee is a U.S. citizen.\n\n- `usVeteranStatus?: 'veteran' | 'non_veteran'`\n  Indicates whether this employee is a U.S. veteran.\n\n- `workAuthorizationExpirationDate?: string`\n  The date this employee's work authorization expires, in ISO 8601 format (YYYY-MM-DD).\n\n### Returns\n\n- `{ id: string; accountNumber: string; additionalNotes: { id: number; date: string; note: string; }[]; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; postalCode: string; state: string; }; adjustedServiceDate: string; alternatePhone: string; billingRate: { id: string; fullName: string; }; birthDate: string; createdAt: string; customContactFields: { name: string; value: string; }[]; customFields: { name: string; ownerId: string; type: string; value: string; }[]; department: string; description: string; disabilityDescription: string; disabilityStatus: 'disabled' | 'non_disabled'; email: string; emergencyContact: { primaryContact: { name: string; relation: string; value: string; }; secondaryContact: { name: string; relation: string; value: string; }; }; employeePayroll: { class: { id: string; fullName: string; }; earnings: { payrollWageItem: object; rate: string; ratePercent: string; }[]; payPeriod: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; useTimeDataToCreatePaychecks: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; }; employeeType: 'officer' | 'owner' | 'regular' | 'statutory'; employmentStatus: 'full_time' | 'part_time'; ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'; externalId: string; fax: string; firstName: string; gender: 'male' | 'female'; hiredDate: string; i9OnFileStatus: 'on_file' | 'not_on_file'; isActive: boolean; jobTitle: string; keyEmployeeStatus: 'key_employee' | 'non_key_employee'; lastName: string; middleName: string; militaryStatus: 'active' | 'reserve'; mobile: string; name: string; note: string; objectType: 'qbd_employee'; originalHireDate: string; overtimeExemptStatus: 'exempt' | 'non_exempt'; pager: string; pagerPin: string; phone: string; printAs: string; revisionNumber: string; salutation: string; ssn: string; supervisor: { id: string; fullName: string; }; targetBonus: string; terminationDate: string; updatedAt: string; usCitizenshipStatus: 'citizen' | 'non_citizen'; usVeteranStatus: 'veteran' | 'non_veteran'; workAuthorizationExpirationDate: string; }`\n\n  - `id: string`\n  - `accountNumber: string`\n  - `additionalNotes: { id: number; date: string; note: string; }[]`\n  - `address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; postalCode: string; state: string; }`\n  - `adjustedServiceDate: string`\n  - `alternatePhone: string`\n  - `billingRate: { id: string; fullName: string; }`\n  - `birthDate: string`\n  - `createdAt: string`\n  - `customContactFields: { name: string; value: string; }[]`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `department: string`\n  - `description: string`\n  - `disabilityDescription: string`\n  - `disabilityStatus: 'disabled' | 'non_disabled'`\n  - `email: string`\n  - `emergencyContact: { primaryContact: { name: string; relation: string; value: string; }; secondaryContact: { name: string; relation: string; value: string; }; }`\n  - `employeePayroll: { class: { id: string; fullName: string; }; earnings: { payrollWageItem: { id: string; fullName: string; }; rate: string; ratePercent: string; }[]; payPeriod: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; useTimeDataToCreatePaychecks: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; }`\n  - `employeeType: 'officer' | 'owner' | 'regular' | 'statutory'`\n  - `employmentStatus: 'full_time' | 'part_time'`\n  - `ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'`\n  - `externalId: string`\n  - `fax: string`\n  - `firstName: string`\n  - `gender: 'male' | 'female'`\n  - `hiredDate: string`\n  - `i9OnFileStatus: 'on_file' | 'not_on_file'`\n  - `isActive: boolean`\n  - `jobTitle: string`\n  - `keyEmployeeStatus: 'key_employee' | 'non_key_employee'`\n  - `lastName: string`\n  - `middleName: string`\n  - `militaryStatus: 'active' | 'reserve'`\n  - `mobile: string`\n  - `name: string`\n  - `note: string`\n  - `objectType: 'qbd_employee'`\n  - `originalHireDate: string`\n  - `overtimeExemptStatus: 'exempt' | 'non_exempt'`\n  - `pager: string`\n  - `pagerPin: string`\n  - `phone: string`\n  - `printAs: string`\n  - `revisionNumber: string`\n  - `salutation: string`\n  - `ssn: string`\n  - `supervisor: { id: string; fullName: string; }`\n  - `targetBonus: string`\n  - `terminationDate: string`\n  - `updatedAt: string`\n  - `usCitizenshipStatus: 'citizen' | 'non_citizen'`\n  - `usVeteranStatus: 'veteran' | 'non_veteran'`\n  - `workAuthorizationExpirationDate: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst employee = await conductor.qbd.employees.update('80000001-1234567890', { revisionNumber: '1721172183', conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(employee);\n```",
+      "## update\n\n`conductor.qbd.employees.update(id: string, revisionNumber: string, Conductor-End-User-Id: string, accountNumber?: string, additionalNotes?: { id: number; note: string; }[], address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; postalCode?: string; state?: string; }, adjustedServiceDate?: string, alternatePhone?: string, billingRateId?: string, birthDate?: string, customContactFields?: { name: string; value: string; }[], department?: string, description?: string, disabilityDescription?: string, disabilityStatus?: 'disabled' | 'non_disabled', email?: string, emergencyContact?: { primaryContact?: { name: string; value: string; relation?: string; }; secondaryContact?: { name: string; value: string; relation?: string; }; }, employeePayroll?: { classId?: string; deleteAllEarnings?: boolean; earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]; payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; }, employeeType?: 'officer' | 'owner' | 'regular' | 'statutory', employmentStatus?: 'full_time' | 'part_time', ethnicity?: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races', fax?: string, firstName?: string, hiredDate?: string, i9OnFileStatus?: 'on_file' | 'not_on_file', isActive?: boolean, jobTitle?: string, keyEmployeeStatus?: 'key_employee' | 'non_key_employee', lastName?: string, middleName?: string, militaryStatus?: 'active' | 'reserve', mobile?: string, note?: string, originalHireDate?: string, overtimeExemptStatus?: 'exempt' | 'non_exempt', pager?: string, pagerPin?: string, phone?: string, printAs?: string, salutation?: string, supervisorId?: string, targetBonus?: string, terminationDate?: string, usCitizenshipStatus?: 'citizen' | 'non_citizen', usVeteranStatus?: 'veteran' | 'non_veteran', workAuthorizationExpirationDate?: string): { id: string; accountNumber: string; additionalNotes: object[]; address: object; adjustedServiceDate: string; alternatePhone: string; billingRate: object; birthDate: string; createdAt: string; customContactFields: object[]; customFields: object[]; department: string; description: string; disabilityDescription: string; disabilityStatus: 'disabled' | 'non_disabled'; email: string; emergencyContact: object; employeePayroll: object; employeeType: 'officer' | 'owner' | 'regular' | 'statutory'; employmentStatus: 'full_time' | 'part_time'; ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'; externalId: string; fax: string; firstName: string; gender: 'male' | 'female'; hiredDate: string; i9OnFileStatus: 'on_file' | 'not_on_file'; isActive: boolean; jobTitle: string; keyEmployeeStatus: 'key_employee' | 'non_key_employee'; lastName: string; middleName: string; militaryStatus: 'active' | 'reserve'; mobile: string; name: string; note: string; objectType: 'qbd_employee'; originalHireDate: string; overtimeExemptStatus: 'exempt' | 'non_exempt'; pager: string; pagerPin: string; phone: string; printAs: string; revisionNumber: string; salutation: string; ssn: string; supervisor: object; targetBonus: string; terminationDate: string; updatedAt: string; usCitizenshipStatus: 'citizen' | 'non_citizen'; usVeteranStatus: 'veteran' | 'non_veteran'; workAuthorizationExpirationDate: string; }`\n\n**post** `/quickbooks-desktop/employees/{id}`\n\nUpdates an employee record, allowing you to revise contact details, employment status dates, supervisory assignments, payroll configuration, and additional notes to keep workforce data current.\n\n### Parameters\n\n- `id: string`\n  The QuickBooks-assigned unique identifier of the employee to update.\n\n- `revisionNumber: string`\n  The current QuickBooks-assigned revision number of the employee object you are updating, which you can get by fetching the object first. Provide the most recent `revisionNumber` to ensure you're working with the latest data; otherwise, the update will return an error.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `accountNumber?: string`\n  The employee's account number, which appears in the QuickBooks chart of accounts, reports, and graphs.\n\nNote that if the \"Use Account Numbers\" preference is turned off in QuickBooks, the account number may not be visible in the user interface, but it can still be set and retrieved through the API.\n\n- `additionalNotes?: { id: number; note: string; }[]`\n  Additional notes about this employee.\n\n- `address?: { city?: string; country?: string; line1?: string; line2?: string; line3?: string; line4?: string; postalCode?: string; state?: string; }`\n  The employee's address.\n\nIf the company uses QuickBooks Payroll for this employee, this address must specify a complete address, including city, state, ZIP (or postal) code, and at least one line of the street address.\n  - `city?: string`\n    The city, district, suburb, town, or village name of the employee address.\n\nMaximum length: 31 characters.\n  - `country?: string`\n    The country name of the employee address.\n  - `line1?: string`\n    The first line of the employee address (e.g., street, PO Box, or company name).\n\nMaximum length: 41 characters.\n  - `line2?: string`\n    The second line of the employee address, if needed (e.g., apartment, suite, unit, or building).\n\nMaximum length: 41 characters.\n  - `line3?: string`\n    The third line of the employee address, if needed.\n\nMaximum length: 41 characters.\n  - `line4?: string`\n    The fourth line of the employee address, if needed.\n\nMaximum length: 41 characters.\n  - `postalCode?: string`\n    The postal code or ZIP code of the employee address.\n\nMaximum length: 13 characters.\n  - `state?: string`\n    The U.S. state or Canadian province of the employee address. QuickBooks requires this field to be a two-letter abbreviation (e.g., \"CA\" for California or \"ON\" for Ontario). See enum for all possible values. QuickBooks may reject values that the connected company file's edition does not support (e.g., a Canadian province on a U.S. company file).\n\n- `adjustedServiceDate?: string`\n  The adjusted service date for this employee, in ISO 8601 format (YYYY-MM-DD). This date accounts for previous employment periods or leaves that affect seniority.\n\n- `alternatePhone?: string`\n  The employee's alternate telephone number.\n\nMaximum length: 21 characters.\n\n- `billingRateId?: string`\n  The employee's billing rate, used to override service item rates in time tracking activities.\n\n- `birthDate?: string`\n  This employee's date of birth, in ISO 8601 format (YYYY-MM-DD).\n\n- `customContactFields?: { name: string; value: string; }[]`\n  Additional custom contact fields for this employee, such as phone numbers or email addresses.\n\n- `department?: string`\n  The employee's department. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `description?: string`\n  A description of this employee. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `disabilityDescription?: string`\n  A description of this employee's disability.\n\n- `disabilityStatus?: 'disabled' | 'non_disabled'`\n  Indicates whether this employee is disabled.\n\n- `email?: string`\n  The employee's email address.\n\n- `emergencyContact?: { primaryContact?: { name: string; value: string; relation?: string; }; secondaryContact?: { name: string; value: string; relation?: string; }; }`\n  The employee's emergency contacts.\n  - `primaryContact?: { name: string; value: string; relation?: string; }`\n    The employee's primary emergency contact.\n  - `secondaryContact?: { name: string; value: string; relation?: string; }`\n    The employee's secondary emergency contact.\n\n- `employeePayroll?: { classId?: string; deleteAllEarnings?: boolean; earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]; payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }; }`\n  The employee's payroll information.\n\n**IMPORTANT**: QuickBooks Desktop requires the connected app to have personal data access enabled to update this field. If updating this field fails with a personal data permission error, confirm this setting is enabled in QuickBooks Desktop: sign in as Admin in Single-User Mode and go to `Edit > Preferences > Integrated Applications > Company Preferences`, select the app, click `Properties`, then check \"Allow this application to access personal data such as Social Security Numbers and customer credit card information\".\n  - `classId?: string`\n    The employee's class. Classes can be used to categorize objects into meaningful segments, such as department, location, or type of work. In QuickBooks, class tracking is off by default.\n  - `deleteAllEarnings?: boolean`\n    When `true`, deletes all earnings records for this employee.\n  - `earnings?: { payrollWageItemId: string; rate?: string; ratePercent?: string; }[]`\n    The employee's earnings.\n\n**IMPORTANT**: When updating employees, if you include any earnings records in your update request, QuickBooks will delete all existing earnings records for this employee and replace them with the new records you provide. If you do not include any earnings records, the existing earnings records will remain unchanged. To delete all earnings records without adding new ones, set the `deleteAllEarnings` field to `true`.\n  - `payPeriod?: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'`\n    How frequently this employee is paid (e.g., weekly, biweekly, monthly). This determines the schedule for generating paychecks.\n  - `sickHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }`\n    The employee's sick hours, including how sick time is accrued and the total hours accrued.\n  - `useTimeDataToCreatePaychecks?: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'`\n    Indicates whether this employee is using time-tracking data to create paychecks.\n  - `vacationHours?: { accrualPeriod?: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate?: string; hoursAccruedPerPeriod?: string; hoursAvailable?: string; hoursUsed?: string; maximumHours?: string; resetsHoursEachYear?: boolean; }`\n    The employee's vacation hours, including how vacation time is accrued and the total hours accrued.\n\n- `employeeType?: 'officer' | 'owner' | 'regular' | 'statutory'`\n  The employee type. This affects payroll taxes - a statutory employee is defined as an employee by statute. Note that owners/partners are typically on the \"Other Names\" list in QuickBooks, but if listed as an employee their type will be `owner`.\n\n- `employmentStatus?: 'full_time' | 'part_time'`\n  Indicates whether this employee is a part-time or full-time employee.\n\n- `ethnicity?: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'`\n  This employee's ethnicity.\n\n- `fax?: string`\n  The employee's fax number.\n\nMaximum length: 21 characters.\n\n- `firstName?: string`\n  The employee's first name.\n\nMaximum length: 25 characters.\n\n- `hiredDate?: string`\n  The date this employee was hired, in ISO 8601 format (YYYY-MM-DD).\n\n- `i9OnFileStatus?: 'on_file' | 'not_on_file'`\n  Indicates whether this employee's I-9 is on file.\n\n- `isActive?: boolean`\n  Indicates whether this employee is active. Inactive objects are typically hidden from views and reports in QuickBooks. Defaults to `true`.\n\n- `jobTitle?: string`\n  The employee's job title.\n\n- `keyEmployeeStatus?: 'key_employee' | 'non_key_employee'`\n  Indicates whether this employee is a key employee.\n\n- `lastName?: string`\n  The employee's last name.\n\nMaximum length: 25 characters.\n\n- `middleName?: string`\n  The employee's middle name.\n\nMaximum length: 5 characters.\n\n- `militaryStatus?: 'active' | 'reserve'`\n  This employee's military status if they are a U.S. veteran.\n\n- `mobile?: string`\n  The employee's mobile phone number.\n\nMaximum length: 21 characters.\n\n- `note?: string`\n  A note or comment about this employee.\n\n- `originalHireDate?: string`\n  The original hire date for this employee, in ISO 8601 format (YYYY-MM-DD).\n\n- `overtimeExemptStatus?: 'exempt' | 'non_exempt'`\n  Indicates whether this employee is exempt from overtime pay. This classification is based on U.S. labor laws (FLSA).\n\n\n- `pager?: string`\n  The employee's pager number.\n\nMaximum length: 21 characters.\n\n- `pagerPin?: string`\n  The employee's pager PIN.\n\n- `phone?: string`\n  The employee's primary telephone number.\n\nMaximum length: 21 characters.\n\n- `printAs?: string`\n  The name to use when printing this employee from QuickBooks. By default, this is the same as the `name` field.\n\n- `salutation?: string`\n  The employee's formal salutation title that precedes their name, such as \"Mr.\", \"Ms.\", or \"Dr.\".\n\n- `supervisorId?: string`\n  The employee's supervisor. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `targetBonus?: string`\n  The target bonus for this employee, represented as a decimal string. Found in the \"employment job details\" section of the employee's record in QuickBooks.\n\n- `terminationDate?: string`\n  The date this employee's employment ended with the company, in ISO 8601 format (YYYY-MM-DD). This is also known as the released date or separation date.\n\n- `usCitizenshipStatus?: 'citizen' | 'non_citizen'`\n  Indicates whether this employee is a U.S. citizen.\n\n- `usVeteranStatus?: 'veteran' | 'non_veteran'`\n  Indicates whether this employee is a U.S. veteran.\n\n- `workAuthorizationExpirationDate?: string`\n  The date this employee's work authorization expires, in ISO 8601 format (YYYY-MM-DD).\n\n### Returns\n\n- `{ id: string; accountNumber: string; additionalNotes: { id: number; date: string; note: string; }[]; address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; postalCode: string; state: string; }; adjustedServiceDate: string; alternatePhone: string; billingRate: { id: string; fullName: string; }; birthDate: string; createdAt: string; customContactFields: { name: string; value: string; }[]; customFields: { name: string; ownerId: string; type: string; value: string; }[]; department: string; description: string; disabilityDescription: string; disabilityStatus: 'disabled' | 'non_disabled'; email: string; emergencyContact: { primaryContact: { name: string; relation: string; value: string; }; secondaryContact: { name: string; relation: string; value: string; }; }; employeePayroll: { class: { id: string; fullName: string; }; earnings: { payrollWageItem: object; rate: string; ratePercent: string; }[]; payPeriod: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; useTimeDataToCreatePaychecks: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; }; employeeType: 'officer' | 'owner' | 'regular' | 'statutory'; employmentStatus: 'full_time' | 'part_time'; ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'; externalId: string; fax: string; firstName: string; gender: 'male' | 'female'; hiredDate: string; i9OnFileStatus: 'on_file' | 'not_on_file'; isActive: boolean; jobTitle: string; keyEmployeeStatus: 'key_employee' | 'non_key_employee'; lastName: string; middleName: string; militaryStatus: 'active' | 'reserve'; mobile: string; name: string; note: string; objectType: 'qbd_employee'; originalHireDate: string; overtimeExemptStatus: 'exempt' | 'non_exempt'; pager: string; pagerPin: string; phone: string; printAs: string; revisionNumber: string; salutation: string; ssn: string; supervisor: { id: string; fullName: string; }; targetBonus: string; terminationDate: string; updatedAt: string; usCitizenshipStatus: 'citizen' | 'non_citizen'; usVeteranStatus: 'veteran' | 'non_veteran'; workAuthorizationExpirationDate: string; }`\n\n  - `id: string`\n  - `accountNumber: string`\n  - `additionalNotes: { id: number; date: string; note: string; }[]`\n  - `address: { city: string; country: string; line1: string; line2: string; line3: string; line4: string; postalCode: string; state: string; }`\n  - `adjustedServiceDate: string`\n  - `alternatePhone: string`\n  - `billingRate: { id: string; fullName: string; }`\n  - `birthDate: string`\n  - `createdAt: string`\n  - `customContactFields: { name: string; value: string; }[]`\n  - `customFields: { name: string; ownerId: string; type: string; value: string; }[]`\n  - `department: string`\n  - `description: string`\n  - `disabilityDescription: string`\n  - `disabilityStatus: 'disabled' | 'non_disabled'`\n  - `email: string`\n  - `emergencyContact: { primaryContact: { name: string; relation: string; value: string; }; secondaryContact: { name: string; relation: string; value: string; }; }`\n  - `employeePayroll: { class: { id: string; fullName: string; }; earnings: { payrollWageItem: { id: string; fullName: string; }; rate: string; ratePercent: string; }[]; payPeriod: 'biweekly' | 'daily' | 'monthly' | 'quarterly' | 'semimonthly' | 'weekly' | 'yearly'; sickHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; useTimeDataToCreatePaychecks: 'does_not_use_time_data' | 'not_set' | 'uses_time_data'; vacationHours: { accrualPeriod: 'accrues_annually' | 'accrues_hourly' | 'accrues_per_paycheck'; accrualStartDate: string; hoursAccruedPerPeriod: string; hoursAvailable: string; hoursUsed: string; maximumHours: string; resetsHoursEachYear: boolean; }; }`\n  - `employeeType: 'officer' | 'owner' | 'regular' | 'statutory'`\n  - `employmentStatus: 'full_time' | 'part_time'`\n  - `ethnicity: 'american_indian' | 'asian' | 'black' | 'hawaiian' | 'hispanic' | 'white' | 'two_or_more_races'`\n  - `externalId: string`\n  - `fax: string`\n  - `firstName: string`\n  - `gender: 'male' | 'female'`\n  - `hiredDate: string`\n  - `i9OnFileStatus: 'on_file' | 'not_on_file'`\n  - `isActive: boolean`\n  - `jobTitle: string`\n  - `keyEmployeeStatus: 'key_employee' | 'non_key_employee'`\n  - `lastName: string`\n  - `middleName: string`\n  - `militaryStatus: 'active' | 'reserve'`\n  - `mobile: string`\n  - `name: string`\n  - `note: string`\n  - `objectType: 'qbd_employee'`\n  - `originalHireDate: string`\n  - `overtimeExemptStatus: 'exempt' | 'non_exempt'`\n  - `pager: string`\n  - `pagerPin: string`\n  - `phone: string`\n  - `printAs: string`\n  - `revisionNumber: string`\n  - `salutation: string`\n  - `ssn: string`\n  - `supervisor: { id: string; fullName: string; }`\n  - `targetBonus: string`\n  - `terminationDate: string`\n  - `updatedAt: string`\n  - `usCitizenshipStatus: 'citizen' | 'non_citizen'`\n  - `usVeteranStatus: 'veteran' | 'non_veteran'`\n  - `workAuthorizationExpirationDate: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst employee = await conductor.qbd.employees.update('80000001-1234567890', { revisionNumber: '1721172183', conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(employee);\n```",
     perLanguage: {
       typescript: {
         method: 'client.qbd.employees.update',
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst employee = await conductor.qbd.employees.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(employee.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/employees/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountNumber": "1010",\n          "adjustedServiceDate": "2024-01-01",\n          "alternatePhone": "+1-555-987-6543",\n          "billingRateId": "80000001-1234567890",\n          "birthDate": "1990-01-01",\n          "department": "Sales",\n          "description": "This employee is a key employee.",\n          "disabilityDescription": "Cerebral Palsy",\n          "disabilityStatus": "disabled",\n          "email": "employee@example.com",\n          "employeeType": "regular",\n          "employmentStatus": "full_time",\n          "ethnicity": "asian",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "hiredDate": "2024-01-01",\n          "i9OnFileStatus": "on_file",\n          "isActive": true,\n          "jobTitle": "Purchasing Manager",\n          "keyEmployeeStatus": "key_employee",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "militaryStatus": "active",\n          "mobile": "+1-555-555-1212",\n          "note": "This employee is a key employee.",\n          "originalHireDate": "2024-01-01",\n          "overtimeExemptStatus": "exempt",\n          "pager": "+1-555-555-1212",\n          "pagerPin": "1234",\n          "phone": "+1-555-123-4567",\n          "printAs": "John Doe",\n          "salutation": "Dr.",\n          "supervisorId": "80000001-1234567890",\n          "targetBonus": "10000.00",\n          "terminationDate": "2024-01-01",\n          "usCitizenshipStatus": "citizen",\n          "usVeteranStatus": "veteran",\n          "workAuthorizationExpirationDate": "2024-01-01"\n        }\'',
+      },
       python: {
         method: 'qbd.employees.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nemployee = conductor.qbd.employees.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(employee.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/employees/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountNumber": "1010",\n          "adjustedServiceDate": "2024-01-01",\n          "alternatePhone": "+1-555-987-6543",\n          "billingRateId": "80000001-1234567890",\n          "birthDate": "1990-01-01",\n          "department": "Sales",\n          "description": "This employee is a key employee.",\n          "disabilityDescription": "Cerebral Palsy",\n          "disabilityStatus": "disabled",\n          "email": "employee@example.com",\n          "employeeType": "regular",\n          "employmentStatus": "full_time",\n          "ethnicity": "asian",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "hiredDate": "2024-01-01",\n          "i9OnFileStatus": "on_file",\n          "isActive": true,\n          "jobTitle": "Purchasing Manager",\n          "keyEmployeeStatus": "key_employee",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "militaryStatus": "active",\n          "mobile": "+1-555-555-1212",\n          "note": "This employee is a key employee.",\n          "originalHireDate": "2024-01-01",\n          "overtimeExemptStatus": "exempt",\n          "pager": "+1-555-555-1212",\n          "pagerPin": "1234",\n          "phone": "+1-555-123-4567",\n          "printAs": "John Doe",\n          "salutation": "Dr.",\n          "supervisorId": "80000001-1234567890",\n          "targetBonus": "10000.00",\n          "terminationDate": "2024-01-01",\n          "usCitizenshipStatus": "citizen",\n          "usVeteranStatus": "veteran",\n          "workAuthorizationExpirationDate": "2024-01-01"\n        }\'',
       },
     },
   },
@@ -4017,14 +4017,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst estimate = await conductor.qbd.estimates.create({\n  customerId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(estimate.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/estimates \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "isQueuedForEmail": true,\n          "memo": "Proposal for website redesign",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "refNumber": "EST-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "termsId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.estimates.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nestimate = conductor.qbd.estimates.create(\n    customer_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(estimate.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/estimates \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "isQueuedForEmail": true,\n          "memo": "Proposal for website redesign",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "refNumber": "EST-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "termsId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -4067,14 +4067,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const estimate of conductor.qbd.estimates.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(estimate.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/estimates \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.estimates.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.estimates.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/estimates \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4098,14 +4098,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst estimate = await conductor.qbd.estimates.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(estimate.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/estimates/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.estimates.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nestimate = conductor.qbd.estimates.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(estimate.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/estimates/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4156,14 +4156,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst estimate = await conductor.qbd.estimates.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(estimate.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/estimates/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "createChangeOrder": false,\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "isActive": true,\n          "isQueuedForEmail": true,\n          "memo": "Proposal for website redesign",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "refNumber": "EST-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.estimates.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nestimate = conductor.qbd.estimates.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(estimate.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/estimates/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "createChangeOrder": false,\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "isActive": true,\n          "isQueuedForEmail": true,\n          "memo": "Proposal for website redesign",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "refNumber": "EST-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -4186,14 +4186,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst estimate = await conductor.qbd.estimates.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(estimate.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/estimates/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.estimates.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nestimate = conductor.qbd.estimates.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(estimate.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/estimates/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4228,14 +4228,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventoryAdjustment = await conductor.qbd.inventoryAdjustments.create({\n  accountId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventoryAdjustment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "inventorySiteId": "80000001-1234567890",\n          "memo": "Adjusted quantity due to physical count discrepancy",\n          "refNumber": "INVADJ-1234"\n        }\'',
+      },
       python: {
         method: 'qbd.inventory_adjustments.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_adjustment = conductor.qbd.inventory_adjustments.create(\n    account_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_adjustment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "accountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "inventorySiteId": "80000001-1234567890",\n          "memo": "Adjusted quantity due to physical count discrepancy",\n          "refNumber": "INVADJ-1234"\n        }\'',
       },
     },
   },
@@ -4277,14 +4277,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventoryAdjustments = await conductor.qbd.inventoryAdjustments.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventoryAdjustments.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.inventory_adjustments.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_adjustments = conductor.qbd.inventory_adjustments.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_adjustments.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4308,14 +4308,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventoryAdjustment = await conductor.qbd.inventoryAdjustments.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventoryAdjustment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.inventory_adjustments.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_adjustment = conductor.qbd.inventory_adjustments.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_adjustment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4351,14 +4351,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventoryAdjustment = await conductor.qbd.inventoryAdjustments.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventoryAdjustment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountId": "80000001-1234567890",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "inventorySiteId": "80000001-1234567890",\n          "memo": "Adjusted quantity due to physical count discrepancy",\n          "refNumber": "INVADJ-1234",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.inventory_adjustments.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_adjustment = conductor.qbd.inventory_adjustments.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_adjustment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountId": "80000001-1234567890",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "inventorySiteId": "80000001-1234567890",\n          "memo": "Adjusted quantity due to physical count discrepancy",\n          "refNumber": "INVADJ-1234",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -4382,14 +4382,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.inventoryAdjustments.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.inventory_adjustments.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.inventory_adjustments.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4412,14 +4412,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventoryAdjustment = await conductor.qbd.inventoryAdjustments.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventoryAdjustment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.inventory_adjustments.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_adjustment = conductor.qbd.inventory_adjustments.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_adjustment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-adjustments/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4467,14 +4467,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventoryAssemblyItem = await conductor.qbd.inventoryAssemblyItems.create({\n  assetAccountId: '80000001-1234567890',\n  cogsAccountId: '80000001-1234567890',\n  incomeAccountId: '80000001-1234567890',\n  name: 'Deluxe Kit',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventoryAssemblyItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-assembly-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "assetAccountId": "80000001-1234567890",\n          "cogsAccountId": "80000001-1234567890",\n          "incomeAccountId": "80000001-1234567890",\n          "name": "Deluxe Kit",\n          "buildNotificationThreshold": 10,\n          "classId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "inventoryDate": "2024-01-01",\n          "isActive": true,\n          "maximumQuantityOnHand": 200,\n          "parentId": "80000001-1234567890",\n          "preferredVendorId": "80000001-1234567890",\n          "purchaseCost": "15.75",\n          "purchaseDescription": "Bulk purchase of steel bolts for inventory",\n          "purchaseTaxCodeId": "80000001-1234567890",\n          "quantityOnHand": 150,\n          "salesDescription": "High-quality steel bolts suitable for construction",\n          "salesPrice": "19.99",\n          "salesTaxCodeId": "80000001-1234567890",\n          "totalValue": "1500.00",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.inventory_assembly_items.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_assembly_item = conductor.qbd.inventory_assembly_items.create(\n    asset_account_id="80000001-1234567890",\n    cogs_account_id="80000001-1234567890",\n    income_account_id="80000001-1234567890",\n    name="Deluxe Kit",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_assembly_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-assembly-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "assetAccountId": "80000001-1234567890",\n          "cogsAccountId": "80000001-1234567890",\n          "incomeAccountId": "80000001-1234567890",\n          "name": "Deluxe Kit",\n          "buildNotificationThreshold": 10,\n          "classId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "inventoryDate": "2024-01-01",\n          "isActive": true,\n          "maximumQuantityOnHand": 200,\n          "parentId": "80000001-1234567890",\n          "preferredVendorId": "80000001-1234567890",\n          "purchaseCost": "15.75",\n          "purchaseDescription": "Bulk purchase of steel bolts for inventory",\n          "purchaseTaxCodeId": "80000001-1234567890",\n          "quantityOnHand": 150,\n          "salesDescription": "High-quality steel bolts suitable for construction",\n          "salesPrice": "19.99",\n          "salesTaxCodeId": "80000001-1234567890",\n          "totalValue": "1500.00",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -4513,14 +4513,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const inventoryAssemblyItem of conductor.qbd.inventoryAssemblyItems.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(inventoryAssemblyItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-assembly-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.inventory_assembly_items.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.inventory_assembly_items.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-assembly-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4544,14 +4544,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventoryAssemblyItem = await conductor.qbd.inventoryAssemblyItems.retrieve(\n  '80000001-1234567890',\n  { conductorEndUserId: 'end_usr_1234567abcdefg' },\n);\n\nconsole.log(inventoryAssemblyItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-assembly-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.inventory_assembly_items.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_assembly_item = conductor.qbd.inventory_assembly_items.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_assembly_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-assembly-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4602,14 +4602,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventoryAssemblyItem = await conductor.qbd.inventoryAssemblyItems.update(\n  '80000001-1234567890',\n  { revisionNumber: '1721172183', conductorEndUserId: 'end_usr_1234567abcdefg' },\n);\n\nconsole.log(inventoryAssemblyItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-assembly-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "assetAccountId": "80000001-1234567890",\n          "buildNotificationThreshold": 10,\n          "classId": "80000001-1234567890",\n          "clearItemLines": false,\n          "cogsAccountId": "80000001-1234567890",\n          "forceUnitOfMeasureChange": false,\n          "incomeAccountId": "80000001-1234567890",\n          "isActive": true,\n          "maximumQuantityOnHand": 200,\n          "name": "Deluxe Kit",\n          "parentId": "80000001-1234567890",\n          "preferredVendorId": "80000001-1234567890",\n          "purchaseCost": "15.75",\n          "purchaseDescription": "Bulk purchase of steel bolts for inventory",\n          "purchaseTaxCodeId": "80000001-1234567890",\n          "salesDescription": "High-quality steel bolts suitable for construction",\n          "salesPrice": "19.99",\n          "salesTaxCodeId": "80000001-1234567890",\n          "sku": "MPN-123456",\n          "unitOfMeasureSetId": "80000001-1234567890",\n          "updateExistingTransactionsIncomeAccount": false\n        }\'',
+      },
       python: {
         method: 'qbd.inventory_assembly_items.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_assembly_item = conductor.qbd.inventory_assembly_items.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_assembly_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-assembly-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "assetAccountId": "80000001-1234567890",\n          "buildNotificationThreshold": 10,\n          "classId": "80000001-1234567890",\n          "clearItemLines": false,\n          "cogsAccountId": "80000001-1234567890",\n          "forceUnitOfMeasureChange": false,\n          "incomeAccountId": "80000001-1234567890",\n          "isActive": true,\n          "maximumQuantityOnHand": 200,\n          "name": "Deluxe Kit",\n          "parentId": "80000001-1234567890",\n          "preferredVendorId": "80000001-1234567890",\n          "purchaseCost": "15.75",\n          "purchaseDescription": "Bulk purchase of steel bolts for inventory",\n          "purchaseTaxCodeId": "80000001-1234567890",\n          "salesDescription": "High-quality steel bolts suitable for construction",\n          "salesPrice": "19.99",\n          "salesTaxCodeId": "80000001-1234567890",\n          "sku": "MPN-123456",\n          "unitOfMeasureSetId": "80000001-1234567890",\n          "updateExistingTransactionsIncomeAccount": false\n        }\'',
       },
     },
   },
@@ -4657,14 +4657,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventoryItem = await conductor.qbd.inventoryItems.create({\n  assetAccountId: '80000001-1234567890',\n  cogsAccountId: '80000001-1234567890',\n  incomeAccountId: '80000001-1234567890',\n  name: 'Cabinet',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventoryItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "assetAccountId": "80000001-1234567890",\n          "cogsAccountId": "80000001-1234567890",\n          "incomeAccountId": "80000001-1234567890",\n          "name": "Cabinet",\n          "classId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "inventoryDate": "2024-01-01",\n          "isActive": true,\n          "maximumQuantityOnHand": 200,\n          "parentId": "80000001-1234567890",\n          "preferredVendorId": "80000001-1234567890",\n          "purchaseCost": "15.75",\n          "purchaseDescription": "Bulk purchase of steel bolts for inventory",\n          "purchaseTaxCodeId": "80000001-1234567890",\n          "quantityOnHand": 150,\n          "reorderPoint": 50,\n          "salesDescription": "High-quality steel bolts suitable for construction",\n          "salesPrice": "19.99",\n          "salesTaxCodeId": "80000001-1234567890",\n          "sku": "MPN-123456",\n          "totalValue": "1500.00",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.inventory_items.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_item = conductor.qbd.inventory_items.create(\n    asset_account_id="80000001-1234567890",\n    cogs_account_id="80000001-1234567890",\n    income_account_id="80000001-1234567890",\n    name="Cabinet",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "assetAccountId": "80000001-1234567890",\n          "cogsAccountId": "80000001-1234567890",\n          "incomeAccountId": "80000001-1234567890",\n          "name": "Cabinet",\n          "classId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "inventoryDate": "2024-01-01",\n          "isActive": true,\n          "maximumQuantityOnHand": 200,\n          "parentId": "80000001-1234567890",\n          "preferredVendorId": "80000001-1234567890",\n          "purchaseCost": "15.75",\n          "purchaseDescription": "Bulk purchase of steel bolts for inventory",\n          "purchaseTaxCodeId": "80000001-1234567890",\n          "quantityOnHand": 150,\n          "reorderPoint": 50,\n          "salesDescription": "High-quality steel bolts suitable for construction",\n          "salesPrice": "19.99",\n          "salesTaxCodeId": "80000001-1234567890",\n          "sku": "MPN-123456",\n          "totalValue": "1500.00",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -4703,14 +4703,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const inventoryItem of conductor.qbd.inventoryItems.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(inventoryItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.inventory_items.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.inventory_items.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4734,14 +4734,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventoryItem = await conductor.qbd.inventoryItems.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventoryItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.inventory_items.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_item = conductor.qbd.inventory_items.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4791,14 +4791,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventoryItem = await conductor.qbd.inventoryItems.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventoryItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "assetAccountId": "80000001-1234567890",\n          "classId": "80000001-1234567890",\n          "cogsAccountId": "80000001-1234567890",\n          "forceUnitOfMeasureChange": false,\n          "incomeAccountId": "80000001-1234567890",\n          "isActive": true,\n          "maximumQuantityOnHand": 200,\n          "name": "Cabinet",\n          "parentId": "80000001-1234567890",\n          "preferredVendorId": "80000001-1234567890",\n          "purchaseCost": "15.75",\n          "purchaseDescription": "Bulk purchase of steel bolts for inventory",\n          "purchaseTaxCodeId": "80000001-1234567890",\n          "reorderPoint": 50,\n          "salesDescription": "High-quality steel bolts suitable for construction",\n          "salesPrice": "19.99",\n          "salesTaxCodeId": "80000001-1234567890",\n          "sku": "MPN-123456",\n          "unitOfMeasureSetId": "80000001-1234567890",\n          "updateExistingTransactionsCogsAccount": false,\n          "updateExistingTransactionsIncomeAccount": false\n        }\'',
+      },
       python: {
         method: 'qbd.inventory_items.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_item = conductor.qbd.inventory_items.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "assetAccountId": "80000001-1234567890",\n          "classId": "80000001-1234567890",\n          "cogsAccountId": "80000001-1234567890",\n          "forceUnitOfMeasureChange": false,\n          "incomeAccountId": "80000001-1234567890",\n          "isActive": true,\n          "maximumQuantityOnHand": 200,\n          "name": "Cabinet",\n          "parentId": "80000001-1234567890",\n          "preferredVendorId": "80000001-1234567890",\n          "purchaseCost": "15.75",\n          "purchaseDescription": "Bulk purchase of steel bolts for inventory",\n          "purchaseTaxCodeId": "80000001-1234567890",\n          "reorderPoint": 50,\n          "salesDescription": "High-quality steel bolts suitable for construction",\n          "salesPrice": "19.99",\n          "salesTaxCodeId": "80000001-1234567890",\n          "sku": "MPN-123456",\n          "unitOfMeasureSetId": "80000001-1234567890",\n          "updateExistingTransactionsCogsAccount": false,\n          "updateExistingTransactionsIncomeAccount": false\n        }\'',
       },
     },
   },
@@ -4830,14 +4830,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventorySite = await conductor.qbd.inventorySites.create({\n  name: 'Stockroom',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventorySite.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-sites \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Stockroom",\n          "description": "Main Stockroom for Electronics",\n          "email": "inventory-site@example.com",\n          "isActive": true,\n          "parentId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.inventory_sites.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_site = conductor.qbd.inventory_sites.create(\n    name="Stockroom",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_site.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-sites \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Stockroom",\n          "description": "Main Stockroom for Electronics",\n          "email": "inventory-site@example.com",\n          "isActive": true,\n          "parentId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -4873,14 +4873,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventorySites = await conductor.qbd.inventorySites.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventorySites.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-sites \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.inventory_sites.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_sites = conductor.qbd.inventory_sites.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_sites.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-sites \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4904,14 +4904,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventorySite = await conductor.qbd.inventorySites.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventorySite.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-sites/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.inventory_sites.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_site = conductor.qbd.inventory_sites.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_site.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-sites/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -4947,14 +4947,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst inventorySite = await conductor.qbd.inventorySites.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(inventorySite.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-sites/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "contact": "Jane Smith",\n          "description": "Main Stockroom for Electronics",\n          "email": "inventory-site@example.com",\n          "fax": "+1-555-555-1212",\n          "isActive": true,\n          "name": "Stockroom",\n          "parentId": "80000001-1234567890",\n          "phone": "+1-555-123-4567"\n        }\'',
+      },
       python: {
         method: 'qbd.inventory_sites.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninventory_site = conductor.qbd.inventory_sites.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(inventory_site.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/inventory-sites/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "contact": "Jane Smith",\n          "description": "Main Stockroom for Electronics",\n          "email": "inventory-site@example.com",\n          "fax": "+1-555-555-1212",\n          "isActive": true,\n          "name": "Stockroom",\n          "parentId": "80000001-1234567890",\n          "phone": "+1-555-123-4567"\n        }\'',
       },
     },
   },
@@ -5010,14 +5010,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst invoice = await conductor.qbd.invoices.create({\n  customerId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(invoice.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isFinanceCharge": true,\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer requested rush delivery",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "INV-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.invoices.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninvoice = conductor.qbd.invoices.create(\n    customer_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(invoice.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isFinanceCharge": true,\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer requested rush delivery",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "INV-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -5061,14 +5061,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const invoice of conductor.qbd.invoices.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(invoice.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.invoices.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.invoices.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5092,14 +5092,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst invoice = await conductor.qbd.invoices.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(invoice.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.invoices.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninvoice = conductor.qbd.invoices.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(invoice.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5154,14 +5154,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst invoice = await conductor.qbd.invoices.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(invoice.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer requested rush delivery",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "INV-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.invoices.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninvoice = conductor.qbd.invoices.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(invoice.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer requested rush delivery",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "INV-1234",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -5185,14 +5185,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.invoices.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.invoices.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.invoices.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5215,14 +5215,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst invoice = await conductor.qbd.invoices.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(invoice.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.invoices.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ninvoice = conductor.qbd.invoices.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(invoice.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/invoices/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5255,14 +5255,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst itemGroup = await conductor.qbd.itemGroups.create({\n  name: 'Office Supplies Bundle',\n  shouldPrintItemsInGroup: true,\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(itemGroup.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-groups \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Office Supplies Bundle",\n          "shouldPrintItemsInGroup": true,\n          "description": "Complete office starter kit with essential supplies for new employees.",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.item_groups.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nitem_group = conductor.qbd.item_groups.create(\n    name="Office Supplies Bundle",\n    should_print_items_in_group=True,\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(item_group.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-groups \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Office Supplies Bundle",\n          "shouldPrintItemsInGroup": true,\n          "description": "Complete office starter kit with essential supplies for new employees.",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -5299,14 +5299,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const itemGroup of conductor.qbd.itemGroups.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(itemGroup.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-groups \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.item_groups.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.item_groups.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-groups \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5330,14 +5330,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst itemGroup = await conductor.qbd.itemGroups.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(itemGroup.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-groups/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.item_groups.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nitem_group = conductor.qbd.item_groups.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(item_group.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-groups/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5373,14 +5373,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst itemGroup = await conductor.qbd.itemGroups.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(itemGroup.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-groups/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "clearItemLines": false,\n          "description": "Complete office starter kit with essential supplies for new employees.",\n          "forceUnitOfMeasureChange": false,\n          "isActive": true,\n          "name": "Office Supplies Bundle",\n          "shouldPrintItemsInGroup": true,\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.item_groups.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nitem_group = conductor.qbd.item_groups.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(item_group.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-groups/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "clearItemLines": false,\n          "description": "Complete office starter kit with essential supplies for new employees.",\n          "forceUnitOfMeasureChange": false,\n          "isActive": true,\n          "name": "Office Supplies Bundle",\n          "shouldPrintItemsInGroup": true,\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -5418,14 +5418,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst itemReceipt = await conductor.qbd.itemReceipts.create({\n  transactionDate: '2024-10-01',\n  vendorId: '80000001-1234567890',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(itemReceipt.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Received 100 units of Product X from Vendor Y",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "RECEIPT-1234",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.item_receipts.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nitem_receipt = conductor.qbd.item_receipts.create(\n    transaction_date=date.fromisoformat("2024-10-01"),\n    vendor_id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(item_receipt.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Received 100 units of Product X from Vendor Y",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "RECEIPT-1234",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -5469,14 +5469,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const itemReceipt of conductor.qbd.itemReceipts.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(itemReceipt.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.item_receipts.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.item_receipts.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5500,14 +5500,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst itemReceipt = await conductor.qbd.itemReceipts.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(itemReceipt.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.item_receipts.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nitem_receipt = conductor.qbd.item_receipts.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(item_receipt.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5547,14 +5547,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst itemReceipt = await conductor.qbd.itemReceipts.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(itemReceipt.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "exchangeRate": 1.2345,\n          "memo": "Received 100 units of Product X from Vendor Y",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "RECEIPT-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.item_receipts.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nitem_receipt = conductor.qbd.item_receipts.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(item_receipt.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "exchangeRate": 1.2345,\n          "memo": "Received 100 units of Product X from Vendor Y",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "RECEIPT-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -5578,14 +5578,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.itemReceipts.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.item_receipts.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.item_receipts.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5608,14 +5608,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst itemReceipt = await conductor.qbd.itemReceipts.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(itemReceipt.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.item_receipts.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nitem_receipt = conductor.qbd.item_receipts.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(item_receipt.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-receipts/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5647,14 +5647,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const itemSite of conductor.qbd.itemSites.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(itemSite.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-sites \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.item_sites.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.item_sites.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-sites \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5678,14 +5678,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst itemSite = await conductor.qbd.itemSites.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(itemSite.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/item-sites/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.item_sites.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nitem_site = conductor.qbd.item_sites.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(item_site.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/item-sites/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5721,14 +5721,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst journalEntry = await conductor.qbd.journalEntries.create({\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(journalEntry.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "areAmountsEnteredInHomeCurrency": false,\n          "currencyId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isAdjustment": false,\n          "isHomeCurrencyAdjustment": false,\n          "refNumber": "JE-1234"\n        }\'',
+      },
       python: {
         method: 'qbd.journal_entries.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\njournal_entry = conductor.qbd.journal_entries.create(\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(journal_entry.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "areAmountsEnteredInHomeCurrency": false,\n          "currencyId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isAdjustment": false,\n          "isHomeCurrencyAdjustment": false,\n          "refNumber": "JE-1234"\n        }\'',
       },
     },
   },
@@ -5771,14 +5771,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const journalEntry of conductor.qbd.journalEntries.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(journalEntry.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.journal_entries.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.journal_entries.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5802,14 +5802,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst journalEntry = await conductor.qbd.journalEntries.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(journalEntry.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.journal_entries.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\njournal_entry = conductor.qbd.journal_entries.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(journal_entry.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5844,14 +5844,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst journalEntry = await conductor.qbd.journalEntries.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(journalEntry.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "areAmountsEnteredInHomeCurrency": false,\n          "currencyId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "isAdjustment": false,\n          "refNumber": "JE-1234",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.journal_entries.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\njournal_entry = conductor.qbd.journal_entries.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(journal_entry.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "areAmountsEnteredInHomeCurrency": false,\n          "currencyId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "isAdjustment": false,\n          "refNumber": "JE-1234",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -5875,14 +5875,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.journalEntries.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.journal_entries.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.journal_entries.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5905,14 +5905,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst journalEntry = await conductor.qbd.journalEntries.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(journalEntry.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.journal_entries.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\njournal_entry = conductor.qbd.journal_entries.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(journal_entry.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/journal-entries/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -5948,14 +5948,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst nonInventoryItem = await conductor.qbd.nonInventoryItems.create({\n  name: 'Printer Ink Cartridge',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(nonInventoryItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/non-inventory-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Printer Ink Cartridge",\n          "classId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "sku": "MPN-123456",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.non_inventory_items.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nnon_inventory_item = conductor.qbd.non_inventory_items.create(\n    name="Printer Ink Cartridge",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(non_inventory_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/non-inventory-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Printer Ink Cartridge",\n          "classId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "sku": "MPN-123456",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -5994,14 +5994,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const nonInventoryItem of conductor.qbd.nonInventoryItems.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(nonInventoryItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/non-inventory-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.non_inventory_items.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.non_inventory_items.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/non-inventory-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6025,14 +6025,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst nonInventoryItem = await conductor.qbd.nonInventoryItems.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(nonInventoryItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/non-inventory-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.non_inventory_items.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nnon_inventory_item = conductor.qbd.non_inventory_items.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(non_inventory_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/non-inventory-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6071,14 +6071,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst nonInventoryItem = await conductor.qbd.nonInventoryItems.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(nonInventoryItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/non-inventory-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "forceUnitOfMeasureChange": false,\n          "isActive": true,\n          "name": "Printer Ink Cartridge",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "sku": "MPN-123456",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.non_inventory_items.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nnon_inventory_item = conductor.qbd.non_inventory_items.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(non_inventory_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/non-inventory-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "forceUnitOfMeasureChange": false,\n          "isActive": true,\n          "name": "Printer Ink Cartridge",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "sku": "MPN-123456",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -6112,14 +6112,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst otherChargeItem = await conductor.qbd.otherChargeItems.create({\n  name: 'Overnight Delivery',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(otherChargeItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/other-charge-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Overnight Delivery",\n          "classId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.other_charge_items.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nother_charge_item = conductor.qbd.other_charge_items.create(\n    name="Overnight Delivery",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(other_charge_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/other-charge-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Overnight Delivery",\n          "classId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -6158,14 +6158,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const otherChargeItem of conductor.qbd.otherChargeItems.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(otherChargeItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/other-charge-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.other_charge_items.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.other_charge_items.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/other-charge-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6189,14 +6189,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst otherChargeItem = await conductor.qbd.otherChargeItems.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(otherChargeItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/other-charge-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.other_charge_items.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nother_charge_item = conductor.qbd.other_charge_items.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(other_charge_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/other-charge-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6231,14 +6231,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst otherChargeItem = await conductor.qbd.otherChargeItems.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(otherChargeItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/other-charge-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "isActive": true,\n          "name": "Overnight Delivery",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.other_charge_items.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nother_charge_item = conductor.qbd.other_charge_items.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(other_charge_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/other-charge-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "isActive": true,\n          "name": "Overnight Delivery",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -6280,14 +6280,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst otherName = await conductor.qbd.otherNames.create({\n  name: 'John Doe',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(otherName.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/other-names \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "John Doe",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "email": "other-name@example.com",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "lastName": "Doe",\n          "middleName": "A.",\n          "note": "This employee is a key employee.",\n          "phone": "+1-555-123-4567",\n          "salutation": "Dr."\n        }\'',
+      },
       python: {
         method: 'qbd.other_names.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nother_name = conductor.qbd.other_names.create(\n    name="John Doe",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(other_name.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/other-names \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "John Doe",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "email": "other-name@example.com",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "lastName": "Doe",\n          "middleName": "A.",\n          "note": "This employee is a key employee.",\n          "phone": "+1-555-123-4567",\n          "salutation": "Dr."\n        }\'',
       },
     },
   },
@@ -6324,14 +6324,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst otherNames = await conductor.qbd.otherNames.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(otherNames.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/other-names \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.other_names.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nother_names = conductor.qbd.other_names.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(other_names.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/other-names \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6355,14 +6355,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst otherName = await conductor.qbd.otherNames.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(otherName.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/other-names/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.other_names.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nother_name = conductor.qbd.other_names.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(other_name.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/other-names/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6405,14 +6405,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst otherName = await conductor.qbd.otherNames.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(otherName.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/other-names/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "email": "other-name@example.com",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "lastName": "Doe",\n          "middleName": "A.",\n          "name": "John Doe",\n          "note": "This employee is a key employee.",\n          "phone": "+1-555-123-4567",\n          "salutation": "Dr."\n        }\'',
+      },
       python: {
         method: 'qbd.other_names.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nother_name = conductor.qbd.other_names.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(other_name.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/other-names/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "email": "other-name@example.com",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "lastName": "Doe",\n          "middleName": "A.",\n          "name": "John Doe",\n          "note": "This employee is a key employee.",\n          "phone": "+1-555-123-4567",\n          "salutation": "Dr."\n        }\'',
       },
     },
   },
@@ -6440,14 +6440,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst paymentMethod = await conductor.qbd.paymentMethods.create({\n  name: 'Cash',\n  paymentMethodType: 'cash',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(paymentMethod.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/payment-methods \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Cash",\n          "paymentMethodType": "cash",\n          "isActive": true\n        }\'',
+      },
       python: {
         method: 'qbd.payment_methods.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npayment_method = conductor.qbd.payment_methods.create(\n    name="Cash",\n    payment_method_type="cash",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(payment_method.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/payment-methods \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Cash",\n          "paymentMethodType": "cash",\n          "isActive": true\n        }\'',
       },
     },
   },
@@ -6485,14 +6485,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst paymentMethods = await conductor.qbd.paymentMethods.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(paymentMethods.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/payment-methods \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.payment_methods.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npayment_methods = conductor.qbd.payment_methods.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(payment_methods.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/payment-methods \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6516,14 +6516,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst paymentMethod = await conductor.qbd.paymentMethods.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(paymentMethod.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/payment-methods/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.payment_methods.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npayment_method = conductor.qbd.payment_methods.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(payment_method.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/payment-methods/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6547,14 +6547,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst paymentsToDeposits = await conductor.qbd.paymentsToDeposit.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(paymentsToDeposits.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/payments-to-deposit \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.payments_to_deposit.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npayments_to_deposits = conductor.qbd.payments_to_deposit.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(payments_to_deposits.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/payments-to-deposit \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6586,14 +6586,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst payrollWageItem = await conductor.qbd.payrollWageItems.create({\n  expenseAccountId: '80000001-1234567890',\n  name: 'Regular Pay',\n  wageType: 'hourly_regular',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(payrollWageItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/payroll-wage-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "expenseAccountId": "80000001-1234567890",\n          "name": "Regular Pay",\n          "wageType": "hourly_regular",\n          "isActive": true,\n          "overtimeMultiplier": "1.5",\n          "rate": "15.00",\n          "ratePercent": "10"\n        }\'',
+      },
       python: {
         method: 'qbd.payroll_wage_items.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npayroll_wage_item = conductor.qbd.payroll_wage_items.create(\n    expense_account_id="80000001-1234567890",\n    name="Regular Pay",\n    wage_type="hourly_regular",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(payroll_wage_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/payroll-wage-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "expenseAccountId": "80000001-1234567890",\n          "name": "Regular Pay",\n          "wageType": "hourly_regular",\n          "isActive": true,\n          "overtimeMultiplier": "1.5",\n          "rate": "15.00",\n          "ratePercent": "10"\n        }\'',
       },
     },
   },
@@ -6631,14 +6631,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const payrollWageItem of conductor.qbd.payrollWageItems.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(payrollWageItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/payroll-wage-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.payroll_wage_items.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.payroll_wage_items.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/payroll-wage-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6662,14 +6662,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst payrollWageItem = await conductor.qbd.payrollWageItems.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(payrollWageItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/payroll-wage-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.payroll_wage_items.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npayroll_wage_item = conductor.qbd.payroll_wage_items.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(payroll_wage_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/payroll-wage-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6693,14 +6693,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst preferences = await conductor.qbd.preferences.retrieve({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(preferences.accounting);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/preferences \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.preferences.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npreferences = conductor.qbd.preferences.retrieve(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(preferences.accounting)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/preferences \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6730,14 +6730,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst priceLevel = await conductor.qbd.priceLevels.create({\n  name: 'Wholesale 20% Discount',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(priceLevel.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/price-levels \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Wholesale 20% Discount",\n          "currencyId": "80000001-1234567890",\n          "fixedPercentage": "-10.0",\n          "isActive": true\n        }\'',
+      },
       python: {
         method: 'qbd.price_levels.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nprice_level = conductor.qbd.price_levels.create(\n    name="Wholesale 20% Discount",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(price_level.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/price-levels \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Wholesale 20% Discount",\n          "currencyId": "80000001-1234567890",\n          "fixedPercentage": "-10.0",\n          "isActive": true\n        }\'',
       },
     },
   },
@@ -6776,14 +6776,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst priceLevels = await conductor.qbd.priceLevels.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(priceLevels.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/price-levels \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.price_levels.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nprice_levels = conductor.qbd.price_levels.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(price_levels.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/price-levels \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6807,14 +6807,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst priceLevel = await conductor.qbd.priceLevels.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(priceLevel.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/price-levels/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.price_levels.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nprice_level = conductor.qbd.price_levels.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(price_level.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/price-levels/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6846,14 +6846,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst priceLevel = await conductor.qbd.priceLevels.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(priceLevel.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/price-levels/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "currencyId": "80000001-1234567890",\n          "fixedPercentage": "-10.0",\n          "isActive": true,\n          "name": "Wholesale 20% Discount"\n        }\'',
+      },
       python: {
         method: 'qbd.price_levels.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nprice_level = conductor.qbd.price_levels.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(price_level.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/price-levels/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "currencyId": "80000001-1234567890",\n          "fixedPercentage": "-10.0",\n          "isActive": true,\n          "name": "Wholesale 20% Discount"\n        }\'',
       },
     },
   },
@@ -6903,14 +6903,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst purchaseOrder = await conductor.qbd.purchaseOrders.create({\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(purchaseOrder.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/purchase-orders \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "expectedDate": "2024-01-01",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "inventorySiteId": "80000001-1234567890",\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Office supplies for September",\n          "otherCustomField1": "Special handling required",\n          "otherCustomField2": "Always ship with a spare",\n          "refNumber": "PO-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingMethodId": "80000001-1234567890",\n          "shipToEntityId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "vendorId": "80000001-1234567890",\n          "vendorMessage": "Please include packing slip with shipment"\n        }\'',
+      },
       python: {
         method: 'qbd.purchase_orders.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npurchase_order = conductor.qbd.purchase_orders.create(\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(purchase_order.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/purchase-orders \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "expectedDate": "2024-01-01",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "inventorySiteId": "80000001-1234567890",\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Office supplies for September",\n          "otherCustomField1": "Special handling required",\n          "otherCustomField2": "Always ship with a spare",\n          "refNumber": "PO-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingMethodId": "80000001-1234567890",\n          "shipToEntityId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "vendorId": "80000001-1234567890",\n          "vendorMessage": "Please include packing slip with shipment"\n        }\'',
       },
     },
   },
@@ -6954,14 +6954,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const purchaseOrder of conductor.qbd.purchaseOrders.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(purchaseOrder.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/purchase-orders \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.purchase_orders.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.purchase_orders.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/purchase-orders \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -6985,14 +6985,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst purchaseOrder = await conductor.qbd.purchaseOrders.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(purchaseOrder.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/purchase-orders/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.purchase_orders.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npurchase_order = conductor.qbd.purchase_orders.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(purchase_order.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/purchase-orders/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7045,14 +7045,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst purchaseOrder = await conductor.qbd.purchaseOrders.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(purchaseOrder.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/purchase-orders/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "expectedDate": "2024-01-01",\n          "inventorySiteId": "80000001-1234567890",\n          "isManuallyClosed": true,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Office supplies for September",\n          "otherCustomField1": "Special handling required",\n          "otherCustomField2": "Always ship with a spare",\n          "refNumber": "PO-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingMethodId": "80000001-1234567890",\n          "shipToEntityId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "vendorMessage": "Please include packing slip with shipment"\n        }\'',
+      },
       python: {
         method: 'qbd.purchase_orders.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npurchase_order = conductor.qbd.purchase_orders.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(purchase_order.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/purchase-orders/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "expectedDate": "2024-01-01",\n          "inventorySiteId": "80000001-1234567890",\n          "isManuallyClosed": true,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Office supplies for September",\n          "otherCustomField1": "Special handling required",\n          "otherCustomField2": "Always ship with a spare",\n          "refNumber": "PO-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingMethodId": "80000001-1234567890",\n          "shipToEntityId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "vendorMessage": "Please include packing slip with shipment"\n        }\'',
       },
     },
   },
@@ -7075,14 +7075,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst purchaseOrder = await conductor.qbd.purchaseOrders.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(purchaseOrder.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/purchase-orders/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.purchase_orders.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npurchase_order = conductor.qbd.purchase_orders.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(purchase_order.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/purchase-orders/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7121,14 +7121,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst receivePayment = await conductor.qbd.receivePayments.create({\n  customerId: '80000001-1234567890',\n  totalAmount: '1000.00',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(receivePayment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/receive-payments \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "totalAmount": "1000.00",\n          "transactionDate": "2024-10-01",\n          "depositToAccountId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isAutoApply": false,\n          "memo": "Payment received at store location - cash",\n          "paymentMethodId": "80000001-1234567890",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "PAYMENT-1234"\n        }\'',
+      },
       python: {
         method: 'qbd.receive_payments.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreceive_payment = conductor.qbd.receive_payments.create(\n    customer_id="80000001-1234567890",\n    total_amount="1000.00",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(receive_payment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/receive-payments \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "totalAmount": "1000.00",\n          "transactionDate": "2024-10-01",\n          "depositToAccountId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isAutoApply": false,\n          "memo": "Payment received at store location - cash",\n          "paymentMethodId": "80000001-1234567890",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "PAYMENT-1234"\n        }\'',
       },
     },
   },
@@ -7171,14 +7171,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const receivePayment of conductor.qbd.receivePayments.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(receivePayment.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/receive-payments \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.receive_payments.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.receive_payments.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/receive-payments \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7202,14 +7202,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst receivePayment = await conductor.qbd.receivePayments.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(receivePayment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/receive-payments/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.receive_payments.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreceive_payment = conductor.qbd.receive_payments.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(receive_payment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/receive-payments/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7248,14 +7248,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst receivePayment = await conductor.qbd.receivePayments.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(receivePayment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/receive-payments/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "customerId": "80000001-1234567890",\n          "depositToAccountId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "memo": "Payment received at store location - cash",\n          "paymentMethodId": "80000001-1234567890",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "PAYMENT-1234",\n          "totalAmount": "1000.00",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.receive_payments.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreceive_payment = conductor.qbd.receive_payments.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(receive_payment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/receive-payments/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "customerId": "80000001-1234567890",\n          "depositToAccountId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "memo": "Payment received at store location - cash",\n          "paymentMethodId": "80000001-1234567890",\n          "receivablesAccountId": "80000001-1234567890",\n          "refNumber": "PAYMENT-1234",\n          "totalAmount": "1000.00",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -7278,14 +7278,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst receivePayment = await conductor.qbd.receivePayments.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(receivePayment.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/receive-payments/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.receive_payments.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreceive_payment = conductor.qbd.receive_payments.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(receive_payment.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/receive-payments/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7335,14 +7335,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst report = await conductor.qbd.reports.aging({\n  reportType: 'ap_aging_detail',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(report.basis);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/aging \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.reports.aging',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreport = conductor.qbd.reports.aging(\n    report_type="ap_aging_detail",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(report.basis)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/aging \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7378,14 +7378,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst report = await conductor.qbd.reports.budgetSummary({\n  fiscalYear: 2026,\n  reportType: 'balance_sheet_budget_overview',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(report.basis);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/budget-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.reports.budget_summary',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreport = conductor.qbd.reports.budget_summary(\n    fiscal_year=2026,\n    report_type="balance_sheet_budget_overview",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(report.basis)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/budget-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7437,14 +7437,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst report = await conductor.qbd.reports.customDetail({\n  includeColumns: ['date', 'transaction_type', 'amount'],\n  summarizeRowsBy: 'account',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(report.basis);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/custom-detail \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.reports.custom_detail',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreport = conductor.qbd.reports.custom_detail(\n    include_columns=["date", "transaction_type", "amount"],\n    summarize_rows_by="account",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(report.basis)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/custom-detail \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7498,14 +7498,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst report = await conductor.qbd.reports.customSummary({\n  summarizeColumnsBy: 'month',\n  summarizeRowsBy: 'account',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(report.basis);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/custom-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.reports.custom_summary',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreport = conductor.qbd.reports.custom_summary(\n    summarize_columns_by="month",\n    summarize_rows_by="account",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(report.basis)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/custom-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7557,14 +7557,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst report = await conductor.qbd.reports.generalDetail({\n  reportType: '1099_detail',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(report.basis);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/general-detail \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.reports.general_detail',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreport = conductor.qbd.reports.general_detail(\n    report_type="1099_detail",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(report.basis)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/general-detail \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7617,14 +7617,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst report = await conductor.qbd.reports.generalSummary({\n  reportType: 'balance_sheet_by_class',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(report.basis);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/general-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.reports.general_summary',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreport = conductor.qbd.reports.general_summary(\n    report_type="balance_sheet_by_class",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(report.basis)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/general-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7673,14 +7673,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst report = await conductor.qbd.reports.job({\n  reportType: 'item_estimates_vs_actuals',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(report.basis);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/job \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.reports.job',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreport = conductor.qbd.reports.job(\n    report_type="item_estimates_vs_actuals",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(report.basis)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/job \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7730,14 +7730,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst report = await conductor.qbd.reports.payrollDetail({\n  reportType: 'employee_state_taxes_detail',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(report.basis);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/payroll-detail \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.reports.payroll_detail',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreport = conductor.qbd.reports.payroll_detail(\n    report_type="employee_state_taxes_detail",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(report.basis)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/payroll-detail \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7788,14 +7788,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst report = await conductor.qbd.reports.payrollSummary({\n  reportType: 'employee_earnings_summary',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(report.basis);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/payroll-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.reports.payroll_summary',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreport = conductor.qbd.reports.payroll_summary(\n    report_type="employee_earnings_summary",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(report.basis)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/payroll-summary \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7838,14 +7838,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst report = await conductor.qbd.reports.time({\n  reportType: 'time_by_item',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(report.basis);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/time \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.reports.time',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nreport = conductor.qbd.reports.time(\n    report_type="time_by_item",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(report.basis)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/reports/time \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7899,14 +7899,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesOrder = await conductor.qbd.salesOrders.create({\n  customerId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesOrder.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-orders \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isManuallyClosed": true,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer requested rush delivery",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "refNumber": "SO-1234",\n          "salesChannelName": "ecommerce",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesStoreName": "Store 1",\n          "salesStoreType": "Retail",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.sales_orders.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_order = conductor.qbd.sales_orders.create(\n    customer_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_order.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-orders \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "customerId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isManuallyClosed": true,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer requested rush delivery",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "refNumber": "SO-1234",\n          "salesChannelName": "ecommerce",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesStoreName": "Store 1",\n          "salesStoreType": "Retail",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -7949,14 +7949,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const salesOrder of conductor.qbd.salesOrders.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(salesOrder.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-orders \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_orders.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.sales_orders.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-orders \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -7980,14 +7980,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesOrder = await conductor.qbd.salesOrders.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesOrder.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-orders/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_orders.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_order = conductor.qbd.sales_orders.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_order.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-orders/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8043,14 +8043,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesOrder = await conductor.qbd.salesOrders.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesOrder.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-orders/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "isManuallyClosed": true,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer requested rush delivery",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "refNumber": "SO-1234",\n          "salesChannelName": "ecommerce",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesStoreName": "Store 1",\n          "salesStoreType": "Retail",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.sales_orders.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_order = conductor.qbd.sales_orders.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_order.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-orders/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "isManuallyClosed": true,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Customer requested rush delivery",\n          "otherCustomField": "Special handling required",\n          "purchaseOrderNumber": "PO-1234",\n          "refNumber": "SO-1234",\n          "salesChannelName": "ecommerce",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesStoreName": "Store 1",\n          "salesStoreType": "Retail",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "termsId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -8073,14 +8073,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesOrder = await conductor.qbd.salesOrders.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesOrder.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-orders/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_orders.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_order = conductor.qbd.sales_orders.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_order.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-orders/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8134,14 +8134,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesReceipt = await conductor.qbd.salesReceipts.create({\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesReceipt.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "checkNumber": "1234567890",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "depositToAccountId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Payment received at store location - cash",\n          "otherCustomField": "Special handling required",\n          "paymentMethodId": "80000001-1234567890",\n          "refNumber": "refNumber",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.sales_receipts.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_receipt = conductor.qbd.sales_receipts.create(\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_receipt.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "checkNumber": "1234567890",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "depositToAccountId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Payment received at store location - cash",\n          "otherCustomField": "Special handling required",\n          "paymentMethodId": "80000001-1234567890",\n          "refNumber": "refNumber",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -8184,14 +8184,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const salesReceipt of conductor.qbd.salesReceipts.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(salesReceipt.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_receipts.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.sales_receipts.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8215,14 +8215,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesReceipt = await conductor.qbd.salesReceipts.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesReceipt.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_receipts.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_receipt = conductor.qbd.sales_receipts.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_receipt.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8276,14 +8276,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesReceipt = await conductor.qbd.salesReceipts.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesReceipt.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "checkNumber": "1234567890",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "depositToAccountId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Payment received at store location - cash",\n          "otherCustomField": "Special handling required",\n          "paymentMethodId": "80000001-1234567890",\n          "refNumber": "refNumber",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.sales_receipts.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_receipt = conductor.qbd.sales_receipts.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_receipt.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "checkNumber": "1234567890",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "customerMessageId": "80000001-1234567890",\n          "depositToAccountId": "80000001-1234567890",\n          "documentTemplateId": "80000001-1234567890",\n          "dueDate": "2024-10-31",\n          "exchangeRate": 1.2345,\n          "isPending": false,\n          "isQueuedForEmail": true,\n          "isQueuedForPrint": true,\n          "memo": "Payment received at store location - cash",\n          "otherCustomField": "Special handling required",\n          "paymentMethodId": "80000001-1234567890",\n          "refNumber": "refNumber",\n          "salesRepresentativeId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxItemId": "80000001-1234567890",\n          "shipmentOrigin": "shipmentOrigin",\n          "shippingDate": "2024-10-01",\n          "shippingMethodId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -8307,14 +8307,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.salesReceipts.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_receipts.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.sales_receipts.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8337,14 +8337,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesReceipt = await conductor.qbd.salesReceipts.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesReceipt.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_receipts.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_receipt = conductor.qbd.sales_receipts.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_receipt.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-receipts/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8373,14 +8373,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesRepresentative = await conductor.qbd.salesRepresentatives.create({\n  entityId: '80000001-1234567890',\n  initial: 'JD',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesRepresentative.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-representatives \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "entityId": "80000001-1234567890",\n          "initial": "JD",\n          "isActive": true\n        }\'',
+      },
       python: {
         method: 'qbd.sales_representatives.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_representative = conductor.qbd.sales_representatives.create(\n    entity_id="80000001-1234567890",\n    initial="JD",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_representative.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-representatives \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "entityId": "80000001-1234567890",\n          "initial": "JD",\n          "isActive": true\n        }\'',
       },
     },
   },
@@ -8417,14 +8417,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesRepresentatives = await conductor.qbd.salesRepresentatives.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesRepresentatives.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-representatives \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_representatives.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_representatives = conductor.qbd.sales_representatives.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_representatives.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-representatives \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8448,14 +8448,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesRepresentative = await conductor.qbd.salesRepresentatives.retrieve(\n  '80000001-1234567890',\n  { conductorEndUserId: 'end_usr_1234567abcdefg' },\n);\n\nconsole.log(salesRepresentative.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-representatives/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_representatives.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_representative = conductor.qbd.sales_representatives.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_representative.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-representatives/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8485,14 +8485,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesRepresentative = await conductor.qbd.salesRepresentatives.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesRepresentative.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-representatives/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "entityId": "80000001-1234567890",\n          "initial": "JD",\n          "isActive": true\n        }\'',
+      },
       python: {
         method: 'qbd.sales_representatives.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_representative = conductor.qbd.sales_representatives.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_representative.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-representatives/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "entityId": "80000001-1234567890",\n          "initial": "JD",\n          "isActive": true\n        }\'',
       },
     },
   },
@@ -8522,14 +8522,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxCode = await conductor.qbd.salesTaxCodes.create({\n  isTaxable: true,\n  name: 'Tax',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxCode.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-codes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "isTaxable": true,\n          "name": "Tax",\n          "description": "Standard tax rate for California",\n          "isActive": true,\n          "salesTaxItemId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.sales_tax_codes.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_code = conductor.qbd.sales_tax_codes.create(\n    is_taxable=True,\n    name="Tax",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_code.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-codes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "isTaxable": true,\n          "name": "Tax",\n          "description": "Standard tax rate for California",\n          "isActive": true,\n          "salesTaxItemId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -8566,14 +8566,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxCodes = await conductor.qbd.salesTaxCodes.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxCodes.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-codes \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_tax_codes.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_codes = conductor.qbd.sales_tax_codes.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_codes.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-codes \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8597,14 +8597,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxCode = await conductor.qbd.salesTaxCodes.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxCode.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-codes/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_tax_codes.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_code = conductor.qbd.sales_tax_codes.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_code.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-codes/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8637,14 +8637,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxCode = await conductor.qbd.salesTaxCodes.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxCode.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-codes/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "description": "Standard tax rate for California",\n          "isActive": true,\n          "isTaxable": true,\n          "name": "Tax",\n          "salesTaxItemId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.sales_tax_codes.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_code = conductor.qbd.sales_tax_codes.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_code.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-codes/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "description": "Standard tax rate for California",\n          "isActive": true,\n          "isTaxable": true,\n          "name": "Tax",\n          "salesTaxItemId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -8675,14 +8675,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxGroupItem = await conductor.qbd.salesTaxGroupItems.create({\n  name: 'Standard Tax Group',\n  salesTaxItemIds: ['80000001-1234567890'],\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxGroupItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Standard Tax Group",\n          "salesTaxItemIds": [\n            "80000001-1234567890"\n          ],\n          "description": "Combined city, county, and state sales tax",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true\n        }\'',
+      },
       python: {
         method: 'qbd.sales_tax_group_items.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_group_item = conductor.qbd.sales_tax_group_items.create(\n    name="Standard Tax Group",\n    sales_tax_item_ids=["80000001-1234567890"],\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_group_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Standard Tax Group",\n          "salesTaxItemIds": [\n            "80000001-1234567890"\n          ],\n          "description": "Combined city, county, and state sales tax",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true\n        }\'',
       },
     },
   },
@@ -8720,14 +8720,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const salesTaxGroupItem of conductor.qbd.salesTaxGroupItems.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(salesTaxGroupItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_tax_group_items.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.sales_tax_group_items.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8751,14 +8751,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxGroupItem = await conductor.qbd.salesTaxGroupItems.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxGroupItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_tax_group_items.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_group_item = conductor.qbd.sales_tax_group_items.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_group_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8790,14 +8790,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxGroupItem = await conductor.qbd.salesTaxGroupItems.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxGroupItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "description": "Combined city, county, and state sales tax",\n          "isActive": true,\n          "name": "Standard Tax Group",\n          "salesTaxItemIds": [\n            "80000001-1234567890"\n          ]\n        }\'',
+      },
       python: {
         method: 'qbd.sales_tax_group_items.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_group_item = conductor.qbd.sales_tax_group_items.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_group_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-group-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "description": "Combined city, county, and state sales tax",\n          "isActive": true,\n          "name": "Standard Tax Group",\n          "salesTaxItemIds": [\n            "80000001-1234567890"\n          ]\n        }\'',
       },
     },
   },
@@ -8831,14 +8831,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxItem = await conductor.qbd.salesTaxItems.create({\n  name: 'Standard Tax',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Standard Tax",\n          "classId": "80000001-1234567890",\n          "description": "Standard rate sales tax for California",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "salesTaxReturnLineId": "80000001-1234567890",\n          "taxRate": "7.5",\n          "taxVendorId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.sales_tax_items.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_item = conductor.qbd.sales_tax_items.create(\n    name="Standard Tax",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Standard Tax",\n          "classId": "80000001-1234567890",\n          "description": "Standard rate sales tax for California",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "salesTaxReturnLineId": "80000001-1234567890",\n          "taxRate": "7.5",\n          "taxVendorId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -8877,14 +8877,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const salesTaxItem of conductor.qbd.salesTaxItems.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(salesTaxItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_tax_items.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.sales_tax_items.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8908,14 +8908,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxItem = await conductor.qbd.salesTaxItems.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_tax_items.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_item = conductor.qbd.sales_tax_items.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -8950,14 +8950,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxItem = await conductor.qbd.salesTaxItems.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "description": "Standard rate sales tax for California",\n          "isActive": true,\n          "name": "Standard Tax",\n          "salesTaxReturnLineId": "80000001-1234567890",\n          "taxRate": "7.5",\n          "taxVendorId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.sales_tax_items.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_item = conductor.qbd.sales_tax_items.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "description": "Standard rate sales tax for California",\n          "isActive": true,\n          "name": "Standard Tax",\n          "salesTaxReturnLineId": "80000001-1234567890",\n          "taxRate": "7.5",\n          "taxVendorId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -8991,14 +8991,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.create({\n  bankAccountId: '80000001-1234567890',\n  lines: [{ amount: '1000.00' }],\n  transactionDate: '2024-10-01',\n  vendorId: '80000001-1234567890',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxPaymentCheck.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "bankAccountId": "80000001-1234567890",\n          "lines": [\n            {\n              "amount": "1000.00"\n            }\n          ],\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isQueuedForPrint": true,\n          "memo": "Sales tax payment for Q3 2024",\n          "refNumber": "TAXPMT-1234"\n        }\'',
+      },
       python: {
         method: 'qbd.sales_tax_payment_checks.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_payment_check = conductor.qbd.sales_tax_payment_checks.create(\n    bank_account_id="80000001-1234567890",\n    lines=[{\n        "amount": "1000.00"\n    }],\n    transaction_date=date.fromisoformat("2024-10-01"),\n    vendor_id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_payment_check.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "bankAccountId": "80000001-1234567890",\n          "lines": [\n            {\n              "amount": "1000.00"\n            }\n          ],\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isQueuedForPrint": true,\n          "memo": "Sales tax payment for Q3 2024",\n          "refNumber": "TAXPMT-1234"\n        }\'',
       },
     },
   },
@@ -9041,14 +9041,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const salesTaxPaymentCheck of conductor.qbd.salesTaxPaymentChecks.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(salesTaxPaymentCheck.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_tax_payment_checks.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.sales_tax_payment_checks.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9072,14 +9072,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.retrieve(\n  '123ABC-1234567890',\n  { conductorEndUserId: 'end_usr_1234567abcdefg' },\n);\n\nconsole.log(salesTaxPaymentCheck.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_tax_payment_checks.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_payment_check = conductor.qbd.sales_tax_payment_checks.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_payment_check.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9112,14 +9112,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxPaymentCheck.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "bankAccountId": "80000001-1234567890",\n          "isQueuedForPrint": true,\n          "memo": "Sales tax payment for Q3 2024",\n          "refNumber": "TAXPMT-1234",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.sales_tax_payment_checks.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_payment_check = conductor.qbd.sales_tax_payment_checks.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_payment_check.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "bankAccountId": "80000001-1234567890",\n          "isQueuedForPrint": true,\n          "memo": "Sales tax payment for Q3 2024",\n          "refNumber": "TAXPMT-1234",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -9143,14 +9143,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.salesTaxPaymentChecks.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_tax_payment_checks.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.sales_tax_payment_checks.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9174,14 +9174,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(salesTaxPaymentCheck.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.sales_tax_payment_checks.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsales_tax_payment_check = conductor.qbd.sales_tax_payment_checks.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(sales_tax_payment_check.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/sales-tax-payment-checks/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9216,14 +9216,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst serviceItem = await conductor.qbd.serviceItems.create({\n  name: 'Web-Design',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(serviceItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/service-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Web-Design",\n          "classId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.service_items.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nservice_item = conductor.qbd.service_items.create(\n    name="Web-Design",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(service_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/service-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Web-Design",\n          "classId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true,\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -9262,14 +9262,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const serviceItem of conductor.qbd.serviceItems.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(serviceItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/service-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.service_items.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.service_items.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/service-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9293,14 +9293,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst serviceItem = await conductor.qbd.serviceItems.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(serviceItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/service-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.service_items.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nservice_item = conductor.qbd.service_items.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(service_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/service-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9338,14 +9338,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst serviceItem = await conductor.qbd.serviceItems.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(serviceItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/service-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "forceUnitOfMeasureChange": false,\n          "isActive": true,\n          "name": "Web-Design",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.service_items.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nservice_item = conductor.qbd.service_items.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(service_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/service-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "classId": "80000001-1234567890",\n          "forceUnitOfMeasureChange": false,\n          "isActive": true,\n          "name": "Web-Design",\n          "parentId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "unitOfMeasureSetId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -9368,14 +9368,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst shippingMethod = await conductor.qbd.shippingMethods.create({\n  name: 'FedEx Ground',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(shippingMethod.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/shipping-methods \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "FedEx Ground",\n          "isActive": true\n        }\'',
+      },
       python: {
         method: 'qbd.shipping_methods.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nshipping_method = conductor.qbd.shipping_methods.create(\n    name="FedEx Ground",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(shipping_method.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/shipping-methods \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "FedEx Ground",\n          "isActive": true\n        }\'',
       },
     },
   },
@@ -9412,14 +9412,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst shippingMethods = await conductor.qbd.shippingMethods.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(shippingMethods.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/shipping-methods \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.shipping_methods.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nshipping_methods = conductor.qbd.shipping_methods.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(shipping_methods.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/shipping-methods \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9443,14 +9443,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst shippingMethod = await conductor.qbd.shippingMethods.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(shippingMethod.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/shipping-methods/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.shipping_methods.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nshipping_method = conductor.qbd.shipping_methods.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(shipping_method.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/shipping-methods/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9480,14 +9480,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst standardTerm = await conductor.qbd.standardTerms.create({\n  name: 'Net 30',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(standardTerm.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/standard-terms \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Net 30",\n          "discountDays": 10,\n          "discountPercentage": "10",\n          "dueDays": 30,\n          "isActive": true\n        }\'',
+      },
       python: {
         method: 'qbd.standard_terms.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nstandard_term = conductor.qbd.standard_terms.create(\n    name="Net 30",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(standard_term.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/standard-terms \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Net 30",\n          "discountDays": 10,\n          "discountPercentage": "10",\n          "dueDays": 30,\n          "isActive": true\n        }\'',
       },
     },
   },
@@ -9524,14 +9524,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst standardTerms = await conductor.qbd.standardTerms.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(standardTerms.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/standard-terms \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.standard_terms.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nstandard_terms = conductor.qbd.standard_terms.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(standard_terms.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/standard-terms \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9555,14 +9555,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst standardTerm = await conductor.qbd.standardTerms.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(standardTerm.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/standard-terms/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.standard_terms.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nstandard_term = conductor.qbd.standard_terms.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(standard_term.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/standard-terms/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9592,14 +9592,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst subtotalItem = await conductor.qbd.subtotalItems.create({\n  name: 'Labor subtotal',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(subtotalItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/subtotal-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Labor subtotal",\n          "description": "Subtotal for all labor costs on this project",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true\n        }\'',
+      },
       python: {
         method: 'qbd.subtotal_items.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsubtotal_item = conductor.qbd.subtotal_items.create(\n    name="Labor subtotal",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(subtotal_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/subtotal-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Labor subtotal",\n          "description": "Subtotal for all labor costs on this project",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "isActive": true\n        }\'',
       },
     },
   },
@@ -9637,14 +9637,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const subtotalItem of conductor.qbd.subtotalItems.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(subtotalItem.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/subtotal-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.subtotal_items.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.subtotal_items.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/subtotal-items \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9668,14 +9668,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst subtotalItem = await conductor.qbd.subtotalItems.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(subtotalItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/subtotal-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.subtotal_items.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsubtotal_item = conductor.qbd.subtotal_items.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(subtotal_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/subtotal-items/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9706,14 +9706,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst subtotalItem = await conductor.qbd.subtotalItems.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(subtotalItem.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/subtotal-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "description": "Subtotal for all labor costs on this project",\n          "isActive": true,\n          "name": "Labor subtotal"\n        }\'',
+      },
       python: {
         method: 'qbd.subtotal_items.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nsubtotal_item = conductor.qbd.subtotal_items.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(subtotal_item.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/subtotal-items/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "description": "Subtotal for all labor costs on this project",\n          "isActive": true,\n          "name": "Labor subtotal"\n        }\'',
       },
     },
   },
@@ -9736,14 +9736,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst templates = await conductor.qbd.templates.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(templates.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/templates \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.templates.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ntemplates = conductor.qbd.templates.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(templates.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/templates \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9778,14 +9778,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst timeTrackingActivity = await conductor.qbd.timeTrackingActivities.create({\n  duration: 'PT1H30M',\n  entityId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(timeTrackingActivity.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/time-tracking-activities \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "duration": "PT1H30M",\n          "entityId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "billingStatus": "billable",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "note": "Project planning meeting with client.",\n          "payrollWageItemId": "80000001-1234567890",\n          "serviceItemId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.time_tracking_activities.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ntime_tracking_activity = conductor.qbd.time_tracking_activities.create(\n    duration="PT1H30M",\n    entity_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(time_tracking_activity.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/time-tracking-activities \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "duration": "PT1H30M",\n          "entityId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "billingStatus": "billable",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "note": "Project planning meeting with client.",\n          "payrollWageItemId": "80000001-1234567890",\n          "serviceItemId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -9819,14 +9819,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const timeTrackingActivity of conductor.qbd.timeTrackingActivities.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(timeTrackingActivity.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/time-tracking-activities \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.time_tracking_activities.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.time_tracking_activities.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/time-tracking-activities \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9850,14 +9850,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst timeTrackingActivity = await conductor.qbd.timeTrackingActivities.retrieve(\n  '123ABC-1234567890',\n  { conductorEndUserId: 'end_usr_1234567abcdefg' },\n);\n\nconsole.log(timeTrackingActivity.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/time-tracking-activities/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.time_tracking_activities.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ntime_tracking_activity = conductor.qbd.time_tracking_activities.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(time_tracking_activity.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/time-tracking-activities/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9893,14 +9893,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst timeTrackingActivity = await conductor.qbd.timeTrackingActivities.update(\n  '123ABC-1234567890',\n  {\n    duration: 'PT1H30M',\n    entityId: '80000001-1234567890',\n    revisionNumber: '1721172183',\n    conductorEndUserId: 'end_usr_1234567abcdefg',\n  },\n);\n\nconsole.log(timeTrackingActivity.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/time-tracking-activities/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "duration": "PT1H30M",\n          "entityId": "80000001-1234567890",\n          "revisionNumber": "1721172183",\n          "billingStatus": "billable",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "note": "Project planning meeting with client.",\n          "payrollWageItemId": "80000001-1234567890",\n          "serviceItemId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.time_tracking_activities.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ntime_tracking_activity = conductor.qbd.time_tracking_activities.update(\n    id="123ABC-1234567890",\n    duration="PT1H30M",\n    entity_id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(time_tracking_activity.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/time-tracking-activities/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "duration": "PT1H30M",\n          "entityId": "80000001-1234567890",\n          "revisionNumber": "1721172183",\n          "billingStatus": "billable",\n          "classId": "80000001-1234567890",\n          "customerId": "80000001-1234567890",\n          "note": "Project planning meeting with client.",\n          "payrollWageItemId": "80000001-1234567890",\n          "serviceItemId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -9923,14 +9923,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst timeTrackingActivity = await conductor.qbd.timeTrackingActivities.delete(\n  '123ABC-1234567890',\n  { conductorEndUserId: 'end_usr_1234567abcdefg' },\n);\n\nconsole.log(timeTrackingActivity.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/time-tracking-activities/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.time_tracking_activities.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ntime_tracking_activity = conductor.qbd.time_tracking_activities.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(time_tracking_activity.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/time-tracking-activities/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -9978,14 +9978,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const transaction of conductor.qbd.transactions.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(transaction.account);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/transactions \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.transactions.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.transactions.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.account)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/transactions \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10009,14 +10009,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst transaction = await conductor.qbd.transactions.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(transaction.account);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/transactions/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.transactions.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ntransaction = conductor.qbd.transactions.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(transaction.account)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/transactions/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10047,14 +10047,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst transfer = await conductor.qbd.transfers.create({\n  amount: '1000.00',\n  sourceAccountId: '80000001-1234567890',\n  targetAccountId: '80000001-1234567890',\n  transactionDate: '2024-10-01',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(transfer.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/transfers \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "amount": "1000.00",\n          "sourceAccountId": "80000001-1234567890",\n          "targetAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "memo": "Monthly transfer to savings"\n        }\'',
+      },
       python: {
         method: 'qbd.transfers.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ntransfer = conductor.qbd.transfers.create(\n    amount="1000.00",\n    source_account_id="80000001-1234567890",\n    target_account_id="80000001-1234567890",\n    transaction_date=date.fromisoformat("2024-10-01"),\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(transfer.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/transfers \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "amount": "1000.00",\n          "sourceAccountId": "80000001-1234567890",\n          "targetAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "classId": "80000001-1234567890",\n          "memo": "Monthly transfer to savings"\n        }\'',
       },
     },
   },
@@ -10086,14 +10086,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const transfer of conductor.qbd.transfers.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(transfer.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/transfers \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.transfers.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.transfers.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/transfers \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10117,14 +10117,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst transfer = await conductor.qbd.transfers.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(transfer.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/transfers/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.transfers.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ntransfer = conductor.qbd.transfers.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(transfer.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/transfers/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10157,14 +10157,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst transfer = await conductor.qbd.transfers.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(transfer.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/transfers/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "amount": "1000.00",\n          "classId": "80000001-1234567890",\n          "memo": "Monthly transfer to savings",\n          "sourceAccountId": "80000001-1234567890",\n          "targetAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
+      },
       python: {
         method: 'qbd.transfers.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ntransfer = conductor.qbd.transfers.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(transfer.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/transfers/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "amount": "1000.00",\n          "classId": "80000001-1234567890",\n          "memo": "Monthly transfer to savings",\n          "sourceAccountId": "80000001-1234567890",\n          "targetAccountId": "80000001-1234567890",\n          "transactionDate": "2024-10-01"\n        }\'',
       },
     },
   },
@@ -10196,14 +10196,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst unitOfMeasureSet = await conductor.qbd.unitOfMeasureSets.create({\n  baseUnit: { abbreviation: 'ea', name: 'Each' },\n  name: 'Weight Units',\n  unitOfMeasureType: 'count',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(unitOfMeasureSet.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/unit-of-measure-sets \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "baseUnit": {\n            "abbreviation": "ea",\n            "name": "Each"\n          },\n          "name": "Weight Units",\n          "unitOfMeasureType": "count",\n          "isActive": true\n        }\'',
+      },
       python: {
         method: 'qbd.unit_of_measure_sets.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nunit_of_measure_set = conductor.qbd.unit_of_measure_sets.create(\n    base_unit={\n        "abbreviation": "ea",\n        "name": "Each",\n    },\n    name="Weight Units",\n    unit_of_measure_type="count",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(unit_of_measure_set.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/unit-of-measure-sets \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "baseUnit": {\n            "abbreviation": "ea",\n            "name": "Each"\n          },\n          "name": "Weight Units",\n          "unitOfMeasureType": "count",\n          "isActive": true\n        }\'',
       },
     },
   },
@@ -10240,14 +10240,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst unitOfMeasureSets = await conductor.qbd.unitOfMeasureSets.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(unitOfMeasureSets.data);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/unit-of-measure-sets \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.unit_of_measure_sets.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nunit_of_measure_sets = conductor.qbd.unit_of_measure_sets.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(unit_of_measure_sets.data)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/unit-of-measure-sets \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10271,14 +10271,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst unitOfMeasureSet = await conductor.qbd.unitOfMeasureSets.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(unitOfMeasureSet.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/unit-of-measure-sets/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.unit_of_measure_sets.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nunit_of_measure_set = conductor.qbd.unit_of_measure_sets.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(unit_of_measure_set.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/unit-of-measure-sets/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10315,14 +10315,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst vendorCredit = await conductor.qbd.vendorCredits.create({\n  transactionDate: '2024-10-01',\n  vendorId: '80000001-1234567890',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(vendorCredit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Credit for returned merchandise - Invoice INV-1234",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "VCREDIT-1234",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.vendor_credits.create',
         example:
           'import os\nfrom datetime import date\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nvendor_credit = conductor.qbd.vendor_credits.create(\n    transaction_date=date.fromisoformat("2024-10-01"),\n    vendor_id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(vendor_credit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890",\n          "exchangeRate": 1.2345,\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "memo": "Credit for returned merchandise - Invoice INV-1234",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "VCREDIT-1234",\n          "salesTaxCodeId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -10366,14 +10366,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const vendorCredit of conductor.qbd.vendorCredits.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(vendorCredit.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.vendor_credits.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.vendor_credits.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10397,14 +10397,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst vendorCredit = await conductor.qbd.vendorCredits.retrieve('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(vendorCredit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.vendor_credits.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nvendor_credit = conductor.qbd.vendor_credits.retrieve(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(vendor_credit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10444,14 +10444,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst vendorCredit = await conductor.qbd.vendorCredits.update('123ABC-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(vendorCredit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "exchangeRate": 1.2345,\n          "memo": "Credit for returned merchandise - Invoice INV-1234",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "VCREDIT-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.vendor_credits.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nvendor_credit = conductor.qbd.vendor_credits.update(\n    id="123ABC-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(vendor_credit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "clearExpenseLines": false,\n          "clearItemLines": false,\n          "exchangeRate": 1.2345,\n          "memo": "Credit for returned merchandise - Invoice INV-1234",\n          "payablesAccountId": "80000001-1234567890",\n          "refNumber": "VCREDIT-1234",\n          "salesTaxCodeId": "80000001-1234567890",\n          "transactionDate": "2024-10-01",\n          "vendorId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -10475,14 +10475,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst response = await conductor.qbd.vendorCredits.void('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(response.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.vendor_credits.void',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nresponse = conductor.qbd.vendor_credits.void(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(response.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits/$ID/void \\\n    -X POST \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10505,14 +10505,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst vendorCredit = await conductor.qbd.vendorCredits.delete('123ABC-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(vendorCredit.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.vendor_credits.delete',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nvendor_credit = conductor.qbd.vendor_credits.delete(\n    id="123ABC-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(vendor_credit.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/vendor-credits/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10583,14 +10583,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst vendor = await conductor.qbd.vendors.create({\n  name: 'Acme Supplies Inc.',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(vendor.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/vendors \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Acme Supplies Inc.",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "billingRateId": "80000001-1234567890",\n          "ccEmail": "manager@example.com",\n          "classId": "80000001-1234567890",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "creditLimit": "5000.00",\n          "currencyId": "80000001-1234567890",\n          "defaultExpenseAccountIds": [\n            "80000001-1234567890"\n          ],\n          "email": "vendor@example.com",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "isCompoundingTax": false,\n          "isEligibleFor1099": true,\n          "isSalesTaxAgency": false,\n          "isTrackingPurchaseTax": true,\n          "isTrackingSalesTax": true,\n          "jobTitle": "Purchasing Manager",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "nameOnCheck": "Acme Supplies Ltd.",\n          "note": "Preferred vendor for office supplies.",\n          "openingBalance": "1000.00",\n          "openingBalanceDate": "2023-01-01",\n          "phone": "+1-555-123-4567",\n          "purchaseTaxAccountId": "80000001-1234567890",\n          "reportingPeriod": "quarterly",\n          "salesTaxAccountId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxCountry": "us",\n          "salesTaxReturnId": "80000001-1234567890",\n          "salutation": "Dr.",\n          "taxIdentificationNumber": "12-3456789",\n          "taxRegistrationNumber": "GB123456789",\n          "termsId": "80000001-1234567890",\n          "vendorTypeId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.vendors.create',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nvendor = conductor.qbd.vendors.create(\n    name="Acme Supplies Inc.",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(vendor.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/vendors \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Acme Supplies Inc.",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "billingRateId": "80000001-1234567890",\n          "ccEmail": "manager@example.com",\n          "classId": "80000001-1234567890",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "creditLimit": "5000.00",\n          "currencyId": "80000001-1234567890",\n          "defaultExpenseAccountIds": [\n            "80000001-1234567890"\n          ],\n          "email": "vendor@example.com",\n          "externalId": "12345678-abcd-1234-abcd-1234567890ab",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "isCompoundingTax": false,\n          "isEligibleFor1099": true,\n          "isSalesTaxAgency": false,\n          "isTrackingPurchaseTax": true,\n          "isTrackingSalesTax": true,\n          "jobTitle": "Purchasing Manager",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "nameOnCheck": "Acme Supplies Ltd.",\n          "note": "Preferred vendor for office supplies.",\n          "openingBalance": "1000.00",\n          "openingBalanceDate": "2023-01-01",\n          "phone": "+1-555-123-4567",\n          "purchaseTaxAccountId": "80000001-1234567890",\n          "reportingPeriod": "quarterly",\n          "salesTaxAccountId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxCountry": "us",\n          "salesTaxReturnId": "80000001-1234567890",\n          "salutation": "Dr.",\n          "taxIdentificationNumber": "12-3456789",\n          "taxRegistrationNumber": "GB123456789",\n          "termsId": "80000001-1234567890",\n          "vendorTypeId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -10634,14 +10634,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const vendor of conductor.qbd.vendors.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n})) {\n  console.log(vendor.id);\n}",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/vendors \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.vendors.list',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\npage = conductor.qbd.vendors.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\npage = page.data[0]\nprint(page.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/vendors \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10665,14 +10665,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst vendor = await conductor.qbd.vendors.retrieve('80000001-1234567890', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(vendor.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/vendors/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
       python: {
         method: 'qbd.vendors.retrieve',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nvendor = conductor.qbd.vendors.retrieve(\n    id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(vendor.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/vendors/$ID \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
       },
     },
   },
@@ -10742,14 +10742,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst vendor = await conductor.qbd.vendors.update('80000001-1234567890', {\n  revisionNumber: '1721172183',\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(vendor.id);",
       },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/vendors/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "billingRateId": "80000001-1234567890",\n          "ccEmail": "manager@example.com",\n          "classId": "80000001-1234567890",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "creditLimit": "5000.00",\n          "currencyId": "80000001-1234567890",\n          "defaultExpenseAccountIds": [\n            "80000001-1234567890"\n          ],\n          "email": "vendor@example.com",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "isCompoundingTax": false,\n          "isEligibleFor1099": true,\n          "isSalesTaxAgency": false,\n          "isTrackingPurchaseTax": true,\n          "isTrackingSalesTax": true,\n          "jobTitle": "Purchasing Manager",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "name": "Acme Supplies Inc.",\n          "nameOnCheck": "Acme Supplies Ltd.",\n          "note": "Preferred vendor for office supplies.",\n          "phone": "+1-555-123-4567",\n          "purchaseTaxAccountId": "80000001-1234567890",\n          "reportingPeriod": "quarterly",\n          "salesTaxAccountId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxCountry": "us",\n          "salesTaxReturnId": "80000001-1234567890",\n          "salutation": "Dr.",\n          "taxIdentificationNumber": "12-3456789",\n          "taxRegistrationNumber": "GB123456789",\n          "termsId": "80000001-1234567890",\n          "vendorTypeId": "80000001-1234567890"\n        }\'',
+      },
       python: {
         method: 'qbd.vendors.update',
         example:
           'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\nvendor = conductor.qbd.vendors.update(\n    id="80000001-1234567890",\n    revision_number="1721172183",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(vendor.id)',
-      },
-      http: {
-        example:
-          'curl https://api.conductor.is/v1/quickbooks-desktop/vendors/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "revisionNumber": "1721172183",\n          "accountNumber": "1010",\n          "alternateContact": "Bob Johnson",\n          "alternatePhone": "+1-555-987-6543",\n          "billingRateId": "80000001-1234567890",\n          "ccEmail": "manager@example.com",\n          "classId": "80000001-1234567890",\n          "companyName": "Acme Corporation",\n          "contact": "Jane Smith",\n          "creditLimit": "5000.00",\n          "currencyId": "80000001-1234567890",\n          "defaultExpenseAccountIds": [\n            "80000001-1234567890"\n          ],\n          "email": "vendor@example.com",\n          "fax": "+1-555-555-1212",\n          "firstName": "John",\n          "isActive": true,\n          "isCompoundingTax": false,\n          "isEligibleFor1099": true,\n          "isSalesTaxAgency": false,\n          "isTrackingPurchaseTax": true,\n          "isTrackingSalesTax": true,\n          "jobTitle": "Purchasing Manager",\n          "lastName": "Doe",\n          "middleName": "A.",\n          "name": "Acme Supplies Inc.",\n          "nameOnCheck": "Acme Supplies Ltd.",\n          "note": "Preferred vendor for office supplies.",\n          "phone": "+1-555-123-4567",\n          "purchaseTaxAccountId": "80000001-1234567890",\n          "reportingPeriod": "quarterly",\n          "salesTaxAccountId": "80000001-1234567890",\n          "salesTaxCodeId": "80000001-1234567890",\n          "salesTaxCountry": "us",\n          "salesTaxReturnId": "80000001-1234567890",\n          "salutation": "Dr.",\n          "taxIdentificationNumber": "12-3456789",\n          "taxRegistrationNumber": "GB123456789",\n          "termsId": "80000001-1234567890",\n          "vendorTypeId": "80000001-1234567890"\n        }\'',
       },
     },
   },
@@ -10757,14 +10757,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
 
 const EMBEDDED_READMES: { language: string; content: string }[] = [
   {
-    language: 'python',
-    content:
-      '# QuickBooks Desktop Python API library\n\n<!-- prettier-ignore -->\n[![PyPI version](https://img.shields.io/pypi/v/conductor-py.svg?label=pypi%20(stable))](https://pypi.org/project/conductor-py/)\n\nThe QuickBooks Desktop Python library provides convenient access to the Conductor REST API from any Python 3.9+\napplication. The library includes type definitions for all request params and response fields,\nand offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).\n\n\n\n\n\n## MCP Server\n\nUse the Conductor MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=conductor-node-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImNvbmR1Y3Rvci1ub2RlLW1jcCJdLCJlbnYiOnsiQ09ORFVDVE9SX1NFQ1JFVF9LRVkiOiJza19jb25kdWN0b3JfLi4uIn19)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22conductor-node-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22conductor-node-mcp%22%5D%2C%22env%22%3A%7B%22CONDUCTOR_SECRET_KEY%22%3A%22sk_conductor_...%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nThe REST API documentation can be found on [docs.conductor.is](https://docs.conductor.is/api-ref). The full API of this library can be found in [api.md](api.md).\n\n## Installation\n\n```sh\n# install from PyPI\npip install conductor-py\n```\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```python\nimport os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\n\npage = conductor.qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\nprint(page.data)\n```\n\nWhile you can provide an `api_key` keyword argument,\nwe recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)\nto add `CONDUCTOR_SECRET_KEY="sk_conductor_..."` to your `.env` file\nso that your API Key is not stored in source control.\n\n## Async usage\n\nSimply import `AsyncConductor` instead of `Conductor` and use `await` with each API call:\n\n```python\nimport os\nimport asyncio\nfrom conductor import AsyncConductor\n\nconductor = AsyncConductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\n\nasync def main() -> None:\n  page = await conductor.qbd.invoices.list(\n      conductor_end_user_id="YOUR_END_USER_ID",\n  )\n  print(page.data)\n\nasyncio.run(main())\n```\n\nFunctionality between the synchronous and asynchronous clients is otherwise identical.\n\n### With aiohttp\n\nBy default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.\n\nYou can enable this by installing `aiohttp`:\n\n```sh\n# install from PyPI\npip install conductor-py[aiohttp]\n```\n\nThen you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:\n\n```python\nimport os\nimport asyncio\nfrom conductor import DefaultAioHttpClient\nfrom conductor import AsyncConductor\n\nasync def main() -> None:\n  async with AsyncConductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n    http_client=DefaultAioHttpClient(),\n) as conductor:\n    page = await conductor.qbd.invoices.list(\n        conductor_end_user_id="YOUR_END_USER_ID",\n    )\n    print(page.data)\n\nasyncio.run(main())\n```\n\n\n\n## Using types\n\nNested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:\n\n- Serializing back into JSON, `model.to_json()`\n- Converting to a dictionary, `model.to_dict()`\n\nTyped requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.\n\n## Pagination\n\nList methods in the Conductor API are paginated.\n\nThis library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:\n\n```python\nfrom conductor import Conductor\n\nconductor = Conductor()\n\nall_invoices = []\n# Automatically fetches more pages as needed.\nfor invoice in conductor.qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n):\n    # Do something with invoice here\n    all_invoices.append(invoice)\nprint(all_invoices)\n```\n\nOr, asynchronously:\n\n```python\nimport asyncio\nfrom conductor import AsyncConductor\n\nconductor = AsyncConductor()\n\nasync def main() -> None:\n    all_invoices = []\n    # Iterate through items across all pages, issuing requests as needed.\n    async for invoice in conductor.qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n):\n        all_invoices.append(invoice)\n    print(all_invoices)\n\nasyncio.run(main())\n```\n\nAlternatively, you can use the `.has_next_page()`, `.next_page_info()`, or  `.get_next_page()` methods for more granular control working with pages:\n\n```python\nfirst_page = await conductor.qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\nif first_page.has_next_page():\n    print(f"will fetch next page using these details: {first_page.next_page_info()}")\n    next_page = await first_page.get_next_page()\n    print(f"number of items we just fetched: {len(next_page.data)}")\n\n# Remove `await` for non-async usage.\n```\n\nOr just work directly with the returned data:\n\n```python\nfirst_page = await conductor.qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\n\nprint(f"next page cursor: {first_page.next_cursor}") # => "next page cursor: ..."\nfor invoice in first_page.data:\n    print(invoice.id)\n\n# Remove `await` for non-async usage.\n```\n\nfrom datetime import date\n\n## Nested params\n\nNested parameters are dictionaries, typed using `TypedDict`, for example:\n\n```python\nfrom conductor import Conductor\n\nconductor = Conductor()\n\nbill = conductor.qbd.bills.create(\n    transaction_date=date.fromisoformat("2024-10-01"),\n    vendor_id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n    vendor_address={},\n)\nprint(bill.vendor_address)\n```\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `conductor.APIConnectionError` is raised.\n\nWhen the API returns a non-success status code (that is, 4xx or 5xx\nresponse), a subclass of `conductor.APIStatusError` is raised, containing `status_code` and `response` properties.\n\nAll errors inherit from `conductor.APIError`.\n\n```python\nimport conductor\nfrom conductor import Conductor\n\nconductor = Conductor()\n\ntry:\n    conductor.qbd.invoices.list(\n        conductor_end_user_id="YOUR_END_USER_ID",\n    )\nexcept conductor.APIConnectionError as e:\n    print("The server could not be reached")\n    print(e.__cause__) # an underlying Exception, likely raised within httpx.\nexcept conductor.RateLimitError as e:\n    print("A 429 status code was received; we should back off a bit.")\nexcept conductor.APIStatusError as e:\n    print("Another non-200-range status code was received")\n    print(e.status_code)\n    print(e.response)\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors are automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors are all retried by default.\n\nYou can use the `max_retries` option to configure or disable retry settings:\n\n```python\nfrom conductor import Conductor\n\n# Configure the default for all requests:\nconductor = Conductor(\n    # default is 2\n    max_retries=0,\n)\n\n# Or, configure per-request:\nconductor.with_options(max_retries = 5).qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\n```\n\n### Timeouts\n\nBy default requests time out after 2 minutes. You can configure this with a `timeout` option,\nwhich accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:\n\n```python\nfrom conductor import Conductor\n\n# Configure the default for all requests:\nconductor = Conductor(\n    # 20 seconds (default is 2 minutes)\n    timeout=20.0,\n)\n\n# More granular control:\nconductor = Conductor(\n    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),\n)\n\n# Override per-request:\nconductor.with_options(timeout = 5.0).qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\n```\n\nOn timeout, an `APITimeoutError` is thrown.\n\nNote that requests that time out are [retried twice by default](#retries).\n\n\n\n## Advanced\n\n### Logging\n\nWe use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.\n\nYou can enable logging by setting the environment variable `CONDUCTOR_LOG` to `info`.\n\n```shell\n$ export CONDUCTOR_LOG=info\n```\n\nOr to `debug` for more verbose logging.\n\n### How to tell whether `None` means `null` or missing\n\nIn an API response, a field may be explicitly `null`, or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set`:\n\n```py\nif response.my_field is None:\n  if \'my_field\' not in response.model_fields_set:\n    print(\'Got json like {}, without a "my_field" key present at all.\')\n  else:\n    print(\'Got json like {"my_field": null}.\')\n```\n\n### Accessing raw response data (e.g. headers)\n\nThe "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,\n\n```py\nfrom conductor import Conductor\n\nconductor = Conductor()\nresponse = conductor.qbd.invoices.with_raw_response.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\nprint(response.headers.get(\'X-My-Header\'))\n\ninvoice = response.parse()  # get the object that `qbd.invoices.list()` would have returned\nprint(invoice.id)\n```\n\nThese methods return an [`APIResponse`](https://github.com/conductor-is/quickbooks-desktop-python/tree/main/src/conductor/_response.py) object.\n\nThe async client returns an [`AsyncAPIResponse`](https://github.com/conductor-is/quickbooks-desktop-python/tree/main/src/conductor/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.\n\n#### `.with_streaming_response`\n\nThe above interface eagerly reads the full response body when you make the request, which may not always be what you want.\n\nTo stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.\n\n```python\nwith conductor.qbd.invoices.with_streaming_response.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n) as response :\n    print(response.headers.get(\'X-My-Header\'))\n\n    for line in response.iter_lines():\n      print(line)\n```\n\nThe context manager is required so that the response will reliably be closed.\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API.\n\nIf you need to access undocumented endpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can make requests using `conductor.get`, `conductor.post`, and other\nhttp verbs. Options on the client will be respected (such as retries) when making this request.\n\n```py\nimport httpx\n\nresponse = conductor.post(\n    "/foo",\n    cast_to=httpx.Response,\n    body={"my_param": True},\n)\n\nprint(response.headers.get("x-foo"))\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You\ncan also get all the extra fields on the Pydantic model as a dict with\n[`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel.model_extra).\n\n### Configuring the HTTP client\n\nYou can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:\n\n- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)\n- Custom [transports](https://www.python-httpx.org/advanced/transports/)\n- Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality\n\n```python\nimport httpx\nfrom conductor import Conductor, DefaultHttpxClient\n\nconductor = Conductor(\n    # Or use the `CONDUCTOR_BASE_URL` env var\n    base_url="http://my.test.server.example.com:8083",\n    http_client=DefaultHttpxClient(proxy="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),\n)\n```\n\nYou can also customize the client on a per-request basis by using `with_options()`:\n\n```python\nconductor.with_options(http_client=DefaultHttpxClient(...))\n```\n\n### Managing HTTP resources\n\nBy default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.\n\n```py\nfrom conductor import Conductor\n\nwith Conductor() as conductor:\n  # make requests here\n  ...\n\n# HTTP client is now closed\n```\n\n## Versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/conductor-is/quickbooks-desktop-python/issues) with questions, bugs, or suggestions.\n\n### Determining the installed version\n\nIf you\'ve upgraded to the latest version but aren\'t seeing any new features you were expecting then your python environment is likely still using an older version.\n\nYou can determine the version that is being used at runtime with:\n\n```py\nimport conductor\nprint(conductor.__version__)\n```\n\n## Requirements\n\nPython 3.9 or higher.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
-  },
-  {
     language: 'typescript',
     content:
       "# QuickBooks Desktop Node.js API Library\n\n[![NPM version](https://img.shields.io/npm/v/conductor-node.svg?label=npm%20(stable))](https://npmjs.org/package/conductor-node) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/conductor-node)\n\nThis library provides convenient access to the Conductor REST API from server-side TypeScript or JavaScript.\n\n\n\nThe REST API documentation can be found on [docs.conductor.is](https://docs.conductor.is/api-ref). The full API of this library can be found in [api.md](api.md).\n\n\n\n## MCP Server\n\nUse the Conductor MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=conductor-node-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImNvbmR1Y3Rvci1ub2RlLW1jcCJdLCJlbnYiOnsiQ09ORFVDVE9SX1NFQ1JFVF9LRVkiOiJza19jb25kdWN0b3JfLi4uIn19)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22conductor-node-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22conductor-node-mcp%22%5D%2C%22env%22%3A%7B%22CONDUCTOR_SECRET_KEY%22%3A%22sk_conductor_...%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n```sh\nnpm install conductor-node\n```\n\n\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n<!-- prettier-ignore -->\n```js\nimport Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst page = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' });\nconst invoice = page.data[0];\n\nconsole.log(invoice.id);\n```\n\n\n\n### Request & Response types\n\nThis library includes TypeScript definitions for all request params and response fields. You may import and use them like so:\n\n<!-- prettier-ignore -->\n```ts\nimport Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst params: Conductor.Qbd.InvoiceListParams = { conductorEndUserId: 'YOUR_END_USER_ID' };\nconst [invoice]: [Conductor.Qbd.Invoice] = await conductor.qbd.invoices.list(params);\n```\n\nDocumentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.\n\n\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API,\nor if the API returns a non-success status code (i.e., 4xx or 5xx response),\na subclass of `APIError` will be thrown:\n\n<!-- prettier-ignore -->\n```ts\nconst page = await conductor.qbd.invoices\n  .list({ conductorEndUserId: 'YOUR_END_USER_ID' })\n  .catch(async (err) => {\n    if (err instanceof Conductor.APIError) {\n      console.log(err.status); // 400\n      console.log(err.name); // BadRequestError\n      console.log(err.headers); // {server: 'nginx', ...}\n    } else {\n      throw err;\n    }\n  });\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors will all be retried by default.\n\nYou can use the `maxRetries` option to configure or disable this:\n\n<!-- prettier-ignore -->\n```js\n// Configure the default for all requests:\nconst conductor = new Conductor({\n  maxRetries: 0, // default is 2\n});\n\n// Or, configure per-request:\nawait conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }, {\n  maxRetries: 5,\n});\n```\n\n### Timeouts\n\nRequests time out after 2 minutes by default. You can configure this with a `timeout` option:\n\n<!-- prettier-ignore -->\n```ts\n// Configure the default for all requests:\nconst conductor = new Conductor({\n  timeout: 20 * 1000, // 20 seconds (default is 2 minutes)\n});\n\n// Override per-request:\nawait conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' }, {\n  timeout: 5 * 1000,\n});\n```\n\nOn timeout, an `APIConnectionTimeoutError` is thrown.\n\nNote that requests which time out will be [retried twice by default](#retries).\n\n## Auto-pagination\n\nList methods in the Conductor API are paginated.\nYou can use the `for await … of` syntax to iterate through items across all pages:\n\n```ts\nasync function fetchAllInvoices(params) {\n  const allInvoices = [];\n  // Automatically fetches more pages as needed.\n  for await (const invoice of conductor.qbd.invoices.list({\n    conductorEndUserId: 'YOUR_END_USER_ID',\n  })) {\n    allInvoices.push(invoice);\n  }\n  return allInvoices;\n}\n```\n\nAlternatively, you can request a single page at a time:\n\n```ts\nlet page = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' });\nfor (const invoice of page.data) {\n  console.log(invoice);\n}\n\n// Convenience methods are provided for manually paginating:\nwhile (page.hasNextPage()) {\n  page = await page.getNextPage();\n  // ...\n}\n```\n\n\n\n## Advanced Usage\n\n### Accessing raw Response data (e.g., headers)\n\nThe \"raw\" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.\nThis method returns as soon as the headers for a successful response are received and does not consume the response body, so you are free to write custom parsing or streaming logic.\n\nYou can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.\nUnlike `.asResponse()` this method consumes the body, returning once it is parsed.\n\n<!-- prettier-ignore -->\n```ts\nconst conductor = new Conductor();\n\nconst response = await conductor.qbd.invoices\n  .list({ conductorEndUserId: 'YOUR_END_USER_ID' })\n  .asResponse();\nconsole.log(response.headers.get('X-My-Header'));\nconsole.log(response.statusText); // access the underlying Response object\n\nconst { data: page, response: raw } = await conductor.qbd.invoices\n  .list({ conductorEndUserId: 'YOUR_END_USER_ID' })\n  .withResponse();\nconsole.log(raw.headers.get('X-My-Header'));\nfor await (const invoice of page) {\n  console.log(invoice.id);\n}\n```\n\n### Logging\n\n> [!IMPORTANT]\n> All log messages are intended for debugging only. The format and content of log messages\n> may change between releases.\n\n#### Log levels\n\nThe log level can be configured in two ways:\n\n1. Via the `CONDUCTOR_LOG` environment variable\n2. Using the `logLevel` client option (overrides the environment variable if set)\n\n```ts\nimport Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  logLevel: 'debug', // Show all log messages\n});\n```\n\nAvailable log levels, from most to least verbose:\n\n- `'debug'` - Show debug messages, info, warnings, and errors\n- `'info'` - Show info messages, warnings, and errors\n- `'warn'` - Show warnings and errors (default)\n- `'error'` - Show only errors\n- `'off'` - Disable all logging\n\nAt the `'debug'` level, all HTTP requests and responses are logged, including headers and bodies.\nSome authentication-related headers are redacted, but sensitive data in request and response bodies\nmay still be visible.\n\n#### Custom logger\n\nBy default, this library logs to `globalThis.console`. You can also provide a custom logger.\nMost logging libraries are supported, including [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), and [@std/log](https://jsr.io/@std/log). If your logger doesn't work, please open an issue.\n\nWhen providing a custom logger, the `logLevel` option still controls which messages are emitted, messages\nbelow the configured level will not be sent to your logger.\n\n```ts\nimport Conductor from 'conductor-node';\nimport pino from 'pino';\n\nconst logger = pino();\n\nconst conductor = new Conductor({\n  logger: logger.child({ name: 'Conductor' }),\n  logLevel: 'debug', // Send all messages to pino, allowing it to filter\n});\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `conductor.get`, `conductor.post`, and other HTTP verbs.\nOptions on the client, such as retries, will be respected when making these requests.\n\n```ts\nawait conductor.post('/some/path', {\n  body: { some_prop: 'foo' },\n  query: { some_query_arg: 'bar' },\n});\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented\nparameter. This library doesn't validate at runtime that the request matches the type, so any extra values you\nsend will be sent as-is.\n\n```ts\nconductor.qbd.invoices.list({\n  // ...\n  // @ts-expect-error baz is not yet public\n  baz: 'undocumented option',\n});\n```\n\nFor requests with the `GET` verb, any extra params will be in the query, all other requests will send the\nextra param in the body.\n\nIf you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may access the response object with `// @ts-expect-error` on\nthe response object, or cast the response object to the requisite type. Like the request params, we do not\nvalidate or strip extra properties from the response from the API.\n\n### Customizing the fetch client\n\nBy default, this library expects a global `fetch` function is defined.\n\nIf you want to use a different `fetch` function, you can either polyfill the global:\n\n```ts\nimport fetch from 'my-fetch';\n\nglobalThis.fetch = fetch;\n```\n\nOr pass it to the client:\n\n```ts\nimport Conductor from 'conductor-node';\nimport fetch from 'my-fetch';\n\nconst conductor = new Conductor({ fetch });\n```\n\n### Fetch options\n\nIf you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)\n\n```ts\nimport Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  fetchOptions: {\n    // `RequestInit` options\n  },\n});\n```\n\n#### Configuring proxies\n\nTo modify proxy behavior, you can provide custom `fetchOptions` that add runtime-specific proxy\noptions to requests:\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg\" align=\"top\" width=\"18\" height=\"21\"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>\n\n```ts\nimport Conductor from 'conductor-node';\nimport * as undici from 'undici';\n\nconst proxyAgent = new undici.ProxyAgent('http://localhost:8888');\nconst conductor = new Conductor({\n  fetchOptions: {\n    dispatcher: proxyAgent,\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg\" align=\"top\" width=\"18\" height=\"21\"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>\n\n```ts\nimport Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  fetchOptions: {\n    proxy: 'http://localhost:8888',\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg\" align=\"top\" width=\"18\" height=\"21\"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>\n\n```ts\nimport Conductor from 'npm:conductor-node';\n\nconst httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });\nconst conductor = new Conductor({\n  fetchOptions: {\n    client: httpClient,\n  },\n});\n```\n\n## Frequently Asked Questions\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/conductor-is/quickbooks-desktop-node/issues) with questions, bugs, or suggestions.\n\n## Requirements\n\nTypeScript >= 4.9 is supported.\n\nThe following runtimes are supported:\n\n- Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)\n- Node.js 20 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.\n- Deno v1.28.0 or higher.\n- Bun 1.0 or later.\n- Cloudflare Workers.\n- Vercel Edge Runtime.\n- Jest 28 or greater with the `\"node\"` environment (`\"jsdom\"` is not supported at this time).\n- Nitro v2.6 or greater.\n\nNote that React Native is not supported at this time.\n\nIf you are interested in other runtime environments, please open or upvote an issue on GitHub.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n",
+  },
+  {
+    language: 'python',
+    content:
+      '# QuickBooks Desktop Python API library\n\n<!-- prettier-ignore -->\n[![PyPI version](https://img.shields.io/pypi/v/conductor-py.svg?label=pypi%20(stable))](https://pypi.org/project/conductor-py/)\n\nThe QuickBooks Desktop Python library provides convenient access to the Conductor REST API from any Python 3.9+\napplication. The library includes type definitions for all request params and response fields,\nand offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).\n\n\n\n\n\n## MCP Server\n\nUse the Conductor MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=conductor-node-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImNvbmR1Y3Rvci1ub2RlLW1jcCJdLCJlbnYiOnsiQ09ORFVDVE9SX1NFQ1JFVF9LRVkiOiJza19jb25kdWN0b3JfLi4uIn19)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22conductor-node-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22conductor-node-mcp%22%5D%2C%22env%22%3A%7B%22CONDUCTOR_SECRET_KEY%22%3A%22sk_conductor_...%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nThe REST API documentation can be found on [docs.conductor.is](https://docs.conductor.is/api-ref). The full API of this library can be found in [api.md](api.md).\n\n## Installation\n\n```sh\n# install from PyPI\npip install conductor-py\n```\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```python\nimport os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\n\npage = conductor.qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\nprint(page.data)\n```\n\nWhile you can provide an `api_key` keyword argument,\nwe recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)\nto add `CONDUCTOR_SECRET_KEY="sk_conductor_..."` to your `.env` file\nso that your API Key is not stored in source control.\n\n## Async usage\n\nSimply import `AsyncConductor` instead of `Conductor` and use `await` with each API call:\n\n```python\nimport os\nimport asyncio\nfrom conductor import AsyncConductor\n\nconductor = AsyncConductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\n\nasync def main() -> None:\n  page = await conductor.qbd.invoices.list(\n      conductor_end_user_id="YOUR_END_USER_ID",\n  )\n  print(page.data)\n\nasyncio.run(main())\n```\n\nFunctionality between the synchronous and asynchronous clients is otherwise identical.\n\n### With aiohttp\n\nBy default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.\n\nYou can enable this by installing `aiohttp`:\n\n```sh\n# install from PyPI\npip install conductor-py[aiohttp]\n```\n\nThen you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:\n\n```python\nimport os\nimport asyncio\nfrom conductor import DefaultAioHttpClient\nfrom conductor import AsyncConductor\n\nasync def main() -> None:\n  async with AsyncConductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n    http_client=DefaultAioHttpClient(),\n) as conductor:\n    page = await conductor.qbd.invoices.list(\n        conductor_end_user_id="YOUR_END_USER_ID",\n    )\n    print(page.data)\n\nasyncio.run(main())\n```\n\n\n\n## Using types\n\nNested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:\n\n- Serializing back into JSON, `model.to_json()`\n- Converting to a dictionary, `model.to_dict()`\n\nTyped requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.\n\n## Pagination\n\nList methods in the Conductor API are paginated.\n\nThis library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:\n\n```python\nfrom conductor import Conductor\n\nconductor = Conductor()\n\nall_invoices = []\n# Automatically fetches more pages as needed.\nfor invoice in conductor.qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n):\n    # Do something with invoice here\n    all_invoices.append(invoice)\nprint(all_invoices)\n```\n\nOr, asynchronously:\n\n```python\nimport asyncio\nfrom conductor import AsyncConductor\n\nconductor = AsyncConductor()\n\nasync def main() -> None:\n    all_invoices = []\n    # Iterate through items across all pages, issuing requests as needed.\n    async for invoice in conductor.qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n):\n        all_invoices.append(invoice)\n    print(all_invoices)\n\nasyncio.run(main())\n```\n\nAlternatively, you can use the `.has_next_page()`, `.next_page_info()`, or  `.get_next_page()` methods for more granular control working with pages:\n\n```python\nfirst_page = await conductor.qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\nif first_page.has_next_page():\n    print(f"will fetch next page using these details: {first_page.next_page_info()}")\n    next_page = await first_page.get_next_page()\n    print(f"number of items we just fetched: {len(next_page.data)}")\n\n# Remove `await` for non-async usage.\n```\n\nOr just work directly with the returned data:\n\n```python\nfirst_page = await conductor.qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\n\nprint(f"next page cursor: {first_page.next_cursor}") # => "next page cursor: ..."\nfor invoice in first_page.data:\n    print(invoice.id)\n\n# Remove `await` for non-async usage.\n```\n\nfrom datetime import date\n\n## Nested params\n\nNested parameters are dictionaries, typed using `TypedDict`, for example:\n\n```python\nfrom conductor import Conductor\n\nconductor = Conductor()\n\nbill = conductor.qbd.bills.create(\n    transaction_date=date.fromisoformat("2024-10-01"),\n    vendor_id="80000001-1234567890",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n    vendor_address={},\n)\nprint(bill.vendor_address)\n```\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `conductor.APIConnectionError` is raised.\n\nWhen the API returns a non-success status code (that is, 4xx or 5xx\nresponse), a subclass of `conductor.APIStatusError` is raised, containing `status_code` and `response` properties.\n\nAll errors inherit from `conductor.APIError`.\n\n```python\nimport conductor\nfrom conductor import Conductor\n\nconductor = Conductor()\n\ntry:\n    conductor.qbd.invoices.list(\n        conductor_end_user_id="YOUR_END_USER_ID",\n    )\nexcept conductor.APIConnectionError as e:\n    print("The server could not be reached")\n    print(e.__cause__) # an underlying Exception, likely raised within httpx.\nexcept conductor.RateLimitError as e:\n    print("A 429 status code was received; we should back off a bit.")\nexcept conductor.APIStatusError as e:\n    print("Another non-200-range status code was received")\n    print(e.status_code)\n    print(e.response)\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors are automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors are all retried by default.\n\nYou can use the `max_retries` option to configure or disable retry settings:\n\n```python\nfrom conductor import Conductor\n\n# Configure the default for all requests:\nconductor = Conductor(\n    # default is 2\n    max_retries=0,\n)\n\n# Or, configure per-request:\nconductor.with_options(max_retries = 5).qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\n```\n\n### Timeouts\n\nBy default requests time out after 2 minutes. You can configure this with a `timeout` option,\nwhich accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:\n\n```python\nfrom conductor import Conductor\n\n# Configure the default for all requests:\nconductor = Conductor(\n    # 20 seconds (default is 2 minutes)\n    timeout=20.0,\n)\n\n# More granular control:\nconductor = Conductor(\n    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),\n)\n\n# Override per-request:\nconductor.with_options(timeout = 5.0).qbd.invoices.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\n```\n\nOn timeout, an `APITimeoutError` is thrown.\n\nNote that requests that time out are [retried twice by default](#retries).\n\n\n\n## Advanced\n\n### Logging\n\nWe use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.\n\nYou can enable logging by setting the environment variable `CONDUCTOR_LOG` to `info`.\n\n```shell\n$ export CONDUCTOR_LOG=info\n```\n\nOr to `debug` for more verbose logging.\n\n### How to tell whether `None` means `null` or missing\n\nIn an API response, a field may be explicitly `null`, or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set`:\n\n```py\nif response.my_field is None:\n  if \'my_field\' not in response.model_fields_set:\n    print(\'Got json like {}, without a "my_field" key present at all.\')\n  else:\n    print(\'Got json like {"my_field": null}.\')\n```\n\n### Accessing raw response data (e.g. headers)\n\nThe "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,\n\n```py\nfrom conductor import Conductor\n\nconductor = Conductor()\nresponse = conductor.qbd.invoices.with_raw_response.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n)\nprint(response.headers.get(\'X-My-Header\'))\n\ninvoice = response.parse()  # get the object that `qbd.invoices.list()` would have returned\nprint(invoice.id)\n```\n\nThese methods return an [`APIResponse`](https://github.com/conductor-is/quickbooks-desktop-python/tree/main/src/conductor/_response.py) object.\n\nThe async client returns an [`AsyncAPIResponse`](https://github.com/conductor-is/quickbooks-desktop-python/tree/main/src/conductor/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.\n\n#### `.with_streaming_response`\n\nThe above interface eagerly reads the full response body when you make the request, which may not always be what you want.\n\nTo stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.\n\n```python\nwith conductor.qbd.invoices.with_streaming_response.list(\n    conductor_end_user_id="YOUR_END_USER_ID",\n) as response :\n    print(response.headers.get(\'X-My-Header\'))\n\n    for line in response.iter_lines():\n      print(line)\n```\n\nThe context manager is required so that the response will reliably be closed.\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API.\n\nIf you need to access undocumented endpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can make requests using `conductor.get`, `conductor.post`, and other\nhttp verbs. Options on the client will be respected (such as retries) when making this request.\n\n```py\nimport httpx\n\nresponse = conductor.post(\n    "/foo",\n    cast_to=httpx.Response,\n    body={"my_param": True},\n)\n\nprint(response.headers.get("x-foo"))\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You\ncan also get all the extra fields on the Pydantic model as a dict with\n[`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel.model_extra).\n\n### Configuring the HTTP client\n\nYou can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:\n\n- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)\n- Custom [transports](https://www.python-httpx.org/advanced/transports/)\n- Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality\n\n```python\nimport httpx\nfrom conductor import Conductor, DefaultHttpxClient\n\nconductor = Conductor(\n    # Or use the `CONDUCTOR_BASE_URL` env var\n    base_url="http://my.test.server.example.com:8083",\n    http_client=DefaultHttpxClient(proxy="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),\n)\n```\n\nYou can also customize the client on a per-request basis by using `with_options()`:\n\n```python\nconductor.with_options(http_client=DefaultHttpxClient(...))\n```\n\n### Managing HTTP resources\n\nBy default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.\n\n```py\nfrom conductor import Conductor\n\nwith Conductor() as conductor:\n  # make requests here\n  ...\n\n# HTTP client is now closed\n```\n\n## Versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/conductor-is/quickbooks-desktop-python/issues) with questions, bugs, or suggestions.\n\n### Determining the installed version\n\nIf you\'ve upgraded to the latest version but aren\'t seeing any new features you were expecting then your python environment is likely still using an older version.\n\nYou can determine the version that is being used at runtime with:\n\n```py\nimport conductor\nprint(conductor.__version__)\n```\n\n## Requirements\n\nPython 3.9 or higher.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
   },
 ];
 
