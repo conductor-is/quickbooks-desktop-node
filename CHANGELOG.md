@@ -1,5 +1,21 @@
 # Changelog
 
+## 14.23.2 (2026-08-18)
+
+Full Changelog: [v14.23.1...v14.23.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.1...v14.23.2)
+
+### Chores
+
+* **docs:** commit documented OpenAPI spec for public download ([b0054ce](https://github.com/conductor-is/quickbooks-desktop-node/commit/b0054ce1c3e73e87a76c59f9175122a48f681042))
+* **mcp:** add local code execution timeout and worker resource caps ([550611c](https://github.com/conductor-is/quickbooks-desktop-node/commit/550611c1a8cf3a5ddc9f004cb85d3211a7042c6b))
+* **mcp:** add selfhost runbook, parity snapshots, and deploy log ([cab24b2](https://github.com/conductor-is/quickbooks-desktop-node/commit/cab24b24b1149658e6b14b3861d401eb27cecef7))
+* **mcp:** bake hosted instructions snapshot into Docker image and add guard test ([2587ef8](https://github.com/conductor-is/quickbooks-desktop-node/commit/2587ef83deeb47642b9b03703e954c99af97c5ae))
+* **mcp:** build local docs search index once per process ([bd0983d](https://github.com/conductor-is/quickbooks-desktop-node/commit/bd0983da1d939d3dafd38e4de30c6c658a9d30ac))
+* **mcp:** record initial conductor-mcp deploy in DEPLOYS.md ([f27e7a4](https://github.com/conductor-is/quickbooks-desktop-node/commit/f27e7a443d7b1c69981d0cbb77451f611f52afeb))
+* **mcp:** remove jq-web dep and vendor tsc-multi ([1affcc4](https://github.com/conductor-is/quickbooks-desktop-node/commit/1affcc4314e846293d8decddc161a21eee91d0d5))
+* **mcp:** run MCP server tests in CI and point mock server at committed OpenAPI spec ([0dfc4c0](https://github.com/conductor-is/quickbooks-desktop-node/commit/0dfc4c0bcb633f3cf8152f7e3561ca9a25a16da8))
+* **mcp:** skip mcpb bundle in Docker image builds ([a4a351a](https://github.com/conductor-is/quickbooks-desktop-node/commit/a4a351a9f6758f1a4e0f4755ac16fcc66b71c51a))
+
 ## 14.23.1 (2026-07-31)
 
 Full Changelog: [v14.23.0...v14.23.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.0...v14.23.1)
