@@ -768,7 +768,7 @@ export class Qbd extends APIResource {
 
 export interface QbdHealthCheckResponse {
   /**
-   * The time, in milliseconds, that it took to perform the health check.
+   * The time, in milliseconds, that it took to perform the health check end-to-end.
    */
   duration: number;
 
