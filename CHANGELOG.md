@@ -1,5 +1,20 @@
 # Changelog
 
+## 14.23.3 (2026-08-18)
+
+Full Changelog: [v14.23.2...v14.23.3](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.2...v14.23.3)
+
+### Bug Fixes
+
+* **api:** clarify health-check duration description ([9fbf55f](https://github.com/conductor-is/quickbooks-desktop-node/commit/9fbf55f688ebe61b59fb608c21946940bdd9ee6a))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([cbcea91](https://github.com/conductor-is/quickbooks-desktop-node/commit/cbcea91a20683a6e53306f0f2bd70ebbf8b593d0))
+* **api:** update documented OpenAPI spec for download ([55bf078](https://github.com/conductor-is/quickbooks-desktop-node/commit/55bf078fcfff5632b4cde40b86cef96bc97d841c))
+* **stlc:** self-run SDK generation with stlc ([3f3f901](https://github.com/conductor-is/quickbooks-desktop-node/commit/3f3f901a92e66865e8d79d92c5c8d523e2a71006))
+
 ## 14.23.2 (2026-08-18)
 
 Full Changelog: [v14.23.1...v14.23.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.1...v14.23.2)
