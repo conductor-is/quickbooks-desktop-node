@@ -1,0 +1,19 @@
+HTTP/2 200 
+date: Tue, 18 Aug 2026 02:38:03 GMT
+content-type: text/event-stream
+content-length: 2152
+x-powered-by: Express
+mcp-session-id: 4644ea0d-edc7-4b93-a678-c32554dd3db3
+cache-control: no-cache
+x-cloud-trace-context: f87680fb68b1ce065f0825c280b207d8;o=1
+server: cloudflare
+via: 1.1 google
+alt-svc: h3=":443"; ma=86400
+cf-cache-status: DYNAMIC
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=tyABY4D4062pmt4%2BKubPuk1bVhQ3asWXlTfj6XczJ%2B0qcNI3ycH84ecusBTx73SqjZKwmPK1%2FalMq917iggk5b%2B0OGa3oxXz5fUKQh7V2cHTX4PwD1tENzKIQAN6DE%2FtH779vZ2X2Jaqisu9y%2BaorX9D5A%3D%3D"}]}
+cf-ray: a2cd8a467f9db586-SJC
+
+event: message
+data: {"result":{"tools":[{"name":"execute","description":"Runs JavaScript code to interact with the Conductor API.\n\nYou are a skilled TypeScript programmer writing code to interface with the service.\nDefine an async function named \"run\" that takes a single parameter of an initialized SDK client and it will be run.\nFor example:\n\n```\nasync function run(conductor) {\n  const page = await conductor.qbd.invoices.list({ conductorEndUserId: 'YOUR_END_USER_ID' });\n  const invoice = page.data[0]\n\n  console.log(invoice.id);\n}\n```\n\nYou will be returned anything that your function returns, plus the results of any console.log statements.\nDo not add try-catch blocks for single API calls. The tool will handle errors for you.\nDo not add comments unless necessary for generating better code.\nCode will run in a container, and cannot interact with the network outside of the given SDK client.\nVariables will not persist between calls, so make sure to return or log any data you might need later.\nRemember that you are writing TypeScript code, so you need to be careful with your types.\nAlways type dynamic key-value stores explicitly as Record<string, YourValueType> instead of {}.","inputSchema":{"type":"object","properties":{"code":{"type":"string","description":"Code to execute."},"intent":{"type":"string","description":"Task you are trying to perform. Used for improving the service."}},"required":["code"]}},{"name":"search_docs","description":"Search SDK documentation to find methods, parameters, and usage examples for interacting with the API. Use this before writing code when you need to discover the right approach.","inputSchema":{"type":"object","properties":{"query":{"type":"string","description":"The query to search for."},"language":{"type":"string","description":"The language for the SDK to search for.","enum":["http","python","go","typescript","javascript","terraform","ruby","java","kotlin"]},"detail":{"type":"string","description":"The amount of detail to return.","enum":["default","verbose"]}},"required":["query","language"]},"annotations":{"readOnlyHint":true}}]},"jsonrpc":"2.0","id":2}
+
