@@ -6,3 +6,6 @@ CHANGELOG.md
 
 # don't format tsc output, will break source maps
 dist
+packages/mcp-server/instructions.md
+packages/mcp-server/selfhost/
+openapi.spec.yml
