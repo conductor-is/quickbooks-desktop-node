@@ -197,7 +197,67 @@ const remoteStainlessHandler = async ({
   return asTextContentResult(output);
 };
 
-const localDenoHandler = async ({
+// Total wall-clock limit for one local code execution. Defaults to roughly the
+// five minute limit of the retired Stainless-hosted sandbox. Override with the
+// CODE_EXECUTION_TIMEOUT_MS environment variable (milliseconds). The name
+// deliberately avoids the MCP_SERVER_ prefix so the yargs .env('MCP_SERVER')
+// binding in options.ts never sees it.
+const DEFAULT_CODE_EXECUTION_TIMEOUT_MS = 5 * 60 * 1000;
+
+class CodeExecutionTimeoutError extends Error {}
+
+function getCodeExecutionTimeoutMs(): number {
+  const raw = readEnv('CODE_EXECUTION_TIMEOUT_MS');
+  const parsed = raw ? Number(raw) : NaN;
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : DEFAULT_CODE_EXECUTION_TIMEOUT_MS;
+}
+
+// Cap concurrent local code executions so a burst of Deno workers cannot
+// starve the host. Waiters queue in FIFO order; well-behaved callers just
+// wait briefly. Override with CODE_EXECUTION_MAX_CONCURRENCY (integer >= 1);
+// like CODE_EXECUTION_TIMEOUT_MS, the name avoids the MCP_SERVER_ prefix.
+const DEFAULT_MAX_CONCURRENT_LOCAL_EXECUTIONS = 4;
+
+let activeLocalExecutions = 0;
+const localExecutionWaiters: Array<() => void> = [];
+
+function getMaxConcurrentLocalExecutions(): number {
+  const raw = readEnv('CODE_EXECUTION_MAX_CONCURRENCY');
+  const parsed = raw ? Number(raw) : NaN;
+  return Number.isInteger(parsed) && parsed >= 1 ? parsed : DEFAULT_MAX_CONCURRENT_LOCAL_EXECUTIONS;
+}
+
+async function acquireLocalExecutionSlot(): Promise<void> {
+  if (activeLocalExecutions < getMaxConcurrentLocalExecutions()) {
+    activeLocalExecutions += 1;
+    return;
+  }
+  await new Promise<void>((resolve) => localExecutionWaiters.push(resolve));
+}
+
+function releaseLocalExecutionSlot(): void {
+  const next = localExecutionWaiters.shift();
+  if (next) {
+    // Hand the slot directly to the next waiter; the active count is unchanged.
+    next();
+  } else {
+    activeLocalExecutions -= 1;
+  }
+}
+
+const localDenoHandler = async (params: {
+  reqContext: McpRequestContext;
+  args: unknown;
+}): Promise<ToolCallResult> => {
+  await acquireLocalExecutionSlot();
+  try {
+    return await localDenoHandlerInner(params);
+  } finally {
+    releaseLocalExecutionSlot();
+  }
+};
+
+const localDenoHandlerInner = async ({
   reqContext,
   args,
 }: {
@@ -268,6 +328,9 @@ const localDenoHandler = async ({
       // Allow environment variables because instantiating the client will try to read from them,
       // even though they are not set.
       '--allow-env',
+      // Bound each worker's V8 heap so a runaway allocation dies as an
+      // in-band worker error instead of OOM-killing the whole container.
+      '--v8-flags=--max-old-space-size=384',
     ],
     printOutput: true,
     spawnOptions: {
@@ -278,8 +341,10 @@ const localDenoHandler = async ({
     },
   });
 
+  const timeoutMs = getCodeExecutionTimeoutMs();
+  let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
   try {
-    const resp = await new Promise<Response>((resolve, reject) => {
+    const respPromise = new Promise<Response>((resolve, reject) => {
       worker.addEventListener('exit', (exitCode) => {
         reject(new Error(`Worker exited with code ${exitCode}`));
       });
@@ -321,6 +386,15 @@ const localDenoHandler = async ({
         },
       );
 
+      // Reject instead of crashing the process when worker.terminate() (e.g.
+      // on timeout) destroys the socket while this request is still in flight.
+      // A ClientRequest with no 'error' listener turns the resulting
+      // ECONNRESET into an unhandled EventEmitter 'error' event, which kills
+      // the whole server process.
+      req.on('error', (err) => {
+        reject(err);
+      });
+
       const body = JSON.stringify({
         opts,
         code,
@@ -334,6 +408,21 @@ const localDenoHandler = async ({
 
       req.end();
     });
+
+    const resp = await Promise.race([
+      respPromise,
+      new Promise<never>((_, reject) => {
+        timeoutHandle = setTimeout(() => {
+          reject(
+            new CodeExecutionTimeoutError(
+              `Code execution timed out after ${Math.round(
+                timeoutMs / 1000,
+              )} seconds. Simplify your code or break it into smaller steps.`,
+            ),
+          );
+        }, timeoutMs);
+      }),
+    ]);
 
     if (resp.status === 200) {
       const { result, log_lines, err_lines } = (await resp.json()) as WorkerOutput;
@@ -389,7 +478,15 @@ const localDenoHandler = async ({
         isError: true,
       };
     }
+  } catch (error) {
+    if (error instanceof CodeExecutionTimeoutError) {
+      return asErrorResult(error.message);
+    }
+    throw error;
   } finally {
+    if (timeoutHandle !== undefined) {
+      clearTimeout(timeoutHandle);
+    }
     worker.terminate();
   }
 };
