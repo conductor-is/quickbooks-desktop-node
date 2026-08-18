@@ -31,7 +31,9 @@ chmod +x dist/index.js
 
 DIST_PATH=./dist PKG_IMPORT_PATH=conductor-node-mcp/ node ../../scripts/utils/postprocess-files.cjs
 
-# mcp bundle
+# mcp bundle (skipped when SKIP_MCPB is set: Docker image builds never use the
+# bundle, and its dist-bundle npm install is not pinned by any lockfile)
+if [ -z "${SKIP_MCPB:-}" ]; then
 rm -rf dist-bundle conductor_node_api.mcpb; mkdir dist-bundle
 
 # copy package.json
@@ -54,3 +56,4 @@ npx mcpb sign conductor_node_api.mcpb --self-signed
 
 # clean up
 rm -rf dist-bundle
+fi
