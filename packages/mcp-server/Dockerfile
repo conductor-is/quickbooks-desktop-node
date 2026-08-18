@@ -33,6 +33,10 @@ WORKDIR /build
 # Copy entire repository
 COPY . .
 
+# Image builds never use the .mcpb bundle; skip its unpinned npm install
+# (see packages/mcp-server/build).
+ENV SKIP_MCPB=1
+
 # Install all dependencies and build everything
 RUN yarn install --frozen-lockfile && \
     yarn build && \
