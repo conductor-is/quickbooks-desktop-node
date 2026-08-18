@@ -67582,7 +67582,7 @@ paths:
                 properties:
                   duration:
                     type: number
-                    description: The time, in milliseconds, that it took to perform the health check.
+                    description: The time, in milliseconds, that it took to perform the health check end-to-end.
                     example: 100
                   status:
                     type: string
