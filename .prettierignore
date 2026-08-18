@@ -9,3 +9,4 @@ dist
 packages/mcp-server/instructions.md
 packages/mcp-server/selfhost/
 openapi.spec.yml
+openapi.documented.yml
