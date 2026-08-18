@@ -1,5 +1,14 @@
 # Changelog
 
+## 14.23.3 (2026-08-18)
+
+Full Changelog: [v14.23.2...v14.23.3](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.2...v14.23.3)
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([55bf078](https://github.com/conductor-is/quickbooks-desktop-node/commit/55bf078fcfff5632b4cde40b86cef96bc97d841c))
+* **stlc:** self-run SDK generation with stlc ([3f3f901](https://github.com/conductor-is/quickbooks-desktop-node/commit/3f3f901a92e66865e8d79d92c5c8d523e2a71006))
+
 ## 14.23.2 (2026-08-18)
 
 Full Changelog: [v14.23.1...v14.23.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.1...v14.23.2)
