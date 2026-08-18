@@ -61,6 +61,10 @@ COPY --from=builder /build/packages/mcp-server/node_modules ./node_modules
 # Copy the built conductor-node into node_modules
 COPY --from=builder /build/dist ./node_modules/conductor-node
 
+# Pinned MCP instructions snapshot, served verbatim at initialize
+# via --custom-instructions-path (see src/instructions.ts).
+COPY --from=builder /build/packages/mcp-server/instructions.md ./instructions.md
+
 # Change ownership to nodejs user
 RUN chown -R nodejs:nodejs /app
 RUN chown -R nodejs:nodejs /deno-dir
