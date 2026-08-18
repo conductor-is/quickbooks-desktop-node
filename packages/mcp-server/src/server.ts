@@ -36,6 +36,14 @@ export const newMcpServer = async ({
     },
   );
 
+// Build the local docs search index once per process, not once per request.
+// The index derives from compile-time constants (plus an optional static
+// docsDir), and initMcpServer runs on every HTTP request before any auth or
+// Accept-header check, so rebuilding it per request lets tiny unauthenticated
+// POSTs each burn megabytes of CPU (conductor self-hosting patch).
+let _localSearchPromise: Promise<LocalDocsSearch> | undefined;
+let _localSearchDocsDir: string | undefined;
+
 /**
  * Initializes the provided MCP Server with the given tools and handlers.
  * If not provided, the default client, tools and handlers will be used.
@@ -68,8 +76,11 @@ export async function initMcpServer(params: {
 
   if (params.mcpOptions?.docsSearchMode === 'local') {
     const docsDir = params.mcpOptions?.docsDir;
-    const localSearch = await LocalDocsSearch.create(docsDir ? { docsDir } : undefined);
-    setLocalSearch(localSearch);
+    if (!_localSearchPromise || _localSearchDocsDir !== docsDir) {
+      _localSearchDocsDir = docsDir;
+      _localSearchPromise = LocalDocsSearch.create(docsDir ? { docsDir } : undefined);
+    }
+    setLocalSearch(await _localSearchPromise);
   }
 
   let _client: Conductor | undefined;
