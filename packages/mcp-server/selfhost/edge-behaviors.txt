@@ -1,0 +1,142 @@
+=== GET / ===
+HTTP/2 405 
+date: Tue, 18 Aug 2026 02:38:19 GMT
+content-type: application/json; charset=utf-8
+content-length: 74
+x-powered-by: Express
+etag: W/"4a-wZlvbCTxQzM7xK2QrABpPElHvuM"
+mcp-session-id: eb95f033-a0e2-403e-a730-9116725ef3bc
+x-cloud-trace-context: 54ffc6de525f089ab45d4b2083b3b6db;o=1
+server: cloudflare
+via: 1.1 google
+alt-svc: h3=":443"; ma=86400
+cf-cache-status: DYNAMIC
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=OJyYMQvxWJFX1HE54G62JNj505%2FvMvrHQRJ9PQik8g9Z8%2BcqmIqO6ywvW%2FsaZh9Qy%2FIP1ld9%2BCYdUJn13U43dsoe9R0I6rESjeDhYEIg%2BswSgPUoV2bqtqGAKrhbT1k53r6ml9MuIrsTqIJGazn%2F%2F1hNhQ%3D%3D"}]}
+cf-ray: a2cd8aa8ba43cf12-SJC
+
+{"jsonrpc":"2.0","error":{"code":-32000,"message":"Method not supported"}}
+=== DELETE / ===
+HTTP/2 405 
+date: Tue, 18 Aug 2026 02:38:19 GMT
+content-type: application/json; charset=utf-8
+content-length: 74
+x-powered-by: Express
+etag: W/"4a-wZlvbCTxQzM7xK2QrABpPElHvuM"
+mcp-session-id: 1966b669-a930-40b3-be4d-94599032bc10
+x-cloud-trace-context: 83e81e855740b6b666801cde69a3ec1d
+server: cloudflare
+via: 1.1 google
+alt-svc: h3=":443"; ma=86400
+cf-cache-status: DYNAMIC
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=HHteQWcPdbpuAcptGd%2BMDR4%2Fkx7TmBA1Qtfta9A8qbtLlkzytF9HDsGRXvADdIu0ZIwSGUmWOzo7%2FqMD5niPtOD%2F8uzVBZPxP2x0jrxOUotIAKEhYsHmN%2BqZUty8Ljs8bHdnZPVgGBIZKXPWgRU3JkH2Jw%3D%3D"}]}
+cf-ray: a2cd8aaa0eb1af0d-SJC
+
+{"jsonrpc":"2.0","error":{"code":-32000,"message":"Method not supported"}}
+=== GET /health ===
+HTTP/2 200 
+date: Tue, 18 Aug 2026 02:38:19 GMT
+content-type: text/html; charset=utf-8
+content-length: 2
+x-powered-by: Express
+etag: W/"2-nOO9QiTIwXgNtWtBJezz8kv3SLc"
+mcp-session-id: 7598186e-beae-435a-a515-5997c373c5dd
+x-cloud-trace-context: 3d3bd3b18f57bb095b19133a51180e6b
+server: cloudflare
+via: 1.1 google
+alt-svc: h3=":443"; ma=86400
+cf-cache-status: DYNAMIC
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=lJyx9kcRu1pe1N8xS0c81r7AuMPwVHd%2FWa0GRwTzAHz%2BPJD%2FK%2BMofFFBoEQPC4%2BGYdJdmceHXLPZsQlRiObjTnU1ChkinZ9RxBTvvTWKxeLsDtFZ8o5vRSbng3oTrooPVK1VSsZTQPk7GZLOBEBDwTQGag%3D%3D"}]}
+cf-ray: a2cd8aab2be049ec-SJC
+
+OK
+=== POST tools/call (execute) with NO auth header ===
+HTTP/2 200 
+date: Tue, 18 Aug 2026 02:38:19 GMT
+content-type: text/event-stream
+content-length: 336
+x-powered-by: Express
+mcp-session-id: ca4fbc89-2db2-4148-9097-5971155c8ee8
+cache-control: no-cache
+x-cloud-trace-context: 42e362a398eaaea13874c572d94ffd27
+server: cloudflare
+via: 1.1 google
+alt-svc: h3=":443"; ma=86400
+cf-cache-status: DYNAMIC
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=YDDL85q2UGuLMRfywK6uyscS9usImGclTf1HWJbVj%2BPWr9Ti3pDugqZmlF8GRZNiCtaRHfOUmLD%2FOBNL%2BF28tavGiZVb%2Ff9y513ZF5L2U0hBQpQHFL5RRXszA2ZUDdnRHuIUxoyoazdfEu%2BYiXnyXWm1%2Fw%3D%3D"}]}
+cf-ray: a2cd8aac5bf3fb34-SJC
+
+event: message
+data: {"result":{"content":[{"type":"text","text":"Failed to initialize client: The CONDUCTOR_SECRET_KEY environment variable is missing or empty; either provide it, or instantiate the Conductor client with an apiKey option, like new Conductor({ apiKey: 'sk_conductor_...' })."}],"isError":true},"jsonrpc":"2.0","id":3}
+
+
+
+=== POST initialize with Authorization: Basic foo (unsupported scheme) ===
+HTTP/2 500 
+date: Tue, 18 Aug 2026 02:40:59 GMT
+content-type: text/html; charset=utf-8
+x-powered-by: Express
+content-security-policy: default-src 'none'
+x-content-type-options: nosniff
+mcp-session-id: 3e59b59e-7b77-4a75-8ff1-0d1a7a9db3e3
+x-cloud-trace-context: 6ba2d8341b306d282dc1ade559f63e4c;o=1
+server: cloudflare
+via: 1.1 google
+alt-svc: h3=":443"; ma=86400
+cf-cache-status: DYNAMIC
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=jYo69lXlduXEW9hNS6BmybZ%2B%2BehPsP91VsqET2SV0F0Uwr6uUh85SAyc4qwubFpGu57aM8WT%2F6RenQOolZQXGpAzRd2yj4KHh%2Bp1tt0y5%2F%2FSxavZnp7dlabAYP6qDbO3PTdtUne8czNZ1yuhzfvjy7mg6A%3D%3D"}]}
+cf-ray: a2cd8e942f375a2e-SJC
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Error: Unsupported authorization scheme. Expected the &quot;Authorization&quot; header to be a supported scheme (Bearer).<br> &nbsp; &nbsp;at parseClientAuthHeaders (/app/auth.js:13:23)<br> &nbsp; &nbsp;at newServer (/app/http.js:19:59)<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:104:5)<br> &nbsp; &nbsp;at async /app/http.js:79:20</pre>
+</body>
+</html>
+
+=== POST initialize with NO Accept header ===
+HTTP/2 406 
+date: Tue, 18 Aug 2026 02:40:59 GMT
+content-type: application/json
+content-length: 142
+x-powered-by: Express
+mcp-session-id: edaab706-a531-474a-b1cd-7fefc517e123
+x-cloud-trace-context: 4056152d3adc080298257567d42531cb
+server: cloudflare
+via: 1.1 google
+alt-svc: h3=":443"; ma=86400
+cf-cache-status: DYNAMIC
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=gPOkEVQ2VXMedzmKMP8X8MhDGIMl9dwTWXJQoLfFLBr2aLpR%2BgFmdlrftYopXrZP9EeeHssj%2BS6daxbFysbSh%2FVCl0dzONBg9Bj%2B2EXAqBr%2FXKO4IX0xqWKhqP9A5RCxJY5JvxuhfHILJFdaxcawt90qqw%3D%3D"}]}
+cf-ray: a2cd8e953cf9ebf3-SJC
+
+{"jsonrpc":"2.0","error":{"code":-32000,"message":"Not Acceptable: Client must accept both application/json and text/event-stream"},"id":null}
+=== POST tools/call with UNKNOWN tool name, no auth ===
+HTTP/2 200 
+date: Tue, 18 Aug 2026 02:41:00 GMT
+content-type: text/event-stream
+content-length: 103
+x-powered-by: Express
+mcp-session-id: 7aa676a7-4dd8-40a5-8e24-722fd8678218
+cache-control: no-cache
+x-cloud-trace-context: e0fa932631f0c7172dae249497b9b992
+server: cloudflare
+via: 1.1 google
+alt-svc: h3=":443"; ma=86400
+cf-cache-status: DYNAMIC
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=qqCKWUJbQsWoCj7j%2B6pBe4s6sXPwGMNGBN9OHK%2BcY18XYMe8bM1eMWJSUs3kUe44IYSv8Xbtb6N1qgfSnQ5rkutEOG5CAm3A%2FRmHMgmkLHy%2BXfhqHyD4x7NZxXUmZbdZ12xjUNrJbw2yf8ISCWhohE0hWA%3D%3D"}]}
+cf-ray: a2cd8e96cd694801-SJC
+
+event: message
+data: {"jsonrpc":"2.0","id":11,"error":{"code":-32603,"message":"Unknown tool: nope"}}
+
+
