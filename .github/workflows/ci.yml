@@ -104,5 +104,8 @@ jobs:
       - name: Build
         run: ./scripts/build
 
+      - name: Run MCP server tests
+        run: cd packages/mcp-server && ./node_modules/.bin/jest
+
       - name: Run tests
         run: ./scripts/test
