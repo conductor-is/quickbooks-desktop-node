@@ -107,5 +107,13 @@ jobs:
       - name: Run MCP server tests
         run: cd packages/mcp-server && ./node_modules/.bin/jest
 
+      - name: Set up Deno (current stable)
+        uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
+        with:
+          deno-version: v2.x
+
+      - name: MCP execute smoke test (Deno stable)
+        run: cd packages/mcp-server && node tests/execute-smoke.mjs
+
       - name: Run tests
         run: ./scripts/test
