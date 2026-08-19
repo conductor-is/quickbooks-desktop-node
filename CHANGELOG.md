@@ -1,5 +1,24 @@
 # Changelog
 
+## [14.23.4](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.3...v14.23.4) (2026-08-19)
+
+
+### Bug Fixes
+
+* **mcp:** work on Deno 2.9+ by granting the code-execution worker net access to its IPC socket ([ded8e25](https://github.com/conductor-is/quickbooks-desktop-node/commit/ded8e25178a8aaafb57def95b597c360b8bc7e82))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([59deb7e](https://github.com/conductor-is/quickbooks-desktop-node/commit/59deb7e44aa40856ea0741aacbd935ed33df9170))
+* **mcp:** sync serverInfo version at release time ([9540bd0](https://github.com/conductor-is/quickbooks-desktop-node/commit/9540bd0467745006e11180e90a403aa6de924c49))
+
+
+### Documentation
+
+* **mcp:** replace vscode.stainless.com VS Code install links ([8cb460a](https://github.com/conductor-is/quickbooks-desktop-node/commit/8cb460abf7e139e536a5c7b8a7ace9e60da6cafc))
+* **stlc:** point runbook at the transition archive repo; note local yarn requirement ([23575f5](https://github.com/conductor-is/quickbooks-desktop-node/commit/23575f5384db78c50e8d9bb0f5c033b62a751f07))
+
 ## [14.23.3](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.2...v14.23.3) (2026-08-18)
 
 
