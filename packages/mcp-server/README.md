@@ -44,7 +44,7 @@ in Cursor's `mcp.json`, which can be found in Cursor Settings > Tools & MCP > Ne
 If you use MCP, you can install the MCP server by clicking the link below. You will need to set your environment variables
 in VS Code's `mcp.json`, which can be found via Command Palette > MCP: Open User Configuration.
 
-[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22conductor-node-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22conductor-node-mcp%22%5D%2C%22env%22%3A%7B%22CONDUCTOR_SECRET_KEY%22%3A%22sk_conductor_...%22%7D%7D)
+[Open VS Code](https://vscode.dev/redirect/mcp/install?name=conductor-node-mcp&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22conductor-node-mcp%22%5D%2C%22env%22%3A%7B%22CONDUCTOR_SECRET_KEY%22%3A%22sk_conductor_...%22%7D%7D)
 
 ### Claude Code
 
