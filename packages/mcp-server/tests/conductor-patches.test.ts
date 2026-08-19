@@ -46,4 +46,14 @@ describe('conductor self-hosting patches', () => {
     const sha = crypto.createHash('sha256').update(buf).digest('hex');
     expect(sha).toBe('12d949698a7af3eb700034fac64e71b8f7d6abc7467fbb33bd08b202a63cf5af');
   });
+
+  test('deno-http-worker resolves to the conductor-is fork (Deno 2.9+ unix-socket net fix)', () => {
+    const pkg = fs.readFileSync(path.join(pkgRoot, 'package.json'), 'utf-8');
+    expect(pkg).toContain('conductor-is/deno-http-worker');
+  });
+
+  test('serverInfo version line carries the release-please annotation', () => {
+    const src = fs.readFileSync(path.join(pkgRoot, 'src', 'server.ts'), 'utf-8');
+    expect(src).toContain('// x-release-please-version');
+  });
 });

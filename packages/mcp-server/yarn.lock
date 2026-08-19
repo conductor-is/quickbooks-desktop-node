@@ -1161,10 +1161,9 @@
     "@typescript-eslint/types" "8.31.1"
     eslint-visitor-keys "^4.2.0"
 
-"@valtown/deno-http-worker@^0.0.21":
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/@valtown/deno-http-worker/-/deno-http-worker-0.0.21.tgz#9ce3b5c1d0db211fe7ea8297881fe551838474ad"
-  integrity sha512-16kFuUykann75lNytnXXIQlmpzreZjzdyT27ebT3yNGCS3kKaS1iZYWHc3Si9An54Cphwr4qEcviChQkEeJBlA==
+"@valtown/deno-http-worker@git+https://github.com/conductor-is/deno-http-worker.git#05193a3e2a0d":
+  version "0.0.21-conductor.1"
+  resolved "git+https://github.com/conductor-is/deno-http-worker.git#05193a3e2a0d334cc9eac4ebaa656d01faafc90f"
 
 accepts@^2.0.0:
   version "2.0.0"
