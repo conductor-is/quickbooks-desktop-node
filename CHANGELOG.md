@@ -1,5 +1,13 @@
 # Changelog
 
+## [14.23.5](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.4...v14.23.5) (2026-08-20)
+
+
+### Bug Fixes
+
+* **mcp:** support Deno &lt; 2.9 again by probing the version before granting the IPC socket via --allow-net ([04671e4](https://github.com/conductor-is/quickbooks-desktop-node/commit/04671e4ca9d8a01327d15c7ecb7d26ffa009604c))
+* **stlc:** make generated MCP serverInfo carry the release-please annotation natively ([fad5d1f](https://github.com/conductor-is/quickbooks-desktop-node/commit/fad5d1fa5ad003e7b89817b0e5273493a8d0298e))
+
 ## [14.23.4](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.3...v14.23.4) (2026-08-19)
 
 
