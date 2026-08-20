@@ -115,5 +115,16 @@ jobs:
       - name: MCP execute smoke test (Deno stable)
         run: cd packages/mcp-server && node tests/execute-smoke.mjs
 
+      # Both sides of the Deno permission split must keep working: >= 2.9
+      # grants the worker's IPC socket via --allow-net, < 2.9 rejects that
+      # syntax and relies on read/write grants (conductor-is/deno-http-worker).
+      - name: Set up Deno 2.7.1 (oldest supported)
+        uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
+        with:
+          deno-version: '2.7.1'
+
+      - name: MCP execute smoke test (Deno 2.7.1)
+        run: cd packages/mcp-server && node tests/execute-smoke.mjs
+
       - name: Run tests
         run: ./scripts/test
