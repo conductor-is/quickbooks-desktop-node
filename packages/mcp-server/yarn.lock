@@ -1161,9 +1161,9 @@
     "@typescript-eslint/types" "8.31.1"
     eslint-visitor-keys "^4.2.0"
 
-"@valtown/deno-http-worker@git+https://github.com/conductor-is/deno-http-worker.git#05193a3e2a0d":
-  version "0.0.21-conductor.1"
-  resolved "git+https://github.com/conductor-is/deno-http-worker.git#05193a3e2a0d334cc9eac4ebaa656d01faafc90f"
+"@valtown/deno-http-worker@git+https://github.com/conductor-is/deno-http-worker.git#6fab0714c57a":
+  version "0.0.21-conductor.2"
+  resolved "git+https://github.com/conductor-is/deno-http-worker.git#6fab0714c57aadc8d71c15acd81625be5941c676"
 
 accepts@^2.0.0:
   version "2.0.0"
