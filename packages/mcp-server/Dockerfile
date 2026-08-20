@@ -25,7 +25,9 @@
 FROM node:24-alpine AS builder
 
 # Install bash for build script
-RUN apk add --no-cache bash openssl
+# git: yarn installs @valtown/deno-http-worker from a git-pinned fork
+# (conductor-is/deno-http-worker), which needs the git binary at install time.
+RUN apk add --no-cache bash openssl git
 
 # Set working directory
 WORKDIR /build
