@@ -77185,24 +77185,26 @@ components:
             id: 80000001-1234567890
             fullName: GST
         cogsAccount:
-          type: object
-          properties:
-            id:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
-              example: 80000001-1234567890
-            fullName:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
-              example: Parent:Child:Grandchild
-          required:
-            - id
-            - fullName
-          additionalProperties: false
+          anyOf:
+            - type: object
+              properties:
+                id:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
+                  example: 80000001-1234567890
+                fullName:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
+                  example: Parent:Child:Grandchild
+              required:
+                - id
+                - fullName
+              additionalProperties: false
+            - type: "null"
           description: The Cost of Goods Sold (COGS) account for this inventory assembly item, tracking the original direct costs of producing goods sold.
           example:
             id: 80000001-1234567890
@@ -77233,24 +77235,26 @@ components:
             id: 80000001-1234567890
             fullName: Acme Supplies Ltd.
         assetAccount:
-          type: object
-          properties:
-            id:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
-              example: 80000001-1234567890
-            fullName:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
-              example: Parent:Child:Grandchild
-          required:
-            - id
-            - fullName
-          additionalProperties: false
+          anyOf:
+            - type: object
+              properties:
+                id:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
+                  example: 80000001-1234567890
+                fullName:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
+                  example: Parent:Child:Grandchild
+              required:
+                - id
+                - fullName
+              additionalProperties: false
+            - type: "null"
           description: The asset account used to track the current value of this inventory assembly item in inventory.
           example:
             id: 80000001-1234567890
@@ -77640,24 +77644,26 @@ components:
             id: 80000001-1234567890
             fullName: GST
         cogsAccount:
-          type: object
-          properties:
-            id:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
-              example: 80000001-1234567890
-            fullName:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
-              example: Parent:Child:Grandchild
-          required:
-            - id
-            - fullName
-          additionalProperties: false
+          anyOf:
+            - type: object
+              properties:
+                id:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
+                  example: 80000001-1234567890
+                fullName:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
+                  example: Parent:Child:Grandchild
+              required:
+                - id
+                - fullName
+              additionalProperties: false
+            - type: "null"
           description: The Cost of Goods Sold (COGS) account for this inventory item, tracking the original direct costs of producing goods sold.
           example:
             id: 80000001-1234567890
@@ -77688,24 +77694,26 @@ components:
             id: 80000001-1234567890
             fullName: Acme Supplies Ltd.
         assetAccount:
-          type: object
-          properties:
-            id:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
-              example: 80000001-1234567890
-            fullName:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
-              example: Parent:Child:Grandchild
-          required:
-            - id
-            - fullName
-          additionalProperties: false
+          anyOf:
+            - type: object
+              properties:
+                id:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
+                  example: 80000001-1234567890
+                fullName:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
+                  example: Parent:Child:Grandchild
+              required:
+                - id
+                - fullName
+              additionalProperties: false
+            - type: "null"
           description: The asset account used to track the current value of this inventory item in inventory.
           example:
             id: 80000001-1234567890
