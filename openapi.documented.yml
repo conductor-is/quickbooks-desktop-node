@@ -68511,6 +68511,7 @@ components:
             - transfer
             - vendor_credit
             - ytd_adjustment
+            - transfer_inventory
             - unknown
           description: The type of transaction for this target transaction.
           example: invoice
@@ -68664,6 +68665,7 @@ components:
             - transfer
             - vendor_credit
             - ytd_adjustment
+            - transfer_inventory
             - unknown
           description: The type of transaction for this linked transaction.
           example: invoice
@@ -69925,6 +69927,7 @@ components:
             - transfer
             - vendor_credit
             - ytd_adjustment
+            - transfer_inventory
             - unknown
           description: The type of transaction for this payable bill.
           example: bill
@@ -70069,6 +70072,7 @@ components:
             - transfer
             - vendor_credit
             - ytd_adjustment
+            - transfer_inventory
             - unknown
           description: The type of transaction for this applicable credit.
           example: vendor_credit
@@ -72008,6 +72012,7 @@ components:
             - transfer
             - vendor_credit
             - ytd_adjustment
+            - transfer_inventory
             - unknown
           description: The type of transaction for this credit transaction.
           example: invoice
@@ -74579,6 +74584,7 @@ components:
                 - transfer
                 - vendor_credit
                 - ytd_adjustment
+                - transfer_inventory
                 - unknown
             - type: "null"
           description: The type of transaction for this deposit line.
@@ -79170,24 +79176,26 @@ components:
           description: The current QuickBooks-assigned revision number of this item receipt object, which changes each time the object is modified. When updating this object, you must provide the most recent `revisionNumber` to ensure you're working with the latest data; otherwise, the update will return an error.
           example: "1721172183"
         vendor:
-          type: object
-          properties:
-            id:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
-              example: 80000001-1234567890
-            fullName:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
-              example: Parent:Child:Grandchild
-          required:
-            - id
-            - fullName
-          additionalProperties: false
+          anyOf:
+            - type: object
+              properties:
+                id:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
+                  example: 80000001-1234567890
+                fullName:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
+                  example: Parent:Child:Grandchild
+              required:
+                - id
+                - fullName
+              additionalProperties: false
+            - type: "null"
           description: The vendor who sent this item receipt for goods or services purchased.
           example:
             id: 80000001-1234567890
@@ -80980,6 +80988,7 @@ components:
             - transfer
             - vendor_credit
             - ytd_adjustment
+            - transfer_inventory
             - unknown
           description: The type of transaction for this payment to deposit.
           example: invoice
@@ -86791,6 +86800,7 @@ components:
             - transfer
             - vendor_credit
             - ytd_adjustment
+            - transfer_inventory
             - unknown
           description: The type of transaction.
           example: invoice
