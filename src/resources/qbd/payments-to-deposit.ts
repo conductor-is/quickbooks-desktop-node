@@ -124,6 +124,7 @@ export interface PaymentToDeposit {
     | 'transfer'
     | 'vendor_credit'
     | 'ytd_adjustment'
+    | 'transfer_inventory'
     | 'unknown';
 }
 

@@ -314,7 +314,7 @@ export interface ItemReceipt {
   /**
    * The vendor who sent this item receipt for goods or services purchased.
    */
-  vendor: ItemReceipt.Vendor;
+  vendor: ItemReceipt.Vendor | null;
 }
 
 export namespace ItemReceipt {
@@ -1566,6 +1566,7 @@ export namespace ItemReceipt {
       | 'transfer'
       | 'vendor_credit'
       | 'ytd_adjustment'
+      | 'transfer_inventory'
       | 'unknown';
   }
 

@@ -1526,6 +1526,7 @@ export namespace SalesOrder {
       | 'transfer'
       | 'vendor_credit'
       | 'ytd_adjustment'
+      | 'transfer_inventory'
       | 'unknown';
   }
 

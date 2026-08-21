@@ -171,6 +171,7 @@ export interface Transaction {
     | 'transfer'
     | 'vendor_credit'
     | 'ytd_adjustment'
+    | 'transfer_inventory'
     | 'unknown';
 
   /**

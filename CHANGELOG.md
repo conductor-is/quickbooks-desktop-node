@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.23.6](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.5...v14.23.6) (2026-08-21)
+
+
+### Bug Fixes
+
+* **mcp:** install git in the Docker builder stage for the git-pinned deno-http-worker fork ([bf9839d](https://github.com/conductor-is/quickbooks-desktop-node/commit/bf9839d99e572ab9fc4984a6b6b0229f3b2a1842))
+* **qbd:** handle inventory items without COGS and asset accounts ([10d50cf](https://github.com/conductor-is/quickbooks-desktop-node/commit/10d50cf468123a38d1a61552a7cf1517d3c5b0be))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([e70f3b7](https://github.com/conductor-is/quickbooks-desktop-node/commit/e70f3b70eeb73dee9f1e7ce1891dd36d2e578ff9))
+
 ## [14.23.5](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.4...v14.23.5) (2026-08-20)
 
 

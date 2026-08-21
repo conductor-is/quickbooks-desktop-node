@@ -1560,6 +1560,7 @@ export namespace VendorCredit {
       | 'transfer'
       | 'vendor_credit'
       | 'ytd_adjustment'
+      | 'transfer_inventory'
       | 'unknown';
   }
 
