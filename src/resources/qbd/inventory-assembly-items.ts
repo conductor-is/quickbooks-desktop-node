@@ -139,7 +139,7 @@ export interface InventoryAssemblyItem {
    * The asset account used to track the current value of this inventory assembly
    * item in inventory.
    */
-  assetAccount: InventoryAssemblyItem.AssetAccount;
+  assetAccount: InventoryAssemblyItem.AssetAccount | null;
 
   /**
    * The average cost per unit of this inventory assembly item, represented as a
@@ -172,7 +172,7 @@ export interface InventoryAssemblyItem {
    * The Cost of Goods Sold (COGS) account for this inventory assembly item, tracking
    * the original direct costs of producing goods sold.
    */
-  cogsAccount: InventoryAssemblyItem.CogsAccount;
+  cogsAccount: InventoryAssemblyItem.CogsAccount | null;
 
   /**
    * The date and time when this inventory assembly item was created, in ISO 8601
