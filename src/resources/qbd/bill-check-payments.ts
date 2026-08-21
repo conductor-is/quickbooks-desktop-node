@@ -453,6 +453,7 @@ export namespace BillCheckPayment {
       | 'transfer'
       | 'vendor_credit'
       | 'ytd_adjustment'
+      | 'transfer_inventory'
       | 'unknown';
   }
 
@@ -563,6 +564,7 @@ export namespace BillCheckPayment {
         | 'transfer'
         | 'vendor_credit'
         | 'ytd_adjustment'
+        | 'transfer_inventory'
         | 'unknown';
     }
   }

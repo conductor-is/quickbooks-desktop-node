@@ -383,6 +383,7 @@ export namespace ReceivePayment {
       | 'transfer'
       | 'vendor_credit'
       | 'ytd_adjustment'
+      | 'transfer_inventory'
       | 'unknown';
   }
 
@@ -493,6 +494,7 @@ export namespace ReceivePayment {
         | 'transfer'
         | 'vendor_credit'
         | 'ytd_adjustment'
+        | 'transfer_inventory'
         | 'unknown';
     }
   }
