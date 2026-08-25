@@ -454,3 +454,7 @@ If you are interested in other runtime environments, please open or upvote an is
 ## Contributing
 
 See [the contributing documentation](./CONTRIBUTING.md).
+
+## Resources
+
+- [How Conductor compares to unified APIs for QuickBooks Desktop](https://conductor.is/blog/conductor-vs-apideck)
