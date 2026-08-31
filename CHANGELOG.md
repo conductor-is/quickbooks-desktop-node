@@ -1,5 +1,24 @@
 # Changelog
 
+## [14.23.8](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.7...v14.23.8) (2026-08-25)
+
+
+### Documentation
+
+* **readme:** link the QuickBooks Desktop comparison guide ([a9a2029](https://github.com/conductor-is/quickbooks-desktop-node/commit/a9a20291c918b0ed0de5617986f6b2c2a9edfae2))
+
+## [14.23.7](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.6...v14.23.7) (2026-08-21)
+
+
+### Bug Fixes
+
+* **qbd:** handle item receipts without vendors ([b97582a](https://github.com/conductor-is/quickbooks-desktop-node/commit/b97582a852b80446d929b290df7d5f29127b19c4))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([932d42c](https://github.com/conductor-is/quickbooks-desktop-node/commit/932d42cbd317b3070f419fbbb335814aef0cbfed))
+
 ## [14.23.6](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.5...v14.23.6) (2026-08-21)
 
 
