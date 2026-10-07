@@ -2323,10 +2323,10 @@ export namespace InvoiceCreateParams {
      * be unlinked later.
      *
      * **IMPORTANT**: If you use `linkToTransactionLine` on this invoice line, you
-     * cannot use the field `item` on this line (QuickBooks will return an error)
+     * cannot use the field `itemId` on this line (QuickBooks will return an error)
      * because this field brings in all of the item information you need. You can,
-     * however, specify whatever `quantity` or `rate` that you want, or any other
-     * transaction line element other than `item`.
+     * however, specify whatever `quantity`, `cost`, or `rate` that you want, or any
+     * other transaction line element other than `itemId`.
      *
      * If the parent transaction supports the `linkToTransactionIds` field, you can use
      * both `linkToTransactionLine` (on this invoice line) and `linkToTransactionIds`
@@ -2483,10 +2483,10 @@ export namespace InvoiceCreateParams {
      * be unlinked later.
      *
      * **IMPORTANT**: If you use `linkToTransactionLine` on this invoice line, you
-     * cannot use the field `item` on this line (QuickBooks will return an error)
+     * cannot use the field `itemId` on this line (QuickBooks will return an error)
      * because this field brings in all of the item information you need. You can,
-     * however, specify whatever `quantity` or `rate` that you want, or any other
-     * transaction line element other than `item`.
+     * however, specify whatever `quantity`, `cost`, or `rate` that you want, or any
+     * other transaction line element other than `itemId`.
      *
      * If the parent transaction supports the `linkToTransactionIds` field, you can use
      * both `linkToTransactionLine` (on this invoice line) and `linkToTransactionIds`
