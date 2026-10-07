@@ -18,6 +18,8 @@ import { McpOptions } from './options';
 import { blockedMethodsForCodeTool } from './methods';
 import { HandlerFunction, McpRequestContext, ToolCallResult, McpTool } from './types';
 
+export const VERSION = '14.23.8'; // x-release-please-version
+
 export const newMcpServer = async ({
   stainlessApiKey,
   customInstructionsPath,
@@ -28,7 +30,7 @@ export const newMcpServer = async ({
   new McpServer(
     {
       name: 'conductor_node_api',
-      version: '14.23.8', // x-release-please-version
+      version: VERSION,
     },
     {
       instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),

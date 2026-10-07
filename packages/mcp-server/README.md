@@ -2,9 +2,11 @@
 
 ## Installation
 
+The tools run on Conductor's hosted MCP server at `https://mcp.conductor.is/`. Clients that support Streamable HTTP (Claude Code, Cursor, VS Code, Codex, Claude Cowork) connect to that URL directly with your secret key in the `Authorization` header. Clients that only speak stdio (Claude Desktop) run this package, which is a thin bridge to the hosted server: it needs only Node.js and `CONDUCTOR_SECRET_KEY`, and nothing executes on your machine. The full per-client guide is at [docs.conductor.is/usage/mcp](https://docs.conductor.is/usage/mcp).
+
 ### Direct invocation
 
-You can run the MCP Server directly via `npx`:
+You can run the bridge directly via `npx`:
 
 ```sh
 export CONDUCTOR_SECRET_KEY="sk_conductor_..."
@@ -16,12 +18,12 @@ npx -y conductor-node-mcp@latest
 There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
 have a client, consult their documentation to install the MCP server.
 
-For clients with a configuration JSON, it might look something like this:
+For stdio clients with a configuration JSON (Claude Desktop on Mac and Windows), it looks like this; replace only `sk_conductor_...` with your secret key:
 
 ```json
 {
   "mcpServers": {
-    "conductor_node_api": {
+    "conductor": {
       "command": "npx",
       "args": ["-y", "conductor-node-mcp"],
       "env": {
@@ -31,6 +33,8 @@ For clients with a configuration JSON, it might look something like this:
   }
 }
 ```
+
+Add `"--code-allow-http-gets"` to `args` for read-only access. Set `CONDUCTOR_MCP_URL` in `env` to point the bridge at a different server, for example a self-hosted `--transport=http` instance (see "Running remotely" below).
 
 ### Cursor
 
@@ -48,11 +52,10 @@ in VS Code's `mcp.json`, which can be found via Command Palette > MCP: Open User
 
 ### Claude Code
 
-If you use Claude Code, you can install the MCP server by running the command below in your terminal. You will need to set your
-environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
+If you use Claude Code, connect it to the hosted server by running the command below in your terminal, replacing `sk_conductor_...` with your secret key.
 
 ```
-claude mcp add conductor_node_mcp_api --env CONDUCTOR_SECRET_KEY="sk_conductor_..." -- npx -y conductor-node-mcp
+claude mcp add --transport http conductor https://mcp.conductor.is/ --header "Authorization: Bearer sk_conductor_..."
 ```
 
 ## Code Mode
@@ -74,7 +77,7 @@ and repeatably.
 
 ## Running remotely
 
-Launching the client with `--transport=http` launches the server as a remote server using Streamable HTTP transport. The `--port` setting can choose the port it will run on, and the `--socket` setting allows it to run on a Unix socket.
+Launching the package with `--transport=http` runs the actual MCP server (the mode `https://mcp.conductor.is/` runs) using Streamable HTTP transport. The `--port` setting can choose the port it will run on, and the `--socket` setting allows it to run on a Unix socket. Code execution in this mode needs [Deno](https://deno.land) on the server.
 
 Authorization can be provided via the `Authorization` header using the Bearer scheme.
 

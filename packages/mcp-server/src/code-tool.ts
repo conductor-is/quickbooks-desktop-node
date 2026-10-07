@@ -8,6 +8,7 @@ import { getLogger } from './logger';
 import { SdkMethod } from './methods';
 import { McpCodeExecutionMode } from './options';
 import { ClientOptions } from 'conductor-node';
+import { newDenoHTTPWorker } from './deno-http-worker';
 
 const prompt = `Runs JavaScript code to interact with the Conductor API.
 
@@ -189,8 +190,7 @@ const localDenoHandlerInner = async ({
   const fs = await import('node:fs');
   const path = await import('node:path');
   const url = await import('node:url');
-  const { newDenoHTTPWorker } = await import('@valtown/deno-http-worker');
-  const { getWorkerPath } = await import('./code-tool-paths.cjs');
+  const { getWorkerPath, getDenoBootstrapPath } = await import('./code-tool-paths.cjs');
   const workerPath = getWorkerPath();
 
   const client = reqContext.client;
@@ -243,6 +243,7 @@ const localDenoHandlerInner = async ({
 
   const worker = await newDenoHTTPWorker(url.pathToFileURL(workerPath), {
     denoExecutable: denoPath,
+    denoBootstrapScriptPath: getDenoBootstrapPath(),
     runFlags: [
       `--node-modules-dir=manual`,
       `--allow-read=${allowRead}`,

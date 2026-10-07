@@ -14,23 +14,24 @@ async function main() {
     pretty: options.logFormat === 'pretty',
   });
 
-  const selectedTools = await selectToolsOrError(options);
-
-  getLogger().info(
-    { tools: selectedTools.map((e) => e.tool.name) },
-    `MCP Server starting with ${selectedTools.length} tools`,
-  );
-
   switch (options.transport) {
     case 'stdio':
       await launchStdioServer(options);
       break;
-    case 'http':
+    case 'http': {
+      const selectedTools = await selectToolsOrError(options);
+
+      getLogger().info(
+        { tools: selectedTools.map((e) => e.tool.name) },
+        `MCP Server starting with ${selectedTools.length} tools`,
+      );
+
       await launchStreamableHTTPServer({
         mcpOptions: options,
         port: options.socket ?? options.port,
       });
       break;
+    }
   }
 }
 

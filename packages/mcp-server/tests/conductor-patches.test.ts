@@ -25,9 +25,11 @@ describe('conductor self-hosting patches', () => {
     expect(src).toContain('_localSearchPromise');
   });
 
-  test('build script keeps the SKIP_MCPB guard', () => {
+  test('build script ships the Deno bootstrap asset and no extension bundle', () => {
     const build = fs.readFileSync(path.join(pkgRoot, 'build'), 'utf-8');
-    expect(build).toContain('SKIP_MCPB');
+    expect(build).toContain('cp -rp deno-bootstrap dist');
+    expect(build).not.toContain('mcpb');
+    expect(fs.existsSync(path.join(pkgRoot, 'manifest.json'))).toBe(false);
   });
 
   test('no dependency resolves to the stainless-api GitHub org', () => {
@@ -47,17 +49,48 @@ describe('conductor self-hosting patches', () => {
     expect(sha).toBe('12d949698a7af3eb700034fac64e71b8f7d6abc7467fbb33bd08b202a63cf5af');
   });
 
-  test('deno-http-worker resolves to the conductor-is fork (Deno 2.9+ unix-socket net fix)', () => {
-    const pkg = fs.readFileSync(path.join(pkgRoot, 'package.json'), 'utf-8');
-    expect(pkg).toContain('conductor-is/deno-http-worker');
+  test('deno-http-worker is vendored (no git dependency, so npx works without git)', () => {
+    const pkg = JSON.parse(fs.readFileSync(path.join(pkgRoot, 'package.json'), 'utf-8'));
+    for (const spec of Object.values({ ...pkg.dependencies, ...pkg.devDependencies }) as string[]) {
+      expect(spec).not.toContain('git+https://');
+      expect(spec).not.toContain('github.com');
+    }
+    expect(pkg.dependencies['@valtown/deno-http-worker']).toBeUndefined();
+    expect(fs.existsSync(path.join(pkgRoot, 'src', 'deno-http-worker', 'DenoHTTPWorker.ts'))).toBe(true);
+    expect(fs.existsSync(path.join(pkgRoot, 'deno-bootstrap', 'index.ts'))).toBe(true);
+    const worker = fs.readFileSync(
+      path.join(pkgRoot, 'src', 'deno-http-worker', 'DenoHTTPWorker.ts'),
+      'utf-8',
+    );
+    // The fork's Deno >= 2.9 unix-socket net grant must survive vendoring.
+    expect(worker).toContain('unix:${socketFile}');
+    const codeTool = fs.readFileSync(path.join(pkgRoot, 'src', 'code-tool.ts'), 'utf-8');
+    expect(codeTool).toContain("from './deno-http-worker'");
+    expect(codeTool).not.toContain('@valtown/deno-http-worker');
   });
 
-  test('serverInfo version line carries the release-please annotation', () => {
-    const src = fs.readFileSync(path.join(pkgRoot, 'src', 'server.ts'), 'utf-8');
+  test('stdio transport is the bridge to the hosted server', () => {
+    const stdio = fs.readFileSync(path.join(pkgRoot, 'src', 'stdio.ts'), 'utf-8');
+    expect(stdio).toContain("from './bridge'");
+    expect(stdio).not.toContain('newMcpServer');
+    expect(stdio).toContain('https://mcp.conductor.is/');
+    // The stdio-only rejection of --tools/--no-tools/--docs-dir/
+    // --custom-instructions-path/--socket lives here, not in generated index.ts.
+    expect(stdio).toContain('rejectHttpOnlyOptionsOrExit(');
+    expect(stdio).toContain("'--socket'");
+  });
+
+  test('serverInfo version line carries the release-please annotation and the bridge reuses it', () => {
     // Marker assembled at runtime so this file itself never contains the
     // annotation token (stlc's seal scanner would flag it as release-tooling
     // territory and warn on every status check).
     const marker = ['x-release', 'please-version'].join('-');
-    expect(src).toContain(`// ${marker}`);
+    const server = fs.readFileSync(path.join(pkgRoot, 'src', 'server.ts'), 'utf-8');
+    expect(server).toContain(`export const VERSION = '`);
+    expect(server).toContain(`// ${marker}`);
+    // One annotated literal only: the bridge's User-Agent imports it.
+    const bridge = fs.readFileSync(path.join(pkgRoot, 'src', 'bridge.ts'), 'utf-8');
+    expect(bridge).toContain("import { VERSION } from './server'");
+    expect(bridge).not.toContain(marker);
   });
 });

@@ -7,6 +7,10 @@ rm -rf dist; mkdir dist
 # the source map for index.js.map will refer to ./src/index.ts etc
 cp -rp src README.md dist
 
+# Deno bootstrap for the vendored deno-http-worker (src/deno-http-worker):
+# shipped verbatim as a runtime asset, resolved by src/code-tool-paths.cts.
+cp -rp deno-bootstrap dist
+
 for file in LICENSE; do
   if [ -e "../../${file}" ]; then cp "../../${file}" dist; fi
 done
@@ -30,30 +34,3 @@ cp tsconfig.dist-src.json dist/src/tsconfig.json
 chmod +x dist/index.js
 
 DIST_PATH=./dist PKG_IMPORT_PATH=conductor-node-mcp/ node ../../scripts/utils/postprocess-files.cjs
-
-# mcp bundle (skipped when SKIP_MCPB is set: Docker image builds never use the
-# bundle, and its dist-bundle npm install is not pinned by any lockfile)
-if [ -z "${SKIP_MCPB:-}" ]; then
-rm -rf dist-bundle conductor_node_api.mcpb; mkdir dist-bundle
-
-# copy package.json
-PKG_JSON_PATH=../../packages/mcp-server/package.json node ../../scripts/utils/make-dist-package-json.cjs > dist-bundle/package.json
-
-# copy files
-node scripts/copy-bundle-files.cjs
-
-# install runtime deps
-cd dist-bundle
-npm install
-cd ..
-
-# pack bundle
-cp manifest.json dist-bundle
-
-npx mcpb pack dist-bundle conductor_node_api.mcpb
-
-npx mcpb sign conductor_node_api.mcpb --self-signed
-
-# clean up
-rm -rf dist-bundle
-fi

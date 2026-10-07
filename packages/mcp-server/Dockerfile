@@ -1,32 +1,27 @@
-# Dockerfile for Conductor MCP Server
+# Dockerfile for the hosted Conductor MCP server (https://mcp.conductor.is/)
 #
-# This Dockerfile builds a Docker image for the MCP Server.
+# This image is the server that executes the `execute` and `search_docs`
+# tools. Render runs it with --transport=http (see render.yaml in the
+# conductor repo); clients reach it over Streamable HTTP with their secret key
+# in the Authorization header. The package's stdio transport is only a bridge
+# to this hosted server (src/bridge.ts), so the container is never run over
+# stdio.
 #
 # To build the image locally:
 #   docker build -f packages/mcp-server/Dockerfile -t conductor-node-mcp:local .
 #
 # To run the image:
-#   docker run -i conductor-node-mcp:local [OPTIONS]
-#
-# Common options:
-#   --tool=<name>              Include specific tools
-#   --resource=<name>          Include tools for specific resources
-#   --operation=read|write     Filter by operation type
-#   --client=<type>            Set client compatibility (e.g., claude, cursor)
-#   --transport=<type>         Set transport type (stdio or http)
+#   docker run -p 3000:3000 conductor-node-mcp:local --transport=http --port=3000
 #
 # For a full list of options:
-#   docker run -i conductor-node-mcp:local --help
-#
-# Note: The MCP server uses stdio transport by default. Docker's -i flag
-# enables interactive mode, allowing the container to communicate over stdin/stdout.
+#   docker run conductor-node-mcp:local --help
 
 # Build stage
 FROM node:24-alpine AS builder
 
-# Install bash for build script
-# git: yarn installs @valtown/deno-http-worker from a git-pinned fork
-# (conductor-is/deno-http-worker), which needs the git binary at install time.
+# Install bash for build script. git is no longer needed by any dependency (the
+# Deno worker fork is vendored under src/deno-http-worker) but is kept so a
+# future git-pinned package cannot break the image build.
 RUN apk add --no-cache bash openssl git
 
 # Set working directory
@@ -34,10 +29,6 @@ WORKDIR /build
 
 # Copy entire repository
 COPY . .
-
-# Image builds never use the .mcpb bundle; skip its unpinned npm install
-# (see packages/mcp-server/build).
-ENV SKIP_MCPB=1
 
 # Install all dependencies and build everything
 RUN yarn install --frozen-lockfile && \
@@ -78,8 +69,9 @@ RUN chown -R nodejs:nodejs /deno-dir
 # Switch to non-root user
 USER nodejs
 
-# The MCP server uses stdio transport by default
-# No exposed ports needed for stdio communication
+# Pass --transport=http --port=<port> as the command (Render does); without
+# arguments the entrypoint falls back to the stdio bridge, which needs
+# CONDUCTOR_SECRET_KEY and is not what this image is for.
 
 # Set the entrypoint to the MCP server
 ENTRYPOINT ["node", "index.js"]
