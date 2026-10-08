@@ -18,7 +18,7 @@ import { McpOptions } from './options';
 import { blockedMethodsForCodeTool } from './methods';
 import { HandlerFunction, McpRequestContext, ToolCallResult, McpTool } from './types';
 
-export const VERSION = '14.23.8'; // x-release-please-version
+export const VERSION = '14.24.0'; // x-release-please-version
 
 export const newMcpServer = async ({
   stainlessApiKey,
