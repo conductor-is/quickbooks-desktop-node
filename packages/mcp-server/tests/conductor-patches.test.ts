@@ -29,7 +29,12 @@ describe('conductor self-hosting patches', () => {
     const build = fs.readFileSync(path.join(pkgRoot, 'build'), 'utf-8');
     expect(build).toContain('cp -rp deno-bootstrap dist');
     expect(build).not.toContain('mcpb');
-    expect(fs.existsSync(path.join(pkgRoot, 'manifest.json'))).toBe(false);
+    // The template's generate-phase build still packs a bundle unless SKIP_MCPB
+    // is set, so the artifacts must stay ignored or a build commits them (an
+    // 11 MB .mcpb landed on main on 2026-10-15 when these rules were missing).
+    const gitignore = fs.readFileSync(path.join(repoRoot, '.gitignore'), 'utf-8').split('\n');
+    expect(gitignore).toContain('dist-bundle');
+    expect(gitignore).toContain('*.mcpb');
   });
 
   test('no dependency resolves to the stainless-api GitHub org', () => {
