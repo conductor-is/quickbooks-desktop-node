@@ -1,3 +1,4 @@
+import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
@@ -35,6 +36,12 @@ describe('conductor self-hosting patches', () => {
     const gitignore = fs.readFileSync(path.join(repoRoot, '.gitignore'), 'utf-8').split('\n');
     expect(gitignore).toContain('dist-bundle');
     expect(gitignore).toContain('*.mcpb');
+    // Ignore rules never untrack a file, so also assert nothing is tracked.
+    const tracked = execSync("git ls-files -- '*.mcpb' '**/dist-bundle/**'", {
+      cwd: repoRoot,
+      encoding: 'utf-8',
+    });
+    expect(tracked.trim()).toBe('');
   });
 
   test('no dependency resolves to the stainless-api GitHub org', () => {
@@ -92,7 +99,12 @@ describe('conductor self-hosting patches', () => {
     const marker = ['x-release', 'please-version'].join('-');
     const server = fs.readFileSync(path.join(pkgRoot, 'src', 'server.ts'), 'utf-8');
     expect(server).toContain(`export const VERSION = '`);
-    expect(server).toContain(`// ${marker}`);
+    // Exactly two annotated literals: the generator's serverInfo line, left as
+    // generated so releases regenerate without conflicts, and the constant.
+    const annotated = server.split('\n').filter((line) => line.includes(`// ${marker}`));
+    expect(annotated).toHaveLength(2);
+    expect(annotated.some((line) => /version: '\d+\.\d+\.\d+', \/\/ /.test(line))).toBe(true);
+    expect(annotated.some((line) => /export const VERSION = '\d+\.\d+\.\d+'; \/\/ /.test(line))).toBe(true);
     // Two annotated literals: the generator's serverInfo line, left exactly as
     // generated so releases regenerate without conflicts, and this constant,
     // which the bridge's User-Agent imports.
