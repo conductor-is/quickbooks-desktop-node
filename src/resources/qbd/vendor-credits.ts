@@ -664,6 +664,10 @@ export namespace VendorCredit {
      * specific line. For example, you can sell an item typically measured in volume
      * units using weight units in a specific transaction by specifying a different
      * unit-of-measure set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     overrideUnitOfMeasureSet: ItemGroupLine.OverrideUnitOfMeasureSet | null;
 
@@ -848,6 +852,10 @@ export namespace VendorCredit {
        * line. For example, you can sell an item typically measured in volume units using
        * weight units in a specific transaction by specifying a different unit-of-measure
        * set with this field.
+       *
+       * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+       * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+       * the unit-of-measure sets list.
        */
       overrideUnitOfMeasureSet: ItemLine.OverrideUnitOfMeasureSet | null;
 
@@ -1042,6 +1050,10 @@ export namespace VendorCredit {
        * line. For example, you can sell an item typically measured in volume units using
        * weight units in a specific transaction by specifying a different unit-of-measure
        * set with this field.
+       *
+       * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+       * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+       * the unit-of-measure sets list.
        */
       export interface OverrideUnitOfMeasureSet {
         /**
@@ -1115,6 +1127,10 @@ export namespace VendorCredit {
      * specific line. For example, you can sell an item typically measured in volume
      * units using weight units in a specific transaction by specifying a different
      * unit-of-measure set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     export interface OverrideUnitOfMeasureSet {
       /**
@@ -1233,6 +1249,10 @@ export namespace VendorCredit {
      * line. For example, you can sell an item typically measured in volume units using
      * weight units in a specific transaction by specifying a different unit-of-measure
      * set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     overrideUnitOfMeasureSet: ItemLine.OverrideUnitOfMeasureSet | null;
 
@@ -1427,6 +1447,10 @@ export namespace VendorCredit {
      * line. For example, you can sell an item typically measured in volume units using
      * weight units in a specific transaction by specifying a different unit-of-measure
      * set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     export interface OverrideUnitOfMeasureSet {
       /**
@@ -2055,7 +2079,8 @@ export namespace VendorCreditCreateParams {
      * its parent transaction) in the same request as long as they do NOT link to the
      * same transaction (otherwise, QuickBooks will return an error). QuickBooks will
      * also return an error if you attempt to link a transaction that is empty or
-     * already closed.
+     * already closed, or if lines linking to the same transaction are not in that
+     * transaction's line order.
      *
      * **IMPORTANT**: By default, QuickBooks will not return any information about the
      * linked transaction line in this endpoint's response even when this request is
@@ -2167,7 +2192,8 @@ export namespace VendorCreditCreateParams {
      * its parent transaction) in the same request as long as they do NOT link to the
      * same transaction (otherwise, QuickBooks will return an error). QuickBooks will
      * also return an error if you attempt to link a transaction that is empty or
-     * already closed.
+     * already closed, or if lines linking to the same transaction are not in that
+     * transaction's line order.
      *
      * **IMPORTANT**: By default, QuickBooks will not return any information about the
      * linked transaction line in this endpoint's response even when this request is
@@ -2452,6 +2478,10 @@ export namespace VendorCreditUpdateParams {
      * specific line. For example, you can sell an item typically measured in volume
      * units using weight units in a specific transaction by specifying a different
      * unit-of-measure set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     overrideUnitOfMeasureSetId?: string;
 
@@ -2575,6 +2605,10 @@ export namespace VendorCreditUpdateParams {
        * line. For example, you can sell an item typically measured in volume units using
        * weight units in a specific transaction by specifying a different unit-of-measure
        * set with this field.
+       *
+       * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+       * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+       * the unit-of-measure sets list.
        */
       overrideUnitOfMeasureSetId?: string;
 
@@ -2722,6 +2756,10 @@ export namespace VendorCreditUpdateParams {
      * line. For example, you can sell an item typically measured in volume units using
      * weight units in a specific transaction by specifying a different unit-of-measure
      * set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     overrideUnitOfMeasureSetId?: string;
 

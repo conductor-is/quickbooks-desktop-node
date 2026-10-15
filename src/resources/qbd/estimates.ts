@@ -613,6 +613,10 @@ export namespace Estimate {
      * specific line. For example, you can sell an item typically measured in volume
      * units using weight units in a specific transaction by specifying a different
      * unit-of-measure set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     overrideUnitOfMeasureSet: LineGroup.OverrideUnitOfMeasureSet | null;
 
@@ -808,6 +812,10 @@ export namespace Estimate {
        * line. For example, you can sell an item typically measured in volume units using
        * weight units in a specific transaction by specifying a different unit-of-measure
        * set with this field.
+       *
+       * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+       * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+       * the unit-of-measure sets list.
        */
       overrideUnitOfMeasureSet: Line.OverrideUnitOfMeasureSet | null;
 
@@ -985,6 +993,10 @@ export namespace Estimate {
        * line. For example, you can sell an item typically measured in volume units using
        * weight units in a specific transaction by specifying a different unit-of-measure
        * set with this field.
+       *
+       * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+       * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+       * the unit-of-measure sets list.
        */
       export interface OverrideUnitOfMeasureSet {
         /**
@@ -1038,6 +1050,10 @@ export namespace Estimate {
      * specific line. For example, you can sell an item typically measured in volume
      * units using weight units in a specific transaction by specifying a different
      * unit-of-measure set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     export interface OverrideUnitOfMeasureSet {
       /**
@@ -1160,6 +1176,10 @@ export namespace Estimate {
      * line. For example, you can sell an item typically measured in volume units using
      * weight units in a specific transaction by specifying a different unit-of-measure
      * set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     overrideUnitOfMeasureSet: Line.OverrideUnitOfMeasureSet | null;
 
@@ -1337,6 +1357,10 @@ export namespace Estimate {
      * line. For example, you can sell an item typically measured in volume units using
      * weight units in a specific transaction by specifying a different unit-of-measure
      * set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     export interface OverrideUnitOfMeasureSet {
       /**
@@ -2525,6 +2549,10 @@ export namespace EstimateUpdateParams {
      * specific line. For example, you can sell an item typically measured in volume
      * units using weight units in a specific transaction by specifying a different
      * unit-of-measure set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     overrideUnitOfMeasureSetId?: string;
 
@@ -2643,6 +2671,10 @@ export namespace EstimateUpdateParams {
        * line. For example, you can sell an item typically measured in volume units using
        * weight units in a specific transaction by specifying a different unit-of-measure
        * set with this field.
+       *
+       * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+       * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+       * the unit-of-measure sets list.
        */
       overrideUnitOfMeasureSetId?: string;
 
@@ -2803,6 +2835,10 @@ export namespace EstimateUpdateParams {
      * line. For example, you can sell an item typically measured in volume units using
      * weight units in a specific transaction by specifying a different unit-of-measure
      * set with this field.
+     *
+     * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+     * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+     * the unit-of-measure sets list.
      */
     overrideUnitOfMeasureSetId?: string;
 
