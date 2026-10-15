@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.24.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.1...v14.24.2) (2026-10-15)
+
+
+### Bug Fixes
+
+* **mcp:** guard the bundle ignore rules instead of the manifest file ([e5bc9b5](https://github.com/conductor-is/quickbooks-desktop-node/commit/e5bc9b5f4f18cc0aa6cf554c4a08c86b27694278))
+
+
+### Chores
+
+* **mcp:** regenerate with the SKIP_MCPB-gated build template ([9c4706d](https://github.com/conductor-is/quickbooks-desktop-node/commit/9c4706dfaf4fa7b2c6cf9ac753f5932bf2f8a9f1))
+
 ## [14.24.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.0...v14.24.1) (2026-10-15)
 
 
