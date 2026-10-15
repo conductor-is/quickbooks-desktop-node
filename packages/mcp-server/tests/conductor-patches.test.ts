@@ -93,7 +93,9 @@ describe('conductor self-hosting patches', () => {
     const server = fs.readFileSync(path.join(pkgRoot, 'src', 'server.ts'), 'utf-8');
     expect(server).toContain(`export const VERSION = '`);
     expect(server).toContain(`// ${marker}`);
-    // One annotated literal only: the bridge's User-Agent imports it.
+    // Two annotated literals: the generator's serverInfo line, left exactly as
+    // generated so releases regenerate without conflicts, and this constant,
+    // which the bridge's User-Agent imports.
     const bridge = fs.readFileSync(path.join(pkgRoot, 'src', 'bridge.ts'), 'utf-8');
     expect(bridge).toContain("import { VERSION } from './server'");
     expect(bridge).not.toContain(marker);
