@@ -50,23 +50,42 @@ const newServer = async ({
   let effectiveMcpOptions = mcpOptions;
   const clientPermissionsHeader = req.headers['x-stainless-mcp-client-permissions'];
   if (typeof clientPermissionsHeader === 'string') {
-    try {
-      const parsed = JSON.parse(clientPermissionsHeader);
-      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
-        effectiveMcpOptions = {
-          ...mcpOptions,
-          ...(typeof parsed.allow_http_gets === 'boolean' && { codeAllowHttpGets: parsed.allow_http_gets }),
-          ...(Array.isArray(parsed.allowed_methods) && { codeAllowedMethods: parsed.allowed_methods }),
-          ...(Array.isArray(parsed.blocked_methods) && { codeBlockedMethods: parsed.blocked_methods }),
-        };
-        getLogger().info(
-          { clientPermissions: parsed },
-          'Overriding code execution permissions from x-stainless-mcp-client-permissions header',
-        );
-      }
-    } catch (error) {
-      getLogger().warn({ error }, 'Failed to parse x-stainless-mcp-client-permissions header');
+    const clientPermissions = parseClientPermissions(clientPermissionsHeader);
+    // Fail closed (conductor patch): clients send this header only to limit themselves, so a
+    // malformed value, such as one whose quotes a Windows shell stripped, must not leave the
+    // connection with full access.
+    if (clientPermissions === null) {
+      getLogger().warn(
+        { clientPermissionsHeader },
+        'Rejected malformed x-stainless-mcp-client-permissions header',
+      );
+      res.status(400).json({
+        jsonrpc: '2.0',
+        error: {
+          code: -32600,
+          message:
+            'Invalid x-stainless-mcp-client-permissions header. It must be exact JSON, such as {"allow_http_gets":true}. See https://docs.conductor.is/usage/mcp#read-only-mode',
+        },
+        id: null,
+      });
+      return null;
     }
+    effectiveMcpOptions = {
+      ...mcpOptions,
+      ...(clientPermissions.allow_http_gets !== undefined && {
+        codeAllowHttpGets: clientPermissions.allow_http_gets,
+      }),
+      ...(clientPermissions.allowed_methods !== undefined && {
+        codeAllowedMethods: clientPermissions.allowed_methods,
+      }),
+      ...(clientPermissions.blocked_methods !== undefined && {
+        codeBlockedMethods: clientPermissions.blocked_methods,
+      }),
+    };
+    getLogger().info(
+      { clientPermissions },
+      'Overriding code execution permissions from x-stainless-mcp-client-permissions header',
+    );
   }
 
   const mcpClientInfo =
@@ -123,6 +142,34 @@ const del = async (req: express.Request, res: express.Response) => {
       message: 'Method not supported',
     },
   });
+};
+
+type ClientPermissions = {
+  allow_http_gets?: boolean;
+  allowed_methods?: string[];
+  blocked_methods?: string[];
+};
+
+// Returns null unless the header is a JSON object holding only known keys of the right types, so a
+// typo such as {"allow_http_gets":"true"} or {"read_only":true} is refused instead of ignored.
+const parseClientPermissions = (header: string): ClientPermissions | null => {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(header);
+  } catch {
+    return null;
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    return null;
+  }
+  const isStringArray = (value: unknown) =>
+    Array.isArray(value) && value.every((item) => typeof item === 'string');
+  const isValid = Object.entries(parsed).every(([key, value]) =>
+    key === 'allow_http_gets' ? typeof value === 'boolean'
+    : key === 'allowed_methods' || key === 'blocked_methods' ? isStringArray(value)
+    : false,
+  );
+  return isValid ? (parsed as ClientPermissions) : null;
 };
 
 const redactHeaders = (headers: Record<string, any>) => {
