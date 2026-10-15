@@ -1,5 +1,20 @@
 # Changelog
 
+## [14.24.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.0...v14.24.1) (2026-10-15)
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([e34097b](https://github.com/conductor-is/quickbooks-desktop-node/commit/e34097bf00cea0cd0ad034e8bb619e82a2683606))
+* **api:** update documented OpenAPI spec for download ([146f917](https://github.com/conductor-is/quickbooks-desktop-node/commit/146f917708d020302b06270d2d40401186ee7edf))
+* **mcp:** ignore the generated mcpb bundle again ([8eadea6](https://github.com/conductor-is/quickbooks-desktop-node/commit/8eadea653e6c40be98f41f0272e64bedd156b5d5))
+* **release:** bump the mcpb manifest version on release again ([aafdd88](https://github.com/conductor-is/quickbooks-desktop-node/commit/aafdd88b41920125e061858bf7a323152edef2d1))
+
+
+### Documentation
+
+* **qbd:** note alternate unit-of-measure set ids on item refs ([0172278](https://github.com/conductor-is/quickbooks-desktop-node/commit/01722787eebf40af06e5272f2af26132cddb14e8))
+
 ## [14.24.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.8...v14.24.0) (2026-10-08)
 
 
