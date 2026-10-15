@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.24.3](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.2...v14.24.3) (2026-10-15)
+
+
+### Bug Fixes
+
+* **mcp:** refuse malformed client permissions headers ([6baaddd](https://github.com/conductor-is/quickbooks-desktop-node/commit/6baadddcbbb7910f7d7bac069259f5674d442694))
+
 ## [14.24.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.1...v14.24.2) (2026-10-15)
 
 
