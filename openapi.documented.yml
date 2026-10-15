@@ -4472,7 +4472,8 @@ paths:
                           same transaction (otherwise, QuickBooks will return an
                           error). QuickBooks will also return an error if you
                           attempt to link a transaction that is empty or already
-                          closed.
+                          closed, or if lines linking to the same transaction
+                          are not in that transaction's line order.
 
 
                           **IMPORTANT**: By default, QuickBooks will not return
@@ -5125,7 +5126,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item line's `unitOfMeasure` field (e.g.,
+                          "pound" or "kilogram"). This allows you to select
+                          units from a different set than the item's default
+                          unit-of-measure set, which remains unchanged on the
+                          item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -5266,7 +5283,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item group line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item group line's `unitOfMeasure` field
+                          (e.g., "pound" or "kilogram"). This allows you to
+                          select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -5356,7 +5389,25 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this item line's `unitOfMeasure`
+                                field (e.g., "pound" or "kilogram"). This allows
+                                you to select units from a different set than
+                                the item's default unit-of-measure set, which
+                                remains unchanged on the item itself. The
+                                override applies only to this specific line. For
+                                example, you can sell an item typically measured
+                                in volume units using weight units in a specific
+                                transaction by specifying a different
+                                unit-of-measure set with this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -7612,7 +7663,8 @@ paths:
                           same transaction (otherwise, QuickBooks will return an
                           error). QuickBooks will also return an error if you
                           attempt to link a transaction that is empty or already
-                          closed.
+                          closed, or if lines linking to the same transaction
+                          are not in that transaction's line order.
 
 
                           **IMPORTANT**: By default, QuickBooks will not return
@@ -8290,7 +8342,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item line's `unitOfMeasure` field (e.g.,
+                          "pound" or "kilogram"). This allows you to select
+                          units from a different set than the item's default
+                          unit-of-measure set, which remains unchanged on the
+                          item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -8431,7 +8499,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item group line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item group line's `unitOfMeasure` field
+                          (e.g., "pound" or "kilogram"). This allows you to
+                          select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -8521,7 +8605,25 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this item line's `unitOfMeasure`
+                                field (e.g., "pound" or "kilogram"). This allows
+                                you to select units from a different set than
+                                the item's default unit-of-measure set, which
+                                remains unchanged on the item itself. The
+                                override applies only to this specific line. For
+                                example, you can sell an item typically measured
+                                in volume units using weight units in a specific
+                                transaction by specifying a different
+                                unit-of-measure set with this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -10318,7 +10420,8 @@ paths:
                           same transaction (otherwise, QuickBooks will return an
                           error). QuickBooks will also return an error if you
                           attempt to link a transaction that is empty or already
-                          closed.
+                          closed, or if lines linking to the same transaction
+                          are not in that transaction's line order.
 
 
                           **IMPORTANT**: By default, QuickBooks will not return
@@ -10863,7 +10966,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item line's `unitOfMeasure` field (e.g.,
+                          "pound" or "kilogram"). This allows you to select
+                          units from a different set than the item's default
+                          unit-of-measure set, which remains unchanged on the
+                          item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -11005,7 +11124,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item group line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item group line's `unitOfMeasure` field
+                          (e.g., "pound" or "kilogram"). This allows you to
+                          select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -11095,7 +11230,25 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this item line's `unitOfMeasure`
+                                field (e.g., "pound" or "kilogram"). This allows
+                                you to select units from a different set than
+                                the item's default unit-of-measure set, which
+                                remains unchanged on the item itself. The
+                                override applies only to this specific line. For
+                                example, you can sell an item typically measured
+                                in volume units using weight units in a specific
+                                transaction by specifying a different
+                                unit-of-measure set with this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -12203,7 +12356,8 @@ paths:
                           same transaction (otherwise, QuickBooks will return an
                           error). QuickBooks will also return an error if you
                           attempt to link a transaction that is empty or already
-                          closed.
+                          closed, or if lines linking to the same transaction
+                          are not in that transaction's line order.
 
 
                           **IMPORTANT**: By default, QuickBooks will not return
@@ -12746,7 +12900,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item line's `unitOfMeasure` field (e.g.,
+                          "pound" or "kilogram"). This allows you to select
+                          units from a different set than the item's default
+                          unit-of-measure set, which remains unchanged on the
+                          item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -12888,7 +13058,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item group line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item group line's `unitOfMeasure` field
+                          (e.g., "pound" or "kilogram"). This allows you to
+                          select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -12978,7 +13164,25 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this item line's `unitOfMeasure`
+                                field (e.g., "pound" or "kilogram"). This allows
+                                you to select units from a different set than
+                                the item's default unit-of-measure set, which
+                                remains unchanged on the item itself. The
+                                override applies only to this specific line. For
+                                example, you can sell an item typically measured
+                                in volume units using weight units in a specific
+                                transaction by specifying a different
+                                unit-of-measure set with this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -16026,7 +16230,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this credit memo line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this credit memo line's `unitOfMeasure` field
+                          (e.g., "pound" or "kilogram"). This allows you to
+                          select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -16193,7 +16413,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this credit memo line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this credit memo line group's `unitOfMeasure`
+                          field (e.g., "pound" or "kilogram"). This allows you
+                          to select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -16261,7 +16497,26 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this credit memo line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this credit memo line's
+                                `unitOfMeasure` field (e.g., "pound" or
+                                "kilogram"). This allows you to select units
+                                from a different set than the item's default
+                                unit-of-measure set, which remains unchanged on
+                                the item itself. The override applies only to
+                                this specific line. For example, you can sell an
+                                item typically measured in volume units using
+                                weight units in a specific transaction by
+                                specifying a different unit-of-measure set with
+                                this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -26121,7 +26376,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this estimate line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this estimate line's `unitOfMeasure` field
+                          (e.g., "pound" or "kilogram"). This allows you to
+                          select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -26289,7 +26560,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this estimate line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this estimate line group's `unitOfMeasure`
+                          field (e.g., "pound" or "kilogram"). This allows you
+                          to select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -26357,7 +26644,26 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this estimate line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this estimate line's
+                                `unitOfMeasure` field (e.g., "pound" or
+                                "kilogram"). This allows you to select units
+                                from a different set than the item's default
+                                unit-of-measure set, which remains unchanged on
+                                the item itself. The override applies only to
+                                this specific line. For example, you can sell an
+                                item typically measured in volume units using
+                                weight units in a specific transaction by
+                                specifying a different unit-of-measure set with
+                                this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -28218,7 +28524,16 @@ paths:
                   type: string
                   maxLength: 36
                 unitOfMeasureSetId:
-                  description: The unit-of-measure set associated with this inventory assembly item, which consists of a base unit and related units.
+                  description: >-
+                    The unit-of-measure set associated with this inventory
+                    assembly item, which consists of a base unit and related
+                    units.
+
+
+                    IMPORTANT: Right after QuickBooks Desktop launches, it can
+                    briefly report an alternate `id` for a unit-of-measure set,
+                    so match on `fullName` when joining to the unit-of-measure
+                    sets list.
                   example: 80000001-1234567890
                   type: string
                   maxLength: 36
@@ -28575,7 +28890,16 @@ paths:
                   example: MPN-123456
                   type: string
                 unitOfMeasureSetId:
-                  description: The unit-of-measure set associated with this inventory assembly item, which consists of a base unit and related units.
+                  description: >-
+                    The unit-of-measure set associated with this inventory
+                    assembly item, which consists of a base unit and related
+                    units.
+
+
+                    IMPORTANT: Right after QuickBooks Desktop launches, it can
+                    briefly report an alternate `id` for a unit-of-measure set,
+                    so match on `fullName` when joining to the unit-of-measure
+                    sets list.
                   example: 80000001-1234567890
                   type: string
                   maxLength: 36
@@ -29184,7 +29508,15 @@ paths:
                   example: MPN-123456
                   type: string
                 unitOfMeasureSetId:
-                  description: The unit-of-measure set associated with this inventory item, which consists of a base unit and related units.
+                  description: >-
+                    The unit-of-measure set associated with this inventory item,
+                    which consists of a base unit and related units.
+
+
+                    IMPORTANT: Right after QuickBooks Desktop launches, it can
+                    briefly report an alternate `id` for a unit-of-measure set,
+                    so match on `fullName` when joining to the unit-of-measure
+                    sets list.
                   example: 80000001-1234567890
                   type: string
                   maxLength: 36
@@ -29515,7 +29847,15 @@ paths:
                   example: MPN-123456
                   type: string
                 unitOfMeasureSetId:
-                  description: The unit-of-measure set associated with this inventory item, which consists of a base unit and related units.
+                  description: >-
+                    The unit-of-measure set associated with this inventory item,
+                    which consists of a base unit and related units.
+
+
+                    IMPORTANT: Right after QuickBooks Desktop launches, it can
+                    briefly report an alternate `id` for a unit-of-measure set,
+                    so match on `fullName` when joining to the unit-of-measure
+                    sets list.
                   example: 80000001-1234567890
                   type: string
                   maxLength: 36
@@ -31519,7 +31859,8 @@ paths:
                           same transaction (otherwise, QuickBooks will return an
                           error). QuickBooks will also return an error if you
                           attempt to link a transaction that is empty or already
-                          closed.
+                          closed, or if lines linking to the same transaction
+                          are not in that transaction's line order.
 
 
                           **IMPORTANT**: By default, QuickBooks will not return
@@ -32260,7 +32601,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this invoice line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this invoice line's `unitOfMeasure` field
+                          (e.g., "pound" or "kilogram"). This allows you to
+                          select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -32433,7 +32790,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this invoice line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this invoice line group's `unitOfMeasure`
+                          field (e.g., "pound" or "kilogram"). This allows you
+                          to select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -32501,7 +32874,26 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this invoice line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this invoice line's
+                                `unitOfMeasure` field (e.g., "pound" or
+                                "kilogram"). This allows you to select units
+                                from a different set than the item's default
+                                unit-of-measure set, which remains unchanged on
+                                the item itself. The override applies only to
+                                this specific line. For example, you can sell an
+                                item typically measured in volume units using
+                                weight units in a specific transaction by
+                                specifying a different unit-of-measure set with
+                                this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -33292,7 +33684,15 @@ paths:
                   example: Complete office starter kit with essential supplies for new employees.
                   type: string
                 unitOfMeasureSetId:
-                  description: The unit-of-measure set associated with this item group, which consists of a base unit and related units.
+                  description: >-
+                    The unit-of-measure set associated with this item group,
+                    which consists of a base unit and related units.
+
+
+                    IMPORTANT: Right after QuickBooks Desktop launches, it can
+                    briefly report an alternate `id` for a unit-of-measure set,
+                    so match on `fullName` when joining to the unit-of-measure
+                    sets list.
                   example: 80000001-1234567890
                   type: string
                   maxLength: 36
@@ -33549,7 +33949,15 @@ paths:
                   example: Complete office starter kit with essential supplies for new employees.
                   type: string
                 unitOfMeasureSetId:
-                  description: The unit-of-measure set associated with this item group, which consists of a base unit and related units.
+                  description: >-
+                    The unit-of-measure set associated with this item group,
+                    which consists of a base unit and related units.
+
+
+                    IMPORTANT: Right after QuickBooks Desktop launches, it can
+                    briefly report an alternate `id` for a unit-of-measure set,
+                    so match on `fullName` when joining to the unit-of-measure
+                    sets list.
                   example: 80000001-1234567890
                   type: string
                   maxLength: 36
@@ -34467,7 +34875,8 @@ paths:
                           same transaction (otherwise, QuickBooks will return an
                           error). QuickBooks will also return an error if you
                           attempt to link a transaction that is empty or already
-                          closed.
+                          closed, or if lines linking to the same transaction
+                          are not in that transaction's line order.
 
 
                           **IMPORTANT**: By default, QuickBooks will not return
@@ -35021,7 +35430,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item line's `unitOfMeasure` field (e.g.,
+                          "pound" or "kilogram"). This allows you to select
+                          units from a different set than the item's default
+                          unit-of-measure set, which remains unchanged on the
+                          item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -35163,7 +35588,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item group line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item group line's `unitOfMeasure` field
+                          (e.g., "pound" or "kilogram"). This allows you to
+                          select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -35253,7 +35694,25 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this item line's `unitOfMeasure`
+                                field (e.g., "pound" or "kilogram"). This allows
+                                you to select units from a different set than
+                                the item's default unit-of-measure set, which
+                                remains unchanged on the item itself. The
+                                override applies only to this specific line. For
+                                example, you can sell an item typically measured
+                                in volume units using weight units in a specific
+                                transaction by specifying a different
+                                unit-of-measure set with this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -37547,7 +38006,15 @@ paths:
                   example: MPN-123456
                   type: string
                 unitOfMeasureSetId:
-                  description: The unit-of-measure set associated with this non-inventory item, which consists of a base unit and related units.
+                  description: >-
+                    The unit-of-measure set associated with this non-inventory
+                    item, which consists of a base unit and related units.
+
+
+                    IMPORTANT: Right after QuickBooks Desktop launches, it can
+                    briefly report an alternate `id` for a unit-of-measure set,
+                    so match on `fullName` when joining to the unit-of-measure
+                    sets list.
                   example: 80000001-1234567890
                   type: string
                   maxLength: 36
@@ -37884,7 +38351,15 @@ paths:
                   example: MPN-123456
                   type: string
                 unitOfMeasureSetId:
-                  description: The unit-of-measure set associated with this non-inventory item, which consists of a base unit and related units.
+                  description: >-
+                    The unit-of-measure set associated with this non-inventory
+                    item, which consists of a base unit and related units.
+
+
+                    IMPORTANT: Right after QuickBooks Desktop launches, it can
+                    briefly report an alternate `id` for a unit-of-measure set,
+                    so match on `fullName` when joining to the unit-of-measure
+                    sets list.
                   example: 80000001-1234567890
                   type: string
                   maxLength: 36
@@ -43518,7 +43993,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this purchase order line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this purchase order line's `unitOfMeasure`
+                          field (e.g., "pound" or "kilogram"). This allows you
+                          to select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -43673,7 +44164,24 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this purchase order line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this purchase order line group's
+                          `unitOfMeasure` field (e.g., "pound" or "kilogram").
+                          This allows you to select units from a different set
+                          than the item's default unit-of-measure set, which
+                          remains unchanged on the item itself. The override
+                          applies only to this specific line. For example, you
+                          can sell an item typically measured in volume units
+                          using weight units in a specific transaction by
+                          specifying a different unit-of-measure set with this
+                          field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -43746,7 +44254,26 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this purchase order line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this purchase order line's
+                                `unitOfMeasure` field (e.g., "pound" or
+                                "kilogram"). This allows you to select units
+                                from a different set than the item's default
+                                unit-of-measure set, which remains unchanged on
+                                the item itself. The override applies only to
+                                this specific line. For example, you can sell an
+                                item typically measured in volume units using
+                                weight units in a specific transaction by
+                                specifying a different unit-of-measure set with
+                                this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -51567,7 +52094,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this sales order line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this sales order line's `unitOfMeasure` field
+                          (e.g., "pound" or "kilogram"). This allows you to
+                          select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -51735,7 +52278,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this sales order line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this sales order line group's `unitOfMeasure`
+                          field (e.g., "pound" or "kilogram"). This allows you
+                          to select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -51803,7 +52362,26 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this sales order line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this sales order line's
+                                `unitOfMeasure` field (e.g., "pound" or
+                                "kilogram"). This allows you to select units
+                                from a different set than the item's default
+                                unit-of-measure set, which remains unchanged on
+                                the item itself. The override applies only to
+                                this specific line. For example, you can sell an
+                                item typically measured in volume units using
+                                weight units in a specific transaction by
+                                specifying a different unit-of-measure set with
+                                this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -53963,7 +54541,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this sales receipt line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this sales receipt line's `unitOfMeasure`
+                          field (e.g., "pound" or "kilogram"). This allows you
+                          to select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -54138,7 +54732,24 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this sales receipt line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this sales receipt line group's
+                          `unitOfMeasure` field (e.g., "pound" or "kilogram").
+                          This allows you to select units from a different set
+                          than the item's default unit-of-measure set, which
+                          remains unchanged on the item itself. The override
+                          applies only to this specific line. For example, you
+                          can sell an item typically measured in volume units
+                          using weight units in a specific transaction by
+                          specifying a different unit-of-measure set with this
+                          field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -54207,7 +54818,26 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this sales receipt line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this sales receipt line's
+                                `unitOfMeasure` field (e.g., "pound" or
+                                "kilogram"). This allows you to select units
+                                from a different set than the item's default
+                                unit-of-measure set, which remains unchanged on
+                                the item itself. The override applies only to
+                                this specific line. For example, you can sell an
+                                item typically measured in volume units using
+                                weight units in a specific transaction by
+                                specifying a different unit-of-measure set with
+                                this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -58885,7 +59515,15 @@ paths:
                   type: string
                   maxLength: 36
                 unitOfMeasureSetId:
-                  description: The unit-of-measure set associated with this service item, which consists of a base unit and related units.
+                  description: >-
+                    The unit-of-measure set associated with this service item,
+                    which consists of a base unit and related units.
+
+
+                    IMPORTANT: Right after QuickBooks Desktop launches, it can
+                    briefly report an alternate `id` for a unit-of-measure set,
+                    so match on `fullName` when joining to the unit-of-measure
+                    sets list.
                   example: 80000001-1234567890
                   type: string
                   maxLength: 36
@@ -59218,7 +59856,15 @@ paths:
                   type: string
                   maxLength: 36
                 unitOfMeasureSetId:
-                  description: The unit-of-measure set associated with this service item, which consists of a base unit and related units.
+                  description: >-
+                    The unit-of-measure set associated with this service item,
+                    which consists of a base unit and related units.
+
+
+                    IMPORTANT: Right after QuickBooks Desktop launches, it can
+                    briefly report an alternate `id` for a unit-of-measure set,
+                    so match on `fullName` when joining to the unit-of-measure
+                    sets list.
                   example: 80000001-1234567890
                   type: string
                   maxLength: 36
@@ -64729,7 +65375,8 @@ paths:
                           same transaction (otherwise, QuickBooks will return an
                           error). QuickBooks will also return an error if you
                           attempt to link a transaction that is empty or already
-                          closed.
+                          closed, or if lines linking to the same transaction
+                          are not in that transaction's line order.
 
 
                           **IMPORTANT**: By default, QuickBooks will not return
@@ -65284,7 +65931,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item line's `unitOfMeasure` field (e.g.,
+                          "pound" or "kilogram"). This allows you to select
+                          units from a different set than the item's default
+                          unit-of-measure set, which remains unchanged on the
+                          item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -65426,7 +66089,23 @@ paths:
                         example: Each
                         type: string
                       overrideUnitOfMeasureSetId:
-                        description: Specifies an alternative unit-of-measure set when updating this item group line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                        description: >-
+                          Specifies an alternative unit-of-measure set when
+                          updating this item group line's `unitOfMeasure` field
+                          (e.g., "pound" or "kilogram"). This allows you to
+                          select units from a different set than the item's
+                          default unit-of-measure set, which remains unchanged
+                          on the item itself. The override applies only to this
+                          specific line. For example, you can sell an item
+                          typically measured in volume units using weight units
+                          in a specific transaction by specifying a different
+                          unit-of-measure set with this field.
+
+
+                          IMPORTANT: Right after QuickBooks Desktop launches, it
+                          can briefly report an alternate `id` for a
+                          unit-of-measure set, so match on `fullName` when
+                          joining to the unit-of-measure sets list.
                         example: 80000001-1234567890
                         type: string
                         maxLength: 36
@@ -65516,7 +66195,25 @@ paths:
                               example: Each
                               type: string
                             overrideUnitOfMeasureSetId:
-                              description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+                              description: >-
+                                Specifies an alternative unit-of-measure set
+                                when updating this item line's `unitOfMeasure`
+                                field (e.g., "pound" or "kilogram"). This allows
+                                you to select units from a different set than
+                                the item's default unit-of-measure set, which
+                                remains unchanged on the item itself. The
+                                override applies only to this specific line. For
+                                example, you can sell an item typically measured
+                                in volume units using weight units in a specific
+                                transaction by specifying a different
+                                unit-of-measure set with this field.
+
+
+                                IMPORTANT: Right after QuickBooks Desktop
+                                launches, it can briefly report an alternate
+                                `id` for a unit-of-measure set, so match on
+                                `fullName` when joining to the unit-of-measure
+                                sets list.
                               example: 80000001-1234567890
                               type: string
                               maxLength: 36
@@ -69590,7 +70287,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this item line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this item
+            line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This
+            allows you to select units from a different set than the item's
+            default unit-of-measure set, which remains unchanged on the item
+            itself. The override applies only to this specific line. For
+            example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -69836,7 +70546,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this item group line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this item
+            group line's `unitOfMeasure` field (e.g., "pound" or "kilogram").
+            This allows you to select units from a different set than the item's
+            default unit-of-measure set, which remains unchanged on the item
+            itself. The override applies only to this specific line. For
+            example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -72657,7 +73380,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this credit memo line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            credit memo line's `unitOfMeasure` field (e.g., "pound" or
+            "kilogram"). This allows you to select units from a different set
+            than the item's default unit-of-measure set, which remains unchanged
+            on the item itself. The override applies only to this specific line.
+            For example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -72938,7 +73674,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this credit memo line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            credit memo line group's `unitOfMeasure` field (e.g., "pound" or
+            "kilogram"). This allows you to select units from a different set
+            than the item's default unit-of-measure set, which remains unchanged
+            on the item itself. The override applies only to this specific line.
+            For example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -76348,7 +77097,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this estimate line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            estimate line's `unitOfMeasure` field (e.g., "pound" or "kilogram").
+            This allows you to select units from a different set than the item's
+            default unit-of-measure set, which remains unchanged on the item
+            itself. The override applies only to this specific line. For
+            example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -76613,7 +77375,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this estimate line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            estimate line group's `unitOfMeasure` field (e.g., "pound" or
+            "kilogram"). This allows you to select units from a different set
+            than the item's default unit-of-measure set, which remains unchanged
+            on the item itself. The override applies only to this specific line.
+            For example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -77076,7 +77851,14 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: The unit-of-measure set associated with this inventory assembly item, which consists of a base unit and related units.
+          description: >-
+            The unit-of-measure set associated with this inventory assembly
+            item, which consists of a base unit and related units.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Weight Units
@@ -77535,7 +78317,14 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: The unit-of-measure set associated with this inventory item, which consists of a base unit and related units.
+          description: >-
+            The unit-of-measure set associated with this inventory item, which
+            consists of a base unit and related units.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Weight Units
@@ -78646,7 +79435,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this invoice line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            invoice line's `unitOfMeasure` field (e.g., "pound" or "kilogram").
+            This allows you to select units from a different set than the item's
+            default unit-of-measure set, which remains unchanged on the item
+            itself. The override applies only to this specific line. For
+            example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -78927,7 +79729,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this invoice line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            invoice line group's `unitOfMeasure` field (e.g., "pound" or
+            "kilogram"). This allows you to select units from a different set
+            than the item's default unit-of-measure set, which remains unchanged
+            on the item itself. The override applies only to this specific line.
+            For example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -79044,7 +79859,14 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: The unit-of-measure set associated with this item group, which consists of a base unit and related units.
+          description: >-
+            The unit-of-measure set associated with this item group, which
+            consists of a base unit and related units.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Weight Units
@@ -80184,7 +81006,14 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: The unit-of-measure set associated with this non-inventory item, which consists of a base unit and related units.
+          description: >-
+            The unit-of-measure set associated with this non-inventory item,
+            which consists of a base unit and related units.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Weight Units
@@ -82550,7 +83379,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this purchase order line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            purchase order line's `unitOfMeasure` field (e.g., "pound" or
+            "kilogram"). This allows you to select units from a different set
+            than the item's default unit-of-measure set, which remains unchanged
+            on the item itself. The override applies only to this specific line.
+            For example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -82829,7 +83671,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this purchase order line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            purchase order line group's `unitOfMeasure` field (e.g., "pound" or
+            "kilogram"). This allows you to select units from a different set
+            than the item's default unit-of-measure set, which remains unchanged
+            on the item itself. The override applies only to this specific line.
+            For example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -84146,7 +85001,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this sales order line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            sales order line's `unitOfMeasure` field (e.g., "pound" or
+            "kilogram"). This allows you to select units from a different set
+            than the item's default unit-of-measure set, which remains unchanged
+            on the item itself. The override applies only to this specific line.
+            For example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -84431,7 +85299,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this sales order line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            sales order line group's `unitOfMeasure` field (e.g., "pound" or
+            "kilogram"). This allows you to select units from a different set
+            than the item's default unit-of-measure set, which remains unchanged
+            on the item itself. The override applies only to this specific line.
+            For example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -85065,7 +85946,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this sales receipt line's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            sales receipt line's `unitOfMeasure` field (e.g., "pound" or
+            "kilogram"). This allows you to select units from a different set
+            than the item's default unit-of-measure set, which remains unchanged
+            on the item itself. The override applies only to this specific line.
+            For example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -85352,7 +86246,20 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: Specifies an alternative unit-of-measure set when updating this sales receipt line group's `unitOfMeasure` field (e.g., "pound" or "kilogram"). This allows you to select units from a different set than the item's default unit-of-measure set, which remains unchanged on the item itself. The override applies only to this specific line. For example, you can sell an item typically measured in volume units using weight units in a specific transaction by specifying a different unit-of-measure set with this field.
+          description: >-
+            Specifies an alternative unit-of-measure set when updating this
+            sales receipt line group's `unitOfMeasure` field (e.g., "pound" or
+            "kilogram"). This allows you to select units from a different set
+            than the item's default unit-of-measure set, which remains unchanged
+            on the item itself. The override applies only to this specific line.
+            For example, you can sell an item typically measured in volume units
+            using weight units in a specific transaction by specifying a
+            different unit-of-measure set with this field.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Volume Units
@@ -86156,7 +87063,14 @@ components:
                 - fullName
               additionalProperties: false
             - type: "null"
-          description: The unit-of-measure set associated with this service item, which consists of a base unit and related units.
+          description: >-
+            The unit-of-measure set associated with this service item, which
+            consists of a base unit and related units.
+
+
+            IMPORTANT: Right after QuickBooks Desktop launches, it can briefly
+            report an alternate `id` for a unit-of-measure set, so match on
+            `fullName` when joining to the unit-of-measure sets list.
           example:
             id: 80000001-1234567890
             fullName: Weight Units
