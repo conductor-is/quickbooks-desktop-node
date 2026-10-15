@@ -187,6 +187,10 @@ export interface ItemGroup {
   /**
    * The unit-of-measure set associated with this item group, which consists of a
    * base unit and related units.
+   *
+   * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+   * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+   * the unit-of-measure sets list.
    */
   unitOfMeasureSet: ItemGroup.UnitOfMeasureSet | null;
 
@@ -289,6 +293,10 @@ export namespace ItemGroup {
   /**
    * The unit-of-measure set associated with this item group, which consists of a
    * base unit and related units.
+   *
+   * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+   * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+   * the unit-of-measure sets list.
    */
   export interface UnitOfMeasureSet {
     /**
@@ -366,6 +374,10 @@ export interface ItemGroupCreateParams {
   /**
    * Body param: The unit-of-measure set associated with this item group, which
    * consists of a base unit and related units.
+   *
+   * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+   * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+   * the unit-of-measure sets list.
    */
   unitOfMeasureSetId?: string;
 }
@@ -503,6 +515,10 @@ export interface ItemGroupUpdateParams {
   /**
    * Body param: The unit-of-measure set associated with this item group, which
    * consists of a base unit and related units.
+   *
+   * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+   * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+   * the unit-of-measure sets list.
    */
   unitOfMeasureSetId?: string;
 }

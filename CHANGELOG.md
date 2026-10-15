@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.24.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.8...v14.24.0) (2026-10-08)
+
+
+### Features
+
+* **mcp:** bridge stdio to the hosted server, drop local Deno execution ([e0a8442](https://github.com/conductor-is/quickbooks-desktop-node/commit/e0a84429e36b9153b271287666f0b0fe9126d308))
+* **qbd:** list known causes in the 3153 parameter-conflict error ([9f5ab18](https://github.com/conductor-is/quickbooks-desktop-node/commit/9f5ab183d867a04432b2e9736815eabc60af34ed))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([af9c5d7](https://github.com/conductor-is/quickbooks-desktop-node/commit/af9c5d7c74cf6afbd4500ab4c69af11ece368487))
+
 ## [14.23.8](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.23.7...v14.23.8) (2026-08-25)
 
 

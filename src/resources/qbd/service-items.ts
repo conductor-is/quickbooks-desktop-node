@@ -243,6 +243,10 @@ export interface ServiceItem {
   /**
    * The unit-of-measure set associated with this service item, which consists of a
    * base unit and related units.
+   *
+   * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+   * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+   * the unit-of-measure sets list.
    */
   unitOfMeasureSet: ServiceItem.UnitOfMeasureSet | null;
 
@@ -557,6 +561,10 @@ export namespace ServiceItem {
   /**
    * The unit-of-measure set associated with this service item, which consists of a
    * base unit and related units.
+   *
+   * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+   * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+   * the unit-of-measure sets list.
    */
   export interface UnitOfMeasureSet {
     /**
@@ -667,6 +675,10 @@ export interface ServiceItemCreateParams {
   /**
    * Body param: The unit-of-measure set associated with this service item, which
    * consists of a base unit and related units.
+   *
+   * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+   * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+   * the unit-of-measure sets list.
    */
   unitOfMeasureSetId?: string;
 }
@@ -896,6 +908,10 @@ export interface ServiceItemUpdateParams {
   /**
    * Body param: The unit-of-measure set associated with this service item, which
    * consists of a base unit and related units.
+   *
+   * IMPORTANT: Right after QuickBooks Desktop launches, it can briefly report an
+   * alternate `id` for a unit-of-measure set, so match on `fullName` when joining to
+   * the unit-of-measure sets list.
    */
   unitOfMeasureSetId?: string;
 }

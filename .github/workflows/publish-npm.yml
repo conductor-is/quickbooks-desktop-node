@@ -42,10 +42,3 @@ jobs:
           yarn tsn scripts/publish-packages.ts "{ \"paths_released\": \"$PATHS_RELEASED\" }"
         env:
           INPUT_PATH: ${{ github.event.inputs.path }}
-
-      - name: Upload MCP Server DXT GitHub release asset
-        run: |
-          gh release upload ${{ github.event.release.tag_name }} \
-            packages/mcp-server/conductor_node_api.mcpb
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
