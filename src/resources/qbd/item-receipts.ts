@@ -2101,8 +2101,8 @@ export namespace ItemReceiptCreateParams {
      * **IMPORTANT**: If you use `linkToTransactionLine` on this item line, you cannot
      * use the field `itemId` on this line (QuickBooks will return an error) because
      * this field brings in all of the item information you need. You can, however,
-     * specify whatever `quantity`, `cost`, or `rate` that you want, or any other
-     * transaction line element other than `itemId`.
+     * specify whatever `quantity` or `cost` that you want, or any other transaction
+     * line element other than `itemId`.
      *
      * If the parent transaction supports the `linkToTransactionIds` field, you can use
      * both `linkToTransactionLine` (on this item line) and `linkToTransactionIds` (on
@@ -2214,8 +2214,8 @@ export namespace ItemReceiptCreateParams {
      * **IMPORTANT**: If you use `linkToTransactionLine` on this item line, you cannot
      * use the field `itemId` on this line (QuickBooks will return an error) because
      * this field brings in all of the item information you need. You can, however,
-     * specify whatever `quantity`, `cost`, or `rate` that you want, or any other
-     * transaction line element other than `itemId`.
+     * specify whatever `quantity` or `cost` that you want, or any other transaction
+     * line element other than `itemId`.
      *
      * If the parent transaction supports the `linkToTransactionIds` field, you can use
      * both `linkToTransactionLine` (on this item line) and `linkToTransactionIds` (on
