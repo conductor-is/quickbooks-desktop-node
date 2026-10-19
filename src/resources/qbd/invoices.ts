@@ -3520,6 +3520,9 @@ export interface InvoiceListParams extends CursorPageParams {
    * this value. If omitted, the range will begin with the first number of the list.
    * Uses a numerical comparison for values that contain only digits; otherwise, uses
    * a lexicographical comparison.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains`,
+   * `refNumberStartsWith`, or `refNumberEndsWith`.
    */
   refNumberFrom?: string;
 
@@ -3549,6 +3552,9 @@ export interface InvoiceListParams extends CursorPageParams {
    * value. If omitted, the range will end with the last number of the list. Uses a
    * numerical comparison for values that contain only digits; otherwise, uses a
    * lexicographical comparison.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains`,
+   * `refNumberStartsWith`, or `refNumberEndsWith`.
    */
   refNumberTo?: string;
 
