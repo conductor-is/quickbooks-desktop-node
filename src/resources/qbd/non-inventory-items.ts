@@ -698,6 +698,8 @@ export interface NonInventoryItemCreateParams {
   /**
    * Body param: The non-inventory item's stock keeping unit (SKU), which is
    * sometimes the manufacturer's part number.
+   *
+   * Maximum length: 31 characters.
    */
   sku?: string;
 
@@ -729,6 +731,8 @@ export namespace NonInventoryItemCreateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }
@@ -761,12 +765,17 @@ export namespace NonInventoryItemCreateParams {
     /**
      * The cost at which this item is purchased from vendors, represented as a decimal
      * string.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     purchaseCost?: string;
 
     /**
      * The description of this item that appears on purchase forms (e.g., checks,
      * bills, item receipts) when it is ordered or bought from vendors.
+     *
+     * Maximum length: 4095 characters.
      */
     purchaseDescription?: string;
 
@@ -779,12 +788,17 @@ export namespace NonInventoryItemCreateParams {
     /**
      * The description of this item that appears on sales forms (e.g., invoices, sales
      * receipts) when sold to customers.
+     *
+     * Maximum length: 4095 characters.
      */
     salesDescription?: string;
 
     /**
      * The price at which this item is sold to customers, represented as a decimal
      * string.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     salesPrice?: string;
   }
@@ -808,12 +822,17 @@ export namespace NonInventoryItemCreateParams {
 
     /**
      * A description of this item.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
     /**
      * The price at which this item is purchased or sold, represented as a decimal
      * string.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     price?: string;
 
@@ -941,6 +960,8 @@ export interface NonInventoryItemUpdateParams {
   /**
    * Body param: The non-inventory item's stock keeping unit (SKU), which is
    * sometimes the manufacturer's part number.
+   *
+   * Maximum length: 31 characters.
    */
   sku?: string;
 
@@ -972,6 +993,8 @@ export namespace NonInventoryItemUpdateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }
@@ -1004,12 +1027,17 @@ export namespace NonInventoryItemUpdateParams {
     /**
      * The cost at which this item is purchased from vendors, represented as a decimal
      * string.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     purchaseCost?: string;
 
     /**
      * The description of this item that appears on purchase forms (e.g., checks,
      * bills, item receipts) when it is ordered or bought from vendors.
+     *
+     * Maximum length: 4095 characters.
      */
     purchaseDescription?: string;
 
@@ -1022,12 +1050,17 @@ export namespace NonInventoryItemUpdateParams {
     /**
      * The description of this item that appears on sales forms (e.g., invoices, sales
      * receipts) when sold to customers.
+     *
+     * Maximum length: 4095 characters.
      */
     salesDescription?: string;
 
     /**
      * The price at which this item is sold to customers, represented as a decimal
      * string.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     salesPrice?: string;
 
@@ -1064,6 +1097,8 @@ export namespace NonInventoryItemUpdateParams {
   export interface SalesOrPurchaseDetails {
     /**
      * A description of this item.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -1076,6 +1111,9 @@ export namespace NonInventoryItemUpdateParams {
     /**
      * The price at which this item is purchased or sold, represented as a decimal
      * string.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     price?: string;
 

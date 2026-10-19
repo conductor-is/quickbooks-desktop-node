@@ -1844,6 +1844,8 @@ export interface SalesOrderCreateParams {
 
   /**
    * Body param: A memo or note for this sales order.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -1855,6 +1857,8 @@ export interface SalesOrderCreateParams {
    * other standard QuickBooks fields. Unlike `otherCustomField1` and
    * `otherCustomField2`, which are line item fields, this exists at the transaction
    * level. Hidden by default in the QuickBooks UI.
+   *
+   * Maximum length: 29 characters.
    */
   otherCustomField?: string;
 
@@ -1968,6 +1972,8 @@ export namespace SalesOrderCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2010,6 +2016,8 @@ export namespace SalesOrderCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2066,6 +2074,8 @@ export namespace SalesOrderCreateParams {
     /**
      * The unit-of-measure used for the `quantity` in this sales order line group. Must
      * be a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2075,6 +2085,8 @@ export namespace SalesOrderCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2127,6 +2139,8 @@ export namespace SalesOrderCreateParams {
 
     /**
      * A description of this sales order line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2159,6 +2173,8 @@ export namespace SalesOrderCreateParams {
     /**
      * The lot number of the item associated with this sales order line. Used for
      * tracking groups of inventory items that are purchased or manufactured together.
+     *
+     * Maximum length: 40 characters.
      */
     lotNumber?: string;
 
@@ -2168,6 +2184,8 @@ export namespace SalesOrderCreateParams {
      * standard QuickBooks field that exists for all sales order lines for convenience.
      * Developers often use this field for tracking information that doesn't fit into
      * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField1?: string;
 
@@ -2178,6 +2196,8 @@ export namespace SalesOrderCreateParams {
      * convenience. Like `otherCustomField1`, developers often use this field for
      * tracking information that doesn't fit into other standard QuickBooks fields.
      * Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField2?: string;
 
@@ -2235,12 +2255,16 @@ export namespace SalesOrderCreateParams {
     /**
      * The serial number of the item associated with this sales order line. This is
      * used for tracking individual units of serialized inventory items.
+     *
+     * Maximum length: 4095 characters.
      */
     serialNumber?: string;
 
     /**
      * The unit-of-measure used for the `quantity` in this sales order line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2250,6 +2274,8 @@ export namespace SalesOrderCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2285,6 +2311,8 @@ export namespace SalesOrderCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2327,6 +2355,8 @@ export namespace SalesOrderCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2467,6 +2497,8 @@ export interface SalesOrderUpdateParams {
 
   /**
    * Body param: A memo or note for this sales order.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -2478,6 +2510,8 @@ export interface SalesOrderUpdateParams {
    * other standard QuickBooks fields. Unlike `otherCustomField1` and
    * `otherCustomField2`, which are line item fields, this exists at the transaction
    * level. Hidden by default in the QuickBooks UI.
+   *
+   * Maximum length: 29 characters.
    */
   otherCustomField?: string;
 
@@ -2595,6 +2629,8 @@ export namespace SalesOrderUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2637,6 +2673,8 @@ export namespace SalesOrderUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2717,6 +2755,8 @@ export namespace SalesOrderUpdateParams {
     /**
      * The unit-of-measure used for the `quantity` in this sales order line group. Must
      * be a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2754,6 +2794,8 @@ export namespace SalesOrderUpdateParams {
 
       /**
        * A description of this sales order line.
+       *
+       * Maximum length: 4095 characters.
        */
       description?: string;
 
@@ -2786,6 +2828,8 @@ export namespace SalesOrderUpdateParams {
       /**
        * The lot number of the item associated with this sales order line. Used for
        * tracking groups of inventory items that are purchased or manufactured together.
+       *
+       * Maximum length: 40 characters.
        */
       lotNumber?: string;
 
@@ -2795,6 +2839,8 @@ export namespace SalesOrderUpdateParams {
        * standard QuickBooks field that exists for all sales order lines for convenience.
        * Developers often use this field for tracking information that doesn't fit into
        * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+       *
+       * Maximum length: 29 characters.
        */
       otherCustomField1?: string;
 
@@ -2805,6 +2851,8 @@ export namespace SalesOrderUpdateParams {
        * convenience. Like `otherCustomField1`, developers often use this field for
        * tracking information that doesn't fit into other standard QuickBooks fields.
        * Hidden by default in the QuickBooks UI.
+       *
+       * Maximum length: 29 characters.
        */
       otherCustomField2?: string;
 
@@ -2877,12 +2925,16 @@ export namespace SalesOrderUpdateParams {
       /**
        * The serial number of the item associated with this sales order line. This is
        * used for tracking individual units of serialized inventory items.
+       *
+       * Maximum length: 4095 characters.
        */
       serialNumber?: string;
 
       /**
        * The unit-of-measure used for the `quantity` in this sales order line. Must be a
        * valid unit within the item's available units of measure.
+       *
+       * Maximum length: 31 characters.
        */
       unitOfMeasure?: string;
     }
@@ -2920,6 +2972,8 @@ export namespace SalesOrderUpdateParams {
 
     /**
      * A description of this sales order line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2952,6 +3006,8 @@ export namespace SalesOrderUpdateParams {
     /**
      * The lot number of the item associated with this sales order line. Used for
      * tracking groups of inventory items that are purchased or manufactured together.
+     *
+     * Maximum length: 40 characters.
      */
     lotNumber?: string;
 
@@ -2961,6 +3017,8 @@ export namespace SalesOrderUpdateParams {
      * standard QuickBooks field that exists for all sales order lines for convenience.
      * Developers often use this field for tracking information that doesn't fit into
      * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField1?: string;
 
@@ -2971,6 +3029,8 @@ export namespace SalesOrderUpdateParams {
      * convenience. Like `otherCustomField1`, developers often use this field for
      * tracking information that doesn't fit into other standard QuickBooks fields.
      * Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField2?: string;
 
@@ -3043,12 +3103,16 @@ export namespace SalesOrderUpdateParams {
     /**
      * The serial number of the item associated with this sales order line. This is
      * used for tracking individual units of serialized inventory items.
+     *
+     * Maximum length: 4095 characters.
      */
     serialNumber?: string;
 
     /**
      * The unit-of-measure used for the `quantity` in this sales order line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -3066,6 +3130,8 @@ export namespace SalesOrderUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -3108,6 +3174,8 @@ export namespace SalesOrderUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 

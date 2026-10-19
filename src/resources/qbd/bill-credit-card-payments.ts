@@ -731,6 +731,8 @@ export interface BillCreditCardPaymentCreateParams {
 
   /**
    * Body param: A memo or note for this bill credit card payment.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 

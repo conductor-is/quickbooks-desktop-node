@@ -347,6 +347,8 @@ export interface ItemGroupCreateParams {
   /**
    * Body param: The item group's description that will appear on sales forms that
    * include this item.
+   *
+   * Maximum length: 4095 characters.
    */
   description?: string;
 
@@ -399,6 +401,8 @@ export namespace ItemGroupCreateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }
@@ -424,6 +428,8 @@ export namespace ItemGroupCreateParams {
     /**
      * The unit-of-measure used for the `quantity` in this item group line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -465,6 +471,8 @@ export interface ItemGroupUpdateParams {
   /**
    * Body param: The item group's description that will appear on sales forms that
    * include this item.
+   *
+   * Maximum length: 4095 characters.
    */
   description?: string;
 
@@ -540,6 +548,8 @@ export namespace ItemGroupUpdateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }
@@ -565,6 +575,8 @@ export namespace ItemGroupUpdateParams {
     /**
      * The unit-of-measure used for the `quantity` in this item group line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }

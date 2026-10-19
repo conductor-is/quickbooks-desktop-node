@@ -580,6 +580,8 @@ export interface BuildAssemblyCreateParams {
    * Body param: The lot number of the item associated with this build assembly. Used
    * for tracking groups of inventory items that are purchased or manufactured
    * together.
+   *
+   * Maximum length: 40 characters.
    */
   lotNumber?: string;
 
@@ -591,6 +593,8 @@ export interface BuildAssemblyCreateParams {
 
   /**
    * Body param: A memo or note for this build assembly.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -608,6 +612,8 @@ export interface BuildAssemblyCreateParams {
   /**
    * Body param: The serial number of the item associated with this build assembly.
    * This is used for tracking individual units of serialized inventory items.
+   *
+   * Maximum length: 4095 characters.
    */
   serialNumber?: string;
 }
@@ -657,6 +663,8 @@ export interface BuildAssemblyUpdateParams {
    * Body param: The lot number of the item associated with this build assembly. Used
    * for tracking groups of inventory items that are purchased or manufactured
    * together.
+   *
+   * Maximum length: 40 characters.
    */
   lotNumber?: string;
 
@@ -668,6 +676,8 @@ export interface BuildAssemblyUpdateParams {
 
   /**
    * Body param: A memo or note for this build assembly.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -698,6 +708,8 @@ export interface BuildAssemblyUpdateParams {
   /**
    * Body param: The serial number of the item associated with this build assembly.
    * This is used for tracking individual units of serialized inventory items.
+   *
+   * Maximum length: 4095 characters.
    */
   serialNumber?: string;
 

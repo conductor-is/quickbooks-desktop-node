@@ -473,6 +473,8 @@ export interface TimeTrackingActivityCreateParams {
 
   /**
    * Body param: A note or comment about this time tracking activity.
+   *
+   * Maximum length: 4095 characters.
    */
   note?: string;
 
@@ -571,6 +573,8 @@ export interface TimeTrackingActivityUpdateParams {
 
   /**
    * Body param: A note or comment about this time tracking activity.
+   *
+   * Maximum length: 4095 characters.
    */
   note?: string;
 

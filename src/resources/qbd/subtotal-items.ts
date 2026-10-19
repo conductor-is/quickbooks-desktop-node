@@ -257,6 +257,8 @@ export interface SubtotalItemCreateParams {
   /**
    * Body param: The subtotal item's description that will appear on sales forms that
    * include this item.
+   *
+   * Maximum length: 4095 characters.
    */
   description?: string;
 
@@ -294,6 +296,8 @@ export namespace SubtotalItemCreateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }
@@ -328,6 +332,8 @@ export interface SubtotalItemUpdateParams {
   /**
    * Body param: The subtotal item's description that will appear on sales forms that
    * include this item.
+   *
+   * Maximum length: 4095 characters.
    */
   description?: string;
 
@@ -367,6 +373,8 @@ export namespace SubtotalItemUpdateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }

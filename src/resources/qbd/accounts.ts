@@ -508,12 +508,16 @@ export interface AccountCreateParams {
    * Note that if the "Use Account Numbers" preference is turned off in QuickBooks,
    * the account number may not be visible in the user interface, but it can still be
    * set and retrieved through the API.
+   *
+   * Maximum length: 7 characters.
    */
   accountNumber?: string;
 
   /**
    * Body param: The bank account number or identifying note for this account. Access
    * to this field may be restricted based on permissions.
+   *
+   * Maximum length: 25 characters.
    */
   bankAccountNumber?: string;
 
@@ -526,6 +530,8 @@ export interface AccountCreateParams {
 
   /**
    * Body param: A description of this account.
+   *
+   * Maximum length: 200 characters.
    */
   description?: string;
 
@@ -537,8 +543,12 @@ export interface AccountCreateParams {
 
   /**
    * Body param: The amount of money in, or the value of, this account as of
-   * `openingBalanceDate`. On a bank statement, this would be the amount of money in
-   * the account at the beginning of the statement period.
+   * `openingBalanceDate`, represented as a decimal string. On a bank statement, this
+   * would be the amount of money in the account at the beginning of the statement
+   * period.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   openingBalance?: string;
 
@@ -605,6 +615,8 @@ export interface AccountUpdateParams {
    * Note that if the "Use Account Numbers" preference is turned off in QuickBooks,
    * the account number may not be visible in the user interface, but it can still be
    * set and retrieved through the API.
+   *
+   * Maximum length: 7 characters.
    */
   accountNumber?: string;
 
@@ -636,6 +648,8 @@ export interface AccountUpdateParams {
   /**
    * Body param: The bank account number or identifying note for this account. Access
    * to this field may be restricted based on permissions.
+   *
+   * Maximum length: 25 characters.
    */
   bankAccountNumber?: string;
 
@@ -648,6 +662,8 @@ export interface AccountUpdateParams {
 
   /**
    * Body param: A description of this account.
+   *
+   * Maximum length: 200 characters.
    */
   description?: string;
 
@@ -670,8 +686,12 @@ export interface AccountUpdateParams {
 
   /**
    * Body param: The amount of money in, or the value of, this account as of
-   * `openingBalanceDate`. On a bank statement, this would be the amount of money in
-   * the account at the beginning of the statement period.
+   * `openingBalanceDate`, represented as a decimal string. On a bank statement, this
+   * would be the amount of money in the account at the beginning of the statement
+   * period.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   openingBalance?: string;
 

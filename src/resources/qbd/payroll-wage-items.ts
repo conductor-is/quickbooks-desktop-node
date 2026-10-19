@@ -252,6 +252,9 @@ export interface PayrollWageItemCreateParams {
   /**
    * Body param: The overtime pay multiplier for this payroll wage item, represented
    * as a decimal string. For example, `"1.5"` represents time-and-a-half pay.
+   *
+   * Decimal string format: up to 5 decimal places and up to 10 digits before the
+   * decimal point (for example, "123.45").
    */
   overtimeMultiplier?: string;
 

@@ -360,7 +360,7 @@ export interface OtherNameCreateParams {
    * hierarchical objects, which is why `name` is unique for them but not for objects
    * that have parents.
    *
-   * Maximum length: 31 characters.
+   * Maximum length: 41 characters.
    */
   name: string;
 
@@ -376,6 +376,8 @@ export interface OtherNameCreateParams {
    * Note that if the "Use Account Numbers" preference is turned off in QuickBooks,
    * the account number may not be visible in the user interface, but it can still be
    * set and retrieved through the API.
+   *
+   * Maximum length: 99 characters.
    */
   accountNumber?: string;
 
@@ -386,6 +388,8 @@ export interface OtherNameCreateParams {
 
   /**
    * Body param: The name of a alternate contact person for this other-name.
+   *
+   * Maximum length: 41 characters.
    */
   alternateContact?: string;
 
@@ -406,11 +410,15 @@ export interface OtherNameCreateParams {
 
   /**
    * Body param: The name of the primary contact person for this other-name.
+   *
+   * Maximum length: 41 characters.
    */
   contact?: string;
 
   /**
    * Body param: The other-name's email address.
+   *
+   * Maximum length: 1023 characters.
    */
   email?: string;
 
@@ -460,6 +468,8 @@ export interface OtherNameCreateParams {
 
   /**
    * Body param: A note or comment about this other-name.
+   *
+   * Maximum length: 4095 characters.
    */
   note?: string;
 
@@ -473,6 +483,8 @@ export interface OtherNameCreateParams {
   /**
    * Body param: The formal salutation title that precedes the name of the contact
    * person for this other-name, such as "Mr.", "Ms.", or "Dr.".
+   *
+   * Maximum length: 15 characters.
    */
   salutation?: string;
 }
@@ -491,6 +503,8 @@ export namespace OtherNameCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -533,6 +547,8 @@ export namespace OtherNameCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -580,6 +596,8 @@ export interface OtherNameUpdateParams {
    * Note that if the "Use Account Numbers" preference is turned off in QuickBooks,
    * the account number may not be visible in the user interface, but it can still be
    * set and retrieved through the API.
+   *
+   * Maximum length: 99 characters.
    */
   accountNumber?: string;
 
@@ -590,6 +608,8 @@ export interface OtherNameUpdateParams {
 
   /**
    * Body param: The name of a alternate contact person for this other-name.
+   *
+   * Maximum length: 41 characters.
    */
   alternateContact?: string;
 
@@ -610,11 +630,15 @@ export interface OtherNameUpdateParams {
 
   /**
    * Body param: The name of the primary contact person for this other-name.
+   *
+   * Maximum length: 41 characters.
    */
   contact?: string;
 
   /**
    * Body param: The other-name's email address.
+   *
+   * Maximum length: 1023 characters.
    */
   email?: string;
 
@@ -660,12 +684,14 @@ export interface OtherNameUpdateParams {
    * hierarchical objects, which is why `name` is unique for them but not for objects
    * that have parents.
    *
-   * Maximum length: 31 characters.
+   * Maximum length: 41 characters.
    */
   name?: string;
 
   /**
    * Body param: A note or comment about this other-name.
+   *
+   * Maximum length: 4095 characters.
    */
   note?: string;
 
@@ -679,6 +705,8 @@ export interface OtherNameUpdateParams {
   /**
    * Body param: The formal salutation title that precedes the name of the contact
    * person for this other-name, such as "Mr.", "Ms.", or "Dr.".
+   *
+   * Maximum length: 15 characters.
    */
   salutation?: string;
 }
@@ -697,6 +725,8 @@ export namespace OtherNameUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -739,6 +769,8 @@ export namespace OtherNameUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 

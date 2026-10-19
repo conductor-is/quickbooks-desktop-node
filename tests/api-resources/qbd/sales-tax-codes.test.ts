@@ -28,7 +28,7 @@ describe('resource salesTaxCodes', () => {
       isTaxable: true,
       name: 'Tax',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      description: 'Standard tax rate for California',
+      description: 'description',
       isActive: true,
       salesTaxItemId: '80000001-1234567890',
     });
@@ -71,7 +71,7 @@ describe('resource salesTaxCodes', () => {
     const response = await conductor.qbd.salesTaxCodes.update('80000001-1234567890', {
       revisionNumber: '1721172183',
       conductorEndUserId: 'end_usr_1234567abcdefg',
-      description: 'Standard tax rate for California',
+      description: 'description',
       isActive: true,
       isTaxable: true,
       name: 'Tax',

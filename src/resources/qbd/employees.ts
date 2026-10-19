@@ -917,6 +917,8 @@ export interface EmployeeCreateParams {
    * Note that if the "Use Account Numbers" preference is turned off in QuickBooks,
    * the account number may not be visible in the user interface, but it can still be
    * set and retrieved through the API.
+   *
+   * Maximum length: 99 characters.
    */
   accountNumber?: string;
 
@@ -968,17 +970,23 @@ export interface EmployeeCreateParams {
   /**
    * Body param: The employee's department. Found in the "employment job details"
    * section of the employee's record in QuickBooks.
+   *
+   * Maximum length: 31 characters.
    */
   department?: string;
 
   /**
    * Body param: A description of this employee. Found in the "employment job
    * details" section of the employee's record in QuickBooks.
+   *
+   * Maximum length: 64 characters.
    */
   description?: string;
 
   /**
    * Body param: A description of this employee's disability.
+   *
+   * Maximum length: 25 characters.
    */
   disabilityDescription?: string;
 
@@ -989,6 +997,8 @@ export interface EmployeeCreateParams {
 
   /**
    * Body param: The employee's email address.
+   *
+   * Maximum length: 1023 characters.
    */
   email?: string;
 
@@ -1068,6 +1078,8 @@ export interface EmployeeCreateParams {
 
   /**
    * Body param: The employee's job title.
+   *
+   * Maximum length: 41 characters.
    */
   jobTitle?: string;
 
@@ -1104,6 +1116,8 @@ export interface EmployeeCreateParams {
 
   /**
    * Body param: A note or comment about this employee.
+   *
+   * Maximum length: 4095 characters.
    */
   note?: string;
 
@@ -1128,6 +1142,8 @@ export interface EmployeeCreateParams {
 
   /**
    * Body param: The employee's pager PIN.
+   *
+   * Maximum length: 10 characters.
    */
   pagerPin?: string;
 
@@ -1141,12 +1157,16 @@ export interface EmployeeCreateParams {
   /**
    * Body param: The name to use when printing this employee from QuickBooks. By
    * default, this is the same as the `name` field.
+   *
+   * Maximum length: 41 characters.
    */
   printAs?: string;
 
   /**
    * Body param: The employee's formal salutation title that precedes their name,
    * such as "Mr.", "Ms.", or "Dr.".
+   *
+   * Maximum length: 15 characters.
    */
   salutation?: string;
 
@@ -1155,6 +1175,8 @@ export interface EmployeeCreateParams {
    * without dashes.
    *
    * **NOTE**: This field cannot be changed after the employee is created.
+   *
+   * Maximum length: 15 characters.
    */
   ssn?: string;
 
@@ -1168,6 +1190,9 @@ export interface EmployeeCreateParams {
    * Body param: The target bonus for this employee, represented as a decimal string.
    * Found in the "employment job details" section of the employee's record in
    * QuickBooks.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   targetBonus?: string;
 
@@ -1199,6 +1224,8 @@ export namespace EmployeeCreateParams {
   export interface AdditionalNote {
     /**
      * The text of this note.
+     *
+     * Maximum length: 4095 characters.
      */
     note: string;
   }
@@ -1341,11 +1368,15 @@ export namespace EmployeeCreateParams {
   export interface CustomContactField {
     /**
      * The name of the contact field (e.g., "old address", "secondary phone").
+     *
+     * Maximum length: 40 characters.
      */
     name: string;
 
     /**
      * The value of the contact field.
+     *
+     * Maximum length: 255 characters.
      */
     value: string;
   }
@@ -1372,11 +1403,15 @@ export namespace EmployeeCreateParams {
     export interface PrimaryContact {
       /**
        * The name of the contact field (e.g., "old address", "secondary phone").
+       *
+       * Maximum length: 40 characters.
        */
       name: string;
 
       /**
        * The value of the contact field.
+       *
+       * Maximum length: 255 characters.
        */
       value: string;
 
@@ -1402,11 +1437,15 @@ export namespace EmployeeCreateParams {
     export interface SecondaryContact {
       /**
        * The name of the contact field (e.g., "old address", "secondary phone").
+       *
+       * Maximum length: 40 characters.
        */
       name: string;
 
       /**
        * The value of the contact field.
+       *
+       * Maximum length: 255 characters.
        */
       value: string;
 
@@ -1621,6 +1660,8 @@ export interface EmployeeUpdateParams {
    * Note that if the "Use Account Numbers" preference is turned off in QuickBooks,
    * the account number may not be visible in the user interface, but it can still be
    * set and retrieved through the API.
+   *
+   * Maximum length: 99 characters.
    */
   accountNumber?: string;
 
@@ -1672,17 +1713,23 @@ export interface EmployeeUpdateParams {
   /**
    * Body param: The employee's department. Found in the "employment job details"
    * section of the employee's record in QuickBooks.
+   *
+   * Maximum length: 31 characters.
    */
   department?: string;
 
   /**
    * Body param: A description of this employee. Found in the "employment job
    * details" section of the employee's record in QuickBooks.
+   *
+   * Maximum length: 64 characters.
    */
   description?: string;
 
   /**
    * Body param: A description of this employee's disability.
+   *
+   * Maximum length: 25 characters.
    */
   disabilityDescription?: string;
 
@@ -1693,6 +1740,8 @@ export interface EmployeeUpdateParams {
 
   /**
    * Body param: The employee's email address.
+   *
+   * Maximum length: 1023 characters.
    */
   email?: string;
 
@@ -1765,6 +1814,8 @@ export interface EmployeeUpdateParams {
 
   /**
    * Body param: The employee's job title.
+   *
+   * Maximum length: 41 characters.
    */
   jobTitle?: string;
 
@@ -1801,6 +1852,8 @@ export interface EmployeeUpdateParams {
 
   /**
    * Body param: A note or comment about this employee.
+   *
+   * Maximum length: 4095 characters.
    */
   note?: string;
 
@@ -1825,6 +1878,8 @@ export interface EmployeeUpdateParams {
 
   /**
    * Body param: The employee's pager PIN.
+   *
+   * Maximum length: 10 characters.
    */
   pagerPin?: string;
 
@@ -1838,12 +1893,16 @@ export interface EmployeeUpdateParams {
   /**
    * Body param: The name to use when printing this employee from QuickBooks. By
    * default, this is the same as the `name` field.
+   *
+   * Maximum length: 41 characters.
    */
   printAs?: string;
 
   /**
    * Body param: The employee's formal salutation title that precedes their name,
    * such as "Mr.", "Ms.", or "Dr.".
+   *
+   * Maximum length: 15 characters.
    */
   salutation?: string;
 
@@ -1857,6 +1916,9 @@ export interface EmployeeUpdateParams {
    * Body param: The target bonus for this employee, represented as a decimal string.
    * Found in the "employment job details" section of the employee's record in
    * QuickBooks.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   targetBonus?: string;
 
@@ -1893,6 +1955,8 @@ export namespace EmployeeUpdateParams {
 
     /**
      * The text of this note.
+     *
+     * Maximum length: 4095 characters.
      */
     note: string;
   }
@@ -2035,11 +2099,15 @@ export namespace EmployeeUpdateParams {
   export interface CustomContactField {
     /**
      * The name of the contact field (e.g., "old address", "secondary phone").
+     *
+     * Maximum length: 40 characters.
      */
     name: string;
 
     /**
      * The value of the contact field.
+     *
+     * Maximum length: 255 characters.
      */
     value: string;
   }
@@ -2066,11 +2134,15 @@ export namespace EmployeeUpdateParams {
     export interface PrimaryContact {
       /**
        * The name of the contact field (e.g., "old address", "secondary phone").
+       *
+       * Maximum length: 40 characters.
        */
       name: string;
 
       /**
        * The value of the contact field.
+       *
+       * Maximum length: 255 characters.
        */
       value: string;
 
@@ -2096,11 +2168,15 @@ export namespace EmployeeUpdateParams {
     export interface SecondaryContact {
       /**
        * The name of the contact field (e.g., "old address", "secondary phone").
+       *
+       * Maximum length: 40 characters.
        */
       name: string;
 
       /**
        * The value of the contact field.
+       *
+       * Maximum length: 255 characters.
        */
       value: string;
 

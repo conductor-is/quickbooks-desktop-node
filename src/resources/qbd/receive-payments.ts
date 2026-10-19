@@ -923,6 +923,8 @@ export interface ReceivePaymentCreateParams {
   /**
    * Body param: A memo or note for this receive-payment that will be displayed at
    * the beginning of reports containing details about this receive-payment.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -1068,16 +1070,22 @@ export namespace ReceivePaymentCreateParams {
 
       /**
        * The cardholder's name on the card.
+       *
+       * Maximum length: 41 characters.
        */
       name: string;
 
       /**
        * The credit card number. Must be masked with lower case "x" and no dashes.
+       *
+       * Maximum length: 25 characters.
        */
       number: string;
 
       /**
        * The card's billing address.
+       *
+       * Maximum length: 41 characters.
        */
       address?: string;
 
@@ -1086,11 +1094,15 @@ export namespace ReceivePaymentCreateParams {
        * (purchase, corporate, or business) for Visa and Mastercard transactions only.
        * When provided, this code may qualify the transaction for lower processing fees
        * compared to the standard rates that apply when no code is specified.
+       *
+       * Maximum length: 24 characters.
        */
       commercialCardCode?: string;
 
       /**
        * The card's billing address ZIP or postal code.
+       *
+       * Maximum length: 18 characters.
        */
       postalCode?: string;
 
@@ -1113,12 +1125,16 @@ export namespace ReceivePaymentCreateParams {
     export interface Response {
       /**
        * The ID returned from the credit card processor for this credit card transaction.
+       *
+       * Maximum length: 24 characters.
        */
       creditCardTransactionId: string;
 
       /**
        * The QBMS account number of the merchant who is running this transaction using
        * the customer's credit card.
+       *
+       * Maximum length: 32 characters.
        */
       merchantAccountNumber: string;
 
@@ -1137,6 +1153,8 @@ export namespace ReceivePaymentCreateParams {
       /**
        * The status message returned in the original QBMS transaction response for this
        * credit card transaction.
+       *
+       * Maximum length: 60 characters.
        */
       statusMessage: string;
 
@@ -1149,6 +1167,8 @@ export namespace ReceivePaymentCreateParams {
       /**
        * The authorization code returned from the credit card processor to indicate that
        * this charge will be paid by the card issuer.
+       *
+       * Maximum length: 12 characters.
        */
       authorizationCode?: string;
 
@@ -1174,6 +1194,8 @@ export namespace ReceivePaymentCreateParams {
       /**
        * A value returned from QBMS transactions for future use by the QuickBooks
        * Reconciliation feature.
+       *
+       * Maximum length: 16 characters.
        */
       clientTransactionId?: string;
 
@@ -1186,6 +1208,8 @@ export namespace ReceivePaymentCreateParams {
       /**
        * An internal ID returned by QuickBooks Merchant Services (QBMS) from the
        * transaction request, needed for the QuickBooks reconciliation feature.
+       *
+       * Maximum length: 84 characters.
        */
       reconBatchId?: string;
 
@@ -1263,6 +1287,8 @@ export interface ReceivePaymentUpdateParams {
   /**
    * Body param: A memo or note for this receive-payment that will be displayed at
    * the beginning of reports containing details about this receive-payment.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -1410,6 +1436,8 @@ export namespace ReceivePaymentUpdateParams {
     export interface Request {
       /**
        * The card's billing address.
+       *
+       * Maximum length: 41 characters.
        */
       address?: string;
 
@@ -1418,6 +1446,8 @@ export namespace ReceivePaymentUpdateParams {
        * (purchase, corporate, or business) for Visa and Mastercard transactions only.
        * When provided, this code may qualify the transaction for lower processing fees
        * compared to the standard rates that apply when no code is specified.
+       *
+       * Maximum length: 24 characters.
        */
       commercialCardCode?: string;
 
@@ -1433,16 +1463,22 @@ export namespace ReceivePaymentUpdateParams {
 
       /**
        * The cardholder's name on the card.
+       *
+       * Maximum length: 41 characters.
        */
       name?: string;
 
       /**
        * The credit card number. Must be masked with lower case "x" and no dashes.
+       *
+       * Maximum length: 25 characters.
        */
       number?: string;
 
       /**
        * The card's billing address ZIP or postal code.
+       *
+       * Maximum length: 18 characters.
        */
       postalCode?: string;
 
@@ -1466,6 +1502,8 @@ export namespace ReceivePaymentUpdateParams {
       /**
        * The authorization code returned from the credit card processor to indicate that
        * this charge will be paid by the card issuer.
+       *
+       * Maximum length: 12 characters.
        */
       authorizationCode?: string;
 
@@ -1491,17 +1529,23 @@ export namespace ReceivePaymentUpdateParams {
       /**
        * A value returned from QBMS transactions for future use by the QuickBooks
        * Reconciliation feature.
+       *
+       * Maximum length: 16 characters.
        */
       clientTransactionId?: string;
 
       /**
        * The ID returned from the credit card processor for this credit card transaction.
+       *
+       * Maximum length: 24 characters.
        */
       creditCardTransactionId?: string;
 
       /**
        * The QBMS account number of the merchant who is running this transaction using
        * the customer's credit card.
+       *
+       * Maximum length: 32 characters.
        */
       merchantAccountNumber?: string;
 
@@ -1520,6 +1564,8 @@ export namespace ReceivePaymentUpdateParams {
       /**
        * An internal ID returned by QuickBooks Merchant Services (QBMS) from the
        * transaction request, needed for the QuickBooks reconciliation feature.
+       *
+       * Maximum length: 84 characters.
        */
       reconBatchId?: string;
 
@@ -1532,6 +1578,8 @@ export namespace ReceivePaymentUpdateParams {
       /**
        * The status message returned in the original QBMS transaction response for this
        * credit card transaction.
+       *
+       * Maximum length: 60 characters.
        */
       statusMessage?: string;
 

@@ -632,6 +632,8 @@ export interface InventoryAdjustmentCreateParams {
 
   /**
    * Body param: A memo or note for this inventory adjustment.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -707,6 +709,8 @@ export namespace InventoryAdjustmentCreateParams {
        * The lot number of the item associated with this inventory adjustment line. Used
        * for tracking groups of inventory items that are purchased or manufactured
        * together.
+       *
+       * Maximum length: 40 characters.
        */
       lotNumber?: string;
     }
@@ -734,6 +738,8 @@ export namespace InventoryAdjustmentCreateParams {
        * The lot number of the item associated with this inventory adjustment line. Used
        * for tracking groups of inventory items that are purchased or manufactured
        * together.
+       *
+       * Maximum length: 40 characters.
        */
       lotNumber?: string;
 
@@ -753,6 +759,8 @@ export namespace InventoryAdjustmentCreateParams {
       /**
        * The serial number of the item associated with this inventory adjustment line.
        * This is used for tracking individual units of serialized inventory items.
+       *
+       * Maximum length: 4095 characters.
        */
       serialNumber?: string;
     }
@@ -765,6 +773,8 @@ export namespace InventoryAdjustmentCreateParams {
       /**
        * The serial number, which represents a unique unit of the inventory item
        * associated with this inventory adjustment line, to add to inventory.
+       *
+       * Maximum length: 4095 characters.
        */
       addSerialNumber?: string;
 
@@ -785,6 +795,8 @@ export namespace InventoryAdjustmentCreateParams {
       /**
        * The serial number, which represents a unique unit of the inventory item
        * associated with this inventory adjustment line, to remove from inventory.
+       *
+       * Maximum length: 4095 characters.
        */
       removeSerialNumber?: string;
     }
@@ -802,10 +814,13 @@ export namespace InventoryAdjustmentCreateParams {
 
       /**
        * The new total value of the entire stock of the inventory item associated with
-       * this inventory adjustment line.
+       * this inventory adjustment line, represented as a decimal string.
        *
        * **NOTE**: The new value does _not_ have to equal `quantityOnHand` times
        * `purchaseCost`.
+       *
+       * Decimal string format: exactly 2 decimal places when cents are included and up
+       * to 13 digits before the decimal point (for example, "123.45").
        */
       newValue?: string;
 
@@ -821,6 +836,9 @@ export namespace InventoryAdjustmentCreateParams {
        * the entire stock of the inventory item associated with this inventory adjustment
        * line. A positive number increases the value, while a negative number decreases
        * it.
+       *
+       * Must have at most 2 decimal places and at most 13 digits before the decimal
+       * point.
        */
       valueDifference?: number;
     }
@@ -895,6 +913,8 @@ export interface InventoryAdjustmentUpdateParams {
 
   /**
    * Body param: A memo or note for this inventory adjustment.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -955,6 +975,8 @@ export namespace InventoryAdjustmentUpdateParams {
      * The lot number of the item associated with this inventory adjustment line. Used
      * for tracking groups of inventory items that are purchased or manufactured
      * together.
+     *
+     * Maximum length: 40 characters.
      */
     lotNumber?: string;
 
@@ -968,6 +990,8 @@ export namespace InventoryAdjustmentUpdateParams {
     /**
      * The serial number of the item associated with this inventory adjustment line.
      * This is used for tracking individual units of serialized inventory items.
+     *
+     * Maximum length: 4095 characters.
      */
     serialNumber?: string;
 
@@ -976,6 +1000,9 @@ export namespace InventoryAdjustmentUpdateParams {
      * the entire stock of the inventory item associated with this inventory adjustment
      * line. A positive number increases the value, while a negative number decreases
      * it.
+     *
+     * Must have at most 2 decimal places and at most 13 digits before the decimal
+     * point.
      */
     valueDifference?: number;
   }

@@ -1807,6 +1807,8 @@ export interface PurchaseOrderCreateParams {
   /**
    * Body param: A memo or note for this purchase order that appears in reports, but
    * not on the purchase order.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -1817,6 +1819,8 @@ export interface PurchaseOrderCreateParams {
    * convenience. Developers often use this field for tracking information that
    * doesn't fit into other standard QuickBooks fields. Hidden by default in the
    * QuickBooks UI.
+   *
+   * Maximum length: 25 characters.
    */
   otherCustomField1?: string;
 
@@ -1827,6 +1831,8 @@ export interface PurchaseOrderCreateParams {
    * for convenience. Like `otherCustomField1`, developers often use this field for
    * tracking information that doesn't fit into other standard QuickBooks fields.
    * Hidden by default in the QuickBooks UI.
+   *
+   * Maximum length: 29 characters.
    */
   otherCustomField2?: string;
 
@@ -1902,6 +1908,8 @@ export interface PurchaseOrderCreateParams {
   /**
    * Body param: A message to be printed on this purchase order for the vendor to
    * read.
+   *
+   * Maximum length: 99 characters.
    */
   vendorMessage?: string;
 }
@@ -1946,6 +1954,8 @@ export namespace PurchaseOrderCreateParams {
     /**
      * The unit-of-measure used for the `quantity` in this purchase order line group.
      * Must be a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -1955,6 +1965,8 @@ export namespace PurchaseOrderCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2007,6 +2019,8 @@ export namespace PurchaseOrderCreateParams {
 
     /**
      * A description of this purchase order line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2031,6 +2045,8 @@ export namespace PurchaseOrderCreateParams {
      * convenience. Developers often use this field for tracking information that
      * doesn't fit into other standard QuickBooks fields. Hidden by default in the
      * QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField1?: string;
 
@@ -2041,6 +2057,8 @@ export namespace PurchaseOrderCreateParams {
      * convenience. Like `otherCustomField1`, developers often use this field for
      * tracking information that doesn't fit into other standard QuickBooks fields.
      * Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField2?: string;
 
@@ -2099,12 +2117,16 @@ export namespace PurchaseOrderCreateParams {
     /**
      * The purchase order line's stock keeping unit (SKU), which is sometimes the
      * manufacturer's part number.
+     *
+     * Maximum length: 31 characters.
      */
     sku?: string;
 
     /**
      * The unit-of-measure used for the `quantity` in this purchase order line. Must be
      * a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2114,6 +2136,8 @@ export namespace PurchaseOrderCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2149,6 +2173,8 @@ export namespace PurchaseOrderCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2191,6 +2217,8 @@ export namespace PurchaseOrderCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2222,6 +2250,8 @@ export namespace PurchaseOrderCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2264,6 +2294,8 @@ export namespace PurchaseOrderCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2406,6 +2438,8 @@ export interface PurchaseOrderUpdateParams {
   /**
    * Body param: A memo or note for this purchase order that appears in reports, but
    * not on the purchase order.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -2416,6 +2450,8 @@ export interface PurchaseOrderUpdateParams {
    * convenience. Developers often use this field for tracking information that
    * doesn't fit into other standard QuickBooks fields. Hidden by default in the
    * QuickBooks UI.
+   *
+   * Maximum length: 25 characters.
    */
   otherCustomField1?: string;
 
@@ -2426,6 +2462,8 @@ export interface PurchaseOrderUpdateParams {
    * for convenience. Like `otherCustomField1`, developers often use this field for
    * tracking information that doesn't fit into other standard QuickBooks fields.
    * Hidden by default in the QuickBooks UI.
+   *
+   * Maximum length: 29 characters.
    */
   otherCustomField2?: string;
 
@@ -2505,6 +2543,8 @@ export interface PurchaseOrderUpdateParams {
   /**
    * Body param: A message to be printed on this purchase order for the vendor to
    * read.
+   *
+   * Maximum length: 99 characters.
    */
   vendorMessage?: string;
 }
@@ -2572,6 +2612,8 @@ export namespace PurchaseOrderUpdateParams {
     /**
      * The unit-of-measure used for the `quantity` in this purchase order line group.
      * Must be a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2610,6 +2652,8 @@ export namespace PurchaseOrderUpdateParams {
 
       /**
        * A description of this purchase order line.
+       *
+       * Maximum length: 4095 characters.
        */
       description?: string;
 
@@ -2643,6 +2687,8 @@ export namespace PurchaseOrderUpdateParams {
        * convenience. Developers often use this field for tracking information that
        * doesn't fit into other standard QuickBooks fields. Hidden by default in the
        * QuickBooks UI.
+       *
+       * Maximum length: 29 characters.
        */
       otherCustomField1?: string;
 
@@ -2653,6 +2699,8 @@ export namespace PurchaseOrderUpdateParams {
        * convenience. Like `otherCustomField1`, developers often use this field for
        * tracking information that doesn't fit into other standard QuickBooks fields.
        * Hidden by default in the QuickBooks UI.
+       *
+       * Maximum length: 29 characters.
        */
       otherCustomField2?: string;
 
@@ -2726,12 +2774,16 @@ export namespace PurchaseOrderUpdateParams {
       /**
        * The purchase order line's stock keeping unit (SKU), which is sometimes the
        * manufacturer's part number.
+       *
+       * Maximum length: 31 characters.
        */
       sku?: string;
 
       /**
        * The unit-of-measure used for the `quantity` in this purchase order line. Must be
        * a valid unit within the item's available units of measure.
+       *
+       * Maximum length: 31 characters.
        */
       unitOfMeasure?: string;
     }
@@ -2770,6 +2822,8 @@ export namespace PurchaseOrderUpdateParams {
 
     /**
      * A description of this purchase order line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2803,6 +2857,8 @@ export namespace PurchaseOrderUpdateParams {
      * convenience. Developers often use this field for tracking information that
      * doesn't fit into other standard QuickBooks fields. Hidden by default in the
      * QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField1?: string;
 
@@ -2813,6 +2869,8 @@ export namespace PurchaseOrderUpdateParams {
      * convenience. Like `otherCustomField1`, developers often use this field for
      * tracking information that doesn't fit into other standard QuickBooks fields.
      * Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField2?: string;
 
@@ -2886,12 +2944,16 @@ export namespace PurchaseOrderUpdateParams {
     /**
      * The purchase order line's stock keeping unit (SKU), which is sometimes the
      * manufacturer's part number.
+     *
+     * Maximum length: 31 characters.
      */
     sku?: string;
 
     /**
      * The unit-of-measure used for the `quantity` in this purchase order line. Must be
      * a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2909,6 +2971,8 @@ export namespace PurchaseOrderUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2951,6 +3015,8 @@ export namespace PurchaseOrderUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2982,6 +3048,8 @@ export namespace PurchaseOrderUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -3024,6 +3092,8 @@ export namespace PurchaseOrderUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 

@@ -849,6 +849,8 @@ export interface CreditCardRefundCreateParams {
 
   /**
    * Body param: A memo or note for this credit card refund.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -924,6 +926,8 @@ export namespace CreditCardRefundCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -966,6 +970,8 @@ export namespace CreditCardRefundCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -1021,16 +1027,22 @@ export namespace CreditCardRefundCreateParams {
 
       /**
        * The cardholder's name on the card.
+       *
+       * Maximum length: 41 characters.
        */
       name: string;
 
       /**
        * The credit card number. Must be masked with lower case "x" and no dashes.
+       *
+       * Maximum length: 25 characters.
        */
       number: string;
 
       /**
        * The card's billing address.
+       *
+       * Maximum length: 41 characters.
        */
       address?: string;
 
@@ -1039,11 +1051,15 @@ export namespace CreditCardRefundCreateParams {
        * (purchase, corporate, or business) for Visa and Mastercard transactions only.
        * When provided, this code may qualify the transaction for lower processing fees
        * compared to the standard rates that apply when no code is specified.
+       *
+       * Maximum length: 24 characters.
        */
       commercialCardCode?: string;
 
       /**
        * The card's billing address ZIP or postal code.
+       *
+       * Maximum length: 18 characters.
        */
       postalCode?: string;
 
@@ -1066,12 +1082,16 @@ export namespace CreditCardRefundCreateParams {
     export interface Response {
       /**
        * The ID returned from the credit card processor for this credit card transaction.
+       *
+       * Maximum length: 24 characters.
        */
       creditCardTransactionId: string;
 
       /**
        * The QBMS account number of the merchant who is running this transaction using
        * the customer's credit card.
+       *
+       * Maximum length: 32 characters.
        */
       merchantAccountNumber: string;
 
@@ -1090,6 +1110,8 @@ export namespace CreditCardRefundCreateParams {
       /**
        * The status message returned in the original QBMS transaction response for this
        * credit card transaction.
+       *
+       * Maximum length: 60 characters.
        */
       statusMessage: string;
 
@@ -1102,6 +1124,8 @@ export namespace CreditCardRefundCreateParams {
       /**
        * The authorization code returned from the credit card processor to indicate that
        * this charge will be paid by the card issuer.
+       *
+       * Maximum length: 12 characters.
        */
       authorizationCode?: string;
 
@@ -1127,6 +1151,8 @@ export namespace CreditCardRefundCreateParams {
       /**
        * A value returned from QBMS transactions for future use by the QuickBooks
        * Reconciliation feature.
+       *
+       * Maximum length: 16 characters.
        */
       clientTransactionId?: string;
 
@@ -1139,6 +1165,8 @@ export namespace CreditCardRefundCreateParams {
       /**
        * An internal ID returned by QuickBooks Merchant Services (QBMS) from the
        * transaction request, needed for the QuickBooks reconciliation feature.
+       *
+       * Maximum length: 84 characters.
        */
       reconBatchId?: string;
 

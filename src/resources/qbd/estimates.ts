@@ -769,7 +769,8 @@ export namespace Estimate {
 
       /**
        * The markup that will be passed on to the customer for this item on this estimate
-       * line. `amount = (quantity * rate) * (1 + markupRate)`
+       * line, represented as a decimal string.
+       * `amount = (quantity * rate) * (1 + markupRate)`
        */
       markupRate: string | null;
 
@@ -1133,7 +1134,8 @@ export namespace Estimate {
 
     /**
      * The markup that will be passed on to the customer for this item on this estimate
-     * line. `amount = (quantity * rate) * (1 + markupRate)`
+     * line, represented as a decimal string.
+     * `amount = (quantity * rate) * (1 + markupRate)`
      */
     markupRate: string | null;
 
@@ -1743,6 +1745,8 @@ export interface EstimateCreateParams {
   /**
    * Body param: A memo or note for this estimate that appears in reports, but not on
    * the estimate. Use `customerMessage` to add a note to this estimate.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -1754,6 +1758,8 @@ export interface EstimateCreateParams {
    * other standard QuickBooks fields. Unlike `otherCustomField1` and
    * `otherCustomField2`, which are line item fields, this exists at the transaction
    * level. Hidden by default in the QuickBooks UI.
+   *
+   * Maximum length: 29 characters.
    */
   otherCustomField?: string;
 
@@ -1840,6 +1846,8 @@ export namespace EstimateCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -1882,6 +1890,8 @@ export namespace EstimateCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -1938,6 +1948,8 @@ export namespace EstimateCreateParams {
     /**
      * The unit-of-measure used for the `quantity` in this estimate line group. Must be
      * a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -1947,6 +1959,8 @@ export namespace EstimateCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2002,6 +2016,8 @@ export namespace EstimateCreateParams {
 
     /**
      * A description of this estimate line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2027,7 +2043,11 @@ export namespace EstimateCreateParams {
 
     /**
      * The markup that will be passed on to the customer for this item on this estimate
-     * line. `amount = (quantity * rate) * (1 + markupRate)`
+     * line, represented as a decimal string.
+     * `amount = (quantity * rate) * (1 + markupRate)`
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     markupRate?: string;
 
@@ -2044,6 +2064,8 @@ export namespace EstimateCreateParams {
      * standard QuickBooks field that exists for all estimate lines for convenience.
      * Developers often use this field for tracking information that doesn't fit into
      * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField1?: string;
 
@@ -2054,6 +2076,8 @@ export namespace EstimateCreateParams {
      * convenience. Like `otherCustomField1`, developers often use this field for
      * tracking information that doesn't fit into other standard QuickBooks fields.
      * Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField2?: string;
 
@@ -2117,6 +2141,8 @@ export namespace EstimateCreateParams {
     /**
      * The unit-of-measure used for the `quantity` in this estimate line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2126,6 +2152,8 @@ export namespace EstimateCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2161,6 +2189,8 @@ export namespace EstimateCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2203,6 +2233,8 @@ export namespace EstimateCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2346,6 +2378,8 @@ export interface EstimateUpdateParams {
   /**
    * Body param: A memo or note for this estimate that appears in reports, but not on
    * the estimate. Use `customerMessage` to add a note to this estimate.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -2357,6 +2391,8 @@ export interface EstimateUpdateParams {
    * other standard QuickBooks fields. Unlike `otherCustomField1` and
    * `otherCustomField2`, which are line item fields, this exists at the transaction
    * level. Hidden by default in the QuickBooks UI.
+   *
+   * Maximum length: 29 characters.
    */
   otherCustomField?: string;
 
@@ -2446,6 +2482,8 @@ export namespace EstimateUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2488,6 +2526,8 @@ export namespace EstimateUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2568,6 +2608,8 @@ export namespace EstimateUpdateParams {
     /**
      * The unit-of-measure used for the `quantity` in this estimate line group. Must be
      * a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2608,6 +2650,8 @@ export namespace EstimateUpdateParams {
 
       /**
        * A description of this estimate line.
+       *
+       * Maximum length: 4095 characters.
        */
       description?: string;
 
@@ -2633,7 +2677,11 @@ export namespace EstimateUpdateParams {
 
       /**
        * The markup that will be passed on to the customer for this item on this estimate
-       * line. `amount = (quantity * rate) * (1 + markupRate)`
+       * line, represented as a decimal string.
+       * `amount = (quantity * rate) * (1 + markupRate)`
+       *
+       * Decimal string format: up to 5 decimal places and up to 10 digits before the
+       * decimal point (for example, "123.45").
        */
       markupRate?: string;
 
@@ -2650,6 +2698,8 @@ export namespace EstimateUpdateParams {
        * standard QuickBooks field that exists for all estimate lines for convenience.
        * Developers often use this field for tracking information that doesn't fit into
        * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+       *
+       * Maximum length: 29 characters.
        */
       otherCustomField1?: string;
 
@@ -2660,6 +2710,8 @@ export namespace EstimateUpdateParams {
        * convenience. Like `otherCustomField1`, developers often use this field for
        * tracking information that doesn't fit into other standard QuickBooks fields.
        * Hidden by default in the QuickBooks UI.
+       *
+       * Maximum length: 29 characters.
        */
       otherCustomField2?: string;
 
@@ -2732,6 +2784,8 @@ export namespace EstimateUpdateParams {
       /**
        * The unit-of-measure used for the `quantity` in this estimate line. Must be a
        * valid unit within the item's available units of measure.
+       *
+       * Maximum length: 31 characters.
        */
       unitOfMeasure?: string;
     }
@@ -2772,6 +2826,8 @@ export namespace EstimateUpdateParams {
 
     /**
      * A description of this estimate line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2797,7 +2853,11 @@ export namespace EstimateUpdateParams {
 
     /**
      * The markup that will be passed on to the customer for this item on this estimate
-     * line. `amount = (quantity * rate) * (1 + markupRate)`
+     * line, represented as a decimal string.
+     * `amount = (quantity * rate) * (1 + markupRate)`
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     markupRate?: string;
 
@@ -2814,6 +2874,8 @@ export namespace EstimateUpdateParams {
      * standard QuickBooks field that exists for all estimate lines for convenience.
      * Developers often use this field for tracking information that doesn't fit into
      * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField1?: string;
 
@@ -2824,6 +2886,8 @@ export namespace EstimateUpdateParams {
      * convenience. Like `otherCustomField1`, developers often use this field for
      * tracking information that doesn't fit into other standard QuickBooks fields.
      * Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField2?: string;
 
@@ -2896,6 +2960,8 @@ export namespace EstimateUpdateParams {
     /**
      * The unit-of-measure used for the `quantity` in this estimate line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2913,6 +2979,8 @@ export namespace EstimateUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2955,6 +3023,8 @@ export namespace EstimateUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 

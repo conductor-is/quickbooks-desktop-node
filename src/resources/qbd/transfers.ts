@@ -280,6 +280,8 @@ export interface TransferCreateParams {
 
   /**
    * Body param: A memo or note for this transfer.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 }
@@ -323,6 +325,8 @@ export interface TransferUpdateParams {
 
   /**
    * Body param: A memo or note for this transfer.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
