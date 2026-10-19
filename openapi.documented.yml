@@ -797,17 +797,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for accounts whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for accounts whose `name` is alphabetically greater than or
+              equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for accounts whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for accounts whose `name` is alphabetically greater than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for accounts whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for accounts whose `name` is alphabetically less than or
+              equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for accounts whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for accounts whose `name` is alphabetically less than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: accountType
           schema:
@@ -1654,17 +1678,55 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for bill check payments whose `refNumber` is greater than or equal to this value. (For checks, this field is the check number.) If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for bill check payments whose `refNumber` is greater than
+              or equal to this value. (For checks, this field is the check
+              number.) If omitted, the range will begin with the first number of
+              the list. Uses a numerical comparison for values that contain only
+              digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CHECK-0001
             type: string
-          description: Filter for bill check payments whose `refNumber` is greater than or equal to this value. (For checks, this field is the check number.) If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for bill check payments whose `refNumber` is greater than or
+            equal to this value. (For checks, this field is the check number.)
+            If omitted, the range will begin with the first number of the list.
+            Uses a numerical comparison for values that contain only digits;
+            otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for bill check payments whose `refNumber` is less than or equal to this value. (For checks, this field is the check number.) If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for bill check payments whose `refNumber` is less than or
+              equal to this value. (For checks, this field is the check number.)
+              If omitted, the range will end with the last number of the list.
+              Uses a numerical comparison for values that contain only digits;
+              otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CHECK-9999
             type: string
-          description: Filter for bill check payments whose `refNumber` is less than or equal to this value. (For checks, this field is the check number.) If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for bill check payments whose `refNumber` is less than or
+            equal to this value. (For checks, this field is the check number.)
+            If omitted, the range will end with the last number of the list.
+            Uses a numerical comparison for values that contain only digits;
+            otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -2880,17 +2942,54 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for bill credit card payments whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for bill credit card payments whose `refNumber` is greater
+              than or equal to this value. If omitted, the range will begin with
+              the first number of the list. Uses a numerical comparison for
+              values that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CARD-0001
             type: string
-          description: Filter for bill credit card payments whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for bill credit card payments whose `refNumber` is greater
+            than or equal to this value. If omitted, the range will begin with
+            the first number of the list. Uses a numerical comparison for values
+            that contain only digits; otherwise, uses a lexicographical
+            comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for bill credit card payments whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for bill credit card payments whose `refNumber` is less
+              than or equal to this value. If omitted, the range will end with
+              the last number of the list. Uses a numerical comparison for
+              values that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CARD-9999
             type: string
-          description: Filter for bill credit card payments whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for bill credit card payments whose `refNumber` is less than
+            or equal to this value. If omitted, the range will end with the last
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -3847,17 +3946,51 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for bills whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for bills whose `refNumber` is greater than or equal to
+              this value. If omitted, the range will begin with the first number
+              of the list. Uses a numerical comparison for values that contain
+              only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: BILL-0001
             type: string
-          description: Filter for bills whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for bills whose `refNumber` is greater than or equal to this
+            value. If omitted, the range will begin with the first number of the
+            list. Uses a numerical comparison for values that contain only
+            digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for bills whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for bills whose `refNumber` is less than or equal to this
+              value. If omitted, the range will end with the last number of the
+              list. Uses a numerical comparison for values that contain only
+              digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: BILL-9999
             type: string
-          description: Filter for bills whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for bills whose `refNumber` is less than or equal to this
+            value. If omitted, the range will end with the last number of the
+            list. Uses a numerical comparison for values that contain only
+            digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -6168,17 +6301,52 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for build assemblies whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for build assemblies whose `refNumber` is greater than or
+              equal to this value. If omitted, the range will begin with the
+              first number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: BUILD-0001
             type: string
-          description: Filter for build assemblies whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for build assemblies whose `refNumber` is greater than or
+            equal to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for build assemblies whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for build assemblies whose `refNumber` is less than or
+              equal to this value. If omitted, the range will end with the last
+              number of the list. Uses a numerical comparison for values that
+              contain only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: BUILD-9999
             type: string
-          description: Filter for build assemblies whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for build assemblies whose `refNumber` is less than or equal
+            to this value. If omitted, the range will end with the last number
+            of the list. Uses a numerical comparison for values that contain
+            only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: pendingStatus
           schema:
@@ -7057,17 +7225,55 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for checks whose `refNumber` is greater than or equal to this value. (For checks, this field is the check number.) If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for checks whose `refNumber` is greater than or equal to
+              this value. (For checks, this field is the check number.) If
+              omitted, the range will begin with the first number of the list.
+              Uses a numerical comparison for values that contain only digits;
+              otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CHECK-0001
             type: string
-          description: Filter for checks whose `refNumber` is greater than or equal to this value. (For checks, this field is the check number.) If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for checks whose `refNumber` is greater than or equal to this
+            value. (For checks, this field is the check number.) If omitted, the
+            range will begin with the first number of the list. Uses a numerical
+            comparison for values that contain only digits; otherwise, uses a
+            lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for checks whose `refNumber` is less than or equal to this value. (For checks, this field is the check number.) If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for checks whose `refNumber` is less than or equal to this
+              value. (For checks, this field is the check number.) If omitted,
+              the range will end with the last number of the list. Uses a
+              numerical comparison for values that contain only digits;
+              otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CHECK-9999
             type: string
-          description: Filter for checks whose `refNumber` is less than or equal to this value. (For checks, this field is the check number.) If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for checks whose `refNumber` is less than or equal to this
+            value. (For checks, this field is the check number.) If omitted, the
+            range will end with the last number of the list. Uses a numerical
+            comparison for values that contain only digits; otherwise, uses a
+            lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -9241,17 +9447,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for classes whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for classes whose `name` is alphabetically greater than or
+              equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for classes whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for classes whose `name` is alphabetically greater than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for classes whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for classes whose `name` is alphabetically less than or
+              equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for classes whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for classes whose `name` is alphabetically less than or equal
+            to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of classes.
@@ -9952,17 +10182,52 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for credit card charges whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for credit card charges whose `refNumber` is greater than
+              or equal to this value. If omitted, the range will begin with the
+              first number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CARD-0001
             type: string
-          description: Filter for credit card charges whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for credit card charges whose `refNumber` is greater than or
+            equal to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for credit card charges whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for credit card charges whose `refNumber` is less than or
+              equal to this value. If omitted, the range will end with the last
+              number of the list. Uses a numerical comparison for values that
+              contain only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CARD-9999
             type: string
-          description: Filter for credit card charges whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for credit card charges whose `refNumber` is less than or
+            equal to this value. If omitted, the range will end with the last
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -11888,17 +12153,52 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for credit card credits whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for credit card credits whose `refNumber` is greater than
+              or equal to this value. If omitted, the range will begin with the
+              first number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CREDIT-0001
             type: string
-          description: Filter for credit card credits whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for credit card credits whose `refNumber` is greater than or
+            equal to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for credit card credits whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for credit card credits whose `refNumber` is less than or
+              equal to this value. If omitted, the range will end with the last
+              number of the list. Uses a numerical comparison for values that
+              contain only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CREDIT-9999
             type: string
-          description: Filter for credit card credits whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for credit card credits whose `refNumber` is less than or
+            equal to this value. If omitted, the range will end with the last
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -13822,17 +14122,52 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for credit card refunds whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for credit card refunds whose `refNumber` is greater than
+              or equal to this value. If omitted, the range will begin with the
+              first number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: REFUND-0001
             type: string
-          description: Filter for credit card refunds whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for credit card refunds whose `refNumber` is greater than or
+            equal to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for credit card refunds whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for credit card refunds whose `refNumber` is less than or
+              equal to this value. If omitted, the range will end with the last
+              number of the list. Uses a numerical comparison for values that
+              contain only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: REFUND-9999
             type: string
-          description: Filter for credit card refunds whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for credit card refunds whose `refNumber` is less than or
+            equal to this value. If omitted, the range will end with the last
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -14952,17 +15287,51 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for credit memos whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for credit memos whose `refNumber` is greater than or equal
+              to this value. If omitted, the range will begin with the first
+              number of the list. Uses a numerical comparison for values that
+              contain only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CM-0001
             type: string
-          description: Filter for credit memos whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for credit memos whose `refNumber` is greater than or equal
+            to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for credit memos whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for credit memos whose `refNumber` is less than or equal to
+              this value. If omitted, the range will end with the last number of
+              the list. Uses a numerical comparison for values that contain only
+              digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: CM-9999
             type: string
-          description: Filter for credit memos whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for credit memos whose `refNumber` is less than or equal to
+            this value. If omitted, the range will end with the last number of
+            the list. Uses a numerical comparison for values that contain only
+            digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -17151,17 +17520,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for currencies whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for currencies whose `name` is alphabetically greater than
+              or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for currencies whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for currencies whose `name` is alphabetically greater than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for currencies whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for currencies whose `name` is alphabetically less than or
+              equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for currencies whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for currencies whose `name` is alphabetically less than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of currencies.
@@ -17887,17 +18280,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for customer types whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for customer types whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for customer types whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for customer types whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for customer types whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for customer types whose `name` is alphabetically less than
+              or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for customer types whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for customer types whose `name` is alphabetically less than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of customer types.
@@ -18394,17 +18811,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for customers whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for customers whose `name` is alphabetically greater than
+              or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for customers whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for customers whose `name` is alphabetically greater than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for customers whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for customers whose `name` is alphabetically less than or
+              equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for customers whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for customers whose `name` is alphabetically less than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: totalBalance
           schema:
@@ -20398,17 +20839,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for date-driven terms whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for date-driven terms whose `name` is alphabetically
+              greater than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for date-driven terms whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for date-driven terms whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for date-driven terms whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for date-driven terms whose `name` is alphabetically less
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for date-driven terms whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for date-driven terms whose `name` is alphabetically less
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of date-driven terms.
@@ -22409,17 +22874,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for discount items whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for discount items whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for discount items whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for discount items whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for discount items whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for discount items whose `name` is alphabetically less than
+              or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for discount items whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for discount items whose `name` is alphabetically less than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: classIds
           schema:
@@ -23253,17 +23742,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for employees whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for employees whose `name` is alphabetically greater than
+              or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for employees whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for employees whose `name` is alphabetically greater than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for employees whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for employees whose `name` is alphabetically less than or
+              equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for employees whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for employees whose `name` is alphabetically less than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of employees.
@@ -25151,17 +25664,51 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for estimates whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for estimates whose `refNumber` is greater than or equal to
+              this value. If omitted, the range will begin with the first number
+              of the list. Uses a numerical comparison for values that contain
+              only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: EST-0001
             type: string
-          description: Filter for estimates whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for estimates whose `refNumber` is greater than or equal to
+            this value. If omitted, the range will begin with the first number
+            of the list. Uses a numerical comparison for values that contain
+            only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for estimates whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for estimates whose `refNumber` is less than or equal to
+              this value. If omitted, the range will end with the last number of
+              the list. Uses a numerical comparison for values that contain only
+              digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: EST-9999
             type: string
-          description: Filter for estimates whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for estimates whose `refNumber` is less than or equal to this
+            value. If omitted, the range will end with the last number of the
+            list. Uses a numerical comparison for values that contain only
+            digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -27252,17 +27799,53 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for inventory adjustments whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for inventory adjustments whose `refNumber` is greater than
+              or equal to this value. If omitted, the range will begin with the
+              first number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: INVADJ-0001
             type: string
-          description: Filter for inventory adjustments whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for inventory adjustments whose `refNumber` is greater than
+            or equal to this value. If omitted, the range will begin with the
+            first number of the list. Uses a numerical comparison for values
+            that contain only digits; otherwise, uses a lexicographical
+            comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for inventory adjustments whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for inventory adjustments whose `refNumber` is less than or
+              equal to this value. If omitted, the range will end with the last
+              number of the list. Uses a numerical comparison for values that
+              contain only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: INVADJ-9999
             type: string
-          description: Filter for inventory adjustments whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for inventory adjustments whose `refNumber` is less than or
+            equal to this value. If omitted, the range will end with the last
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: includeLineItems
           schema:
@@ -28335,17 +28918,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for inventory assembly items whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for inventory assembly items whose `name` is alphabetically
+              greater than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for inventory assembly items whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for inventory assembly items whose `name` is alphabetically
+            greater than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for inventory assembly items whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for inventory assembly items whose `name` is alphabetically
+              less than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for inventory assembly items whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for inventory assembly items whose `name` is alphabetically
+            less than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: classIds
           schema:
@@ -29316,17 +29923,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for inventory items whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for inventory items whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for inventory items whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for inventory items whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for inventory items whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for inventory items whose `name` is alphabetically less
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for inventory items whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for inventory items whose `name` is alphabetically less than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: classIds
           schema:
@@ -30231,17 +30862,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for inventory sites whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for inventory sites whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for inventory sites whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for inventory sites whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for inventory sites whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for inventory sites whose `name` is alphabetically less
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for inventory sites whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for inventory sites whose `name` is alphabetically less than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of inventory sites.
@@ -31079,17 +31734,51 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for invoices whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for invoices whose `refNumber` is greater than or equal to
+              this value. If omitted, the range will begin with the first number
+              of the list. Uses a numerical comparison for values that contain
+              only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: INV-0001
             type: string
-          description: Filter for invoices whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for invoices whose `refNumber` is greater than or equal to
+            this value. If omitted, the range will begin with the first number
+            of the list. Uses a numerical comparison for values that contain
+            only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for invoices whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for invoices whose `refNumber` is less than or equal to
+              this value. If omitted, the range will end with the last number of
+              the list. Uses a numerical comparison for values that contain only
+              digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: INV-9999
             type: string
-          description: Filter for invoices whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for invoices whose `refNumber` is less than or equal to this
+            value. If omitted, the range will end with the last number of the
+            list. Uses a numerical comparison for values that contain only
+            digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -33511,17 +34200,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for item groups whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for item groups whose `name` is alphabetically greater than
+              or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for item groups whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for item groups whose `name` is alphabetically greater than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for item groups whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for item groups whose `name` is alphabetically less than or
+              equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for item groups whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for item groups whose `name` is alphabetically less than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of item groups.
@@ -34356,17 +35069,52 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for item receipts whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for item receipts whose `refNumber` is greater than or
+              equal to this value. If omitted, the range will begin with the
+              first number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: RECEIPT-0001
             type: string
-          description: Filter for item receipts whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for item receipts whose `refNumber` is greater than or equal
+            to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for item receipts whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for item receipts whose `refNumber` is less than or equal
+              to this value. If omitted, the range will end with the last number
+              of the list. Uses a numerical comparison for values that contain
+              only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: RECEIPT-9999
             type: string
-          description: Filter for item receipts whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for item receipts whose `refNumber` is less than or equal to
+            this value. If omitted, the range will end with the last number of
+            the list. Uses a numerical comparison for values that contain only
+            digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -36679,17 +37427,52 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for journal entries whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for journal entries whose `refNumber` is greater than or
+              equal to this value. If omitted, the range will begin with the
+              first number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: JE-0001
             type: string
-          description: Filter for journal entries whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for journal entries whose `refNumber` is greater than or
+            equal to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for journal entries whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for journal entries whose `refNumber` is less than or equal
+              to this value. If omitted, the range will end with the last number
+              of the list. Uses a numerical comparison for values that contain
+              only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: JE-9999
             type: string
-          description: Filter for journal entries whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for journal entries whose `refNumber` is less than or equal
+            to this value. If omitted, the range will end with the last number
+            of the list. Uses a numerical comparison for values that contain
+            only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -37813,17 +38596,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for non-inventory items whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for non-inventory items whose `name` is alphabetically
+              greater than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for non-inventory items whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for non-inventory items whose `name` is alphabetically
+            greater than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for non-inventory items whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for non-inventory items whose `name` is alphabetically less
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for non-inventory items whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for non-inventory items whose `name` is alphabetically less
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: classIds
           schema:
@@ -38792,17 +39599,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for other charge items whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for other charge items whose `name` is alphabetically
+              greater than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for other charge items whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for other charge items whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for other charge items whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for other charge items whose `name` is alphabetically less
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for other charge items whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for other charge items whose `name` is alphabetically less
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: classIds
           schema:
@@ -39735,17 +40566,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for other-names whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for other-names whose `name` is alphabetically greater than
+              or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for other-names whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for other-names whose `name` is alphabetically greater than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for other-names whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for other-names whose `name` is alphabetically less than or
+              equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for other-names whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for other-names whose `name` is alphabetically less than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of other-names.
@@ -40715,17 +41570,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for payment methods whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for payment methods whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for payment methods whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for payment methods whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for payment methods whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for payment methods whose `name` is alphabetically less
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for payment methods whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for payment methods whose `name` is alphabetically less than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: paymentMethodType
           schema:
@@ -41331,17 +42210,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for payroll wage items whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for payroll wage items whose `name` is alphabetically
+              greater than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for payroll wage items whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for payroll wage items whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for payroll wage items whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for payroll wage items whose `name` is alphabetically less
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for payroll wage items whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for payroll wage items whose `name` is alphabetically less
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of payroll wage items.
@@ -41979,17 +42882,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for price levels whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for price levels whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for price levels whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for price levels whose `name` is alphabetically greater than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for price levels whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for price levels whose `name` is alphabetically less than
+              or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for price levels whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for price levels whose `name` is alphabetically less than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: itemIds
           schema:
@@ -42777,17 +43704,52 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for purchase orders whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for purchase orders whose `refNumber` is greater than or
+              equal to this value. If omitted, the range will begin with the
+              first number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: PO-0001
             type: string
-          description: Filter for purchase orders whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for purchase orders whose `refNumber` is greater than or
+            equal to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for purchase orders whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for purchase orders whose `refNumber` is less than or equal
+              to this value. If omitted, the range will end with the last number
+              of the list. Uses a numerical comparison for values that contain
+              only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: PO-9999
             type: string
-          description: Filter for purchase orders whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for purchase orders whose `refNumber` is less than or equal
+            to this value. If omitted, the range will end with the last number
+            of the list. Uses a numerical comparison for values that contain
+            only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -44814,17 +45776,52 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for receive-payments whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for receive-payments whose `refNumber` is greater than or
+              equal to this value. If omitted, the range will begin with the
+              first number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: PAYMENT-0001
             type: string
-          description: Filter for receive-payments whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for receive-payments whose `refNumber` is greater than or
+            equal to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for receive-payments whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for receive-payments whose `refNumber` is less than or
+              equal to this value. If omitted, the range will end with the last
+              number of the list. Uses a numerical comparison for values that
+              contain only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: PAYMENT-9999
             type: string
-          description: Filter for receive-payments whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for receive-payments whose `refNumber` is less than or equal
+            to this value. If omitted, the range will end with the last number
+            of the list. Uses a numerical comparison for values that contain
+            only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -50831,17 +51828,51 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for sales orders whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for sales orders whose `refNumber` is greater than or equal
+              to this value. If omitted, the range will begin with the first
+              number of the list. Uses a numerical comparison for values that
+              contain only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: SO-0001
             type: string
-          description: Filter for sales orders whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for sales orders whose `refNumber` is greater than or equal
+            to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for sales orders whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for sales orders whose `refNumber` is less than or equal to
+              this value. If omitted, the range will end with the last number of
+              the list. Uses a numerical comparison for values that contain only
+              digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: SO-9999
             type: string
-          description: Filter for sales orders whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for sales orders whose `refNumber` is less than or equal to
+            this value. If omitted, the range will end with the last number of
+            the list. Uses a numerical comparison for values that contain only
+            digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -52949,17 +53980,52 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for sales receipts whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for sales receipts whose `refNumber` is greater than or
+              equal to this value. If omitted, the range will begin with the
+              first number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: RECEIPT-0001
             type: string
-          description: Filter for sales receipts whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for sales receipts whose `refNumber` is greater than or equal
+            to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for sales receipts whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for sales receipts whose `refNumber` is less than or equal
+              to this value. If omitted, the range will end with the last number
+              of the list. Uses a numerical comparison for values that contain
+              only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: RECEIPT-9999
             type: string
-          description: Filter for sales receipts whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for sales receipts whose `refNumber` is less than or equal to
+            this value. If omitted, the range will end with the last number of
+            the list. Uses a numerical comparison for values that contain only
+            digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -55482,17 +56548,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for sales representatives whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for sales representatives whose `name` is alphabetically
+              greater than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for sales representatives whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for sales representatives whose `name` is alphabetically
+            greater than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for sales representatives whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for sales representatives whose `name` is alphabetically
+              less than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for sales representatives whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for sales representatives whose `name` is alphabetically less
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of sales representatives.
@@ -56099,17 +57189,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for sales-tax codes whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for sales-tax codes whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for sales-tax codes whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for sales-tax codes whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for sales-tax codes whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for sales-tax codes whose `name` is alphabetically less
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for sales-tax codes whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for sales-tax codes whose `name` is alphabetically less than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of sales-tax codes.
@@ -56724,17 +57838,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for sales-tax group items whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for sales-tax group items whose `name` is alphabetically
+              greater than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for sales-tax group items whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for sales-tax group items whose `name` is alphabetically
+            greater than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for sales-tax group items whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for sales-tax group items whose `name` is alphabetically
+              less than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for sales-tax group items whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for sales-tax group items whose `name` is alphabetically less
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of sales-tax group items.
@@ -57429,17 +58567,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for sales-tax items whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for sales-tax items whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for sales-tax items whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for sales-tax items whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for sales-tax items whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for sales-tax items whose `name` is alphabetically less
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for sales-tax items whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for sales-tax items whose `name` is alphabetically less than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: classIds
           schema:
@@ -58224,17 +59386,54 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for sales-tax payment checks whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for sales-tax payment checks whose `refNumber` is greater
+              than or equal to this value. If omitted, the range will begin with
+              the first number of the list. Uses a numerical comparison for
+              values that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: TAXPMT-0001
             type: string
-          description: Filter for sales-tax payment checks whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for sales-tax payment checks whose `refNumber` is greater
+            than or equal to this value. If omitted, the range will begin with
+            the first number of the list. Uses a numerical comparison for values
+            that contain only digits; otherwise, uses a lexicographical
+            comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for sales-tax payment checks whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for sales-tax payment checks whose `refNumber` is less than
+              or equal to this value. If omitted, the range will end with the
+              last number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: TAXPMT-9999
             type: string
-          description: Filter for sales-tax payment checks whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for sales-tax payment checks whose `refNumber` is less than
+            or equal to this value. If omitted, the range will end with the last
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: includeLineItems
           schema:
@@ -59326,17 +60525,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for service items whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for service items whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for service items whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for service items whose `name` is alphabetically greater than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for service items whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for service items whose `name` is alphabetically less than
+              or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for service items whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for service items whose `name` is alphabetically less than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: classIds
           schema:
@@ -60314,17 +61537,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for shipping methods whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for shipping methods whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for shipping methods whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for shipping methods whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for shipping methods whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for shipping methods whose `name` is alphabetically less
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for shipping methods whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for shipping methods whose `name` is alphabetically less than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of shipping methods.
@@ -60827,17 +62074,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for standard terms whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for standard terms whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for standard terms whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for standard terms whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for standard terms whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for standard terms whose `name` is alphabetically less than
+              or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for standard terms whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for standard terms whose `name` is alphabetically less than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of standard terms.
@@ -61327,17 +62598,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for subtotal items whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for subtotal items whose `name` is alphabetically greater
+              than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for subtotal items whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for subtotal items whose `name` is alphabetically greater
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for subtotal items whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for subtotal items whose `name` is alphabetically less than
+              or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for subtotal items whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for subtotal items whose `name` is alphabetically less than
+            or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of subtotal items.
@@ -62856,17 +64151,51 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for transactions whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for transactions whose `refNumber` is greater than or equal
+              to this value. If omitted, the range will begin with the first
+              number of the list. Uses a numerical comparison for values that
+              contain only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: INV-0001
             type: string
-          description: Filter for transactions whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for transactions whose `refNumber` is greater than or equal
+            to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for transactions whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for transactions whose `refNumber` is less than or equal to
+              this value. If omitted, the range will end with the last number of
+              the list. Uses a numerical comparison for values that contain only
+              digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: INV-9999
             type: string
-          description: Filter for transactions whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for transactions whose `refNumber` is less than or equal to
+            this value. If omitted, the range will end with the last number of
+            the list. Uses a numerical comparison for values that contain only
+            digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: updatedAfter
           schema:
@@ -64211,17 +65540,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for unit-of-measure sets whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for unit-of-measure sets whose `name` is alphabetically
+              greater than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for unit-of-measure sets whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for unit-of-measure sets whose `name` is alphabetically
+            greater than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for unit-of-measure sets whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for unit-of-measure sets whose `name` is alphabetically
+              less than or equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for unit-of-measure sets whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for unit-of-measure sets whose `name` is alphabetically less
+            than or equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
       responses:
         "200":
           description: Returns a list of unit-of-measure sets.
@@ -64891,17 +66244,52 @@ paths:
         - in: query
           name: refNumberFrom
           schema:
-            description: Filter for vendor credits whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for vendor credits whose `refNumber` is greater than or
+              equal to this value. If omitted, the range will begin with the
+              first number of the list. Uses a numerical comparison for values
+              that contain only digits; otherwise, uses a lexicographical
+              comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: VCREDIT-0001
             type: string
-          description: Filter for vendor credits whose `refNumber` is greater than or equal to this value. If omitted, the range will begin with the first number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for vendor credits whose `refNumber` is greater than or equal
+            to this value. If omitted, the range will begin with the first
+            number of the list. Uses a numerical comparison for values that
+            contain only digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: refNumberTo
           schema:
-            description: Filter for vendor credits whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+            description: >-
+              Filter for vendor credits whose `refNumber` is less than or equal
+              to this value. If omitted, the range will end with the last number
+              of the list. Uses a numerical comparison for values that contain
+              only digits; otherwise, uses a lexicographical comparison.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `refNumberContains`, `refNumberStartsWith`, or
+              `refNumberEndsWith`.
             example: VCREDIT-9999
             type: string
-          description: Filter for vendor credits whose `refNumber` is less than or equal to this value. If omitted, the range will end with the last number of the list. Uses a numerical comparison for values that contain only digits; otherwise, uses a lexicographical comparison.
+          description: >-
+            Filter for vendor credits whose `refNumber` is less than or equal to
+            this value. If omitted, the range will end with the last number of
+            the list. Uses a numerical comparison for values that contain only
+            digits; otherwise, uses a lexicographical comparison.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `refNumberContains`, `refNumberStartsWith`, or `refNumberEndsWith`.
         - in: query
           name: currencyIds
           schema:
@@ -66799,17 +68187,41 @@ paths:
         - in: query
           name: nameFrom
           schema:
-            description: Filter for vendors whose `name` is alphabetically greater than or equal to this value.
+            description: >-
+              Filter for vendors whose `name` is alphabetically greater than or
+              equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: A
             type: string
-          description: Filter for vendors whose `name` is alphabetically greater than or equal to this value.
+          description: >-
+            Filter for vendors whose `name` is alphabetically greater than or
+            equal to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: nameTo
           schema:
-            description: Filter for vendors whose `name` is alphabetically less than or equal to this value.
+            description: >-
+              Filter for vendors whose `name` is alphabetically less than or
+              equal to this value.
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `nameContains`, `nameStartsWith`, or `nameEndsWith`.
             example: Z
             type: string
-          description: Filter for vendors whose `name` is alphabetically less than or equal to this value.
+          description: >-
+            Filter for vendors whose `name` is alphabetically less than or equal
+            to this value.
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
           name: totalBalance
           schema:
