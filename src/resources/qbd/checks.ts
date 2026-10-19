@@ -3129,6 +3129,9 @@ export interface CheckListParams extends CursorPageParams {
    * this value. (For checks, this field is the check number.) If omitted, the range
    * will begin with the first number of the list. Uses a numerical comparison for
    * values that contain only digits; otherwise, uses a lexicographical comparison.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains`,
+   * `refNumberStartsWith`, or `refNumberEndsWith`.
    */
   refNumberFrom?: string;
 
@@ -3159,6 +3162,9 @@ export interface CheckListParams extends CursorPageParams {
    * value. (For checks, this field is the check number.) If omitted, the range will
    * end with the last number of the list. Uses a numerical comparison for values
    * that contain only digits; otherwise, uses a lexicographical comparison.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains`,
+   * `refNumberStartsWith`, or `refNumberEndsWith`.
    */
   refNumberTo?: string;
 

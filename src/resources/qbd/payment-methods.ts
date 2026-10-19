@@ -267,6 +267,9 @@ export interface PaymentMethodListParams {
   /**
    * Query param: Filter for payment methods whose `name` is alphabetically greater
    * than or equal to this value.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `nameContains`,
+   * `nameStartsWith`, or `nameEndsWith`.
    */
   nameFrom?: string;
 
@@ -294,6 +297,9 @@ export interface PaymentMethodListParams {
   /**
    * Query param: Filter for payment methods whose `name` is alphabetically less than
    * or equal to this value.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `nameContains`,
+   * `nameStartsWith`, or `nameEndsWith`.
    */
   nameTo?: string;
 

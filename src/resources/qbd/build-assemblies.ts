@@ -764,6 +764,9 @@ export interface BuildAssemblyListParams extends CursorPageParams {
    * equal to this value. If omitted, the range will begin with the first number of
    * the list. Uses a numerical comparison for values that contain only digits;
    * otherwise, uses a lexicographical comparison.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains`,
+   * `refNumberStartsWith`, or `refNumberEndsWith`.
    */
   refNumberFrom?: string;
 
@@ -794,6 +797,9 @@ export interface BuildAssemblyListParams extends CursorPageParams {
    * to this value. If omitted, the range will end with the last number of the list.
    * Uses a numerical comparison for values that contain only digits; otherwise, uses
    * a lexicographical comparison.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `refNumberContains`,
+   * `refNumberStartsWith`, or `refNumberEndsWith`.
    */
   refNumberTo?: string;
 

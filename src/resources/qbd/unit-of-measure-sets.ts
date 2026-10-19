@@ -459,6 +459,9 @@ export interface UnitOfMeasureSetListParams {
   /**
    * Query param: Filter for unit-of-measure sets whose `name` is alphabetically
    * greater than or equal to this value.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `nameContains`,
+   * `nameStartsWith`, or `nameEndsWith`.
    */
   nameFrom?: string;
 
@@ -487,6 +490,9 @@ export interface UnitOfMeasureSetListParams {
   /**
    * Query param: Filter for unit-of-measure sets whose `name` is alphabetically less
    * than or equal to this value.
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `nameContains`,
+   * `nameStartsWith`, or `nameEndsWith`.
    */
   nameTo?: string;
 
