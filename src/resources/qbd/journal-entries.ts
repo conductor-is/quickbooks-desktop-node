@@ -829,6 +829,8 @@ export namespace JournalEntryCreateParams {
 
     /**
      * A memo or note for this journal credit line.
+     *
+     * Maximum length: 4095 characters.
      */
     memo?: string;
 
@@ -884,6 +886,8 @@ export namespace JournalEntryCreateParams {
 
     /**
      * A memo or note for this journal debit line.
+     *
+     * Maximum length: 4095 characters.
      */
     memo?: string;
 
@@ -1029,6 +1033,8 @@ export namespace JournalEntryUpdateParams {
 
     /**
      * A memo or note for this journal line.
+     *
+     * Maximum length: 4095 characters.
      */
     memo?: string;
 

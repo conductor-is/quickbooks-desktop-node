@@ -658,6 +658,9 @@ export interface InventoryItemCreateParams {
   /**
    * Body param: The cost at which this inventory item is purchased from vendors,
    * represented as a decimal string.
+   *
+   * Decimal string format: up to 5 decimal places and up to 10 digits before the
+   * decimal point (for example, "123.45").
    */
   purchaseCost?: string;
 
@@ -665,6 +668,8 @@ export interface InventoryItemCreateParams {
    * Body param: The description of this inventory item that appears on purchase
    * forms (e.g., checks, bills, item receipts) when it is ordered or bought from
    * vendors.
+   *
+   * Maximum length: 4095 characters.
    */
   purchaseDescription?: string;
 
@@ -691,12 +696,17 @@ export interface InventoryItemCreateParams {
   /**
    * Body param: The description of this inventory item that appears on sales forms
    * (e.g., invoices, sales receipts) when sold to customers.
+   *
+   * Maximum length: 4095 characters.
    */
   salesDescription?: string;
 
   /**
    * Body param: The price at which this inventory item is sold to customers,
    * represented as a decimal string.
+   *
+   * Decimal string format: up to 5 decimal places and up to 10 digits before the
+   * decimal point (for example, "123.45").
    */
   salesPrice?: string;
 
@@ -716,6 +726,8 @@ export interface InventoryItemCreateParams {
   /**
    * Body param: The inventory item's stock keeping unit (SKU), which is sometimes
    * the manufacturer's part number.
+   *
+   * Maximum length: 31 characters.
    */
   sku?: string;
 
@@ -759,6 +771,8 @@ export namespace InventoryItemCreateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }
@@ -869,6 +883,9 @@ export interface InventoryItemUpdateParams {
   /**
    * Body param: The cost at which this inventory item is purchased from vendors,
    * represented as a decimal string.
+   *
+   * Decimal string format: up to 5 decimal places and up to 10 digits before the
+   * decimal point (for example, "123.45").
    */
   purchaseCost?: string;
 
@@ -876,6 +893,8 @@ export interface InventoryItemUpdateParams {
    * Body param: The description of this inventory item that appears on purchase
    * forms (e.g., checks, bills, item receipts) when it is ordered or bought from
    * vendors.
+   *
+   * Maximum length: 4095 characters.
    */
   purchaseDescription?: string;
 
@@ -894,12 +913,17 @@ export interface InventoryItemUpdateParams {
   /**
    * Body param: The description of this inventory item that appears on sales forms
    * (e.g., invoices, sales receipts) when sold to customers.
+   *
+   * Maximum length: 4095 characters.
    */
   salesDescription?: string;
 
   /**
    * Body param: The price at which this inventory item is sold to customers,
    * represented as a decimal string.
+   *
+   * Decimal string format: up to 5 decimal places and up to 10 digits before the
+   * decimal point (for example, "123.45").
    */
   salesPrice?: string;
 
@@ -919,6 +943,8 @@ export interface InventoryItemUpdateParams {
   /**
    * Body param: The inventory item's stock keeping unit (SKU), which is sometimes
    * the manufacturer's part number.
+   *
+   * Maximum length: 31 characters.
    */
   sku?: string;
 
@@ -970,6 +996,8 @@ export namespace InventoryItemUpdateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }

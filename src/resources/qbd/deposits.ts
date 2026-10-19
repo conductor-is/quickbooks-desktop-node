@@ -680,6 +680,8 @@ export interface DepositCreateParams {
 
   /**
    * Body param: A memo or note for this deposit.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 }
@@ -708,6 +710,8 @@ export namespace DepositCreateParams {
 
     /**
      * A memo or note for this deposit cash-back line.
+     *
+     * Maximum length: 4095 characters.
      */
     memo?: string;
   }
@@ -731,6 +735,8 @@ export namespace DepositCreateParams {
 
     /**
      * The check number of a check received for this deposit line.
+     *
+     * Maximum length: 11 characters.
      */
     checkNumber?: string;
 
@@ -749,6 +755,8 @@ export namespace DepositCreateParams {
 
     /**
      * A memo or note for this deposit line.
+     *
+     * Maximum length: 4095 characters.
      */
     memo?: string;
 
@@ -865,6 +873,8 @@ export interface DepositUpdateParams {
 
   /**
    * Body param: A memo or note for this deposit.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -898,6 +908,8 @@ export namespace DepositUpdateParams {
 
     /**
      * A memo or note for this deposit cash-back line.
+     *
+     * Maximum length: 4095 characters.
      */
     memo?: string;
   }
@@ -929,6 +941,8 @@ export namespace DepositUpdateParams {
 
     /**
      * The check number of a check received for this deposit line.
+     *
+     * Maximum length: 11 characters.
      */
     checkNumber?: string;
 
@@ -947,6 +961,8 @@ export namespace DepositUpdateParams {
 
     /**
      * A memo or note for this deposit line.
+     *
+     * Maximum length: 4095 characters.
      */
     memo?: string;
 

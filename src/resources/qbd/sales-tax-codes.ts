@@ -249,6 +249,8 @@ export interface SalesTaxCodeCreateParams {
 
   /**
    * Body param: A description of this sales-tax code.
+   *
+   * Maximum length: 31 characters.
    */
   description?: string;
 
@@ -290,6 +292,8 @@ export interface SalesTaxCodeUpdateParams {
 
   /**
    * Body param: A description of this sales-tax code.
+   *
+   * Maximum length: 31 characters.
    */
   description?: string;
 

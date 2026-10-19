@@ -292,6 +292,8 @@ export interface SalesTaxGroupItemCreateParams {
   /**
    * Body param: The sales-tax group item's description that will appear on sales
    * forms that include this item.
+   *
+   * Maximum length: 4095 characters.
    */
   description?: string;
 
@@ -330,6 +332,8 @@ export namespace SalesTaxGroupItemCreateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }
@@ -364,6 +368,8 @@ export interface SalesTaxGroupItemUpdateParams {
   /**
    * Body param: The sales-tax group item's description that will appear on sales
    * forms that include this item.
+   *
+   * Maximum length: 4095 characters.
    */
   description?: string;
 
@@ -411,6 +417,8 @@ export namespace SalesTaxGroupItemUpdateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }

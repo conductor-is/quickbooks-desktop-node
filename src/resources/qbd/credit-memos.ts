@@ -1922,6 +1922,8 @@ export interface CreditMemoCreateParams {
   /**
    * Body param: A memo or note for this credit memo that appears in the account
    * register and customer register, but not on the credit memo itself.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -1933,6 +1935,8 @@ export interface CreditMemoCreateParams {
    * other standard QuickBooks fields. Unlike `otherCustomField1` and
    * `otherCustomField2`, which are line item fields, this exists at the transaction
    * level. Hidden by default in the QuickBooks UI.
+   *
+   * Maximum length: 29 characters.
    */
   otherCustomField?: string;
 
@@ -2041,6 +2045,8 @@ export namespace CreditMemoCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2083,6 +2089,8 @@ export namespace CreditMemoCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2146,6 +2154,8 @@ export namespace CreditMemoCreateParams {
     /**
      * The unit-of-measure used for the `quantity` in this credit memo line group. Must
      * be a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2155,6 +2165,8 @@ export namespace CreditMemoCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2207,6 +2219,8 @@ export namespace CreditMemoCreateParams {
 
     /**
      * A description of this credit memo line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2233,6 +2247,8 @@ export namespace CreditMemoCreateParams {
     /**
      * The lot number of the item associated with this credit memo line. Used for
      * tracking groups of inventory items that are purchased or manufactured together.
+     *
+     * Maximum length: 40 characters.
      */
     lotNumber?: string;
 
@@ -2242,6 +2258,8 @@ export namespace CreditMemoCreateParams {
      * standard QuickBooks field that exists for all credit memo lines for convenience.
      * Developers often use this field for tracking information that doesn't fit into
      * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField1?: string;
 
@@ -2252,6 +2270,8 @@ export namespace CreditMemoCreateParams {
      * convenience. Like `otherCustomField1`, developers often use this field for
      * tracking information that doesn't fit into other standard QuickBooks fields.
      * Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField2?: string;
 
@@ -2309,6 +2329,8 @@ export namespace CreditMemoCreateParams {
     /**
      * The serial number of the item associated with this credit memo line. This is
      * used for tracking individual units of serialized inventory items.
+     *
+     * Maximum length: 4095 characters.
      */
     serialNumber?: string;
 
@@ -2322,6 +2344,8 @@ export namespace CreditMemoCreateParams {
     /**
      * The unit-of-measure used for the `quantity` in this credit memo line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2331,6 +2355,8 @@ export namespace CreditMemoCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2366,6 +2392,8 @@ export namespace CreditMemoCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2408,6 +2436,8 @@ export namespace CreditMemoCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2548,6 +2578,8 @@ export interface CreditMemoUpdateParams {
   /**
    * Body param: A memo or note for this credit memo that appears in the account
    * register and customer register, but not on the credit memo itself.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -2559,6 +2591,8 @@ export interface CreditMemoUpdateParams {
    * other standard QuickBooks fields. Unlike `otherCustomField1` and
    * `otherCustomField2`, which are line item fields, this exists at the transaction
    * level. Hidden by default in the QuickBooks UI.
+   *
+   * Maximum length: 29 characters.
    */
   otherCustomField?: string;
 
@@ -2670,6 +2704,8 @@ export namespace CreditMemoUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2712,6 +2748,8 @@ export namespace CreditMemoUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2792,6 +2830,8 @@ export namespace CreditMemoUpdateParams {
     /**
      * The unit-of-measure used for the `quantity` in this credit memo line group. Must
      * be a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2829,6 +2869,8 @@ export namespace CreditMemoUpdateParams {
 
       /**
        * A description of this credit memo line.
+       *
+       * Maximum length: 4095 characters.
        */
       description?: string;
 
@@ -2855,6 +2897,8 @@ export namespace CreditMemoUpdateParams {
       /**
        * The lot number of the item associated with this credit memo line. Used for
        * tracking groups of inventory items that are purchased or manufactured together.
+       *
+       * Maximum length: 40 characters.
        */
       lotNumber?: string;
 
@@ -2864,6 +2908,8 @@ export namespace CreditMemoUpdateParams {
        * standard QuickBooks field that exists for all credit memo lines for convenience.
        * Developers often use this field for tracking information that doesn't fit into
        * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+       *
+       * Maximum length: 29 characters.
        */
       otherCustomField1?: string;
 
@@ -2874,6 +2920,8 @@ export namespace CreditMemoUpdateParams {
        * convenience. Like `otherCustomField1`, developers often use this field for
        * tracking information that doesn't fit into other standard QuickBooks fields.
        * Hidden by default in the QuickBooks UI.
+       *
+       * Maximum length: 29 characters.
        */
       otherCustomField2?: string;
 
@@ -2946,6 +2994,8 @@ export namespace CreditMemoUpdateParams {
       /**
        * The serial number of the item associated with this credit memo line. This is
        * used for tracking individual units of serialized inventory items.
+       *
+       * Maximum length: 4095 characters.
        */
       serialNumber?: string;
 
@@ -2959,6 +3009,8 @@ export namespace CreditMemoUpdateParams {
       /**
        * The unit-of-measure used for the `quantity` in this credit memo line. Must be a
        * valid unit within the item's available units of measure.
+       *
+       * Maximum length: 31 characters.
        */
       unitOfMeasure?: string;
     }
@@ -2996,6 +3048,8 @@ export namespace CreditMemoUpdateParams {
 
     /**
      * A description of this credit memo line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -3022,6 +3076,8 @@ export namespace CreditMemoUpdateParams {
     /**
      * The lot number of the item associated with this credit memo line. Used for
      * tracking groups of inventory items that are purchased or manufactured together.
+     *
+     * Maximum length: 40 characters.
      */
     lotNumber?: string;
 
@@ -3031,6 +3087,8 @@ export namespace CreditMemoUpdateParams {
      * standard QuickBooks field that exists for all credit memo lines for convenience.
      * Developers often use this field for tracking information that doesn't fit into
      * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField1?: string;
 
@@ -3041,6 +3099,8 @@ export namespace CreditMemoUpdateParams {
      * convenience. Like `otherCustomField1`, developers often use this field for
      * tracking information that doesn't fit into other standard QuickBooks fields.
      * Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField2?: string;
 
@@ -3113,6 +3173,8 @@ export namespace CreditMemoUpdateParams {
     /**
      * The serial number of the item associated with this credit memo line. This is
      * used for tracking individual units of serialized inventory items.
+     *
+     * Maximum length: 4095 characters.
      */
     serialNumber?: string;
 
@@ -3126,6 +3188,8 @@ export namespace CreditMemoUpdateParams {
     /**
      * The unit-of-measure used for the `quantity` in this credit memo line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -3143,6 +3207,8 @@ export namespace CreditMemoUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -3185,6 +3251,8 @@ export namespace CreditMemoUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 

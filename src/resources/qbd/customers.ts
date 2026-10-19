@@ -1106,6 +1106,8 @@ export interface CustomerCreateParams {
    * Note that if the "Use Account Numbers" preference is turned off in QuickBooks,
    * the account number may not be visible in the user interface, but it can still be
    * set and retrieved through the API.
+   *
+   * Maximum length: 99 characters.
    */
   accountNumber?: string;
 
@@ -1121,6 +1123,8 @@ export interface CustomerCreateParams {
 
   /**
    * Body param: The name of a alternate contact person for this customer.
+   *
+   * Maximum length: 41 characters.
    */
   alternateContact?: string;
 
@@ -1145,6 +1149,8 @@ export interface CustomerCreateParams {
   /**
    * Body param: An email address to carbon copy (CC) on communications with this
    * customer.
+   *
+   * Maximum length: 1023 characters.
    */
   ccEmail?: string;
 
@@ -1165,6 +1171,8 @@ export interface CustomerCreateParams {
 
   /**
    * Body param: The name of the primary contact person for this customer.
+   *
+   * Maximum length: 41 characters.
    */
   contact?: string;
 
@@ -1178,6 +1186,9 @@ export interface CustomerCreateParams {
    * Body param: The customer's credit limit, represented as a decimal string. This
    * is the maximum amount of money this customer can spend before being billed. If
    * `null`, there is no credit limit.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   creditLimit?: string;
 
@@ -1202,6 +1213,8 @@ export interface CustomerCreateParams {
 
   /**
    * Body param: The customer's email address.
+   *
+   * Maximum length: 1023 characters.
    */
   email?: string;
 
@@ -1238,6 +1251,8 @@ export interface CustomerCreateParams {
   /**
    * Body param: A brief description of this customer's job, if this object is a job
    * (i.e., sub-customer).
+   *
+   * Maximum length: 99 characters.
    */
   jobDescription?: string;
 
@@ -1267,6 +1282,8 @@ export interface CustomerCreateParams {
 
   /**
    * Body param: The job title of the contact person for this customer.
+   *
+   * Maximum length: 41 characters.
    */
   jobTitle?: string;
 
@@ -1293,12 +1310,17 @@ export interface CustomerCreateParams {
 
   /**
    * Body param: A note or comment about this customer.
+   *
+   * Maximum length: 4095 characters.
    */
   note?: string;
 
   /**
    * Body param: The opening balance of this customer's account, indicating the
    * amount owed by this customer, represented as a decimal string.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   openingBalance?: string;
 
@@ -1349,6 +1371,8 @@ export interface CustomerCreateParams {
    * Body param: The customer's resale number, used if the customer is purchasing
    * items for resale. This number does not affect sales tax calculations or reports
    * in QuickBooks.
+   *
+   * Maximum length: 15 characters.
    */
   resaleNumber?: string;
 
@@ -1387,6 +1411,8 @@ export interface CustomerCreateParams {
   /**
    * Body param: The formal salutation title that precedes the name of the contact
    * person for this customer, such as "Mr.", "Ms.", or "Dr.".
+   *
+   * Maximum length: 15 characters.
    */
   salutation?: string;
 
@@ -1397,6 +1423,8 @@ export interface CustomerCreateParams {
 
   /**
    * Body param: The customer's tax registration number, for use in Canada or the UK.
+   *
+   * Maximum length: 30 characters.
    */
   taxRegistrationNumber?: string;
 
@@ -1424,6 +1452,8 @@ export namespace CustomerCreateParams {
 
     /**
      * The contact's job title.
+     *
+     * Maximum length: 41 characters.
      */
     jobTitle?: string;
 
@@ -1444,6 +1474,8 @@ export namespace CustomerCreateParams {
     /**
      * The contact's formal salutation title that precedes their name, such as "Mr.",
      * "Ms.", or "Dr.".
+     *
+     * Maximum length: 15 characters.
      */
     salutation?: string;
   }
@@ -1452,11 +1484,15 @@ export namespace CustomerCreateParams {
     export interface CustomContactField {
       /**
        * The name of the contact field (e.g., "old address", "secondary phone").
+       *
+       * Maximum length: 40 characters.
        */
       name: string;
 
       /**
        * The value of the contact field.
+       *
+       * Maximum length: 255 characters.
        */
       value: string;
     }
@@ -1465,6 +1501,8 @@ export namespace CustomerCreateParams {
   export interface AdditionalNote {
     /**
      * The text of this note.
+     *
+     * Maximum length: 4095 characters.
      */
     note: string;
   }
@@ -1491,6 +1529,8 @@ export namespace CustomerCreateParams {
 
     /**
      * The country name of the shipping address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -1538,6 +1578,8 @@ export namespace CustomerCreateParams {
     /**
      * A note written at the bottom of the shipping address in the form in which it
      * appears, such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -1569,6 +1611,8 @@ export namespace CustomerCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -1611,6 +1655,8 @@ export namespace CustomerCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -1636,6 +1682,8 @@ export namespace CustomerCreateParams {
   export interface CreditCard {
     /**
      * The card's billing address.
+     *
+     * Maximum length: 41 characters.
      */
     address?: string;
 
@@ -1651,16 +1699,22 @@ export namespace CustomerCreateParams {
 
     /**
      * The cardholder's name on the card.
+     *
+     * Maximum length: 41 characters.
      */
     name?: string;
 
     /**
      * The credit card number. Must be masked with lower case "x" and no dashes.
+     *
+     * Maximum length: 25 characters.
      */
     number?: string;
 
     /**
      * The card's billing address ZIP or postal code.
+     *
+     * Maximum length: 41 characters.
      */
     postalCode?: string;
   }
@@ -1668,11 +1722,15 @@ export namespace CustomerCreateParams {
   export interface CustomContactField {
     /**
      * The name of the contact field (e.g., "old address", "secondary phone").
+     *
+     * Maximum length: 40 characters.
      */
     name: string;
 
     /**
      * The value of the contact field.
+     *
+     * Maximum length: 255 characters.
      */
     value: string;
   }
@@ -1690,6 +1748,8 @@ export namespace CustomerCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -1732,6 +1792,8 @@ export namespace CustomerCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -1779,6 +1841,8 @@ export interface CustomerUpdateParams {
    * Note that if the "Use Account Numbers" preference is turned off in QuickBooks,
    * the account number may not be visible in the user interface, but it can still be
    * set and retrieved through the API.
+   *
+   * Maximum length: 99 characters.
    */
   accountNumber?: string;
 
@@ -1794,6 +1858,8 @@ export interface CustomerUpdateParams {
 
   /**
    * Body param: The name of a alternate contact person for this customer.
+   *
+   * Maximum length: 41 characters.
    */
   alternateContact?: string;
 
@@ -1818,6 +1884,8 @@ export interface CustomerUpdateParams {
   /**
    * Body param: An email address to carbon copy (CC) on communications with this
    * customer.
+   *
+   * Maximum length: 1023 characters.
    */
   ccEmail?: string;
 
@@ -1838,6 +1906,8 @@ export interface CustomerUpdateParams {
 
   /**
    * Body param: The name of the primary contact person for this customer.
+   *
+   * Maximum length: 41 characters.
    */
   contact?: string;
 
@@ -1851,6 +1921,9 @@ export interface CustomerUpdateParams {
    * Body param: The customer's credit limit, represented as a decimal string. This
    * is the maximum amount of money this customer can spend before being billed. If
    * `null`, there is no credit limit.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   creditLimit?: string;
 
@@ -1875,6 +1948,8 @@ export interface CustomerUpdateParams {
 
   /**
    * Body param: The customer's email address.
+   *
+   * Maximum length: 1023 characters.
    */
   email?: string;
 
@@ -1901,6 +1976,8 @@ export interface CustomerUpdateParams {
   /**
    * Body param: A brief description of this customer's job, if this object is a job
    * (i.e., sub-customer).
+   *
+   * Maximum length: 99 characters.
    */
   jobDescription?: string;
 
@@ -1930,6 +2007,8 @@ export interface CustomerUpdateParams {
 
   /**
    * Body param: The job title of the contact person for this customer.
+   *
+   * Maximum length: 41 characters.
    */
   jobTitle?: string;
 
@@ -1968,6 +2047,8 @@ export interface CustomerUpdateParams {
 
   /**
    * Body param: A note or comment about this customer.
+   *
+   * Maximum length: 4095 characters.
    */
   note?: string;
 
@@ -2012,6 +2093,8 @@ export interface CustomerUpdateParams {
    * Body param: The customer's resale number, used if the customer is purchasing
    * items for resale. This number does not affect sales tax calculations or reports
    * in QuickBooks.
+   *
+   * Maximum length: 15 characters.
    */
   resaleNumber?: string;
 
@@ -2050,6 +2133,8 @@ export interface CustomerUpdateParams {
   /**
    * Body param: The formal salutation title that precedes the name of the contact
    * person for this customer, such as "Mr.", "Ms.", or "Dr.".
+   *
+   * Maximum length: 15 characters.
    */
   salutation?: string;
 
@@ -2060,6 +2145,8 @@ export interface CustomerUpdateParams {
 
   /**
    * Body param: The customer's tax registration number, for use in Canada or the UK.
+   *
+   * Maximum length: 30 characters.
    */
   taxRegistrationNumber?: string;
 
@@ -2100,6 +2187,8 @@ export namespace CustomerUpdateParams {
 
     /**
      * The contact's job title.
+     *
+     * Maximum length: 41 characters.
      */
     jobTitle?: string;
 
@@ -2120,6 +2209,8 @@ export namespace CustomerUpdateParams {
     /**
      * The contact's formal salutation title that precedes their name, such as "Mr.",
      * "Ms.", or "Dr.".
+     *
+     * Maximum length: 15 characters.
      */
     salutation?: string;
   }
@@ -2128,11 +2219,15 @@ export namespace CustomerUpdateParams {
     export interface CustomContactField {
       /**
        * The name of the contact field (e.g., "old address", "secondary phone").
+       *
+       * Maximum length: 40 characters.
        */
       name: string;
 
       /**
        * The value of the contact field.
+       *
+       * Maximum length: 255 characters.
        */
       value: string;
     }
@@ -2146,6 +2241,8 @@ export namespace CustomerUpdateParams {
 
     /**
      * The text of this note.
+     *
+     * Maximum length: 4095 characters.
      */
     note: string;
   }
@@ -2172,6 +2269,8 @@ export namespace CustomerUpdateParams {
 
     /**
      * The country name of the shipping address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2219,6 +2318,8 @@ export namespace CustomerUpdateParams {
     /**
      * A note written at the bottom of the shipping address in the form in which it
      * appears, such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2250,6 +2351,8 @@ export namespace CustomerUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2292,6 +2395,8 @@ export namespace CustomerUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2317,6 +2422,8 @@ export namespace CustomerUpdateParams {
   export interface CreditCard {
     /**
      * The card's billing address.
+     *
+     * Maximum length: 41 characters.
      */
     address?: string;
 
@@ -2332,16 +2439,22 @@ export namespace CustomerUpdateParams {
 
     /**
      * The cardholder's name on the card.
+     *
+     * Maximum length: 41 characters.
      */
     name?: string;
 
     /**
      * The credit card number. Must be masked with lower case "x" and no dashes.
+     *
+     * Maximum length: 25 characters.
      */
     number?: string;
 
     /**
      * The card's billing address ZIP or postal code.
+     *
+     * Maximum length: 41 characters.
      */
     postalCode?: string;
   }
@@ -2349,11 +2462,15 @@ export namespace CustomerUpdateParams {
   export interface CustomContactField {
     /**
      * The name of the contact field (e.g., "old address", "secondary phone").
+     *
+     * Maximum length: 40 characters.
      */
     name: string;
 
     /**
      * The value of the contact field.
+     *
+     * Maximum length: 255 characters.
      */
     value: string;
   }
@@ -2371,6 +2488,8 @@ export namespace CustomerUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2413,6 +2532,8 @@ export namespace CustomerUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 

@@ -202,8 +202,8 @@ export namespace PriceLevel {
   export interface PerItemPriceLevel {
     /**
      * The fixed amount custom price for this per-item price level that overrides the
-     * standard price for the specified item. Used when setting an absolute price value
-     * for the item in this price level.
+     * standard price for the specified item, represented as a decimal string. Used
+     * when setting an absolute price value for the item in this price level.
      */
     customPrice: string | null;
 
@@ -347,8 +347,11 @@ export namespace PriceLevelCreateParams {
 
     /**
      * The fixed amount custom price for this per-item price level that overrides the
-     * standard price for the specified item. Used when setting an absolute price value
-     * for the item in this price level.
+     * standard price for the specified item, represented as a decimal string. Used
+     * when setting an absolute price value for the item in this price level.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     customPrice?: string;
 
@@ -458,8 +461,11 @@ export namespace PriceLevelUpdateParams {
 
     /**
      * The fixed amount custom price for this per-item price level that overrides the
-     * standard price for the specified item. Used when setting an absolute price value
-     * for the item in this price level.
+     * standard price for the specified item, represented as a decimal string. Used
+     * when setting an absolute price value for the item in this price level.
+     *
+     * Decimal string format: up to 5 decimal places and up to 10 digits before the
+     * decimal point (for example, "123.45").
      */
     customPrice?: string;
 

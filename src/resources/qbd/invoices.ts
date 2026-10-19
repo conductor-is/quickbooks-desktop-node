@@ -1995,6 +1995,8 @@ export interface InvoiceCreateParams {
   /**
    * Body param: A memo or note for this invoice that appears in reports, but not on
    * the invoice. Use `customerMessage` to add a note to this invoice.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -2006,6 +2008,8 @@ export interface InvoiceCreateParams {
    * other standard QuickBooks fields. Unlike `otherCustomField1` and
    * `otherCustomField2`, which are line item fields, this exists at the transaction
    * level. Hidden by default in the QuickBooks UI.
+   *
+   * Maximum length: 29 characters.
    */
   otherCustomField?: string;
 
@@ -2146,6 +2150,8 @@ export namespace InvoiceCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2188,6 +2194,8 @@ export namespace InvoiceCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2251,6 +2259,8 @@ export namespace InvoiceCreateParams {
     /**
      * The unit-of-measure used for the `quantity` in this invoice line group. Must be
      * a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2260,6 +2270,8 @@ export namespace InvoiceCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2312,6 +2324,8 @@ export namespace InvoiceCreateParams {
 
     /**
      * A description of this invoice line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2372,6 +2386,8 @@ export namespace InvoiceCreateParams {
     /**
      * The lot number of the item associated with this invoice line. Used for tracking
      * groups of inventory items that are purchased or manufactured together.
+     *
+     * Maximum length: 40 characters.
      */
     lotNumber?: string;
 
@@ -2381,6 +2397,8 @@ export namespace InvoiceCreateParams {
      * standard QuickBooks field that exists for all invoice lines for convenience.
      * Developers often use this field for tracking information that doesn't fit into
      * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField1?: string;
 
@@ -2391,6 +2409,8 @@ export namespace InvoiceCreateParams {
      * convenience. Like `otherCustomField1`, developers often use this field for
      * tracking information that doesn't fit into other standard QuickBooks fields.
      * Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField2?: string;
 
@@ -2454,6 +2474,8 @@ export namespace InvoiceCreateParams {
     /**
      * The serial number of the item associated with this invoice line. This is used
      * for tracking individual units of serialized inventory items.
+     *
+     * Maximum length: 4095 characters.
      */
     serialNumber?: string;
 
@@ -2466,6 +2488,8 @@ export namespace InvoiceCreateParams {
     /**
      * The unit-of-measure used for the `quantity` in this invoice line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2475,6 +2499,8 @@ export namespace InvoiceCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2554,6 +2580,8 @@ export namespace InvoiceCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2596,6 +2624,8 @@ export namespace InvoiceCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2752,6 +2782,8 @@ export interface InvoiceUpdateParams {
   /**
    * Body param: A memo or note for this invoice that appears in reports, but not on
    * the invoice. Use `customerMessage` to add a note to this invoice.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -2763,6 +2795,8 @@ export interface InvoiceUpdateParams {
    * other standard QuickBooks fields. Unlike `otherCustomField1` and
    * `otherCustomField2`, which are line item fields, this exists at the transaction
    * level. Hidden by default in the QuickBooks UI.
+   *
+   * Maximum length: 29 characters.
    */
   otherCustomField?: string;
 
@@ -2906,6 +2940,8 @@ export namespace InvoiceUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2948,6 +2984,8 @@ export namespace InvoiceUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -3028,6 +3066,8 @@ export namespace InvoiceUpdateParams {
     /**
      * The unit-of-measure used for the `quantity` in this invoice line group. Must be
      * a valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -3065,6 +3105,8 @@ export namespace InvoiceUpdateParams {
 
       /**
        * A description of this invoice line.
+       *
+       * Maximum length: 4095 characters.
        */
       description?: string;
 
@@ -3091,6 +3133,8 @@ export namespace InvoiceUpdateParams {
       /**
        * The lot number of the item associated with this invoice line. Used for tracking
        * groups of inventory items that are purchased or manufactured together.
+       *
+       * Maximum length: 40 characters.
        */
       lotNumber?: string;
 
@@ -3100,6 +3144,8 @@ export namespace InvoiceUpdateParams {
        * standard QuickBooks field that exists for all invoice lines for convenience.
        * Developers often use this field for tracking information that doesn't fit into
        * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+       *
+       * Maximum length: 29 characters.
        */
       otherCustomField1?: string;
 
@@ -3110,6 +3156,8 @@ export namespace InvoiceUpdateParams {
        * convenience. Like `otherCustomField1`, developers often use this field for
        * tracking information that doesn't fit into other standard QuickBooks fields.
        * Hidden by default in the QuickBooks UI.
+       *
+       * Maximum length: 29 characters.
        */
       otherCustomField2?: string;
 
@@ -3188,6 +3236,8 @@ export namespace InvoiceUpdateParams {
       /**
        * The serial number of the item associated with this invoice line. This is used
        * for tracking individual units of serialized inventory items.
+       *
+       * Maximum length: 4095 characters.
        */
       serialNumber?: string;
 
@@ -3200,6 +3250,8 @@ export namespace InvoiceUpdateParams {
       /**
        * The unit-of-measure used for the `quantity` in this invoice line. Must be a
        * valid unit within the item's available units of measure.
+       *
+       * Maximum length: 31 characters.
        */
       unitOfMeasure?: string;
     }
@@ -3237,6 +3289,8 @@ export namespace InvoiceUpdateParams {
 
     /**
      * A description of this invoice line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -3263,6 +3317,8 @@ export namespace InvoiceUpdateParams {
     /**
      * The lot number of the item associated with this invoice line. Used for tracking
      * groups of inventory items that are purchased or manufactured together.
+     *
+     * Maximum length: 40 characters.
      */
     lotNumber?: string;
 
@@ -3272,6 +3328,8 @@ export namespace InvoiceUpdateParams {
      * standard QuickBooks field that exists for all invoice lines for convenience.
      * Developers often use this field for tracking information that doesn't fit into
      * other standard QuickBooks fields. Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField1?: string;
 
@@ -3282,6 +3340,8 @@ export namespace InvoiceUpdateParams {
      * convenience. Like `otherCustomField1`, developers often use this field for
      * tracking information that doesn't fit into other standard QuickBooks fields.
      * Hidden by default in the QuickBooks UI.
+     *
+     * Maximum length: 29 characters.
      */
     otherCustomField2?: string;
 
@@ -3360,6 +3420,8 @@ export namespace InvoiceUpdateParams {
     /**
      * The serial number of the item associated with this invoice line. This is used
      * for tracking individual units of serialized inventory items.
+     *
+     * Maximum length: 4095 characters.
      */
     serialNumber?: string;
 
@@ -3372,6 +3434,8 @@ export namespace InvoiceUpdateParams {
     /**
      * The unit-of-measure used for the `quantity` in this invoice line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -3389,6 +3453,8 @@ export namespace InvoiceUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -3431,6 +3497,8 @@ export namespace InvoiceUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 

@@ -1902,6 +1902,8 @@ export interface BillCreateParams {
   /**
    * Body param: A memo or note for this bill that appears in the Accounts-Payable
    * register and in reports that include this bill.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -1991,6 +1993,8 @@ export namespace BillCreateParams {
 
     /**
      * A memo or note for this expense line.
+     *
+     * Maximum length: 4095 characters.
      */
     memo?: string;
 
@@ -2026,6 +2030,8 @@ export namespace BillCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2085,6 +2091,8 @@ export namespace BillCreateParams {
     /**
      * The unit-of-measure used for the `quantity` in this item group line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2094,6 +2102,8 @@ export namespace BillCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2166,6 +2176,8 @@ export namespace BillCreateParams {
 
     /**
      * A description of this item line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2235,6 +2247,8 @@ export namespace BillCreateParams {
     /**
      * The lot number of the item associated with this item line. Used for tracking
      * groups of inventory items that are purchased or manufactured together.
+     *
+     * Maximum length: 40 characters.
      */
     lotNumber?: string;
 
@@ -2274,12 +2288,16 @@ export namespace BillCreateParams {
     /**
      * The serial number of the item associated with this item line. This is used for
      * tracking individual units of serialized inventory items.
+     *
+     * Maximum length: 4095 characters.
      */
     serialNumber?: string;
 
     /**
      * The unit-of-measure used for the `quantity` in this item line. Must be a valid
      * unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2289,6 +2307,8 @@ export namespace BillCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2369,6 +2389,8 @@ export namespace BillCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2411,6 +2433,8 @@ export namespace BillCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2536,6 +2560,8 @@ export interface BillUpdateParams {
   /**
    * Body param: A memo or note for this bill that appears in the Accounts-Payable
    * register and in reports that include this bill.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -2635,6 +2661,8 @@ export namespace BillUpdateParams {
 
     /**
      * A memo or note for this expense line.
+     *
+     * Maximum length: 4095 characters.
      */
     memo?: string;
 
@@ -2725,6 +2753,8 @@ export namespace BillUpdateParams {
     /**
      * The unit-of-measure used for the `quantity` in this item group line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2782,6 +2812,8 @@ export namespace BillUpdateParams {
 
       /**
        * A description of this item line.
+       *
+       * Maximum length: 4095 characters.
        */
       description?: string;
 
@@ -2816,6 +2848,8 @@ export namespace BillUpdateParams {
       /**
        * The lot number of the item associated with this item line. Used for tracking
        * groups of inventory items that are purchased or manufactured together.
+       *
+       * Maximum length: 40 characters.
        */
       lotNumber?: string;
 
@@ -2870,12 +2904,16 @@ export namespace BillUpdateParams {
       /**
        * The serial number of the item associated with this item line. This is used for
        * tracking individual units of serialized inventory items.
+       *
+       * Maximum length: 4095 characters.
        */
       serialNumber?: string;
 
       /**
        * The unit-of-measure used for the `quantity` in this item line. Must be a valid
        * unit within the item's available units of measure.
+       *
+       * Maximum length: 31 characters.
        */
       unitOfMeasure?: string;
     }
@@ -2933,6 +2971,8 @@ export namespace BillUpdateParams {
 
     /**
      * A description of this item line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2967,6 +3007,8 @@ export namespace BillUpdateParams {
     /**
      * The lot number of the item associated with this item line. Used for tracking
      * groups of inventory items that are purchased or manufactured together.
+     *
+     * Maximum length: 40 characters.
      */
     lotNumber?: string;
 
@@ -3021,12 +3063,16 @@ export namespace BillUpdateParams {
     /**
      * The serial number of the item associated with this item line. This is used for
      * tracking individual units of serialized inventory items.
+     *
+     * Maximum length: 4095 characters.
      */
     serialNumber?: string;
 
     /**
      * The unit-of-measure used for the `quantity` in this item line. Must be a valid
      * unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -3044,6 +3090,8 @@ export namespace BillUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -3086,6 +3134,8 @@ export namespace BillUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 

@@ -1834,6 +1834,8 @@ export interface CheckCreateParams {
 
   /**
    * Body param: The memo that is printed on this check.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -1883,6 +1885,8 @@ export namespace CheckCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -1925,6 +1929,8 @@ export namespace CheckCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -1998,6 +2004,8 @@ export namespace CheckCreateParams {
 
     /**
      * A memo or note for this expense line.
+     *
+     * Maximum length: 4095 characters.
      */
     memo?: string;
 
@@ -2033,6 +2041,8 @@ export namespace CheckCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2092,6 +2102,8 @@ export namespace CheckCreateParams {
     /**
      * The unit-of-measure used for the `quantity` in this item group line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2101,6 +2113,8 @@ export namespace CheckCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2173,6 +2187,8 @@ export namespace CheckCreateParams {
 
     /**
      * A description of this item line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2242,6 +2258,8 @@ export namespace CheckCreateParams {
     /**
      * The lot number of the item associated with this item line. Used for tracking
      * groups of inventory items that are purchased or manufactured together.
+     *
+     * Maximum length: 40 characters.
      */
     lotNumber?: string;
 
@@ -2281,12 +2299,16 @@ export namespace CheckCreateParams {
     /**
      * The serial number of the item associated with this item line. This is used for
      * tracking individual units of serialized inventory items.
+     *
+     * Maximum length: 4095 characters.
      */
     serialNumber?: string;
 
     /**
      * The unit-of-measure used for the `quantity` in this item line. Must be a valid
      * unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2296,6 +2318,8 @@ export namespace CheckCreateParams {
       /**
        * The name of the custom field, unique for the specified `ownerId`. For public
        * custom fields, this name is visible as a label in the QuickBooks UI.
+       *
+       * Maximum length: 31 characters.
        */
       name: string;
 
@@ -2495,6 +2519,8 @@ export interface CheckUpdateParams {
 
   /**
    * Body param: The memo that is printed on this check.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -2547,6 +2573,8 @@ export namespace CheckUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -2589,6 +2617,8 @@ export namespace CheckUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -2664,6 +2694,8 @@ export namespace CheckUpdateParams {
 
     /**
      * A memo or note for this expense line.
+     *
+     * Maximum length: 4095 characters.
      */
     memo?: string;
 
@@ -2754,6 +2786,8 @@ export namespace CheckUpdateParams {
     /**
      * The unit-of-measure used for the `quantity` in this item group line. Must be a
      * valid unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }
@@ -2811,6 +2845,8 @@ export namespace CheckUpdateParams {
 
       /**
        * A description of this item line.
+       *
+       * Maximum length: 4095 characters.
        */
       description?: string;
 
@@ -2845,6 +2881,8 @@ export namespace CheckUpdateParams {
       /**
        * The lot number of the item associated with this item line. Used for tracking
        * groups of inventory items that are purchased or manufactured together.
+       *
+       * Maximum length: 40 characters.
        */
       lotNumber?: string;
 
@@ -2899,12 +2937,16 @@ export namespace CheckUpdateParams {
       /**
        * The serial number of the item associated with this item line. This is used for
        * tracking individual units of serialized inventory items.
+       *
+       * Maximum length: 4095 characters.
        */
       serialNumber?: string;
 
       /**
        * The unit-of-measure used for the `quantity` in this item line. Must be a valid
        * unit within the item's available units of measure.
+       *
+       * Maximum length: 31 characters.
        */
       unitOfMeasure?: string;
     }
@@ -2962,6 +3004,8 @@ export namespace CheckUpdateParams {
 
     /**
      * A description of this item line.
+     *
+     * Maximum length: 4095 characters.
      */
     description?: string;
 
@@ -2996,6 +3040,8 @@ export namespace CheckUpdateParams {
     /**
      * The lot number of the item associated with this item line. Used for tracking
      * groups of inventory items that are purchased or manufactured together.
+     *
+     * Maximum length: 40 characters.
      */
     lotNumber?: string;
 
@@ -3050,12 +3096,16 @@ export namespace CheckUpdateParams {
     /**
      * The serial number of the item associated with this item line. This is used for
      * tracking individual units of serialized inventory items.
+     *
+     * Maximum length: 4095 characters.
      */
     serialNumber?: string;
 
     /**
      * The unit-of-measure used for the `quantity` in this item line. Must be a valid
      * unit within the item's available units of measure.
+     *
+     * Maximum length: 31 characters.
      */
     unitOfMeasure?: string;
   }

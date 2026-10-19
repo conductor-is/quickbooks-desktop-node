@@ -433,6 +433,8 @@ export interface DiscountItemCreateParams {
   /**
    * Body param: The discount item's description that will appear on sales forms that
    * include this item.
+   *
+   * Maximum length: 4095 characters.
    */
   description?: string;
 
@@ -515,6 +517,8 @@ export namespace DiscountItemCreateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }
@@ -562,6 +566,8 @@ export interface DiscountItemUpdateParams {
   /**
    * Body param: The discount item's description that will appear on sales forms that
    * include this item.
+   *
+   * Maximum length: 4095 characters.
    */
   description?: string;
 
@@ -655,6 +661,8 @@ export namespace DiscountItemUpdateParams {
 
     /**
      * The item's barcode value.
+     *
+     * Maximum length: 50 characters.
      */
     value?: string;
   }

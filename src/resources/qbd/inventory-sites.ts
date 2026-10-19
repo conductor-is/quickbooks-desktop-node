@@ -312,11 +312,15 @@ export interface InventorySiteCreateParams {
 
   /**
    * Body param: A description of this inventory site.
+   *
+   * Maximum length: 100 characters.
    */
   description?: string;
 
   /**
    * Body param: The inventory site's email address.
+   *
+   * Maximum length: 1023 characters.
    */
   email?: string;
 
@@ -346,6 +350,8 @@ export namespace InventorySiteCreateParams {
 
     /**
      * The country name of the site address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -429,16 +435,22 @@ export interface InventorySiteUpdateParams {
 
   /**
    * Body param: The name of the primary contact person for this inventory site.
+   *
+   * Maximum length: 41 characters.
    */
   contact?: string;
 
   /**
    * Body param: A description of this inventory site.
+   *
+   * Maximum length: 100 characters.
    */
   description?: string;
 
   /**
    * Body param: The inventory site's email address.
+   *
+   * Maximum length: 1023 characters.
    */
   email?: string;
 
@@ -494,6 +506,8 @@ export namespace InventorySiteUpdateParams {
 
     /**
      * The country name of the site address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 

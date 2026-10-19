@@ -592,6 +592,8 @@ export interface SalesTaxPaymentCheckCreateParams {
 
   /**
    * Body param: A memo or note for this sales-tax payment check.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -640,6 +642,8 @@ export namespace SalesTaxPaymentCheckCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -682,6 +686,8 @@ export namespace SalesTaxPaymentCheckCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -742,6 +748,8 @@ export interface SalesTaxPaymentCheckUpdateParams {
 
   /**
    * Body param: A memo or note for this sales-tax payment check.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -778,6 +786,8 @@ export namespace SalesTaxPaymentCheckUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -820,6 +830,8 @@ export namespace SalesTaxPaymentCheckUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 

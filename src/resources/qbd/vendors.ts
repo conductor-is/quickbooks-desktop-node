@@ -906,6 +906,8 @@ export interface VendorCreateParams {
    * Note that if the "Use Account Numbers" preference is turned off in QuickBooks,
    * the account number may not be visible in the user interface, but it can still be
    * set and retrieved through the API.
+   *
+   * Maximum length: 99 characters.
    */
   accountNumber?: string;
 
@@ -921,6 +923,8 @@ export interface VendorCreateParams {
 
   /**
    * Body param: The name of a alternate contact person for this vendor.
+   *
+   * Maximum length: 41 characters.
    */
   alternateContact?: string;
 
@@ -945,6 +949,8 @@ export interface VendorCreateParams {
   /**
    * Body param: An email address to carbon copy (CC) on communications with this
    * vendor.
+   *
+   * Maximum length: 1023 characters.
    */
   ccEmail?: string;
 
@@ -965,6 +971,8 @@ export interface VendorCreateParams {
 
   /**
    * Body param: The name of the primary contact person for this vendor.
+   *
+   * Maximum length: 41 characters.
    */
   contact?: string;
 
@@ -972,6 +980,9 @@ export interface VendorCreateParams {
    * Body param: The vendor's credit limit, represented as a decimal string. This is
    * the maximum amount of money that can be spent being before billed by this
    * vendor. If `null`, there is no credit limit.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   creditLimit?: string;
 
@@ -995,6 +1006,8 @@ export interface VendorCreateParams {
 
   /**
    * Body param: The vendor's email address.
+   *
+   * Maximum length: 1023 characters.
    */
   email?: string;
 
@@ -1060,6 +1073,8 @@ export interface VendorCreateParams {
 
   /**
    * Body param: The job title of the contact person for this vendor.
+   *
+   * Maximum length: 41 characters.
    */
   jobTitle?: string;
 
@@ -1087,12 +1102,17 @@ export interface VendorCreateParams {
 
   /**
    * Body param: A note or comment about this vendor.
+   *
+   * Maximum length: 4095 characters.
    */
   note?: string;
 
   /**
    * Body param: The opening balance of this vendor's account, indicating the amount
    * owed to this vendor, represented as a decimal string.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   openingBalance?: string;
 
@@ -1153,6 +1173,8 @@ export interface VendorCreateParams {
   /**
    * Body param: The formal salutation title that precedes the name of the contact
    * person for this vendor, such as "Mr.", "Ms.", or "Dr.".
+   *
+   * Maximum length: 15 characters.
    */
   salutation?: string;
 
@@ -1163,11 +1185,15 @@ export interface VendorCreateParams {
 
   /**
    * Body param: The vendor's tax identification number (e.g., EIN or SSN).
+   *
+   * Maximum length: 15 characters.
    */
   taxIdentificationNumber?: string;
 
   /**
    * Body param: The vendor's tax registration number, for use in Canada or the UK.
+   *
+   * Maximum length: 30 characters.
    */
   taxRegistrationNumber?: string;
 
@@ -1201,6 +1227,8 @@ export namespace VendorCreateParams {
 
     /**
      * The contact's job title.
+     *
+     * Maximum length: 41 characters.
      */
     jobTitle?: string;
 
@@ -1221,6 +1249,8 @@ export namespace VendorCreateParams {
     /**
      * The contact's formal salutation title that precedes their name, such as "Mr.",
      * "Ms.", or "Dr.".
+     *
+     * Maximum length: 15 characters.
      */
     salutation?: string;
   }
@@ -1229,11 +1259,15 @@ export namespace VendorCreateParams {
     export interface CustomContactField {
       /**
        * The name of the contact field (e.g., "old address", "secondary phone").
+       *
+       * Maximum length: 40 characters.
        */
       name: string;
 
       /**
        * The value of the contact field.
+       *
+       * Maximum length: 255 characters.
        */
       value: string;
     }
@@ -1242,6 +1276,8 @@ export namespace VendorCreateParams {
   export interface AdditionalNote {
     /**
      * The text of this note.
+     *
+     * Maximum length: 4095 characters.
      */
     note: string;
   }
@@ -1259,6 +1295,8 @@ export namespace VendorCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -1301,6 +1339,8 @@ export namespace VendorCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -1322,11 +1362,15 @@ export namespace VendorCreateParams {
   export interface CustomContactField {
     /**
      * The name of the contact field (e.g., "old address", "secondary phone").
+     *
+     * Maximum length: 40 characters.
      */
     name: string;
 
     /**
      * The value of the contact field.
+     *
+     * Maximum length: 255 characters.
      */
     value: string;
   }
@@ -1344,6 +1388,8 @@ export namespace VendorCreateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -1386,6 +1432,8 @@ export namespace VendorCreateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -1433,6 +1481,8 @@ export interface VendorUpdateParams {
    * Note that if the "Use Account Numbers" preference is turned off in QuickBooks,
    * the account number may not be visible in the user interface, but it can still be
    * set and retrieved through the API.
+   *
+   * Maximum length: 99 characters.
    */
   accountNumber?: string;
 
@@ -1448,6 +1498,8 @@ export interface VendorUpdateParams {
 
   /**
    * Body param: The name of a alternate contact person for this vendor.
+   *
+   * Maximum length: 41 characters.
    */
   alternateContact?: string;
 
@@ -1472,6 +1524,8 @@ export interface VendorUpdateParams {
   /**
    * Body param: An email address to carbon copy (CC) on communications with this
    * vendor.
+   *
+   * Maximum length: 1023 characters.
    */
   ccEmail?: string;
 
@@ -1492,6 +1546,8 @@ export interface VendorUpdateParams {
 
   /**
    * Body param: The name of the primary contact person for this vendor.
+   *
+   * Maximum length: 41 characters.
    */
   contact?: string;
 
@@ -1499,6 +1555,9 @@ export interface VendorUpdateParams {
    * Body param: The vendor's credit limit, represented as a decimal string. This is
    * the maximum amount of money that can be spent being before billed by this
    * vendor. If `null`, there is no credit limit.
+   *
+   * Decimal string format: exactly 2 decimal places when cents are included and up
+   * to 13 digits before the decimal point (for example, "123.45").
    */
   creditLimit?: string;
 
@@ -1522,6 +1581,8 @@ export interface VendorUpdateParams {
 
   /**
    * Body param: The vendor's email address.
+   *
+   * Maximum length: 1023 characters.
    */
   email?: string;
 
@@ -1577,6 +1638,8 @@ export interface VendorUpdateParams {
 
   /**
    * Body param: The job title of the contact person for this vendor.
+   *
+   * Maximum length: 41 characters.
    */
   jobTitle?: string;
 
@@ -1616,6 +1679,8 @@ export interface VendorUpdateParams {
 
   /**
    * Body param: A note or comment about this vendor.
+   *
+   * Maximum length: 4095 characters.
    */
   note?: string;
 
@@ -1670,6 +1735,8 @@ export interface VendorUpdateParams {
   /**
    * Body param: The formal salutation title that precedes the name of the contact
    * person for this vendor, such as "Mr.", "Ms.", or "Dr.".
+   *
+   * Maximum length: 15 characters.
    */
   salutation?: string;
 
@@ -1680,11 +1747,15 @@ export interface VendorUpdateParams {
 
   /**
    * Body param: The vendor's tax identification number (e.g., EIN or SSN).
+   *
+   * Maximum length: 15 characters.
    */
   taxIdentificationNumber?: string;
 
   /**
    * Body param: The vendor's tax registration number, for use in Canada or the UK.
+   *
+   * Maximum length: 30 characters.
    */
   taxRegistrationNumber?: string;
 
@@ -1731,6 +1802,8 @@ export namespace VendorUpdateParams {
 
     /**
      * The contact's job title.
+     *
+     * Maximum length: 41 characters.
      */
     jobTitle?: string;
 
@@ -1751,6 +1824,8 @@ export namespace VendorUpdateParams {
     /**
      * The contact's formal salutation title that precedes their name, such as "Mr.",
      * "Ms.", or "Dr.".
+     *
+     * Maximum length: 15 characters.
      */
     salutation?: string;
   }
@@ -1759,11 +1834,15 @@ export namespace VendorUpdateParams {
     export interface CustomContactField {
       /**
        * The name of the contact field (e.g., "old address", "secondary phone").
+       *
+       * Maximum length: 40 characters.
        */
       name: string;
 
       /**
        * The value of the contact field.
+       *
+       * Maximum length: 255 characters.
        */
       value: string;
     }
@@ -1777,6 +1856,8 @@ export namespace VendorUpdateParams {
 
     /**
      * The text of this note.
+     *
+     * Maximum length: 4095 characters.
      */
     note: string;
   }
@@ -1794,6 +1875,8 @@ export namespace VendorUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -1836,6 +1919,8 @@ export namespace VendorUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 
@@ -1857,11 +1942,15 @@ export namespace VendorUpdateParams {
   export interface CustomContactField {
     /**
      * The name of the contact field (e.g., "old address", "secondary phone").
+     *
+     * Maximum length: 40 characters.
      */
     name: string;
 
     /**
      * The value of the contact field.
+     *
+     * Maximum length: 255 characters.
      */
     value: string;
   }
@@ -1879,6 +1968,8 @@ export namespace VendorUpdateParams {
 
     /**
      * The country name of the address.
+     *
+     * Maximum length: 31 characters.
      */
     country?: string;
 
@@ -1921,6 +2012,8 @@ export namespace VendorUpdateParams {
     /**
      * A note written at the bottom of the address in the form in which it appears,
      * such as the invoice form.
+     *
+     * Maximum length: 41 characters.
      */
     note?: string;
 

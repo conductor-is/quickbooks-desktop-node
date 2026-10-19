@@ -825,6 +825,8 @@ export interface BillCheckPaymentCreateParams {
 
   /**
    * Body param: A memo or note for this bill check payment.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
@@ -993,6 +995,8 @@ export interface BillCheckPaymentUpdateParams {
 
   /**
    * Body param: A memo or note for this bill check payment.
+   *
+   * Maximum length: 4095 characters.
    */
   memo?: string;
 
