@@ -112,4 +112,21 @@ describe('conductor self-hosting patches', () => {
     expect(bridge).toContain("import { VERSION } from './server'");
     expect(bridge).not.toContain(marker);
   });
+
+  test('http.ts mounts the OAuth resource-server patch (tools/call-only key probe)', () => {
+    const http = fs.readFileSync(path.join(pkgRoot, 'src', 'http.ts'), 'utf-8');
+    expect(http).toContain('mountProtectedResourceMetadata(app)');
+    expect(http).toContain("app.post('/', requireCredential(),");
+    const oauth = fs.readFileSync(path.join(pkgRoot, 'src', 'oauth.ts'), 'utf-8');
+    expect(oauth).toContain("'/.well-known/oauth-protected-resource'");
+    expect(oauth).toContain('WWW-Authenticate');
+    expect(oauth).toContain('resource_metadata=');
+    expect(oauth).toContain('CONDUCTOR_MCP_OAUTH_AUTHORIZATION_SERVER_URL');
+    expect(oauth).toContain('CONDUCTOR_MCP_OAUTH_RESOURCE_URL');
+    expect(oauth).toContain('CONDUCTOR_MCP_KEY_PROBE');
+    // Only tools/call is ever probed against the API. Adding initialize here
+    // would turn the Betterstack initialize monitor (dummy Bearer) red and put
+    // an API round trip in front of every connection check.
+    expect(oauth).toContain("PROBED_METHODS: ReadonlySet<string> = new Set(['tools/call'])");
+  });
 });

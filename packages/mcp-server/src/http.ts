@@ -8,6 +8,7 @@ import pino from 'pino';
 import pinoHttp from 'pino-http';
 import { getStainlessApiKey, parseClientAuthHeaders } from './auth';
 import { getLogger } from './logger';
+import { mountProtectedResourceMetadata, requireCredential } from './oauth'; // conductor patch
 import { McpOptions } from './options';
 import { initMcpServer, newMcpServer } from './server';
 
@@ -244,8 +245,11 @@ export const streamableHTTPApp = ({
   app.get('/health', async (req: express.Request, res: express.Response) => {
     res.status(200).send('OK');
   });
+  // OAuth 2.1 resource server (conductor patch, see src/oauth.ts): RFC 9728 metadata, and the
+  // 401 + WWW-Authenticate that makes Claude and other OAuth clients start sign-in.
+  mountProtectedResourceMetadata(app);
   app.get('/', get);
-  app.post('/', post({ clientOptions, mcpOptions }));
+  app.post('/', requireCredential(), post({ clientOptions, mcpOptions }));
   app.delete('/', del);
 
   return app;
