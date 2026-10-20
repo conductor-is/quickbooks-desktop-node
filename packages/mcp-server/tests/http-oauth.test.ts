@@ -312,10 +312,17 @@ describe('structured log lines', () => {
       .map((line) => JSON.parse(line) as Record<string, unknown>);
   }
 
-  it('logs the gate rejection for a missing credential', async () => {
-    await (await post(INITIALIZE)).json();
+  it('logs the gate rejection for a missing credential under the session id the response carries', async () => {
+    const response = await post(INITIALIZE);
+    await response.json();
+    // No mcp-session-id was sent, so this is the UUID http.ts generated; the gate line must carry the
+    // same value as pino-http's request line or the 401 cannot be explained from Render logs.
+    const mcpSessionId = response.headers.get('mcp-session-id');
 
-    expect(lines()).toContainEqual(expect.objectContaining({ level: 'warn', oauthGate: 'missing' }));
+    expect(mcpSessionId).toEqual(expect.any(String));
+    expect(lines()).toContainEqual(
+      expect.objectContaining({ level: 'warn', oauthGate: 'missing', mcpSessionId }),
+    );
   });
 
   it('logs the gate rejection for a non-Bearer scheme', async () => {
