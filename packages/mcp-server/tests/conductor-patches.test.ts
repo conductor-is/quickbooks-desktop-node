@@ -129,4 +129,12 @@ describe('conductor self-hosting patches', () => {
     // an API round trip in front of every connection check.
     expect(oauth).toContain("PROBED_METHODS: ReadonlySet<string> = new Set(['tools/call'])");
   });
+
+  test('README.md keeps the sealed hosted sign-in paragraph and stdio parenthetical', () => {
+    // Both are sealed hunks in a generated file (selfhost/DEPLOYS.md); a regeneration that drops them
+    // would send Claude Desktop users back to the stdio bridge with CI still green.
+    const readme = fs.readFileSync(path.join(pkgRoot, 'README.md'), 'utf-8');
+    expect(readme).toContain('add that URL as a custom connector and sign in');
+    expect(readme).toContain('(for a client with no remote-server support)');
+  });
 });

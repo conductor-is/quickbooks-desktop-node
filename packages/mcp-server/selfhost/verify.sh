@@ -54,7 +54,7 @@ else
   fail "instructions sha256 (got $SHA)"
 fi
 
-# --- 2. tools/list parity (no auth, no prior initialize; proves statelessness too)
+# --- 2. tools/list parity (dummy Bearer, no prior initialize; proves statelessness too)
 for H in "$OLD" "$NEW"; do
   curl -s -X POST "$H/" -H "$CT" -H "$ACC" -H "$PARITY" \
     -d '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
@@ -79,8 +79,8 @@ R=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$NEW/" -H "$CT" -H "$PARITY"
 [ "$R" = "406" ] && pass "POST without SSE Accept is 406" || fail "expected 406, got $R"
 
 # --- 4. Credential-less POST initialize is 401 with the exact WWW-Authenticate
-# ---    challenge (OAuth 2.1 resource server, src/oauth.ts); this also PROVES
-# ---    the service env holds no key that could stand in for the caller's
+# ---    challenge (OAuth 2.1 resource server, src/oauth.ts). The gate never reads a
+# ---    key from env (only the request's headers), so env containment is probe 11 (needs TEST_KEY).
 H4=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" \
   -d '{"jsonrpc":"2.0","id":3,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"x","version":"1"}}}')
 echo "$H4" | head -1 | grep -q ' 401' && pass "credential-less initialize is 401" || fail "credential-less initialize expected 401; got: $(echo "$H4" | head -1)"
