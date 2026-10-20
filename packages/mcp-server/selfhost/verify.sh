@@ -168,7 +168,7 @@ if [ -n "${TEST_KEY:-}" ] && [ -n "${RUN_SLOW:-}" ]; then
   sleep 2
   S=$(curl -s -o /dev/null -w '%{http_code}' "$NEW/health")
   [ "$S" = "200" ] && pass "/health 200 immediately after timeout (no crash)" || fail "server health after timeout: $S"
-  N=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -d '{"jsonrpc":"2.0","id":90,"method":"tools/list"}' | grep -c 'search_docs')
+  N=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -H "$PARITY" -d '{"jsonrpc":"2.0","id":90,"method":"tools/list"}' | grep -c 'search_docs')
   [ "$N" -ge 1 ] && pass "tools/list still serves after timeout" || fail "tools/list after timeout"
 else
   echo "SKIP: probes 8, 8b, 9 (set TEST_KEY and RUN_SLOW=1; takes ~12 minutes)"
