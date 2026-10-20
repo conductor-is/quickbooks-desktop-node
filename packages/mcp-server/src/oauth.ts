@@ -110,7 +110,9 @@ export function requireCredential(): express.RequestHandler {
   return async (req, res, next) => {
     const config = getOAuthResourceConfig();
     const credential = extractCredential(req);
-    const mcpSessionId = firstHeaderValue(req.headers['mcp-session-id']);
+    // Set by http.ts's session middleware (the request's own header or a fresh UUID), so the gate and probe
+    // lines join pino-http's request line even on a first-contact 401 that carried no mcp-session-id.
+    const mcpSessionId = (req as any).mcpSessionId as string | undefined;
     if (credential.kind === 'missing') {
       return reject(req, res, config, 'missing', undefined, 'Sign in to Conductor to use this MCP server');
     }
@@ -156,7 +158,7 @@ function reject(
   description: string,
 ): void {
   getLogger().warn(
-    { mcpSessionId: firstHeaderValue(req.headers['mcp-session-id']), oauthGate: gate },
+    { mcpSessionId: (req as any).mcpSessionId, oauthGate: gate },
     'OAuth gate rejected request',
   );
   res
@@ -306,8 +308,4 @@ async function discardBody(response: Response): Promise<void> {
 function mediaTypeOf(contentType: string | null): string | null {
   const mediaType = contentType?.split(';')[0]?.trim().toLowerCase();
   return mediaType ? mediaType : null;
-}
-
-function firstHeaderValue(value: string | string[] | undefined): string | undefined {
-  return Array.isArray(value) ? value[0] : value;
 }
