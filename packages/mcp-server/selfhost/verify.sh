@@ -7,6 +7,7 @@
 #   NEW=https://mcp.conductor.is TEST_KEY=sk_... ./verify.sh          # + auth probes
 #   NEW=... TEST_KEY=... RUN_SLOW=1 ./verify.sh        # + slow probes 8/8b/9 (~12 min)
 # Parity probes send a dummy Bearer (PARITY; initialize/tools/list are never probed); TEST_KEY gates 5a too.
+# Probes 4b and 6b cover the read-only connector URL ($NEW/read-only, both spellings on the wire); 6b needs TEST_KEY.
 #
 # OLD defaults to the retired Stainless host; parity diffs against it only work
 # while it is still live (pre Sept 1, 2026). After that, self-diff against
@@ -88,6 +89,30 @@ WA=$(echo "$H4" | grep -i '^www-authenticate:' | sed 's/^[^:]*: //' | tr -d '\r'
 EXPECT_WA="Bearer resource_metadata=\"$NEW/.well-known/oauth-protected-resource\""
 [ "$WA" = "$EXPECT_WA" ] && pass "www-authenticate names the protected resource metadata" || fail "www-authenticate expected $EXPECT_WA; got: $WA"
 
+# --- 4b. Read-only connector URL: same gate with the read-only metadata hint on both spellings; its
+# ---     document (both spellings) names $NEW/read-only (no slash) and the same authorization server;
+# ---     GET/DELETE are 405, never a redirect.
+for P in /read-only /read-only/; do
+  H4B=$(curl -si -X POST "$NEW$P" -H "$CT" -H "$ACC" \
+    -d '{"jsonrpc":"2.0","id":3,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"x","version":"1"}}}')
+  echo "$H4B" | head -1 | grep -q ' 401' && pass "credential-less initialize on $P is 401" || fail "credential-less initialize on $P expected 401; got: $(echo "$H4B" | head -1)"
+  WA=$(echo "$H4B" | grep -i '^www-authenticate:' | sed 's/^[^:]*: //' | tr -d '\r')
+  EXPECT_WA="Bearer resource_metadata=\"$NEW/.well-known/oauth-protected-resource/read-only\""
+  [ "$WA" = "$EXPECT_WA" ] && pass "www-authenticate on $P names the read-only metadata" || fail "www-authenticate on $P expected $EXPECT_WA; got: $WA"
+done
+AS_ROOT=$(curl -s "$NEW/.well-known/oauth-protected-resource" | jq -r '.authorization_servers[0]')
+for P in read-only read-only/; do
+  DOC=$(curl -s "$NEW/.well-known/oauth-protected-resource/$P")
+  R=$(echo "$DOC" | jq -r '.resource')
+  [ "$R" = "$NEW/read-only" ] && pass "read-only metadata ($P) resource is $NEW/read-only" || fail "read-only metadata ($P) resource expected $NEW/read-only; got: $R"
+  A=$(echo "$DOC" | jq -r '.authorization_servers[0]')
+  [ "$A" = "$AS_ROOT" ] && pass "read-only metadata ($P) names the same authorization server" || fail "read-only metadata ($P) authorization server $A differs from root $AS_ROOT"
+done
+S=$(curl -s -o /dev/null -w '%{http_code}' "$NEW/read-only")
+[ "$S" = "405" ] && pass "GET /read-only is 405" || fail "GET /read-only expected 405, got $S"
+S=$(curl -s -o /dev/null -w '%{http_code}' -X DELETE "$NEW/read-only/")
+[ "$S" = "405" ] && pass "DELETE /read-only/ is 405" || fail "DELETE /read-only/ expected 405, got $S"
+
 # --- 5. Bad auth scheme is 401 invalid_request (was a 500 HTML stack trace)
 H5=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" -H 'authorization: Basic foo' \
   -d '{"jsonrpc":"2.0","id":5,"method":"tools/list"}')
@@ -120,6 +145,20 @@ if [ -n "${TEST_KEY:-}" ]; then
   # hosted server returned ONE text block (JSON of {result, log_lines}); local
   # mode returns SEPARATE return-value/log text blocks. Eyeball; do not diff.
 
+  # --- 6b. Read-only connector URL: the GET snippet runs; a snippet that names a write method is blocked
+  # ---     before it runs, a client header cannot loosen it, and the same snippet on / is not blocked (it
+  # ---     only returns the method name as a string, so nothing is created). Functional checks of the
+  # ---     name-substring block, not security proofs: raw conductor.post/put/delete are not blocked.
+  B=$(curl -s -X POST "$NEW/read-only" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -d "$BODY")
+  echo "$B" | grep -q '"ok"' && ! echo "$B" | grep -q '"isError":true' && pass "execute GET on /read-only" || fail "execute GET on /read-only; got: $(echo "$B" | head -c 300)"
+  RO_BODY=$(jq -n '{jsonrpc:"2.0",id:66,method:"tools/call",params:{name:"execute",arguments:{code:"async function run(conductor) { return \"endUsers.create\"; }"}}}')
+  B=$(curl -s -X POST "$NEW/read-only" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -d "$RO_BODY")
+  echo "$B" | grep -q 'blocked by the MCP server' && pass "write name blocked on /read-only" || fail "write name on /read-only; got: $(echo "$B" | head -c 300)"
+  B=$(curl -s -X POST "$NEW/read-only/" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -H 'x-stainless-mcp-client-permissions: {"allow_http_gets":false}' -d "$RO_BODY")
+  echo "$B" | grep -q 'blocked by the MCP server' && pass "client header cannot loosen /read-only/" || fail "client header loosened /read-only/; got: $(echo "$B" | head -c 300)"
+  B=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -d "$RO_BODY")
+  echo "$B" | grep -q 'endUsers.create' && ! echo "$B" | grep -q 'blocked by the MCP server' && pass "same snippet on / is not blocked" || fail "same snippet on /; got: $(echo "$B" | head -c 300)"
+
   # --- 7. search_docs (local index; content differs from the retired Stainless
   # ---    search API by design; tool name/schema/shape identical)
   B=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" \
@@ -145,7 +184,7 @@ if [ -n "${TEST_KEY:-}" ]; then
     | grep -c 'c-ok')
   [ "$N" = "6" ] && pass "6 concurrent executes all succeed through the 4-slot cap" || fail "concurrency: expected 6 c-ok, got $N"
 else
-  echo "SKIP: probes 5a, 6, 7, 11, 12 (set TEST_KEY to run authenticated probes)"
+  echo "SKIP: probes 5a, 6, 6b, 7, 11, 12 (set TEST_KEY to run authenticated probes)"
 fi
 
 if [ -n "${TEST_KEY:-}" ] && [ -n "${RUN_SLOW:-}" ]; then
