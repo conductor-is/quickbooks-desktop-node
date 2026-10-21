@@ -138,6 +138,6 @@ describe('conductor self-hosting patches', () => {
     // would send Claude Desktop users back to the stdio bridge with CI still green.
     const readme = fs.readFileSync(path.join(pkgRoot, 'README.md'), 'utf-8');
     expect(readme).toContain('add that URL as a custom connector and sign in');
-    expect(readme).toContain('(for a client with no remote-server support)');
+    expect(readme).toContain('(one with no remote-server support)');
   });
 });
