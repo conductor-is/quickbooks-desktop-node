@@ -29,6 +29,31 @@ const RS_METADATA_URL = 'http://rs.test/.well-known/oauth-protected-resource';
 const MISSING_CHALLENGE = `Bearer resource_metadata="${RS_METADATA_URL}"`;
 const SCHEME_CHALLENGE = `Bearer error="invalid_request", error_description="The Authorization header must use the Bearer scheme", resource_metadata="${RS_METADATA_URL}"`;
 const DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key was deleted or is invalid; sign in again", resource_metadata="${RS_METADATA_URL}"`;
+const EXPECTED_METADATA = {
+  resource: 'http://rs.test/',
+  authorization_servers: ['http://as.test'],
+  bearer_methods_supported: ['header'],
+  resource_name: 'Conductor MCP server',
+  resource_documentation: 'https://docs.conductor.is/usage/mcp',
+};
+const PRM_RO_PATH = '/.well-known/oauth-protected-resource/read-only';
+const RS_RO_METADATA_URL = 'http://rs.test/.well-known/oauth-protected-resource/read-only';
+const RO_MISSING_CHALLENGE = `Bearer resource_metadata="${RS_RO_METADATA_URL}"`;
+const RO_DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key was deleted or is invalid; sign in again", resource_metadata="${RS_RO_METADATA_URL}"`;
+const EXPECTED_RO_METADATA = { ...EXPECTED_METADATA, resource: 'http://rs.test/read-only' };
+// Names a write by its SDK method name. The code tool blocks on a substring match before anything runs, so
+// this never reaches Deno (absent when CI runs jest) or the API.
+const EXECUTE_WRITE = {
+  jsonrpc: '2.0',
+  id: 5,
+  method: 'tools/call',
+  params: {
+    name: 'execute',
+    arguments: { code: 'async function run(conductor) { return conductor.endUsers.create({}); }' },
+  },
+};
+const BLOCKED_MESSAGE =
+  'The following methods have been blocked by the MCP server and cannot be used in code execution: endUsers.create';
 const ENV_NAMES = [
   'CONDUCTOR_BASE_URL',
   'CONDUCTOR_MCP_OAUTH_AUTHORIZATION_SERVER_URL',
@@ -216,14 +241,6 @@ describe('tools/call key probe', () => {
 });
 
 describe('protected resource metadata', () => {
-  const EXPECTED_METADATA = {
-    resource: 'http://rs.test/',
-    authorization_servers: ['http://as.test'],
-    bearer_methods_supported: ['header'],
-    resource_name: 'Conductor MCP server',
-    resource_documentation: 'https://docs.conductor.is/usage/mcp',
-  };
-
   it.each([PRM_PATH, `${PRM_PATH}/`])('serves GET %s with CORS and a short public cache', async (prmPath) => {
     const response = await fetch(new URL(prmPath, baseUrl));
 
@@ -278,6 +295,117 @@ describe('protected resource metadata', () => {
     const health = await fetch(new URL('/health', baseUrl));
     expect(health.status).toBe(200);
     expect(await health.text()).toBe('OK');
+  });
+});
+
+describe('read-only connector path', () => {
+  it.each(['/read-only', '/read-only/'])(
+    'answers a credential-less initialize on %s with the read-only metadata hint',
+    async (path) => {
+      const response = await post(INITIALIZE, {}, path);
+      expect(response.status).toBe(401);
+      expect(response.headers.get('www-authenticate')).toBe(RO_MISSING_CHALLENGE);
+      expect(response.headers.get('cache-control')).toBe('no-store');
+      expect(await response.json()).toEqual({
+        error: 'invalid_token',
+        error_description: expect.any(String),
+      });
+      expect(probes()).toHaveLength(0);
+    },
+  );
+
+  it('answers 401 invalid_token with the read-only hint for a dead key on tools/call', async () => {
+    const response = await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_dead' }, '/read-only/');
+    expect(response.status).toBe(401);
+    expect(response.headers.get('www-authenticate')).toBe(RO_DEAD_KEY_CHALLENGE);
+    await response.json();
+    expect(probes()).toHaveLength(1);
+  });
+
+  it.each([PRM_RO_PATH, `${PRM_RO_PATH}/`])(
+    'serves GET %s naming the read-only resource',
+    async (prmPath) => {
+      const response = await fetch(new URL(prmPath, baseUrl));
+      expect(response.status).toBe(200);
+      expect(response.headers.get('cache-control')).toBe('public, max-age=300');
+      expect(response.headers.get('access-control-allow-origin')).toBe('*');
+      expect(await response.json()).toEqual(EXPECTED_RO_METADATA);
+    },
+  );
+
+  it('answers the CORS preflight on the read-only metadata path', async () => {
+    const response = await fetch(new URL(PRM_RO_PATH, baseUrl), {
+      method: 'OPTIONS',
+      headers: { Origin: 'https://claude.ai', 'Access-Control-Request-Method': 'GET' },
+    });
+    expect(response.status).toBe(204);
+    expect(response.headers.get('access-control-allow-origin')).toBe('*');
+  });
+
+  it('answers GET and DELETE on /read-only with 405', async () => {
+    const get = await fetch(new URL('/read-only', baseUrl));
+    expect(get.status).toBe(405);
+    await get.json();
+    const del = await fetch(new URL('/read-only/', baseUrl), { method: 'DELETE' });
+    expect(del.status).toBe(405);
+    await del.json();
+  });
+
+  it('derives the production read-only URLs from the defaults', async () => {
+    await withEnv('CONDUCTOR_MCP_OAUTH_AUTHORIZATION_SERVER_URL', undefined, () =>
+      withEnv('CONDUCTOR_MCP_OAUTH_RESOURCE_URL', undefined, async () => {
+        const metadata = await fetchMetadata(PRM_RO_PATH);
+        expect(metadata['resource']).toBe('https://mcp.conductor.is/read-only');
+        expect(metadata['authorization_servers']).toEqual(['https://dashboard.conductor.is']);
+        const response = await post(INITIALIZE, {}, '/read-only');
+        expect(response.status).toBe(401);
+        expect(response.headers.get('www-authenticate')).toBe(
+          'Bearer resource_metadata="https://mcp.conductor.is/.well-known/oauth-protected-resource/read-only"',
+        );
+        await response.json();
+      }),
+    );
+  });
+
+  it.each(['http://rs.test'])('derives http://rs.test/read-only from the root %s', async (root) => {
+    await withEnv('CONDUCTOR_MCP_OAUTH_RESOURCE_URL', root, async () => {
+      expect((await fetchMetadata(PRM_RO_PATH))['resource']).toBe('http://rs.test/read-only');
+      expect((await fetchMetadata())['resource']).toBe(root);
+      const response = await post(INITIALIZE, {}, '/read-only');
+      expect(response.headers.get('www-authenticate')).toBe(RO_MISSING_CHALLENGE);
+      await response.json();
+    });
+  });
+
+  const loosening: Array<[string, Record<string, string>]> = [
+    ['no permissions header', {}],
+    ['{"allow_http_gets":false}', { 'x-stainless-mcp-client-permissions': '{"allow_http_gets":false}' }],
+    ['{"allowed_methods":[".*"]}', { 'x-stainless-mcp-client-permissions': '{"allowed_methods":[".*"]}' }],
+    ['{}', { 'x-stainless-mcp-client-permissions': '{}' }],
+    [
+      'a malformed header (replaced, not 400)',
+      { 'x-stainless-mcp-client-permissions': '{allow_http_gets:false}' },
+    ],
+  ];
+  it.each(loosening)('blocks a write in execute on /read-only/ with %s', async (_name, headers) => {
+    const response = await post(
+      EXECUTE_WRITE,
+      { Authorization: 'Bearer sk_conductor_live', ...headers },
+      '/read-only/',
+    );
+    expect(response.status).toBe(200);
+    const text = await response.text();
+    expect(text).toContain(BLOCKED_MESSAGE);
+    expect(text).toContain('"isError":true');
+    expect(probes()).toHaveLength(1); // the tools/call key probe runs on this path too
+  });
+
+  it('blocks the same write on / only when the client asks for it', async () => {
+    const asked = await post(EXECUTE_WRITE, {
+      Authorization: 'Bearer sk_conductor_live',
+      'x-stainless-mcp-client-permissions': '{"allow_http_gets":true}',
+    });
+    expect(await asked.text()).toContain(BLOCKED_MESSAGE);
   });
 });
 
@@ -382,6 +510,25 @@ describe('structured log lines', () => {
     );
     expect(written.join('')).not.toContain('sk_conductor_');
   });
+
+  it('forces allow_http_gets on the read-only path whatever the client sent, and never on the root', async () => {
+    await (
+      await post(
+        INITIALIZE,
+        {
+          Authorization: 'Bearer sk_conductor_live',
+          'x-stainless-mcp-client-permissions': '{"allow_http_gets":false,"allowed_methods":[".*"]}',
+        },
+        '/read-only',
+      )
+    ).text();
+    const forced = lines().filter((line) => 'clientPermissions' in line);
+    expect(forced).toEqual([expect.objectContaining({ clientPermissions: { allow_http_gets: true } })]);
+
+    written = [];
+    await (await post(INITIALIZE, { Authorization: 'Bearer sk_conductor_live' })).text();
+    expect(lines().some((line) => 'clientPermissions' in line)).toBe(false);
+  });
 });
 
 // Answers GET /v1/end-users/end_usr_oauth_probe the way api.conductor.is (behind Cloudflare) can.
@@ -432,8 +579,8 @@ function close(s: http.Server): Promise<void> {
   return new Promise((resolve) => s.close(() => resolve()));
 }
 
-function post(body: unknown, headers: Record<string, string> = {}): Promise<Response> {
-  return fetch(baseUrl, {
+function post(body: unknown, headers: Record<string, string> = {}, path = '/'): Promise<Response> {
+  return fetch(new URL(path, baseUrl), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -444,8 +591,8 @@ function post(body: unknown, headers: Record<string, string> = {}): Promise<Resp
   });
 }
 
-async function fetchMetadata(): Promise<Record<string, unknown>> {
-  return (await (await fetch(new URL(PRM_PATH, baseUrl))).json()) as Record<string, unknown>;
+async function fetchMetadata(prmPath = PRM_PATH): Promise<Record<string, unknown>> {
+  return (await (await fetch(new URL(prmPath, baseUrl))).json()) as Record<string, unknown>;
 }
 
 function probes(): RecordedRequest[] {
