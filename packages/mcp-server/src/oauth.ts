@@ -1,5 +1,5 @@
 // Conductor patch: OAuth 2.1 resource-server behavior for the hosted MCP server
-// (https://mcp.conductor.is/). Claude, ChatGPT and other OAuth-capable MCP
+// (https://mcp.conductor.is/ and its read-only connector URL https://mcp.conductor.is/read-only). Claude, ChatGPT and other OAuth-capable MCP
 // clients start sign-in only when a credential-less POST answers HTTP 401 with
 // a WWW-Authenticate header that names this server's protected resource
 // metadata (RFC 9728), which points at the authorization server (the
@@ -20,6 +20,13 @@ const DEFAULT_AUTHORIZATION_SERVER_URL = 'https://dashboard.conductor.is';
 const DEFAULT_RESOURCE_URL = 'https://mcp.conductor.is/';
 const DEFAULT_API_BASE_URL = 'https://api.conductor.is/v1'; // conductor-node's own default (src/client.ts)
 const PROTECTED_RESOURCE_METADATA_PATH = '/.well-known/oauth-protected-resource';
+// The read-only connector URL. POST /read-only (Express also matches /read-only/) behaves exactly as if the
+// client had sent x-stainless-mcp-client-permissions: {"allow_http_gets":true}. Its identifier is
+// `${origin}/read-only` with no trailing slash (hosted Claude strips one from a connector URL, and SDK 1.x
+// clients refuse a metadata resource longer than the URL the user typed), and its RFC 9728 document sits at
+// PROTECTED_RESOURCE_METADATA_PATH + READ_ONLY_PATH, which is what path insertion produces for it.
+const READ_ONLY_PATH = '/read-only';
+const READ_ONLY_PERMISSIONS_HEADER = '{"allow_http_gets":true}';
 const KEY_PROBE_TIMEOUT_MS = 3000;
 const KEY_PROBE_PATH = '/end-users/end_usr_oauth_probe'; // auth: "secret" route; 404 with a live key, 401 with a dead one
 // The only codes apps/server emits as a 401/403 on the probe route for a presented non-empty Bearer key
@@ -32,10 +39,12 @@ const KEY_PROBE_USER_AGENT = 'conductor-mcp-key-probe/1';
 // Betterstack initialize monitor keeps a dummy Bearer and connection checks stay instant. The guard test pins this line.
 const PROBED_METHODS: ReadonlySet<string> = new Set(['tools/call']);
 
+export type OAuthResource = 'root' | 'read-only';
+
 export interface OAuthResourceConfig {
   authorizationServerUrl: string; // no trailing slash
-  resourceUrl: string; // exactly as published, trailing slash kept
-  resourceMetadataUrl: string; // `${origin}/.well-known/oauth-protected-resource`
+  resourceUrl: string; // root: exactly as configured, trailing slash kept; read-only: `${origin}/read-only`, no slash
+  resourceMetadataUrl: string; // `${origin}/.well-known/oauth-protected-resource`, plus READ_ONLY_PATH for read-only
   apiBaseUrl: string; // no trailing slash
   keyProbeEnabled: boolean;
 }
@@ -46,23 +55,30 @@ type WwwAuthenticateError = 'invalid_request' | 'invalid_token';
 type KeyProbeVerdict = 'valid' | 'invalid' | 'unknown';
 
 // Read per call (cheap), so tests set process.env between requests and http.ts's signature does not change.
-export function getOAuthResourceConfig(): OAuthResourceConfig {
+// The read-only resource is derived from the root, so one env var configures both.
+export function getOAuthResourceConfig(resource: OAuthResource = 'root'): OAuthResourceConfig {
   const authorizationServerUrl = (
     readEnv('CONDUCTOR_MCP_OAUTH_AUTHORIZATION_SERVER_URL') ?? DEFAULT_AUTHORIZATION_SERVER_URL
   ).replace(/\/+$/, '');
-  const resourceUrl = readEnv('CONDUCTOR_MCP_OAUTH_RESOURCE_URL') ?? DEFAULT_RESOURCE_URL;
+  const rootResourceUrl = readEnv('CONDUCTOR_MCP_OAUTH_RESOURCE_URL') ?? DEFAULT_RESOURCE_URL;
+  const isReadOnly = resource === 'read-only';
+  // Absolute paths resolved against the root, so the identifier, the route literal and the path-inserted
+  // RFC 9728 metadata URL all come from READ_ONLY_PATH and agree whether the root was configured with or
+  // without its slash.
   return {
     authorizationServerUrl,
-    resourceUrl,
-    // The resource is the root URL, so RFC 9728 path insertion yields the bare path (no suffix).
-    resourceMetadataUrl: new URL(PROTECTED_RESOURCE_METADATA_PATH, resourceUrl).href,
+    resourceUrl: isReadOnly ? new URL(READ_ONLY_PATH, rootResourceUrl).href : rootResourceUrl,
+    resourceMetadataUrl: new URL(
+      PROTECTED_RESOURCE_METADATA_PATH + (isReadOnly ? READ_ONLY_PATH : ''),
+      rootResourceUrl,
+    ).href,
     apiBaseUrl: (readEnv('CONDUCTOR_BASE_URL') ?? DEFAULT_API_BASE_URL).replace(/\/+$/, ''),
     keyProbeEnabled: readEnv('CONDUCTOR_MCP_KEY_PROBE') !== 'off',
   };
 }
 
-// No scopes_supported: sign-in connections are always full access, and listing none keeps Claude from
-// requesting offline_access (a refresh token this server never issues).
+// No scopes_supported: read-only is decided by the URL the client POSTs to, never by the token, and listing
+// none keeps Claude from requesting offline_access (a refresh token this server never issues).
 export function buildProtectedResourceMetadata(config: OAuthResourceConfig): Record<string, unknown> {
   return {
     resource: config.resourceUrl,
@@ -74,17 +90,20 @@ export function buildProtectedResourceMetadata(config: OAuthResourceConfig): Rec
 }
 
 export function mountProtectedResourceMetadata(app: express.Express): void {
-  const handler = (_req: express.Request, res: express.Response) => {
-    res
-      .status(200)
-      .set('Cache-Control', 'public, max-age=300')
-      .json(buildProtectedResourceMetadata(getOAuthResourceConfig()));
-  };
-  // Preflight gets Access-Control-Allow-Origin: *. The literal path also matches the trailing-slash form
-  // (strict routing is off). No suffixed form: the resource is the root URL, so RFC 9728 path insertion
-  // yields the bare path, and Claude follows the exact resource_metadata URL from the 401.
-  app.options(PROTECTED_RESOURCE_METADATA_PATH, cors());
-  app.get(PROTECTED_RESOURCE_METADATA_PATH, cors(), handler);
+  // Preflight gets Access-Control-Allow-Origin: *. Each literal path also matches its trailing-slash form
+  // (strict routing is off), so the read-only document answers under the well-known prefix whether a client
+  // follows the 401 hint (no slash) or builds the path itself from the URL the user typed. No splat route:
+  // any other suffix is a 404.
+  for (const resource of ['root', 'read-only'] as const) {
+    const path = PROTECTED_RESOURCE_METADATA_PATH + (resource === 'read-only' ? READ_ONLY_PATH : '');
+    app.options(path, cors());
+    app.get(path, cors(), (_req, res) => {
+      res
+        .status(200)
+        .set('Cache-Control', 'public, max-age=300')
+        .json(buildProtectedResourceMetadata(getOAuthResourceConfig(resource)));
+    });
+  }
 }
 
 // Descriptions are fixed ASCII strings with no double quotes. For a MISSING credential no error
@@ -106,9 +125,10 @@ export function buildWwwAuthenticate(
 
 // Runs after express.json() (so req.body.method is readable) and before post(). A credential-less
 // POST with invalid JSON is a 400 from the body parser, as today; real clients never send one.
-export function requireCredential(): express.RequestHandler {
+// On the read-only route the gate also pins the client permissions header before the generated parser reads it.
+export function requireCredential(resource: OAuthResource = 'root'): express.RequestHandler {
   return async (req, res, next) => {
-    const config = getOAuthResourceConfig();
+    const config = getOAuthResourceConfig(resource);
     const credential = extractCredential(req);
     // Set by http.ts's session middleware (the request's own header or a fresh UUID), so the gate and probe
     // lines join pino-http's request line even on a first-contact 401 that carried no mcp-session-id.
@@ -127,6 +147,7 @@ export function requireCredential(): express.RequestHandler {
       );
     }
     canonicalizeCredential(req, credential);
+    if (resource === 'read-only') forceReadOnlyPermissions(req);
     if (config.keyProbeEnabled && bodyHasProbedMethod(req.body)) {
       const verdict = await probeKey(credential.token, config, mcpSessionId); // never throws
       if (verdict === 'invalid') {
@@ -200,6 +221,16 @@ function canonicalizeCredential(
   } else {
     req.headers['x-conductor-secret-key'] = credential.token;
   }
+}
+
+// The read-only connector URL behaves exactly as if the client had sent
+// x-stainless-mcp-client-permissions: {"allow_http_gets":true}. The header is REPLACED, never merged:
+// http.ts spreads whatever it parses over mcpOptions, so a client {"allow_http_gets":false} would restore
+// full access and an allowed_methods regexp would union writes back in. A malformed client value is replaced
+// too instead of answered 400 (that fail-closed 400 exists to stop a malformed header from granting full
+// access, which cannot happen on this path); client blocked_methods are dropped with it.
+function forceReadOnlyPermissions(req: express.Request): void {
+  req.headers['x-stainless-mcp-client-permissions'] = READ_ONLY_PERMISSIONS_HEADER;
 }
 
 // body is an object with a string `method` in PROBED_METHODS, or an array with any such element (JSON-RPC batch).

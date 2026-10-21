@@ -117,6 +117,9 @@ describe('conductor self-hosting patches', () => {
     const http = fs.readFileSync(path.join(pkgRoot, 'src', 'http.ts'), 'utf-8');
     expect(http).toContain('mountProtectedResourceMetadata(app)');
     expect(http).toContain("app.post('/', requireCredential(),");
+    expect(http).toContain("app.post('/read-only', requireCredential('read-only'),");
+    expect(http).toContain("app.get('/read-only', get)");
+    expect(http).toContain("app.delete('/read-only', del)");
     const oauth = fs.readFileSync(path.join(pkgRoot, 'src', 'oauth.ts'), 'utf-8');
     expect(oauth).toContain("'/.well-known/oauth-protected-resource'");
     expect(oauth).toContain('WWW-Authenticate');
