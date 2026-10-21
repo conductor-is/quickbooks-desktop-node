@@ -2,7 +2,7 @@
 
 ## Installation
 
-The tools run on Conductor's hosted MCP server at `https://mcp.conductor.is/`. Claude (claude.ai, Claude Desktop, mobile, Cowork) and ChatGPT add that URL as a custom connector and sign in; Claude Code, Cursor, VS Code and Codex connect to it directly with your secret key in the `Authorization` header. Clients that only speak stdio run this package, which is a thin bridge to the hosted server: it needs only Node.js and `CONDUCTOR_SECRET_KEY`, and nothing executes on your machine. The full per-client guide is at [docs.conductor.is/usage/mcp](https://docs.conductor.is/usage/mcp).
+The tools run on Conductor's hosted MCP server at `https://mcp.conductor.is/`. Claude (claude.ai, Claude Desktop, mobile, Cowork) and ChatGPT add that URL as a custom connector and sign in. Claude Code, Cursor, VS Code and Codex send your secret key in the `Authorization` header. Clients that only speak stdio run this package, which is a thin bridge to the hosted server: it needs only Node.js and `CONDUCTOR_SECRET_KEY`, and nothing executes on your machine. The full per-client guide is at [docs.conductor.is/usage/mcp](https://docs.conductor.is/usage/mcp).
 
 ### Direct invocation
 
@@ -18,7 +18,7 @@ npx -y conductor-node-mcp@latest
 There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
 have a client, consult their documentation to install the MCP server.
 
-For stdio clients with a configuration JSON (for a client with no remote-server support), it looks like this; replace only `sk_conductor_...` with your secret key:
+For a stdio client with a JSON config (one with no remote-server support), the entry looks like this; replace only `sk_conductor_...` with your secret key:
 
 ```json
 {

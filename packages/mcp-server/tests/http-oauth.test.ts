@@ -28,7 +28,7 @@ const PRM_PATH = '/.well-known/oauth-protected-resource';
 const RS_METADATA_URL = 'http://rs.test/.well-known/oauth-protected-resource';
 const MISSING_CHALLENGE = `Bearer resource_metadata="${RS_METADATA_URL}"`;
 const SCHEME_CHALLENGE = `Bearer error="invalid_request", error_description="The Authorization header must use the Bearer scheme", resource_metadata="${RS_METADATA_URL}"`;
-const DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key was deleted or is invalid; sign in again", resource_metadata="${RS_METADATA_URL}"`;
+const DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key is invalid or was deleted; sign in again or use a new key", resource_metadata="${RS_METADATA_URL}"`;
 const EXPECTED_METADATA = {
   resource: 'http://rs.test/',
   authorization_servers: ['http://as.test'],
@@ -39,7 +39,7 @@ const EXPECTED_METADATA = {
 const PRM_RO_PATH = '/.well-known/oauth-protected-resource/read-only';
 const RS_RO_METADATA_URL = 'http://rs.test/.well-known/oauth-protected-resource/read-only';
 const RO_MISSING_CHALLENGE = `Bearer resource_metadata="${RS_RO_METADATA_URL}"`;
-const RO_DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key was deleted or is invalid; sign in again", resource_metadata="${RS_RO_METADATA_URL}"`;
+const RO_DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key is invalid or was deleted; sign in again or use a new key", resource_metadata="${RS_RO_METADATA_URL}"`;
 const EXPECTED_RO_METADATA = { ...EXPECTED_METADATA, resource: 'http://rs.test/read-only' };
 // Names a write by its SDK method name. The code tool blocks on a substring match before anything runs, so
 // this never reaches Deno (absent when CI runs jest) or the API.

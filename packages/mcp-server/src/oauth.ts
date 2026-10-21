@@ -157,7 +157,7 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
           config,
           'dead_key',
           'invalid_token',
-          'This Conductor key was deleted or is invalid; sign in again',
+          'This Conductor key is invalid or was deleted; sign in again or use a new key',
         );
       }
     }
