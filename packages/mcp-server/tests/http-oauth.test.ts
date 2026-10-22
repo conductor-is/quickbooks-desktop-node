@@ -25,22 +25,22 @@ const TOOLS_CALL = { jsonrpc: '2.0', id: 4, method: 'tools/call', params: { name
 
 const PROBE_PATH = '/v1/end-users/end_usr_oauth_probe';
 const PRM_PATH = '/.well-known/oauth-protected-resource';
-const RS_METADATA_URL = 'http://rs.test/.well-known/oauth-protected-resource';
+const RS_METADATA_URL = 'https://mcp.conductor.is/.well-known/oauth-protected-resource';
 const MISSING_CHALLENGE = `Bearer resource_metadata="${RS_METADATA_URL}"`;
 const SCHEME_CHALLENGE = `Bearer error="invalid_request", error_description="The Authorization header must use the Bearer scheme", resource_metadata="${RS_METADATA_URL}"`;
 const DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key is invalid or was deleted; sign in again or use a new key", resource_metadata="${RS_METADATA_URL}"`;
 const EXPECTED_METADATA = {
-  resource: 'http://rs.test/',
-  authorization_servers: ['http://as.test'],
+  resource: 'https://mcp.conductor.is/',
+  authorization_servers: ['https://dashboard.conductor.is'],
   bearer_methods_supported: ['header'],
   resource_name: 'Conductor MCP server',
   resource_documentation: 'https://docs.conductor.is/usage/mcp',
 };
 const PRM_RO_PATH = '/.well-known/oauth-protected-resource/read-only';
-const RS_RO_METADATA_URL = 'http://rs.test/.well-known/oauth-protected-resource/read-only';
+const RS_RO_METADATA_URL = 'https://mcp.conductor.is/.well-known/oauth-protected-resource/read-only';
 const RO_MISSING_CHALLENGE = `Bearer resource_metadata="${RS_RO_METADATA_URL}"`;
 const RO_DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key is invalid or was deleted; sign in again or use a new key", resource_metadata="${RS_RO_METADATA_URL}"`;
-const EXPECTED_RO_METADATA = { ...EXPECTED_METADATA, resource: 'http://rs.test/read-only' };
+const EXPECTED_RO_METADATA = { ...EXPECTED_METADATA, resource: 'https://mcp.conductor.is/read-only' };
 // Names a write by its SDK method name. The code tool blocks on a substring match before anything runs, so
 // this never reaches Deno (absent when CI runs jest) or the API.
 const EXECUTE_WRITE = {
@@ -54,12 +54,7 @@ const EXECUTE_WRITE = {
 };
 const BLOCKED_MESSAGE =
   'The following methods have been blocked by the MCP server and cannot be used in code execution: endUsers.create';
-const ENV_NAMES = [
-  'CONDUCTOR_BASE_URL',
-  'CONDUCTOR_MCP_OAUTH_AUTHORIZATION_SERVER_URL',
-  'CONDUCTOR_MCP_OAUTH_RESOURCE_URL',
-  'CONDUCTOR_MCP_KEY_PROBE',
-];
+const ENV_NAMES = ['CONDUCTOR_BASE_URL', 'CONDUCTOR_MCP_KEY_PROBE'];
 
 type RecordedRequest = { path: string; headers: http.IncomingHttpHeaders };
 const apiRequests: RecordedRequest[] = [];
@@ -72,8 +67,6 @@ beforeAll(async () => {
   configureLogger({ level: 'fatal', pretty: false });
   api = http.createServer(mockConductorApi);
   process.env['CONDUCTOR_BASE_URL'] = `${await listen(api)}/v1`;
-  process.env['CONDUCTOR_MCP_OAUTH_AUTHORIZATION_SERVER_URL'] = 'http://as.test';
-  process.env['CONDUCTOR_MCP_OAUTH_RESOURCE_URL'] = 'http://rs.test/';
   const app = streamableHTTPApp({
     mcpOptions: {
       codeExecutionMode: 'local',
@@ -261,30 +254,6 @@ describe('protected resource metadata', () => {
     expect(response.headers.get('access-control-allow-origin')).toBe('*');
   });
 
-  it('strips a trailing slash from the configured authorization server URL', async () => {
-    await withEnv('CONDUCTOR_MCP_OAUTH_AUTHORIZATION_SERVER_URL', 'http://as.test/', async () => {
-      const metadata = await fetchMetadata();
-      expect(metadata['authorization_servers']).toEqual(['http://as.test']);
-    });
-  });
-
-  it('defaults to the production dashboard and MCP URLs when no env is set', async () => {
-    await withEnv('CONDUCTOR_MCP_OAUTH_AUTHORIZATION_SERVER_URL', undefined, () =>
-      withEnv('CONDUCTOR_MCP_OAUTH_RESOURCE_URL', undefined, async () => {
-        const metadata = await fetchMetadata();
-        expect(metadata['resource']).toBe('https://mcp.conductor.is/');
-        expect(metadata['authorization_servers']).toEqual(['https://dashboard.conductor.is']);
-
-        const response = await post(INITIALIZE);
-        expect(response.status).toBe(401);
-        expect(response.headers.get('www-authenticate')).toBe(
-          'Bearer resource_metadata="https://mcp.conductor.is/.well-known/oauth-protected-resource"',
-        );
-        await response.json();
-      }),
-    );
-  });
-
   it('leaves the other routes alone', async () => {
     const get = await fetch(baseUrl);
     expect(get.status).toBe(405);
@@ -349,32 +318,6 @@ describe('read-only connector path', () => {
     const del = await fetch(new URL('/read-only/', baseUrl), { method: 'DELETE' });
     expect(del.status).toBe(405);
     await del.json();
-  });
-
-  it('derives the production read-only URLs from the defaults', async () => {
-    await withEnv('CONDUCTOR_MCP_OAUTH_AUTHORIZATION_SERVER_URL', undefined, () =>
-      withEnv('CONDUCTOR_MCP_OAUTH_RESOURCE_URL', undefined, async () => {
-        const metadata = await fetchMetadata(PRM_RO_PATH);
-        expect(metadata['resource']).toBe('https://mcp.conductor.is/read-only');
-        expect(metadata['authorization_servers']).toEqual(['https://dashboard.conductor.is']);
-        const response = await post(INITIALIZE, {}, '/read-only');
-        expect(response.status).toBe(401);
-        expect(response.headers.get('www-authenticate')).toBe(
-          'Bearer resource_metadata="https://mcp.conductor.is/.well-known/oauth-protected-resource/read-only"',
-        );
-        await response.json();
-      }),
-    );
-  });
-
-  it.each(['http://rs.test'])('derives http://rs.test/read-only from the root %s', async (root) => {
-    await withEnv('CONDUCTOR_MCP_OAUTH_RESOURCE_URL', root, async () => {
-      expect((await fetchMetadata(PRM_RO_PATH))['resource']).toBe('http://rs.test/read-only');
-      expect((await fetchMetadata())['resource']).toBe(root);
-      const response = await post(INITIALIZE, {}, '/read-only');
-      expect(response.headers.get('www-authenticate')).toBe(RO_MISSING_CHALLENGE);
-      await response.json();
-    });
   });
 
   const loosening: Array<[string, Record<string, string>]> = [

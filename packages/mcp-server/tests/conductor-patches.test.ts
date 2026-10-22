@@ -124,8 +124,8 @@ describe('conductor self-hosting patches', () => {
     expect(oauth).toContain("'/.well-known/oauth-protected-resource'");
     expect(oauth).toContain('WWW-Authenticate');
     expect(oauth).toContain('resource_metadata=');
-    expect(oauth).toContain('CONDUCTOR_MCP_OAUTH_AUTHORIZATION_SERVER_URL');
-    expect(oauth).toContain('CONDUCTOR_MCP_OAUTH_RESOURCE_URL');
+    expect(oauth).toContain("const AUTHORIZATION_SERVER_URL = 'https://dashboard.conductor.is'");
+    expect(oauth).toContain("const RESOURCE_URL = 'https://mcp.conductor.is/'");
     expect(oauth).toContain('CONDUCTOR_MCP_KEY_PROBE');
     // Only tools/call is ever probed against the API. Adding initialize here
     // would turn the Betterstack initialize monitor (dummy Bearer) red and put

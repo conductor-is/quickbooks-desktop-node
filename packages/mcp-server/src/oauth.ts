@@ -9,15 +9,17 @@
 // envelope says so (api.conductor.is sits behind Cloudflare; an edge 401/403
 // page must fail open). Every gate decision and every probe is logged as one
 // structured line because http.ts redacts www-authenticate from Render logs.
-// Config is read from non-MCP_SERVER_ env names (see code-tool.ts for why)
-// with production defaults baked in.
+// The two URLs are hardcoded: every customer's connector stores them, so they
+// never change. The rest of the config is read from non-MCP_SERVER_ env names
+// (see code-tool.ts for why) with production defaults baked in.
 import cors from 'cors';
 import express from 'express';
 import { getLogger } from './logger';
 import { readEnv } from './util';
 
-const DEFAULT_AUTHORIZATION_SERVER_URL = 'https://dashboard.conductor.is';
-const DEFAULT_RESOURCE_URL = 'https://mcp.conductor.is/';
+// A local end-to-end run edits these two temporarily (see the dashboard's src/lib/oauth/README.md).
+const AUTHORIZATION_SERVER_URL = 'https://dashboard.conductor.is';
+const RESOURCE_URL = 'https://mcp.conductor.is/';
 const DEFAULT_API_BASE_URL = 'https://api.conductor.is/v1'; // conductor-node's own default (src/client.ts)
 const PROTECTED_RESOURCE_METADATA_PATH = '/.well-known/oauth-protected-resource';
 // The read-only connector URL. POST /read-only (Express also matches /read-only/) behaves exactly as if the
@@ -43,7 +45,7 @@ export type OAuthResource = 'root' | 'read-only';
 
 export interface OAuthResourceConfig {
   authorizationServerUrl: string; // no trailing slash
-  resourceUrl: string; // root: exactly as configured, trailing slash kept; read-only: `${origin}/read-only`, no slash
+  resourceUrl: string; // root: RESOURCE_URL, trailing slash kept; read-only: `${origin}/read-only`, no slash
   resourceMetadataUrl: string; // `${origin}/.well-known/oauth-protected-resource`, plus READ_ONLY_PATH for read-only
   apiBaseUrl: string; // no trailing slash
   keyProbeEnabled: boolean;
@@ -55,22 +57,17 @@ type WwwAuthenticateError = 'invalid_request' | 'invalid_token';
 type KeyProbeVerdict = 'valid' | 'invalid' | 'unknown';
 
 // Read per call (cheap), so tests set process.env between requests and http.ts's signature does not change.
-// The read-only resource is derived from the root, so one env var configures both.
+// The read-only resource is derived from the root.
 export function getOAuthResourceConfig(resource: OAuthResource = 'root'): OAuthResourceConfig {
-  const authorizationServerUrl = (
-    readEnv('CONDUCTOR_MCP_OAUTH_AUTHORIZATION_SERVER_URL') ?? DEFAULT_AUTHORIZATION_SERVER_URL
-  ).replace(/\/+$/, '');
-  const rootResourceUrl = readEnv('CONDUCTOR_MCP_OAUTH_RESOURCE_URL') ?? DEFAULT_RESOURCE_URL;
   const isReadOnly = resource === 'read-only';
   // Absolute paths resolved against the root, so the identifier, the route literal and the path-inserted
-  // RFC 9728 metadata URL all come from READ_ONLY_PATH and agree whether the root was configured with or
-  // without its slash.
+  // RFC 9728 metadata URL all come from READ_ONLY_PATH.
   return {
-    authorizationServerUrl,
-    resourceUrl: isReadOnly ? new URL(READ_ONLY_PATH, rootResourceUrl).href : rootResourceUrl,
+    authorizationServerUrl: AUTHORIZATION_SERVER_URL,
+    resourceUrl: isReadOnly ? new URL(READ_ONLY_PATH, RESOURCE_URL).href : RESOURCE_URL,
     resourceMetadataUrl: new URL(
       PROTECTED_RESOURCE_METADATA_PATH + (isReadOnly ? READ_ONLY_PATH : ''),
-      rootResourceUrl,
+      RESOURCE_URL,
     ).href,
     apiBaseUrl: (readEnv('CONDUCTOR_BASE_URL') ?? DEFAULT_API_BASE_URL).replace(/\/+$/, ''),
     keyProbeEnabled: readEnv('CONDUCTOR_MCP_KEY_PROBE') !== 'off',
