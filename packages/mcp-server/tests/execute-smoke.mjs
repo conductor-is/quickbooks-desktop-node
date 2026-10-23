@@ -32,7 +32,8 @@ function fail(message) {
 }
 
 const upstream = spawn('node', ['dist/index.js', '--transport=http', `--port=${port}`], {
-  env: { ...process.env },
+  // The bridge's fake key would otherwise be probed against api.conductor.is on tools/call and 401.
+  env: { ...process.env, CONDUCTOR_MCP_KEY_PROBE: 'off' },
   stdio: ['ignore', 'inherit', 'inherit'],
 });
 upstream.on('exit', (code) => {

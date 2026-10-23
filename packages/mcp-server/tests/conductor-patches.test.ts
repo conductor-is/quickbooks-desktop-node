@@ -112,4 +112,32 @@ describe('conductor self-hosting patches', () => {
     expect(bridge).toContain("import { VERSION } from './server'");
     expect(bridge).not.toContain(marker);
   });
+
+  test('http.ts mounts the OAuth resource-server patch (tools/call-only key probe)', () => {
+    const http = fs.readFileSync(path.join(pkgRoot, 'src', 'http.ts'), 'utf-8');
+    expect(http).toContain('mountProtectedResourceMetadata(app)');
+    expect(http).toContain("app.post('/', requireCredential(),");
+    expect(http).toContain("app.post('/read-only', requireCredential('read-only'),");
+    expect(http).toContain("app.get('/read-only', get)");
+    expect(http).toContain("app.delete('/read-only', del)");
+    const oauth = fs.readFileSync(path.join(pkgRoot, 'src', 'oauth.ts'), 'utf-8');
+    expect(oauth).toContain("'/.well-known/oauth-protected-resource'");
+    expect(oauth).toContain('WWW-Authenticate');
+    expect(oauth).toContain('resource_metadata=');
+    expect(oauth).toContain("const AUTHORIZATION_SERVER_URL = 'https://dashboard.conductor.is'");
+    expect(oauth).toContain("const RESOURCE_URL = 'https://mcp.conductor.is/'");
+    expect(oauth).toContain('CONDUCTOR_MCP_KEY_PROBE');
+    // Only tools/call is ever probed against the API. Adding initialize here
+    // would turn the Betterstack initialize monitor (dummy Bearer) red and put
+    // an API round trip in front of every connection check.
+    expect(oauth).toContain("PROBED_METHODS: ReadonlySet<string> = new Set(['tools/call'])");
+  });
+
+  test('README.md keeps the sealed hosted sign-in paragraph and stdio parenthetical', () => {
+    // Both are sealed hunks in a generated file (selfhost/DEPLOYS.md); a regeneration that drops them
+    // would send Claude Desktop users back to the stdio bridge with CI still green.
+    const readme = fs.readFileSync(path.join(pkgRoot, 'README.md'), 'utf-8');
+    expect(readme).toContain('add that URL as a custom connector and sign in');
+    expect(readme).toContain('(one with no remote-server support)');
+  });
 });

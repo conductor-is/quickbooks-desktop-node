@@ -6,6 +6,8 @@
 #   NEW=http://localhost:3000 ./verify.sh              # unauthenticated probes only
 #   NEW=https://mcp.conductor.is TEST_KEY=sk_... ./verify.sh          # + auth probes
 #   NEW=... TEST_KEY=... RUN_SLOW=1 ./verify.sh        # + slow probes 8/8b/9 (~12 min)
+# Parity probes send a dummy Bearer (PARITY; initialize/tools/list are never probed); TEST_KEY gates 5a too.
+# Probes 4b and 6b cover the read-only connector URL ($NEW/read-only, both spellings on the wire); 6b needs TEST_KEY.
 #
 # OLD defaults to the retired Stainless host; parity diffs against it only work
 # while it is still live (pre Sept 1, 2026). After that, self-diff against
@@ -19,6 +21,7 @@ OLD="${OLD:-https://conductor.stlmcp.com}"
 NEW="${NEW:?set NEW to the server under test, e.g. http://localhost:3000}"
 ACC='accept: application/json, text/event-stream'
 CT='content-type: application/json'
+PARITY='authorization: Bearer sk_conductor_parity'
 FAILURES=0
 
 pass() { echo "PASS: $1"; }
@@ -32,7 +35,7 @@ rm -f /tmp/init-*.json /tmp/tools-*.json
 # ---    capabilities, negotiated protocolVersion, instructions byte for byte)
 for PV in 2025-06-18 2025-03-26; do
   for H in "$OLD" "$NEW"; do
-    curl -s -X POST "$H/" -H "$CT" -H "$ACC" \
+    curl -s -X POST "$H/" -H "$CT" -H "$ACC" -H "$PARITY" \
       -d "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"initialize\",\"params\":{\"protocolVersion\":\"$PV\",\"capabilities\":{},\"clientInfo\":{\"name\":\"parity\",\"version\":\"1.0.0\"}}}" \
       | sed -n 's/^data: //p' | jq -S '.result' > "/tmp/init-$PV-${H##*/}.json"
   done
@@ -52,9 +55,9 @@ else
   fail "instructions sha256 (got $SHA)"
 fi
 
-# --- 2. tools/list parity (no auth, no prior initialize; proves statelessness too)
+# --- 2. tools/list parity (dummy Bearer, no prior initialize; proves statelessness too)
 for H in "$OLD" "$NEW"; do
-  curl -s -X POST "$H/" -H "$CT" -H "$ACC" \
+  curl -s -X POST "$H/" -H "$CT" -H "$ACC" -H "$PARITY" \
     -d '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
     | sed -n 's/^data: //p' | jq -S '.result' > "/tmp/tools-${H##*/}.json"
 done
@@ -72,39 +75,66 @@ S=$(curl -s -o /dev/null -w '%{http_code}' -X DELETE "$NEW/")
 [ "$S" = "405" ] && pass "DELETE / is 405" || fail "DELETE / expected 405, got $S"
 B=$(curl -s "$NEW/health")
 [ "$B" = "OK" ] && pass "/health returns OK" || fail "/health expected OK, got: $B"
-R=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$NEW/" -H "$CT" \
+R=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$NEW/" -H "$CT" -H "$PARITY" \
   -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"x","version":"1"}}}')
 [ "$R" = "406" ] && pass "POST without SSE Accept is 406" || fail "expected 406, got $R"
 
-# --- 4. Unauthenticated tools/call: HTTP 200, SSE, in-band isError naming
-# ---    CONDUCTOR_SECRET_KEY (this also PROVES the service env has no key)
-B=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" \
-  -d '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"execute","arguments":{"code":"async function run(conductor) { return 1; }"}}}')
-if echo "$B" | grep -q 'The CONDUCTOR_SECRET_KEY environment' && echo "$B" | grep -q '"isError":true'; then
-  pass "unauthenticated execute returns in-band missing-key isError"
-else
-  fail "unauthenticated execute expected missing-key isError; got: $(echo "$B" | head -c 300)"
-fi
+# --- 4. Credential-less POST initialize is 401 with the exact WWW-Authenticate
+# ---    challenge (OAuth 2.1 resource server, src/oauth.ts). The gate never reads a
+# ---    key from env (only the request's headers), so env containment is probe 11 (needs TEST_KEY).
+H4=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" \
+  -d '{"jsonrpc":"2.0","id":3,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"x","version":"1"}}}')
+echo "$H4" | head -1 | grep -q ' 401' && pass "credential-less initialize is 401" || fail "credential-less initialize expected 401; got: $(echo "$H4" | head -1)"
+WA=$(echo "$H4" | grep -i '^www-authenticate:' | sed 's/^[^:]*: //' | tr -d '\r')
+EXPECT_WA="Bearer resource_metadata=\"$NEW/.well-known/oauth-protected-resource\""
+[ "$WA" = "$EXPECT_WA" ] && pass "www-authenticate names the protected resource metadata" || fail "www-authenticate expected $EXPECT_WA; got: $WA"
 
-# --- 5. Unknown tool and bad auth scheme
-B=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" \
-  -d '{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"nope","arguments":{}}}')
-echo "$B" | grep -q 'Unknown tool: nope' && pass "unknown tool error" || fail "unknown tool error; got: $(echo "$B" | head -c 200)"
-S=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$NEW/" -H "$CT" -H "$ACC" -H 'authorization: Basic foo' \
+# --- 4b. Read-only connector URL: same gate with the read-only metadata hint on both spellings; its
+# ---     document (both spellings) names $NEW/read-only (no slash) and the same authorization server;
+# ---     GET/DELETE are 405, never a redirect.
+for P in /read-only /read-only/; do
+  H4B=$(curl -si -X POST "$NEW$P" -H "$CT" -H "$ACC" \
+    -d '{"jsonrpc":"2.0","id":3,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"x","version":"1"}}}')
+  echo "$H4B" | head -1 | grep -q ' 401' && pass "credential-less initialize on $P is 401" || fail "credential-less initialize on $P expected 401; got: $(echo "$H4B" | head -1)"
+  WA=$(echo "$H4B" | grep -i '^www-authenticate:' | sed 's/^[^:]*: //' | tr -d '\r')
+  EXPECT_WA="Bearer resource_metadata=\"$NEW/.well-known/oauth-protected-resource/read-only\""
+  [ "$WA" = "$EXPECT_WA" ] && pass "www-authenticate on $P names the read-only metadata" || fail "www-authenticate on $P expected $EXPECT_WA; got: $WA"
+done
+AS_ROOT=$(curl -s "$NEW/.well-known/oauth-protected-resource" | jq -r '.authorization_servers[0]')
+for P in read-only read-only/; do
+  DOC=$(curl -s "$NEW/.well-known/oauth-protected-resource/$P")
+  R=$(echo "$DOC" | jq -r '.resource')
+  [ "$R" = "$NEW/read-only" ] && pass "read-only metadata ($P) resource is $NEW/read-only" || fail "read-only metadata ($P) resource expected $NEW/read-only; got: $R"
+  A=$(echo "$DOC" | jq -r '.authorization_servers[0]')
+  [ "$A" = "$AS_ROOT" ] && pass "read-only metadata ($P) names the same authorization server" || fail "read-only metadata ($P) authorization server $A differs from root $AS_ROOT"
+done
+S=$(curl -s -o /dev/null -w '%{http_code}' "$NEW/read-only")
+[ "$S" = "405" ] && pass "GET /read-only is 405" || fail "GET /read-only expected 405, got $S"
+S=$(curl -s -o /dev/null -w '%{http_code}' -X DELETE "$NEW/read-only/")
+[ "$S" = "405" ] && pass "DELETE /read-only/ is 405" || fail "DELETE /read-only/ expected 405, got $S"
+
+# --- 5. Bad auth scheme is 401 invalid_request (was a 500 HTML stack trace)
+H5=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" -H 'authorization: Basic foo' \
   -d '{"jsonrpc":"2.0","id":5,"method":"tools/list"}')
-[ "$S" = "500" ] && pass "non-Bearer auth scheme is HTTP 500 (current hosted behavior)" || fail "expected 500, got $S"
+echo "$H5" | head -1 | grep -q ' 401' && pass "non-Bearer auth scheme is 401" || fail "non-Bearer auth scheme expected 401; got: $(echo "$H5" | head -1)"
+echo "$H5" | grep -i '^www-authenticate:' | grep -q 'error="invalid_request"' && pass "non-Bearer scheme challenge carries error=\"invalid_request\"" || fail "non-Bearer scheme www-authenticate lacks error=\"invalid_request\"; got: $(echo "$H5" | grep -i '^www-authenticate:')"
 
 # --- 10. Streaming shape and session-id echo
-H10=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" -H 'mcp-session-id: echo-test-123' \
+H10=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" -H "$PARITY" -H 'mcp-session-id: echo-test-123' \
   -d '{"jsonrpc":"2.0","id":10,"method":"tools/list"}')
 echo "$H10" | grep -qi '^content-type: text/event-stream' && pass "SSE content-type" || fail "SSE content-type"
 echo "$H10" | grep -qi '^mcp-session-id: echo-test-123' && pass "mcp-session-id echoed" || fail "mcp-session-id echo"
 echo "$H10" | grep -qi '^x-powered-by: Express' && pass "x-powered-by: Express" || fail "x-powered-by: Express"
 echo "$H10" | grep -q '^event: message' && pass "body starts with event: message" || fail "SSE event line"
-H10B=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" -d '{"jsonrpc":"2.0","id":10,"method":"tools/list"}' | grep -i '^mcp-session-id:')
+H10B=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" -H "$PARITY" -d '{"jsonrpc":"2.0","id":10,"method":"tools/list"}' | grep -i '^mcp-session-id:')
 echo "$H10B" | grep -qiE 'mcp-session-id: [0-9a-f-]{36}' && pass "fresh UUID session id without header" || fail "fresh UUID session id; got: $H10B"
 
 if [ -n "${TEST_KEY:-}" ]; then
+  # --- 5a. Unknown tool via tools/call (probed against the API now, so it needs a live key)
+  B=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" \
+    -d '{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"nope","arguments":{}}}')
+  echo "$B" | grep -q 'Unknown tool: nope' && pass "unknown tool error" || fail "unknown tool error; got: $(echo "$B" | head -c 200)"
+
   # --- 6. execute with BOTH auth headers (real local Deno execution against the API)
   BODY=$(jq -n '{jsonrpc:"2.0",id:6,method:"tools/call",params:{name:"execute",arguments:{code:"async function run(conductor) { const page = await conductor.endUsers.list(); console.log(page.data.length); return \"ok\"; }"}}}')
   B=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -d "$BODY")
@@ -114,6 +144,20 @@ if [ -n "${TEST_KEY:-}" ]; then
   # NOTE (accepted content-shape difference, plan section 5 probe 6): the retired
   # hosted server returned ONE text block (JSON of {result, log_lines}); local
   # mode returns SEPARATE return-value/log text blocks. Eyeball; do not diff.
+
+  # --- 6b. Read-only connector URL: the GET snippet runs; a snippet that names a write method is blocked
+  # ---     before it runs, a client header cannot loosen it, and the same snippet on / is not blocked (it
+  # ---     only returns the method name as a string, so nothing is created). Functional checks of the
+  # ---     name-substring block, not security proofs: raw conductor.post/put/delete are not blocked.
+  B=$(curl -s -X POST "$NEW/read-only" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -d "$BODY")
+  echo "$B" | grep -q '"ok"' && ! echo "$B" | grep -q '"isError":true' && pass "execute GET on /read-only" || fail "execute GET on /read-only; got: $(echo "$B" | head -c 300)"
+  RO_BODY=$(jq -n '{jsonrpc:"2.0",id:66,method:"tools/call",params:{name:"execute",arguments:{code:"async function run(conductor) { return \"endUsers.create\"; }"}}}')
+  B=$(curl -s -X POST "$NEW/read-only" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -d "$RO_BODY")
+  echo "$B" | grep -q 'blocked by the MCP server' && pass "write name blocked on /read-only" || fail "write name on /read-only; got: $(echo "$B" | head -c 300)"
+  B=$(curl -s -X POST "$NEW/read-only/" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -H 'x-stainless-mcp-client-permissions: {"allow_http_gets":false}' -d "$RO_BODY")
+  echo "$B" | grep -q 'blocked by the MCP server' && pass "client header cannot loosen /read-only/" || fail "client header loosened /read-only/; got: $(echo "$B" | head -c 300)"
+  B=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -d "$RO_BODY")
+  echo "$B" | grep -q 'endUsers.create' && ! echo "$B" | grep -q 'blocked by the MCP server' && pass "same snippet on / is not blocked" || fail "same snippet on /; got: $(echo "$B" | head -c 300)"
 
   # --- 7. search_docs (local index; content differs from the retired Stainless
   # ---    search API by design; tool name/schema/shape identical)
@@ -127,8 +171,8 @@ if [ -n "${TEST_KEY:-}" ]; then
   # ---     x-stainless-mcp-client-envs, which is per-request, not cross-tenant.)
   BODY=$(jq -n '{jsonrpc:"2.0",id:11,method:"tools/call",params:{name:"execute",arguments:{code:"async function run(conductor) { return Object.keys((globalThis as any).Deno.env.toObject()).sort(); }"}}}')
   B=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -d "$BODY")
-  if echo "$B" | grep -qE 'CONDUCTOR_|STAINLESS_'; then
-    fail "containment probe: found CONDUCTOR_/STAINLESS_ vars in worker env: $(echo "$B" | head -c 400)"
+  if echo "$B" | grep -qE 'CONDUCTOR_(SECRET_KEY|API_KEY)|STAINLESS_'; then
+    fail "containment probe: found CONDUCTOR_SECRET_KEY/CONDUCTOR_API_KEY/STAINLESS_ vars in worker env: $(echo "$B" | head -c 400)"
   else
     pass "containment probe: no secrets in static worker env"
   fi
@@ -140,7 +184,7 @@ if [ -n "${TEST_KEY:-}" ]; then
     | grep -c 'c-ok')
   [ "$N" = "6" ] && pass "6 concurrent executes all succeed through the 4-slot cap" || fail "concurrency: expected 6 c-ok, got $N"
 else
-  echo "SKIP: probes 6, 7, 11, 12 (set TEST_KEY to run authenticated probes)"
+  echo "SKIP: probes 5a, 6, 6b, 7, 11, 12 (set TEST_KEY to run authenticated probes)"
 fi
 
 if [ -n "${TEST_KEY:-}" ] && [ -n "${RUN_SLOW:-}" ]; then
@@ -163,7 +207,7 @@ if [ -n "${TEST_KEY:-}" ] && [ -n "${RUN_SLOW:-}" ]; then
   sleep 2
   S=$(curl -s -o /dev/null -w '%{http_code}' "$NEW/health")
   [ "$S" = "200" ] && pass "/health 200 immediately after timeout (no crash)" || fail "server health after timeout: $S"
-  N=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -d '{"jsonrpc":"2.0","id":90,"method":"tools/list"}' | grep -c 'search_docs')
+  N=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -H "$PARITY" -d '{"jsonrpc":"2.0","id":90,"method":"tools/list"}' | grep -c 'search_docs')
   [ "$N" -ge 1 ] && pass "tools/list still serves after timeout" || fail "tools/list after timeout"
 else
   echo "SKIP: probes 8, 8b, 9 (set TEST_KEY and RUN_SLOW=1; takes ~12 minutes)"
