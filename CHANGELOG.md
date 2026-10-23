@@ -1,5 +1,20 @@
 # Changelog
 
+## [14.24.3](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.2...v14.24.3) (2026-10-19)
+
+
+### Bug Fixes
+
+* **api:** reject name and refNumber range filters mixed with match filters ([9a4a8a2](https://github.com/conductor-is/quickbooks-desktop-node/commit/9a4a8a265db107ea49ab4280f4ba17486d601aa0))
+* **mcp:** refuse malformed client permissions headers ([6baaddd](https://github.com/conductor-is/quickbooks-desktop-node/commit/6baadddcbbb7910f7d7bac069259f5674d442694))
+
+
+### Chores
+
+* **api:** tidy full-input access in list query param mappings ([be782c4](https://github.com/conductor-is/quickbooks-desktop-node/commit/be782c4c524074b72e7696e050f82a88ee2306f1))
+* **api:** update documented OpenAPI spec for download ([a944f7f](https://github.com/conductor-is/quickbooks-desktop-node/commit/a944f7f5772492573a6235d92c2fd44326eabc39))
+* **api:** update documented OpenAPI spec for download ([fc48326](https://github.com/conductor-is/quickbooks-desktop-node/commit/fc483264a31308fee5482628300f14a3cc2b53c1))
+
 ## [14.24.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.1...v14.24.2) (2026-10-15)
 
 
