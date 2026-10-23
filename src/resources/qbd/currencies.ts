@@ -426,13 +426,10 @@ export interface CurrencyListParams {
    * Query param: The maximum number of objects to return.
    *
    * **IMPORTANT**: QuickBooks Desktop does not support cursor-based pagination for
-   * currencies. This parameter will limit the response size, but you cannot fetch
-   * subsequent results using a cursor. For pagination, use the name-range parameters
-   * instead (e.g., `nameFrom=A&nameTo=B`).
+   * currencies, so this parameter only limits the response size.
    *
    * When this parameter is omitted, the endpoint returns all currencies without
-   * limit, unlike paginated endpoints which default to 150 records. This is
-   * acceptable because currencies typically have low record counts.
+   * limit, unlike paginated endpoints which default to 150 records.
    */
   limit?: number;
 
@@ -455,8 +452,9 @@ export interface CurrencyListParams {
   nameEndsWith?: string;
 
   /**
-   * Query param: Filter for currencies whose `name` is alphabetically greater than
-   * or equal to this value.
+   * Query param: Filter for currencies whose `name` sorts at or after this value
+   * (inclusive), compared case-insensitively in QuickBooks' sort order: punctuation
+   * first, then digits, then letters.
    *
    * **NOTE**: If you use this parameter, you cannot also use `nameContains`,
    * `nameStartsWith`, or `nameEndsWith`.
@@ -485,8 +483,10 @@ export interface CurrencyListParams {
   nameStartsWith?: string;
 
   /**
-   * Query param: Filter for currencies whose `name` is alphabetically less than or
-   * equal to this value.
+   * Query param: Filter for currencies whose `name` sorts at or before this value
+   * (inclusive), compared case-insensitively in QuickBooks' sort order: punctuation
+   * first, then digits, then letters. If you also set `nameFrom`, it must not sort
+   * after this value, or QuickBooks returns an error.
    *
    * **NOTE**: If you use this parameter, you cannot also use `nameContains`,
    * `nameStartsWith`, or `nameEndsWith`.

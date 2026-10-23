@@ -1050,13 +1050,10 @@ export interface InventoryAdjustmentListParams {
    * Query param: The maximum number of objects to return.
    *
    * **IMPORTANT**: QuickBooks Desktop does not support cursor-based pagination for
-   * inventory adjustments. This parameter will limit the response size, but you
-   * cannot fetch subsequent results using a cursor. For pagination, use the
-   * name-range parameters instead (e.g., `nameFrom=A&nameTo=B`).
+   * inventory adjustments, so this parameter only limits the response size.
    *
    * When this parameter is omitted, the endpoint returns all inventory adjustments
-   * without limit, unlike paginated endpoints which default to 150 records. This is
-   * acceptable because inventory adjustments typically have low record counts.
+   * without limit, unlike paginated endpoints which default to 150 records.
    */
   limit?: number;
 

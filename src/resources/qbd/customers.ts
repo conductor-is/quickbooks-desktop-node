@@ -2627,8 +2627,14 @@ export interface CustomerListParams extends CursorPageParams {
   nameEndsWith?: string;
 
   /**
-   * Query param: Filter for customers whose `name` is alphabetically greater than or
-   * equal to this value.
+   * Query param: Filter for customers whose `fullName` sorts at or after this value
+   * (inclusive), compared case-insensitively in QuickBooks' sort order: punctuation
+   * first, then digits, then letters.
+   *
+   * When you set `nameFrom` or `nameTo`, QuickBooks returns customers sorted by
+   * `fullName` in that order; without either, the order is not guaranteed. To page
+   * through customers by name, see
+   * [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
    *
    * **NOTE**: If you use this parameter, you cannot also use `nameContains`,
    * `nameStartsWith`, or `nameEndsWith`.
@@ -2645,8 +2651,13 @@ export interface CustomerListParams extends CursorPageParams {
   nameStartsWith?: string;
 
   /**
-   * Query param: Filter for customers whose `name` is alphabetically less than or
-   * equal to this value.
+   * Query param: Filter for customers whose `fullName` sorts at or before this value
+   * (inclusive), compared case-insensitively in QuickBooks' sort order: punctuation
+   * first, then digits, then letters. If you also set `nameFrom`, it must not sort
+   * after this value, or QuickBooks returns an error.
+   *
+   * When you set `nameFrom` or `nameTo`, QuickBooks returns customers sorted by
+   * `fullName` in that order; without either, the order is not guaranteed.
    *
    * **NOTE**: If you use this parameter, you cannot also use `nameContains`,
    * `nameStartsWith`, or `nameEndsWith`.
