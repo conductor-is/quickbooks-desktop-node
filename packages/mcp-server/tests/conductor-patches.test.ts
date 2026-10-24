@@ -133,6 +133,21 @@ describe('conductor self-hosting patches', () => {
     expect(oauth).toContain("PROBED_METHODS: ReadonlySet<string> = new Set(['tools/call'])");
   });
 
+  test('the generated code still reads the two headers the OAuth gate rewrites', () => {
+    // oauth.ts makes /read-only read-only by REPLACING x-stainless-mcp-client-permissions, and canonicalizes
+    // the Bearer scheme for auth.ts. If a regeneration renamed either, /read-only would silently grant full
+    // access or a lowercase "bearer" would 500 again, with every other test still green.
+    const http = fs.readFileSync(path.join(pkgRoot, 'src', 'http.ts'), 'utf-8');
+    expect(http).toContain("req.headers['x-stainless-mcp-client-permissions']");
+    const auth = fs.readFileSync(path.join(pkgRoot, 'src', 'auth.ts'), 'utf-8');
+    expect(auth).toContain("case 'Bearer':");
+    expect(auth).toContain("req.headers.authorization.slice('Bearer '.length)");
+    const oauth = fs.readFileSync(path.join(pkgRoot, 'src', 'oauth.ts'), 'utf-8');
+    expect(oauth).toContain(
+      "req.headers['x-stainless-mcp-client-permissions'] = READ_ONLY_PERMISSIONS_HEADER",
+    );
+  });
+
   test('README.md keeps the sealed hosted sign-in paragraph and stdio parenthetical', () => {
     // Both are sealed hunks in a generated file (selfhost/DEPLOYS.md); a regeneration that drops them
     // would send Claude Desktop users back to the stdio bridge with CI still green.
