@@ -61,6 +61,7 @@ describe('x-stainless-mcp-client-permissions header', () => {
     '{"read_only":true}',
     '{"allowed_methods":"customers.list"}',
     '{"blocked_methods":[1]}',
+    '{"blocked_methods":["("]}',
   ])('rejects %s instead of running full-access', async (permissions) => {
     const response = await initialize(permissions);
 
