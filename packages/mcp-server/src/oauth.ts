@@ -13,6 +13,7 @@
 // never change. The rest of the config is read from non-MCP_SERVER_ env names
 // (see code-tool.ts for why) with production defaults baked in.
 import cors from 'cors';
+import { createHash } from 'node:crypto';
 import express from 'express';
 import { getLogger } from './logger';
 import { readEnv } from './util';
@@ -40,6 +41,14 @@ const KEY_PROBE_USER_AGENT = 'conductor-mcp-key-probe/1';
 // Only tools/call is probed. initialize, tools/list, notifications and server/discover never contact the API, so the
 // Betterstack initialize monitor keeps a dummy Bearer and connection checks stay instant. The guard test pins this line.
 const PROBED_METHODS: ReadonlySet<string> = new Set(['tools/call']);
+// search_docs never contacts the API, so a call to it alone is not probed.
+const UNPROBED_TOOLS: ReadonlySet<string> = new Set(['search_docs']);
+// A 'valid' verdict is reused for this long per key (keyed by its SHA-256, never the key), so a busy session
+// pays one probe a minute instead of one per call. A key deleted in the dashboard keeps working here for up
+// to a minute; 'invalid' and 'unknown' are never cached.
+const VALID_KEY_CACHE_TTL_MS = 60_000;
+const VALID_KEY_CACHE_MAX_ENTRIES = 10_000;
+const validKeyCache = new Map<string, number>(); // sha256(token) -> expiry, insertion-ordered
 
 export type OAuthResource = 'root' | 'read-only';
 
@@ -70,7 +79,9 @@ export function getOAuthResourceConfig(resource: OAuthResource = 'root'): OAuthR
       RESOURCE_URL,
     ).href,
     apiBaseUrl: (readEnv('CONDUCTOR_BASE_URL') ?? DEFAULT_API_BASE_URL).replace(/\/+$/, ''),
-    keyProbeEnabled: readEnv('CONDUCTOR_MCP_KEY_PROBE') !== 'off',
+    keyProbeEnabled: !['off', 'false', '0', 'no'].includes(
+      (readEnv('CONDUCTOR_MCP_KEY_PROBE') ?? '').trim().toLowerCase(),
+    ),
   };
 }
 
@@ -146,7 +157,7 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
     canonicalizeCredential(req, credential);
     if (resource === 'read-only') forceReadOnlyPermissions(req);
     if (config.keyProbeEnabled && bodyHasProbedMethod(req.body)) {
-      const verdict = await probeKey(credential.token, config, mcpSessionId); // never throws
+      const verdict = await probeKeyCached(credential.token, config, mcpSessionId); // never throws
       if (verdict === 'invalid') {
         return reject(
           req,
@@ -191,7 +202,8 @@ function reject(
 // headers with a comma and only set-cookie is an array; narrowed with typeof for the TypeScript type.
 function extractCredential(req: express.Request): Credential {
   const authorization = req.headers.authorization;
-  if (authorization !== undefined) {
+  // Truthy, like parseClientAuthHeaders: an empty Authorization header falls through to the custom header.
+  if (authorization) {
     const spaceIndex = authorization.indexOf(' ');
     const scheme = spaceIndex === -1 ? authorization : authorization.slice(0, spaceIndex);
     const token = spaceIndex === -1 ? '' : authorization.slice(spaceIndex + 1).trim();
@@ -230,14 +242,42 @@ function forceReadOnlyPermissions(req: express.Request): void {
   req.headers['x-stainless-mcp-client-permissions'] = READ_ONLY_PERMISSIONS_HEADER;
 }
 
-// body is an object with a string `method` in PROBED_METHODS, or an array with any such element (JSON-RPC batch).
+// body is an object with a string `method` in PROBED_METHODS, or an array with any such element (JSON-RPC
+// batch), and the call is not only to a tool in UNPROBED_TOOLS.
 function bodyHasProbedMethod(body: unknown): boolean {
   const messages: unknown[] = Array.isArray(body) ? body : [body];
   return messages.some((message) => {
     if (typeof message !== 'object' || message === null) return false;
-    const method = (message as { method?: unknown }).method;
-    return typeof method === 'string' && PROBED_METHODS.has(method);
+    const { method, params } = message as { method?: unknown; params?: { name?: unknown } };
+    if (typeof method !== 'string' || !PROBED_METHODS.has(method)) return false;
+    const toolName = typeof params === 'object' && params !== null ? params.name : undefined;
+    return !(typeof toolName === 'string' && UNPROBED_TOOLS.has(toolName));
   });
+}
+
+async function probeKeyCached(
+  token: string,
+  config: OAuthResourceConfig,
+  mcpSessionId: string | undefined,
+): Promise<KeyProbeVerdict> {
+  const cacheKey = createHash('sha256').update(token).digest('hex');
+  const expiresAt = validKeyCache.get(cacheKey);
+  if (expiresAt !== undefined && expiresAt > Date.now()) return 'valid';
+  validKeyCache.delete(cacheKey);
+  const verdict = await probeKey(token, config, mcpSessionId);
+  if (verdict === 'valid') {
+    if (validKeyCache.size >= VALID_KEY_CACHE_MAX_ENTRIES) {
+      const oldest = validKeyCache.keys().next().value;
+      if (oldest !== undefined) validKeyCache.delete(oldest);
+    }
+    validKeyCache.set(cacheKey, Date.now() + VALID_KEY_CACHE_TTL_MS);
+  }
+  return verdict;
+}
+
+// Tests only: forget cached verdicts between cases.
+export function clearValidKeyCache(): void {
+  validKeyCache.clear();
 }
 
 // Why the envelope check: api.conductor.is answers through Cloudflare in front of Render (verified live
@@ -296,16 +336,29 @@ async function probeKey(
   return verdict;
 }
 
-// 404 or 2xx -> 'valid'. 401 or 403 -> 'invalid' ONLY when the media type is exactly application/json AND
+// 2xx, or a 404 whose JSON envelope says RESOURCE_MISSING (the fake end user is not found, so the key passed
+// auth) -> 'valid'; any other 404 (the API's UNRECOGNIZED_REQUEST_URL for a moved route, an edge page) ->
+// 'unknown', so a broken probe path warns instead of passing every key. 401 or 403 -> 'invalid' ONLY when the media type is exactly application/json AND
 // the body (read under the same 3 s abort signal) is Conductor's error envelope with a rejection code; any
 // other 401/403 (text/html, another code, unparseable) -> 'unknown'. Anything else (3xx, 429, 5xx) -> 'unknown'.
 async function classifyProbeResponse(
   response: Response,
   contentType: string | null,
 ): Promise<KeyProbeVerdict> {
-  if (response.status === 404 || response.ok) {
+  if (response.ok) {
     await discardBody(response);
     return 'valid';
+  }
+  if (response.status === 404) {
+    if (contentType !== 'application/json') {
+      await discardBody(response);
+      return 'unknown';
+    }
+    try {
+      return errorCodeOf(JSON.parse(await response.text())) === 'RESOURCE_MISSING' ? 'valid' : 'unknown';
+    } catch {
+      return 'unknown';
+    }
   }
   if ((response.status !== 401 && response.status !== 403) || contentType !== 'application/json') {
     await discardBody(response);
@@ -321,11 +374,17 @@ async function classifyProbeResponse(
 }
 
 function isApiKeyRejectionEnvelope(parsed: unknown): boolean {
-  if (typeof parsed !== 'object' || parsed === null) return false;
+  const code = errorCodeOf(parsed);
+  return code !== undefined && KEY_PROBE_REJECTION_CODES.has(code);
+}
+
+// error.code from Conductor's error envelope { "error": { "code": ... } }, if present.
+function errorCodeOf(parsed: unknown): string | undefined {
+  if (typeof parsed !== 'object' || parsed === null) return undefined;
   const error = (parsed as { error?: unknown }).error;
-  if (typeof error !== 'object' || error === null) return false;
+  if (typeof error !== 'object' || error === null) return undefined;
   const code = (error as { code?: unknown }).code;
-  return typeof code === 'string' && KEY_PROBE_REJECTION_CODES.has(code);
+  return typeof code === 'string' ? code : undefined;
 }
 
 async function discardBody(response: Response): Promise<void> {

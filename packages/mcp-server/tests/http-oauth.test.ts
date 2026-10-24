@@ -8,6 +8,7 @@ import type { AddressInfo } from 'node:net';
 import path from 'node:path';
 import { streamableHTTPApp } from '../src/http';
 import { configureLogger } from '../src/logger';
+import { clearValidKeyCache } from '../src/oauth';
 
 const INITIALIZE = {
   jsonrpc: '2.0',
@@ -84,6 +85,7 @@ afterAll(async () => {
 
 beforeEach(() => {
   apiRequests.length = 0;
+  clearValidKeyCache();
 });
 
 describe('credential gate', () => {
@@ -125,6 +127,16 @@ describe('credential gate', () => {
       error: 'invalid_request',
       error_description: expect.any(String),
     });
+  });
+
+  it('treats an empty Authorization header as absent, like the generated parser', async () => {
+    const response = await post(TOOLS_CALL, {
+      Authorization: '',
+      'x-conductor-secret-key': 'sk_conductor_live',
+    });
+
+    expect(response.status).toBe(200);
+    expect(await response.text()).toContain('Unknown tool: nope');
   });
 
   it('accepts a lowercase bearer scheme by canonicalizing it before the generated parser', async () => {
@@ -223,14 +235,41 @@ describe('tools/call key probe', () => {
     expect(probes()).toHaveLength(0);
   });
 
-  it('skips the probe entirely when CONDUCTOR_MCP_KEY_PROBE=off', async () => {
-    await withEnv('CONDUCTOR_MCP_KEY_PROBE', 'off', async () => {
-      const response = await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_dead' });
-      expect(response.status).toBe(200);
-      await response.text();
-    });
+  it('reuses a valid verdict for later calls, but never an invalid one', async () => {
+    await (await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_live' })).text();
+    await (await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_live' })).text();
+    expect(probes()).toHaveLength(1);
+
+    expect((await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_dead' })).status).toBe(401);
+    expect((await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_dead' })).status).toBe(401);
+    expect(probes()).toHaveLength(3);
+  });
+
+  it('never probes a search_docs call, which does not contact the API', async () => {
+    const searchDocs = {
+      jsonrpc: '2.0',
+      id: 5,
+      method: 'tools/call',
+      params: { name: 'search_docs', arguments: { query: 'create invoice', language: 'typescript' } },
+    };
+    const response = await post(searchDocs, { Authorization: 'Bearer sk_conductor_dead' });
+
+    expect(response.status).toBe(200);
+    await response.text();
     expect(probes()).toHaveLength(0);
   });
+
+  it.each(['off', 'OFF', ' false ', '0', 'no'])(
+    'skips the probe entirely when CONDUCTOR_MCP_KEY_PROBE=%j',
+    async (value) => {
+      await withEnv('CONDUCTOR_MCP_KEY_PROBE', value, async () => {
+        const response = await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_dead' });
+        expect(response.status).toBe(200);
+        await response.text();
+      });
+      expect(probes()).toHaveLength(0);
+    },
+  );
 });
 
 describe('protected resource metadata', () => {
@@ -428,6 +467,22 @@ describe('structured log lines', () => {
     expect(written.join('')).not.toContain('sk_conductor_');
   });
 
+  it('warns instead of passing the key when the probe route answers a 404 that is not RESOURCE_MISSING', async () => {
+    const movedBaseUrl = process.env['CONDUCTOR_BASE_URL']!.replace(/\/v1$/, '/moved/v1');
+    await withEnv('CONDUCTOR_BASE_URL', movedBaseUrl, async () => {
+      const response = await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_dead' });
+      expect(response.status).toBe(200); // fails open
+      await response.text();
+    });
+
+    expect(lines()).toContainEqual(
+      expect.objectContaining({
+        level: 'warn',
+        keyProbe: expect.objectContaining({ verdict: 'unknown', status: 404 }),
+      }),
+    );
+  });
+
   it('warns on an unknown verdict with the status and media type of the edge response', async () => {
     await (await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_edge403' })).text();
 
@@ -532,10 +587,6 @@ function post(body: unknown, headers: Record<string, string> = {}, path = '/'): 
     },
     body: JSON.stringify(body),
   });
-}
-
-async function fetchMetadata(prmPath = PRM_PATH): Promise<Record<string, unknown>> {
-  return (await (await fetch(new URL(prmPath, baseUrl))).json()) as Record<string, unknown>;
 }
 
 function probes(): RecordedRequest[] {

@@ -19,6 +19,8 @@ set -uo pipefail
 
 OLD="${OLD:-https://conductor.stlmcp.com}"
 NEW="${NEW:?set NEW to the server under test, e.g. http://localhost:3000}"
+# The OAuth URLs are hardcoded in src/oauth.ts, so every host advertises the production resource.
+PUBLIC_URL=https://mcp.conductor.is
 ACC='accept: application/json, text/event-stream'
 CT='content-type: application/json'
 PARITY='authorization: Bearer sk_conductor_parity'
@@ -86,25 +88,25 @@ H4=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" \
   -d '{"jsonrpc":"2.0","id":3,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"x","version":"1"}}}')
 echo "$H4" | head -1 | grep -q ' 401' && pass "credential-less initialize is 401" || fail "credential-less initialize expected 401; got: $(echo "$H4" | head -1)"
 WA=$(echo "$H4" | grep -i '^www-authenticate:' | sed 's/^[^:]*: //' | tr -d '\r')
-EXPECT_WA="Bearer resource_metadata=\"$NEW/.well-known/oauth-protected-resource\""
+EXPECT_WA="Bearer resource_metadata=\"$PUBLIC_URL/.well-known/oauth-protected-resource\""
 [ "$WA" = "$EXPECT_WA" ] && pass "www-authenticate names the protected resource metadata" || fail "www-authenticate expected $EXPECT_WA; got: $WA"
 
 # --- 4b. Read-only connector URL: same gate with the read-only metadata hint on both spellings; its
-# ---     document (both spellings) names $NEW/read-only (no slash) and the same authorization server;
+# ---     document (both spellings) names $PUBLIC_URL/read-only (no slash) and the same authorization server;
 # ---     GET/DELETE are 405, never a redirect.
 for P in /read-only /read-only/; do
   H4B=$(curl -si -X POST "$NEW$P" -H "$CT" -H "$ACC" \
     -d '{"jsonrpc":"2.0","id":3,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"x","version":"1"}}}')
   echo "$H4B" | head -1 | grep -q ' 401' && pass "credential-less initialize on $P is 401" || fail "credential-less initialize on $P expected 401; got: $(echo "$H4B" | head -1)"
   WA=$(echo "$H4B" | grep -i '^www-authenticate:' | sed 's/^[^:]*: //' | tr -d '\r')
-  EXPECT_WA="Bearer resource_metadata=\"$NEW/.well-known/oauth-protected-resource/read-only\""
+  EXPECT_WA="Bearer resource_metadata=\"$PUBLIC_URL/.well-known/oauth-protected-resource/read-only\""
   [ "$WA" = "$EXPECT_WA" ] && pass "www-authenticate on $P names the read-only metadata" || fail "www-authenticate on $P expected $EXPECT_WA; got: $WA"
 done
 AS_ROOT=$(curl -s "$NEW/.well-known/oauth-protected-resource" | jq -r '.authorization_servers[0]')
 for P in read-only read-only/; do
   DOC=$(curl -s "$NEW/.well-known/oauth-protected-resource/$P")
   R=$(echo "$DOC" | jq -r '.resource')
-  [ "$R" = "$NEW/read-only" ] && pass "read-only metadata ($P) resource is $NEW/read-only" || fail "read-only metadata ($P) resource expected $NEW/read-only; got: $R"
+  [ "$R" = "$PUBLIC_URL/read-only" ] && pass "read-only metadata ($P) resource is $PUBLIC_URL/read-only" || fail "read-only metadata ($P) resource expected $PUBLIC_URL/read-only; got: $R"
   A=$(echo "$DOC" | jq -r '.authorization_servers[0]')
   [ "$A" = "$AS_ROOT" ] && pass "read-only metadata ($P) names the same authorization server" || fail "read-only metadata ($P) authorization server $A differs from root $AS_ROOT"
 done
@@ -171,8 +173,10 @@ if [ -n "${TEST_KEY:-}" ]; then
   # ---     x-stainless-mcp-client-envs, which is per-request, not cross-tenant.)
   BODY=$(jq -n '{jsonrpc:"2.0",id:11,method:"tools/call",params:{name:"execute",arguments:{code:"async function run(conductor) { return Object.keys((globalThis as any).Deno.env.toObject()).sort(); }"}}}')
   B=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -d "$BODY")
-  if echo "$B" | grep -qE 'CONDUCTOR_(SECRET_KEY|API_KEY)|STAINLESS_'; then
-    fail "containment probe: found CONDUCTOR_SECRET_KEY/CONDUCTOR_API_KEY/STAINLESS_ vars in worker env: $(echo "$B" | head -c 400)"
+  # Any CONDUCTOR_* or STAINLESS_* name fails except the two non-secret config vars the server reads.
+  LEAKED=$(echo "$B" | grep -oE '(CONDUCTOR|STAINLESS)_[A-Z0-9_]+' | grep -vxE 'CONDUCTOR_BASE_URL|CONDUCTOR_MCP_KEY_PROBE' | sort -u | tr '\n' ' ')
+  if [ -n "$LEAKED" ]; then
+    fail "containment probe: found $LEAKED in worker env: $(echo "$B" | head -c 400)"
   else
     pass "containment probe: no secrets in static worker env"
   fi
