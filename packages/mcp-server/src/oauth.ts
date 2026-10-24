@@ -146,7 +146,14 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
     // lines join pino-http's request line even on a first-contact 401 that carried no mcp-session-id.
     const mcpSessionId = (req as any).mcpSessionId as string | undefined;
     if (credential.kind === 'missing') {
-      return reject(req, res, config, 'missing', undefined, 'Sign in to Conductor to use this MCP server');
+      return reject(
+        req,
+        res,
+        config,
+        'missing',
+        undefined,
+        'Sign in to Conductor, or send your Conductor secret key in the Authorization header',
+      );
     }
     if (credential.kind === 'invalid') {
       return reject(
@@ -155,7 +162,7 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
         config,
         'invalid_scheme',
         'invalid_request',
-        'The Authorization header must use the Bearer scheme',
+        'The Authorization header must be the word Bearer, a space, and your Conductor secret key',
       );
     }
     canonicalizeCredential(req, credential);
@@ -170,8 +177,8 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
           'dead_key',
           'invalid_token',
           probe.code === 'SECRET_KEY_REQUIRED' ?
-            'This is a Conductor publishable key; use a secret key instead'
-          : 'This Conductor key is invalid or was deleted; sign in again or use a new key',
+            'This is a Conductor publishable key. Use a secret key instead'
+          : 'This Conductor key is invalid or was deleted. Sign in again, or create a new key on the MCP tab in the Conductor Dashboard',
         );
       }
     }

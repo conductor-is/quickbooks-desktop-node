@@ -28,8 +28,8 @@ const PROBE_PATH = '/v1/end-users/end_usr_oauth_probe';
 const PRM_PATH = '/.well-known/oauth-protected-resource';
 const RS_METADATA_URL = 'https://mcp.conductor.is/.well-known/oauth-protected-resource';
 const MISSING_CHALLENGE = `Bearer resource_metadata="${RS_METADATA_URL}"`;
-const SCHEME_CHALLENGE = `Bearer error="invalid_request", error_description="The Authorization header must use the Bearer scheme", resource_metadata="${RS_METADATA_URL}"`;
-const DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key is invalid or was deleted; sign in again or use a new key", resource_metadata="${RS_METADATA_URL}"`;
+const SCHEME_CHALLENGE = `Bearer error="invalid_request", error_description="The Authorization header must be the word Bearer, a space, and your Conductor secret key", resource_metadata="${RS_METADATA_URL}"`;
+const DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key is invalid or was deleted. Sign in again, or create a new key on the MCP tab in the Conductor Dashboard", resource_metadata="${RS_METADATA_URL}"`;
 const EXPECTED_METADATA = {
   resource: 'https://mcp.conductor.is/',
   authorization_servers: ['https://dashboard.conductor.is'],
@@ -40,7 +40,7 @@ const EXPECTED_METADATA = {
 const PRM_RO_PATH = '/.well-known/oauth-protected-resource/read-only';
 const RS_RO_METADATA_URL = 'https://mcp.conductor.is/.well-known/oauth-protected-resource/read-only';
 const RO_MISSING_CHALLENGE = `Bearer resource_metadata="${RS_RO_METADATA_URL}"`;
-const RO_DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key is invalid or was deleted; sign in again or use a new key", resource_metadata="${RS_RO_METADATA_URL}"`;
+const RO_DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key is invalid or was deleted. Sign in again, or create a new key on the MCP tab in the Conductor Dashboard", resource_metadata="${RS_RO_METADATA_URL}"`;
 const EXPECTED_RO_METADATA = { ...EXPECTED_METADATA, resource: 'https://mcp.conductor.is/read-only' };
 // Names a write by its SDK method name. The code tool blocks on a substring match before anything runs, so
 // this never reaches Deno (absent when CI runs jest) or the API.
@@ -236,7 +236,7 @@ describe('tools/call key probe', () => {
 
     expect(response.status).toBe(401);
     expect(response.headers.get('www-authenticate')).toContain(
-      'error_description="This is a Conductor publishable key; use a secret key instead"',
+      'error_description="This is a Conductor publishable key. Use a secret key instead"',
     );
   });
 
