@@ -398,10 +398,6 @@ describe('read-only connector path', () => {
     ['{"allow_http_gets":false}', { 'x-stainless-mcp-client-permissions': '{"allow_http_gets":false}' }],
     ['{"allowed_methods":[".*"]}', { 'x-stainless-mcp-client-permissions': '{"allowed_methods":[".*"]}' }],
     ['{}', { 'x-stainless-mcp-client-permissions': '{}' }],
-    [
-      'a malformed header (replaced, not 400)',
-      { 'x-stainless-mcp-client-permissions': '{allow_http_gets:false}' },
-    ],
   ];
   it.each(loosening)('blocks a write in execute on /read-only/ with %s', async (_name, headers) => {
     const response = await post(
@@ -414,6 +410,37 @@ describe('read-only connector path', () => {
     expect(text).toContain(BLOCKED_MESSAGE);
     expect(text).toContain('"isError":true');
     expect(probes()).toHaveLength(1); // the tools/call key probe runs on this path too
+  });
+
+  it.each(['{allow_http_gets:false}', '{"blocked_methods":["("]}'])(
+    'refuses the malformed header %s on /read-only/ with the same 400 as on the root',
+    async (permissions) => {
+      const response = await post(
+        INITIALIZE,
+        { Authorization: 'Bearer sk_conductor_live', 'x-stainless-mcp-client-permissions': permissions },
+        '/read-only/',
+      );
+      expect(response.status).toBe(400);
+      expect(await response.text()).toContain('Invalid x-stainless-mcp-client-permissions header');
+    },
+  );
+
+  it('keeps a client allowed_methods narrowing on /read-only/, so other reads stay blocked', async () => {
+    const response = await post(
+      {
+        ...EXECUTE_WRITE,
+        params: {
+          name: 'execute',
+          arguments: { code: 'async function run(conductor) { return conductor.endUsers.list(); }' },
+        },
+      },
+      {
+        Authorization: 'Bearer sk_conductor_live',
+        'x-stainless-mcp-client-permissions': '{"allowed_methods":["qbd\\\\.invoices"]}',
+      },
+      '/read-only/',
+    );
+    expect(await response.text()).toContain('cannot be used in code execution: endUsers.list');
   });
 
   it('blocks the same write on / only when the client asks for it', async () => {
@@ -565,7 +592,7 @@ describe('structured log lines', () => {
         {
           Authorization: 'Bearer sk_conductor_live',
           'x-stainless-mcp-client-permissions':
-            '{"allow_http_gets":false,"allowed_methods":[".*"],"blocked_methods":["qbd\\\\.employees"]}',
+            '{"allow_http_gets":false,"blocked_methods":["qbd\\\\.employees"]}',
         },
         '/read-only',
       )
@@ -578,13 +605,35 @@ describe('structured log lines', () => {
     ]);
   });
 
+  it('replaces a client allowed_methods on the read-only path with the exact GETs it matches', async () => {
+    await (
+      await post(
+        INITIALIZE,
+        {
+          Authorization: 'Bearer sk_conductor_live',
+          'x-stainless-mcp-client-permissions': '{"allowed_methods":["qbd\\\\.invoices"]}',
+        },
+        '/read-only',
+      )
+    ).text();
+    const forced = lines().filter((line) => 'clientPermissions' in line);
+    expect(forced).toEqual([
+      expect.objectContaining({
+        clientPermissions: {
+          allow_http_gets: false,
+          allowed_methods: ['^qbd\\.invoices\\.retrieve$', '^qbd\\.invoices\\.list$'],
+        },
+      }),
+    ]);
+  });
+
   it('forces allow_http_gets on the read-only path whatever the client sent, and never on the root', async () => {
     await (
       await post(
         INITIALIZE,
         {
           Authorization: 'Bearer sk_conductor_live',
-          'x-stainless-mcp-client-permissions': '{"allow_http_gets":false,"allowed_methods":[".*"]}',
+          'x-stainless-mcp-client-permissions': '{"allow_http_gets":false}',
         },
         '/read-only',
       )

@@ -16,6 +16,7 @@ import cors from 'cors';
 import { createHash } from 'node:crypto';
 import express from 'express';
 import { getLogger } from './logger';
+import { sdkMethods } from './methods';
 import { readEnv } from './util';
 
 // A local end-to-end run edits these two temporarily (see the dashboard's src/lib/oauth/README.md).
@@ -23,8 +24,8 @@ const AUTHORIZATION_SERVER_URL = 'https://dashboard.conductor.is';
 const RESOURCE_URL = 'https://mcp.conductor.is/';
 const DEFAULT_API_BASE_URL = 'https://api.conductor.is/v1'; // conductor-node's own default (src/client.ts)
 const PROTECTED_RESOURCE_METADATA_PATH = '/.well-known/oauth-protected-resource';
-// The read-only connector URL. POST /read-only (Express also matches /read-only/) behaves exactly as if the
-// client had sent x-stainless-mcp-client-permissions: {"allow_http_gets":true}. Its identifier is
+// The read-only connector URL. POST /read-only (Express also matches /read-only/) allows only reads (see
+// forceReadOnlyPermissions). Its identifier is
 // `${origin}/read-only` with no trailing slash (hosted Claude strips one from a connector URL, and SDK 1.x
 // clients refuse a metadata resource longer than the URL the user typed), and its RFC 9728 document sits at
 // PROTECTED_RESOURCE_METADATA_PATH + READ_ONLY_PATH, which is what path insertion produces for it.
@@ -139,7 +140,7 @@ export function buildWwwAuthenticate(
 
 // Runs after express.json() (so req.body.method is readable) and before post(). A credential-less
 // POST with invalid JSON is a 400 from the body parser, as today; real clients never send one.
-// On the read-only route the gate also pins the client permissions header before the generated parser reads it.
+// On the read-only route the gate also rewrites the client permissions header before http.ts parses it.
 export function requireCredential(resource: OAuthResource = 'root'): express.RequestHandler {
   return async (req, res, next) => {
     const config = getOAuthResourceConfig(resource);
@@ -249,27 +250,69 @@ function canonicalizeCredential(
   }
 }
 
-// The read-only connector URL behaves as if the client had sent
-// x-stainless-mcp-client-permissions: {"allow_http_gets":true}. The header is REPLACED, not merged:
-// http.ts spreads whatever it parses over mcpOptions, so a client {"allow_http_gets":false} would restore
-// full access and an allowed_methods regexp would union writes back in. Only a client's blocked_methods
-// survive, because they can only narrow the GET set further (a client that blocks employee reads keeps that
-// on /read-only). A malformed client value is replaced too instead of answered 400 (that fail-closed 400
-// exists to stop a malformed header from granting full access, which cannot happen on this path).
+// The read-only connector URL allows the client's own permissions minus every write: the HTTP GET methods,
+// or only the GETs among a client's allowed_methods when it sent that list without allow_http_gets:true, less
+// its blocked_methods. The header is REWRITTEN, not merged: http.ts spreads whatever it parses over
+// mcpOptions, so a client {"allow_http_gets":false} would restore full access and an allowed_methods regexp
+// would union writes back in; allowed_methods is therefore replaced by the exact names of the GETs it matches.
+// A server started with its own --code-allowed-methods would still union those in; the hosted service sets
+// none. A malformed value is left as sent, so http.ts refuses it with the same 400 as on the root.
 function forceReadOnlyPermissions(req: express.Request): void {
-  const forced: { allow_http_gets: true; blocked_methods?: string[] } = { allow_http_gets: true };
   const sent = req.headers['x-stainless-mcp-client-permissions'];
-  if (typeof sent === 'string') {
-    try {
-      const blocked = (JSON.parse(sent) as { blocked_methods?: unknown } | null)?.blocked_methods;
-      if (Array.isArray(blocked) && blocked.every((method) => typeof method === 'string')) {
-        forced.blocked_methods = blocked;
-      }
-    } catch {
-      // Malformed: replaced with the plain read-only value.
-    }
+  const client = typeof sent === 'string' ? parseClientPermissions(sent) : {};
+  if (client === null) return;
+  const forced: ClientPermissions = { allow_http_gets: true };
+  if (client.allowed_methods !== undefined && client.allow_http_gets !== true) {
+    const allowed = client.allowed_methods.map((pattern) => new RegExp(pattern));
+    forced.allow_http_gets = false;
+    forced.allowed_methods = sdkMethods
+      .filter(
+        (method) =>
+          method.httpMethod === 'get' && allowed.some((regexp) => regexp.test(method.fullyQualifiedName)),
+      )
+      .map((method) => `^${method.fullyQualifiedName.replace(/\./g, '\\.')}$`); // names are dotted identifiers
   }
+  if (client.blocked_methods !== undefined) forced.blocked_methods = client.blocked_methods;
   req.headers['x-stainless-mcp-client-permissions'] = JSON.stringify(forced);
+}
+
+export type ClientPermissions = {
+  allow_http_gets?: boolean;
+  allowed_methods?: string[];
+  blocked_methods?: string[];
+};
+
+// The one parser for x-stainless-mcp-client-permissions, shared by http.ts and the read-only gate so both
+// paths refuse the same values. Returns null unless the header is a JSON object holding only known keys of
+// the right types with valid regexps, so a typo such as {"allow_http_gets":"true"} or {"read_only":true} is
+// refused instead of ignored, and a bad pattern is a 400 instead of a 500 from the method filter.
+export function parseClientPermissions(header: string): ClientPermissions | null {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(header);
+  } catch {
+    return null;
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    return null;
+  }
+  const isPatternArray = (value: unknown) =>
+    Array.isArray(value) && value.every((item) => typeof item === 'string' && isValidRegExp(item));
+  const isValid = Object.entries(parsed).every(([key, value]) =>
+    key === 'allow_http_gets' ? typeof value === 'boolean'
+    : key === 'allowed_methods' || key === 'blocked_methods' ? isPatternArray(value)
+    : false,
+  );
+  return isValid ? (parsed as ClientPermissions) : null;
+}
+
+function isValidRegExp(pattern: string): boolean {
+  try {
+    new RegExp(pattern);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 // body is an object with a string `method` in PROBED_METHODS, or an array with any such element (JSON-RPC

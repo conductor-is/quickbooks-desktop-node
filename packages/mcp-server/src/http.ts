@@ -8,7 +8,7 @@ import pino from 'pino';
 import pinoHttp from 'pino-http';
 import { getStainlessApiKey, parseClientAuthHeaders } from './auth';
 import { getLogger } from './logger';
-import { mountProtectedResourceMetadata, requireCredential } from './oauth'; // conductor patch
+import { mountProtectedResourceMetadata, parseClientPermissions, requireCredential } from './oauth'; // conductor patch
 import { McpOptions } from './options';
 import { initMcpServer, newMcpServer } from './server';
 
@@ -145,34 +145,6 @@ const del = async (req: express.Request, res: express.Response) => {
   });
 };
 
-type ClientPermissions = {
-  allow_http_gets?: boolean;
-  allowed_methods?: string[];
-  blocked_methods?: string[];
-};
-
-// Returns null unless the header is a JSON object holding only known keys of the right types, so a
-// typo such as {"allow_http_gets":"true"} or {"read_only":true} is refused instead of ignored.
-const parseClientPermissions = (header: string): ClientPermissions | null => {
-  let parsed: unknown;
-  try {
-    parsed = JSON.parse(header);
-  } catch {
-    return null;
-  }
-  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
-    return null;
-  }
-  const isStringArray = (value: unknown) =>
-    Array.isArray(value) && value.every((item) => typeof item === 'string');
-  const isValid = Object.entries(parsed).every(([key, value]) =>
-    key === 'allow_http_gets' ? typeof value === 'boolean'
-    : key === 'allowed_methods' || key === 'blocked_methods' ? isStringArray(value)
-    : false,
-  );
-  return isValid ? (parsed as ClientPermissions) : null;
-};
-
 const redactHeaders = (headers: Record<string, any>) => {
   const hiddenHeaders = /auth|cookie|key|token|x-stainless-mcp-client-envs/i;
   const filtered = { ...headers };
@@ -247,8 +219,8 @@ export const streamableHTTPApp = ({
   });
   // OAuth 2.1 resource server (conductor patch, see src/oauth.ts): RFC 9728 metadata for both resources,
   // and the 401 + WWW-Authenticate that makes Claude and other OAuth clients start sign-in. /read-only is
-  // the read-only connector URL: its gate pins the client permissions header to {"allow_http_gets":true},
-  // so the path alone decides and a client value can never loosen it.
+  // the read-only connector URL: its gate rewrites the client permissions header to the client's own
+  // permissions minus every write, so a client value can never loosen it.
   mountProtectedResourceMetadata(app);
   app.get('/', get);
   app.post('/', requireCredential(), post({ clientOptions, mcpOptions }));
