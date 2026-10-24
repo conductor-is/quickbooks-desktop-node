@@ -398,6 +398,14 @@ describe('read-only connector path', () => {
     ['{"allow_http_gets":false}', { 'x-stainless-mcp-client-permissions': '{"allow_http_gets":false}' }],
     ['{"allowed_methods":[".*"]}', { 'x-stainless-mcp-client-permissions': '{"allowed_methods":[".*"]}' }],
     ['{}', { 'x-stainless-mcp-client-permissions': '{}' }],
+    [
+      '{"allow_http_gets":true,"allowed_methods":[".*"]}',
+      { 'x-stainless-mcp-client-permissions': '{"allow_http_gets":true,"allowed_methods":[".*"]}' },
+    ],
+    [
+      'an allowed_methods that matches no GET',
+      { 'x-stainless-mcp-client-permissions': '{"allowed_methods":["qbd\\\\.invoices\\\\.create"]}' },
+    ],
   ];
   it.each(loosening)('blocks a write in execute on /read-only/ with %s', async (_name, headers) => {
     const response = await post(
@@ -627,7 +635,7 @@ describe('structured log lines', () => {
     ]);
   });
 
-  it('forces allow_http_gets on the read-only path whatever the client sent, and never on the root', async () => {
+  it('forces allow_http_gets on the read-only path for a client that limited nothing, and never on the root', async () => {
     await (
       await post(
         INITIALIZE,

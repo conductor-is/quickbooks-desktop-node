@@ -25,7 +25,7 @@ const RESOURCE_URL = 'https://mcp.conductor.is/';
 const DEFAULT_API_BASE_URL = 'https://api.conductor.is/v1'; // conductor-node's own default (src/client.ts)
 const PROTECTED_RESOURCE_METADATA_PATH = '/.well-known/oauth-protected-resource';
 // The read-only connector URL. POST /read-only (Express also matches /read-only/) allows only reads (see
-// forceReadOnlyPermissions). Its identifier is
+// forceReadOnlyPermissions; a guardrail, not a security boundary). Its identifier is
 // `${origin}/read-only` with no trailing slash (hosted Claude strips one from a connector URL, and SDK 1.x
 // clients refuse a metadata resource longer than the URL the user typed), and its RFC 9728 document sits at
 // PROTECTED_RESOURCE_METADATA_PATH + READ_ONLY_PATH, which is what path insertion produces for it.

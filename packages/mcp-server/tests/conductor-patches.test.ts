@@ -134,11 +134,17 @@ describe('conductor self-hosting patches', () => {
   });
 
   test('the generated code still reads the two headers the OAuth gate rewrites', () => {
-    // oauth.ts makes /read-only read-only by REPLACING x-stainless-mcp-client-permissions, and canonicalizes
+    // oauth.ts makes /read-only read-only by REWRITING x-stainless-mcp-client-permissions, and canonicalizes
     // the Bearer scheme for auth.ts. If a regeneration renamed either, /read-only would silently grant full
     // access or a lowercase "bearer" would 500 again, with every other test still green.
     const http = fs.readFileSync(path.join(pkgRoot, 'src', 'http.ts'), 'utf-8');
     expect(http).toContain("req.headers['x-stainless-mcp-client-permissions']");
+    // The gate leaves a malformed header as sent, so /read-only fails closed only through this 400; a
+    // regeneration that restored the generator's lenient parser would serve it with full access.
+    expect(http).toContain('const clientPermissions = parseClientPermissions(clientPermissionsHeader);');
+    expect(http).toContain('if (clientPermissions === null) {');
+    expect(http).toContain('Invalid x-stainless-mcp-client-permissions header.');
+    expect(http).not.toContain('const parseClientPermissions');
     const auth = fs.readFileSync(path.join(pkgRoot, 'src', 'auth.ts'), 'utf-8');
     expect(auth).toContain("case 'Bearer':");
     expect(auth).toContain("req.headers.authorization.slice('Bearer '.length)");
