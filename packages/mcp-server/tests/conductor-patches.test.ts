@@ -143,9 +143,7 @@ describe('conductor self-hosting patches', () => {
     expect(auth).toContain("case 'Bearer':");
     expect(auth).toContain("req.headers.authorization.slice('Bearer '.length)");
     const oauth = fs.readFileSync(path.join(pkgRoot, 'src', 'oauth.ts'), 'utf-8');
-    expect(oauth).toContain(
-      "req.headers['x-stainless-mcp-client-permissions'] = READ_ONLY_PERMISSIONS_HEADER",
-    );
+    expect(oauth).toContain("req.headers['x-stainless-mcp-client-permissions'] = JSON.stringify(forced)");
   });
 
   test('README.md keeps the sealed hosted sign-in paragraph and stdio parenthetical', () => {

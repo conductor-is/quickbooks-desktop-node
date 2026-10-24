@@ -116,7 +116,6 @@ describe('credential gate', () => {
   const wrongScheme: Array<[string, Record<string, string>]> = [
     ['Authorization: Basic abc', { Authorization: 'Basic abc' }],
     ['an empty Bearer credential', { Authorization: 'Bearer ' }],
-    ['an empty x-conductor-secret-key', { 'x-conductor-secret-key': '' }],
   ];
   it.each(wrongScheme)('rejects %s with 401 invalid_request instead of 500', async (_name, headers) => {
     const response = await post(INITIALIZE, headers);
@@ -127,6 +126,15 @@ describe('credential gate', () => {
       error: 'invalid_request',
       error_description: expect.any(String),
     });
+  });
+
+  it('names the empty x-conductor-secret-key header instead of the Authorization header', async () => {
+    const response = await post(INITIALIZE, { 'x-conductor-secret-key': '' });
+
+    expect(response.status).toBe(401);
+    expect(response.headers.get('www-authenticate')).toContain(
+      'error_description="The x-conductor-secret-key header is empty. Set it to your Conductor secret key"',
+    );
   });
 
   it('treats an empty Authorization header as absent, like the generated parser', async () => {
@@ -548,6 +556,26 @@ describe('structured log lines', () => {
       }),
     );
     expect(written.join('')).not.toContain('sk_conductor_');
+  });
+
+  it('keeps a client blocked_methods on the read-only path, and drops what could loosen it', async () => {
+    await (
+      await post(
+        INITIALIZE,
+        {
+          Authorization: 'Bearer sk_conductor_live',
+          'x-stainless-mcp-client-permissions':
+            '{"allow_http_gets":false,"allowed_methods":[".*"],"blocked_methods":["qbd\\\\.employees"]}',
+        },
+        '/read-only',
+      )
+    ).text();
+    const forced = lines().filter((line) => 'clientPermissions' in line);
+    expect(forced).toEqual([
+      expect.objectContaining({
+        clientPermissions: { allow_http_gets: true, blocked_methods: ['qbd\\.employees'] },
+      }),
+    ]);
   });
 
   it('forces allow_http_gets on the read-only path whatever the client sent, and never on the root', async () => {
