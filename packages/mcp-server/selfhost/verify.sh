@@ -8,6 +8,7 @@
 #   NEW=... TEST_KEY=... RUN_SLOW=1 ./verify.sh        # + slow probes 8/8b/9 (~12 min)
 # Parity probes send a dummy Bearer (PARITY; initialize/tools/list are never probed); TEST_KEY gates 5a too.
 # Probes 4b and 6b cover the read-only connector URL ($NEW/read-only, both spellings on the wire); 6b needs TEST_KEY.
+# Run with TEST_KEY to prove env containment too: probe 11 (no secrets in the worker env) needs a credential.
 #
 # OLD defaults to the retired Stainless host; parity diffs against it only work
 # while it is still live (pre Sept 1, 2026). After that, self-diff against
@@ -102,7 +103,11 @@ for P in /read-only /read-only/; do
   EXPECT_WA="Bearer resource_metadata=\"$PUBLIC_URL/.well-known/oauth-protected-resource/read-only\""
   [ "$WA" = "$EXPECT_WA" ] && pass "www-authenticate on $P names the read-only metadata" || fail "www-authenticate on $P expected $EXPECT_WA; got: $WA"
 done
-AS_ROOT=$(curl -s "$NEW/.well-known/oauth-protected-resource" | jq -r '.authorization_servers[0]')
+ROOT_DOC=$(curl -s "$NEW/.well-known/oauth-protected-resource")
+AS_ROOT=$(echo "$ROOT_DOC" | jq -r '.authorization_servers[0]')
+[ "$AS_ROOT" = "https://dashboard.conductor.is" ] && pass "root metadata names https://dashboard.conductor.is" || fail "root metadata authorization server expected https://dashboard.conductor.is; got: $AS_ROOT"
+R=$(echo "$ROOT_DOC" | jq -r '.resource')
+[ "$R" = "$PUBLIC_URL/" ] && pass "root metadata resource is $PUBLIC_URL/" || fail "root metadata resource expected $PUBLIC_URL/; got: $R"
 for P in read-only read-only/; do
   DOC=$(curl -s "$NEW/.well-known/oauth-protected-resource/$P")
   R=$(echo "$DOC" | jq -r '.resource')

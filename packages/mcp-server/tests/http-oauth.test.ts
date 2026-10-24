@@ -189,10 +189,6 @@ describe('tools/call key probe', () => {
 
   const deadKeys: Array<[string, Record<string, string>]> = [
     ['Bearer sk_conductor_dead (401 API_KEY_INVALID)', { Authorization: 'Bearer sk_conductor_dead' }],
-    [
-      'Bearer sk_conductor_publishable (403 SECRET_KEY_REQUIRED)',
-      { Authorization: 'Bearer sk_conductor_publishable' },
-    ],
     ['x-conductor-secret-key: sk_conductor_dead', { 'x-conductor-secret-key': 'sk_conductor_dead' }],
   ];
   it.each(deadKeys)('answers 401 invalid_token for %s', async (_name, headers) => {
@@ -233,6 +229,36 @@ describe('tools/call key probe', () => {
       await response.text();
     });
     expect(probes()).toHaveLength(0);
+  });
+
+  it('tells a publishable key to use a secret key', async () => {
+    const response = await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_publishable' });
+
+    expect(response.status).toBe(401);
+    expect(response.headers.get('www-authenticate')).toContain(
+      'error_description="This is a Conductor publishable key; use a secret key instead"',
+    );
+  });
+
+  it('probes again once a cached valid verdict is a minute old', async () => {
+    await (await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_live' })).text();
+    const later = Date.now() + 61_000;
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(later);
+    try {
+      await (await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_live' })).text();
+    } finally {
+      nowSpy.mockRestore();
+    }
+    expect(probes()).toHaveLength(2);
+  });
+
+  it('shares one probe between parallel calls with the same uncached key', async () => {
+    await Promise.all(
+      [1, 2, 3].map(async () =>
+        (await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_slow' })).text(),
+      ),
+    );
+    expect(probes()).toHaveLength(1);
   });
 
   it('reuses a valid verdict for later calls, but never an invalid one', async () => {
@@ -396,8 +422,9 @@ describe('structured log lines', () => {
   let stderrWrite: jest.SpyInstance;
 
   beforeAll(() => {
-    // The logger writes JSON lines to process.stderr; capturing at the stream shows exactly what Render
-    // sees, including pino-http's request lines with their redacted headers.
+    // The logger writes JSON lines to process.stderr; capturing at the stream shows exactly what Render sees
+    // from the gate and the probe. pino-http's request lines are not captured: it bound the fatal-level
+    // logger when the app was built in the top-level beforeAll.
     configureLogger({ level: 'info', pretty: false });
     stderrWrite = jest.spyOn(process.stderr, 'write').mockImplementation((chunk: unknown) => {
       written.push(String(chunk));
@@ -456,6 +483,7 @@ describe('structured log lines', () => {
         level: 'info',
         keyProbe: {
           verdict: 'invalid',
+          code: 'API_KEY_INVALID',
           status: 401,
           ms: expect.any(Number),
           contentType: 'application/json',
@@ -479,6 +507,19 @@ describe('structured log lines', () => {
       expect.objectContaining({
         level: 'warn',
         keyProbe: expect.objectContaining({ verdict: 'unknown', status: 404 }),
+      }),
+    );
+  });
+
+  it('warns instead of passing the key when the probe route answers a 2xx', async () => {
+    const response = await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_ok200' });
+    expect(response.status).toBe(200); // fails open
+    await response.text();
+
+    expect(lines()).toContainEqual(
+      expect.objectContaining({
+        level: 'warn',
+        keyProbe: expect.objectContaining({ verdict: 'unknown', status: 200 }),
       }),
     );
   });
@@ -560,6 +601,11 @@ function mockConductorApi(req: http.IncomingMessage, res: http.ServerResponse): 
       return answer(401, '<!DOCTYPE html><title>Cloudflare Access</title>', 'text/html; charset=UTF-8');
     case 'sk_conductor_othercode':
       return answer(401, envelope('RESOURCE_MISSING'));
+    case 'sk_conductor_slow':
+      setTimeout(() => answer(404, envelope('RESOURCE_MISSING')), 200);
+      return;
+    case 'sk_conductor_ok200':
+      return answer(200, JSON.stringify({ id: 'end_usr_oauth_probe' }));
     case 'sk_conductor_flaky':
       return answer(503, 'Service Unavailable', 'text/plain; charset=utf-8');
     default:
