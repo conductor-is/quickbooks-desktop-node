@@ -29,7 +29,6 @@ const PROTECTED_RESOURCE_METADATA_PATH = '/.well-known/oauth-protected-resource'
 // clients refuse a metadata resource longer than the URL the user typed), and its RFC 9728 document sits at
 // PROTECTED_RESOURCE_METADATA_PATH + READ_ONLY_PATH, which is what path insertion produces for it.
 const READ_ONLY_PATH = '/read-only';
-const READ_ONLY_PERMISSIONS_HEADER = '{"allow_http_gets":true}';
 const KEY_PROBE_TIMEOUT_MS = 3000;
 const KEY_PROBE_PATH = '/end-users/end_usr_oauth_probe'; // auth: "secret" route; 404 with a live key, 401 with a dead one
 // The only codes apps/server emits as a 401/403 on the probe route for a presented non-empty Bearer key
@@ -62,19 +61,22 @@ export interface OAuthResourceConfig {
   keyProbeEnabled: boolean;
 }
 
-type Credential = { kind: 'bearer' | 'header'; token: string } | { kind: 'missing' } | { kind: 'invalid' };
+type Credential =
+  | { kind: 'bearer' | 'header'; token: string }
+  | { kind: 'missing' }
+  | { kind: 'invalid'; header: 'authorization' | 'x-conductor-secret-key' };
 type GateRejection = 'missing' | 'invalid_scheme' | 'dead_key';
 type WwwAuthenticateError = 'invalid_request' | 'invalid_token';
 type KeyProbeVerdict = 'valid' | 'invalid' | 'unknown';
 // code: the API's rejection code, for an 'invalid' verdict only.
-type KeyProbeResult = { verdict: KeyProbeVerdict; code?: string };
+type KeyProbeResult = { verdict: KeyProbeVerdict; code?: string; error?: string };
 
 // Read per call (cheap), so tests set process.env between requests and http.ts's signature does not change.
 // The read-only resource is derived from the root.
 export function getOAuthResourceConfig(resource: OAuthResource = 'root'): OAuthResourceConfig {
   const isReadOnly = resource === 'read-only';
-  // Absolute paths resolved against the root, so the identifier, the route literal and the path-inserted
-  // RFC 9728 metadata URL all come from READ_ONLY_PATH.
+  // Absolute paths resolved against the root, so the identifier and the path-inserted RFC 9728 metadata URL
+  // both come from READ_ONLY_PATH; http.ts's '/read-only' route literals must match it (the seal test pins them).
   return {
     authorizationServerUrl: AUTHORIZATION_SERVER_URL,
     resourceUrl: isReadOnly ? new URL(READ_ONLY_PATH, RESOURCE_URL).href : RESOURCE_URL,
@@ -162,7 +164,9 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
         config,
         'invalid_scheme',
         'invalid_request',
-        'The Authorization header must be the word Bearer, a space, and your Conductor secret key',
+        credential.header === 'x-conductor-secret-key' ?
+          'The x-conductor-secret-key header is empty. Set it to your Conductor secret key'
+        : 'The Authorization header must be the word Bearer, a space, and your Conductor secret key',
       );
     }
     canonicalizeCredential(req, credential);
@@ -221,12 +225,12 @@ function extractCredential(req: express.Request): Credential {
     const scheme = spaceIndex === -1 ? authorization : authorization.slice(0, spaceIndex);
     const token = spaceIndex === -1 ? '' : authorization.slice(spaceIndex + 1).trim();
     if (scheme.toLowerCase() === 'bearer' && token !== '') return { kind: 'bearer', token };
-    return { kind: 'invalid' }; // Basic, Digest, 'Bearer' alone, 'Bearer '
+    return { kind: 'invalid', header: 'authorization' }; // Basic, Digest, 'Bearer' alone, 'Bearer '
   }
   const headerKey = req.headers['x-conductor-secret-key'];
   if (typeof headerKey === 'string') {
     const token = headerKey.trim();
-    return token === '' ? { kind: 'invalid' } : { kind: 'header', token };
+    return token === '' ? { kind: 'invalid', header: 'x-conductor-secret-key' } : { kind: 'header', token };
   }
   return { kind: 'missing' };
 }
@@ -245,14 +249,27 @@ function canonicalizeCredential(
   }
 }
 
-// The read-only connector URL behaves exactly as if the client had sent
-// x-stainless-mcp-client-permissions: {"allow_http_gets":true}. The header is REPLACED, never merged:
+// The read-only connector URL behaves as if the client had sent
+// x-stainless-mcp-client-permissions: {"allow_http_gets":true}. The header is REPLACED, not merged:
 // http.ts spreads whatever it parses over mcpOptions, so a client {"allow_http_gets":false} would restore
-// full access and an allowed_methods regexp would union writes back in. A malformed client value is replaced
-// too instead of answered 400 (that fail-closed 400 exists to stop a malformed header from granting full
-// access, which cannot happen on this path); client blocked_methods are dropped with it.
+// full access and an allowed_methods regexp would union writes back in. Only a client's blocked_methods
+// survive, because they can only narrow the GET set further (a client that blocks employee reads keeps that
+// on /read-only). A malformed client value is replaced too instead of answered 400 (that fail-closed 400
+// exists to stop a malformed header from granting full access, which cannot happen on this path).
 function forceReadOnlyPermissions(req: express.Request): void {
-  req.headers['x-stainless-mcp-client-permissions'] = READ_ONLY_PERMISSIONS_HEADER;
+  const forced: { allow_http_gets: true; blocked_methods?: string[] } = { allow_http_gets: true };
+  const sent = req.headers['x-stainless-mcp-client-permissions'];
+  if (typeof sent === 'string') {
+    try {
+      const blocked = (JSON.parse(sent) as { blocked_methods?: unknown } | null)?.blocked_methods;
+      if (Array.isArray(blocked) && blocked.every((method) => typeof method === 'string')) {
+        forced.blocked_methods = blocked;
+      }
+    } catch {
+      // Malformed: replaced with the plain read-only value.
+    }
+  }
+  req.headers['x-stainless-mcp-client-permissions'] = JSON.stringify(forced);
 }
 
 // body is an object with a string `method` in PROBED_METHODS, or an array with any such element (JSON-RPC
@@ -347,9 +364,18 @@ async function probeKey(
     result = await classifyProbeResponse(response, contentType);
   } catch (thrown) {
     // timeout, DNS, reset, ECONNREFUSED
-    error = thrown instanceof Error ? thrown.message : String(thrown);
+    // undici's message is always "fetch failed"; the cause says refused, DNS, reset or bad port.
+    const cause = thrown instanceof Error ? (thrown as { cause?: unknown }).cause : undefined;
+    const causeText =
+      cause instanceof Error ?
+        `${(cause as { code?: string }).code ?? cause.name}: ${cause.message}`
+      : undefined;
+    error = [thrown instanceof Error ? thrown.message : String(thrown), causeText]
+      .filter(Boolean)
+      .join(' / ');
   }
   const { verdict, code } = result;
+  error ??= result.error;
   const keyProbe = {
     verdict,
     ...(code !== undefined && { code }),
@@ -381,8 +407,9 @@ async function classifyProbeResponse(
   let code: string | undefined;
   try {
     code = errorCodeOf(JSON.parse(await response.text()));
-  } catch {
-    return { verdict: 'unknown' };
+  } catch (thrown) {
+    // The 3 s abort firing mid-body, or a body that is not JSON.
+    return { verdict: 'unknown', error: thrown instanceof Error ? thrown.message : String(thrown) };
   }
   if (response.status === 404) return { verdict: code === 'RESOURCE_MISSING' ? 'valid' : 'unknown' };
   return code !== undefined && KEY_PROBE_REJECTION_CODES.has(code) ?
