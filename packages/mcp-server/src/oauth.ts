@@ -271,7 +271,15 @@ async function probeKeyCached(
   if (expiresAt !== undefined && expiresAt > Date.now()) return { verdict: 'valid' };
   validKeyCache.delete(cacheKey);
   const pending = inFlightProbes.get(cacheKey);
-  if (pending !== undefined) return pending;
+  if (pending !== undefined) {
+    // One line under this session too, so its gate line has a probe result next to it.
+    const shared = await pending;
+    getLogger()[shared.verdict === 'unknown' ? 'warn' : 'info'](
+      { mcpSessionId, keyProbe: { ...shared, shared: true } },
+      'key probe',
+    );
+    return shared;
+  }
   const probe = probeKey(token, config, mcpSessionId).finally(() => inFlightProbes.delete(cacheKey));
   inFlightProbes.set(cacheKey, probe);
   const result = await probe;
@@ -288,6 +296,7 @@ async function probeKeyCached(
 // Tests only: forget cached verdicts between cases.
 export function clearValidKeyCache(): void {
   validKeyCache.clear();
+  inFlightProbes.clear();
 }
 
 // Why the envelope check: api.conductor.is answers through Cloudflare in front of Render (verified live
