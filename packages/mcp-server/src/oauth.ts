@@ -49,6 +49,8 @@ const UNPROBED_TOOLS: ReadonlySet<string> = new Set(['search_docs']);
 const VALID_KEY_CACHE_TTL_MS = 60_000;
 const VALID_KEY_CACHE_MAX_ENTRIES = 10_000;
 const validKeyCache = new Map<string, number>(); // sha256(token) -> expiry, insertion-ordered
+// Parallel calls with the same uncached key share one probe.
+const inFlightProbes = new Map<string, Promise<KeyProbeResult>>();
 
 export type OAuthResource = 'root' | 'read-only';
 
@@ -64,6 +66,8 @@ type Credential = { kind: 'bearer' | 'header'; token: string } | { kind: 'missin
 type GateRejection = 'missing' | 'invalid_scheme' | 'dead_key';
 type WwwAuthenticateError = 'invalid_request' | 'invalid_token';
 type KeyProbeVerdict = 'valid' | 'invalid' | 'unknown';
+// code: the API's rejection code, for an 'invalid' verdict only.
+type KeyProbeResult = { verdict: KeyProbeVerdict; code?: string };
 
 // Read per call (cheap), so tests set process.env between requests and http.ts's signature does not change.
 // The read-only resource is derived from the root.
@@ -157,15 +161,17 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
     canonicalizeCredential(req, credential);
     if (resource === 'read-only') forceReadOnlyPermissions(req);
     if (config.keyProbeEnabled && bodyHasProbedMethod(req.body)) {
-      const verdict = await probeKeyCached(credential.token, config, mcpSessionId); // never throws
-      if (verdict === 'invalid') {
+      const probe = await probeKeyCached(credential.token, config, mcpSessionId); // never throws
+      if (probe.verdict === 'invalid') {
         return reject(
           req,
           res,
           config,
           'dead_key',
           'invalid_token',
-          'This Conductor key is invalid or was deleted; sign in again or use a new key',
+          probe.code === 'SECRET_KEY_REQUIRED' ?
+            'This is a Conductor publishable key; use a secret key instead'
+          : 'This Conductor key is invalid or was deleted; sign in again or use a new key',
         );
       }
     }
@@ -259,20 +265,24 @@ async function probeKeyCached(
   token: string,
   config: OAuthResourceConfig,
   mcpSessionId: string | undefined,
-): Promise<KeyProbeVerdict> {
+): Promise<KeyProbeResult> {
   const cacheKey = createHash('sha256').update(token).digest('hex');
   const expiresAt = validKeyCache.get(cacheKey);
-  if (expiresAt !== undefined && expiresAt > Date.now()) return 'valid';
+  if (expiresAt !== undefined && expiresAt > Date.now()) return { verdict: 'valid' };
   validKeyCache.delete(cacheKey);
-  const verdict = await probeKey(token, config, mcpSessionId);
-  if (verdict === 'valid') {
+  const pending = inFlightProbes.get(cacheKey);
+  if (pending !== undefined) return pending;
+  const probe = probeKey(token, config, mcpSessionId).finally(() => inFlightProbes.delete(cacheKey));
+  inFlightProbes.set(cacheKey, probe);
+  const result = await probe;
+  if (result.verdict === 'valid') {
     if (validKeyCache.size >= VALID_KEY_CACHE_MAX_ENTRIES) {
       const oldest = validKeyCache.keys().next().value;
       if (oldest !== undefined) validKeyCache.delete(oldest);
     }
     validKeyCache.set(cacheKey, Date.now() + VALID_KEY_CACHE_TTL_MS);
   }
-  return verdict;
+  return result;
 }
 
 // Tests only: forget cached verdicts between cases.
@@ -295,9 +305,9 @@ async function probeKey(
   token: string,
   config: OAuthResourceConfig,
   mcpSessionId: string | undefined,
-): Promise<KeyProbeVerdict> {
+): Promise<KeyProbeResult> {
   const startedAt = Date.now();
-  let verdict: KeyProbeVerdict = 'unknown';
+  let result: KeyProbeResult = { verdict: 'unknown' };
   let status: number | null = null;
   let contentType: string | null = null;
   let cfRay: string | null = null;
@@ -318,13 +328,15 @@ async function probeKey(
     contentType = mediaTypeOf(response.headers.get('content-type'));
     cfRay = response.headers.get('cf-ray');
     conductorRequestId = response.headers.get('conductor-request-id');
-    verdict = await classifyProbeResponse(response, contentType);
+    result = await classifyProbeResponse(response, contentType);
   } catch (thrown) {
     // timeout, DNS, reset, ECONNREFUSED
     error = thrown instanceof Error ? thrown.message : String(thrown);
   }
+  const { verdict, code } = result;
   const keyProbe = {
     verdict,
+    ...(code !== undefined && { code }),
     status,
     ms: Date.now() - startedAt,
     contentType,
@@ -333,49 +345,33 @@ async function probeKey(
     ...(error !== undefined && { error }),
   };
   getLogger()[verdict === 'unknown' ? 'warn' : 'info']({ mcpSessionId, keyProbe }, 'key probe');
-  return verdict;
+  return result;
 }
 
-// 2xx, or a 404 whose JSON envelope says RESOURCE_MISSING (the fake end user is not found, so the key passed
-// auth) -> 'valid'; any other 404 (the API's UNRECOGNIZED_REQUEST_URL for a moved route, an edge page) ->
-// 'unknown', so a broken probe path warns instead of passing every key. 401 or 403 -> 'invalid' ONLY when the media type is exactly application/json AND
-// the body (read under the same 3 s abort signal) is Conductor's error envelope with a rejection code; any
-// other 401/403 (text/html, another code, unparseable) -> 'unknown'. Anything else (3xx, 429, 5xx) -> 'unknown'.
+// The probe reads a nonexistent end user, so the real API answers a live key 404 RESOURCE_MISSING and a dead or
+// publishable key 401/403 with a code in KEY_PROBE_REJECTION_CODES, always application/json with Conductor's
+// envelope. Anything else is 'unknown' (fail open, logged as a warning): a 2xx (the real API never sends one
+// here, so CONDUCTOR_BASE_URL points somewhere else), another 404 (a moved route's UNRECOGNIZED_REQUEST_URL),
+// an edge HTML page, another code, 3xx, 429 or 5xx. The body is read under the same 3 s abort signal.
 async function classifyProbeResponse(
   response: Response,
   contentType: string | null,
-): Promise<KeyProbeVerdict> {
-  if (response.ok) {
+): Promise<KeyProbeResult> {
+  const answersWithEnvelope = response.status === 404 || response.status === 401 || response.status === 403;
+  if (!answersWithEnvelope || contentType !== 'application/json') {
     await discardBody(response);
-    return 'valid';
+    return { verdict: 'unknown' };
   }
-  if (response.status === 404) {
-    if (contentType !== 'application/json') {
-      await discardBody(response);
-      return 'unknown';
-    }
-    try {
-      return errorCodeOf(JSON.parse(await response.text())) === 'RESOURCE_MISSING' ? 'valid' : 'unknown';
-    } catch {
-      return 'unknown';
-    }
-  }
-  if ((response.status !== 401 && response.status !== 403) || contentType !== 'application/json') {
-    await discardBody(response);
-    return 'unknown';
-  }
-  let parsed: unknown;
+  let code: string | undefined;
   try {
-    parsed = JSON.parse(await response.text());
+    code = errorCodeOf(JSON.parse(await response.text()));
   } catch {
-    return 'unknown';
+    return { verdict: 'unknown' };
   }
-  return isApiKeyRejectionEnvelope(parsed) ? 'invalid' : 'unknown';
-}
-
-function isApiKeyRejectionEnvelope(parsed: unknown): boolean {
-  const code = errorCodeOf(parsed);
-  return code !== undefined && KEY_PROBE_REJECTION_CODES.has(code);
+  if (response.status === 404) return { verdict: code === 'RESOURCE_MISSING' ? 'valid' : 'unknown' };
+  return code !== undefined && KEY_PROBE_REJECTION_CODES.has(code) ?
+      { verdict: 'invalid', code }
+    : { verdict: 'unknown' };
 }
 
 // error.code from Conductor's error envelope { "error": { "code": ... } }, if present.
