@@ -120,11 +120,11 @@ S=$(curl -s -o /dev/null -w '%{http_code}' "$NEW/read-only")
 S=$(curl -s -o /dev/null -w '%{http_code}' -X DELETE "$NEW/read-only/")
 [ "$S" = "405" ] && pass "DELETE /read-only/ is 405" || fail "DELETE /read-only/ expected 405, got $S"
 
-# --- 5. Bad auth scheme is 401 invalid_request (was a 500 HTML stack trace)
+# --- 5. Bad auth scheme is 401 invalid_token (was a 500 HTML stack trace), so OAuth clients sign in again
 H5=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" -H 'authorization: Basic foo' \
   -d '{"jsonrpc":"2.0","id":5,"method":"tools/list"}')
 echo "$H5" | head -1 | grep -q ' 401' && pass "non-Bearer auth scheme is 401" || fail "non-Bearer auth scheme expected 401; got: $(echo "$H5" | head -1)"
-echo "$H5" | grep -i '^www-authenticate:' | grep -q 'error="invalid_request"' && pass "non-Bearer scheme challenge carries error=\"invalid_request\"" || fail "non-Bearer scheme www-authenticate lacks error=\"invalid_request\"; got: $(echo "$H5" | grep -i '^www-authenticate:')"
+echo "$H5" | grep -i '^www-authenticate:' | grep -q 'error="invalid_token"' && pass "non-Bearer scheme challenge carries error=\"invalid_token\"" || fail "non-Bearer scheme www-authenticate lacks error=\"invalid_token\"; got: $(echo "$H5" | grep -i '^www-authenticate:')"
 
 # --- 10. Streaming shape and session-id echo
 H10=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" -H "$PARITY" -H 'mcp-session-id: echo-test-123' \

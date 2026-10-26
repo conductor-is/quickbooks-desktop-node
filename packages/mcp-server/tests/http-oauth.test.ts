@@ -28,7 +28,7 @@ const PROBE_PATH = '/v1/end-users/end_usr_oauth_probe';
 const PRM_PATH = '/.well-known/oauth-protected-resource';
 const RS_METADATA_URL = 'https://mcp.conductor.is/.well-known/oauth-protected-resource';
 const MISSING_CHALLENGE = `Bearer resource_metadata="${RS_METADATA_URL}"`;
-const SCHEME_CHALLENGE = `Bearer error="invalid_request", error_description="The Authorization header must be the word Bearer, a space, and your Conductor secret key", resource_metadata="${RS_METADATA_URL}"`;
+const SCHEME_CHALLENGE = `Bearer error="invalid_token", error_description="The Authorization header must be the word Bearer, a space, and your Conductor secret key", resource_metadata="${RS_METADATA_URL}"`;
 const DEAD_KEY_CHALLENGE = `Bearer error="invalid_token", error_description="This Conductor key is invalid or was deleted. Sign in again, or create a new key on the MCP tab in the Conductor Dashboard", resource_metadata="${RS_METADATA_URL}"`;
 const EXPECTED_METADATA = {
   resource: 'https://mcp.conductor.is/',
@@ -117,15 +117,53 @@ describe('credential gate', () => {
     ['Authorization: Basic abc', { Authorization: 'Basic abc' }],
     ['an empty Bearer credential', { Authorization: 'Bearer ' }],
   ];
-  it.each(wrongScheme)('rejects %s with 401 invalid_request instead of 500', async (_name, headers) => {
+  // invalid_token (RFC 6750: a malformed token), which makes OAuth clients like Claude sign in again.
+  it.each(wrongScheme)('rejects %s with 401 invalid_token instead of 500', async (_name, headers) => {
     const response = await post(INITIALIZE, headers);
 
     expect(response.status).toBe(401);
     expect(response.headers.get('www-authenticate')).toBe(SCHEME_CHALLENGE);
     expect(await response.json()).toEqual({
-      error: 'invalid_request',
+      error: 'invalid_token',
       error_description: expect.any(String),
     });
+  });
+
+  const GROK = { 'User-Agent': 'grok-connectors-manager/0.1.0' };
+  // Grok sends these three as separate requests, as its setup did before the gate.
+  const grokDiscovery: Array<[string, unknown, number]> = [
+    ['initialize', INITIALIZE, 200],
+    ['notifications/initialized', { jsonrpc: '2.0', method: 'notifications/initialized' }, 202],
+    ['tools/list', TOOLS_LIST, 200],
+  ];
+  it.each(grokDiscovery)(
+    "lets Grok's connector service send credential-less %s",
+    async (_name, body, status) => {
+      const response = await post(body, GROK);
+
+      expect(response.status).toBe(status);
+      expect(response.headers.get('www-authenticate')).toBeNull();
+      await response.text();
+    },
+  );
+
+  it("still requires a key on Grok's tool calls", async () => {
+    for (const body of [TOOLS_CALL, [TOOLS_LIST, TOOLS_CALL]]) {
+      const response = await post(body, GROK);
+
+      expect(response.status).toBe(401);
+      expect(response.headers.get('www-authenticate')).toBe(MISSING_CHALLENGE);
+      await response.json();
+    }
+  });
+
+  it('keeps the credential-less 401 for other user agents and for a Grok-like prefix', async () => {
+    for (const userAgent of ['grok-connectors-manager', 'not-grok-connectors-manager/0.1.0']) {
+      const response = await post(INITIALIZE, { 'User-Agent': userAgent });
+
+      expect(response.status).toBe(401);
+      await response.json();
+    }
   });
 
   it('names the empty x-conductor-secret-key header instead of the Authorization header', async () => {
@@ -502,6 +540,14 @@ describe('structured log lines', () => {
     expect(mcpSessionId).toEqual(expect.any(String));
     expect(lines()).toContainEqual(
       expect.objectContaining({ level: 'warn', oauthGate: 'missing', mcpSessionId }),
+    );
+  });
+
+  it("logs Grok's keyless discovery", async () => {
+    await (await post(INITIALIZE, { 'User-Agent': 'grok-connectors-manager/0.1.0' })).text();
+
+    expect(lines()).toContainEqual(
+      expect.objectContaining({ level: 'info', oauthGate: 'keyless_discovery' }),
     );
   });
 
