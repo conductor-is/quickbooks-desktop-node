@@ -2,7 +2,7 @@
 
 ## Installation
 
-The tools run on Conductor's hosted MCP server at `https://mcp.conductor.is/`. Claude (claude.ai, Claude Desktop, mobile, Cowork) and ChatGPT add that URL as a custom connector and sign in. Claude Code, Codex CLI, Cursor and VS Code send your Conductor secret key in the `Authorization` header (Claude Code can also sign in). Clients that run only local (stdio) servers use this package, a thin bridge to the hosted server: it needs only Node.js and `CONDUCTOR_SECRET_KEY`, and the tools still run on the hosted server. The full per-client guide is at [docs.conductor.is/usage/mcp](https://docs.conductor.is/usage/mcp).
+The tools run on Conductor's hosted MCP server at `https://mcp.conductor.is/`. Claude (claude.ai, Claude Desktop, mobile, Cowork) and ChatGPT add that URL as a custom connector and sign in, and Claude Code adds it with `claude mcp add` and signs in from `/mcp`. Codex CLI, Cursor and VS Code send your Conductor secret key in the `Authorization` header. Clients that run only local (stdio) servers use this package, a thin bridge to the hosted server: it needs only Node.js and `CONDUCTOR_SECRET_KEY`, and the tools still run on the hosted server. The full per-client guide is at [docs.conductor.is/usage/mcp](https://docs.conductor.is/usage/mcp).
 
 ### Direct invocation
 
