@@ -41,6 +41,15 @@ const KEY_PROBE_USER_AGENT = 'conductor-mcp-key-probe/1';
 // Only tools/call is probed. initialize, tools/list, notifications and server/discover never contact the API, so the
 // Betterstack initialize monitor keeps a dummy Bearer and connection checks stay instant. The guard test pins this line.
 const PROBED_METHODS: ReadonlySet<string> = new Set(['tools/call']);
+// Grok's connector service sets up the connection and lists tools without the key, sends the key only on
+// tool calls, and never starts sign-in. Its discovery requests answered 200 before the credential gate and
+// still do for Grok alone; every tool call still needs a key.
+const KEYLESS_DISCOVERY_USER_AGENT = /^grok-connectors-manager\//;
+const DISCOVERY_METHODS: ReadonlySet<string> = new Set([
+  'initialize',
+  'notifications/initialized',
+  'tools/list',
+]);
 // search_docs never contacts the API, so a call to it alone is not probed.
 const UNPROBED_TOOLS: ReadonlySet<string> = new Set(['search_docs']);
 // A 'valid' verdict is reused for this long per key (keyed by its SHA-256, never the key), so a busy session
@@ -67,7 +76,7 @@ type Credential =
   | { kind: 'missing' }
   | { kind: 'invalid'; header: 'authorization' | 'x-conductor-secret-key' };
 type GateRejection = 'missing' | 'invalid_scheme' | 'dead_key';
-type WwwAuthenticateError = 'invalid_request' | 'invalid_token';
+type WwwAuthenticateError = 'invalid_token';
 type KeyProbeVerdict = 'valid' | 'invalid' | 'unknown';
 // code: the API's rejection code, for an 'invalid' verdict only.
 type KeyProbeResult = { verdict: KeyProbeVerdict; code?: string; error?: string };
@@ -149,6 +158,14 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
     // lines join pino-http's request line even on a first-contact 401 that carried no mcp-session-id.
     const mcpSessionId = (req as any).mcpSessionId as string | undefined;
     if (credential.kind === 'missing') {
+      if (isKeylessDiscovery(req)) {
+        getLogger().info(
+          { mcpSessionId, oauthGate: 'keyless_discovery' },
+          'OAuth gate allowed keyless discovery',
+        );
+        if (resource === 'read-only') forceReadOnlyPermissions(req);
+        return next();
+      }
       return reject(
         req,
         res,
@@ -164,7 +181,7 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
         res,
         config,
         'invalid_scheme',
-        'invalid_request',
+        'invalid_token',
         credential.header === 'x-conductor-secret-key' ?
           'The x-conductor-secret-key header is empty. Set it to your Conductor secret key'
         : 'The Authorization header must be the word Bearer, a space, and your Conductor secret key',
@@ -317,6 +334,21 @@ function isValidRegExp(pattern: string): boolean {
 
 // body is an object with a string `method` in PROBED_METHODS, or an array with any such element (JSON-RPC
 // batch), and the call is not only to a tool in UNPROBED_TOOLS.
+function isKeylessDiscovery(req: express.Request): boolean {
+  const userAgent = req.headers['user-agent'];
+  if (typeof userAgent !== 'string' || !KEYLESS_DISCOVERY_USER_AGENT.test(userAgent)) return false;
+  const messages: unknown[] = Array.isArray(req.body) ? req.body : [req.body];
+  return (
+    messages.length > 0 &&
+    messages.every(
+      (message) =>
+        typeof message === 'object' &&
+        message !== null &&
+        DISCOVERY_METHODS.has((message as { method?: unknown }).method as string),
+    )
+  );
+}
+
 function bodyHasProbedMethod(body: unknown): boolean {
   const messages: unknown[] = Array.isArray(body) ? body : [body];
   return messages.some((message) => {
