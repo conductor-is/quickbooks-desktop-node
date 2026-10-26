@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.24.4](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.3...v14.24.4) (2026-10-23)
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([625dfde](https://github.com/conductor-is/quickbooks-desktop-node/commit/625dfde619d4ec52a4bb261fee62deee9216ad01))
+
+
+### Documentation
+
+* **api-ref:** explain paging by name and cursor lifetime ([49563a0](https://github.com/conductor-is/quickbooks-desktop-node/commit/49563a01e995abf626638fd3496b924b75e637bb))
+
 ## [14.24.3](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.2...v14.24.3) (2026-10-19)
 
 
