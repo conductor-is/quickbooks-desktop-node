@@ -129,41 +129,14 @@ describe('credential gate', () => {
     });
   });
 
-  const GROK = { 'User-Agent': 'grok-connectors-manager/0.1.0' };
-  // Grok sends these three as separate requests, as its setup did before the gate.
-  const grokDiscovery: Array<[string, unknown, number]> = [
-    ['initialize', INITIALIZE, 200],
-    ['notifications/initialized', { jsonrpc: '2.0', method: 'notifications/initialized' }, 202],
-    ['tools/list', TOOLS_LIST, 200],
-  ];
-  it.each(grokDiscovery)(
-    "lets Grok's connector service send credential-less %s",
-    async (_name, body, status) => {
-      const response = await post(body, GROK);
+  // Grok's web connector never sends a key and never makes tool calls, so it
+  // gets the same 401 as any keyless client (a 2026-10-26 exception was reverted).
+  it("answers Grok's keyless initialize with 401", async () => {
+    const response = await post(INITIALIZE, { 'User-Agent': 'grok-connectors-manager/0.1.0' });
 
-      expect(response.status).toBe(status);
-      expect(response.headers.get('www-authenticate')).toBeNull();
-      await response.text();
-    },
-  );
-
-  it("still requires a key on Grok's tool calls", async () => {
-    for (const body of [TOOLS_CALL, [TOOLS_LIST, TOOLS_CALL]]) {
-      const response = await post(body, GROK);
-
-      expect(response.status).toBe(401);
-      expect(response.headers.get('www-authenticate')).toBe(MISSING_CHALLENGE);
-      await response.json();
-    }
-  });
-
-  it('keeps the credential-less 401 for other user agents and for a Grok-like prefix', async () => {
-    for (const userAgent of ['grok-connectors-manager', 'not-grok-connectors-manager/0.1.0']) {
-      const response = await post(INITIALIZE, { 'User-Agent': userAgent });
-
-      expect(response.status).toBe(401);
-      await response.json();
-    }
+    expect(response.status).toBe(401);
+    expect(response.headers.get('www-authenticate')).toBe(MISSING_CHALLENGE);
+    await response.json();
   });
 
   it('names the empty x-conductor-secret-key header instead of the Authorization header', async () => {
@@ -540,14 +513,6 @@ describe('structured log lines', () => {
     expect(mcpSessionId).toEqual(expect.any(String));
     expect(lines()).toContainEqual(
       expect.objectContaining({ level: 'warn', oauthGate: 'missing', mcpSessionId }),
-    );
-  });
-
-  it("logs Grok's keyless discovery", async () => {
-    await (await post(INITIALIZE, { 'User-Agent': 'grok-connectors-manager/0.1.0' })).text();
-
-    expect(lines()).toContainEqual(
-      expect.objectContaining({ level: 'info', oauthGate: 'keyless_discovery' }),
     );
   });
 
