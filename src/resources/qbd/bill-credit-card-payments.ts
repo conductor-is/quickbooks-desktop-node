@@ -186,7 +186,7 @@ export interface BillCreditCardPayment {
 
   /**
    * The credit card account to which this bill credit card payment is being charged.
-   * This bill credit card payment will decrease the balance of this account.
+   * This bill credit card payment will increase the balance owed on this account.
    */
   creditCardAccount: BillCreditCardPayment.CreditCardAccount;
 
@@ -481,7 +481,7 @@ export namespace BillCreditCardPayment {
 
   /**
    * The credit card account to which this bill credit card payment is being charged.
-   * This bill credit card payment will decrease the balance of this account.
+   * This bill credit card payment will increase the balance owed on this account.
    */
   export interface CreditCardAccount {
     /**
@@ -685,8 +685,11 @@ export interface BillCreditCardPaymentCreateParams {
 
   /**
    * Body param: The credit card account to which this bill credit card payment is
-   * being charged. This bill credit card payment will decrease the balance of this
-   * account.
+   * being charged. This bill credit card payment will increase the balance owed on
+   * this account. This account's `accountType` must be `credit_card`. To pay bills
+   * from a bank account, including a debit card or a card the company file tracks as
+   * a bank account, use `POST /quickbooks-desktop/bill-check-payments` with
+   * `bankAccountId` instead.
    */
   creditCardAccountId: string;
 
