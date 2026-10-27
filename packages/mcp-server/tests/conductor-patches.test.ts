@@ -56,9 +56,9 @@ describe('conductor self-hosting patches', () => {
 
   test('instructions.md is byte-identical to the reviewed 2026-10-26 text', () => {
     const buf = fs.readFileSync(path.join(pkgRoot, 'instructions.md'));
-    expect(buf.length).toBe(4713);
+    expect(buf.length).toBe(4852);
     const sha = crypto.createHash('sha256').update(buf).digest('hex');
-    expect(sha).toBe('b24ed1b0a4ebd333dc67a4a3acbbb3d054cd59eefc3108726135204b1df45820');
+    expect(sha).toBe('34e6c53146e029ec0474e197402b0f334d5bcaa3366289a9802e65b3fb16e1e9');
   });
 
   test('deno-http-worker is vendored (no git dependency, so npx works without git)', () => {

@@ -72,7 +72,7 @@ for await (const invoice of conductor.qbd.invoices.list({ conductorEndUserId, tr
 ```
 
 ### Requests
-- QuickBooks Desktop handles one request at a time, and a computer that syncs several company files takes 20 to 40 seconds to switch between them. Send requests one after another, never in parallel (for example with `Promise.all`), and finish all requests for one `conductorEndUserId` before starting the next.
+- QuickBooks Desktop handles one request at a time, and a computer that syncs several company files takes 20 to 40 seconds to switch between them. Send each request only after the previous one returns, for example in a loop, never as parallel or concurrent calls such as `Promise.all`. Requests for the same company file that follow within 10 seconds reuse its open session. Finish all requests for one `conductorEndUserId` before starting the next.
 - Filters such as `ids`, `refNumbers`, and `fullNames` match exactly. If any one value does not exist, the whole request fails with QuickBooks error 500.
 
 ### All QBD Resources Available
