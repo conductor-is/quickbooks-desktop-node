@@ -3281,7 +3281,7 @@ paths:
                   description: The date of this bill credit card payment, in ISO 8601 format (YYYY-MM-DD).
                   example: "2024-10-01"
                 creditCardAccountId:
-                  description: The credit card account to which this bill credit card payment is being charged. This bill credit card payment will decrease the balance of this account.
+                  description: The credit card account to which this bill credit card payment is being charged. This bill credit card payment will increase the balance owed on this account. This account's `accountType` must be `credit_card`. To pay bills from a bank account, including a debit card or a card the company file tracks as a bank account, use `POST /quickbooks-desktop/bill-check-payments` with `bankAccountId` instead.
                   example: 80000001-1234567890
                   type: string
                   maxLength: 36
@@ -76541,7 +76541,7 @@ components:
             - id
             - fullName
           additionalProperties: false
-          description: The credit card account to which this bill credit card payment is being charged. This bill credit card payment will decrease the balance of this account.
+          description: The credit card account to which this bill credit card payment is being charged. This bill credit card payment will increase the balance owed on this account.
           example:
             id: 80000001-1234567890
             fullName: Credit Card
