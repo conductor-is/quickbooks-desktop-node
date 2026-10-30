@@ -17,7 +17,6 @@ import {
   agentErrorFormattingEnabled,
   classifyExecuteError,
   executeTelemetryHeaders,
-  sanitizeUserAgent,
 } from './telemetry';
 
 // The four lines after "You will be returned..." and the loop clause on the try-catch line are a Conductor
@@ -122,18 +121,22 @@ export function codeTool({
       result = await localDenoHandler({ reqContext, args, callId });
     }
 
-    logger.info(
+    // Conductor patch: one line per call, at warn when the client had left (abortedBy); never the code,
+    // intent or result text, and errorKind is a fixed label.
+    const errorKind = result.isError ? classifyExecuteError(result) : undefined;
+    const aborted = errorKind === 'client_closed';
+    logger[aborted ? 'warn' : 'info'](
       {
         codeExecutionMode,
         durationMs: Date.now() - startTime,
         isError: result.isError,
         contentRows: result.content?.length ?? 0,
-        // Conductor patch: never the code, intent or result text; errorKind is a fixed label.
         mcpSessionId: reqContext.mcpSessionId,
         callId,
         tool: 'execute',
-        userAgent: sanitizeUserAgent(reqContext.userAgent),
-        ...(result.isError && { errorKind: classifyExecuteError(result) }),
+        userAgent: reqContext.userAgent,
+        ...(errorKind !== undefined && { errorKind }),
+        ...(aborted && { abortedBy: 'client_closed' }),
       },
       'Got code tool execution result',
     );
@@ -198,29 +201,19 @@ const localDenoHandler = async (params: {
 }): Promise<ToolCallResult> => {
   // Conductor patch: a client that already left (its POST socket closed, see http.ts) gets no Deno worker
   // and takes no slot; checked again after the wait because the queue can be long.
-  if (params.reqContext.signal?.aborted) return abortedResult(params);
+  if (params.reqContext.signal?.aborted) return abortedResult();
   await acquireLocalExecutionSlot();
   try {
-    if (params.reqContext.signal?.aborted) return abortedResult(params);
+    if (params.reqContext.signal?.aborted) return abortedResult();
     return await localDenoHandlerInner(params);
   } finally {
     releaseLocalExecutionSlot();
   }
 };
 
-// Conductor patch: the result for a call whose client closed its connection; nobody receives it, but the
-// log line is how abandoned calls are counted (durationMs is the call's full wait so far).
-function abortedResult({
-  reqContext,
-  callId,
-}: {
-  reqContext: McpRequestContext;
-  callId: string;
-}): ToolCallResult {
-  getLogger().warn(
-    { mcpSessionId: reqContext.mcpSessionId, callId, abortedBy: 'client_closed' },
-    'Code execution aborted',
-  );
+// Conductor patch: the result for a call whose client closed its connection; nobody receives it, and the
+// handler's result line (abortedBy: 'client_closed') is how abandoned calls are counted.
+function abortedResult(): ToolCallResult {
   return asErrorResult(CLIENT_CLOSED_MESSAGE);
 }
 
@@ -322,7 +315,6 @@ const localDenoHandlerInner = async ({
     if (signal.aborted) onAbort();
     else signal.addEventListener('abort', onAbort, { once: true });
   });
-  const startedAt = Date.now();
   try {
     const respPromise = new Promise<Response>((resolve, reject) => {
       worker.addEventListener('exit', (exitCode) => {
@@ -474,15 +466,6 @@ const localDenoHandlerInner = async ({
     }
     // Conductor patch: the client left while the code ran; finally terminates the worker.
     if (error instanceof CodeExecutionAbortedError) {
-      getLogger().warn(
-        {
-          mcpSessionId: reqContext.mcpSessionId,
-          callId,
-          durationMs: Date.now() - startedAt,
-          abortedBy: 'client_closed',
-        },
-        'Code execution aborted',
-      );
       return asErrorResult(error.message);
     }
     throw error;

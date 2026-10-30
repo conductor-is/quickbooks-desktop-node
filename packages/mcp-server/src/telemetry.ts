@@ -31,17 +31,23 @@ export class CodeExecutionAbortedError extends Error {}
 export const CLIENT_CLOSED_MESSAGE =
   'The client closed the connection, so execution stopped. Requests already sent may have completed, so check any records the code created or changed before running it again.';
 
-// The User-Agent header is sent to api.conductor.is as Conductor-MCP-Client and written to the execute
-// result log line. Reduced to printable ASCII because a header value with a non-ASCII byte makes fetch
-// throw on every request of that execute call, and cut to a fixed length so a hostile value cannot bloat
-// headers or logs. Returns undefined for an empty or absent value so callers omit the field.
-export function sanitizeUserAgent(value: unknown, maxLength = 120): string | undefined {
+// Request header values built from client-sent strings (the User-Agent, the mcp-session-id) are reduced
+// to printable ASCII, because one non-ASCII byte makes fetch throw on every request of that execute call,
+// and cut to a fixed length so a hostile value cannot bloat headers or logs. Returns undefined for an
+// empty or absent value so callers omit the field.
+export function asciiHeaderValue(value: unknown, maxLength: number): string | undefined {
   if (typeof value !== 'string') return undefined;
   const ascii = value
     .replace(/[^\x20-\x7E]/g, '')
     .trim()
     .slice(0, maxLength);
   return ascii === '' ? undefined : ascii;
+}
+
+// The MCP request's User-Agent as sent to the API (Conductor-MCP-Client) and written to log lines;
+// sanitized once where it enters, in http.ts.
+export function sanitizeUserAgent(value: unknown, maxLength = 120): string | undefined {
+  return asciiHeaderValue(value, maxLength);
 }
 
 // The headers the sandbox's SDK client adds to every API request of one execute call, so Better Stack
@@ -54,7 +60,10 @@ export function executeTelemetryHeaders(params: {
   userAgent: string | undefined;
 }): Record<string, string> {
   const headers: Record<string, string> = { 'Conductor-MCP-Call-Id': params.callId };
-  if (params.mcpSessionId) headers['Conductor-MCP-Session-Id'] = params.mcpSessionId;
+  // The session id is whatever the client sent as mcp-session-id (or the UUID http.ts minted), so it is
+  // sanitized like the User-Agent.
+  const session = asciiHeaderValue(params.mcpSessionId, 128);
+  if (session) headers['Conductor-MCP-Session-Id'] = session;
   const client = sanitizeUserAgent(params.userAgent);
   if (client) headers['Conductor-MCP-Client'] = client;
   return headers;
@@ -89,6 +98,7 @@ export type ExecuteErrorKind =
   | 'ts_diagnostics'
   | `api_error:${string}`
   | 'api_error'
+  | 'api_connection_error'
   | 'runtime_error'
   | 'unknown';
 
@@ -109,7 +119,11 @@ export function classifyExecuteError(result: ToolCallResult): ExecuteErrorKind {
   // The worker prints `${error.name}: ${error.message}` (the SDK's classes leave name as 'Error');
   // src/agent-errors.ts makes the message `<CODE>: <message> ...`, without it the SDK's own text is
   // `<status> <body>`.
-  const apiError = text.match(/^[A-Za-z]*Error: ([A-Z][A-Z0-9_]+): /);
+  // The SDK's own connection failures (no response at all) come before any API code.
+  if (/^[A-Za-z]*Error: (Connection error\.|Request timed out\.)/.test(text)) return 'api_connection_error';
+  // A rewritten API error carries the code and, on the same line, the HTTP status; a runtime throw whose
+  // message merely starts with an upper-case word and a colon does not.
+  const apiError = text.match(/^[A-Za-z]*Error: ([A-Z][A-Z0-9_]+): .*\((?:HTTP \d{3}|no HTTP status)/);
   if (apiError) return `api_error:${apiError[1]}`;
   if (/^[A-Za-z]*Error: \d{3} /.test(text)) return 'api_error';
   if (/^[A-Za-z]*Error: /.test(text) || text.startsWith('Error output:')) return 'runtime_error';

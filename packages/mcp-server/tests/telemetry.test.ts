@@ -38,6 +38,14 @@ describe('executeTelemetryHeaders', () => {
     expect(executeTelemetryHeaders({ callId: 'c2', mcpSessionId: undefined, userAgent: 'é' })).toEqual({
       'Conductor-MCP-Call-Id': 'c2',
     });
+    // The session id is client-sent (mcp-session-id), so it gets the same treatment as the User-Agent.
+    expect(
+      executeTelemetryHeaders({
+        callId: 'c3',
+        mcpSessionId: 'abc\u00e9' + 'x'.repeat(300),
+        userAgent: undefined,
+      }),
+    ).toEqual({ 'Conductor-MCP-Call-Id': 'c3', 'Conductor-MCP-Session-Id': 'abc' + 'x'.repeat(125) });
     // None of the names matches the API logger's redaction patterns, which would hide them from Better Stack.
     for (const name of Object.keys(
       executeTelemetryHeaders({ callId: 'c', mcpSessionId: 's', userAgent: 'u' }),
@@ -86,6 +94,12 @@ describe('classifyExecuteError', () => {
     expect(classifyExecuteError(result('NotFoundError: 404 {"error":{"code":"RESOURCE_MISSING"}}'))).toBe(
       'api_error',
     );
+    expect(classifyExecuteError(result('Error: Connection error.: fetch failed'))).toBe(
+      'api_connection_error',
+    );
+    expect(classifyExecuteError(result('Error: Request timed out.'))).toBe('api_connection_error');
+    // A runtime throw whose message starts with an upper-case word and a colon is not an API error.
+    expect(classifyExecuteError(result('Error: SKU: missing\n  at line 2'))).toBe('runtime_error');
     expect(classifyExecuteError(result('TypeError: Cannot read properties of undefined\n  at line 3'))).toBe(
       'runtime_error',
     );

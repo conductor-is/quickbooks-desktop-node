@@ -2,7 +2,7 @@
 // the abort racer in src/code-tool.ts). Boots the built package as the hosted server, as execute-smoke.mjs
 // does, with CONDUCTOR_BASE_URL pointed at a mock API that records request headers and answers every call
 // with a Web Connector password error envelope. Then: (1) an execute whose code sleeps for 60 s is
-// abandoned by the client after 2 s and must stop within a few seconds; (2) a follow-up execute that calls
+// abandoned by the client after 2 s and must stop within a few seconds (one result line at warn carrying abortedBy); (2) a follow-up execute that calls
 // the API must reach the mock with the Conductor-MCP-Call-Id header and must return the rewritten,
 // one-line error with its hint. Not a jest test: requires a built dist/ and a real Deno binary.
 // Usage: cd packages/mcp-server && node tests/patches-smoke.mjs
@@ -108,12 +108,12 @@ const longCall = toolsCall(
 ).catch(() => undefined);
 setTimeout(() => controller.abort(), 2000);
 await longCall;
-for (let i = 0; i < 50 && !logs.join('').includes('Code execution aborted'); i++) {
+for (let i = 0; i < 50 && !logs.join('').includes('"abortedBy":"client_closed"'); i++) {
   await new Promise((r) => setTimeout(r, 200));
 }
 const abortedAfterMs = Date.now() - started;
-if (!logs.join('').includes('Code execution aborted'))
-  fail('no "Code execution aborted" line within 12 s of the disconnect');
+if (!logs.join('').includes('"abortedBy":"client_closed"'))
+  fail('no result line with abortedBy client_closed within 12 s of the disconnect');
 if (abortedAfterMs > 8000) fail(`abort took ${abortedAfterMs} ms`);
 
 // (2) An API error inside the sandbox, as the model sees it, plus the telemetry headers at the API.

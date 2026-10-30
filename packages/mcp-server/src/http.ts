@@ -119,20 +119,25 @@ const newServer = async ({
 const post =
   (options: { clientOptions: ClientOptions; mcpOptions: McpOptions }) =>
   async (req: express.Request, res: express.Response) => {
-    const server = await newServer({ ...options, req, res });
-    // If we return null, we already set the authorization error.
-    if (server === null) return;
     const transport = new StreamableHTTPServerTransport();
     // Conductor patch: every client gives up on a long tools/call before the server's own limit (mcp-remote
     // at 60 s, Cursor at 120 s, hosted Claude at 240 s), and the closed socket is the only signal the origin
     // gets. Closing the transport runs the SDK's onclose, which aborts each in-flight request handler's
-    // signal (Protocol._onclose), which the execute tool races its Deno worker against (code-tool.ts). After
+    // signal (Protocol._onclose), which the execute tool races its Deno worker against (code-tool.ts). The
+    // listener goes on before any await so a disconnect while the server is built is still seen, and a
+    // client that left during the gate's key probe (before this handler ran) is caught by res.closed. After
     // a normal finish the same event finds nothing to abort. CONDUCTOR_MCP_ABORT_ON_CLOSE=off disables it.
-    if (abortOnClientCloseEnabled()) {
+    const abortOnClose = abortOnClientCloseEnabled();
+    if (abortOnClose) {
       res.on('close', () => {
         void transport.close().catch(() => undefined);
       });
+      if (res.closed) return;
     }
+    const server = await newServer({ ...options, req, res });
+    // If we return null, we already set the authorization error.
+    if (server === null) return;
+    if (abortOnClose && res.closed) return;
     await server.connect(transport as any);
     await transport.handleRequest(req, res, req.body);
   };

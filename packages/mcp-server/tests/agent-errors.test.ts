@@ -116,6 +116,18 @@ describe('formatErrorsForAgents on a real SDK client', () => {
       },
     });
 
+  test('without the patch the SDK message is the status plus the whole body', async () => {
+    const client = new Conductor({
+      apiKey: 'sk_conductor_test',
+      baseURL: 'http://api.invalid/v1',
+      fetch: fetchMock as any,
+      maxRetries: 0,
+    });
+    await expect(client.qbd.accounts.list({ conductorEndUserId: 'end_usr_x' })).rejects.toThrow(
+      /^401 \{"error":/,
+    );
+  });
+
   test('rewrites message only; class, status, headers and the body are untouched', async () => {
     const client = new Conductor({
       apiKey: 'sk_conductor_test',
@@ -139,17 +151,10 @@ describe('formatErrorsForAgents on a real SDK client', () => {
       /^QBD_WEB_CONNECTOR_PASSWORD_INVALID: Your Web Connector password is incorrect. \(HTTP 401, request req_mock\)\n/,
     );
     expect(caught.message).not.toContain('{');
-  });
-
-  test('without the patch the SDK message is the status plus the whole body', async () => {
-    const client = new Conductor({
-      apiKey: 'sk_conductor_test',
-      baseURL: 'http://api.invalid/v1',
-      fetch: fetchMock as any,
-      maxRetries: 0,
-    });
-    await expect(client.qbd.accounts.list({ conductorEndUserId: 'end_usr_x' })).rejects.toThrow(
-      /^401 \{"error":/,
+    // The patch is on the prototype, so a client derived with withOptions is covered too.
+    const derived = client.withOptions({ maxRetries: 0 });
+    await expect(derived.qbd.accounts.list({ conductorEndUserId: 'end_usr_x' })).rejects.toThrow(
+      /^QBD_WEB_CONNECTOR_PASSWORD_INVALID: /,
     );
   });
 });

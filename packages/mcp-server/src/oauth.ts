@@ -248,9 +248,7 @@ function extractCredential(req: express.Request): Credential {
   const authorization = req.headers.authorization;
   // Truthy, like parseClientAuthHeaders: an empty Authorization header falls through to the custom header.
   if (authorization) {
-    const spaceIndex = authorization.indexOf(' ');
-    const scheme = spaceIndex === -1 ? authorization : authorization.slice(0, spaceIndex);
-    const token = spaceIndex === -1 ? '' : authorization.slice(spaceIndex + 1).trim();
+    const { scheme, token } = splitAuthorization(authorization);
     if (scheme.toLowerCase() === 'bearer' && token !== '') return { kind: 'bearer', token };
     // Basic, Digest, 'Bearer' alone, 'Bearer ', a bare key
     return { kind: 'invalid', header: 'authorization', shape: authorizationShape(authorization) };
@@ -265,14 +263,25 @@ function extractCredential(req: express.Request): Credential {
   return { kind: 'missing' };
 }
 
+// The one place an Authorization value is split: the first word and the trimmed rest (empty when there
+// is no space), shared by the gate and the shape label so the two never disagree.
+function splitAuthorization(authorization: string): { scheme: string; token: string; hasSpace: boolean } {
+  const spaceIndex = authorization.indexOf(' ');
+  if (spaceIndex === -1) return { scheme: authorization, token: '', hasSpace: false };
+  return {
+    scheme: authorization.slice(0, spaceIndex),
+    token: authorization.slice(spaceIndex + 1).trim(),
+    hasSpace: true,
+  };
+}
+
 // The shape of an Authorization value that is not `Bearer <key>`. Exported for its unit test; the value
 // itself is never returned or logged. A scheme word is logged only when it is short and alphabetic, so a
 // pasted secret can never become the label.
 export function authorizationShape(authorization: string): CredentialShape {
-  const spaceIndex = authorization.indexOf(' ');
-  const scheme = spaceIndex === -1 ? authorization : authorization.slice(0, spaceIndex);
+  const { scheme, hasSpace } = splitAuthorization(authorization);
   if (scheme.toLowerCase() === 'bearer') return 'empty_bearer'; // 'Bearer' alone, 'Bearer ', 'bearer   '
-  if (spaceIndex === -1) {
+  if (!hasSpace) {
     return authorization.startsWith('sk_conductor_') ? 'no_scheme:sk_conductor_' : 'no_scheme:other';
   }
   return /^[A-Za-z]{1,12}$/.test(scheme) ? `scheme:${scheme.toLowerCase()}` : 'scheme:other';
