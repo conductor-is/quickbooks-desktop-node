@@ -56,7 +56,9 @@ export function formatAgentErrorMessage(
   if (envelope === undefined) return undefined;
   const requestId = requestIdOf(headers);
   const statusText = typeof status === 'number' ? `HTTP ${status}` : 'no HTTP status';
-  const head = `${envelope.code}: ${envelope.message} (${statusText}${requestId ? `, request ${requestId}` : ''})`;
+  const head = `${envelope.code}: ${envelope.message} (${statusText}${
+    requestId ? `, request ${requestId}` : ''
+  })`;
   const hint = hintFor(envelope);
   return hint === undefined ? head : `${head}\n${hint}`;
 }
