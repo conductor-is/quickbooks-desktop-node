@@ -9,6 +9,7 @@ import pinoHttp from 'pino-http';
 import { getStainlessApiKey, parseClientAuthHeaders } from './auth';
 import { getLogger } from './logger';
 import { mountProtectedResourceMetadata, parseClientPermissions, requireCredential } from './oauth'; // conductor patch
+import { abortOnClientCloseEnabled, rpcMethodProps, sanitizeUserAgent } from './telemetry'; // conductor patch
 import { McpOptions } from './options';
 import { initMcpServer, newMcpServer } from './server';
 
@@ -105,6 +106,7 @@ const newServer = async ({
     upstreamClientEnvs,
     mcpSessionId: (req as any).mcpSessionId,
     mcpClientInfo,
+    userAgent: sanitizeUserAgent(req.headers['user-agent']), // conductor patch
   });
 
   if (mcpClientInfo) {
@@ -121,6 +123,16 @@ const post =
     // If we return null, we already set the authorization error.
     if (server === null) return;
     const transport = new StreamableHTTPServerTransport();
+    // Conductor patch: every client gives up on a long tools/call before the server's own limit (mcp-remote
+    // at 60 s, Cursor at 120 s, hosted Claude at 240 s), and the closed socket is the only signal the origin
+    // gets. Closing the transport runs the SDK's onclose, which aborts each in-flight request handler's
+    // signal (Protocol._onclose), which the execute tool races its Deno worker against (code-tool.ts). After
+    // a normal finish the same event finds nothing to abort. CONDUCTOR_MCP_ABORT_ON_CLOSE=off disables it.
+    if (abortOnClientCloseEnabled()) {
+      res.on('close', () => {
+        void transport.close().catch(() => undefined);
+      });
+    }
     await server.connect(transport as any);
     await transport.handleRequest(req, res, req.body);
   };
@@ -182,6 +194,9 @@ export const streamableHTTPApp = ({
       logger: getLogger(),
       customProps: (req) => ({
         mcpSessionId: (req as any).mcpSessionId,
+        // Conductor patch: the JSON-RPC method and tool name, so the request line says initialize versus
+        // tools/call and execute versus search_docs for every client (express.json() has run by now).
+        ...rpcMethodProps((req as any).body),
       }),
       customLogLevel: (req, res) => {
         if (res.statusCode >= 500) {
