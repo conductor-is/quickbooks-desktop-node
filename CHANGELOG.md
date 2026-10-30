@@ -1,5 +1,72 @@
 # Changelog
 
+## [14.25.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.4...v14.25.0) (2026-10-30)
+
+
+### Features
+
+* **mcp:** add the read-only connector URL for sign-in clients ([8e6aa7b](https://github.com/conductor-is/quickbooks-desktop-node/commit/8e6aa7bdda52f68bffa8be58d32f97d07af1b9ef))
+* **mcp:** require a credential and serve protected resource metadata ([37e20cf](https://github.com/conductor-is/quickbooks-desktop-node/commit/37e20cf1b4b6490149d44c7819da9e7ce97dec5a))
+* **mcp:** stop abandoned executes, trace each call, explain API errors ([82a82d3](https://github.com/conductor-is/quickbooks-desktop-node/commit/82a82d3a2fc2aeef5d6d5baeaec73f840c92860e))
+
+
+### Bug Fixes
+
+* **mcp:** address the review of the execute patches ([b65f24a](https://github.com/conductor-is/quickbooks-desktop-node/commit/b65f24a235c7c61edfe64363aa52c6b9421fff5f))
+* **mcp:** cache valid key checks and tighten the OAuth gate ([50bab9e](https://github.com/conductor-is/quickbooks-desktop-node/commit/50bab9e3476c47bf3a5ef29d93f48537d63f4a01))
+* **mcp:** correct the instructions and add request pacing rules ([2b8c6b1](https://github.com/conductor-is/quickbooks-desktop-node/commit/2b8c6b118b8d4b64489e9e5a83725853e4a64d88))
+* **mcp:** keep client blocked_methods on read-only and log probe causes ([25313fc](https://github.com/conductor-is/quickbooks-desktop-node/commit/25313fcee986442288ec5d1fa3c4c4238ef78224))
+* **mcp:** keep client narrowing on read-only and refuse bad patterns ([b5e3986](https://github.com/conductor-is/quickbooks-desktop-node/commit/b5e398697c8ff84cd11e195759344a22c29859be))
+* **mcp:** let Grok list tools and re-prompt sign-in on bad keys ([ed8fd48](https://github.com/conductor-is/quickbooks-desktop-node/commit/ed8fd482e06883ae520605dafcbf4033a22f0a22))
+* **mcp:** log a shared key check under each session ([35dcc54](https://github.com/conductor-is/quickbooks-desktop-node/commit/35dcc549402ed4db31fe9990dc94ce11918aafa6))
+* **mcp:** log the generated session id on OAuth gate rejections ([4aa8856](https://github.com/conductor-is/quickbooks-desktop-node/commit/4aa885643d69d253317f48fcbecef61a629e4fe5))
+* **mcp:** revise paging, lookup, and health check rules from audit ([cb515ed](https://github.com/conductor-is/quickbooks-desktop-node/commit/cb515ed67f56241d90129641ff45598d030b28dc))
+* **mcp:** say to await each request, in any language ([a428fa6](https://github.com/conductor-is/quickbooks-desktop-node/commit/a428fa6700f5d923edcda06e65e848f5e4fb15c0))
+* **mcp:** say what to do in the sign-in errors ([c23b4b9](https://github.com/conductor-is/quickbooks-desktop-node/commit/c23b4b95abd9278fe68f27ea479e53e379582389))
+* **mcp:** send a credential on the verify.sh post-timeout tools/list probe ([0f65009](https://github.com/conductor-is/quickbooks-desktop-node/commit/0f65009e9a8194e299c520b0851fd2553f960a9f))
+* **mcp:** share in-flight key checks and treat a 2xx probe as unknown ([6c11a9a](https://github.com/conductor-is/quickbooks-desktop-node/commit/6c11a9aa2b3a0625f1f1f0c5c06a6f8ae0d932ef))
+* **qbd:** explain error 3270 and require a credit card account type ([262895e](https://github.com/conductor-is/quickbooks-desktop-node/commit/262895e21e882092c28bd39455b2a0b74c2bacf9))
+
+
+### Reverts
+
+* **mcp:** drop the Grok keyless-discovery exception ([e7b1f24](https://github.com/conductor-is/quickbooks-desktop-node/commit/e7b1f24ed06d94a9523875e688d5502537063f53))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([39c5487](https://github.com/conductor-is/quickbooks-desktop-node/commit/39c5487d713b24fec77b5ab4972f66d75e3908e0))
+* **mcp:** drop the two execute kill switches ([8ad47c8](https://github.com/conductor-is/quickbooks-desktop-node/commit/8ad47c8cbc799cfbe63a3937e8d01ac68c83e2c4))
+* **mcp:** shorten the dead-key 401 message and README wording ([e99920c](https://github.com/conductor-is/quickbooks-desktop-node/commit/e99920cdfb09e6603818599101ac90b58aed3dd2))
+* **mcp:** update verify.sh and deploy notes for the OAuth gate ([3cda147](https://github.com/conductor-is/quickbooks-desktop-node/commit/3cda1476c0071e2df626161cd3812c734d5df669))
+* **mcp:** verify.sh probes and deploy notes for the read-only URL ([6aaadc3](https://github.com/conductor-is/quickbooks-desktop-node/commit/6aaadc3be674262dfa414f695abc87b4502c13d4))
+
+
+### Documentation
+
+* **mcp:** correct the stuck Claude connector note in DEPLOYS.md ([84b435e](https://github.com/conductor-is/quickbooks-desktop-node/commit/84b435ec7c349938dba4355c102cc4694bf3c502))
+* **mcp:** group Claude Code with the sign-in clients in the README ([da06775](https://github.com/conductor-is/quickbooks-desktop-node/commit/da06775b149ca20f9a92a416a174ad26565b706c))
+* **mcp:** keep the dashboard-first deploy order for the read-only URL ([2a2c7f3](https://github.com/conductor-is/quickbooks-desktop-node/commit/2a2c7f3f8b3b54596baf55eaeeeac2f3cd0f1f56))
+* **mcp:** match the dashboard's tool order in the README ([1fa50b1](https://github.com/conductor-is/quickbooks-desktop-node/commit/1fa50b16b0a2f5ec179ec7f9dd74071485ac7064))
+* **mcp:** point Claude users at the hosted connector sign-in ([8a65d0d](https://github.com/conductor-is/quickbooks-desktop-node/commit/8a65d0d2820ce2c5f5943739374000dc25e97d52))
+* **mcp:** record the execute patches deploy in DEPLOYS.md ([03e4e0f](https://github.com/conductor-is/quickbooks-desktop-node/commit/03e4e0fe9c98e4154cf3dc8cb7515d21ebaa1bde))
+* **mcp:** record the Grok and invalid_token deploy in DEPLOYS.md ([79ae635](https://github.com/conductor-is/quickbooks-desktop-node/commit/79ae6354c684777c52bc63847d90f1d321e398aa))
+* **mcp:** record the Grok revert deploy and correct the invalid_token note ([cebfc5d](https://github.com/conductor-is/quickbooks-desktop-node/commit/cebfc5df82825aab04a7e3b488cf864559a47315))
+* **mcp:** record the instructions deploy in DEPLOYS.md ([bcd1962](https://github.com/conductor-is/quickbooks-desktop-node/commit/bcd1962792bd101fa0ea1f76aa1eecbfb3a0b875))
+* **mcp:** record the kill-switch removal deploy in DEPLOYS.md ([cc91c5c](https://github.com/conductor-is/quickbooks-desktop-node/commit/cc91c5cbfcd9b04261ea2d1d7f360ad67c0a026c))
+* **mcp:** record the OAuth deploy in DEPLOYS.md ([2a51350](https://github.com/conductor-is/quickbooks-desktop-node/commit/2a5135084436aedf3329111ec4c9ca7ef91e17dd))
+* **mcp:** record the revised instructions deploy in DEPLOYS.md ([872e577](https://github.com/conductor-is/quickbooks-desktop-node/commit/872e5775c3fc9a4f571c5b2f156454fff524b50e))
+
+
+### Styles
+
+* **mcp:** format the agent error formatter with the repo's prettier config ([effdca2](https://github.com/conductor-is/quickbooks-desktop-node/commit/effdca2c0b5374ac51b4169cda883ac0d28b9211))
+
+
+### Refactors
+
+* **mcp:** hardcode the OAuth server and resource URLs ([a344e70](https://github.com/conductor-is/quickbooks-desktop-node/commit/a344e706b5577163c3f7a5d89ec70b5be83cdc36))
+
 ## [14.24.4](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.3...v14.24.4) (2026-10-23)
 
 
