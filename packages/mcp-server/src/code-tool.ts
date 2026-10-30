@@ -14,7 +14,6 @@ import { randomUUID } from 'node:crypto';
 import {
   CLIENT_CLOSED_MESSAGE,
   CodeExecutionAbortedError,
-  agentErrorFormattingEnabled,
   classifyExecuteError,
   executeTelemetryHeaders,
 } from './telemetry';
@@ -376,9 +375,6 @@ const localDenoHandlerInner = async ({
       const body = JSON.stringify({
         opts,
         code,
-        // Conductor patch: the worker rewrites API error messages for the model (agent-errors.ts) unless
-        // CONDUCTOR_MCP_AGENT_ERRORS=off.
-        agentErrors: agentErrorFormattingEnabled(),
       });
 
       req.write(body, (err) => {

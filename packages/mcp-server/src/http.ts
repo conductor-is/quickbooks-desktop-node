@@ -9,7 +9,7 @@ import pinoHttp from 'pino-http';
 import { getStainlessApiKey, parseClientAuthHeaders } from './auth';
 import { getLogger } from './logger';
 import { mountProtectedResourceMetadata, parseClientPermissions, requireCredential } from './oauth'; // conductor patch
-import { abortOnClientCloseEnabled, rpcMethodProps, sanitizeUserAgent } from './telemetry'; // conductor patch
+import { rpcMethodProps, sanitizeUserAgent } from './telemetry'; // conductor patch
 import { McpOptions } from './options';
 import { initMcpServer, newMcpServer } from './server';
 
@@ -126,18 +126,15 @@ const post =
     // signal (Protocol._onclose), which the execute tool races its Deno worker against (code-tool.ts). The
     // listener goes on before any await so a disconnect while the server is built is still seen, and a
     // client that left during the gate's key probe (before this handler ran) is caught by res.closed. After
-    // a normal finish the same event finds nothing to abort. CONDUCTOR_MCP_ABORT_ON_CLOSE=off disables it.
-    const abortOnClose = abortOnClientCloseEnabled();
-    if (abortOnClose) {
-      res.on('close', () => {
-        void transport.close().catch(() => undefined);
-      });
-      if (res.closed) return;
-    }
+    // a normal finish the same event finds nothing to abort.
+    res.on('close', () => {
+      void transport.close().catch(() => undefined);
+    });
+    if (res.closed) return;
     const server = await newServer({ ...options, req, res });
     // If we return null, we already set the authorization error.
     if (server === null) return;
-    if (abortOnClose && res.closed) return;
+    if (res.closed) return;
     await server.connect(transport as any);
     await transport.handleRequest(req, res, req.body);
   };
