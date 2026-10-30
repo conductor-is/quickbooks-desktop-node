@@ -5,8 +5,6 @@ import { configureLogger } from '../src/logger';
 import { authorizationShape } from '../src/oauth';
 import {
   CLIENT_CLOSED_MESSAGE,
-  abortOnClientCloseEnabled,
-  agentErrorFormattingEnabled,
   classifyExecuteError,
   executeTelemetryHeaders,
   rpcMethodProps,
@@ -105,30 +103,6 @@ describe('classifyExecuteError', () => {
     );
     expect(classifyExecuteError(result('Error output:\nsomething'))).toBe('runtime_error');
     expect(classifyExecuteError({ content: [], isError: true })).toBe('unknown');
-  });
-});
-
-describe('kill switches', () => {
-  const names = ['CONDUCTOR_MCP_ABORT_ON_CLOSE', 'CONDUCTOR_MCP_AGENT_ERRORS'];
-  const saved: Record<string, string | undefined> = {};
-  beforeEach(() => names.forEach((n) => (saved[n] = process.env[n])));
-  afterEach(() =>
-    names.forEach((n) => {
-      if (saved[n] === undefined) delete process.env[n];
-      else process.env[n] = saved[n];
-    }),
-  );
-  test('on unless set to off, false, 0 or no', () => {
-    delete process.env['CONDUCTOR_MCP_ABORT_ON_CLOSE'];
-    delete process.env['CONDUCTOR_MCP_AGENT_ERRORS'];
-    expect(abortOnClientCloseEnabled()).toBe(true);
-    expect(agentErrorFormattingEnabled()).toBe(true);
-    process.env['CONDUCTOR_MCP_ABORT_ON_CLOSE'] = ' OFF ';
-    process.env['CONDUCTOR_MCP_AGENT_ERRORS'] = '0';
-    expect(abortOnClientCloseEnabled()).toBe(false);
-    expect(agentErrorFormattingEnabled()).toBe(false);
-    process.env['CONDUCTOR_MCP_AGENT_ERRORS'] = 'anything else';
-    expect(agentErrorFormattingEnabled()).toBe(true);
   });
 });
 

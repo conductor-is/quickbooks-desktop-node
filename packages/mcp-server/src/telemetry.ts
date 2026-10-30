@@ -1,28 +1,7 @@
 // Conductor patch: shared helpers for the execute tool's abort-on-disconnect, its per-call telemetry, and
 // the OAuth gate's rejection logging. Custom file (not generated), imported by code-tool.ts, http.ts and
-// oauth.ts. Every env flag here deliberately avoids the MCP_SERVER_ prefix so the yargs .env('MCP_SERVER')
-// binding in options.ts never sees it (same rule as CODE_EXECUTION_TIMEOUT_MS and CONDUCTOR_MCP_KEY_PROBE).
-import { readEnv } from './util';
+// oauth.ts.
 import type { ToolCallResult } from './types';
-
-const OFF_VALUES: ReadonlySet<string> = new Set(['off', 'false', '0', 'no']);
-
-// A kill switch is on unless its value is one of OFF_VALUES; an unset variable means on.
-function envFlagEnabled(name: string): boolean {
-  return !OFF_VALUES.has((readEnv(name) ?? '').trim().toLowerCase());
-}
-
-// CONDUCTOR_MCP_ABORT_ON_CLOSE=off: stop closing the transport when the client's POST socket closes, so a
-// disconnected client's code runs to completion or the timeout as before (http.ts).
-export function abortOnClientCloseEnabled(): boolean {
-  return envFlagEnabled('CONDUCTOR_MCP_ABORT_ON_CLOSE');
-}
-
-// CONDUCTOR_MCP_AGENT_ERRORS=off: stop rewriting API error messages inside the execute sandbox, so the
-// model sees the SDK's own text again (code-tool-worker.ts, src/agent-errors.ts).
-export function agentErrorFormattingEnabled(): boolean {
-  return envFlagEnabled('CONDUCTOR_MCP_AGENT_ERRORS');
-}
 
 // Thrown inside the execute tool's race when the MCP request's abort signal fires (the client closed its
 // HTTP request). Caught in code-tool.ts, never leaves it.

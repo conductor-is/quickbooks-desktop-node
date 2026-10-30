@@ -466,11 +466,7 @@ function parseError(code: string, error: unknown): string | undefined {
 }
 
 const fetch = async (req: Request): Promise<Response> => {
-  const { opts, code, agentErrors } = (await req.json()) as {
-    opts: ClientOptions;
-    code: string;
-    agentErrors?: boolean; // conductor patch (agent-errors.ts); absent means on
-  };
+  const { opts, code } = (await req.json()) as { opts: ClientOptions; code: string };
 
   const runFunctionSource = code ? getRunFunctionSource(code) : null;
   if (!runFunctionSource) {
@@ -506,7 +502,7 @@ const fetch = async (req: Request): Promise<Response> => {
     ...opts,
   });
   // Conductor patch: one line per API error for the model, plus a next step for a few codes.
-  if (agentErrors !== false) formatErrorsForAgents(conductor);
+  formatErrorsForAgents(conductor);
 
   const log_lines: string[] = [];
   const err_lines: string[] = [];

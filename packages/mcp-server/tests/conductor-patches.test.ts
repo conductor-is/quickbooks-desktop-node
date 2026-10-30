@@ -39,7 +39,6 @@ describe('conductor self-hosting patches', () => {
     const http = fs.readFileSync(path.join(pkgRoot, 'src', 'http.ts'), 'utf-8');
     expect(http).toContain("res.on('close', () => {");
     expect(http).toContain('void transport.close().catch(() => undefined);');
-    expect(http).toContain('abortOnClientCloseEnabled()');
     const server = fs.readFileSync(path.join(pkgRoot, 'src', 'server.ts'), 'utf-8');
     expect(server).toContain('async (request, extra) =>');
     expect(server).toContain('signal: extra.signal,');
@@ -47,8 +46,6 @@ describe('conductor self-hosting patches', () => {
     expect(codeTool).toContain('CodeExecutionAbortedError');
     expect(codeTool).toContain('abortPromise, // conductor patch');
     expect(codeTool).toContain("abortedBy: 'client_closed'");
-    const telemetry = fs.readFileSync(path.join(pkgRoot, 'src', 'telemetry.ts'), 'utf-8');
-    expect(telemetry).toContain('CONDUCTOR_MCP_ABORT_ON_CLOSE');
   });
 
   test('every execute call carries a call id to the API and to the result line', () => {
@@ -64,14 +61,11 @@ describe('conductor self-hosting patches', () => {
     expect(http).toContain("userAgent: sanitizeUserAgent(req.headers['user-agent'])");
   });
 
-  test('the execute worker rewrites API errors for the model unless switched off', () => {
+  test('the execute worker rewrites API errors for the model', () => {
     const worker = fs.readFileSync(path.join(pkgRoot, 'src', 'code-tool-worker.ts'), 'utf-8');
     expect(worker).toContain("import { formatErrorsForAgents } from './agent-errors'");
-    expect(worker).toContain('if (agentErrors !== false) formatErrorsForAgents(conductor);');
+    expect(worker).toContain('formatErrorsForAgents(conductor);');
     const codeTool = fs.readFileSync(path.join(pkgRoot, 'src', 'code-tool.ts'), 'utf-8');
-    expect(codeTool).toContain('agentErrors: agentErrorFormattingEnabled(),');
-    const telemetry = fs.readFileSync(path.join(pkgRoot, 'src', 'telemetry.ts'), 'utf-8');
-    expect(telemetry).toContain('CONDUCTOR_MCP_AGENT_ERRORS');
     // The worker runs in Deno, so the formatter must stay free of Node-only imports.
     const formatter = fs.readFileSync(path.join(pkgRoot, 'src', 'agent-errors.ts'), 'utf-8');
     expect(formatter).not.toMatch(/from 'node:/);

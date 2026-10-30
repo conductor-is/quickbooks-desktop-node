@@ -12,7 +12,6 @@
 // `headers` and `error` (the full body) are untouched, so code that branches on them keeps working.
 // Hints are keyed on the envelope's `code` and `type`, never on message text, except the one
 // `No such end-user` prefix, which is stable API copy; a renamed code only drops its hint.
-// CONDUCTOR_MCP_AGENT_ERRORS=off (read in code-tool.ts, passed in the worker request) turns it off.
 
 type ErrorEnvelope = { code: string; message: string; type?: string };
 
