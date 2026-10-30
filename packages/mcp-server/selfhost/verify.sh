@@ -52,7 +52,7 @@ done
 # Note: the capture files store the .result object itself, so the key is
 # .instructions here (the plan's section 5 text had .result.instructions).
 SHA=$(jq -j '.instructions' "/tmp/init-2025-06-18-${NEW##*/}.json" | shasum -a 256 | cut -d' ' -f1)
-if [ "$SHA" = "34e6c53146e029ec0474e197402b0f334d5bcaa3366289a9802e65b3fb16e1e9" ]; then
+if [ "$SHA" = "e014362a0704e3582f0747c097c4a3ea307f9d538194157c0b384f2fa00922ba" ]; then
   pass "instructions sha256"
 else
   fail "instructions sha256 (got $SHA)"

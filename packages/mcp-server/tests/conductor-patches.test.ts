@@ -54,11 +54,11 @@ describe('conductor self-hosting patches', () => {
     expect(fs.existsSync(path.join(repoRoot, 'openapi.spec.yml'))).toBe(true);
   });
 
-  test('instructions.md is byte-identical to the reviewed 2026-10-26 text', () => {
+  test('instructions.md is byte-identical to the reviewed 2026-10-29 text', () => {
     const buf = fs.readFileSync(path.join(pkgRoot, 'instructions.md'));
-    expect(buf.length).toBe(4852);
+    expect(buf.length).toBe(5574);
     const sha = crypto.createHash('sha256').update(buf).digest('hex');
-    expect(sha).toBe('34e6c53146e029ec0474e197402b0f334d5bcaa3366289a9802e65b3fb16e1e9');
+    expect(sha).toBe('e014362a0704e3582f0747c097c4a3ea307f9d538194157c0b384f2fa00922ba');
   });
 
   test('deno-http-worker is vendored (no git dependency, so npx works without git)', () => {
