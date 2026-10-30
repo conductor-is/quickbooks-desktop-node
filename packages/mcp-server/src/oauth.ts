@@ -17,6 +17,7 @@ import { createHash } from 'node:crypto';
 import express from 'express';
 import { getLogger } from './logger';
 import { sdkMethods } from './methods';
+import { rpcMethodProps, sanitizeUserAgent } from './telemetry';
 import { readEnv } from './util';
 
 // A local end-to-end run edits these two temporarily (see the dashboard's src/lib/oauth/README.md).
@@ -65,7 +66,17 @@ export interface OAuthResourceConfig {
 type Credential =
   | { kind: 'bearer' | 'header'; token: string }
   | { kind: 'missing' }
-  | { kind: 'invalid'; header: 'authorization' | 'x-conductor-secret-key' };
+  | { kind: 'invalid'; header: 'authorization' | 'x-conductor-secret-key'; shape: CredentialShape };
+// What was wrong with a rejected credential, logged on the gate line so a wrong-scheme connector can be
+// diagnosed without any part of the value: an empty Bearer, a recognizable scheme word (basic, token,
+// apikey, ...), some other first word, no space at all (a bare key pasted without the Bearer word, which is
+// told apart only by its public sk_conductor_ prefix), or an empty custom header.
+export type CredentialShape =
+  | 'empty_bearer'
+  | `scheme:${string}`
+  | 'no_scheme:sk_conductor_'
+  | 'no_scheme:other'
+  | 'empty_custom_header';
 type GateRejection = 'missing' | 'invalid_scheme' | 'dead_key';
 type WwwAuthenticateError = 'invalid_token';
 type KeyProbeVerdict = 'valid' | 'invalid' | 'unknown';
@@ -153,6 +164,7 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
         req,
         res,
         config,
+        resource,
         'missing',
         undefined,
         'Sign in to Conductor, or send your Conductor secret key in the Authorization header',
@@ -163,11 +175,13 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
         req,
         res,
         config,
+        resource,
         'invalid_scheme',
         'invalid_token',
         credential.header === 'x-conductor-secret-key' ?
           'The x-conductor-secret-key header is empty. Set it to your Conductor secret key'
         : 'The Authorization header must be the word Bearer, a space, and your Conductor secret key',
+        credential.shape,
       );
     }
     canonicalizeCredential(req, credential);
@@ -179,6 +193,7 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
           req,
           res,
           config,
+          resource,
           'dead_key',
           'invalid_token',
           probe.code === 'SECRET_KEY_REQUIRED' ?
@@ -195,17 +210,28 @@ export function requireCredential(resource: OAuthResource = 'root'): express.Req
 // applied to RESPONSE headers too) writes www-authenticate as [REDACTED] and pino-http logs no body, so
 // without it a first-contact 401 (expected), a wrong-scheme 401 (the misconfigured customer behind the
 // 130-per-48h 500s) and a dead-key 401 are identical in Render logs. The body is advisory; Claude and the
-// SDK clients read only the status and the header.
+// SDK clients read only the status and the header. The line also carries the credential's shape (never
+// any part of its value), the JSON-RPC method, the client's User-Agent and the resource, so a keyless
+// retry loop, a wrong-scheme connector and a first-contact sign-in are told apart without a join.
 function reject(
   req: express.Request,
   res: express.Response,
   config: OAuthResourceConfig,
+  resource: OAuthResource,
   gate: GateRejection,
   error: WwwAuthenticateError | undefined,
   description: string,
+  credentialShape?: CredentialShape,
 ): void {
   getLogger().warn(
-    { mcpSessionId: (req as any).mcpSessionId, oauthGate: gate },
+    {
+      mcpSessionId: (req as any).mcpSessionId,
+      oauthGate: gate,
+      ...(credentialShape !== undefined && { credentialShape }),
+      ...rpcMethodProps(req.body),
+      userAgent: sanitizeUserAgent(req.headers['user-agent'], 100),
+      resource,
+    },
     'OAuth gate rejected request',
   );
   res
@@ -226,14 +252,30 @@ function extractCredential(req: express.Request): Credential {
     const scheme = spaceIndex === -1 ? authorization : authorization.slice(0, spaceIndex);
     const token = spaceIndex === -1 ? '' : authorization.slice(spaceIndex + 1).trim();
     if (scheme.toLowerCase() === 'bearer' && token !== '') return { kind: 'bearer', token };
-    return { kind: 'invalid', header: 'authorization' }; // Basic, Digest, 'Bearer' alone, 'Bearer '
+    // Basic, Digest, 'Bearer' alone, 'Bearer ', a bare key
+    return { kind: 'invalid', header: 'authorization', shape: authorizationShape(authorization) };
   }
   const headerKey = req.headers['x-conductor-secret-key'];
   if (typeof headerKey === 'string') {
     const token = headerKey.trim();
-    return token === '' ? { kind: 'invalid', header: 'x-conductor-secret-key' } : { kind: 'header', token };
+    return token === '' ?
+        { kind: 'invalid', header: 'x-conductor-secret-key', shape: 'empty_custom_header' }
+      : { kind: 'header', token };
   }
   return { kind: 'missing' };
+}
+
+// The shape of an Authorization value that is not `Bearer <key>`. Exported for its unit test; the value
+// itself is never returned or logged. A scheme word is logged only when it is short and alphabetic, so a
+// pasted secret can never become the label.
+export function authorizationShape(authorization: string): CredentialShape {
+  const spaceIndex = authorization.indexOf(' ');
+  const scheme = spaceIndex === -1 ? authorization : authorization.slice(0, spaceIndex);
+  if (scheme.toLowerCase() === 'bearer') return 'empty_bearer'; // 'Bearer' alone, 'Bearer ', 'bearer   '
+  if (spaceIndex === -1) {
+    return authorization.startsWith('sk_conductor_') ? 'no_scheme:sk_conductor_' : 'no_scheme:other';
+  }
+  return /^[A-Za-z]{1,12}$/.test(scheme) ? `scheme:${scheme.toLowerCase()}` : 'scheme:other';
 }
 
 // The generated parseClientAuthHeaders switches on the literal 'Bearer' and throws otherwise, so the

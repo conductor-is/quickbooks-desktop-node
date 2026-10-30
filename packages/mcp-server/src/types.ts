@@ -48,6 +48,10 @@ export type McpRequestContext = {
   upstreamClientEnvs?: Record<string, string> | undefined;
   mcpSessionId?: string | undefined;
   mcpClientInfo?: { name: string; version: string } | undefined;
+  // Conductor patch: the MCP request's abort signal (the SDK fires it when http.ts closes the transport on
+  // the client's socket close) and the HTTP User-Agent, for the execute tool's abort racer and telemetry.
+  signal?: AbortSignal | undefined;
+  userAgent?: string | undefined;
 };
 
 export type HandlerFunction = ({

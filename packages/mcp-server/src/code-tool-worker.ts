@@ -6,6 +6,7 @@ import Fuse from 'fuse.js';
 import ts from 'typescript';
 import { WorkerOutput } from './code-tool-types';
 import { Conductor, ClientOptions } from 'conductor-node';
+import { formatErrorsForAgents } from './agent-errors'; // conductor patch
 
 async function tseval(code: string) {
   return import('data:application/typescript;charset=utf-8;base64,' + Buffer.from(code).toString('base64'));
@@ -465,7 +466,11 @@ function parseError(code: string, error: unknown): string | undefined {
 }
 
 const fetch = async (req: Request): Promise<Response> => {
-  const { opts, code } = (await req.json()) as { opts: ClientOptions; code: string };
+  const { opts, code, agentErrors } = (await req.json()) as {
+    opts: ClientOptions;
+    code: string;
+    agentErrors?: boolean; // conductor patch (agent-errors.ts); absent means on
+  };
 
   const runFunctionSource = code ? getRunFunctionSource(code) : null;
   if (!runFunctionSource) {
@@ -500,6 +505,8 @@ const fetch = async (req: Request): Promise<Response> => {
   const conductor = new Conductor({
     ...opts,
   });
+  // Conductor patch: one line per API error for the model, plus a next step for a few codes.
+  if (agentErrors !== false) formatErrorsForAgents(conductor);
 
   const log_lines: string[] = [];
   const err_lines: string[] = [];

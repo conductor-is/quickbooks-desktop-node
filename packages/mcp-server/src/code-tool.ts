@@ -9,7 +9,20 @@ import { SdkMethod } from './methods';
 import { McpCodeExecutionMode } from './options';
 import { ClientOptions } from 'conductor-node';
 import { newDenoHTTPWorker } from './deno-http-worker';
+// Conductor patch (see telemetry.ts): per-call id and headers, the abort-on-disconnect race, kill switches.
+import { randomUUID } from 'node:crypto';
+import {
+  CLIENT_CLOSED_MESSAGE,
+  CodeExecutionAbortedError,
+  agentErrorFormattingEnabled,
+  classifyExecuteError,
+  executeTelemetryHeaders,
+  sanitizeUserAgent,
+} from './telemetry';
 
+// The four lines after "You will be returned..." and the loop clause on the try-catch line are a Conductor
+// patch: this description is the one text every MCP client shows the model (some skip initialize or never
+// surface server instructions), so the rules that must bind everyone live here (instructions.md explains).
 const prompt = `Runs JavaScript code to interact with the Conductor API.
 
 You are a skilled TypeScript programmer writing code to interface with the service.
@@ -26,7 +39,10 @@ async function run(conductor) {
 \`\`\`
 
 You will be returned anything that your function returns, plus the results of any console.log statements.
-Do not add try-catch blocks for single API calls. The tool will handle errors for you.
+Every conductor.qbd method needs conductorEndUserId from conductor.endUsers.list(); never guess it.
+QuickBooks Desktop handles one request at a time: await each request before starting the next (in a for loop, never Promise.all), pass several ids returned by an earlier call in one request instead of one request per id, and finish all requests for one conductorEndUserId before starting another.
+Keep each tool call under about a minute: some clients stop waiting at 60 seconds, and a call that times out returns only the error, so narrow lists with filters and split a large job into several short calls.
+Do not add try-catch blocks for single API calls. The tool will handle errors for you. In a loop of writes, make the code stop at the first QuickBooks Desktop error it has not seen before and fix the input; never resend a request unchanged after QuickBooks Desktop rejected it (a timeout or connection error is not a rejection).
 Do not add comments unless necessary for generating better code.
 Code will run in a container, and cannot interact with the network outside of the given SDK client.
 Variables will not persist between calls, so make sure to return or log any data you might need later.
@@ -83,27 +99,28 @@ export function codeTool({
     args: any;
   }): Promise<ToolCallResult> => {
     const code = args.code as string;
+    // Conductor patch: one id per call, sent to the API on every request the code makes (telemetry.ts) and
+    // written to the result line below, so Better Stack can join each relayed request to this call.
+    const callId = randomUUID();
+    const startTime = Date.now();
+    let result: ToolCallResult;
     // Do very basic blocking of code that includes forbidden method names.
     //
     // WARNING: This is not secure against obfuscation and other evasion methods. If
     // stronger security blocks are required, then these should be enforced in the downstream
     // API (e.g., by having users call the MCP server with API keys with limited permissions).
-    if (blockedMethods) {
-      const blockedMatches = blockedMethods.filter((method) => code.includes(method.fullyQualifiedName));
-      if (blockedMatches.length > 0) {
-        return asErrorResult(
-          `The following methods have been blocked by the MCP server and cannot be used in code execution: ${blockedMatches
-            .map((m) => m.fullyQualifiedName)
-            .join(', ')}`,
-        );
-      }
+    const blockedMatches =
+      blockedMethods ? blockedMethods.filter((method) => code.includes(method.fullyQualifiedName)) : [];
+    if (blockedMatches.length > 0) {
+      result = asErrorResult(
+        `The following methods have been blocked by the MCP server and cannot be used in code execution: ${blockedMatches
+          .map((m) => m.fullyQualifiedName)
+          .join(', ')}`,
+      );
+    } else {
+      logger.debug('Executing code in local Deno environment');
+      result = await localDenoHandler({ reqContext, args, callId });
     }
-
-    let result: ToolCallResult;
-    const startTime = Date.now();
-
-    logger.debug('Executing code in local Deno environment');
-    result = await localDenoHandler({ reqContext, args });
 
     logger.info(
       {
@@ -111,6 +128,12 @@ export function codeTool({
         durationMs: Date.now() - startTime,
         isError: result.isError,
         contentRows: result.content?.length ?? 0,
+        // Conductor patch: never the code, intent or result text; errorKind is a fixed label.
+        mcpSessionId: reqContext.mcpSessionId,
+        callId,
+        tool: 'execute',
+        userAgent: sanitizeUserAgent(reqContext.userAgent),
+        ...(result.isError && { errorKind: classifyExecuteError(result) }),
       },
       'Got code tool execution result',
     );
@@ -171,21 +194,44 @@ function releaseLocalExecutionSlot(): void {
 const localDenoHandler = async (params: {
   reqContext: McpRequestContext;
   args: unknown;
+  callId: string;
 }): Promise<ToolCallResult> => {
+  // Conductor patch: a client that already left (its POST socket closed, see http.ts) gets no Deno worker
+  // and takes no slot; checked again after the wait because the queue can be long.
+  if (params.reqContext.signal?.aborted) return abortedResult(params);
   await acquireLocalExecutionSlot();
   try {
+    if (params.reqContext.signal?.aborted) return abortedResult(params);
     return await localDenoHandlerInner(params);
   } finally {
     releaseLocalExecutionSlot();
   }
 };
 
+// Conductor patch: the result for a call whose client closed its connection; nobody receives it, but the
+// log line is how abandoned calls are counted (durationMs is the call's full wait so far).
+function abortedResult({
+  reqContext,
+  callId,
+}: {
+  reqContext: McpRequestContext;
+  callId: string;
+}): ToolCallResult {
+  getLogger().warn(
+    { mcpSessionId: reqContext.mcpSessionId, callId, abortedBy: 'client_closed' },
+    'Code execution aborted',
+  );
+  return asErrorResult(CLIENT_CLOSED_MESSAGE);
+}
+
 const localDenoHandlerInner = async ({
   reqContext,
   args,
+  callId,
 }: {
   reqContext: McpRequestContext;
   args: unknown;
+  callId: string;
 }): Promise<ToolCallResult> => {
   const fs = await import('node:fs');
   const path = await import('node:path');
@@ -266,6 +312,17 @@ const localDenoHandlerInner = async ({
 
   const timeoutMs = getCodeExecutionTimeoutMs();
   let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
+  // Conductor patch: the third racer below rejects when the MCP request's abort signal fires (the client
+  // closed its connection); the listener is removed in finally so a finished call leaves nothing behind.
+  const signal = reqContext.signal;
+  let onAbort: (() => void) | undefined;
+  const abortPromise = new Promise<never>((_, reject) => {
+    if (!signal) return;
+    onAbort = () => reject(new CodeExecutionAbortedError(CLIENT_CLOSED_MESSAGE));
+    if (signal.aborted) onAbort();
+    else signal.addEventListener('abort', onAbort, { once: true });
+  });
+  const startedAt = Date.now();
   try {
     const respPromise = new Promise<Response>((resolve, reject) => {
       worker.addEventListener('exit', (exitCode) => {
@@ -279,6 +336,12 @@ const localDenoHandlerInner = async ({
         ...(client.apiKey != null ? { apiKey: client.apiKey } : undefined),
         defaultHeaders: {
           'X-Stainless-MCP': 'true',
+          // Conductor patch: the call id, session id and client, logged by the API with every request.
+          ...executeTelemetryHeaders({
+            callId,
+            mcpSessionId: reqContext.mcpSessionId,
+            userAgent: reqContext.userAgent,
+          }),
         },
       } satisfies Partial<ClientOptions> as ClientOptions;
 
@@ -321,6 +384,9 @@ const localDenoHandlerInner = async ({
       const body = JSON.stringify({
         opts,
         code,
+        // Conductor patch: the worker rewrites API error messages for the model (agent-errors.ts) unless
+        // CONDUCTOR_MCP_AGENT_ERRORS=off.
+        agentErrors: agentErrorFormattingEnabled(),
       });
 
       req.write(body, (err) => {
@@ -334,6 +400,7 @@ const localDenoHandlerInner = async ({
 
     const resp = await Promise.race([
       respPromise,
+      abortPromise, // conductor patch
       new Promise<never>((_, reject) => {
         timeoutHandle = setTimeout(() => {
           reject(
@@ -405,11 +472,25 @@ const localDenoHandlerInner = async ({
     if (error instanceof CodeExecutionTimeoutError) {
       return asErrorResult(error.message);
     }
+    // Conductor patch: the client left while the code ran; finally terminates the worker.
+    if (error instanceof CodeExecutionAbortedError) {
+      getLogger().warn(
+        {
+          mcpSessionId: reqContext.mcpSessionId,
+          callId,
+          durationMs: Date.now() - startedAt,
+          abortedBy: 'client_closed',
+        },
+        'Code execution aborted',
+      );
+      return asErrorResult(error.message);
+    }
     throw error;
   } finally {
     if (timeoutHandle !== undefined) {
       clearTimeout(timeoutHandle);
     }
+    if (signal && onAbort) signal.removeEventListener('abort', onAbort); // conductor patch
     worker.terminate();
   }
 };

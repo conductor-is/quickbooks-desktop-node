@@ -21,6 +21,68 @@ describe('conductor self-hosting patches', () => {
     expect(src).toContain('CODE_EXECUTION_MAX_CONCURRENCY');
   });
 
+  test('the execute tool description carries the rules every client must see', () => {
+    // The 2026-10-27 pacing rule in instructions.md changed behavior only in clients that surface server
+    // instructions; the tool description is the one text every client shows the model (audit of 10-28).
+    const src = fs.readFileSync(path.join(pkgRoot, 'src', 'code-tool.ts'), 'utf-8');
+    expect(src).toContain('needs conductorEndUserId from conductor.endUsers.list(); never guess it.');
+    expect(src).toContain('await each request before starting the next (in a for loop, never Promise.all)');
+    expect(src).toContain('pass several ids returned by an earlier call in one request');
+    expect(src).toContain(
+      'Keep each tool call under about a minute: some clients stop waiting at 60 seconds',
+    );
+    expect(src).toContain('never resend a request unchanged after QuickBooks Desktop rejected it');
+    expect(src).not.toContain('while the code keeps running');
+  });
+
+  test('a client disconnect aborts the running execute call (same-instance half of the cancel TODO)', () => {
+    const http = fs.readFileSync(path.join(pkgRoot, 'src', 'http.ts'), 'utf-8');
+    expect(http).toContain("res.on('close', () => {");
+    expect(http).toContain('void transport.close().catch(() => undefined);');
+    expect(http).toContain('abortOnClientCloseEnabled()');
+    const server = fs.readFileSync(path.join(pkgRoot, 'src', 'server.ts'), 'utf-8');
+    expect(server).toContain('async (request, extra) =>');
+    expect(server).toContain('signal: extra.signal,');
+    const codeTool = fs.readFileSync(path.join(pkgRoot, 'src', 'code-tool.ts'), 'utf-8');
+    expect(codeTool).toContain('CodeExecutionAbortedError');
+    expect(codeTool).toContain('abortPromise, // conductor patch');
+    expect(codeTool).toContain("abortedBy: 'client_closed'");
+    const telemetry = fs.readFileSync(path.join(pkgRoot, 'src', 'telemetry.ts'), 'utf-8');
+    expect(telemetry).toContain('CONDUCTOR_MCP_ABORT_ON_CLOSE');
+  });
+
+  test('every execute call carries a call id to the API and to the result line', () => {
+    const codeTool = fs.readFileSync(path.join(pkgRoot, 'src', 'code-tool.ts'), 'utf-8');
+    expect(codeTool).toContain('const callId = randomUUID();');
+    expect(codeTool).toContain('...executeTelemetryHeaders({');
+    expect(codeTool).toContain('errorKind: classifyExecuteError(result)');
+    const telemetry = fs.readFileSync(path.join(pkgRoot, 'src', 'telemetry.ts'), 'utf-8');
+    expect(telemetry).toContain("'Conductor-MCP-Call-Id'");
+    const http = fs.readFileSync(path.join(pkgRoot, 'src', 'http.ts'), 'utf-8');
+    expect(http).toContain('...rpcMethodProps((req as any).body)');
+    expect(http).toContain("userAgent: sanitizeUserAgent(req.headers['user-agent'])");
+  });
+
+  test('the execute worker rewrites API errors for the model unless switched off', () => {
+    const worker = fs.readFileSync(path.join(pkgRoot, 'src', 'code-tool-worker.ts'), 'utf-8');
+    expect(worker).toContain("import { formatErrorsForAgents } from './agent-errors'");
+    expect(worker).toContain('if (agentErrors !== false) formatErrorsForAgents(conductor);');
+    const codeTool = fs.readFileSync(path.join(pkgRoot, 'src', 'code-tool.ts'), 'utf-8');
+    expect(codeTool).toContain('agentErrors: agentErrorFormattingEnabled(),');
+    const telemetry = fs.readFileSync(path.join(pkgRoot, 'src', 'telemetry.ts'), 'utf-8');
+    expect(telemetry).toContain('CONDUCTOR_MCP_AGENT_ERRORS');
+    // The worker runs in Deno, so the formatter must stay free of Node-only imports.
+    const formatter = fs.readFileSync(path.join(pkgRoot, 'src', 'agent-errors.ts'), 'utf-8');
+    expect(formatter).not.toMatch(/from 'node:/);
+  });
+
+  test('gate rejections log the credential shape, method, client and resource', () => {
+    const oauth = fs.readFileSync(path.join(pkgRoot, 'src', 'oauth.ts'), 'utf-8');
+    expect(oauth).toContain('credentialShape');
+    expect(oauth).toContain("userAgent: sanitizeUserAgent(req.headers['user-agent'], 100)");
+    expect(oauth).toContain('export function authorizationShape(');
+  });
+
   test('server.ts keeps the once-per-process docs index', () => {
     const src = fs.readFileSync(path.join(pkgRoot, 'src', 'server.ts'), 'utf-8');
     expect(src).toContain('_localSearchPromise');

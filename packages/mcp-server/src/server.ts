@@ -58,6 +58,7 @@ export async function initMcpServer(params: {
   upstreamClientEnvs?: Record<string, string> | undefined;
   mcpSessionId?: string | undefined;
   mcpClientInfo?: { name: string; version: string } | undefined;
+  userAgent?: string | undefined; // conductor patch (telemetry.ts)
 }) {
   const server = params.server instanceof McpServer ? params.server.server : params.server;
 
@@ -121,7 +122,9 @@ export async function initMcpServer(params: {
     };
   });
 
-  server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  // Conductor patch: `extra.signal` is the SDK's per-request abort signal, which fires when http.ts closes
+  // the transport on the client's socket close; the execute tool races its Deno worker against it.
+  server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
     const { name, arguments: args } = request.params;
     const mcpTool = toolMap[name];
     if (!mcpTool) {
@@ -151,6 +154,8 @@ export async function initMcpServer(params: {
         upstreamClientEnvs: params.upstreamClientEnvs,
         mcpSessionId: params.mcpSessionId,
         mcpClientInfo: params.mcpClientInfo,
+        signal: extra.signal, // conductor patch
+        userAgent: params.userAgent, // conductor patch
       },
       args,
     });
