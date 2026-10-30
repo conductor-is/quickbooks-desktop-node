@@ -55,7 +55,8 @@ describe('conductor self-hosting patches', () => {
     const codeTool = fs.readFileSync(path.join(pkgRoot, 'src', 'code-tool.ts'), 'utf-8');
     expect(codeTool).toContain('const callId = randomUUID();');
     expect(codeTool).toContain('...executeTelemetryHeaders({');
-    expect(codeTool).toContain('errorKind: classifyExecuteError(result)');
+    expect(codeTool).toContain('classifyExecuteError(result)');
+    expect(codeTool).toContain("abortedBy: 'client_closed'");
     const telemetry = fs.readFileSync(path.join(pkgRoot, 'src', 'telemetry.ts'), 'utf-8');
     expect(telemetry).toContain("'Conductor-MCP-Call-Id'");
     const http = fs.readFileSync(path.join(pkgRoot, 'src', 'http.ts'), 'utf-8');

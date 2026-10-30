@@ -25,13 +25,22 @@ const END_USER_ID_HINT =
 const INVALID_REQUEST_HINT =
   'Call `search_docs` with the method name to read its parameters instead of guessing again.';
 
-// Replaces the client instance's makeStatusError (the SDK calls it as `this.makeStatusError` for every
-// non-2xx response) with a wrapper that rewrites the resulting error's message. Anything unexpected
-// leaves the SDK's own error untouched.
+// Replaces makeStatusError on the prototype that owns it (the SDK calls it as `this.makeStatusError` for
+// every non-2xx response) with a wrapper that rewrites the resulting error's message. The prototype, not
+// the instance, so clients derived with `withOptions(...)` are covered too; applied once per process.
+// Anything unexpected leaves the SDK's own error untouched.
+const PATCHED = Symbol.for('conductor.agentErrorsPatched');
+
 export function formatErrorsForAgents(client: object): void {
-  const target = client as { makeStatusError?: (...args: unknown[]) => Error };
+  let owner: object | null = Object.getPrototypeOf(client);
+  while (owner !== null && !Object.prototype.hasOwnProperty.call(owner, 'makeStatusError')) {
+    owner = Object.getPrototypeOf(owner);
+  }
+  if (owner === null) return;
+  const target = owner as { makeStatusError?: (...args: unknown[]) => Error; [PATCHED]?: boolean };
   const original = target.makeStatusError;
-  if (typeof original !== 'function') return;
+  if (typeof original !== 'function' || target[PATCHED]) return;
+  target[PATCHED] = true;
   target.makeStatusError = function (this: unknown, ...args: unknown[]): Error {
     const error = original.apply(this, args);
     try {
