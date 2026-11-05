@@ -116,7 +116,19 @@ describe('authorizationShape', () => {
     expect(authorizationShape('sk_conductor_abc def')).toBe('scheme:other');
     expect(authorizationShape('sk_conductor_abcdef')).toBe('no_scheme:sk_conductor_');
     expect(authorizationShape('abcdef')).toBe('no_scheme:other');
-    for (const value of ['Basic dXNlcjpwYXNz', 'sk_conductor_abcdef', 'Token sk_conductor_abc']) {
+    expect(authorizationShape('Authorization: Bearer sk_conductor_abc')).toBe('scheme:colon');
+    expect(authorizationShape('Bearer: sk_conductor_abc')).toBe('scheme:colon');
+    expect(authorizationShape('"Authorization": "Bearer sk_conductor_abc"')).toBe('scheme:colon');
+    expect(authorizationShape('"Bearer sk_conductor_abc"')).toBe('scheme:quoted');
+    for (const value of [
+      'Basic dXNlcjpwYXNz',
+      'sk_conductor_abcdef',
+      'Token sk_conductor_abc',
+      'Authorization: Bearer sk_conductor_abc',
+      'Bearer: sk_conductor_abc',
+      '"Authorization": "Bearer sk_conductor_abc"',
+      '"Bearer sk_conductor_abc"',
+    ]) {
       expect(authorizationShape(value)).not.toContain('abc');
     }
   });

@@ -174,6 +174,9 @@ describe('conductor self-hosting patches', () => {
     const http = fs.readFileSync(path.join(pkgRoot, 'src', 'http.ts'), 'utf-8');
     expect(http).toContain('mountProtectedResourceMetadata(app)');
     expect(http).toContain("app.post('/', requireCredential(),");
+    expect(http).toContain("app.get('/mcp', get)");
+    expect(http).toContain("app.post('/mcp', requireCredential(),");
+    expect(http).toContain("app.delete('/mcp', del)");
     expect(http).toContain("app.post('/read-only', requireCredential('read-only'),");
     expect(http).toContain("app.get('/read-only', get)");
     expect(http).toContain("app.delete('/read-only', del)");

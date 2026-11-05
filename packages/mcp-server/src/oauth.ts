@@ -1,5 +1,5 @@
 // Conductor patch: OAuth 2.1 resource-server behavior for the hosted MCP server
-// (https://mcp.conductor.is/ and its read-only connector URL https://mcp.conductor.is/read-only). Claude, ChatGPT and other OAuth-capable MCP
+// (https://mcp.conductor.is/, its /mcp alias, and its read-only connector URL https://mcp.conductor.is/read-only). Claude, ChatGPT and other OAuth-capable MCP
 // clients start sign-in only when a credential-less POST answers HTTP 401 with
 // a WWW-Authenticate header that names this server's protected resource
 // metadata (RFC 9728), which points at the authorization server (the
@@ -9,7 +9,7 @@
 // envelope says so (api.conductor.is sits behind Cloudflare; an edge 401/403
 // page must fail open). Every gate decision and every probe is logged as one
 // structured line because http.ts redacts www-authenticate from Render logs.
-// The two URLs are hardcoded: every customer's connector stores them, so they
+// The URLs are hardcoded: every customer's connector stores them, so they
 // never change. The rest of the config is read from non-MCP_SERVER_ env names
 // (see code-tool.ts for why) with production defaults baked in.
 import cors from 'cors';
@@ -69,8 +69,9 @@ type Credential =
   | { kind: 'invalid'; header: 'authorization' | 'x-conductor-secret-key'; shape: CredentialShape };
 // What was wrong with a rejected credential, logged on the gate line so a wrong-scheme connector can be
 // diagnosed without any part of the value: an empty Bearer, a recognizable scheme word (basic, token,
-// apikey, ...), some other first word, no space at all (a bare key pasted without the Bearer word, which is
-// told apart only by its public sk_conductor_ prefix), or an empty custom header.
+// apikey, ...), a pasted header line whose first word ends in a colon (scheme:colon), a value that starts
+// with a quote mark (scheme:quoted), some other first word, no space at all (a bare key pasted without the
+// Bearer word, which is told apart only by its public sk_conductor_ prefix), or an empty custom header.
 export type CredentialShape =
   | 'empty_bearer'
   | `scheme:${string}`
@@ -284,7 +285,13 @@ export function authorizationShape(authorization: string): CredentialShape {
   if (!hasSpace) {
     return authorization.startsWith('sk_conductor_') ? 'no_scheme:sk_conductor_' : 'no_scheme:other';
   }
-  return /^[A-Za-z]{1,12}$/.test(scheme) ? `scheme:${scheme.toLowerCase()}` : 'scheme:other';
+  if (/^[A-Za-z]{1,12}$/.test(scheme)) return `scheme:${scheme.toLowerCase()}`;
+  // The two paste mistakes a header-name-plus-value dialog invites (Copilot Studio's read-only connection,
+  // 2026-11-05, eight scheme:other rejections): a header line ("Authorization: Bearer x", "Bearer: x",
+  // '"Authorization": "Bearer x"') or a quoted value ('"Bearer x"').
+  if (scheme.endsWith(':')) return 'scheme:colon';
+  if (authorization.startsWith('"') || authorization.startsWith("'")) return 'scheme:quoted';
+  return 'scheme:other';
 }
 
 // The generated parseClientAuthHeaders switches on the literal 'Bearer' and throws otherwise, so the

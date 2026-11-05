@@ -242,6 +242,13 @@ export const streamableHTTPApp = ({
   app.get('/', get);
   app.post('/', requireCredential(), post({ clientOptions, mcpOptions }));
   app.delete('/', del);
+  // /mcp is the root under a second name (conductor patch): Microsoft Copilot Studio's MCP tool called
+  // <server URL>/mcp for a server URL typed without a path (41 initialize 404s from one customer on
+  // 2026-11-05) and kept the path of a URL typed as /read-only, so /read-only needs no alias. Same gate,
+  // challenge and permissions as the root; the seal test pins the three literals.
+  app.get('/mcp', get);
+  app.post('/mcp', requireCredential(), post({ clientOptions, mcpOptions }));
+  app.delete('/mcp', del);
   app.get('/read-only', get);
   app.post('/read-only', requireCredential('read-only'), post({ clientOptions, mcpOptions }));
   app.delete('/read-only', del);

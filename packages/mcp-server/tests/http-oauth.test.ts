@@ -471,6 +471,88 @@ describe('read-only connector path', () => {
   });
 });
 
+describe('/mcp alias of the root (Microsoft Copilot Studio)', () => {
+  // Copilot Studio's Accept value from the 2026-11-05 Render logs: no space after the comma.
+  const COPILOT_ACCEPT = { Accept: 'application/json,text/event-stream' };
+
+  it.each(['/mcp', '/mcp/'])('streams a Bearer initialize on %s like the root', async (path) => {
+    const response = await post(
+      INITIALIZE,
+      { Authorization: 'Bearer sk_conductor_live', ...COPILOT_ACCEPT },
+      path,
+    );
+    expect(response.status).toBe(200);
+    expect(response.headers.get('content-type')).toContain('text/event-stream');
+    expect(await response.text()).toContain('conductor_node_api');
+    expect(probes()).toHaveLength(0);
+  });
+
+  it('lists tools on /mcp', async () => {
+    const response = await post(
+      TOOLS_LIST,
+      { Authorization: 'Bearer sk_conductor_live', ...COPILOT_ACCEPT },
+      '/mcp',
+    );
+    expect(response.status).toBe(200);
+    expect(await response.text()).toContain('"execute"');
+  });
+
+  it.each(['/mcp', '/mcp/'])(
+    'answers a credential-less initialize on %s with the ROOT challenge',
+    async (path) => {
+      const response = await post(INITIALIZE, {}, path);
+      expect(response.status).toBe(401);
+      expect(response.headers.get('www-authenticate')).toBe(MISSING_CHALLENGE);
+      await response.json();
+      expect(probes()).toHaveLength(0);
+    },
+  );
+
+  // What Copilot Studio's connection dialog sent on /read-only on 2026-11-05: a value whose first word is
+  // not a scheme. Still rejected on the alias; only the gate's shape label got finer.
+  it.each(['"Bearer sk_conductor_live"', 'Authorization: Bearer sk_conductor_live'])(
+    'rejects %s on /mcp with the Bearer hint',
+    async (value) => {
+      const response = await post(INITIALIZE, { Authorization: value }, '/mcp');
+      expect(response.status).toBe(401);
+      expect(response.headers.get('www-authenticate')).toBe(SCHEME_CHALLENGE);
+      await response.json();
+    },
+  );
+
+  it('probes tools/call on /mcp and rejects a dead key with the root hint', async () => {
+    const response = await post(TOOLS_CALL, { Authorization: 'Bearer sk_conductor_dead' }, '/mcp');
+    expect(response.status).toBe(401);
+    expect(response.headers.get('www-authenticate')).toBe(DEAD_KEY_CHALLENGE);
+    await response.json();
+    expect(probes()).toHaveLength(1);
+  });
+
+  it('answers GET and DELETE on /mcp with 405, and leaves /read-only/mcp a 404', async () => {
+    const get = await fetch(new URL('/mcp', baseUrl));
+    expect(get.status).toBe(405);
+    await get.json();
+    const del = await fetch(new URL('/mcp/', baseUrl), { method: 'DELETE' });
+    expect(del.status).toBe(405);
+    await del.json();
+    const stray = await post(INITIALIZE, { Authorization: 'Bearer sk_conductor_live' }, '/read-only/mcp');
+    expect(stray.status).toBe(404);
+    await stray.text();
+  });
+
+  it('honors a client read-only header on /mcp but never forces one', async () => {
+    const blocked = await post(
+      EXECUTE_WRITE,
+      {
+        Authorization: 'Bearer sk_conductor_live',
+        'x-stainless-mcp-client-permissions': '{"allow_http_gets":true}',
+      },
+      '/mcp',
+    );
+    expect(await blocked.text()).toContain(BLOCKED_MESSAGE);
+  });
+});
+
 describe('structured log lines', () => {
   let written: string[] = [];
   let stderrWrite: jest.SpyInstance;
@@ -520,6 +602,38 @@ describe('structured log lines', () => {
     await (await post(INITIALIZE, { Authorization: 'Basic abc' })).json();
 
     expect(lines()).toContainEqual(expect.objectContaining({ level: 'warn', oauthGate: 'invalid_scheme' }));
+  });
+
+  it('labels a pasted header line and a quoted value on the gate line, never the value', async () => {
+    await (await post(INITIALIZE, { Authorization: 'Authorization: Bearer sk_conductor_live' })).json();
+    await (await post(INITIALIZE, { Authorization: '"Bearer sk_conductor_live"' })).json();
+
+    const shapes = lines().filter((line) => line['oauthGate'] === 'invalid_scheme');
+    expect(shapes.map((line) => line['credentialShape'])).toEqual(['scheme:colon', 'scheme:quoted']);
+    expect(JSON.stringify(shapes)).not.toContain('sk_conductor_live');
+  });
+
+  it('logs a credential-less /mcp rejection as the root resource', async () => {
+    await (await post(INITIALIZE, {}, '/mcp')).json();
+
+    expect(lines()).toContainEqual(expect.objectContaining({ oauthGate: 'missing', resource: 'root' }));
+  });
+
+  it('passes a client permissions header through on /mcp unchanged, never forcing read-only', async () => {
+    await (
+      await post(
+        INITIALIZE,
+        {
+          Authorization: 'Bearer sk_conductor_live',
+          'x-stainless-mcp-client-permissions': '{"allow_http_gets":false}',
+        },
+        '/mcp',
+      )
+    ).text();
+
+    expect(lines().filter((line) => 'clientPermissions' in line)).toEqual([
+      expect.objectContaining({ clientPermissions: { allow_http_gets: false } }),
+    ]);
   });
 
   it('logs the probe verdict before the dead-key rejection, never the key', async () => {

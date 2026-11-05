@@ -120,6 +120,21 @@ S=$(curl -s -o /dev/null -w '%{http_code}' "$NEW/read-only")
 S=$(curl -s -o /dev/null -w '%{http_code}' -X DELETE "$NEW/read-only/")
 [ "$S" = "405" ] && pass "DELETE /read-only/ is 405" || fail "DELETE /read-only/ expected 405, got $S"
 
+# --- 4c. /mcp alias (Copilot Studio): the root resource under a second path, both spellings, with Copilot
+# ---     Studio's own Accept value (no space); credential-less POST gets the ROOT metadata hint; GET and
+# ---     DELETE are 405, never a redirect.
+INIT_4C='{"jsonrpc":"2.0","id":3,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"x","version":"1"}}}'
+for P in /mcp /mcp/; do
+  S=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$NEW$P" -H "$CT" -H 'accept: application/json,text/event-stream' -H "$PARITY" -d "$INIT_4C")
+  [ "$S" = "200" ] && pass "initialize on $P with a Bearer is 200" || fail "initialize on $P expected 200, got $S"
+  WA=$(curl -si -X POST "$NEW$P" -H "$CT" -H "$ACC" -d "$INIT_4C" | grep -i '^www-authenticate:' | sed 's/^[^:]*: //' | tr -d '\r')
+  [ "$WA" = "Bearer resource_metadata=\"$PUBLIC_URL/.well-known/oauth-protected-resource\"" ] && pass "credential-less $P names the root metadata" || fail "credential-less $P challenge: $WA"
+done
+S=$(curl -s -o /dev/null -w '%{http_code}' "$NEW/mcp")
+[ "$S" = "405" ] && pass "GET /mcp is 405" || fail "GET /mcp expected 405, got $S"
+S=$(curl -s -o /dev/null -w '%{http_code}' -X DELETE "$NEW/mcp/")
+[ "$S" = "405" ] && pass "DELETE /mcp/ is 405" || fail "DELETE /mcp/ expected 405, got $S"
+
 # --- 5. Bad auth scheme is 401 invalid_token (was a 500 HTML stack trace), so OAuth clients sign in again
 H5=$(curl -si -X POST "$NEW/" -H "$CT" -H "$ACC" -H 'authorization: Basic foo' \
   -d '{"jsonrpc":"2.0","id":5,"method":"tools/list"}')
