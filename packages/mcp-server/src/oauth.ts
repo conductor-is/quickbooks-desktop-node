@@ -69,9 +69,10 @@ type Credential =
   | { kind: 'invalid'; header: 'authorization' | 'x-conductor-secret-key'; shape: CredentialShape };
 // What was wrong with a rejected credential, logged on the gate line so a wrong-scheme connector can be
 // diagnosed without any part of the value: an empty Bearer, a recognizable scheme word (basic, token,
-// apikey, ...), a pasted header line whose first word ends in a colon (scheme:colon), a value that starts
-// with a quote mark (scheme:quoted), some other first word, no space at all (a bare key pasted without the
-// Bearer word, which is told apart only by its public sk_conductor_ prefix), or an empty custom header.
+// apikey, ...), a pasted header line, with a colon in or after its first word (scheme:colon), a value that
+// starts with a quote mark (scheme:quoted), some other first word, no space at all (a bare key pasted
+// without the Bearer word, which is told apart only by its public sk_conductor_ prefix), or an empty custom
+// header.
 export type CredentialShape =
   | 'empty_bearer'
   | `scheme:${string}`
@@ -282,14 +283,15 @@ function splitAuthorization(authorization: string): { scheme: string; token: str
 export function authorizationShape(authorization: string): CredentialShape {
   const { scheme, hasSpace } = splitAuthorization(authorization);
   if (scheme.toLowerCase() === 'bearer') return 'empty_bearer'; // 'Bearer' alone, 'Bearer ', 'bearer   '
-  if (!hasSpace) {
-    return authorization.startsWith('sk_conductor_') ? 'no_scheme:sk_conductor_' : 'no_scheme:other';
-  }
-  if (/^[A-Za-z]{1,12}$/.test(scheme)) return `scheme:${scheme.toLowerCase()}`;
   // The two paste mistakes a header-name-plus-value dialog invites (Copilot Studio's read-only connection,
   // 2026-11-05, eight scheme:other rejections): a header line ("Authorization: Bearer x", "Bearer: x",
-  // '"Authorization": "Bearer x"') or a quoted value ('"Bearer x"').
-  if (scheme.endsWith(':')) return 'scheme:colon';
+  // "Bearer:x", '"Authorization": "Bearer x"') or a quoted value ('"Bearer x"').
+  if (!hasSpace) {
+    if (authorization.startsWith('sk_conductor_')) return 'no_scheme:sk_conductor_';
+    return authorization.includes(':') ? 'scheme:colon' : 'no_scheme:other';
+  }
+  if (/^[A-Za-z]{1,12}$/.test(scheme)) return `scheme:${scheme.toLowerCase()}`;
+  if (scheme.includes(':')) return 'scheme:colon';
   if (authorization.startsWith('"') || authorization.startsWith("'")) return 'scheme:quoted';
   return 'scheme:other';
 }
