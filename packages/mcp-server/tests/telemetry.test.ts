@@ -119,6 +119,8 @@ describe('authorizationShape', () => {
     expect(authorizationShape('Authorization: Bearer sk_conductor_abc')).toBe('scheme:colon');
     expect(authorizationShape('Bearer: sk_conductor_abc')).toBe('scheme:colon');
     expect(authorizationShape('"Authorization": "Bearer sk_conductor_abc"')).toBe('scheme:colon');
+    expect(authorizationShape('Authorization:Bearer sk_conductor_abc')).toBe('scheme:colon');
+    expect(authorizationShape('Bearer:sk_conductor_abc')).toBe('scheme:colon');
     expect(authorizationShape('"Bearer sk_conductor_abc"')).toBe('scheme:quoted');
     for (const value of [
       'Basic dXNlcjpwYXNz',
@@ -126,6 +128,8 @@ describe('authorizationShape', () => {
       'Token sk_conductor_abc',
       'Authorization: Bearer sk_conductor_abc',
       'Bearer: sk_conductor_abc',
+      'Authorization:Bearer sk_conductor_abc',
+      'Bearer:sk_conductor_abc',
       '"Authorization": "Bearer sk_conductor_abc"',
       '"Bearer sk_conductor_abc"',
     ]) {

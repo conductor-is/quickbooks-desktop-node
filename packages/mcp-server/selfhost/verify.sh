@@ -8,6 +8,7 @@
 #   NEW=... TEST_KEY=... RUN_SLOW=1 ./verify.sh        # + slow probes 8/8b/9 (~12 min)
 # Parity probes send a dummy Bearer (PARITY; initialize/tools/list are never probed); TEST_KEY gates 5a too.
 # Probes 4b and 6b cover the read-only connector URL ($NEW/read-only, both spellings on the wire); 6b needs TEST_KEY.
+# Probe 4c covers the /mcp alias of the root ($NEW/mcp, both spellings), the URL Copilot Studio tools call.
 # Run with TEST_KEY to prove env containment too: probe 11 (no secrets in the worker env) needs a credential.
 #
 # OLD defaults to the retired Stainless host; parity diffs against it only work
