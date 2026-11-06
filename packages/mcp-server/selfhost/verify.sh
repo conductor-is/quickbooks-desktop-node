@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Parity verification for the self-hosted Conductor MCP server.
-# Source of truth: conductor repo, plans/mcp-self-hosting-implementation.md, section 5.
+# Source of truth: this script plus the snapshot files beside it in selfhost/.
 #
 # Usage:
 #   NEW=http://localhost:3000 ./verify.sh              # unauthenticated probes only
@@ -11,9 +11,9 @@
 # Probe 4c covers the /mcp alias of the root ($NEW/mcp, both spellings), the URL Copilot Studio tools call.
 # Run with TEST_KEY to prove env containment too: probe 11 (no secrets in the worker env) needs a credential.
 #
-# OLD defaults to the retired Stainless host; parity diffs against it only work
-# while it is still live (pre Sept 1, 2026). After that, self-diff against
-# production instead (plan section 8).
+# OLD defaults to the retired Stainless host, which now answers HTTP 525, so set
+# OLD=https://mcp.conductor.is to self-diff against production (serverInfo.version
+# and the docs index legitimately differ between builds; everything else must match).
 #
 # Header-parity note: match on status, content-type, body, mcp-session-id echo,
 # and x-powered-by only. Infra headers legitimately differ between hosts.
@@ -51,7 +51,7 @@ for PV in 2025-06-18 2025-03-26; do
   fi
 done
 # Note: the capture files store the .result object itself, so the key is
-# .instructions here (the plan's section 5 text had .result.instructions).
+# .instructions here, not .result.instructions.
 SHA=$(jq -j '.instructions' "/tmp/init-2025-06-18-${NEW##*/}.json" | shasum -a 256 | cut -d' ' -f1)
 if [ "$SHA" = "e014362a0704e3582f0747c097c4a3ea307f9d538194157c0b384f2fa00922ba" ]; then
   pass "instructions sha256"
@@ -164,7 +164,7 @@ if [ -n "${TEST_KEY:-}" ]; then
   echo "$B" | grep -q '"ok"' && ! echo "$B" | grep -q '"isError":true' && pass "execute via Authorization: Bearer" || fail "execute via Bearer; got: $(echo "$B" | head -c 300)"
   B=$(curl -s -X POST "$NEW/" -H "$CT" -H "$ACC" -H "x-conductor-secret-key: $TEST_KEY" -d "$BODY")
   echo "$B" | grep -q '"ok"' && ! echo "$B" | grep -q '"isError":true' && pass "execute via x-conductor-secret-key" || fail "execute via x-conductor-secret-key; got: $(echo "$B" | head -c 300)"
-  # NOTE (accepted content-shape difference, plan section 5 probe 6): the retired
+  # NOTE (accepted content-shape difference, probe 6): the retired
   # hosted server returned ONE text block (JSON of {result, log_lines}); local
   # mode returns SEPARATE return-value/log text blocks. Eyeball; do not diff.
 
@@ -221,9 +221,13 @@ if [ -n "${TEST_KEY:-}" ] && [ -n "${RUN_SLOW:-}" ]; then
   grep -q 'slept-150s' /tmp/slow.out && pass "150 s execute survives end to end" || fail "150 s execute"
 
   # --- 8b. Longer silent window, still BELOW the 300 s execution timeout
+  # Contingency if 8 or 8b dies mid-stream (customer-invisible fixes only): inject
+  # SSE comment keepalives (": ping" lines, dropped by every SSE parser) from the
+  # express layer, or lower CODE_EXECUTION_TIMEOUT_MS to just under the observed
+  # idle limit. Do not ship until 8 and 8b pass.
   BODY=$(jq -n '{jsonrpc:"2.0",id:88,method:"tools/call",params:{name:"execute",arguments:{code:"async function run(conductor) { await new Promise((r) => setTimeout(r, 240000)); return \"slept-240s\"; }"}}}')
   curl -sN --max-time 400 -X POST "$NEW/" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -d "$BODY" | grep -q 'slept-240s' \
-    && pass "240 s execute survives end to end" || fail "240 s execute (see plan section 5 probe 8b contingency)"
+    && pass "240 s execute survives end to end" || fail "240 s execute (see the probe 8b contingency note above)"
 
   # --- 9. Execution timeout fires, THEN the server must still be alive
   BODY=$(jq -n '{jsonrpc:"2.0",id:9,method:"tools/call",params:{name:"execute",arguments:{code:"async function run(conductor) { await new Promise((r) => setTimeout(r, 320000)); return \"never\"; }"}}}')
