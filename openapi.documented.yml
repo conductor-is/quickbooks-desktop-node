@@ -46432,15 +46432,13 @@ paths:
             **NOTE**: If you use this parameter, you cannot also use
             `nameContains`, `nameStartsWith`, or `nameEndsWith`.
         - in: query
-          name: itemIds
+          name: itemId
           schema:
-            description: Filter for price levels containing these items.
-            example:
-              - 80000001-1234567890
-            type: array
-            items:
-              type: string
-          description: Filter for price levels containing these items.
+            description: Filter for price levels containing this item. QuickBooks Desktop accepts only one item for this filter.
+            example: 80000001-1234567890
+            type: string
+            maxLength: 36
+          description: Filter for price levels containing this item. QuickBooks Desktop accepts only one item for this filter.
         - in: query
           name: currencyIds
           schema:
