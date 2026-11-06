@@ -1,7 +1,7 @@
 # Deploy log (append-only)
 
 Every deploy of the conductor-mcp Render service records: date, SDK repo commit SHA, and deployed image digest.
-See plans/mcp-self-hosting-implementation.md (conductor repo) sections 4 and 8.
+The service is blueprint-managed from the conductor repo's `render.yaml` and auto-deploys on green CI of this repo's main; the deploy ID is the rollback anchor (Dashboard > Deploys > Rollback), since Render exposes no image digest for git-built docker deploys.
 
 ## 2026-08-18: initial deploy (parity-gated)
 
