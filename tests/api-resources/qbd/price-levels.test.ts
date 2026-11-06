@@ -110,7 +110,7 @@ describe('resource priceLevels', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
       currencyIds: ['80000001-1234567890'],
       ids: ['80000001-1234567890'],
-      itemIds: ['80000001-1234567890'],
+      itemId: '80000001-1234567890',
       limit: 10,
       nameContains: 'ABC',
       nameEndsWith: 'ABC',

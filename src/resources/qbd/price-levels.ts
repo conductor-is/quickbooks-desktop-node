@@ -502,9 +502,10 @@ export interface PriceLevelListParams {
   ids?: Array<string>;
 
   /**
-   * Query param: Filter for price levels containing these items.
+   * Query param: Filter for price levels containing this item. QuickBooks Desktop
+   * accepts only one item for this filter.
    */
-  itemIds?: Array<string>;
+  itemId?: string;
 
   /**
    * Query param: The maximum number of objects to return.
