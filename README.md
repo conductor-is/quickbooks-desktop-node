@@ -38,12 +38,13 @@ The REST API documentation can be found on [docs.conductor.is](https://docs.cond
 
 ## MCP Server
 
-Use the Conductor MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
+Conductor's hosted MCP server lets Claude (claude.ai, Claude Desktop, mobile, and Cowork), ChatGPT, Claude Code, Codex CLI, Cursor, VS Code, and Microsoft Copilot Studio read and write your QuickBooks Desktop and QuickBooks Enterprise data. Most AI tools add the URL below and sign in to Conductor in the browser, so there is no key to copy.
 
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=conductor-node-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImNvbmR1Y3Rvci1ub2RlLW1jcCJdLCJlbnYiOnsiQ09ORFVDVE9SX1NFQ1JFVF9LRVkiOiJza19jb25kdWN0b3JfLi4uIn19)
-[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.dev/redirect/mcp/install?name=conductor-node-mcp&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22conductor-node-mcp%22%5D%2C%22env%22%3A%7B%22CONDUCTOR_SECRET_KEY%22%3A%22sk_conductor_...%22%7D%7D)
+```text
+https://mcp.conductor.is/
+```
 
-> Note: You may need to set environment variables in your MCP client.
+The read-only URL, `https://mcp.conductor.is/read-only`, blocks writes. Microsoft Copilot Studio connects to `https://mcp.conductor.is/mcp` with a Conductor API key. QuickBooks Desktop and the Web Connector must be running on the computer you connected to Conductor. The [MCP setup guide](https://docs.conductor.is/usage/mcp) has the steps for each AI tool.
 
 ## Installation
 
