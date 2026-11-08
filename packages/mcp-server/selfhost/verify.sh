@@ -21,8 +21,9 @@ set -uo pipefail
 
 OLD="${OLD:-https://conductor.stlmcp.com}"
 NEW="${NEW:?set NEW to the server under test, e.g. http://localhost:3000}"
-# The OAuth URLs are hardcoded in src/oauth.ts, so every host advertises the production resource.
-PUBLIC_URL=https://mcp.conductor.is
+# The resource the server under test advertises: the listed hostname unless CONDUCTOR_MCP_RESOURCE_URL moved it
+# (then run with PUBLIC_URL set to that origin, for example PUBLIC_URL=https://code.mcp.conductor.is).
+PUBLIC_URL="${PUBLIC_URL:-https://mcp.conductor.is}"
 ACC='accept: application/json, text/event-stream'
 CT='content-type: application/json'
 PARITY='authorization: Bearer sk_conductor_parity'

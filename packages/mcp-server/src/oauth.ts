@@ -23,7 +23,8 @@ import { sdkMethods } from './methods';
 import { rpcMethodProps, sanitizeUserAgent } from './telemetry';
 import { readEnv } from './util';
 
-// A local end-to-end run edits these two temporarily (see the dashboard's src/lib/oauth/README.md).
+// A local end-to-end run edits AUTHORIZATION_SERVER_URL temporarily and sets CONDUCTOR_MCP_RESOURCE_URL
+// (see the dashboard's src/lib/oauth/README.md).
 const AUTHORIZATION_SERVER_URL = 'https://dashboard.conductor.is';
 const DEFAULT_RESOURCE_URL = 'https://mcp.conductor.is/';
 const DEFAULT_API_BASE_URL = 'https://api.conductor.is/v1'; // conductor-node's own default (src/client.ts)
@@ -60,7 +61,7 @@ export type OAuthResource = 'root' | 'read-only';
 
 export interface OAuthResourceConfig {
   authorizationServerUrl: string; // no trailing slash
-  resourceUrl: string; // root: RESOURCE_URL, trailing slash kept; read-only: `${origin}/read-only`, no slash
+  resourceUrl: string; // root: getRootResourceUrl(), trailing slash kept; read-only: `${origin}/read-only`, no slash
   resourceMetadataUrl: string; // `${origin}/.well-known/oauth-protected-resource`, plus READ_ONLY_PATH for read-only
   apiBaseUrl: string; // no trailing slash
   keyProbeEnabled: boolean;
@@ -113,16 +114,34 @@ export function getOAuthResourceConfig(resource: OAuthResource = 'root'): OAuthR
 // query or fragment is dropped and the trailing slash kept, the form hosted Claude connects with), else the
 // listed hostname. The read-only identifier and both RFC 9728 documents derive from it.
 export function getRootResourceUrl(): string {
-  const configured = (readEnv('CONDUCTOR_MCP_RESOURCE_URL') ?? '').trim();
-  if (configured === '') return DEFAULT_RESOURCE_URL;
+  const configured = readEnv('CONDUCTOR_MCP_RESOURCE_URL');
+  if (configured === undefined) return DEFAULT_RESOURCE_URL;
+  if (configured === resourceUrlMemo.raw) return resourceUrlMemo.resolved;
+  let resolved = DEFAULT_RESOURCE_URL;
+  let rejected: string | undefined;
   try {
     const url = new URL(configured);
-    if (url.protocol !== 'https:' && url.protocol !== 'http:') return DEFAULT_RESOURCE_URL;
-    return `${url.origin}/`;
+    if (url.protocol === 'https:' || url.protocol === 'http:') resolved = `${url.origin}/`;
+    else rejected = `unsupported protocol ${url.protocol}`;
   } catch {
-    return DEFAULT_RESOURCE_URL;
+    rejected = 'not an absolute URL';
   }
+  if (rejected !== undefined) {
+    // Logged once per distinct value: the variable is deployment config, and a silent fallback would leave
+    // a server at another hostname advertising the listed resource with nothing in the logs to say why.
+    getLogger().warn(
+      { configured, fallback: DEFAULT_RESOURCE_URL },
+      `Ignoring CONDUCTOR_MCP_RESOURCE_URL (${rejected}); advertising the default resource`,
+    );
+  }
+  resourceUrlMemo = { raw: configured, resolved };
+  return resolved;
 }
+
+let resourceUrlMemo: { raw: string | undefined; resolved: string } = {
+  raw: undefined,
+  resolved: DEFAULT_RESOURCE_URL,
+};
 
 // No scopes_supported: read-only is decided by the URL the client POSTs to, never by the token, and listing
 // none keeps Claude from requesting offline_access (a refresh token this server never issues).

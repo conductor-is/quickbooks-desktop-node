@@ -372,6 +372,27 @@ describe('CONDUCTOR_MCP_RESOURCE_URL', () => {
     );
   });
 
+  it('moves the read-only challenge to the configured origin too', async () => {
+    await withEnv('CONDUCTOR_MCP_RESOURCE_URL', 'https://code.mcp.conductor.is/', async () => {
+      const readOnly = await fetch(new URL('/read-only', baseUrl), {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream' },
+        body: JSON.stringify(INITIALIZE),
+      });
+      expect(readOnly.status).toBe(401);
+      expect(readOnly.headers.get('www-authenticate')).toBe(
+        'Bearer resource_metadata="https://code.mcp.conductor.is/.well-known/oauth-protected-resource/read-only"',
+      );
+    });
+  });
+
+  it('keeps the port and plain http for a local run', async () => {
+    await withEnv('CONDUCTOR_MCP_RESOURCE_URL', 'http://127.0.0.1:3200', async () => {
+      const prm = (await (await fetch(new URL(PRM_PATH, baseUrl))).json()) as Record<string, unknown>;
+      expect(prm['resource']).toBe('http://127.0.0.1:3200/');
+    });
+  });
+
   it('falls back to the listed hostname when the value is empty or not an absolute http(s) URL', async () => {
     for (const bad of ['', '   ', 'mcp.conductor.is', 'ftp://x.example/', 'not a url']) {
       await withEnv('CONDUCTOR_MCP_RESOURCE_URL', bad, async () => {

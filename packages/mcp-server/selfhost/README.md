@@ -2,4 +2,6 @@
 
 This directory holds the parity baselines, verification script, and deploy log for the self-hosted Conductor MCP server at mcp.conductor.is.
 The Render service (`conductor-mcp`, mcp.conductor.is) is defined in the conductor repo's `render.yaml`: blueprint-managed, and it auto-deploys every commit on this repo's main after CI passes. `DEPLOYS.md` is the deploy and rollback history; `verify.sh` is the parity gate to re-run after any runtime change (regen, MCP SDK bump, deno base image), diffing against the snapshot files beside it.
+`CONDUCTOR_MCP_RESOURCE_URL` sets the OAuth resource the server advertises (its RFC 9728 documents and 401 challenges): unset, it is `https://mcp.conductor.is/`; set to another https origin, the same build serves that hostname (the developer code-mode server at `https://code.mcp.conductor.is/` from 2026-11-08). Any path, query or fragment is dropped and a trailing slash kept; an invalid value is logged once and ignored. The dashboard must accept the origin as an OAuth resource for sign-in to complete there.
+
 The package's stdio transport is a bridge to this server; `CONDUCTOR_MCP_URL` overrides its upstream (default `https://mcp.conductor.is/`), which is how tests/execute-smoke.mjs drives the bridge against a local `--transport=http` instance.
