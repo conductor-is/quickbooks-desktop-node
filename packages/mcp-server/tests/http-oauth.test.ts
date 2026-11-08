@@ -55,7 +55,7 @@ const EXECUTE_WRITE = {
 };
 const BLOCKED_MESSAGE =
   'The following methods have been blocked by the MCP server and cannot be used in code execution: endUsers.create';
-const ENV_NAMES = ['CONDUCTOR_BASE_URL', 'CONDUCTOR_MCP_KEY_PROBE'];
+const ENV_NAMES = ['CONDUCTOR_BASE_URL', 'CONDUCTOR_MCP_KEY_PROBE', 'CONDUCTOR_MCP_RESOURCE_URL'];
 
 type RecordedRequest = { path: string; headers: http.IncomingHttpHeaders };
 const apiRequests: RecordedRequest[] = [];
@@ -348,6 +348,37 @@ describe('protected resource metadata', () => {
     const health = await fetch(new URL('/health', baseUrl));
     expect(health.status).toBe(200);
     expect(await health.text()).toBe('OK');
+  });
+});
+
+describe('CONDUCTOR_MCP_RESOURCE_URL', () => {
+  // The developer code-mode hostname runs this same package at another origin; its PRM documents and
+  // challenges must name that origin so OAuth completes there (the dashboard accepts it as a resource).
+  it('moves both resource identifiers, both metadata documents and the challenge to the configured origin', async () => {
+    await withEnv(
+      'CONDUCTOR_MCP_RESOURCE_URL',
+      'https://code.mcp.conductor.is/ignored/path?x=1',
+      async () => {
+        const prm = (await (await fetch(new URL(PRM_PATH, baseUrl))).json()) as Record<string, unknown>;
+        expect(prm['resource']).toBe('https://code.mcp.conductor.is/');
+        const prmRo = (await (await fetch(new URL(PRM_RO_PATH, baseUrl))).json()) as Record<string, unknown>;
+        expect(prmRo['resource']).toBe('https://code.mcp.conductor.is/read-only');
+        const response = await post(INITIALIZE);
+        expect(response.status).toBe(401);
+        expect(response.headers.get('www-authenticate')).toBe(
+          'Bearer resource_metadata="https://code.mcp.conductor.is/.well-known/oauth-protected-resource"',
+        );
+      },
+    );
+  });
+
+  it('falls back to the listed hostname when the value is empty or not an absolute http(s) URL', async () => {
+    for (const bad of ['', '   ', 'mcp.conductor.is', 'ftp://x.example/', 'not a url']) {
+      await withEnv('CONDUCTOR_MCP_RESOURCE_URL', bad, async () => {
+        const prm = (await (await fetch(new URL(PRM_PATH, baseUrl))).json()) as Record<string, unknown>;
+        expect(prm['resource']).toBe('https://mcp.conductor.is/');
+      });
+    }
   });
 });
 
