@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.0.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v15.0.0...v15.0.1) (2026-11-08)
+
+
+### Documentation
+
+* **readme:** describe the hosted MCP server ([170f33c](https://github.com/conductor-is/quickbooks-desktop-node/commit/170f33cd2afa71eac7c235f3ff6096d925a25e4a))
+
 ## [15.0.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v14.24.4...v15.0.0) (2026-11-06)
 
 
