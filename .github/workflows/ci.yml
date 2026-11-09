@@ -115,15 +115,18 @@ jobs:
       - name: MCP execute smoke test (Deno stable)
         run: cd packages/mcp-server && node tests/execute-smoke.mjs
 
-      # Both sides of the Deno permission split must keep working: >= 2.9
-      # grants the worker's IPC socket via --allow-net, < 2.9 rejects that
-      # syntax and relies on read/write grants (packages/mcp-server/src/deno-http-worker).
-      - name: Set up Deno 2.7.1 (oldest supported)
+      # The hosted image runs Deno 2.9.8 (packages/mcp-server/Dockerfile). The
+      # stable job above meets the next base-image bump early; this one pins the
+      # version production runs, so a stable release that breaks execute cannot
+      # hide a regression there. Bump the pin together with the base image.
+      # Both versions are >= 2.9, so the worker's < 2.9 read/write-grant path
+      # (packages/mcp-server/src/deno-http-worker) is no longer exercised here.
+      - name: Set up Deno 2.9.8 (hosted image)
         uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
         with:
-          deno-version: '2.7.1'
+          deno-version: '2.9.8'
 
-      - name: MCP execute smoke test (Deno 2.7.1)
+      - name: MCP execute smoke test (Deno 2.9.8)
         run: cd packages/mcp-server && node tests/execute-smoke.mjs
 
       - name: Run tests
