@@ -36,10 +36,25 @@ RUN yarn install --frozen-lockfile && \
     # Remove the symlink to the SDK so it doesn't interfere with the explicit COPY below
     rm -Rf packages/mcp-server/node_modules/conductor-node
 
-FROM denoland/deno:alpine-2.7.1
+# Runtime stage. Deno 2.9.8 (released 2026-10-21) distrusts the compromised
+# eMudhra CA certificates that 2.7.1 trusted, and the Deno worker that runs
+# `execute` code calls api.conductor.is over TLS. The image is built on Alpine
+# 3.24; before bumping it, read the new image's /etc/alpine-release and set
+# NODE_MIN_VERSION below to the patched Node.js version that release's main
+# repository carries. The pinned Deno job in .github/workflows/ci.yml tracks
+# this version.
+FROM denoland/deno:alpine-2.9.8
 
-# Install node and npm
-RUN apk add --no-cache nodejs npm
+# Install node and npm. Node.js 24.22.1 and later carry the 2026-10-21 security
+# fixes (Brotli decoder out-of-bounds write, TLS hostname-check bypasses, DNS
+# NUL truncation) and drop the eMudhra roots. The pin is a minimum, not an exact
+# version, because Alpine removes superseded package versions and an exact pin
+# would break the next build. apk fails the build when the release offers
+# nothing at or above the minimum, and the node check after it fails the build
+# if the installed version is below it.
+ARG NODE_MIN_VERSION=24.22.1
+RUN apk add --no-cache "nodejs>=${NODE_MIN_VERSION}-r0" npm && \
+    node -e 'const [min, cur] = [process.argv[1], process.versions.node].map((v) => v.split(".").map(Number)); for (let i = 0; i < 3; i++) { if (cur[i] === min[i]) continue; if (cur[i] < min[i]) { console.error(`Node.js ${process.versions.node} is below the minimum ${process.argv[1]}`); process.exit(1); } break; } console.log(`Node.js ${process.versions.node} satisfies the minimum ${process.argv[1]}`);' "${NODE_MIN_VERSION}"
 
 ENV LD_LIBRARY_PATH=/usr/lib:/usr/local/lib
 
