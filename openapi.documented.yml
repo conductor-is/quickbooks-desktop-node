@@ -93362,24 +93362,26 @@ components:
           description: Indicates whether this sales representative is active. Inactive objects are typically hidden from views and reports in QuickBooks. Defaults to `true`.
           example: true
         entity:
-          type: object
-          properties:
-            id:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
-              example: 80000001-1234567890
-            fullName:
-              anyOf:
-                - type: string
-                - type: "null"
-              description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
-              example: Parent:Child:Grandchild
-          required:
-            - id
-            - fullName
-          additionalProperties: false
+          anyOf:
+            - type: object
+              properties:
+                id:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
+                  example: 80000001-1234567890
+                fullName:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                  description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
+                  example: Parent:Child:Grandchild
+              required:
+                - id
+                - fullName
+              additionalProperties: false
+            - type: "null"
           description: The sales representative's corresponding person entity in QuickBooks, stored as either an employee, vendor, or other-name entry.
           example:
             id: 80000001-1234567890
