@@ -134,7 +134,7 @@ export interface SalesRepresentative {
    * The sales representative's corresponding person entity in QuickBooks, stored as
    * either an employee, vendor, or other-name entry.
    */
-  entity: SalesRepresentative.Entity;
+  entity: SalesRepresentative.Entity | null;
 
   /**
    * The initials of this sales representative's name.
