@@ -1,5 +1,24 @@
 # Changelog
 
+## [15.1.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v15.0.1...v15.1.0) (2026-11-12)
+
+
+### Features
+
+* **mcp:** make the OAuth resource URL configurable ([602befe](https://github.com/conductor-is/quickbooks-desktop-node/commit/602befe6b17d8d331eb7f7fdd888f9ad9647a999))
+
+
+### Bug Fixes
+
+* **mcp-server:** Deno 2.9.8 base image and patched nodejs ([496d1fa](https://github.com/conductor-is/quickbooks-desktop-node/commit/496d1fa8d98efdef9285861dc1c8bbfcc375dafc))
+* **mcp:** log and memoize a rejected resource URL, document the variable ([d49732d](https://github.com/conductor-is/quickbooks-desktop-node/commit/d49732d2297fda8dd6025fe56641d47897454826))
+* **qbd:** handle sales representatives without an entity ([3dddec0](https://github.com/conductor-is/quickbooks-desktop-node/commit/3dddec073a9eddb969f889df805f21d7e76408d3))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([f5c53d4](https://github.com/conductor-is/quickbooks-desktop-node/commit/f5c53d424363c7e5348237f00fb5be8bcb45891f))
+
 ## [15.0.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v15.0.0...v15.0.1) (2026-11-08)
 
 
