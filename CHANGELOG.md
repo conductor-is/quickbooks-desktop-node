@@ -1,5 +1,18 @@
 # Changelog
 
+## [15.2.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v15.1.0...v15.2.0) (2026-11-15)
+
+
+### Features
+
+* **qbd:** keep a pagination cursor usable for 20 seconds ([9d390c6](https://github.com/conductor-is/quickbooks-desktop-node/commit/9d390c6c9d56c579c1b66b28f6d3e37c12e2a19a))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([dcfb611](https://github.com/conductor-is/quickbooks-desktop-node/commit/dcfb6115b1b61f0969703fe96198c2dbbdc0de58))
+* **api:** update documented OpenAPI spec for download ([23c48a0](https://github.com/conductor-is/quickbooks-desktop-node/commit/23c48a0d5e1a0c779c74c20abf18a9b1bf72651b))
+
 ## [15.1.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v15.0.1...v15.1.0) (2026-11-12)
 
 
