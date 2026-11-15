@@ -1555,7 +1555,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -1569,7 +1569,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -2849,7 +2849,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -2863,7 +2863,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -3885,7 +3885,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -3899,7 +3899,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -6422,7 +6422,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -6436,7 +6436,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -7394,7 +7394,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -7408,7 +7408,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -10534,7 +10534,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -10548,7 +10548,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -12657,7 +12657,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -12671,7 +12671,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -14778,7 +14778,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -14792,7 +14792,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -16051,7 +16051,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -16065,7 +16065,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -19918,7 +19918,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -19930,7 +19930,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -23234,7 +23234,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -23248,7 +23248,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -24393,7 +24393,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -24405,7 +24405,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -27396,7 +27396,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -27410,7 +27410,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -31039,7 +31039,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -31051,7 +31051,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -32149,7 +32149,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -32161,7 +32161,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -34068,7 +34068,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -34082,7 +34082,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -36859,7 +36859,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -36871,7 +36871,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -37755,7 +37755,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -37769,7 +37769,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -39982,7 +39982,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -39996,7 +39996,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -40285,7 +40285,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -40299,7 +40299,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -41534,7 +41534,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -41546,7 +41546,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -42671,7 +42671,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -42683,7 +42683,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -45502,7 +45502,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -45514,7 +45514,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -47043,7 +47043,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -47057,7 +47057,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -49406,7 +49406,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -49420,7 +49420,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -55645,7 +55645,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -55659,7 +55659,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -58064,7 +58064,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -58078,7 +58078,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -62422,7 +62422,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -62434,7 +62434,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -63209,7 +63209,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -63221,7 +63221,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -64030,7 +64030,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -64044,7 +64044,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -65275,7 +65275,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -65287,7 +65287,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -67496,7 +67496,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -67508,7 +67508,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
@@ -68346,7 +68346,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -68360,7 +68360,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -69200,7 +69200,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -69214,7 +69214,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -69898,7 +69898,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -69912,7 +69912,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -71249,7 +71249,7 @@ paths:
 
               **IMPORTANT**: The cursor is the same value for every page, and
               requests that send it are not idempotent: each one returns the
-              next page. Send each request within 30 seconds of the previous
+              next page. Send each request within 20 seconds of the previous
               response. If you miss that window or a request fails, start over
               without a cursor.
             example: 12345678-abcd-abcd-example-1234567890ab
@@ -71263,7 +71263,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor.
         - in: query
@@ -73389,7 +73389,7 @@ paths:
             description: |-
               The pagination token to fetch the next set of results when paginating with the `limit` parameter. Do not include this parameter on the first call. Use the `nextCursor` value returned in the previous response to request subsequent results.
 
-              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 30 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+              **IMPORTANT**: The cursor is the same value for every page, and requests that send it are not idempotent: each one returns the next page. Send each request within 20 seconds of the previous response. If you miss that window or a request fails, start over without a cursor. To make a run resumable, see [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
             example: 12345678-abcd-abcd-example-1234567890ab
             type: string
           description: >-
@@ -73401,7 +73401,7 @@ paths:
 
             **IMPORTANT**: The cursor is the same value for every page, and
             requests that send it are not idempotent: each one returns the next
-            page. Send each request within 30 seconds of the previous response.
+            page. Send each request within 20 seconds of the previous response.
             If you miss that window or a request fails, start over without a
             cursor. To make a run resumable, see [Paging by
             name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
