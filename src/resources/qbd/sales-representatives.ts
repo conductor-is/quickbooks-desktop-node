@@ -306,7 +306,7 @@ export interface SalesRepresentativeListParams {
   limit?: number;
 
   /**
-   * Query param: Filter for sales representatives whose `name` contains this
+   * Query param: Filter for sales representatives whose `initial` contains this
    * substring, case-insensitive.
    *
    * **NOTE**: If you use this parameter, you cannot also use `nameStartsWith` or
@@ -315,7 +315,7 @@ export interface SalesRepresentativeListParams {
   nameContains?: string;
 
   /**
-   * Query param: Filter for sales representatives whose `name` ends with this
+   * Query param: Filter for sales representatives whose `initial` ends with this
    * substring, case-insensitive.
    *
    * **NOTE**: If you use this parameter, you cannot also use `nameContains` or
@@ -347,7 +347,7 @@ export interface SalesRepresentativeListParams {
   names?: Array<string>;
 
   /**
-   * Query param: Filter for sales representatives whose `name` starts with this
+   * Query param: Filter for sales representatives whose `initial` starts with this
    * substring, case-insensitive.
    *
    * **NOTE**: If you use this parameter, you cannot also use `nameContains` or
