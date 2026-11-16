@@ -21,8 +21,10 @@ const NOT_SET_UP_HINT =
   "This company file has never connected to this Conductor project; the fix is on the computer that runs QuickBooks Desktop, so tell the user the message above. If the user's company file is connected in a different Conductor project, signing in again and choosing that project fixes it. Do not retry in this call; retry at most once in a later call, and stop if it fails again.";
 const END_USER_ID_HINT =
   'Pass `conductorEndUserId` from `conductor.endUsers.list()`. End-user ids belong to one Conductor project, so an id from another project or an earlier key does not work here.';
+// Names no tool on purpose: this code runs behind two tool lists. Conductor's main MCP address has
+// `describe_operation` and refuses `search_docs`; the code-mode server has only `search_docs`.
 const INVALID_REQUEST_HINT =
-  'Call `search_docs` with the method name to read its parameters instead of guessing again.';
+  "Look up this method's parameters with the tool you have that describes operations or searches the docs, instead of guessing again.";
 
 // Replaces makeStatusError on the prototype that owns it (the SDK calls it as `this.makeStatusError` for
 // every non-2xx response) with a wrapper that rewrites the resulting error's message. The prototype, not
