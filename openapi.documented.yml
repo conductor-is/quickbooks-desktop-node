@@ -735,7 +735,7 @@ paths:
           name: nameContains
           schema:
             description: >-
-              Filter for accounts whose `name` contains this substring,
+              Filter for accounts whose `fullName` contains this substring,
               case-insensitive.
 
 
@@ -744,7 +744,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for accounts whose `name` contains this substring,
+            Filter for accounts whose `fullName` contains this substring,
             case-insensitive.
 
 
@@ -754,8 +754,12 @@ paths:
           name: nameStartsWith
           schema:
             description: >-
-              Filter for accounts whose `name` starts with this substring,
-              case-insensitive.
+              Filter for accounts whose `fullName` starts with this substring,
+              case-insensitive. To get everything under a parent, pass the
+              parent's `fullName` followed by a colon, such as "ABC:". For
+              accounts under a parent, the start of their own `name` does not
+              match, because their `fullName` begins with their parents' names;
+              use `nameContains` instead.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -763,8 +767,12 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for accounts whose `name` starts with this substring,
-            case-insensitive.
+            Filter for accounts whose `fullName` starts with this substring,
+            case-insensitive. To get everything under a parent, pass the
+            parent's `fullName` followed by a colon, such as "ABC:". For
+            accounts under a parent, the start of their own `name` does not
+            match, because their `fullName` begins with their parents' names;
+            use `nameContains` instead.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -773,7 +781,7 @@ paths:
           name: nameEndsWith
           schema:
             description: >-
-              Filter for accounts whose `name` ends with this substring,
+              Filter for accounts whose `fullName` ends with this substring,
               case-insensitive.
 
 
@@ -782,7 +790,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for accounts whose `name` ends with this substring,
+            Filter for accounts whose `fullName` ends with this substring,
             case-insensitive.
 
 
@@ -827,7 +835,9 @@ paths:
               (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error.
+              returns an error. To get everything under a parent, use
+              `nameStartsWith` with the parent's `fullName` followed by a colon,
+              such as "ABC:", instead of a range.
 
 
               **IMPORTANT**: Even when you set `nameFrom` or `nameTo`,
@@ -844,7 +854,9 @@ paths:
             (inclusive), compared case-insensitively in QuickBooks' sort order:
             punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error.
+            an error. To get everything under a parent, use `nameStartsWith`
+            with the parent's `fullName` followed by a colon, such as "ABC:",
+            instead of a range.
 
 
             **IMPORTANT**: Even when you set `nameFrom` or `nameTo`, QuickBooks
@@ -9914,7 +9926,7 @@ paths:
           name: nameContains
           schema:
             description: >-
-              Filter for classes whose `name` contains this substring,
+              Filter for classes whose `fullName` contains this substring,
               case-insensitive.
 
 
@@ -9923,7 +9935,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for classes whose `name` contains this substring,
+            Filter for classes whose `fullName` contains this substring,
             case-insensitive.
 
 
@@ -9933,8 +9945,12 @@ paths:
           name: nameStartsWith
           schema:
             description: >-
-              Filter for classes whose `name` starts with this substring,
-              case-insensitive.
+              Filter for classes whose `fullName` starts with this substring,
+              case-insensitive. To get everything under a parent, pass the
+              parent's `fullName` followed by a colon, such as "ABC:". For
+              classes under a parent, the start of their own `name` does not
+              match, because their `fullName` begins with their parents' names;
+              use `nameContains` instead.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -9942,8 +9958,12 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for classes whose `name` starts with this substring,
-            case-insensitive.
+            Filter for classes whose `fullName` starts with this substring,
+            case-insensitive. To get everything under a parent, pass the
+            parent's `fullName` followed by a colon, such as "ABC:". For classes
+            under a parent, the start of their own `name` does not match,
+            because their `fullName` begins with their parents' names; use
+            `nameContains` instead.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -9952,7 +9972,7 @@ paths:
           name: nameEndsWith
           schema:
             description: >-
-              Filter for classes whose `name` ends with this substring,
+              Filter for classes whose `fullName` ends with this substring,
               case-insensitive.
 
 
@@ -9961,7 +9981,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for classes whose `name` ends with this substring,
+            Filter for classes whose `fullName` ends with this substring,
             case-insensitive.
 
 
@@ -10000,7 +10020,9 @@ paths:
               (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error.
+              returns an error. To get everything under a parent, use
+              `nameStartsWith` with the parent's `fullName` followed by a colon,
+              such as "ABC:", instead of a range.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns classes
@@ -10017,7 +10039,9 @@ paths:
             (inclusive), compared case-insensitively in QuickBooks' sort order:
             punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error.
+            an error. To get everything under a parent, use `nameStartsWith`
+            with the parent's `fullName` followed by a colon, such as "ABC:",
+            instead of a range.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns classes
@@ -19455,8 +19479,8 @@ paths:
           name: nameContains
           schema:
             description: >-
-              Filter for customer types whose `name` contains this substring,
-              case-insensitive.
+              Filter for customer types whose `fullName` contains this
+              substring, case-insensitive.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -19464,7 +19488,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for customer types whose `name` contains this substring,
+            Filter for customer types whose `fullName` contains this substring,
             case-insensitive.
 
 
@@ -19474,8 +19498,12 @@ paths:
           name: nameStartsWith
           schema:
             description: >-
-              Filter for customer types whose `name` starts with this substring,
-              case-insensitive.
+              Filter for customer types whose `fullName` starts with this
+              substring, case-insensitive. To get everything under a parent,
+              pass the parent's `fullName` followed by a colon, such as "ABC:".
+              For customer types under a parent, the start of their own `name`
+              does not match, because their `fullName` begins with their
+              parents' names; use `nameContains` instead.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -19483,8 +19511,12 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for customer types whose `name` starts with this substring,
-            case-insensitive.
+            Filter for customer types whose `fullName` starts with this
+            substring, case-insensitive. To get everything under a parent, pass
+            the parent's `fullName` followed by a colon, such as "ABC:". For
+            customer types under a parent, the start of their own `name` does
+            not match, because their `fullName` begins with their parents'
+            names; use `nameContains` instead.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -19493,8 +19525,8 @@ paths:
           name: nameEndsWith
           schema:
             description: >-
-              Filter for customer types whose `name` ends with this substring,
-              case-insensitive.
+              Filter for customer types whose `fullName` ends with this
+              substring, case-insensitive.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -19502,7 +19534,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for customer types whose `name` ends with this substring,
+            Filter for customer types whose `fullName` ends with this substring,
             case-insensitive.
 
 
@@ -19542,7 +19574,9 @@ paths:
               value (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error.
+              returns an error. To get everything under a parent, use
+              `nameStartsWith` with the parent's `fullName` followed by a colon,
+              such as "ABC:", instead of a range.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns customer
@@ -19559,7 +19593,9 @@ paths:
             value (inclusive), compared case-insensitively in QuickBooks' sort
             order: punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error.
+            an error. To get everything under a parent, use `nameStartsWith`
+            with the parent's `fullName` followed by a colon, such as "ABC:",
+            instead of a range.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns customer
@@ -20024,7 +20060,7 @@ paths:
           name: nameContains
           schema:
             description: >-
-              Filter for customers whose `name` contains this substring,
+              Filter for customers whose `fullName` contains this substring,
               case-insensitive.
 
 
@@ -20033,7 +20069,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for customers whose `name` contains this substring,
+            Filter for customers whose `fullName` contains this substring,
             case-insensitive.
 
 
@@ -20043,8 +20079,12 @@ paths:
           name: nameStartsWith
           schema:
             description: >-
-              Filter for customers whose `name` starts with this substring,
-              case-insensitive.
+              Filter for customers whose `fullName` starts with this substring,
+              case-insensitive. To get everything under a parent, pass the
+              parent's `fullName` followed by a colon, such as "ABC:". For
+              customers under a parent, the start of their own `name` does not
+              match, because their `fullName` begins with their parents' names;
+              use `nameContains` instead.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -20052,8 +20092,12 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for customers whose `name` starts with this substring,
-            case-insensitive.
+            Filter for customers whose `fullName` starts with this substring,
+            case-insensitive. To get everything under a parent, pass the
+            parent's `fullName` followed by a colon, such as "ABC:". For
+            customers under a parent, the start of their own `name` does not
+            match, because their `fullName` begins with their parents' names;
+            use `nameContains` instead.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -20062,7 +20106,7 @@ paths:
           name: nameEndsWith
           schema:
             description: >-
-              Filter for customers whose `name` ends with this substring,
+              Filter for customers whose `fullName` ends with this substring,
               case-insensitive.
 
 
@@ -20071,7 +20115,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for customers whose `name` ends with this substring,
+            Filter for customers whose `fullName` ends with this substring,
             case-insensitive.
 
 
@@ -20110,7 +20154,9 @@ paths:
               value (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error.
+              returns an error. To get everything under a parent, use
+              `nameStartsWith` with the parent's `fullName` followed by a colon,
+              such as "ABC:", instead of a range.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns customers
@@ -20127,7 +20173,9 @@ paths:
             (inclusive), compared case-insensitively in QuickBooks' sort order:
             punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error.
+            an error. To get everything under a parent, use `nameStartsWith`
+            with the parent's `fullName` followed by a colon, such as "ABC:",
+            instead of a range.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns customers
@@ -24499,8 +24547,8 @@ paths:
           name: nameContains
           schema:
             description: >-
-              Filter for discount items whose `name` contains this substring,
-              case-insensitive.
+              Filter for discount items whose `fullName` contains this
+              substring, case-insensitive.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -24508,7 +24556,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for discount items whose `name` contains this substring,
+            Filter for discount items whose `fullName` contains this substring,
             case-insensitive.
 
 
@@ -24518,8 +24566,12 @@ paths:
           name: nameStartsWith
           schema:
             description: >-
-              Filter for discount items whose `name` starts with this substring,
-              case-insensitive.
+              Filter for discount items whose `fullName` starts with this
+              substring, case-insensitive. To get everything under a parent,
+              pass the parent's `fullName` followed by a colon, such as "ABC:".
+              For discount items under a parent, the start of their own `name`
+              does not match, because their `fullName` begins with their
+              parents' names; use `nameContains` instead.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -24527,8 +24579,12 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for discount items whose `name` starts with this substring,
-            case-insensitive.
+            Filter for discount items whose `fullName` starts with this
+            substring, case-insensitive. To get everything under a parent, pass
+            the parent's `fullName` followed by a colon, such as "ABC:". For
+            discount items under a parent, the start of their own `name` does
+            not match, because their `fullName` begins with their parents'
+            names; use `nameContains` instead.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -24537,8 +24593,8 @@ paths:
           name: nameEndsWith
           schema:
             description: >-
-              Filter for discount items whose `name` ends with this substring,
-              case-insensitive.
+              Filter for discount items whose `fullName` ends with this
+              substring, case-insensitive.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -24546,7 +24602,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for discount items whose `name` ends with this substring,
+            Filter for discount items whose `fullName` ends with this substring,
             case-insensitive.
 
 
@@ -24586,7 +24642,9 @@ paths:
               value (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error.
+              returns an error. To get everything under a parent, use
+              `nameStartsWith` with the parent's `fullName` followed by a colon,
+              such as "ABC:", instead of a range.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns discount
@@ -24603,7 +24661,9 @@ paths:
             value (inclusive), compared case-insensitively in QuickBooks' sort
             order: punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error.
+            an error. To get everything under a parent, use `nameStartsWith`
+            with the parent's `fullName` followed by a colon, such as "ABC:",
+            instead of a range.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns discount
@@ -31145,7 +31205,7 @@ paths:
           name: nameContains
           schema:
             description: >-
-              Filter for inventory assembly items whose `name` contains this
+              Filter for inventory assembly items whose `fullName` contains this
               substring, case-insensitive.
 
 
@@ -31154,7 +31214,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for inventory assembly items whose `name` contains this
+            Filter for inventory assembly items whose `fullName` contains this
             substring, case-insensitive.
 
 
@@ -31164,8 +31224,12 @@ paths:
           name: nameStartsWith
           schema:
             description: >-
-              Filter for inventory assembly items whose `name` starts with this
-              substring, case-insensitive.
+              Filter for inventory assembly items whose `fullName` starts with
+              this substring, case-insensitive. To get everything under a
+              parent, pass the parent's `fullName` followed by a colon, such as
+              "ABC:". For inventory assembly items under a parent, the start of
+              their own `name` does not match, because their `fullName` begins
+              with their parents' names; use `nameContains` instead.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -31173,8 +31237,12 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for inventory assembly items whose `name` starts with this
-            substring, case-insensitive.
+            Filter for inventory assembly items whose `fullName` starts with
+            this substring, case-insensitive. To get everything under a parent,
+            pass the parent's `fullName` followed by a colon, such as "ABC:".
+            For inventory assembly items under a parent, the start of their own
+            `name` does not match, because their `fullName` begins with their
+            parents' names; use `nameContains` instead.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -31183,8 +31251,8 @@ paths:
           name: nameEndsWith
           schema:
             description: >-
-              Filter for inventory assembly items whose `name` ends with this
-              substring, case-insensitive.
+              Filter for inventory assembly items whose `fullName` ends with
+              this substring, case-insensitive.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -31192,7 +31260,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for inventory assembly items whose `name` ends with this
+            Filter for inventory assembly items whose `fullName` ends with this
             substring, case-insensitive.
 
 
@@ -31233,7 +31301,9 @@ paths:
               before this value (inclusive), compared case-insensitively in
               QuickBooks' sort order: punctuation first, then digits, then
               letters. If you also set `nameFrom`, it must not sort after this
-              value, or QuickBooks returns an error.
+              value, or QuickBooks returns an error. To get everything under a
+              parent, use `nameStartsWith` with the parent's `fullName` followed
+              by a colon, such as "ABC:", instead of a range.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns inventory
@@ -31250,7 +31320,9 @@ paths:
             before this value (inclusive), compared case-insensitively in
             QuickBooks' sort order: punctuation first, then digits, then
             letters. If you also set `nameFrom`, it must not sort after this
-            value, or QuickBooks returns an error.
+            value, or QuickBooks returns an error. To get everything under a
+            parent, use `nameStartsWith` with the parent's `fullName` followed
+            by a colon, such as "ABC:", instead of a range.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns inventory
@@ -32255,8 +32327,8 @@ paths:
           name: nameContains
           schema:
             description: >-
-              Filter for inventory items whose `name` contains this substring,
-              case-insensitive.
+              Filter for inventory items whose `fullName` contains this
+              substring, case-insensitive.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -32264,7 +32336,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for inventory items whose `name` contains this substring,
+            Filter for inventory items whose `fullName` contains this substring,
             case-insensitive.
 
 
@@ -32274,8 +32346,12 @@ paths:
           name: nameStartsWith
           schema:
             description: >-
-              Filter for inventory items whose `name` starts with this
-              substring, case-insensitive.
+              Filter for inventory items whose `fullName` starts with this
+              substring, case-insensitive. To get everything under a parent,
+              pass the parent's `fullName` followed by a colon, such as "ABC:".
+              For inventory items under a parent, the start of their own `name`
+              does not match, because their `fullName` begins with their
+              parents' names; use `nameContains` instead.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -32283,8 +32359,12 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for inventory items whose `name` starts with this substring,
-            case-insensitive.
+            Filter for inventory items whose `fullName` starts with this
+            substring, case-insensitive. To get everything under a parent, pass
+            the parent's `fullName` followed by a colon, such as "ABC:". For
+            inventory items under a parent, the start of their own `name` does
+            not match, because their `fullName` begins with their parents'
+            names; use `nameContains` instead.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -32293,8 +32373,8 @@ paths:
           name: nameEndsWith
           schema:
             description: >-
-              Filter for inventory items whose `name` ends with this substring,
-              case-insensitive.
+              Filter for inventory items whose `fullName` ends with this
+              substring, case-insensitive.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -32302,8 +32382,8 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for inventory items whose `name` ends with this substring,
-            case-insensitive.
+            Filter for inventory items whose `fullName` ends with this
+            substring, case-insensitive.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -32342,7 +32422,9 @@ paths:
               this value (inclusive), compared case-insensitively in QuickBooks'
               sort order: punctuation first, then digits, then letters. If you
               also set `nameFrom`, it must not sort after this value, or
-              QuickBooks returns an error.
+              QuickBooks returns an error. To get everything under a parent, use
+              `nameStartsWith` with the parent's `fullName` followed by a colon,
+              such as "ABC:", instead of a range.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns inventory
@@ -32359,7 +32441,9 @@ paths:
             value (inclusive), compared case-insensitively in QuickBooks' sort
             order: punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error.
+            an error. To get everything under a parent, use `nameStartsWith`
+            with the parent's `fullName` followed by a colon, such as "ABC:",
+            instead of a range.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns inventory
@@ -41640,7 +41724,7 @@ paths:
           name: nameContains
           schema:
             description: >-
-              Filter for non-inventory items whose `name` contains this
+              Filter for non-inventory items whose `fullName` contains this
               substring, case-insensitive.
 
 
@@ -41649,8 +41733,8 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for non-inventory items whose `name` contains this substring,
-            case-insensitive.
+            Filter for non-inventory items whose `fullName` contains this
+            substring, case-insensitive.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -41659,8 +41743,12 @@ paths:
           name: nameStartsWith
           schema:
             description: >-
-              Filter for non-inventory items whose `name` starts with this
-              substring, case-insensitive.
+              Filter for non-inventory items whose `fullName` starts with this
+              substring, case-insensitive. To get everything under a parent,
+              pass the parent's `fullName` followed by a colon, such as "ABC:".
+              For non-inventory items under a parent, the start of their own
+              `name` does not match, because their `fullName` begins with their
+              parents' names; use `nameContains` instead.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -41668,8 +41756,12 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for non-inventory items whose `name` starts with this
-            substring, case-insensitive.
+            Filter for non-inventory items whose `fullName` starts with this
+            substring, case-insensitive. To get everything under a parent, pass
+            the parent's `fullName` followed by a colon, such as "ABC:". For
+            non-inventory items under a parent, the start of their own `name`
+            does not match, because their `fullName` begins with their parents'
+            names; use `nameContains` instead.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -41678,7 +41770,7 @@ paths:
           name: nameEndsWith
           schema:
             description: >-
-              Filter for non-inventory items whose `name` ends with this
+              Filter for non-inventory items whose `fullName` ends with this
               substring, case-insensitive.
 
 
@@ -41687,7 +41779,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for non-inventory items whose `name` ends with this
+            Filter for non-inventory items whose `fullName` ends with this
             substring, case-insensitive.
 
 
@@ -41727,7 +41819,9 @@ paths:
               this value (inclusive), compared case-insensitively in QuickBooks'
               sort order: punctuation first, then digits, then letters. If you
               also set `nameFrom`, it must not sort after this value, or
-              QuickBooks returns an error.
+              QuickBooks returns an error. To get everything under a parent, use
+              `nameStartsWith` with the parent's `fullName` followed by a colon,
+              such as "ABC:", instead of a range.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns
@@ -41744,7 +41838,9 @@ paths:
             this value (inclusive), compared case-insensitively in QuickBooks'
             sort order: punctuation first, then digits, then letters. If you
             also set `nameFrom`, it must not sort after this value, or
-            QuickBooks returns an error.
+            QuickBooks returns an error. To get everything under a parent, use
+            `nameStartsWith` with the parent's `fullName` followed by a colon,
+            such as "ABC:", instead of a range.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns
@@ -42777,7 +42873,7 @@ paths:
           name: nameContains
           schema:
             description: >-
-              Filter for other charge items whose `name` contains this
+              Filter for other charge items whose `fullName` contains this
               substring, case-insensitive.
 
 
@@ -42786,8 +42882,8 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for other charge items whose `name` contains this substring,
-            case-insensitive.
+            Filter for other charge items whose `fullName` contains this
+            substring, case-insensitive.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -42796,8 +42892,12 @@ paths:
           name: nameStartsWith
           schema:
             description: >-
-              Filter for other charge items whose `name` starts with this
-              substring, case-insensitive.
+              Filter for other charge items whose `fullName` starts with this
+              substring, case-insensitive. To get everything under a parent,
+              pass the parent's `fullName` followed by a colon, such as "ABC:".
+              For other charge items under a parent, the start of their own
+              `name` does not match, because their `fullName` begins with their
+              parents' names; use `nameContains` instead.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -42805,8 +42905,12 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for other charge items whose `name` starts with this
-            substring, case-insensitive.
+            Filter for other charge items whose `fullName` starts with this
+            substring, case-insensitive. To get everything under a parent, pass
+            the parent's `fullName` followed by a colon, such as "ABC:". For
+            other charge items under a parent, the start of their own `name`
+            does not match, because their `fullName` begins with their parents'
+            names; use `nameContains` instead.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -42815,7 +42919,7 @@ paths:
           name: nameEndsWith
           schema:
             description: >-
-              Filter for other charge items whose `name` ends with this
+              Filter for other charge items whose `fullName` ends with this
               substring, case-insensitive.
 
 
@@ -42824,8 +42928,8 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for other charge items whose `name` ends with this substring,
-            case-insensitive.
+            Filter for other charge items whose `fullName` ends with this
+            substring, case-insensitive.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -42864,7 +42968,9 @@ paths:
               this value (inclusive), compared case-insensitively in QuickBooks'
               sort order: punctuation first, then digits, then letters. If you
               also set `nameFrom`, it must not sort after this value, or
-              QuickBooks returns an error.
+              QuickBooks returns an error. To get everything under a parent, use
+              `nameStartsWith` with the parent's `fullName` followed by a colon,
+              such as "ABC:", instead of a range.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns other
@@ -42881,7 +42987,9 @@ paths:
             this value (inclusive), compared case-insensitively in QuickBooks'
             sort order: punctuation first, then digits, then letters. If you
             also set `nameFrom`, it must not sort after this value, or
-            QuickBooks returns an error.
+            QuickBooks returns an error. To get everything under a parent, use
+            `nameStartsWith` with the parent's `fullName` followed by a colon,
+            such as "ABC:", instead of a range.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns other charge
@@ -65350,7 +65458,7 @@ paths:
           name: nameContains
           schema:
             description: >-
-              Filter for service items whose `name` contains this substring,
+              Filter for service items whose `fullName` contains this substring,
               case-insensitive.
 
 
@@ -65359,7 +65467,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for service items whose `name` contains this substring,
+            Filter for service items whose `fullName` contains this substring,
             case-insensitive.
 
 
@@ -65369,8 +65477,12 @@ paths:
           name: nameStartsWith
           schema:
             description: >-
-              Filter for service items whose `name` starts with this substring,
-              case-insensitive.
+              Filter for service items whose `fullName` starts with this
+              substring, case-insensitive. To get everything under a parent,
+              pass the parent's `fullName` followed by a colon, such as "ABC:".
+              For service items under a parent, the start of their own `name`
+              does not match, because their `fullName` begins with their
+              parents' names; use `nameContains` instead.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -65378,8 +65490,12 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for service items whose `name` starts with this substring,
-            case-insensitive.
+            Filter for service items whose `fullName` starts with this
+            substring, case-insensitive. To get everything under a parent, pass
+            the parent's `fullName` followed by a colon, such as "ABC:". For
+            service items under a parent, the start of their own `name` does not
+            match, because their `fullName` begins with their parents' names;
+            use `nameContains` instead.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -65388,8 +65504,8 @@ paths:
           name: nameEndsWith
           schema:
             description: >-
-              Filter for service items whose `name` ends with this substring,
-              case-insensitive.
+              Filter for service items whose `fullName` ends with this
+              substring, case-insensitive.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -65397,7 +65513,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for service items whose `name` ends with this substring,
+            Filter for service items whose `fullName` ends with this substring,
             case-insensitive.
 
 
@@ -65437,7 +65553,9 @@ paths:
               value (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error.
+              returns an error. To get everything under a parent, use
+              `nameStartsWith` with the parent's `fullName` followed by a colon,
+              such as "ABC:", instead of a range.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns service
@@ -65454,7 +65572,9 @@ paths:
             value (inclusive), compared case-insensitively in QuickBooks' sort
             order: punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error.
+            an error. To get everything under a parent, use `nameStartsWith`
+            with the parent's `fullName` followed by a colon, such as "ABC:",
+            instead of a range.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns service
