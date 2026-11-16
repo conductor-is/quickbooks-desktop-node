@@ -157,7 +157,8 @@ describe('stdio bridge', () => {
       expect(run.code).toBe(0);
       expect(seen).toHaveLength(1);
       expect(seen[0]?.['authorization']).toBe(`Bearer ${SECRET_KEY}`);
-      expect(seen[0]?.['user-agent']).toMatch(/^conductor-mcp-bridge\/\d+\.\d+\.\d+/);
+      // The initialize request already names the MCP client from its own clientInfo.
+      expect(seen[0]?.['user-agent']).toMatch(/^conductor-mcp-bridge\/\d+\.\d+\.\d+ \(test\/0\)$/);
       expect(seen[0]?.['x-stainless-mcp-client-permissions']).toBe('{"allow_http_gets":true}');
     } finally {
       upstream.close();
@@ -202,5 +203,127 @@ describe('stdio bridge', () => {
       },
     );
     expect(run.code).toBe(0);
+  });
+
+  test('names the MCP client in the User-Agent of every request, from the initialize clientInfo', async () => {
+    const seen: Array<{ method: string; userAgent: string | undefined }> = [];
+    const upstream = await serve((req, res) => {
+      if (req.method !== 'POST') {
+        res.writeHead(405).end();
+        return;
+      }
+      let body = '';
+      req.on('data', (chunk: Buffer) => (body += chunk.toString()));
+      req.on('end', () => {
+        const message = JSON.parse(body) as { id: number; method: string };
+        seen.push({ method: message.method, userAgent: req.headers['user-agent'] });
+        res.writeHead(200, { 'content-type': 'application/json' });
+        res.end(
+          JSON.stringify({
+            jsonrpc: '2.0',
+            id: message.id,
+            result:
+              message.method === 'initialize' ?
+                {
+                  protocolVersion: '2025-03-26',
+                  capabilities: {},
+                  serverInfo: { name: 'upstream', version: '0' },
+                }
+              : { tools: [] },
+          }),
+        );
+      });
+    });
+    try {
+      const run = await runBridge(
+        { CONDUCTOR_SECRET_KEY: SECRET_KEY, CONDUCTOR_MCP_URL: upstream.url },
+        [],
+        async (write, nextLine) => {
+          write(
+            JSON.stringify({
+              jsonrpc: '2.0',
+              id: 1,
+              method: 'initialize',
+              params: {
+                protocolVersion: '2025-03-26',
+                capabilities: {},
+                clientInfo: { name: 'claude-code', version: '2.1.325' },
+              },
+            }),
+          );
+          expect(JSON.parse(await nextLine()).id).toBe(1);
+          write(JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'tools/list' }));
+          expect(JSON.parse(await nextLine())).toEqual({ jsonrpc: '2.0', id: 2, result: { tools: [] } });
+        },
+      );
+      expect(run.code).toBe(0);
+      expect(seen.map((request) => request.method)).toEqual(['initialize', 'tools/list']);
+      for (const request of seen) {
+        expect(request.userAgent).toMatch(/^conductor-mcp-bridge\/\d+\.\d+\.\d+ \(claude-code\/2\.1\.325\)$/);
+      }
+    } finally {
+      upstream.close();
+    }
+  });
+
+  // The hosted server matches the whole client name to choose a tool call's deadline, so a client's own
+  // text must never change the header's shape or turn into another client's name.
+  test.each([
+    ['no clientInfo', undefined, ''],
+    ['a name that is not a string', { name: 42 }, ''],
+    ['a blank name', { name: '   ' }, ''],
+    ['a name with no letter or digit', { name: 'é中' }, ''],
+    ['a name and version', { name: 'Cursor', version: '1.0.0' }, ' (Cursor/1.0.0)'],
+    ['a name alone', { name: 'claude-ai' }, ' (claude-ai)'],
+    [
+      'a plugin server name',
+      { name: 'local-agent-mode-plugin:quickbooks-desktop:conductor', version: '1.0.0' },
+      ' (local-agent-mode-plugin:quickbooks-desktop:conductor/1.0.0)',
+    ],
+    [
+      'text that tries to close the parenthesis and add a product',
+      { name: 'claude-code) evil/9 (x', version: '1 2/3' },
+      ' (claude-code_evil_9_x/1_2_3)',
+    ],
+    ['a name that differs from a listed one only by a space', { name: 'Claude Code' }, ' (Claude_Code)'],
+    ['a listed name with text around it', { name: ' claude-code ' }, ' (_claude-code_)'],
+    ['an underscore of its own', { name: 'claude_code', version: '1' }, ' (claude_code/1)'],
+    [
+      'a name and version past the limits',
+      { name: 'a'.repeat(200), version: '1'.repeat(200) },
+      ` (${'a'.repeat(64)}/${'1'.repeat(16)})`,
+    ],
+  ])('User-Agent for %s', async (_case, clientInfo, expectedSuffix) => {
+    const seen: Array<string | undefined> = [];
+    const upstream = await serve((req, res) => {
+      seen.push(req.headers['user-agent']);
+      res.writeHead(502, { 'content-type': 'text/plain' });
+      res.end('bad gateway');
+    });
+    try {
+      const run = await runBridge(
+        { CONDUCTOR_SECRET_KEY: SECRET_KEY, CONDUCTOR_MCP_URL: upstream.url },
+        [],
+        async (write, nextLine) => {
+          write(
+            JSON.stringify({
+              jsonrpc: '2.0',
+              id: 1,
+              method: 'initialize',
+              params: { protocolVersion: '2025-03-26', capabilities: {}, ...(clientInfo && { clientInfo }) },
+            }),
+          );
+          await nextLine();
+        },
+      );
+      expect(run.code).toBe(0);
+      expect(seen).toHaveLength(1);
+      const product = /^conductor-mcp-bridge\/\d+\.\d+\.\d+/.exec(seen[0] ?? '')?.[0];
+      expect(product).toBeDefined();
+      expect(seen[0]).toBe(`${product}${expectedSuffix}`);
+      expect(seen[0]!.length).toBeLessThanOrEqual(120);
+    } finally {
+      upstream.close();
+    }
   });
 });
