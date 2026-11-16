@@ -1176,7 +1176,7 @@ export interface NonInventoryItemListParams extends CursorPageParams {
   ids?: Array<string>;
 
   /**
-   * Query param: Filter for non-inventory items whose `name` contains this
+   * Query param: Filter for non-inventory items whose `fullName` contains this
    * substring, case-insensitive.
    *
    * **NOTE**: If you use this parameter, you cannot also use `nameStartsWith` or
@@ -1185,7 +1185,7 @@ export interface NonInventoryItemListParams extends CursorPageParams {
   nameContains?: string;
 
   /**
-   * Query param: Filter for non-inventory items whose `name` ends with this
+   * Query param: Filter for non-inventory items whose `fullName` ends with this
    * substring, case-insensitive.
    *
    * **NOTE**: If you use this parameter, you cannot also use `nameContains` or
@@ -1209,8 +1209,11 @@ export interface NonInventoryItemListParams extends CursorPageParams {
   nameFrom?: string;
 
   /**
-   * Query param: Filter for non-inventory items whose `name` starts with this
-   * substring, case-insensitive.
+   * Query param: Filter for non-inventory items whose `fullName` starts with this
+   * substring, case-insensitive. To get everything under a parent, pass the parent's
+   * `fullName` followed by a colon, such as "ABC:". For non-inventory items under a
+   * parent, the start of their own `name` does not match, because their `fullName`
+   * begins with their parents' names; use `nameContains` instead.
    *
    * **NOTE**: If you use this parameter, you cannot also use `nameContains` or
    * `nameEndsWith`.
@@ -1221,7 +1224,9 @@ export interface NonInventoryItemListParams extends CursorPageParams {
    * Query param: Filter for non-inventory items whose `fullName` sorts at or before
    * this value (inclusive), compared case-insensitively in QuickBooks' sort order:
    * punctuation first, then digits, then letters. If you also set `nameFrom`, it
-   * must not sort after this value, or QuickBooks returns an error.
+   * must not sort after this value, or QuickBooks returns an error. To get
+   * everything under a parent, use `nameStartsWith` with the parent's `fullName`
+   * followed by a colon, such as "ABC:", instead of a range.
    *
    * When you set `nameFrom` or `nameTo`, QuickBooks returns non-inventory items
    * sorted by `fullName` in that order; without either, the order is not guaranteed.
