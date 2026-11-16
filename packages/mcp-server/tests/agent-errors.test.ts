@@ -22,7 +22,7 @@ describe('formatAgentErrorMessage', () => {
       headersWith('req_123'),
     );
     expect(text).toBe(
-      'INVALID_PARAMETERS: Unrecognized key: "payeeIds" (HTTP 400, request req_123)\nCall `search_docs` with the method name to read its parameters instead of guessing again.',
+      'INVALID_PARAMETERS: Unrecognized key: "payeeIds" (HTTP 400, request req_123)\nCall `describe_operation` with the resource and operation of the method (`invoices` and `list` for `conductor.qbd.invoices.list`) to read its parameters instead of guessing again.',
     );
     expect(
       formatAgentErrorMessage(500, envelope('INTERNAL_ERROR', 'boom', 'INTERNAL_ERROR'), headersWith()),
@@ -77,7 +77,7 @@ describe('formatAgentErrorMessage', () => {
       headersWith(),
     );
     expect(wrongProject).toContain('belong to one Conductor project');
-    // Another missing resource gets neither the end-user hint nor the search_docs one.
+    // Another missing resource gets neither the end-user hint nor the describe_operation one.
     const otherMissing = formatAgentErrorMessage(
       404,
       envelope('RESOURCE_MISSING', 'No such API key.', 'INVALID_REQUEST_ERROR'),
