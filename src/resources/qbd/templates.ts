@@ -7,8 +7,10 @@ import { RequestOptions } from '../../internal/request-options';
 
 export class Templates extends APIResource {
   /**
-   * Returns a list of templates. Use the `cursor` parameter to paginate through the
-   * results.
+   * Returns a list of templates.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for templates; hence,
+   * there is no `cursor` parameter. Users typically have few templates.
    *
    * @example
    * ```ts
@@ -97,31 +99,9 @@ export interface TemplateListResponse {
   data: Array<Template>;
 
   /**
-   * Indicates whether there are more objects to be fetched.
-   */
-  hasMore: boolean;
-
-  /**
-   * The `nextCursor` is a pagination token returned in the response when you use the
-   * `limit` parameter in your request. To retrieve subsequent pages of results,
-   * include this token as the value of the `cursor` request parameter in your
-   * following API calls.
-   *
-   * **NOTE**: The `nextCursor` value remains constant throughout the pagination
-   * process for a specific list instance; continue to use the same `nextCursor`
-   * token in each request to fetch additional pages.
-   */
-  nextCursor: string | null;
-
-  /**
    * The type of object. This value is always `"list"`.
    */
   objectType: 'list';
-
-  /**
-   * The number of objects remaining to be fetched.
-   */
-  remainingCount: number | null;
 
   /**
    * The endpoint URL where this list can be accessed.

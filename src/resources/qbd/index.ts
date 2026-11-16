@@ -371,10 +371,10 @@ export {
 export {
   PayrollWageItems,
   type PayrollWageItem,
+  type PayrollWageItemListResponse,
   type PayrollWageItemCreateParams,
   type PayrollWageItemRetrieveParams,
   type PayrollWageItemListParams,
-  type PayrollWageItemsCursorPage,
 } from './payroll-wage-items';
 export { Preferences, type PreferenceRetrieveParams } from './preferences';
 export {

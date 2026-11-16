@@ -580,12 +580,13 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/qbd/payroll-wage-items.ts">PayrollWageItem</a></code>
+- <code><a href="./src/resources/qbd/payroll-wage-items.ts">PayrollWageItemListResponse</a></code>
 
 Methods:
 
 - <code title="post /quickbooks-desktop/payroll-wage-items">client.qbd.payrollWageItems.<a href="./src/resources/qbd/payroll-wage-items.ts">create</a>({ ...params }) -> PayrollWageItem</code>
 - <code title="get /quickbooks-desktop/payroll-wage-items/{id}">client.qbd.payrollWageItems.<a href="./src/resources/qbd/payroll-wage-items.ts">retrieve</a>(id, { ...params }) -> PayrollWageItem</code>
-- <code title="get /quickbooks-desktop/payroll-wage-items">client.qbd.payrollWageItems.<a href="./src/resources/qbd/payroll-wage-items.ts">list</a>({ ...params }) -> PayrollWageItemsCursorPage</code>
+- <code title="get /quickbooks-desktop/payroll-wage-items">client.qbd.payrollWageItems.<a href="./src/resources/qbd/payroll-wage-items.ts">list</a>({ ...params }) -> PayrollWageItemListResponse</code>
 
 ## Preferences
 
