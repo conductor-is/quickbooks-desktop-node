@@ -29,20 +29,28 @@ export async function runBridge({
   apiKey: string;
   permissions: BridgePermissions;
 }): Promise<void> {
-  const headers: Record<string, string> = {
-    Authorization: `Bearer ${apiKey}`,
-    'User-Agent': `conductor-mcp-bridge/${VERSION}`,
-  };
+  const headers: Record<string, string> = { Authorization: `Bearer ${apiKey}` };
   if (Object.keys(permissions).length > 0) {
     headers['x-stainless-mcp-client-permissions'] = JSON.stringify(permissions);
   }
-  const upstream = new StreamableHTTPClientTransport(new URL(upstreamUrl), { requestInit: { headers } });
+  // Names the MCP client from its initialize request on (see bridgeUserAgent()). Set per request through
+  // the transport's own fetch option, the supported way to change a header after the transport is built.
+  let userAgent = bridgeUserAgent(undefined);
+  const upstream = new StreamableHTTPClientTransport(new URL(upstreamUrl), {
+    requestInit: { headers },
+    fetch: (url, init) => {
+      const requestHeaders = new Headers(init?.headers);
+      requestHeaders.set('User-Agent', userAgent);
+      return fetch(url, { ...init, headers: requestHeaders });
+    },
+  });
   const client = new StdioServerTransport();
   let initializeId: RequestId | undefined;
 
   client.onmessage = (message) => {
     if (isJSONRPCRequest(message) && message.method === 'initialize') {
       initializeId = message.id;
+      userAgent = bridgeUserAgent(message.params?.['clientInfo']);
     }
     upstream.send(message).catch((error: unknown) => {
       if (isJSONRPCRequest(message)) {
@@ -73,6 +81,31 @@ export async function runBridge({
 
   await upstream.start();
   await client.start();
+}
+
+// The bridge's User-Agent: `conductor-mcp-bridge/<version>`, then the MCP client the bridge runs under
+// as ` (<name>/<version>)`, taken from the `clientInfo` of that client's initialize request. The hosted
+// server reads the name to choose a tool call's deadline; that policy lives in the conductor repo
+// (`getDeadlineSeconds()` in apps/server/src/mcp/deadline.ts), which matches the whole name. So the
+// name must not be able to become another client's: a run of any character other than a letter, digit,
+// dot, colon or hyphen becomes one underscore, which no listed name contains, and nothing is trimmed.
+// The same rule keeps a client's text from closing the parenthesis, adding a slash or adding another
+// product. The whole header stays under the 120 characters the server's logs keep.
+function bridgeUserAgent(clientInfo: unknown): string {
+  const product = `conductor-mcp-bridge/${VERSION}`;
+  if (typeof clientInfo !== 'object' || clientInfo === null) return product;
+  const { name, version } = clientInfo as { name?: unknown; version?: unknown };
+  const clientName = userAgentToken(name, 64);
+  if (clientName === undefined) return product;
+  const clientVersion = userAgentToken(version, 16);
+  return `${product} (${clientName}${clientVersion === undefined ? '' : `/${clientVersion}`})`;
+}
+
+// Cut first, so the work is bounded whatever the client sent.
+function userAgentToken(value: unknown, maxLength: number): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  const token = value.slice(0, maxLength).replace(/[^A-Za-z0-9.:-]+/g, '_');
+  return /[A-Za-z0-9]/.test(token) ? token : undefined;
 }
 
 function describeUpstreamFailure(
