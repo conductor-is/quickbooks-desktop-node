@@ -1,5 +1,21 @@
 # Changelog
 
+## [16.0.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v15.2.0...v16.0.0) (2026-11-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** list payroll wage items and templates without a cursor
+
+### Bug Fixes
+
+* **api:** list payroll wage items and templates without a cursor ([1a50595](https://github.com/conductor-is/quickbooks-desktop-node/commit/1a505954a92931cb1a7d48e19aa5e4b2fdaf1dac))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([99ffbca](https://github.com/conductor-is/quickbooks-desktop-node/commit/99ffbca5fd9e2316ed9a0478c5ca6dc19cdb79b7))
+
 ## [15.2.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v15.1.0...v15.2.0) (2026-11-15)
 
 
