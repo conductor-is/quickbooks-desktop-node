@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../core/resource';
 import { APIPromise } from '../../core/api-promise';
-import { CursorPage, type CursorPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -61,33 +60,29 @@ export class PayrollWageItems extends APIResource {
   }
 
   /**
-   * Returns a list of payroll wage items. Use the `cursor` parameter to paginate
-   * through the results.
+   * Returns a list of payroll wage items.
+   *
+   * **NOTE:** QuickBooks Desktop does not support pagination for payroll wage items;
+   * hence, there is no `cursor` parameter. Users typically have few payroll wage
+   * items.
    *
    * @example
    * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const payrollWageItem of conductor.qbd.payrollWageItems.list(
-   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
-   * )) {
-   *   // ...
-   * }
+   * const payrollWageItems =
+   *   await conductor.qbd.payrollWageItems.list({
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   });
    * ```
    */
-  list(
-    params: PayrollWageItemListParams,
-    options?: RequestOptions,
-  ): PagePromise<PayrollWageItemsCursorPage, PayrollWageItem> {
+  list(params: PayrollWageItemListParams, options?: RequestOptions): APIPromise<PayrollWageItemListResponse> {
     const { conductorEndUserId, ...query } = params;
-    return this._client.getAPIList('/quickbooks-desktop/payroll-wage-items', CursorPage<PayrollWageItem>, {
+    return this._client.get('/quickbooks-desktop/payroll-wage-items', {
       query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 }
-
-export type PayrollWageItemsCursorPage = CursorPage<PayrollWageItem>;
 
 export interface PayrollWageItem {
   /**
@@ -203,6 +198,23 @@ export namespace PayrollWageItem {
   }
 }
 
+export interface PayrollWageItemListResponse {
+  /**
+   * The array of payroll wage items.
+   */
+  data: Array<PayrollWageItem>;
+
+  /**
+   * The type of object. This value is always `"list"`.
+   */
+  objectType: 'list';
+
+  /**
+   * The endpoint URL where this list can be accessed.
+   */
+  url: string;
+}
+
 export interface PayrollWageItemCreateParams {
   /**
    * Body param: The expense account used to track wage expenses paid through this
@@ -281,7 +293,7 @@ export interface PayrollWageItemRetrieveParams {
   conductorEndUserId: string;
 }
 
-export interface PayrollWageItemListParams extends CursorPageParams {
+export interface PayrollWageItemListParams {
   /**
    * Header param: The ID of the End-User to receive this request.
    */
@@ -298,6 +310,19 @@ export interface PayrollWageItemListParams extends CursorPageParams {
    * request will return an error.
    */
   ids?: Array<string>;
+
+  /**
+   * Query param: The maximum number of objects to return.
+   *
+   * **IMPORTANT**: QuickBooks Desktop does not support cursor-based pagination for
+   * payroll wage items, so this parameter only limits the response size. To page
+   * through payroll wage items by name, see
+   * [Paging by name](https://docs.conductor.is/api-ref/pagination#paging-by-name).
+   *
+   * When this parameter is omitted, the endpoint returns all payroll wage items
+   * without limit, unlike paginated endpoints which default to 150 records.
+   */
+  limit?: number;
 
   /**
    * Query param: Filter for payroll wage items whose `name` contains this substring,
@@ -405,7 +430,7 @@ export interface PayrollWageItemListParams extends CursorPageParams {
 export declare namespace PayrollWageItems {
   export {
     type PayrollWageItem as PayrollWageItem,
-    type PayrollWageItemsCursorPage as PayrollWageItemsCursorPage,
+    type PayrollWageItemListResponse as PayrollWageItemListResponse,
     type PayrollWageItemCreateParams as PayrollWageItemCreateParams,
     type PayrollWageItemRetrieveParams as PayrollWageItemRetrieveParams,
     type PayrollWageItemListParams as PayrollWageItemListParams,

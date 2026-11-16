@@ -407,9 +407,9 @@ import {
   PayrollWageItem,
   PayrollWageItemCreateParams,
   PayrollWageItemListParams,
+  PayrollWageItemListResponse,
   PayrollWageItemRetrieveParams,
   PayrollWageItems,
-  PayrollWageItemsCursorPage,
 } from './payroll-wage-items';
 import * as PreferencesAPI from './preferences';
 import { PreferenceRetrieveParams, Preferences } from './preferences';
@@ -1266,7 +1266,7 @@ export declare namespace Qbd {
   export {
     PayrollWageItems as PayrollWageItems,
     type PayrollWageItem as PayrollWageItem,
-    type PayrollWageItemsCursorPage as PayrollWageItemsCursorPage,
+    type PayrollWageItemListResponse as PayrollWageItemListResponse,
     type PayrollWageItemCreateParams as PayrollWageItemCreateParams,
     type PayrollWageItemRetrieveParams as PayrollWageItemRetrieveParams,
     type PayrollWageItemListParams as PayrollWageItemListParams,
