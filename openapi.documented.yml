@@ -5145,7 +5145,7 @@ paths:
                   type: string
                   maxLength: 36
                 vendorAddress:
-                  description: The address of the vendor who sent this bill.
+                  description: The address of the vendor who sent this bill. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -8673,7 +8673,7 @@ paths:
                   type: string
                   maxLength: 4095
                 address:
-                  description: The address that is printed on the check.
+                  description: The address that is printed on the check. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -17367,7 +17367,7 @@ paths:
                   type: string
                   maxLength: 11
                 billingAddress:
-                  description: The credit memo's billing address.
+                  description: The credit memo's billing address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -17462,7 +17462,7 @@ paths:
                       maxLength: 41
                   additionalProperties: false
                 shippingAddress:
-                  description: The credit memo's shipping address.
+                  description: The credit memo's shipping address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -21415,7 +21415,7 @@ paths:
                   type: string
                   maxLength: 41
                 billingAddress:
-                  description: The customer's billing address.
+                  description: The customer's billing address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -21510,7 +21510,7 @@ paths:
                       maxLength: 41
                   additionalProperties: false
                 shippingAddress:
-                  description: The customer's shipping address.
+                  description: The customer's shipping address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -28681,7 +28681,7 @@ paths:
                   type: string
                   maxLength: 11
                 billingAddress:
-                  description: The estimate's billing address.
+                  description: The estimate's billing address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -28776,7 +28776,7 @@ paths:
                       maxLength: 41
                   additionalProperties: false
                 shippingAddress:
-                  description: The estimate's shipping address.
+                  description: The estimate's shipping address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -35591,7 +35591,7 @@ paths:
                   type: string
                   maxLength: 11
                 billingAddress:
-                  description: The invoice's billing address.
+                  description: The invoice's billing address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -35686,7 +35686,7 @@ paths:
                       maxLength: 41
                   additionalProperties: false
                 shippingAddress:
-                  description: The invoice's shipping address.
+                  description: The invoice's shipping address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -48333,7 +48333,7 @@ paths:
                   type: string
                   maxLength: 11
                 vendorAddress:
-                  description: The address of the vendor who sent this purchase order.
+                  description: The address of the vendor who sent this purchase order. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -48428,7 +48428,7 @@ paths:
                       maxLength: 41
                   additionalProperties: false
                 shippingAddress:
-                  description: The purchase order's shipping address.
+                  description: The purchase order's shipping address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -56944,7 +56944,7 @@ paths:
                   type: string
                   maxLength: 11
                 billingAddress:
-                  description: The sales order's billing address.
+                  description: The sales order's billing address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -57039,7 +57039,7 @@ paths:
                       maxLength: 41
                   additionalProperties: false
                 shippingAddress:
-                  description: The sales order's shipping address.
+                  description: The sales order's shipping address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -59826,7 +59826,7 @@ paths:
                   type: string
                   maxLength: 11
                 billingAddress:
-                  description: The sales receipt's billing address.
+                  description: The sales receipt's billing address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -59921,7 +59921,7 @@ paths:
                       maxLength: 41
                   additionalProperties: false
                 shippingAddress:
-                  description: The sales receipt's shipping address.
+                  description: The sales receipt's shipping address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -64846,7 +64846,7 @@ paths:
                   type: string
                   maxLength: 4095
                 address:
-                  description: The address that is printed on the sales-tax payment check.
+                  description: The address that is printed on the sales-tax payment check. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -74673,7 +74673,7 @@ paths:
                   type: string
                   maxLength: 41
                 billingAddress:
-                  description: The vendor's billing address.
+                  description: The vendor's billing address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
@@ -74768,7 +74768,7 @@ paths:
                       maxLength: 41
                   additionalProperties: false
                 shippingAddress:
-                  description: The vendor's shipping address.
+                  description: The vendor's shipping address. Address fields you omit keep their stored values; send a field as an empty string to clear it.
                   type: object
                   properties:
                     line1:
