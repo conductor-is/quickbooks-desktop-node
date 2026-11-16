@@ -9,7 +9,12 @@ import {
   StreamableHTTPError,
 } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { isJSONRPCRequest, isJSONRPCResponse, type RequestId } from '@modelcontextprotocol/sdk/types.js';
+import {
+  isJSONRPCNotification,
+  isJSONRPCRequest,
+  isJSONRPCResponse,
+  type RequestId,
+} from '@modelcontextprotocol/sdk/types.js';
 import { getLogger } from './logger';
 import { VERSION } from './server';
 
@@ -33,36 +38,69 @@ export async function runBridge({
   if (Object.keys(permissions).length > 0) {
     headers['x-stainless-mcp-client-permissions'] = JSON.stringify(permissions);
   }
-  // Names the MCP client from its initialize request on (see bridgeUserAgent()). Set per request through
-  // the transport's own fetch option, the supported way to change a header after the transport is built.
+  // Names the MCP client from its initialize request on (see bridgeUserAgent()).
   let userAgent = bridgeUserAgent(undefined);
+  // The upstream POST of every request still waiting for its answer, by JSON-RPC id, and the ids the MCP
+  // client has cancelled. A cancelled request's POST is closed: the hosted server is stateless and cannot
+  // match a cancel notification to a running call, but it stops the work when the connection closes.
+  // Without that, code the user stopped would run on, and keep writing, until the server's own deadline.
+  const inFlight = new Map<RequestId, AbortController>();
+  const cancelled = new Set<RequestId>();
   const upstream = new StreamableHTTPClientTransport(new URL(upstreamUrl), {
     requestInit: { headers },
     fetch: (url, init) => {
       const requestHeaders = new Headers(init?.headers);
       requestHeaders.set('User-Agent', userAgent);
-      return fetch(url, { ...init, headers: requestHeaders });
+      const requestId = jsonRpcRequestId(init?.body);
+      const controller = requestId === undefined ? undefined : inFlight.get(requestId);
+      if (controller === undefined) return fetch(url, { ...init, headers: requestHeaders });
+      return fetch(url, {
+        ...init,
+        headers: requestHeaders,
+        signal: eitherSignal(init?.signal, controller.signal),
+      });
     },
   });
   const client = new StdioServerTransport();
   let initializeId: RequestId | undefined;
 
   client.onmessage = (message) => {
-    if (isJSONRPCRequest(message) && message.method === 'initialize') {
-      initializeId = message.id;
-      userAgent = bridgeUserAgent(message.params?.['clientInfo']);
+    if (isJSONRPCRequest(message)) {
+      // Registered before the send, so a cancel that follows at once still finds it.
+      inFlight.set(message.id, new AbortController());
+      if (message.method === 'initialize') {
+        initializeId = message.id;
+        userAgent = bridgeUserAgent(message.params?.['clientInfo']);
+      }
+    }
+    if (isJSONRPCNotification(message) && message.method === 'notifications/cancelled') {
+      const requestId = message.params?.['requestId'];
+      const controller =
+        typeof requestId === 'string' || typeof requestId === 'number' ? inFlight.get(requestId) : undefined;
+      if (controller !== undefined) {
+        cancelled.add(requestId as RequestId);
+        controller.abort();
+      }
+      // The notification is still passed on below, so the server's logs show the cancel and its reason.
     }
     upstream.send(message).catch((error: unknown) => {
-      if (isJSONRPCRequest(message)) {
-        void client.send({
-          jsonrpc: '2.0',
-          id: message.id,
-          error: describeUpstreamFailure(error, upstreamUrl),
-        });
-      }
+      if (!isJSONRPCRequest(message)) return;
+      inFlight.delete(message.id);
+      // The client cancelled this request and expects no answer to it.
+      if (cancelled.delete(message.id)) return;
+      void client.send({
+        jsonrpc: '2.0',
+        id: message.id,
+        error: describeUpstreamFailure(error, upstreamUrl),
+      });
     });
   };
   upstream.onmessage = (message) => {
+    if (!('method' in message) && message.id !== undefined) {
+      // The answer, result or error, to one of the client's requests.
+      inFlight.delete(message.id);
+      cancelled.delete(message.id);
+    }
     if (isJSONRPCResponse(message) && message.id === initializeId) {
       const protocolVersion = message.result['protocolVersion'];
       if (typeof protocolVersion === 'string') {
@@ -71,8 +109,12 @@ export async function runBridge({
     }
     void client.send(message);
   };
-  // A failed upstream send is answered per request above; the SDK also reports it here.
-  upstream.onerror = (error) => getLogger().error({ error: error.message }, 'Upstream transport error');
+  // A failed upstream send is answered per request above; the SDK also reports it here. A request closed
+  // because the client cancelled it is not a failure.
+  upstream.onerror = (error) => {
+    if (error.name === 'AbortError') return;
+    getLogger().error({ error: error.message }, 'Upstream transport error');
+  };
   client.onerror = (error) => console.error(`conductor-mcp-bridge: ${error.message}`);
   process.stdout.on('error', () => process.exit(0));
   process.stdin.once('end', () => {
@@ -106,6 +148,34 @@ function userAgentToken(value: unknown, maxLength: number): string | undefined {
   if (typeof value !== 'string') return undefined;
   const token = value.slice(0, maxLength).replace(/[^A-Za-z0-9.:-]+/g, '_');
   return /[A-Za-z0-9]/.test(token) ? token : undefined;
+}
+
+// The id of the JSON-RPC request in a POST body, or undefined for a notification, a response or no body.
+function jsonRpcRequestId(body: unknown): RequestId | undefined {
+  if (typeof body !== 'string') return undefined;
+  try {
+    const message = JSON.parse(body) as { id?: unknown; method?: unknown };
+    return (
+        typeof message.method === 'string' &&
+          (typeof message.id === 'string' || typeof message.id === 'number')
+      ) ?
+        message.id
+      : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+// A signal that aborts when the transport closes or when this one request is cancelled. Node.js before
+// 20.3 has no AbortSignal.any; there the request's own signal is enough, since the bridge exits when its
+// transport closes.
+function eitherSignal(
+  transportSignal: AbortSignal | null | undefined,
+  requestSignal: AbortSignal,
+): AbortSignal {
+  return transportSignal && typeof AbortSignal.any === 'function' ?
+      AbortSignal.any([transportSignal, requestSignal])
+    : requestSignal;
 }
 
 function describeUpstreamFailure(

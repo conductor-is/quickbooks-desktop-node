@@ -326,4 +326,90 @@ describe('stdio bridge', () => {
       upstream.close();
     }
   });
+
+  test('closes the request the MCP client cancels, passes the cancel on and answers nothing for it', async () => {
+    const events: string[] = [];
+    let callClosedNow: (() => void) | undefined;
+    const callClosed = new Promise<void>((resolve) => (callClosedNow = resolve));
+    const upstream = await serve((req, res) => {
+      let body = '';
+      req.on('data', (chunk: Buffer) => (body += chunk.toString()));
+      req.on('end', () => {
+        const message = JSON.parse(body) as { id?: number; method: string; params?: { requestId?: number } };
+        if (message.method === 'tools/call') {
+          // Never answered: the server would still be running the tool.
+          events.push('call received');
+          res.on('close', () => {
+            events.push(res.writableEnded ? 'call answered' : 'call connection closed');
+            callClosedNow?.();
+          });
+          return;
+        }
+        if (message.method === 'notifications/cancelled') {
+          events.push(`cancel notice for ${message.params?.requestId}`);
+          res.writeHead(202).end();
+          return;
+        }
+        res.writeHead(200, { 'content-type': 'application/json' });
+        res.end(
+          JSON.stringify({
+            jsonrpc: '2.0',
+            id: message.id,
+            result:
+              message.method === 'initialize' ?
+                {
+                  protocolVersion: '2025-03-26',
+                  capabilities: {},
+                  serverInfo: { name: 'upstream', version: '0' },
+                }
+              : { tools: [] },
+          }),
+        );
+      });
+    });
+    try {
+      const run = await runBridge(
+        { CONDUCTOR_SECRET_KEY: SECRET_KEY, CONDUCTOR_MCP_URL: upstream.url },
+        [],
+        async (write, nextLine) => {
+          write(initialize);
+          expect(JSON.parse(await nextLine()).id).toBe(1);
+          write(
+            JSON.stringify({
+              jsonrpc: '2.0',
+              id: 2,
+              method: 'tools/call',
+              params: { name: 'execute', arguments: { code: 'x' } },
+            }),
+          );
+          // Let the call reach the upstream before the client gives up on it.
+          while (!events.includes('call received')) await new Promise((r) => setTimeout(r, 10));
+          write(
+            JSON.stringify({
+              jsonrpc: '2.0',
+              method: 'notifications/cancelled',
+              params: { requestId: 2, reason: 'AbortError: remote-cancel' },
+            }),
+          );
+          await callClosed;
+          // The bridge still works, and the next line it writes is the answer to the next request.
+          write(JSON.stringify({ jsonrpc: '2.0', id: 3, method: 'tools/list' }));
+          expect(JSON.parse(await nextLine())).toEqual({ jsonrpc: '2.0', id: 3, result: { tools: [] } });
+        },
+      );
+      expect(run.code).toBe(0);
+      expect(events).toContain('call connection closed');
+      expect(events).not.toContain('call answered');
+      expect(events).toContain('cancel notice for 2');
+      // Nothing was written for the cancelled request: no result and no "could not reach" error.
+      const written = run.stdout
+        .trim()
+        .split('\n')
+        .map((line) => JSON.parse(line) as { id?: number });
+      expect(written.map((message) => message.id)).toEqual([1, 3]);
+      expect(run.stderr).not.toContain('Upstream transport error');
+    } finally {
+      upstream.close();
+    }
+  });
 });
