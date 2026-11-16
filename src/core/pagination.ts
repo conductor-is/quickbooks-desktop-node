@@ -111,6 +111,10 @@ export interface CursorPageResponse<Item> {
   data: Array<Item>;
 
   nextCursor: string | null;
+
+  hasMore: boolean;
+
+  remainingCount: number | null;
 }
 
 export interface CursorPageParams {
@@ -124,6 +128,10 @@ export class CursorPage<Item> extends AbstractPage<Item> implements CursorPageRe
 
   nextCursor: string | null;
 
+  hasMore: boolean;
+
+  remainingCount: number | null;
+
   constructor(
     client: Conductor,
     response: Response,
@@ -134,10 +142,20 @@ export class CursorPage<Item> extends AbstractPage<Item> implements CursorPageRe
 
     this.data = body.data || [];
     this.nextCursor = body.nextCursor || null;
+    this.hasMore = body.hasMore || false;
+    this.remainingCount = body.remainingCount || null;
   }
 
   getPaginatedItems(): Item[] {
     return this.data ?? [];
+  }
+
+  override hasNextPage(): boolean {
+    if (this.hasMore === false) {
+      return false;
+    }
+
+    return super.hasNextPage();
   }
 
   nextPageRequestOptions(): PageRequestOptions | null {
