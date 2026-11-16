@@ -756,10 +756,9 @@ paths:
             description: >-
               Filter for accounts whose `fullName` starts with this substring,
               case-insensitive. To get everything under a parent, pass the
-              parent's `fullName` followed by a colon, such as "ABC:". For
-              accounts under a parent, the start of their own `name` does not
-              match, because their `fullName` begins with their parents' names;
-              use `nameContains` instead.
+              parent's `fullName` followed by a colon, such as "ABC:". Records
+              under a parent are not matched by the start of their own `name`;
+              use `nameContains`.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -769,10 +768,9 @@ paths:
           description: >-
             Filter for accounts whose `fullName` starts with this substring,
             case-insensitive. To get everything under a parent, pass the
-            parent's `fullName` followed by a colon, such as "ABC:". For
-            accounts under a parent, the start of their own `name` does not
-            match, because their `fullName` begins with their parents' names;
-            use `nameContains` instead.
+            parent's `fullName` followed by a colon, such as "ABC:". Records
+            under a parent are not matched by the start of their own `name`; use
+            `nameContains`.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -835,9 +833,7 @@ paths:
               (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error. To get everything under a parent, use
-              `nameStartsWith` with the parent's `fullName` followed by a colon,
-              such as "ABC:", instead of a range.
+              returns an error.
 
 
               **IMPORTANT**: Even when you set `nameFrom` or `nameTo`,
@@ -854,9 +850,7 @@ paths:
             (inclusive), compared case-insensitively in QuickBooks' sort order:
             punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error. To get everything under a parent, use `nameStartsWith`
-            with the parent's `fullName` followed by a colon, such as "ABC:",
-            instead of a range.
+            an error.
 
 
             **IMPORTANT**: Even when you set `nameFrom` or `nameTo`, QuickBooks
@@ -9947,10 +9941,9 @@ paths:
             description: >-
               Filter for classes whose `fullName` starts with this substring,
               case-insensitive. To get everything under a parent, pass the
-              parent's `fullName` followed by a colon, such as "ABC:". For
-              classes under a parent, the start of their own `name` does not
-              match, because their `fullName` begins with their parents' names;
-              use `nameContains` instead.
+              parent's `fullName` followed by a colon, such as "ABC:". Records
+              under a parent are not matched by the start of their own `name`;
+              use `nameContains`.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -9960,10 +9953,9 @@ paths:
           description: >-
             Filter for classes whose `fullName` starts with this substring,
             case-insensitive. To get everything under a parent, pass the
-            parent's `fullName` followed by a colon, such as "ABC:". For classes
-            under a parent, the start of their own `name` does not match,
-            because their `fullName` begins with their parents' names; use
-            `nameContains` instead.
+            parent's `fullName` followed by a colon, such as "ABC:". Records
+            under a parent are not matched by the start of their own `name`; use
+            `nameContains`.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -10020,9 +10012,7 @@ paths:
               (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error. To get everything under a parent, use
-              `nameStartsWith` with the parent's `fullName` followed by a colon,
-              such as "ABC:", instead of a range.
+              returns an error.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns classes
@@ -10039,9 +10029,7 @@ paths:
             (inclusive), compared case-insensitively in QuickBooks' sort order:
             punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error. To get everything under a parent, use `nameStartsWith`
-            with the parent's `fullName` followed by a colon, such as "ABC:",
-            instead of a range.
+            an error.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns classes
@@ -19501,9 +19489,8 @@ paths:
               Filter for customer types whose `fullName` starts with this
               substring, case-insensitive. To get everything under a parent,
               pass the parent's `fullName` followed by a colon, such as "ABC:".
-              For customer types under a parent, the start of their own `name`
-              does not match, because their `fullName` begins with their
-              parents' names; use `nameContains` instead.
+              Records under a parent are not matched by the start of their own
+              `name`; use `nameContains`.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -19513,10 +19500,9 @@ paths:
           description: >-
             Filter for customer types whose `fullName` starts with this
             substring, case-insensitive. To get everything under a parent, pass
-            the parent's `fullName` followed by a colon, such as "ABC:". For
-            customer types under a parent, the start of their own `name` does
-            not match, because their `fullName` begins with their parents'
-            names; use `nameContains` instead.
+            the parent's `fullName` followed by a colon, such as "ABC:". Records
+            under a parent are not matched by the start of their own `name`; use
+            `nameContains`.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -19574,9 +19560,7 @@ paths:
               value (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error. To get everything under a parent, use
-              `nameStartsWith` with the parent's `fullName` followed by a colon,
-              such as "ABC:", instead of a range.
+              returns an error.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns customer
@@ -19593,9 +19577,7 @@ paths:
             value (inclusive), compared case-insensitively in QuickBooks' sort
             order: punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error. To get everything under a parent, use `nameStartsWith`
-            with the parent's `fullName` followed by a colon, such as "ABC:",
-            instead of a range.
+            an error.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns customer
@@ -20081,10 +20063,9 @@ paths:
             description: >-
               Filter for customers whose `fullName` starts with this substring,
               case-insensitive. To get everything under a parent, pass the
-              parent's `fullName` followed by a colon, such as "ABC:". For
-              customers under a parent, the start of their own `name` does not
-              match, because their `fullName` begins with their parents' names;
-              use `nameContains` instead.
+              parent's `fullName` followed by a colon, such as "ABC:". Records
+              under a parent are not matched by the start of their own `name`;
+              use `nameContains`.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -20094,10 +20075,9 @@ paths:
           description: >-
             Filter for customers whose `fullName` starts with this substring,
             case-insensitive. To get everything under a parent, pass the
-            parent's `fullName` followed by a colon, such as "ABC:". For
-            customers under a parent, the start of their own `name` does not
-            match, because their `fullName` begins with their parents' names;
-            use `nameContains` instead.
+            parent's `fullName` followed by a colon, such as "ABC:". Records
+            under a parent are not matched by the start of their own `name`; use
+            `nameContains`.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -20154,9 +20134,7 @@ paths:
               value (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error. To get everything under a parent, use
-              `nameStartsWith` with the parent's `fullName` followed by a colon,
-              such as "ABC:", instead of a range.
+              returns an error.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns customers
@@ -20173,9 +20151,7 @@ paths:
             (inclusive), compared case-insensitively in QuickBooks' sort order:
             punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error. To get everything under a parent, use `nameStartsWith`
-            with the parent's `fullName` followed by a colon, such as "ABC:",
-            instead of a range.
+            an error.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns customers
@@ -24569,9 +24545,8 @@ paths:
               Filter for discount items whose `fullName` starts with this
               substring, case-insensitive. To get everything under a parent,
               pass the parent's `fullName` followed by a colon, such as "ABC:".
-              For discount items under a parent, the start of their own `name`
-              does not match, because their `fullName` begins with their
-              parents' names; use `nameContains` instead.
+              Records under a parent are not matched by the start of their own
+              `name`; use `nameContains`.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -24581,10 +24556,9 @@ paths:
           description: >-
             Filter for discount items whose `fullName` starts with this
             substring, case-insensitive. To get everything under a parent, pass
-            the parent's `fullName` followed by a colon, such as "ABC:". For
-            discount items under a parent, the start of their own `name` does
-            not match, because their `fullName` begins with their parents'
-            names; use `nameContains` instead.
+            the parent's `fullName` followed by a colon, such as "ABC:". Records
+            under a parent are not matched by the start of their own `name`; use
+            `nameContains`.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -24642,9 +24616,7 @@ paths:
               value (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error. To get everything under a parent, use
-              `nameStartsWith` with the parent's `fullName` followed by a colon,
-              such as "ABC:", instead of a range.
+              returns an error.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns discount
@@ -24661,9 +24633,7 @@ paths:
             value (inclusive), compared case-insensitively in QuickBooks' sort
             order: punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error. To get everything under a parent, use `nameStartsWith`
-            with the parent's `fullName` followed by a colon, such as "ABC:",
-            instead of a range.
+            an error.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns discount
@@ -31227,9 +31197,8 @@ paths:
               Filter for inventory assembly items whose `fullName` starts with
               this substring, case-insensitive. To get everything under a
               parent, pass the parent's `fullName` followed by a colon, such as
-              "ABC:". For inventory assembly items under a parent, the start of
-              their own `name` does not match, because their `fullName` begins
-              with their parents' names; use `nameContains` instead.
+              "ABC:". Records under a parent are not matched by the start of
+              their own `name`; use `nameContains`.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -31240,9 +31209,8 @@ paths:
             Filter for inventory assembly items whose `fullName` starts with
             this substring, case-insensitive. To get everything under a parent,
             pass the parent's `fullName` followed by a colon, such as "ABC:".
-            For inventory assembly items under a parent, the start of their own
-            `name` does not match, because their `fullName` begins with their
-            parents' names; use `nameContains` instead.
+            Records under a parent are not matched by the start of their own
+            `name`; use `nameContains`.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -31301,9 +31269,7 @@ paths:
               before this value (inclusive), compared case-insensitively in
               QuickBooks' sort order: punctuation first, then digits, then
               letters. If you also set `nameFrom`, it must not sort after this
-              value, or QuickBooks returns an error. To get everything under a
-              parent, use `nameStartsWith` with the parent's `fullName` followed
-              by a colon, such as "ABC:", instead of a range.
+              value, or QuickBooks returns an error.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns inventory
@@ -31320,9 +31286,7 @@ paths:
             before this value (inclusive), compared case-insensitively in
             QuickBooks' sort order: punctuation first, then digits, then
             letters. If you also set `nameFrom`, it must not sort after this
-            value, or QuickBooks returns an error. To get everything under a
-            parent, use `nameStartsWith` with the parent's `fullName` followed
-            by a colon, such as "ABC:", instead of a range.
+            value, or QuickBooks returns an error.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns inventory
@@ -32349,9 +32313,8 @@ paths:
               Filter for inventory items whose `fullName` starts with this
               substring, case-insensitive. To get everything under a parent,
               pass the parent's `fullName` followed by a colon, such as "ABC:".
-              For inventory items under a parent, the start of their own `name`
-              does not match, because their `fullName` begins with their
-              parents' names; use `nameContains` instead.
+              Records under a parent are not matched by the start of their own
+              `name`; use `nameContains`.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -32361,10 +32324,9 @@ paths:
           description: >-
             Filter for inventory items whose `fullName` starts with this
             substring, case-insensitive. To get everything under a parent, pass
-            the parent's `fullName` followed by a colon, such as "ABC:". For
-            inventory items under a parent, the start of their own `name` does
-            not match, because their `fullName` begins with their parents'
-            names; use `nameContains` instead.
+            the parent's `fullName` followed by a colon, such as "ABC:". Records
+            under a parent are not matched by the start of their own `name`; use
+            `nameContains`.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -32422,9 +32384,7 @@ paths:
               this value (inclusive), compared case-insensitively in QuickBooks'
               sort order: punctuation first, then digits, then letters. If you
               also set `nameFrom`, it must not sort after this value, or
-              QuickBooks returns an error. To get everything under a parent, use
-              `nameStartsWith` with the parent's `fullName` followed by a colon,
-              such as "ABC:", instead of a range.
+              QuickBooks returns an error.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns inventory
@@ -32441,9 +32401,7 @@ paths:
             value (inclusive), compared case-insensitively in QuickBooks' sort
             order: punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error. To get everything under a parent, use `nameStartsWith`
-            with the parent's `fullName` followed by a colon, such as "ABC:",
-            instead of a range.
+            an error.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns inventory
@@ -41746,9 +41704,8 @@ paths:
               Filter for non-inventory items whose `fullName` starts with this
               substring, case-insensitive. To get everything under a parent,
               pass the parent's `fullName` followed by a colon, such as "ABC:".
-              For non-inventory items under a parent, the start of their own
-              `name` does not match, because their `fullName` begins with their
-              parents' names; use `nameContains` instead.
+              Records under a parent are not matched by the start of their own
+              `name`; use `nameContains`.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -41758,10 +41715,9 @@ paths:
           description: >-
             Filter for non-inventory items whose `fullName` starts with this
             substring, case-insensitive. To get everything under a parent, pass
-            the parent's `fullName` followed by a colon, such as "ABC:". For
-            non-inventory items under a parent, the start of their own `name`
-            does not match, because their `fullName` begins with their parents'
-            names; use `nameContains` instead.
+            the parent's `fullName` followed by a colon, such as "ABC:". Records
+            under a parent are not matched by the start of their own `name`; use
+            `nameContains`.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -41819,9 +41775,7 @@ paths:
               this value (inclusive), compared case-insensitively in QuickBooks'
               sort order: punctuation first, then digits, then letters. If you
               also set `nameFrom`, it must not sort after this value, or
-              QuickBooks returns an error. To get everything under a parent, use
-              `nameStartsWith` with the parent's `fullName` followed by a colon,
-              such as "ABC:", instead of a range.
+              QuickBooks returns an error.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns
@@ -41838,9 +41792,7 @@ paths:
             this value (inclusive), compared case-insensitively in QuickBooks'
             sort order: punctuation first, then digits, then letters. If you
             also set `nameFrom`, it must not sort after this value, or
-            QuickBooks returns an error. To get everything under a parent, use
-            `nameStartsWith` with the parent's `fullName` followed by a colon,
-            such as "ABC:", instead of a range.
+            QuickBooks returns an error.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns
@@ -42895,9 +42847,8 @@ paths:
               Filter for other charge items whose `fullName` starts with this
               substring, case-insensitive. To get everything under a parent,
               pass the parent's `fullName` followed by a colon, such as "ABC:".
-              For other charge items under a parent, the start of their own
-              `name` does not match, because their `fullName` begins with their
-              parents' names; use `nameContains` instead.
+              Records under a parent are not matched by the start of their own
+              `name`; use `nameContains`.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -42907,10 +42858,9 @@ paths:
           description: >-
             Filter for other charge items whose `fullName` starts with this
             substring, case-insensitive. To get everything under a parent, pass
-            the parent's `fullName` followed by a colon, such as "ABC:". For
-            other charge items under a parent, the start of their own `name`
-            does not match, because their `fullName` begins with their parents'
-            names; use `nameContains` instead.
+            the parent's `fullName` followed by a colon, such as "ABC:". Records
+            under a parent are not matched by the start of their own `name`; use
+            `nameContains`.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -42968,9 +42918,7 @@ paths:
               this value (inclusive), compared case-insensitively in QuickBooks'
               sort order: punctuation first, then digits, then letters. If you
               also set `nameFrom`, it must not sort after this value, or
-              QuickBooks returns an error. To get everything under a parent, use
-              `nameStartsWith` with the parent's `fullName` followed by a colon,
-              such as "ABC:", instead of a range.
+              QuickBooks returns an error.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns other
@@ -42987,9 +42935,7 @@ paths:
             this value (inclusive), compared case-insensitively in QuickBooks'
             sort order: punctuation first, then digits, then letters. If you
             also set `nameFrom`, it must not sort after this value, or
-            QuickBooks returns an error. To get everything under a parent, use
-            `nameStartsWith` with the parent's `fullName` followed by a colon,
-            such as "ABC:", instead of a range.
+            QuickBooks returns an error.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns other charge
@@ -61271,7 +61217,7 @@ paths:
           name: nameContains
           schema:
             description: >-
-              Filter for sales representatives whose `name` contains this
+              Filter for sales representatives whose `initial` contains this
               substring, case-insensitive.
 
 
@@ -61280,7 +61226,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for sales representatives whose `name` contains this
+            Filter for sales representatives whose `initial` contains this
             substring, case-insensitive.
 
 
@@ -61290,7 +61236,7 @@ paths:
           name: nameStartsWith
           schema:
             description: >-
-              Filter for sales representatives whose `name` starts with this
+              Filter for sales representatives whose `initial` starts with this
               substring, case-insensitive.
 
 
@@ -61299,7 +61245,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for sales representatives whose `name` starts with this
+            Filter for sales representatives whose `initial` starts with this
             substring, case-insensitive.
 
 
@@ -61309,7 +61255,7 @@ paths:
           name: nameEndsWith
           schema:
             description: >-
-              Filter for sales representatives whose `name` ends with this
+              Filter for sales representatives whose `initial` ends with this
               substring, case-insensitive.
 
 
@@ -61318,7 +61264,7 @@ paths:
             example: ABC
             type: string
           description: >-
-            Filter for sales representatives whose `name` ends with this
+            Filter for sales representatives whose `initial` ends with this
             substring, case-insensitive.
 
 
@@ -65480,9 +65426,8 @@ paths:
               Filter for service items whose `fullName` starts with this
               substring, case-insensitive. To get everything under a parent,
               pass the parent's `fullName` followed by a colon, such as "ABC:".
-              For service items under a parent, the start of their own `name`
-              does not match, because their `fullName` begins with their
-              parents' names; use `nameContains` instead.
+              Records under a parent are not matched by the start of their own
+              `name`; use `nameContains`.
 
 
               **NOTE**: If you use this parameter, you cannot also use
@@ -65492,10 +65437,9 @@ paths:
           description: >-
             Filter for service items whose `fullName` starts with this
             substring, case-insensitive. To get everything under a parent, pass
-            the parent's `fullName` followed by a colon, such as "ABC:". For
-            service items under a parent, the start of their own `name` does not
-            match, because their `fullName` begins with their parents' names;
-            use `nameContains` instead.
+            the parent's `fullName` followed by a colon, such as "ABC:". Records
+            under a parent are not matched by the start of their own `name`; use
+            `nameContains`.
 
 
             **NOTE**: If you use this parameter, you cannot also use
@@ -65553,9 +65497,7 @@ paths:
               value (inclusive), compared case-insensitively in QuickBooks' sort
               order: punctuation first, then digits, then letters. If you also
               set `nameFrom`, it must not sort after this value, or QuickBooks
-              returns an error. To get everything under a parent, use
-              `nameStartsWith` with the parent's `fullName` followed by a colon,
-              such as "ABC:", instead of a range.
+              returns an error.
 
 
               When you set `nameFrom` or `nameTo`, QuickBooks returns service
@@ -65572,9 +65514,7 @@ paths:
             value (inclusive), compared case-insensitively in QuickBooks' sort
             order: punctuation first, then digits, then letters. If you also set
             `nameFrom`, it must not sort after this value, or QuickBooks returns
-            an error. To get everything under a parent, use `nameStartsWith`
-            with the parent's `fullName` followed by a colon, such as "ABC:",
-            instead of a range.
+            an error.
 
 
             When you set `nameFrom` or `nameTo`, QuickBooks returns service
