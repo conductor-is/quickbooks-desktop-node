@@ -224,8 +224,8 @@ if [ -n "${TEST_KEY:-}" ] && [ -n "${RUN_SLOW:-}" ]; then
   # --- 8b. Longer silent window, still BELOW the 300 s execution timeout
   # Contingency if 8 or 8b dies mid-stream (customer-invisible fixes only): inject
   # SSE comment keepalives (": ping" lines, dropped by every SSE parser) from the
-  # express layer, or lower CODE_EXECUTION_TIMEOUT_MS to just under the observed
-  # idle limit. Do not ship until 8 and 8b pass.
+  # express layer, or lower DEFAULT_CODE_EXECUTION_TIMEOUT_MS in src/code-tool.ts
+  # to just under the observed idle limit. Do not ship until 8 and 8b pass.
   BODY=$(jq -n '{jsonrpc:"2.0",id:88,method:"tools/call",params:{name:"execute",arguments:{code:"async function run(conductor) { await new Promise((r) => setTimeout(r, 240000)); return \"slept-240s\"; }"}}}')
   curl -sN --max-time 400 -X POST "$NEW/" -H "$CT" -H "$ACC" -H "authorization: Bearer $TEST_KEY" -d "$BODY" | grep -q 'slept-240s' \
     && pass "240 s execute survives end to end" || fail "240 s execute (see the probe 8b contingency note above)"

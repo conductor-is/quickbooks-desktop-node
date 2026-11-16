@@ -9,7 +9,7 @@ const repoRoot = path.resolve(pkgRoot, '..', '..');
 describe('conductor self-hosting patches', () => {
   test('code-tool.ts keeps the local execution timeout patch and crash fix', () => {
     const src = fs.readFileSync(path.join(pkgRoot, 'src', 'code-tool.ts'), 'utf-8');
-    expect(src).toContain('CODE_EXECUTION_TIMEOUT_MS');
+    expect(src).toContain('DEFAULT_CODE_EXECUTION_TIMEOUT_MS');
     expect(src).toContain('CodeExecutionTimeoutError');
     // Without this listener, worker.terminate() on timeout crashes the process.
     expect(src).toContain("req.on('error'");
@@ -18,7 +18,7 @@ describe('conductor self-hosting patches', () => {
   test('code-tool.ts keeps the worker resource caps', () => {
     const src = fs.readFileSync(path.join(pkgRoot, 'src', 'code-tool.ts'), 'utf-8');
     expect(src).toContain('max-old-space-size');
-    expect(src).toContain('CODE_EXECUTION_MAX_CONCURRENCY');
+    expect(src).toContain('DEFAULT_MAX_CONCURRENT_LOCAL_EXECUTIONS');
   });
 
   test('the execute tool description carries the rules every client must see', () => {

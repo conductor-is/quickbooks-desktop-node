@@ -2,7 +2,6 @@
 
 import { ContentBlock, McpRequestContext, McpTool, Metadata, ToolCallResult, asErrorResult } from './types';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { readEnv } from './util';
 import { WorkerOutput } from './code-tool-types';
 import { getLogger } from './logger';
 import { SdkMethod } from './methods';
@@ -145,38 +144,22 @@ export function codeTool({
   return { metadata, tool, handler };
 }
 
-// Total wall-clock limit for one local code execution. Defaults to roughly the
-// five minute limit of the retired Stainless-hosted sandbox. Override with the
-// CODE_EXECUTION_TIMEOUT_MS environment variable (milliseconds). The name
-// deliberately avoids the MCP_SERVER_ prefix so the yargs .env('MCP_SERVER')
-// binding in options.ts never sees it.
+// Total wall-clock limit for one local code execution: roughly the five
+// minute limit of the retired Stainless-hosted sandbox.
 const DEFAULT_CODE_EXECUTION_TIMEOUT_MS = 5 * 60 * 1000;
 
 class CodeExecutionTimeoutError extends Error {}
 
-function getCodeExecutionTimeoutMs(): number {
-  const raw = readEnv('CODE_EXECUTION_TIMEOUT_MS');
-  const parsed = raw ? Number(raw) : NaN;
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : DEFAULT_CODE_EXECUTION_TIMEOUT_MS;
-}
-
 // Cap concurrent local code executions so a burst of Deno workers cannot
 // starve the host. Waiters queue in FIFO order; well-behaved callers just
-// wait briefly. Override with CODE_EXECUTION_MAX_CONCURRENCY (integer >= 1);
-// like CODE_EXECUTION_TIMEOUT_MS, the name avoids the MCP_SERVER_ prefix.
+// wait briefly.
 const DEFAULT_MAX_CONCURRENT_LOCAL_EXECUTIONS = 4;
 
 let activeLocalExecutions = 0;
 const localExecutionWaiters: Array<() => void> = [];
 
-function getMaxConcurrentLocalExecutions(): number {
-  const raw = readEnv('CODE_EXECUTION_MAX_CONCURRENCY');
-  const parsed = raw ? Number(raw) : NaN;
-  return Number.isInteger(parsed) && parsed >= 1 ? parsed : DEFAULT_MAX_CONCURRENT_LOCAL_EXECUTIONS;
-}
-
 async function acquireLocalExecutionSlot(): Promise<void> {
-  if (activeLocalExecutions < getMaxConcurrentLocalExecutions()) {
+  if (activeLocalExecutions < DEFAULT_MAX_CONCURRENT_LOCAL_EXECUTIONS) {
     activeLocalExecutions += 1;
     return;
   }
@@ -302,7 +285,7 @@ const localDenoHandlerInner = async ({
     },
   });
 
-  const timeoutMs = getCodeExecutionTimeoutMs();
+  const timeoutMs = DEFAULT_CODE_EXECUTION_TIMEOUT_MS;
   let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
   // Conductor patch: the third racer below rejects when the MCP request's abort signal fires (the client
   // closed its connection); the listener is removed in finally so a finished call leaves nothing behind.
