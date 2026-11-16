@@ -21,11 +21,14 @@ const NOT_SET_UP_HINT =
   "This company file has never connected to this Conductor project; the fix is on the computer that runs QuickBooks Desktop, so tell the user the message above. If the user's company file is connected in a different Conductor project, signing in again and choosing that project fixes it. Do not retry in this call; retry at most once in a later call, and stop if it fails again.";
 const END_USER_ID_HINT =
   'Pass `conductorEndUserId` from `conductor.endUsers.list()`. End-user ids belong to one Conductor project, so an id from another project or an earlier key does not work here.';
-// Names describe_operation, which Conductor's MCP server at mcp.conductor.is lists beside execute, and not
-// search_docs, which it retired. The retired code-mode address (code.mcp.conductor.is, off from 2026-11-18)
-// runs this same code and lists search_docs instead, so its last few users see a tool it lacks until then.
-const INVALID_REQUEST_HINT =
-  'Call `describe_operation` with the resource and operation of the method (`invoices` and `list` for `conductor.qbd.invoices.list`) to read its parameters instead of guessing again.';
+// For INVALID_PARAMETERS, the API's answer to a parameter it does not take or a value of the wrong type. The
+// same code serves Conductor's MCP server at mcp.conductor.is, which lists describe_operation beside execute,
+// and a server run from this package, which lists search_docs, so the hint names both and the model calls
+// the one it has. describe_operation takes the REST operation (a report is `reports/<category>` and
+// `report`), has no entry for the end-user and auth-session methods, and describes the REST input without
+// `conductorEndUserId` (a header there) or `cursor` (which its list tools refuse), hence the rest.
+const INVALID_PARAMETERS_HINT =
+  'Look up the parameters of this method instead of guessing again: call `describe_operation` with its resource and operation (`invoices` and `list` for `conductor.qbd.invoices.list`, `reports/aging` and `report` for `conductor.qbd.reports.aging`), or `search_docs` with the method name where that tool is listed instead, or read https://docs.conductor.is/api-ref. `describe_operation` leaves out `conductorEndUserId` and `cursor`; keep them.';
 
 // Replaces makeStatusError on the prototype that owns it (the SDK calls it as `this.makeStatusError` for
 // every non-2xx response) with a wrapper that rewrites the resulting error's message. The prototype, not
@@ -80,7 +83,8 @@ function hintFor({ code, message, type }: ErrorEnvelope): string | undefined {
   if (code === 'END_USER_ID_HEADER_MISSING') return END_USER_ID_HINT;
   if (code === 'RESOURCE_MISSING')
     return message.startsWith('No such end-user') ? END_USER_ID_HINT : undefined;
-  if (type === 'INVALID_REQUEST_ERROR') return INVALID_REQUEST_HINT;
+  // Other invalid requests, such as CURSOR_REQUEST_RETRIED, carry their own next step in the message.
+  if (code === 'INVALID_PARAMETERS') return INVALID_PARAMETERS_HINT;
   return undefined;
 }
 

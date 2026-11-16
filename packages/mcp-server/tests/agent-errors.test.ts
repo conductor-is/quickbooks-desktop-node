@@ -15,15 +15,23 @@ function envelope(code: string, message: string, type?: string) {
 }
 
 describe('formatAgentErrorMessage', () => {
-  test('one line with code, message, status and request id, and no hint for an unknown code', () => {
+  test('one line with code, message, status and request id; a parameter error gets the lookup hint and an unknown code none', () => {
     const text = formatAgentErrorMessage(
       400,
       envelope('INVALID_PARAMETERS', 'Unrecognized key: "payeeIds"', 'INVALID_REQUEST_ERROR'),
       headersWith('req_123'),
     );
     expect(text).toBe(
-      'INVALID_PARAMETERS: Unrecognized key: "payeeIds" (HTTP 400, request req_123)\nCall `describe_operation` with the resource and operation of the method (`invoices` and `list` for `conductor.qbd.invoices.list`) to read its parameters instead of guessing again.',
+      'INVALID_PARAMETERS: Unrecognized key: "payeeIds" (HTTP 400, request req_123)\nLook up the parameters of this method instead of guessing again: call `describe_operation` with its resource and operation (`invoices` and `list` for `conductor.qbd.invoices.list`, `reports/aging` and `report` for `conductor.qbd.reports.aging`), or `search_docs` with the method name where that tool is listed instead, or read https://docs.conductor.is/api-ref. `describe_operation` leaves out `conductorEndUserId` and `cursor`; keep them.',
     );
+    // Another invalid request carries its own next step and gets no lookup hint.
+    expect(
+      formatAgentErrorMessage(
+        409,
+        envelope('CURSOR_REQUEST_RETRIED', 'Start over without the cursor.', 'INVALID_REQUEST_ERROR'),
+        headersWith(),
+      ),
+    ).toBe('CURSOR_REQUEST_RETRIED: Start over without the cursor. (HTTP 409)');
     expect(
       formatAgentErrorMessage(500, envelope('INTERNAL_ERROR', 'boom', 'INTERNAL_ERROR'), headersWith()),
     ).toBe('INTERNAL_ERROR: boom (HTTP 500)');
