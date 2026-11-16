@@ -2410,7 +2410,8 @@ export interface CheckUpdateParams {
   conductorEndUserId: string;
 
   /**
-   * Body param: The address that is printed on the check.
+   * Body param: The address that is printed on the check. Address fields you omit
+   * keep their stored values; send a field as an empty string to clear it.
    */
   address?: CheckUpdateParams.Address;
 
@@ -2561,7 +2562,8 @@ export interface CheckUpdateParams {
 
 export namespace CheckUpdateParams {
   /**
-   * The address that is printed on the check.
+   * The address that is printed on the check. Address fields you omit keep their
+   * stored values; send a field as an empty string to clear it.
    */
   export interface Address {
     /**
