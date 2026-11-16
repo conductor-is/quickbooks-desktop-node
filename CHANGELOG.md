@@ -1,5 +1,31 @@
 # Changelog
 
+## [16.1.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.1.0...v16.1.1) (2026-11-16)
+
+
+### Bug Fixes
+
+* **mcp:** make the execute parameter hint right on every server ([633f010](https://github.com/conductor-is/quickbooks-desktop-node/commit/633f010eeaee55b43f3bb8b460f72756316e573c))
+* **mcp:** point the execute parameter hint at describe_operation ([472a28d](https://github.com/conductor-is/quickbooks-desktop-node/commit/472a28defd5cd73500c8a751236b530175bb72f7))
+
+## [16.1.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.0.0...v16.1.0) (2026-11-16)
+
+
+### Features
+
+* **api:** add hasMore and remainingCount to list pages ([69e42f0](https://github.com/conductor-is/quickbooks-desktop-node/commit/69e42f0331eff065342cde9180a143ad8fe7a227))
+* **mcp:** name the MCP client in the bridge's User-Agent ([c5b2c3e](https://github.com/conductor-is/quickbooks-desktop-node/commit/c5b2c3ebae1edfc7d8f56022924050ab35f75c9e))
+
+
+### Bug Fixes
+
+* **mcp:** close the request an MCP client cancels through the bridge ([80f39c4](https://github.com/conductor-is/quickbooks-desktop-node/commit/80f39c41098d83725f0c907d2cf3a51c4cf814b2))
+
+
+### Chores
+
+* **mcp:** remove the code execution env overrides ([eb4261d](https://github.com/conductor-is/quickbooks-desktop-node/commit/eb4261d4fd703fdc1f00c9d56e9bd53e92586792))
+
 ## [16.0.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v15.2.0...v16.0.0) (2026-11-16)
 
 
