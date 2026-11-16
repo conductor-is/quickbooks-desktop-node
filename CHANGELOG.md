@@ -1,5 +1,19 @@
 # Changelog
 
+## [16.1.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.1.1...v16.1.2) (2026-11-16)
+
+
+### Bug Fixes
+
+* **api:** describe name filters as matching the full name ([17b590a](https://github.com/conductor-is/quickbooks-desktop-node/commit/17b590a87a23da32373c119091c09d96a0c49eef))
+* **api:** describe name filters as matching the full name ([61d1708](https://github.com/conductor-is/quickbooks-desktop-node/commit/61d1708d842ccaf54bee167303697cd941bb19ca))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([d073bc7](https://github.com/conductor-is/quickbooks-desktop-node/commit/d073bc7d1e5b0e9d5916dc9501613fe176833013))
+* **api:** update documented OpenAPI spec for download ([e5d7902](https://github.com/conductor-is/quickbooks-desktop-node/commit/e5d79024448ac9d9479342a7e1ce869d9766927a))
+
 ## [16.1.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.1.0...v16.1.1) (2026-11-16)
 
 

@@ -2609,7 +2609,8 @@ export interface BillUpdateParams {
   transactionDate?: string;
 
   /**
-   * Body param: The address of the vendor who sent this bill.
+   * Body param: The address of the vendor who sent this bill. Address fields you
+   * omit keep their stored values; send a field as an empty string to clear it.
    */
   vendorAddress?: BillUpdateParams.VendorAddress;
 
@@ -3078,7 +3079,8 @@ export namespace BillUpdateParams {
   }
 
   /**
-   * The address of the vendor who sent this bill.
+   * The address of the vendor who sent this bill. Address fields you omit keep their
+   * stored values; send a field as an empty string to clear it.
    */
   export interface VendorAddress {
     /**

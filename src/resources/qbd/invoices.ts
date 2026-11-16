@@ -2682,7 +2682,8 @@ export interface InvoiceUpdateParams {
   applyCredits?: Array<InvoiceUpdateParams.ApplyCredit>;
 
   /**
-   * Body param: The invoice's billing address.
+   * Body param: The invoice's billing address. Address fields you omit keep their
+   * stored values; send a field as an empty string to clear it.
    */
   billingAddress?: InvoiceUpdateParams.BillingAddress;
 
@@ -2876,7 +2877,8 @@ export interface InvoiceUpdateParams {
   shipmentOrigin?: string;
 
   /**
-   * Body param: The invoice's shipping address.
+   * Body param: The invoice's shipping address. Address fields you omit keep their
+   * stored values; send a field as an empty string to clear it.
    */
   shippingAddress?: InvoiceUpdateParams.ShippingAddress;
 
@@ -2928,7 +2930,8 @@ export namespace InvoiceUpdateParams {
   }
 
   /**
-   * The invoice's billing address.
+   * The invoice's billing address. Address fields you omit keep their stored values;
+   * send a field as an empty string to clear it.
    */
   export interface BillingAddress {
     /**
@@ -3441,7 +3444,8 @@ export namespace InvoiceUpdateParams {
   }
 
   /**
-   * The invoice's shipping address.
+   * The invoice's shipping address. Address fields you omit keep their stored
+   * values; send a field as an empty string to clear it.
    */
   export interface ShippingAddress {
     /**

@@ -3340,7 +3340,8 @@ export interface SalesReceiptUpdateParams {
   conductorEndUserId: string;
 
   /**
-   * Body param: The sales receipt's billing address.
+   * Body param: The sales receipt's billing address. Address fields you omit keep
+   * their stored values; send a field as an empty string to clear it.
    */
   billingAddress?: SalesReceiptUpdateParams.BillingAddress;
 
@@ -3539,7 +3540,8 @@ export interface SalesReceiptUpdateParams {
   shipmentOrigin?: string;
 
   /**
-   * Body param: The sales receipt's shipping address.
+   * Body param: The sales receipt's shipping address. Address fields you omit keep
+   * their stored values; send a field as an empty string to clear it.
    */
   shippingAddress?: SalesReceiptUpdateParams.ShippingAddress;
 
@@ -3563,7 +3565,8 @@ export interface SalesReceiptUpdateParams {
 
 export namespace SalesReceiptUpdateParams {
   /**
-   * The sales receipt's billing address.
+   * The sales receipt's billing address. Address fields you omit keep their stored
+   * values; send a field as an empty string to clear it.
    */
   export interface BillingAddress {
     /**
@@ -4082,7 +4085,8 @@ export namespace SalesReceiptUpdateParams {
   }
 
   /**
-   * The sales receipt's shipping address.
+   * The sales receipt's shipping address. Address fields you omit keep their stored
+   * values; send a field as an empty string to clear it.
    */
   export interface ShippingAddress {
     /**
