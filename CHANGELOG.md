@@ -1,5 +1,13 @@
 # Changelog
 
+## [16.1.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.1.0...v16.1.1) (2026-11-16)
+
+
+### Bug Fixes
+
+* **mcp:** make the execute parameter hint right on every server ([633f010](https://github.com/conductor-is/quickbooks-desktop-node/commit/633f010eeaee55b43f3bb8b460f72756316e573c))
+* **mcp:** point the execute parameter hint at describe_operation ([472a28d](https://github.com/conductor-is/quickbooks-desktop-node/commit/472a28defd5cd73500c8a751236b530175bb72f7))
+
 ## [16.1.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.0.0...v16.1.0) (2026-11-16)
 
 
