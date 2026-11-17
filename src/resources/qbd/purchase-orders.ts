@@ -2502,8 +2502,10 @@ export interface PurchaseOrderUpdateParams {
   shipmentOrigin?: string;
 
   /**
-   * Body param: The purchase order's shipping address. Address fields you omit keep
-   * their stored values; send a field as an empty string to clear it.
+   * Body param: The purchase order's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   shippingAddress?: PurchaseOrderUpdateParams.ShippingAddress;
 
@@ -2531,9 +2533,10 @@ export interface PurchaseOrderUpdateParams {
   transactionDate?: string;
 
   /**
-   * Body param: The address of the vendor who sent this purchase order. Address
-   * fields you omit keep their stored values; send a field as an empty string to
-   * clear it.
+   * Body param: The address of the vendor who sent this purchase order.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   vendorAddress?: PurchaseOrderUpdateParams.VendorAddress;
 
@@ -2962,8 +2965,10 @@ export namespace PurchaseOrderUpdateParams {
   }
 
   /**
-   * The purchase order's shipping address. Address fields you omit keep their stored
-   * values; send a field as an empty string to clear it.
+   * The purchase order's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface ShippingAddress {
     /**
@@ -3040,8 +3045,10 @@ export namespace PurchaseOrderUpdateParams {
   }
 
   /**
-   * The address of the vendor who sent this purchase order. Address fields you omit
-   * keep their stored values; send a field as an empty string to clear it.
+   * The address of the vendor who sent this purchase order.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface VendorAddress {
     /**

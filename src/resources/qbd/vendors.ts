@@ -1511,8 +1511,10 @@ export interface VendorUpdateParams {
   alternatePhone?: string;
 
   /**
-   * Body param: The vendor's billing address. Address fields you omit keep their
-   * stored values; send a field as an empty string to clear it.
+   * Body param: The vendor's billing address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   billingAddress?: VendorUpdateParams.BillingAddress;
 
@@ -1742,8 +1744,10 @@ export interface VendorUpdateParams {
   salutation?: string;
 
   /**
-   * Body param: The vendor's shipping address. Address fields you omit keep their
-   * stored values; send a field as an empty string to clear it.
+   * Body param: The vendor's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   shippingAddress?: VendorUpdateParams.ShippingAddress;
 
@@ -1865,8 +1869,10 @@ export namespace VendorUpdateParams {
   }
 
   /**
-   * The vendor's billing address. Address fields you omit keep their stored values;
-   * send a field as an empty string to clear it.
+   * The vendor's billing address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface BillingAddress {
     /**
@@ -1959,8 +1965,10 @@ export namespace VendorUpdateParams {
   }
 
   /**
-   * The vendor's shipping address. Address fields you omit keep their stored values;
-   * send a field as an empty string to clear it.
+   * The vendor's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface ShippingAddress {
     /**

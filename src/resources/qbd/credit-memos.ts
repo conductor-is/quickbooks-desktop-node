@@ -2479,8 +2479,10 @@ export interface CreditMemoUpdateParams {
   conductorEndUserId: string;
 
   /**
-   * Body param: The credit memo's billing address. Address fields you omit keep
-   * their stored values; send a field as an empty string to clear it.
+   * Body param: The credit memo's billing address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   billingAddress?: CreditMemoUpdateParams.BillingAddress;
 
@@ -2663,8 +2665,10 @@ export interface CreditMemoUpdateParams {
   shipmentOrigin?: string;
 
   /**
-   * Body param: The credit memo's shipping address. Address fields you omit keep
-   * their stored values; send a field as an empty string to clear it.
+   * Body param: The credit memo's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   shippingAddress?: CreditMemoUpdateParams.ShippingAddress;
 
@@ -2694,8 +2698,10 @@ export interface CreditMemoUpdateParams {
 
 export namespace CreditMemoUpdateParams {
   /**
-   * The credit memo's billing address. Address fields you omit keep their stored
-   * values; send a field as an empty string to clear it.
+   * The credit memo's billing address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface BillingAddress {
     /**
@@ -3198,8 +3204,10 @@ export namespace CreditMemoUpdateParams {
   }
 
   /**
-   * The credit memo's shipping address. Address fields you omit keep their stored
-   * values; send a field as an empty string to clear it.
+   * The credit memo's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface ShippingAddress {
     /**
