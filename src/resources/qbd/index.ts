@@ -14,6 +14,7 @@ export {
   type AccountRetrieveParams,
   type AccountUpdateParams,
   type AccountListParams,
+  type AccountSetCustomFieldsParams,
 } from './accounts';
 export {
   BillCheckPayments,
@@ -25,6 +26,7 @@ export {
   type BillCheckPaymentUpdateParams,
   type BillCheckPaymentListParams,
   type BillCheckPaymentDeleteParams,
+  type BillCheckPaymentSetCustomFieldsParams,
   type BillCheckPaymentVoidParams,
   type BillCheckPaymentsCursorPage,
 } from './bill-check-payments';
@@ -37,6 +39,7 @@ export {
   type BillCreditCardPaymentRetrieveParams,
   type BillCreditCardPaymentListParams,
   type BillCreditCardPaymentDeleteParams,
+  type BillCreditCardPaymentSetCustomFieldsParams,
   type BillCreditCardPaymentVoidParams,
   type BillCreditCardPaymentsCursorPage,
 } from './bill-credit-card-payments';
@@ -50,6 +53,7 @@ export {
   type BillUpdateParams,
   type BillListParams,
   type BillDeleteParams,
+  type BillSetCustomFieldsParams,
   type BillVoidParams,
   type BillsCursorPage,
 } from './bills';
@@ -68,6 +72,7 @@ export {
   type BuildAssemblyUpdateParams,
   type BuildAssemblyListParams,
   type BuildAssemblyDeleteParams,
+  type BuildAssemblySetCustomFieldsParams,
   type BuildAssembliesCursorPage,
 } from './build-assemblies';
 export {
@@ -80,6 +85,7 @@ export {
   type CheckUpdateParams,
   type CheckListParams,
   type CheckDeleteParams,
+  type CheckSetCustomFieldsParams,
   type CheckVoidParams,
   type ChecksCursorPage,
 } from './checks';
@@ -103,6 +109,7 @@ export {
   type CreditCardChargeUpdateParams,
   type CreditCardChargeListParams,
   type CreditCardChargeDeleteParams,
+  type CreditCardChargeSetCustomFieldsParams,
   type CreditCardChargeVoidParams,
   type CreditCardChargesCursorPage,
 } from './credit-card-charges';
@@ -116,6 +123,7 @@ export {
   type CreditCardCreditUpdateParams,
   type CreditCardCreditListParams,
   type CreditCardCreditDeleteParams,
+  type CreditCardCreditSetCustomFieldsParams,
   type CreditCardCreditVoidParams,
   type CreditCardCreditsCursorPage,
 } from './credit-card-credits';
@@ -128,6 +136,7 @@ export {
   type CreditCardRefundRetrieveParams,
   type CreditCardRefundListParams,
   type CreditCardRefundDeleteParams,
+  type CreditCardRefundSetCustomFieldsParams,
   type CreditCardRefundVoidParams,
   type CreditCardRefundsCursorPage,
 } from './credit-card-refunds';
@@ -141,6 +150,7 @@ export {
   type CreditMemoUpdateParams,
   type CreditMemoListParams,
   type CreditMemoDeleteParams,
+  type CreditMemoSetCustomFieldsParams,
   type CreditMemoVoidParams,
   type CreditMemosCursorPage,
 } from './credit-memos';
@@ -153,6 +163,16 @@ export {
   type CurrencyUpdateParams,
   type CurrencyListParams,
 } from './currencies';
+export {
+  CustomFieldDefinitions,
+  type CustomFieldDefinition,
+  type CustomFieldDefinitionListResponse,
+  type CustomFieldDefinitionDeleteResponse,
+  type CustomFieldDefinitionCreateParams,
+  type CustomFieldDefinitionUpdateParams,
+  type CustomFieldDefinitionListParams,
+  type CustomFieldDefinitionDeleteParams,
+} from './custom-field-definitions';
 export {
   CustomerTypes,
   type CustomerType,
@@ -168,6 +188,7 @@ export {
   type CustomerRetrieveParams,
   type CustomerUpdateParams,
   type CustomerListParams,
+  type CustomerSetCustomFieldsParams,
   type CustomersCursorPage,
 } from './customers';
 export {
@@ -200,6 +221,7 @@ export {
   type DepositUpdateParams,
   type DepositListParams,
   type DepositDeleteParams,
+  type DepositSetCustomFieldsParams,
   type DepositVoidParams,
   type DepositsCursorPage,
 } from './deposits';
@@ -210,6 +232,7 @@ export {
   type DiscountItemRetrieveParams,
   type DiscountItemUpdateParams,
   type DiscountItemListParams,
+  type DiscountItemSetCustomFieldsParams,
   type DiscountItemsCursorPage,
 } from './discount-items';
 export {
@@ -220,6 +243,7 @@ export {
   type EmployeeRetrieveParams,
   type EmployeeUpdateParams,
   type EmployeeListParams,
+  type EmployeeSetCustomFieldsParams,
 } from './employees';
 export {
   Estimates,
@@ -230,6 +254,7 @@ export {
   type EstimateUpdateParams,
   type EstimateListParams,
   type EstimateDeleteParams,
+  type EstimateSetCustomFieldsParams,
   type EstimatesCursorPage,
 } from './estimates';
 export {
@@ -243,6 +268,7 @@ export {
   type InventoryAdjustmentUpdateParams,
   type InventoryAdjustmentListParams,
   type InventoryAdjustmentDeleteParams,
+  type InventoryAdjustmentSetCustomFieldsParams,
   type InventoryAdjustmentVoidParams,
 } from './inventory-adjustments';
 export {
@@ -252,6 +278,7 @@ export {
   type InventoryAssemblyItemRetrieveParams,
   type InventoryAssemblyItemUpdateParams,
   type InventoryAssemblyItemListParams,
+  type InventoryAssemblyItemSetCustomFieldsParams,
   type InventoryAssemblyItemsCursorPage,
 } from './inventory-assembly-items';
 export {
@@ -261,6 +288,7 @@ export {
   type InventoryItemRetrieveParams,
   type InventoryItemUpdateParams,
   type InventoryItemListParams,
+  type InventoryItemSetCustomFieldsParams,
   type InventoryItemsCursorPage,
 } from './inventory-items';
 export {
@@ -282,6 +310,7 @@ export {
   type InvoiceUpdateParams,
   type InvoiceListParams,
   type InvoiceDeleteParams,
+  type InvoiceSetCustomFieldsParams,
   type InvoiceVoidParams,
   type InvoicesCursorPage,
 } from './invoices';
@@ -292,6 +321,7 @@ export {
   type ItemGroupRetrieveParams,
   type ItemGroupUpdateParams,
   type ItemGroupListParams,
+  type ItemGroupSetCustomFieldsParams,
   type ItemGroupsCursorPage,
 } from './item-groups';
 export {
@@ -304,6 +334,7 @@ export {
   type ItemReceiptUpdateParams,
   type ItemReceiptListParams,
   type ItemReceiptDeleteParams,
+  type ItemReceiptSetCustomFieldsParams,
   type ItemReceiptVoidParams,
   type ItemReceiptsCursorPage,
 } from './item-receipts';
@@ -324,6 +355,7 @@ export {
   type JournalEntryUpdateParams,
   type JournalEntryListParams,
   type JournalEntryDeleteParams,
+  type JournalEntrySetCustomFieldsParams,
   type JournalEntryVoidParams,
   type JournalEntriesCursorPage,
 } from './journal-entries';
@@ -334,6 +366,7 @@ export {
   type NonInventoryItemRetrieveParams,
   type NonInventoryItemUpdateParams,
   type NonInventoryItemListParams,
+  type NonInventoryItemSetCustomFieldsParams,
   type NonInventoryItemsCursorPage,
 } from './non-inventory-items';
 export {
@@ -343,6 +376,7 @@ export {
   type OtherChargeItemRetrieveParams,
   type OtherChargeItemUpdateParams,
   type OtherChargeItemListParams,
+  type OtherChargeItemSetCustomFieldsParams,
   type OtherChargeItemsCursorPage,
 } from './other-charge-items';
 export {
@@ -353,6 +387,7 @@ export {
   type OtherNameRetrieveParams,
   type OtherNameUpdateParams,
   type OtherNameListParams,
+  type OtherNameSetCustomFieldsParams,
 } from './other-names';
 export {
   PaymentMethods,
@@ -395,6 +430,7 @@ export {
   type PurchaseOrderUpdateParams,
   type PurchaseOrderListParams,
   type PurchaseOrderDeleteParams,
+  type PurchaseOrderSetCustomFieldsParams,
   type PurchaseOrdersCursorPage,
 } from './purchase-orders';
 export { Qbd, type QbdHealthCheckResponse, type QbdHealthCheckParams } from './qbd';
@@ -407,6 +443,7 @@ export {
   type ReceivePaymentUpdateParams,
   type ReceivePaymentListParams,
   type ReceivePaymentDeleteParams,
+  type ReceivePaymentSetCustomFieldsParams,
   type ReceivePaymentsCursorPage,
 } from './receive-payments';
 export {
@@ -432,6 +469,7 @@ export {
   type SalesOrderUpdateParams,
   type SalesOrderListParams,
   type SalesOrderDeleteParams,
+  type SalesOrderSetCustomFieldsParams,
   type SalesOrdersCursorPage,
 } from './sales-orders';
 export {
@@ -444,6 +482,7 @@ export {
   type SalesReceiptUpdateParams,
   type SalesReceiptListParams,
   type SalesReceiptDeleteParams,
+  type SalesReceiptSetCustomFieldsParams,
   type SalesReceiptVoidParams,
   type SalesReceiptsCursorPage,
 } from './sales-receipts';
@@ -472,6 +511,7 @@ export {
   type SalesTaxGroupItemRetrieveParams,
   type SalesTaxGroupItemUpdateParams,
   type SalesTaxGroupItemListParams,
+  type SalesTaxGroupItemSetCustomFieldsParams,
   type SalesTaxGroupItemsCursorPage,
 } from './sales-tax-group-items';
 export {
@@ -481,6 +521,7 @@ export {
   type SalesTaxItemRetrieveParams,
   type SalesTaxItemUpdateParams,
   type SalesTaxItemListParams,
+  type SalesTaxItemSetCustomFieldsParams,
   type SalesTaxItemsCursorPage,
 } from './sales-tax-items';
 export {
@@ -493,6 +534,7 @@ export {
   type SalesTaxPaymentCheckUpdateParams,
   type SalesTaxPaymentCheckListParams,
   type SalesTaxPaymentCheckDeleteParams,
+  type SalesTaxPaymentCheckSetCustomFieldsParams,
   type SalesTaxPaymentCheckVoidParams,
   type SalesTaxPaymentChecksCursorPage,
 } from './sales-tax-payment-checks';
@@ -503,6 +545,7 @@ export {
   type ServiceItemRetrieveParams,
   type ServiceItemUpdateParams,
   type ServiceItemListParams,
+  type ServiceItemSetCustomFieldsParams,
   type ServiceItemsCursorPage,
 } from './service-items';
 export {
@@ -528,6 +571,7 @@ export {
   type SubtotalItemRetrieveParams,
   type SubtotalItemUpdateParams,
   type SubtotalItemListParams,
+  type SubtotalItemSetCustomFieldsParams,
   type SubtotalItemsCursorPage,
 } from './subtotal-items';
 export { Templates, type Template, type TemplateListResponse, type TemplateListParams } from './templates';
@@ -576,6 +620,7 @@ export {
   type VendorCreditUpdateParams,
   type VendorCreditListParams,
   type VendorCreditDeleteParams,
+  type VendorCreditSetCustomFieldsParams,
   type VendorCreditVoidParams,
   type VendorCreditsCursorPage,
 } from './vendor-credits';
@@ -586,5 +631,6 @@ export {
   type VendorRetrieveParams,
   type VendorUpdateParams,
   type VendorListParams,
+  type VendorSetCustomFieldsParams,
   type VendorsCursorPage,
 } from './vendors';
