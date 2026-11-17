@@ -1877,8 +1877,10 @@ export interface CustomerUpdateParams {
   alternateShippingAddresses?: Array<CustomerUpdateParams.AlternateShippingAddress>;
 
   /**
-   * Body param: The customer's billing address. Address fields you omit keep their
-   * stored values; send a field as an empty string to clear it.
+   * Body param: The customer's billing address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   billingAddress?: CustomerUpdateParams.BillingAddress;
 
@@ -2140,8 +2142,10 @@ export interface CustomerUpdateParams {
   salutation?: string;
 
   /**
-   * Body param: The customer's shipping address. Address fields you omit keep their
-   * stored values; send a field as an empty string to clear it.
+   * Body param: The customer's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   shippingAddress?: CustomerUpdateParams.ShippingAddress;
 
@@ -2341,8 +2345,10 @@ export namespace CustomerUpdateParams {
   }
 
   /**
-   * The customer's billing address. Address fields you omit keep their stored
-   * values; send a field as an empty string to clear it.
+   * The customer's billing address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface BillingAddress {
     /**
@@ -2479,8 +2485,10 @@ export namespace CustomerUpdateParams {
   }
 
   /**
-   * The customer's shipping address. Address fields you omit keep their stored
-   * values; send a field as an empty string to clear it.
+   * The customer's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface ShippingAddress {
     /**

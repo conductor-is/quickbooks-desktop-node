@@ -729,9 +729,10 @@ export interface SalesTaxPaymentCheckUpdateParams {
   conductorEndUserId: string;
 
   /**
-   * Body param: The address that is printed on the sales-tax payment check. Address
-   * fields you omit keep their stored values; send a field as an empty string to
-   * clear it.
+   * Body param: The address that is printed on the sales-tax payment check.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   address?: SalesTaxPaymentCheckUpdateParams.Address;
 
@@ -776,8 +777,10 @@ export interface SalesTaxPaymentCheckUpdateParams {
 
 export namespace SalesTaxPaymentCheckUpdateParams {
   /**
-   * The address that is printed on the sales-tax payment check. Address fields you
-   * omit keep their stored values; send a field as an empty string to clear it.
+   * The address that is printed on the sales-tax payment check.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface Address {
     /**

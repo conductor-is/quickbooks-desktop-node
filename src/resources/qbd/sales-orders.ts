@@ -2398,8 +2398,10 @@ export interface SalesOrderUpdateParams {
   conductorEndUserId: string;
 
   /**
-   * Body param: The sales order's billing address. Address fields you omit keep
-   * their stored values; send a field as an empty string to clear it.
+   * Body param: The sales order's billing address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   billingAddress?: SalesOrderUpdateParams.BillingAddress;
 
@@ -2588,8 +2590,10 @@ export interface SalesOrderUpdateParams {
   shipmentOrigin?: string;
 
   /**
-   * Body param: The sales order's shipping address. Address fields you omit keep
-   * their stored values; send a field as an empty string to clear it.
+   * Body param: The sales order's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   shippingAddress?: SalesOrderUpdateParams.ShippingAddress;
 
@@ -2619,8 +2623,10 @@ export interface SalesOrderUpdateParams {
 
 export namespace SalesOrderUpdateParams {
   /**
-   * The sales order's billing address. Address fields you omit keep their stored
-   * values; send a field as an empty string to clear it.
+   * The sales order's billing address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface BillingAddress {
     /**
@@ -3121,8 +3127,10 @@ export namespace SalesOrderUpdateParams {
   }
 
   /**
-   * The sales order's shipping address. Address fields you omit keep their stored
-   * values; send a field as an empty string to clear it.
+   * The sales order's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface ShippingAddress {
     /**

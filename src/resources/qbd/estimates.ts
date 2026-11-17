@@ -2276,8 +2276,10 @@ export interface EstimateUpdateParams {
   conductorEndUserId: string;
 
   /**
-   * Body param: The estimate's billing address. Address fields you omit keep their
-   * stored values; send a field as an empty string to clear it.
+   * Body param: The estimate's billing address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   billingAddress?: EstimateUpdateParams.BillingAddress;
 
@@ -2453,8 +2455,10 @@ export interface EstimateUpdateParams {
   shipmentOrigin?: string;
 
   /**
-   * Body param: The estimate's shipping address. Address fields you omit keep their
-   * stored values; send a field as an empty string to clear it.
+   * Body param: The estimate's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   shippingAddress?: EstimateUpdateParams.ShippingAddress;
 
@@ -2472,8 +2476,10 @@ export interface EstimateUpdateParams {
 
 export namespace EstimateUpdateParams {
   /**
-   * The estimate's billing address. Address fields you omit keep their stored
-   * values; send a field as an empty string to clear it.
+   * The estimate's billing address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface BillingAddress {
     /**
@@ -2970,8 +2976,10 @@ export namespace EstimateUpdateParams {
   }
 
   /**
-   * The estimate's shipping address. Address fields you omit keep their stored
-   * values; send a field as an empty string to clear it.
+   * The estimate's shipping address.
+   *
+   * **NOTE**: Address fields you omit keep their stored values; send a field as an
+   * empty string to clear it.
    */
   export interface ShippingAddress {
     /**
