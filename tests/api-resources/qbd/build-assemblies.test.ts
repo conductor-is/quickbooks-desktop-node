@@ -58,6 +58,7 @@ describe('resource buildAssemblies', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.buildAssemblies.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -110,6 +111,7 @@ describe('resource buildAssemblies', () => {
     const response = await conductor.qbd.buildAssemblies.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      customFieldOwnerIds: ['0'],
       ids: ['123ABC-1234567890'],
       includeComponentLineItems: true,
       itemIds: ['80000001-1234567890'],
@@ -144,6 +146,32 @@ describe('resource buildAssemblies', () => {
   test('delete: required and optional params', async () => {
     const response = await conductor.qbd.buildAssemblies.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+  });
+
+  test('setCustomFields: only required params', async () => {
+    const responsePromise = conductor.qbd.buildAssemblies.setCustomFields('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('setCustomFields: required and optional params', async () => {
+    const response = await conductor.qbd.buildAssemblies.setCustomFields('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFields: [
+        {
+          name: 'Customer Rating',
+          value: 'Gold',
+          ownerId: '0',
+        },
+      ],
     });
   });
 });
