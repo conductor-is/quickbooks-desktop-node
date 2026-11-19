@@ -1,5 +1,17 @@
 # Changelog
 
+## [16.1.3](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.1.2...v16.1.3) (2026-11-17)
+
+
+### Bug Fixes
+
+* **api:** say an update keeps the address fields it omits ([f79d571](https://github.com/conductor-is/quickbooks-desktop-node/commit/f79d571a3ff619a2d1e6edcb1b39a58e5309918a))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([cbdca5b](https://github.com/conductor-is/quickbooks-desktop-node/commit/cbdca5b5118e883c744ccf5f540eac40f5280be4))
+
 ## [16.1.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.1.1...v16.1.2) (2026-11-16)
 
 
