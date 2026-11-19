@@ -83740,26 +83740,24 @@ components:
           description: The current QuickBooks-assigned revision number of this estimate object, which changes each time the object is modified. When updating this object, you must provide the most recent `revisionNumber` to ensure you're working with the latest data; otherwise, the update will return an error.
           example: "1721172183"
         customer:
-          anyOf:
-            - type: object
-              properties:
-                id:
-                  anyOf:
-                    - type: string
-                    - type: "null"
-                  description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
-                  example: 80000001-1234567890
-                fullName:
-                  anyOf:
-                    - type: string
-                    - type: "null"
-                  description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
-                  example: Parent:Child:Grandchild
-              required:
-                - id
-                - fullName
-              additionalProperties: false
-            - type: "null"
+          type: object
+          properties:
+            id:
+              anyOf:
+                - type: string
+                - type: "null"
+              description: The unique identifier assigned by QuickBooks to this object. This ID is unique across all objects of the same type, but not across different QuickBooks object types.
+              example: 80000001-1234567890
+            fullName:
+              anyOf:
+                - type: string
+                - type: "null"
+              description: The fully-qualified unique name for this object, formed by combining the names of its parent objects with its own `name`, separated by colons. Not case-sensitive.
+              example: Parent:Child:Grandchild
+          required:
+            - id
+            - fullName
+          additionalProperties: false
           description: The customer or customer-job associated with this estimate.
           example:
             id: 80000001-1234567890
