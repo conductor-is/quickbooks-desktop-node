@@ -168,7 +168,7 @@ export interface Estimate {
   /**
    * The customer or customer-job associated with this estimate.
    */
-  customer: Estimate.Customer | null;
+  customer: Estimate.Customer;
 
   /**
    * The message to display to the customer on the estimate.
