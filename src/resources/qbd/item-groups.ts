@@ -45,8 +45,9 @@ export class ItemGroups extends APIResource {
    * ```
    */
   retrieve(id: string, params: ItemGroupRetrieveParams, options?: RequestOptions): APIPromise<ItemGroup> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/item-groups/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -97,6 +98,40 @@ export class ItemGroups extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Sets or clears custom field values on an item group. A value replaces the custom
+   * field's current value if it has one, and an empty string clears it. Custom
+   * fields you leave out keep their values, and no `revisionNumber` is needed.
+   *
+   * If QuickBooks refuses or does not store any value, the request fails with an
+   * error that names each of those custom fields. The values QuickBooks did save
+   * stay saved, and the error says how many. Sending the same request again is safe.
+   *
+   * **NOTE**: This request changes the item group's `revisionNumber`, so use the one
+   * in its response for your next update.
+   *
+   * @example
+   * ```ts
+   * const itemGroup =
+   *   await conductor.qbd.itemGroups.setCustomFields(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: ItemGroupSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<ItemGroup> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/item-groups/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type ItemGroupsCursorPage = CursorPage<ItemGroup>;
@@ -121,8 +156,11 @@ export interface ItemGroup {
   createdAt: string;
 
   /**
-   * The custom fields for the item group object, added as user-defined data
-   * extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this item group, for the owners named in
+   * the request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: The response to an update returns this as an empty array even when
+   * values exist; retrieve the record to see them.
    */
   customFields: Array<ItemGroup.CustomField>;
 
@@ -211,13 +249,9 @@ export namespace ItemGroup {
     name: string;
 
     /**
-     * The identifier of the owner of the custom field, which QuickBooks internally
-     * calls a "data extension". For public custom fields visible in the UI, such as
-     * those added by the QuickBooks user, this is always "0". For private custom
-     * fields that are only visible to the application that created them, this is a
-     * valid GUID identifying the owning application. Internally, Conductor always
-     * fetches all public custom fields (those with an `ownerId` of "0") for all
-     * objects.
+     * The owner of this custom field: `"0"` for a public custom field, which
+     * QuickBooks users define and see, or an application's GUID in braces for a
+     * private custom field, which appears only in requests that name that owner.
      */
     ownerId: string;
 
@@ -235,8 +269,10 @@ export namespace ItemGroup {
       | 'string_255_type';
 
     /**
-     * The value of this custom field. The maximum length depends on the field's data
-     * type.
+     * The value of this custom field. QuickBooks keeps at most 30 characters of a
+     * public custom field's value: it refuses a longer one on a customer or item, and
+     * on a transaction or line it stores only the first 30 without an error. A private
+     * custom field's limit depends on its type.
      */
     value: string;
   }
@@ -437,9 +473,18 @@ export namespace ItemGroupCreateParams {
 
 export interface ItemGroupRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on item groups. Defaults
+   * to `["0"]`, the owner of public custom fields, which QuickBooks users define and
+   * see. To get an application's private custom fields, add its owner ID, a GUID in
+   * braces. Only the owners you list are returned, so keep `"0"` in the list to also
+   * get the public ones.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface ItemGroupUpdateParams {
@@ -589,6 +634,15 @@ export interface ItemGroupListParams extends CursorPageParams {
   conductorEndUserId: string;
 
   /**
+   * Query param: The owners whose custom fields to return on item groups. Defaults
+   * to `["0"]`, the owner of public custom fields, which QuickBooks users define and
+   * see. To get an application's private custom fields, add its owner ID, a GUID in
+   * braces. Only the owners you list are returned, so keep `"0"` in the list to also
+   * get the public ones.
+   */
+  customFieldOwnerIds?: Array<string>;
+
+  /**
    * Query param: Filter for specific item groups by their QuickBooks-assigned unique
    * identifier(s).
    *
@@ -702,6 +756,45 @@ export interface ItemGroupListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
+export interface ItemGroupSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the item group. Custom
+   * fields you leave out keep their values.
+   */
+  customFields?: Array<ItemGroupSetCustomFieldsParams.CustomField>;
+}
+
+export namespace ItemGroupSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters, the most QuickBooks keeps.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+}
+
 export declare namespace ItemGroups {
   export {
     type ItemGroup as ItemGroup,
@@ -710,5 +803,6 @@ export declare namespace ItemGroups {
     type ItemGroupRetrieveParams as ItemGroupRetrieveParams,
     type ItemGroupUpdateParams as ItemGroupUpdateParams,
     type ItemGroupListParams as ItemGroupListParams,
+    type ItemGroupSetCustomFieldsParams as ItemGroupSetCustomFieldsParams,
   };
 }
