@@ -59,6 +59,7 @@ Methods:
 - <code title="get /quickbooks-desktop/accounts/{id}">client.qbd.accounts.<a href="./src/resources/qbd/accounts.ts">retrieve</a>(id, { ...params }) -> Account</code>
 - <code title="post /quickbooks-desktop/accounts/{id}">client.qbd.accounts.<a href="./src/resources/qbd/accounts.ts">update</a>(id, { ...params }) -> Account</code>
 - <code title="get /quickbooks-desktop/accounts">client.qbd.accounts.<a href="./src/resources/qbd/accounts.ts">list</a>({ ...params }) -> AccountListResponse</code>
+- <code title="post /quickbooks-desktop/accounts/{id}/set-custom-fields">client.qbd.accounts.<a href="./src/resources/qbd/accounts.ts">setCustomFields</a>(id, { ...params }) -> Account</code>
 
 ## BillCheckPayments
 
@@ -75,6 +76,7 @@ Methods:
 - <code title="post /quickbooks-desktop/bill-check-payments/{id}">client.qbd.billCheckPayments.<a href="./src/resources/qbd/bill-check-payments.ts">update</a>(id, { ...params }) -> BillCheckPayment</code>
 - <code title="get /quickbooks-desktop/bill-check-payments">client.qbd.billCheckPayments.<a href="./src/resources/qbd/bill-check-payments.ts">list</a>({ ...params }) -> BillCheckPaymentsCursorPage</code>
 - <code title="delete /quickbooks-desktop/bill-check-payments/{id}">client.qbd.billCheckPayments.<a href="./src/resources/qbd/bill-check-payments.ts">delete</a>(id, { ...params }) -> BillCheckPaymentDeleteResponse</code>
+- <code title="post /quickbooks-desktop/bill-check-payments/{id}/set-custom-fields">client.qbd.billCheckPayments.<a href="./src/resources/qbd/bill-check-payments.ts">setCustomFields</a>(id, { ...params }) -> BillCheckPayment</code>
 - <code title="post /quickbooks-desktop/bill-check-payments/{id}/void">client.qbd.billCheckPayments.<a href="./src/resources/qbd/bill-check-payments.ts">void</a>(id, { ...params }) -> BillCheckPaymentVoidResponse</code>
 
 ## BillCreditCardPayments
@@ -91,6 +93,7 @@ Methods:
 - <code title="get /quickbooks-desktop/bill-credit-card-payments/{id}">client.qbd.billCreditCardPayments.<a href="./src/resources/qbd/bill-credit-card-payments.ts">retrieve</a>(id, { ...params }) -> BillCreditCardPayment</code>
 - <code title="get /quickbooks-desktop/bill-credit-card-payments">client.qbd.billCreditCardPayments.<a href="./src/resources/qbd/bill-credit-card-payments.ts">list</a>({ ...params }) -> BillCreditCardPaymentsCursorPage</code>
 - <code title="delete /quickbooks-desktop/bill-credit-card-payments/{id}">client.qbd.billCreditCardPayments.<a href="./src/resources/qbd/bill-credit-card-payments.ts">delete</a>(id, { ...params }) -> BillCreditCardPaymentDeleteResponse</code>
+- <code title="post /quickbooks-desktop/bill-credit-card-payments/{id}/set-custom-fields">client.qbd.billCreditCardPayments.<a href="./src/resources/qbd/bill-credit-card-payments.ts">setCustomFields</a>(id, { ...params }) -> BillCreditCardPayment</code>
 - <code title="post /quickbooks-desktop/bill-credit-card-payments/{id}/void">client.qbd.billCreditCardPayments.<a href="./src/resources/qbd/bill-credit-card-payments.ts">void</a>(id, { ...params }) -> BillCreditCardPaymentVoidResponse</code>
 
 ## Bills
@@ -108,6 +111,7 @@ Methods:
 - <code title="post /quickbooks-desktop/bills/{id}">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">update</a>(id, { ...params }) -> Bill</code>
 - <code title="get /quickbooks-desktop/bills">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">list</a>({ ...params }) -> BillsCursorPage</code>
 - <code title="delete /quickbooks-desktop/bills/{id}">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">delete</a>(id, { ...params }) -> BillDeleteResponse</code>
+- <code title="post /quickbooks-desktop/bills/{id}/set-custom-fields">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">setCustomFields</a>(id, { ...params }) -> Bill</code>
 - <code title="post /quickbooks-desktop/bills/{id}/void">client.qbd.bills.<a href="./src/resources/qbd/bills.ts">void</a>(id, { ...params }) -> BillVoidResponse</code>
 
 ## BillsToPay
@@ -135,6 +139,7 @@ Methods:
 - <code title="post /quickbooks-desktop/build-assemblies/{id}">client.qbd.buildAssemblies.<a href="./src/resources/qbd/build-assemblies.ts">update</a>(id, { ...params }) -> BuildAssembly</code>
 - <code title="get /quickbooks-desktop/build-assemblies">client.qbd.buildAssemblies.<a href="./src/resources/qbd/build-assemblies.ts">list</a>({ ...params }) -> BuildAssembliesCursorPage</code>
 - <code title="delete /quickbooks-desktop/build-assemblies/{id}">client.qbd.buildAssemblies.<a href="./src/resources/qbd/build-assemblies.ts">delete</a>(id, { ...params }) -> BuildAssemblyDeleteResponse</code>
+- <code title="post /quickbooks-desktop/build-assemblies/{id}/set-custom-fields">client.qbd.buildAssemblies.<a href="./src/resources/qbd/build-assemblies.ts">setCustomFields</a>(id, { ...params }) -> BuildAssembly</code>
 
 ## Checks
 
@@ -151,6 +156,7 @@ Methods:
 - <code title="post /quickbooks-desktop/checks/{id}">client.qbd.checks.<a href="./src/resources/qbd/checks.ts">update</a>(id, { ...params }) -> Check</code>
 - <code title="get /quickbooks-desktop/checks">client.qbd.checks.<a href="./src/resources/qbd/checks.ts">list</a>({ ...params }) -> ChecksCursorPage</code>
 - <code title="delete /quickbooks-desktop/checks/{id}">client.qbd.checks.<a href="./src/resources/qbd/checks.ts">delete</a>(id, { ...params }) -> CheckDeleteResponse</code>
+- <code title="post /quickbooks-desktop/checks/{id}/set-custom-fields">client.qbd.checks.<a href="./src/resources/qbd/checks.ts">setCustomFields</a>(id, { ...params }) -> Check</code>
 - <code title="post /quickbooks-desktop/checks/{id}/void">client.qbd.checks.<a href="./src/resources/qbd/checks.ts">void</a>(id, { ...params }) -> CheckVoidResponse</code>
 
 ## Classes
@@ -192,6 +198,7 @@ Methods:
 - <code title="post /quickbooks-desktop/credit-card-charges/{id}">client.qbd.creditCardCharges.<a href="./src/resources/qbd/credit-card-charges.ts">update</a>(id, { ...params }) -> CreditCardCharge</code>
 - <code title="get /quickbooks-desktop/credit-card-charges">client.qbd.creditCardCharges.<a href="./src/resources/qbd/credit-card-charges.ts">list</a>({ ...params }) -> CreditCardChargesCursorPage</code>
 - <code title="delete /quickbooks-desktop/credit-card-charges/{id}">client.qbd.creditCardCharges.<a href="./src/resources/qbd/credit-card-charges.ts">delete</a>(id, { ...params }) -> CreditCardChargeDeleteResponse</code>
+- <code title="post /quickbooks-desktop/credit-card-charges/{id}/set-custom-fields">client.qbd.creditCardCharges.<a href="./src/resources/qbd/credit-card-charges.ts">setCustomFields</a>(id, { ...params }) -> CreditCardCharge</code>
 - <code title="post /quickbooks-desktop/credit-card-charges/{id}/void">client.qbd.creditCardCharges.<a href="./src/resources/qbd/credit-card-charges.ts">void</a>(id, { ...params }) -> CreditCardChargeVoidResponse</code>
 
 ## CreditCardCredits
@@ -209,6 +216,7 @@ Methods:
 - <code title="post /quickbooks-desktop/credit-card-credits/{id}">client.qbd.creditCardCredits.<a href="./src/resources/qbd/credit-card-credits.ts">update</a>(id, { ...params }) -> CreditCardCredit</code>
 - <code title="get /quickbooks-desktop/credit-card-credits">client.qbd.creditCardCredits.<a href="./src/resources/qbd/credit-card-credits.ts">list</a>({ ...params }) -> CreditCardCreditsCursorPage</code>
 - <code title="delete /quickbooks-desktop/credit-card-credits/{id}">client.qbd.creditCardCredits.<a href="./src/resources/qbd/credit-card-credits.ts">delete</a>(id, { ...params }) -> CreditCardCreditDeleteResponse</code>
+- <code title="post /quickbooks-desktop/credit-card-credits/{id}/set-custom-fields">client.qbd.creditCardCredits.<a href="./src/resources/qbd/credit-card-credits.ts">setCustomFields</a>(id, { ...params }) -> CreditCardCredit</code>
 - <code title="post /quickbooks-desktop/credit-card-credits/{id}/void">client.qbd.creditCardCredits.<a href="./src/resources/qbd/credit-card-credits.ts">void</a>(id, { ...params }) -> CreditCardCreditVoidResponse</code>
 
 ## CreditCardRefunds
@@ -225,6 +233,7 @@ Methods:
 - <code title="get /quickbooks-desktop/credit-card-refunds/{id}">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">retrieve</a>(id, { ...params }) -> CreditCardRefund</code>
 - <code title="get /quickbooks-desktop/credit-card-refunds">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">list</a>({ ...params }) -> CreditCardRefundsCursorPage</code>
 - <code title="delete /quickbooks-desktop/credit-card-refunds/{id}">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">delete</a>(id, { ...params }) -> CreditCardRefundDeleteResponse</code>
+- <code title="post /quickbooks-desktop/credit-card-refunds/{id}/set-custom-fields">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">setCustomFields</a>(id, { ...params }) -> CreditCardRefund</code>
 - <code title="post /quickbooks-desktop/credit-card-refunds/{id}/void">client.qbd.creditCardRefunds.<a href="./src/resources/qbd/credit-card-refunds.ts">void</a>(id, { ...params }) -> CreditCardRefundVoidResponse</code>
 
 ## CreditMemos
@@ -242,6 +251,7 @@ Methods:
 - <code title="post /quickbooks-desktop/credit-memos/{id}">client.qbd.creditMemos.<a href="./src/resources/qbd/credit-memos.ts">update</a>(id, { ...params }) -> CreditMemo</code>
 - <code title="get /quickbooks-desktop/credit-memos">client.qbd.creditMemos.<a href="./src/resources/qbd/credit-memos.ts">list</a>({ ...params }) -> CreditMemosCursorPage</code>
 - <code title="delete /quickbooks-desktop/credit-memos/{id}">client.qbd.creditMemos.<a href="./src/resources/qbd/credit-memos.ts">delete</a>(id, { ...params }) -> CreditMemoDeleteResponse</code>
+- <code title="post /quickbooks-desktop/credit-memos/{id}/set-custom-fields">client.qbd.creditMemos.<a href="./src/resources/qbd/credit-memos.ts">setCustomFields</a>(id, { ...params }) -> CreditMemo</code>
 - <code title="post /quickbooks-desktop/credit-memos/{id}/void">client.qbd.creditMemos.<a href="./src/resources/qbd/credit-memos.ts">void</a>(id, { ...params }) -> CreditMemoVoidResponse</code>
 
 ## Currencies
@@ -257,6 +267,21 @@ Methods:
 - <code title="get /quickbooks-desktop/currencies/{id}">client.qbd.currencies.<a href="./src/resources/qbd/currencies.ts">retrieve</a>(id, { ...params }) -> Currency</code>
 - <code title="post /quickbooks-desktop/currencies/{id}">client.qbd.currencies.<a href="./src/resources/qbd/currencies.ts">update</a>(id, { ...params }) -> Currency</code>
 - <code title="get /quickbooks-desktop/currencies">client.qbd.currencies.<a href="./src/resources/qbd/currencies.ts">list</a>({ ...params }) -> CurrencyListResponse</code>
+
+## CustomFieldDefinitions
+
+Types:
+
+- <code><a href="./src/resources/qbd/custom-field-definitions.ts">CustomFieldDefinition</a></code>
+- <code><a href="./src/resources/qbd/custom-field-definitions.ts">CustomFieldDefinitionListResponse</a></code>
+- <code><a href="./src/resources/qbd/custom-field-definitions.ts">CustomFieldDefinitionDeleteResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/custom-field-definitions">client.qbd.customFieldDefinitions.<a href="./src/resources/qbd/custom-field-definitions.ts">create</a>({ ...params }) -> CustomFieldDefinition</code>
+- <code title="post /quickbooks-desktop/custom-field-definitions/{id}">client.qbd.customFieldDefinitions.<a href="./src/resources/qbd/custom-field-definitions.ts">update</a>(id, { ...params }) -> CustomFieldDefinition</code>
+- <code title="get /quickbooks-desktop/custom-field-definitions">client.qbd.customFieldDefinitions.<a href="./src/resources/qbd/custom-field-definitions.ts">list</a>({ ...params }) -> CustomFieldDefinitionListResponse</code>
+- <code title="delete /quickbooks-desktop/custom-field-definitions/{id}">client.qbd.customFieldDefinitions.<a href="./src/resources/qbd/custom-field-definitions.ts">delete</a>(id, { ...params }) -> CustomFieldDefinitionDeleteResponse</code>
 
 ## CustomerTypes
 
@@ -283,6 +308,7 @@ Methods:
 - <code title="get /quickbooks-desktop/customers/{id}">client.qbd.customers.<a href="./src/resources/qbd/customers.ts">retrieve</a>(id, { ...params }) -> Customer</code>
 - <code title="post /quickbooks-desktop/customers/{id}">client.qbd.customers.<a href="./src/resources/qbd/customers.ts">update</a>(id, { ...params }) -> Customer</code>
 - <code title="get /quickbooks-desktop/customers">client.qbd.customers.<a href="./src/resources/qbd/customers.ts">list</a>({ ...params }) -> CustomersCursorPage</code>
+- <code title="post /quickbooks-desktop/customers/{id}/set-custom-fields">client.qbd.customers.<a href="./src/resources/qbd/customers.ts">setCustomFields</a>(id, { ...params }) -> Customer</code>
 
 ## DateDrivenTerms
 
@@ -334,6 +360,7 @@ Methods:
 - <code title="post /quickbooks-desktop/deposits/{id}">client.qbd.deposits.<a href="./src/resources/qbd/deposits.ts">update</a>(id, { ...params }) -> Deposit</code>
 - <code title="get /quickbooks-desktop/deposits">client.qbd.deposits.<a href="./src/resources/qbd/deposits.ts">list</a>({ ...params }) -> DepositsCursorPage</code>
 - <code title="delete /quickbooks-desktop/deposits/{id}">client.qbd.deposits.<a href="./src/resources/qbd/deposits.ts">delete</a>(id, { ...params }) -> DepositDeleteResponse</code>
+- <code title="post /quickbooks-desktop/deposits/{id}/set-custom-fields">client.qbd.deposits.<a href="./src/resources/qbd/deposits.ts">setCustomFields</a>(id, { ...params }) -> Deposit</code>
 - <code title="post /quickbooks-desktop/deposits/{id}/void">client.qbd.deposits.<a href="./src/resources/qbd/deposits.ts">void</a>(id, { ...params }) -> DepositVoidResponse</code>
 
 ## DiscountItems
@@ -348,6 +375,7 @@ Methods:
 - <code title="get /quickbooks-desktop/discount-items/{id}">client.qbd.discountItems.<a href="./src/resources/qbd/discount-items.ts">retrieve</a>(id, { ...params }) -> DiscountItem</code>
 - <code title="post /quickbooks-desktop/discount-items/{id}">client.qbd.discountItems.<a href="./src/resources/qbd/discount-items.ts">update</a>(id, { ...params }) -> DiscountItem</code>
 - <code title="get /quickbooks-desktop/discount-items">client.qbd.discountItems.<a href="./src/resources/qbd/discount-items.ts">list</a>({ ...params }) -> DiscountItemsCursorPage</code>
+- <code title="post /quickbooks-desktop/discount-items/{id}/set-custom-fields">client.qbd.discountItems.<a href="./src/resources/qbd/discount-items.ts">setCustomFields</a>(id, { ...params }) -> DiscountItem</code>
 
 ## Employees
 
@@ -362,6 +390,7 @@ Methods:
 - <code title="get /quickbooks-desktop/employees/{id}">client.qbd.employees.<a href="./src/resources/qbd/employees.ts">retrieve</a>(id, { ...params }) -> Employee</code>
 - <code title="post /quickbooks-desktop/employees/{id}">client.qbd.employees.<a href="./src/resources/qbd/employees.ts">update</a>(id, { ...params }) -> Employee</code>
 - <code title="get /quickbooks-desktop/employees">client.qbd.employees.<a href="./src/resources/qbd/employees.ts">list</a>({ ...params }) -> EmployeeListResponse</code>
+- <code title="post /quickbooks-desktop/employees/{id}/set-custom-fields">client.qbd.employees.<a href="./src/resources/qbd/employees.ts">setCustomFields</a>(id, { ...params }) -> Employee</code>
 
 ## Estimates
 
@@ -377,6 +406,7 @@ Methods:
 - <code title="post /quickbooks-desktop/estimates/{id}">client.qbd.estimates.<a href="./src/resources/qbd/estimates.ts">update</a>(id, { ...params }) -> Estimate</code>
 - <code title="get /quickbooks-desktop/estimates">client.qbd.estimates.<a href="./src/resources/qbd/estimates.ts">list</a>({ ...params }) -> EstimatesCursorPage</code>
 - <code title="delete /quickbooks-desktop/estimates/{id}">client.qbd.estimates.<a href="./src/resources/qbd/estimates.ts">delete</a>(id, { ...params }) -> EstimateDeleteResponse</code>
+- <code title="post /quickbooks-desktop/estimates/{id}/set-custom-fields">client.qbd.estimates.<a href="./src/resources/qbd/estimates.ts">setCustomFields</a>(id, { ...params }) -> Estimate</code>
 
 ## InventoryAdjustments
 
@@ -394,6 +424,7 @@ Methods:
 - <code title="post /quickbooks-desktop/inventory-adjustments/{id}">client.qbd.inventoryAdjustments.<a href="./src/resources/qbd/inventory-adjustments.ts">update</a>(id, { ...params }) -> InventoryAdjustment</code>
 - <code title="get /quickbooks-desktop/inventory-adjustments">client.qbd.inventoryAdjustments.<a href="./src/resources/qbd/inventory-adjustments.ts">list</a>({ ...params }) -> InventoryAdjustmentListResponse</code>
 - <code title="delete /quickbooks-desktop/inventory-adjustments/{id}">client.qbd.inventoryAdjustments.<a href="./src/resources/qbd/inventory-adjustments.ts">delete</a>(id, { ...params }) -> InventoryAdjustmentDeleteResponse</code>
+- <code title="post /quickbooks-desktop/inventory-adjustments/{id}/set-custom-fields">client.qbd.inventoryAdjustments.<a href="./src/resources/qbd/inventory-adjustments.ts">setCustomFields</a>(id, { ...params }) -> InventoryAdjustment</code>
 - <code title="post /quickbooks-desktop/inventory-adjustments/{id}/void">client.qbd.inventoryAdjustments.<a href="./src/resources/qbd/inventory-adjustments.ts">void</a>(id, { ...params }) -> InventoryAdjustmentVoidResponse</code>
 
 ## InventoryAssemblyItems
@@ -408,6 +439,7 @@ Methods:
 - <code title="get /quickbooks-desktop/inventory-assembly-items/{id}">client.qbd.inventoryAssemblyItems.<a href="./src/resources/qbd/inventory-assembly-items.ts">retrieve</a>(id, { ...params }) -> InventoryAssemblyItem</code>
 - <code title="post /quickbooks-desktop/inventory-assembly-items/{id}">client.qbd.inventoryAssemblyItems.<a href="./src/resources/qbd/inventory-assembly-items.ts">update</a>(id, { ...params }) -> InventoryAssemblyItem</code>
 - <code title="get /quickbooks-desktop/inventory-assembly-items">client.qbd.inventoryAssemblyItems.<a href="./src/resources/qbd/inventory-assembly-items.ts">list</a>({ ...params }) -> InventoryAssemblyItemsCursorPage</code>
+- <code title="post /quickbooks-desktop/inventory-assembly-items/{id}/set-custom-fields">client.qbd.inventoryAssemblyItems.<a href="./src/resources/qbd/inventory-assembly-items.ts">setCustomFields</a>(id, { ...params }) -> InventoryAssemblyItem</code>
 
 ## InventoryItems
 
@@ -421,6 +453,7 @@ Methods:
 - <code title="get /quickbooks-desktop/inventory-items/{id}">client.qbd.inventoryItems.<a href="./src/resources/qbd/inventory-items.ts">retrieve</a>(id, { ...params }) -> InventoryItem</code>
 - <code title="post /quickbooks-desktop/inventory-items/{id}">client.qbd.inventoryItems.<a href="./src/resources/qbd/inventory-items.ts">update</a>(id, { ...params }) -> InventoryItem</code>
 - <code title="get /quickbooks-desktop/inventory-items">client.qbd.inventoryItems.<a href="./src/resources/qbd/inventory-items.ts">list</a>({ ...params }) -> InventoryItemsCursorPage</code>
+- <code title="post /quickbooks-desktop/inventory-items/{id}/set-custom-fields">client.qbd.inventoryItems.<a href="./src/resources/qbd/inventory-items.ts">setCustomFields</a>(id, { ...params }) -> InventoryItem</code>
 
 ## InventorySites
 
@@ -451,6 +484,7 @@ Methods:
 - <code title="post /quickbooks-desktop/invoices/{id}">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">update</a>(id, { ...params }) -> Invoice</code>
 - <code title="get /quickbooks-desktop/invoices">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">list</a>({ ...params }) -> InvoicesCursorPage</code>
 - <code title="delete /quickbooks-desktop/invoices/{id}">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">delete</a>(id, { ...params }) -> InvoiceDeleteResponse</code>
+- <code title="post /quickbooks-desktop/invoices/{id}/set-custom-fields">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">setCustomFields</a>(id, { ...params }) -> Invoice</code>
 - <code title="post /quickbooks-desktop/invoices/{id}/void">client.qbd.invoices.<a href="./src/resources/qbd/invoices.ts">void</a>(id, { ...params }) -> InvoiceVoidResponse</code>
 
 ## ItemGroups
@@ -465,6 +499,7 @@ Methods:
 - <code title="get /quickbooks-desktop/item-groups/{id}">client.qbd.itemGroups.<a href="./src/resources/qbd/item-groups.ts">retrieve</a>(id, { ...params }) -> ItemGroup</code>
 - <code title="post /quickbooks-desktop/item-groups/{id}">client.qbd.itemGroups.<a href="./src/resources/qbd/item-groups.ts">update</a>(id, { ...params }) -> ItemGroup</code>
 - <code title="get /quickbooks-desktop/item-groups">client.qbd.itemGroups.<a href="./src/resources/qbd/item-groups.ts">list</a>({ ...params }) -> ItemGroupsCursorPage</code>
+- <code title="post /quickbooks-desktop/item-groups/{id}/set-custom-fields">client.qbd.itemGroups.<a href="./src/resources/qbd/item-groups.ts">setCustomFields</a>(id, { ...params }) -> ItemGroup</code>
 
 ## ItemReceipts
 
@@ -481,6 +516,7 @@ Methods:
 - <code title="post /quickbooks-desktop/item-receipts/{id}">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">update</a>(id, { ...params }) -> ItemReceipt</code>
 - <code title="get /quickbooks-desktop/item-receipts">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">list</a>({ ...params }) -> ItemReceiptsCursorPage</code>
 - <code title="delete /quickbooks-desktop/item-receipts/{id}">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">delete</a>(id, { ...params }) -> ItemReceiptDeleteResponse</code>
+- <code title="post /quickbooks-desktop/item-receipts/{id}/set-custom-fields">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">setCustomFields</a>(id, { ...params }) -> ItemReceipt</code>
 - <code title="post /quickbooks-desktop/item-receipts/{id}/void">client.qbd.itemReceipts.<a href="./src/resources/qbd/item-receipts.ts">void</a>(id, { ...params }) -> ItemReceiptVoidResponse</code>
 
 ## ItemSites
@@ -509,6 +545,7 @@ Methods:
 - <code title="post /quickbooks-desktop/journal-entries/{id}">client.qbd.journalEntries.<a href="./src/resources/qbd/journal-entries.ts">update</a>(id, { ...params }) -> JournalEntry</code>
 - <code title="get /quickbooks-desktop/journal-entries">client.qbd.journalEntries.<a href="./src/resources/qbd/journal-entries.ts">list</a>({ ...params }) -> JournalEntriesCursorPage</code>
 - <code title="delete /quickbooks-desktop/journal-entries/{id}">client.qbd.journalEntries.<a href="./src/resources/qbd/journal-entries.ts">delete</a>(id, { ...params }) -> JournalEntryDeleteResponse</code>
+- <code title="post /quickbooks-desktop/journal-entries/{id}/set-custom-fields">client.qbd.journalEntries.<a href="./src/resources/qbd/journal-entries.ts">setCustomFields</a>(id, { ...params }) -> JournalEntry</code>
 - <code title="post /quickbooks-desktop/journal-entries/{id}/void">client.qbd.journalEntries.<a href="./src/resources/qbd/journal-entries.ts">void</a>(id, { ...params }) -> JournalEntryVoidResponse</code>
 
 ## NonInventoryItems
@@ -523,6 +560,7 @@ Methods:
 - <code title="get /quickbooks-desktop/non-inventory-items/{id}">client.qbd.nonInventoryItems.<a href="./src/resources/qbd/non-inventory-items.ts">retrieve</a>(id, { ...params }) -> NonInventoryItem</code>
 - <code title="post /quickbooks-desktop/non-inventory-items/{id}">client.qbd.nonInventoryItems.<a href="./src/resources/qbd/non-inventory-items.ts">update</a>(id, { ...params }) -> NonInventoryItem</code>
 - <code title="get /quickbooks-desktop/non-inventory-items">client.qbd.nonInventoryItems.<a href="./src/resources/qbd/non-inventory-items.ts">list</a>({ ...params }) -> NonInventoryItemsCursorPage</code>
+- <code title="post /quickbooks-desktop/non-inventory-items/{id}/set-custom-fields">client.qbd.nonInventoryItems.<a href="./src/resources/qbd/non-inventory-items.ts">setCustomFields</a>(id, { ...params }) -> NonInventoryItem</code>
 
 ## OtherChargeItems
 
@@ -536,6 +574,7 @@ Methods:
 - <code title="get /quickbooks-desktop/other-charge-items/{id}">client.qbd.otherChargeItems.<a href="./src/resources/qbd/other-charge-items.ts">retrieve</a>(id, { ...params }) -> OtherChargeItem</code>
 - <code title="post /quickbooks-desktop/other-charge-items/{id}">client.qbd.otherChargeItems.<a href="./src/resources/qbd/other-charge-items.ts">update</a>(id, { ...params }) -> OtherChargeItem</code>
 - <code title="get /quickbooks-desktop/other-charge-items">client.qbd.otherChargeItems.<a href="./src/resources/qbd/other-charge-items.ts">list</a>({ ...params }) -> OtherChargeItemsCursorPage</code>
+- <code title="post /quickbooks-desktop/other-charge-items/{id}/set-custom-fields">client.qbd.otherChargeItems.<a href="./src/resources/qbd/other-charge-items.ts">setCustomFields</a>(id, { ...params }) -> OtherChargeItem</code>
 
 ## OtherNames
 
@@ -550,6 +589,7 @@ Methods:
 - <code title="get /quickbooks-desktop/other-names/{id}">client.qbd.otherNames.<a href="./src/resources/qbd/other-names.ts">retrieve</a>(id, { ...params }) -> OtherName</code>
 - <code title="post /quickbooks-desktop/other-names/{id}">client.qbd.otherNames.<a href="./src/resources/qbd/other-names.ts">update</a>(id, { ...params }) -> OtherName</code>
 - <code title="get /quickbooks-desktop/other-names">client.qbd.otherNames.<a href="./src/resources/qbd/other-names.ts">list</a>({ ...params }) -> OtherNameListResponse</code>
+- <code title="post /quickbooks-desktop/other-names/{id}/set-custom-fields">client.qbd.otherNames.<a href="./src/resources/qbd/other-names.ts">setCustomFields</a>(id, { ...params }) -> OtherName</code>
 
 ## PaymentMethods
 
@@ -626,6 +666,7 @@ Methods:
 - <code title="post /quickbooks-desktop/purchase-orders/{id}">client.qbd.purchaseOrders.<a href="./src/resources/qbd/purchase-orders.ts">update</a>(id, { ...params }) -> PurchaseOrder</code>
 - <code title="get /quickbooks-desktop/purchase-orders">client.qbd.purchaseOrders.<a href="./src/resources/qbd/purchase-orders.ts">list</a>({ ...params }) -> PurchaseOrdersCursorPage</code>
 - <code title="delete /quickbooks-desktop/purchase-orders/{id}">client.qbd.purchaseOrders.<a href="./src/resources/qbd/purchase-orders.ts">delete</a>(id, { ...params }) -> PurchaseOrderDeleteResponse</code>
+- <code title="post /quickbooks-desktop/purchase-orders/{id}/set-custom-fields">client.qbd.purchaseOrders.<a href="./src/resources/qbd/purchase-orders.ts">setCustomFields</a>(id, { ...params }) -> PurchaseOrder</code>
 
 ## ReceivePayments
 
@@ -641,6 +682,7 @@ Methods:
 - <code title="post /quickbooks-desktop/receive-payments/{id}">client.qbd.receivePayments.<a href="./src/resources/qbd/receive-payments.ts">update</a>(id, { ...params }) -> ReceivePayment</code>
 - <code title="get /quickbooks-desktop/receive-payments">client.qbd.receivePayments.<a href="./src/resources/qbd/receive-payments.ts">list</a>({ ...params }) -> ReceivePaymentsCursorPage</code>
 - <code title="delete /quickbooks-desktop/receive-payments/{id}">client.qbd.receivePayments.<a href="./src/resources/qbd/receive-payments.ts">delete</a>(id, { ...params }) -> ReceivePaymentDeleteResponse</code>
+- <code title="post /quickbooks-desktop/receive-payments/{id}/set-custom-fields">client.qbd.receivePayments.<a href="./src/resources/qbd/receive-payments.ts">setCustomFields</a>(id, { ...params }) -> ReceivePayment</code>
 
 ## Reports
 
@@ -675,6 +717,7 @@ Methods:
 - <code title="post /quickbooks-desktop/sales-orders/{id}">client.qbd.salesOrders.<a href="./src/resources/qbd/sales-orders.ts">update</a>(id, { ...params }) -> SalesOrder</code>
 - <code title="get /quickbooks-desktop/sales-orders">client.qbd.salesOrders.<a href="./src/resources/qbd/sales-orders.ts">list</a>({ ...params }) -> SalesOrdersCursorPage</code>
 - <code title="delete /quickbooks-desktop/sales-orders/{id}">client.qbd.salesOrders.<a href="./src/resources/qbd/sales-orders.ts">delete</a>(id, { ...params }) -> SalesOrderDeleteResponse</code>
+- <code title="post /quickbooks-desktop/sales-orders/{id}/set-custom-fields">client.qbd.salesOrders.<a href="./src/resources/qbd/sales-orders.ts">setCustomFields</a>(id, { ...params }) -> SalesOrder</code>
 
 ## SalesReceipts
 
@@ -691,6 +734,7 @@ Methods:
 - <code title="post /quickbooks-desktop/sales-receipts/{id}">client.qbd.salesReceipts.<a href="./src/resources/qbd/sales-receipts.ts">update</a>(id, { ...params }) -> SalesReceipt</code>
 - <code title="get /quickbooks-desktop/sales-receipts">client.qbd.salesReceipts.<a href="./src/resources/qbd/sales-receipts.ts">list</a>({ ...params }) -> SalesReceiptsCursorPage</code>
 - <code title="delete /quickbooks-desktop/sales-receipts/{id}">client.qbd.salesReceipts.<a href="./src/resources/qbd/sales-receipts.ts">delete</a>(id, { ...params }) -> SalesReceiptDeleteResponse</code>
+- <code title="post /quickbooks-desktop/sales-receipts/{id}/set-custom-fields">client.qbd.salesReceipts.<a href="./src/resources/qbd/sales-receipts.ts">setCustomFields</a>(id, { ...params }) -> SalesReceipt</code>
 - <code title="post /quickbooks-desktop/sales-receipts/{id}/void">client.qbd.salesReceipts.<a href="./src/resources/qbd/sales-receipts.ts">void</a>(id, { ...params }) -> SalesReceiptVoidResponse</code>
 
 ## SalesRepresentatives
@@ -733,6 +777,7 @@ Methods:
 - <code title="get /quickbooks-desktop/sales-tax-group-items/{id}">client.qbd.salesTaxGroupItems.<a href="./src/resources/qbd/sales-tax-group-items.ts">retrieve</a>(id, { ...params }) -> SalesTaxGroupItem</code>
 - <code title="post /quickbooks-desktop/sales-tax-group-items/{id}">client.qbd.salesTaxGroupItems.<a href="./src/resources/qbd/sales-tax-group-items.ts">update</a>(id, { ...params }) -> SalesTaxGroupItem</code>
 - <code title="get /quickbooks-desktop/sales-tax-group-items">client.qbd.salesTaxGroupItems.<a href="./src/resources/qbd/sales-tax-group-items.ts">list</a>({ ...params }) -> SalesTaxGroupItemsCursorPage</code>
+- <code title="post /quickbooks-desktop/sales-tax-group-items/{id}/set-custom-fields">client.qbd.salesTaxGroupItems.<a href="./src/resources/qbd/sales-tax-group-items.ts">setCustomFields</a>(id, { ...params }) -> SalesTaxGroupItem</code>
 
 ## SalesTaxItems
 
@@ -746,6 +791,7 @@ Methods:
 - <code title="get /quickbooks-desktop/sales-tax-items/{id}">client.qbd.salesTaxItems.<a href="./src/resources/qbd/sales-tax-items.ts">retrieve</a>(id, { ...params }) -> SalesTaxItem</code>
 - <code title="post /quickbooks-desktop/sales-tax-items/{id}">client.qbd.salesTaxItems.<a href="./src/resources/qbd/sales-tax-items.ts">update</a>(id, { ...params }) -> SalesTaxItem</code>
 - <code title="get /quickbooks-desktop/sales-tax-items">client.qbd.salesTaxItems.<a href="./src/resources/qbd/sales-tax-items.ts">list</a>({ ...params }) -> SalesTaxItemsCursorPage</code>
+- <code title="post /quickbooks-desktop/sales-tax-items/{id}/set-custom-fields">client.qbd.salesTaxItems.<a href="./src/resources/qbd/sales-tax-items.ts">setCustomFields</a>(id, { ...params }) -> SalesTaxItem</code>
 
 ## SalesTaxPaymentChecks
 
@@ -762,6 +808,7 @@ Methods:
 - <code title="post /quickbooks-desktop/sales-tax-payment-checks/{id}">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">update</a>(id, { ...params }) -> SalesTaxPaymentCheck</code>
 - <code title="get /quickbooks-desktop/sales-tax-payment-checks">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">list</a>({ ...params }) -> SalesTaxPaymentChecksCursorPage</code>
 - <code title="delete /quickbooks-desktop/sales-tax-payment-checks/{id}">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">delete</a>(id, { ...params }) -> SalesTaxPaymentCheckDeleteResponse</code>
+- <code title="post /quickbooks-desktop/sales-tax-payment-checks/{id}/set-custom-fields">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">setCustomFields</a>(id, { ...params }) -> SalesTaxPaymentCheck</code>
 - <code title="post /quickbooks-desktop/sales-tax-payment-checks/{id}/void">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">void</a>(id, { ...params }) -> SalesTaxPaymentCheckVoidResponse</code>
 
 ## ServiceItems
@@ -776,6 +823,7 @@ Methods:
 - <code title="get /quickbooks-desktop/service-items/{id}">client.qbd.serviceItems.<a href="./src/resources/qbd/service-items.ts">retrieve</a>(id, { ...params }) -> ServiceItem</code>
 - <code title="post /quickbooks-desktop/service-items/{id}">client.qbd.serviceItems.<a href="./src/resources/qbd/service-items.ts">update</a>(id, { ...params }) -> ServiceItem</code>
 - <code title="get /quickbooks-desktop/service-items">client.qbd.serviceItems.<a href="./src/resources/qbd/service-items.ts">list</a>({ ...params }) -> ServiceItemsCursorPage</code>
+- <code title="post /quickbooks-desktop/service-items/{id}/set-custom-fields">client.qbd.serviceItems.<a href="./src/resources/qbd/service-items.ts">setCustomFields</a>(id, { ...params }) -> ServiceItem</code>
 
 ## ShippingMethods
 
@@ -815,6 +863,7 @@ Methods:
 - <code title="get /quickbooks-desktop/subtotal-items/{id}">client.qbd.subtotalItems.<a href="./src/resources/qbd/subtotal-items.ts">retrieve</a>(id, { ...params }) -> SubtotalItem</code>
 - <code title="post /quickbooks-desktop/subtotal-items/{id}">client.qbd.subtotalItems.<a href="./src/resources/qbd/subtotal-items.ts">update</a>(id, { ...params }) -> SubtotalItem</code>
 - <code title="get /quickbooks-desktop/subtotal-items">client.qbd.subtotalItems.<a href="./src/resources/qbd/subtotal-items.ts">list</a>({ ...params }) -> SubtotalItemsCursorPage</code>
+- <code title="post /quickbooks-desktop/subtotal-items/{id}/set-custom-fields">client.qbd.subtotalItems.<a href="./src/resources/qbd/subtotal-items.ts">setCustomFields</a>(id, { ...params }) -> SubtotalItem</code>
 
 ## Templates
 
@@ -894,6 +943,7 @@ Methods:
 - <code title="post /quickbooks-desktop/vendor-credits/{id}">client.qbd.vendorCredits.<a href="./src/resources/qbd/vendor-credits.ts">update</a>(id, { ...params }) -> VendorCredit</code>
 - <code title="get /quickbooks-desktop/vendor-credits">client.qbd.vendorCredits.<a href="./src/resources/qbd/vendor-credits.ts">list</a>({ ...params }) -> VendorCreditsCursorPage</code>
 - <code title="delete /quickbooks-desktop/vendor-credits/{id}">client.qbd.vendorCredits.<a href="./src/resources/qbd/vendor-credits.ts">delete</a>(id, { ...params }) -> VendorCreditDeleteResponse</code>
+- <code title="post /quickbooks-desktop/vendor-credits/{id}/set-custom-fields">client.qbd.vendorCredits.<a href="./src/resources/qbd/vendor-credits.ts">setCustomFields</a>(id, { ...params }) -> VendorCredit</code>
 - <code title="post /quickbooks-desktop/vendor-credits/{id}/void">client.qbd.vendorCredits.<a href="./src/resources/qbd/vendor-credits.ts">void</a>(id, { ...params }) -> VendorCreditVoidResponse</code>
 
 ## Vendors
@@ -908,3 +958,4 @@ Methods:
 - <code title="get /quickbooks-desktop/vendors/{id}">client.qbd.vendors.<a href="./src/resources/qbd/vendors.ts">retrieve</a>(id, { ...params }) -> Vendor</code>
 - <code title="post /quickbooks-desktop/vendors/{id}">client.qbd.vendors.<a href="./src/resources/qbd/vendors.ts">update</a>(id, { ...params }) -> Vendor</code>
 - <code title="get /quickbooks-desktop/vendors">client.qbd.vendors.<a href="./src/resources/qbd/vendors.ts">list</a>({ ...params }) -> VendorsCursorPage</code>
+- <code title="post /quickbooks-desktop/vendors/{id}/set-custom-fields">client.qbd.vendors.<a href="./src/resources/qbd/vendors.ts">setCustomFields</a>(id, { ...params }) -> Vendor</code>

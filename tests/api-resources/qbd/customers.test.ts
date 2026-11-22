@@ -145,6 +145,7 @@ describe('resource customers', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.customers.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -286,6 +287,7 @@ describe('resource customers', () => {
       classIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      customFieldOwnerIds: ['0'],
       excludeAlternateShippingAddresses: true,
       fullNames: ['ABC Corporation:Website Redesign Project'],
       ids: ['80000001-1234567890'],
@@ -303,6 +305,32 @@ describe('resource customers', () => {
       totalBalanceLessThanOrEqualTo: '123.45',
       updatedAfter: '2025-01-01T12:34:56+00:00',
       updatedBefore: '2025-02-01T12:34:56+00:00',
+    });
+  });
+
+  test('setCustomFields: only required params', async () => {
+    const responsePromise = conductor.qbd.customers.setCustomFields('80000001-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('setCustomFields: required and optional params', async () => {
+    const response = await conductor.qbd.customers.setCustomFields('80000001-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFields: [
+        {
+          name: 'Customer Rating',
+          value: 'Gold',
+          ownerId: '0',
+        },
+      ],
     });
   });
 });
