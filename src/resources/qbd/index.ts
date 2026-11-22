@@ -154,6 +154,16 @@ export {
   type CurrencyListParams,
 } from './currencies';
 export {
+  CustomFieldDefinitions,
+  type CustomFieldDefinition,
+  type CustomFieldDefinitionListResponse,
+  type CustomFieldDefinitionDeleteResponse,
+  type CustomFieldDefinitionCreateParams,
+  type CustomFieldDefinitionUpdateParams,
+  type CustomFieldDefinitionListParams,
+  type CustomFieldDefinitionDeleteParams,
+} from './custom-field-definitions';
+export {
   CustomerTypes,
   type CustomerType,
   type CustomerTypeListResponse,
