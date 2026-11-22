@@ -120,6 +120,7 @@ describe('resource creditCardCharges', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.creditCardCharges.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -240,6 +241,7 @@ describe('resource creditCardCharges', () => {
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      customFieldOwnerIds: ['0'],
       ids: ['123ABC-1234567890'],
       includeLineItems: true,
       limit: 150,
@@ -273,6 +275,44 @@ describe('resource creditCardCharges', () => {
   test('delete: required and optional params', async () => {
     const response = await conductor.qbd.creditCardCharges.delete('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+  });
+
+  test('setCustomFields: only required params', async () => {
+    const responsePromise = conductor.qbd.creditCardCharges.setCustomFields('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('setCustomFields: required and optional params', async () => {
+    const response = await conductor.qbd.creditCardCharges.setCustomFields('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFields: [
+        {
+          name: 'Customer Rating',
+          value: 'Gold',
+          ownerId: '0',
+        },
+      ],
+      lines: [
+        {
+          id: '123ABC-1234567890',
+          customFields: [
+            {
+              name: 'Customer Rating',
+              value: 'Gold',
+              ownerId: '0',
+            },
+          ],
+        },
+      ],
     });
   });
 
