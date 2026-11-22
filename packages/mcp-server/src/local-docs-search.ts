@@ -2832,6 +2832,143 @@ const EMBEDDED_METHODS: MethodEntry[] = [
   },
   {
     name: 'create',
+    endpoint: '/quickbooks-desktop/custom-field-definitions',
+    httpMethod: 'post',
+    summary: 'Create a custom field definition',
+    description:
+      "Creates a custom field and assigns it to the types of records you list. To give it a value on a record, use the set-custom-fields endpoint of that record's type.",
+    stainlessPath: '(resource) qbd.custom_field_definitions > (method) create',
+    qualified: 'client.qbd.customFieldDefinitions.create',
+    params: [
+      'name: string;',
+      'objectTypes: string[];',
+      'Conductor-End-User-Id: string;',
+      'ownerId?: string;',
+      'type?: string;',
+    ],
+    response:
+      "{ id: string; format: string; isRequiredForListObjects: boolean; isRequiredForTransactions: boolean; name: string; objectType: 'qbd_custom_field_definition'; objectTypes: string[]; ownerId: string; type: string; }",
+    markdown:
+      "## create\n\n`conductor.qbd.customFieldDefinitions.create(name: string, objectTypes: string[], Conductor-End-User-Id: string, ownerId?: string, type?: string): { id: string; format: string; isRequiredForListObjects: boolean; isRequiredForTransactions: boolean; name: string; objectType: 'qbd_custom_field_definition'; objectTypes: string[]; ownerId: string; type: string; }`\n\n**post** `/quickbooks-desktop/custom-field-definitions`\n\nCreates a custom field and assigns it to the types of records you list. To give it a value on a record, use the set-custom-fields endpoint of that record's type.\n\n### Parameters\n\n- `name: string`\n  The name of the custom field, unique among the custom fields of its owner. For a public custom field, this is the label QuickBooks shows.\n\n- `objectTypes: string[]`\n  The types of records the custom field applies to. A public custom field takes either `\"item\"` or any of `\"customer\"`, `\"vendor\"`, and `\"employee\"`, and QuickBooks adds transaction types itself, which the returned definition's `objectTypes` lists: a customer, vendor, or employee custom field applies to those transactions themselves, and an item custom field to their lines. A private custom field takes any of these types.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `ownerId?: string`\n  The owner of the custom field. Defaults to `\"0\"`, the owner of public custom fields, which QuickBooks users define and see. Any other owner is an application's GUID in braces, such as `\"{6B063959-81B0-4622-85D6-F548C8CCB517}\"`, whose private custom fields appear only in requests that name it.\n\n- `type?: string`\n  The data type of the custom field's values. Defaults to `\"string_255_type\"`, the only type QuickBooks accepts for a public custom field.\n\n### Returns\n\n- `{ id: string; format: string; isRequiredForListObjects: boolean; isRequiredForTransactions: boolean; name: string; objectType: 'qbd_custom_field_definition'; objectTypes: string[]; ownerId: string; type: string; }`\n\n  - `id: string`\n  - `format: string`\n  - `isRequiredForListObjects: boolean`\n  - `isRequiredForTransactions: boolean`\n  - `name: string`\n  - `objectType: 'qbd_custom_field_definition'`\n  - `objectTypes: string[]`\n  - `ownerId: string`\n  - `type: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst customFieldDefinition = await conductor.qbd.customFieldDefinitions.create({\n  name: 'Customer Rating',\n  objectTypes: ['customer'],\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(customFieldDefinition);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.customFieldDefinitions.create',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst customFieldDefinition = await conductor.qbd.customFieldDefinitions.create({\n  name: 'Customer Rating',\n  objectTypes: ['customer'],\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(customFieldDefinition.id);",
+      },
+      python: {
+        method: 'qbd.custom_field_definitions.create',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncustom_field_definition = conductor.qbd.custom_field_definitions.create(\n    name="Customer Rating",\n    object_types=["customer"],\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(custom_field_definition.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/custom-field-definitions \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "name": "Customer Rating",\n          "objectTypes": [\n            "customer"\n          ],\n          "ownerId": "0",\n          "type": "string_255_type"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/quickbooks-desktop/custom-field-definitions',
+    httpMethod: 'get',
+    summary: 'List all custom field definitions',
+    description:
+      "Returns the company file's custom field definitions: each custom field's name, the type of its values, and the types of records it applies to. A record's `customFields` include only the custom fields that have a value on that record, so use this list to find every custom field you can set.",
+    stainlessPath: '(resource) qbd.custom_field_definitions > (method) list',
+    qualified: 'client.qbd.customFieldDefinitions.list',
+    params: ['Conductor-End-User-Id: string;', 'ownerIds?: string[];'],
+    response:
+      "{ data: { id: string; format: string; isRequiredForListObjects: boolean; isRequiredForTransactions: boolean; name: string; objectType: 'qbd_custom_field_definition'; objectTypes: string[]; ownerId: string; type: string; }[]; objectType: 'list'; url: string; }",
+    markdown:
+      "## list\n\n`conductor.qbd.customFieldDefinitions.list(Conductor-End-User-Id: string, ownerIds?: string[]): { data: custom_field_definition[]; objectType: 'list'; url: string; }`\n\n**get** `/quickbooks-desktop/custom-field-definitions`\n\nReturns the company file's custom field definitions: each custom field's name, the type of its values, and the types of records it applies to. A record's `customFields` include only the custom fields that have a value on that record, so use this list to find every custom field you can set.\n\n### Parameters\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `ownerIds?: string[]`\n  The owners whose custom field definitions to return. Defaults to `[\"0\"]`, the owner of public custom fields, which QuickBooks users define and see. To get an application's private custom fields, add its owner ID, a GUID in braces. Only the owners you list are returned, so keep `\"0\"` in the list to also get the public ones.\n\n### Returns\n\n- `{ data: { id: string; format: string; isRequiredForListObjects: boolean; isRequiredForTransactions: boolean; name: string; objectType: 'qbd_custom_field_definition'; objectTypes: string[]; ownerId: string; type: string; }[]; objectType: 'list'; url: string; }`\n\n  - `data: { id: string; format: string; isRequiredForListObjects: boolean; isRequiredForTransactions: boolean; name: string; objectType: 'qbd_custom_field_definition'; objectTypes: string[]; ownerId: string; type: string; }[]`\n  - `objectType: 'list'`\n  - `url: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst customFieldDefinitions = await conductor.qbd.customFieldDefinitions.list({ conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(customFieldDefinitions);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.customFieldDefinitions.list',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst customFieldDefinitions = await conductor.qbd.customFieldDefinitions.list({\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(customFieldDefinitions.data);",
+      },
+      python: {
+        method: 'qbd.custom_field_definitions.list',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncustom_field_definitions = conductor.qbd.custom_field_definitions.list(\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(custom_field_definitions.data)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/custom-field-definitions \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'update',
+    endpoint: '/quickbooks-desktop/custom-field-definitions/{id}',
+    httpMethod: 'post',
+    summary: 'Update a custom field definition',
+    description:
+      "Renames a custom field or changes the types of records it applies to. The `id` in the path is the custom field's current name.",
+    stainlessPath: '(resource) qbd.custom_field_definitions > (method) update',
+    qualified: 'client.qbd.customFieldDefinitions.update',
+    params: [
+      'id: string;',
+      'Conductor-End-User-Id: string;',
+      'addObjectTypes?: string[];',
+      'name?: string;',
+      'ownerId?: string;',
+      'removeObjectTypes?: string[];',
+    ],
+    response:
+      "{ id: string; format: string; isRequiredForListObjects: boolean; isRequiredForTransactions: boolean; name: string; objectType: 'qbd_custom_field_definition'; objectTypes: string[]; ownerId: string; type: string; }",
+    markdown:
+      '## update\n\n`conductor.qbd.customFieldDefinitions.update(id: string, Conductor-End-User-Id: string, addObjectTypes?: string[], name?: string, ownerId?: string, removeObjectTypes?: string[]): { id: string; format: string; isRequiredForListObjects: boolean; isRequiredForTransactions: boolean; name: string; objectType: \'qbd_custom_field_definition\'; objectTypes: string[]; ownerId: string; type: string; }`\n\n**post** `/quickbooks-desktop/custom-field-definitions/{id}`\n\nRenames a custom field or changes the types of records it applies to. The `id` in the path is the custom field\'s current name.\n\n### Parameters\n\n- `id: string`\n  The `id` of the custom field definition, which is its name. QuickBooks matches the name without regard to letter case.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `addObjectTypes?: string[]`\n  The types of records to also apply the custom field to. A public custom field takes only `"customer"`, `"vendor"`, `"employee"`, or `"item"`, and QuickBooks adds the matching transaction types itself.\n\n- `name?: string`\n  The new name of the custom field. Its values stay with it, and the definition\'s `id` becomes the new name.\n\n- `ownerId?: string`\n  The owner of the custom field. Defaults to `"0"`, the owner of public custom fields, which QuickBooks users define and see. Any other owner is an application\'s GUID in braces, such as `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear only in requests that name it.\n\n- `removeObjectTypes?: string[]`\n  The types of records to stop applying the custom field to. A public custom field takes only `"customer"`, `"vendor"`, `"employee"`, or `"item"`, and QuickBooks removes the matching transaction types itself.\n\n### Returns\n\n- `{ id: string; format: string; isRequiredForListObjects: boolean; isRequiredForTransactions: boolean; name: string; objectType: \'qbd_custom_field_definition\'; objectTypes: string[]; ownerId: string; type: string; }`\n\n  - `id: string`\n  - `format: string`\n  - `isRequiredForListObjects: boolean`\n  - `isRequiredForTransactions: boolean`\n  - `name: string`\n  - `objectType: \'qbd_custom_field_definition\'`\n  - `objectTypes: string[]`\n  - `ownerId: string`\n  - `type: string`\n\n### Example\n\n```typescript\nimport Conductor from \'conductor-node\';\n\nconst client = new Conductor();\n\nconst customFieldDefinition = await conductor.qbd.customFieldDefinitions.update(\'Customer Rating\', { conductorEndUserId: \'end_usr_1234567abcdefg\' });\n\nconsole.log(customFieldDefinition);\n```',
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.customFieldDefinitions.update',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst customFieldDefinition = await conductor.qbd.customFieldDefinitions.update('Customer Rating', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(customFieldDefinition.id);",
+      },
+      python: {
+        method: 'qbd.custom_field_definitions.update',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncustom_field_definition = conductor.qbd.custom_field_definitions.update(\n    id="Customer Rating",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(custom_field_definition.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/custom-field-definitions/$ID \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY" \\\n    -d \'{\n          "addObjectTypes": [\n            "vendor"\n          ],\n          "name": "Customer Tier",\n          "ownerId": "0",\n          "removeObjectTypes": [\n            "employee"\n          ]\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'delete',
+    endpoint: '/quickbooks-desktop/custom-field-definitions/{id}',
+    httpMethod: 'delete',
+    summary: 'Delete a custom field definition',
+    description:
+      "Deletes a custom field definition, so QuickBooks stops returning the custom field.\n\n**IMPORTANT**: Deleting a public custom field does not erase its values. QuickBooks keeps them on the records, and a public custom field created later for the same kind of record (customers, vendors, and employees, or items) can show them under its own name. To remove the values for good, clear them with each record type's set-custom-fields endpoint before deleting the definition. A deleted private custom field's values do not come back under another name, but its owner cannot create another custom field with the same name.",
+    stainlessPath: '(resource) qbd.custom_field_definitions > (method) delete',
+    qualified: 'client.qbd.customFieldDefinitions.delete',
+    params: ['id: string;', 'Conductor-End-User-Id: string;', 'ownerId?: string;'],
+    response:
+      "{ id: string; deleted: boolean; name: string; objectType: 'qbd_custom_field_definition'; ownerId: string; }",
+    markdown:
+      "## delete\n\n`conductor.qbd.customFieldDefinitions.delete(id: string, Conductor-End-User-Id: string, ownerId?: string): { id: string; deleted: boolean; name: string; objectType: 'qbd_custom_field_definition'; ownerId: string; }`\n\n**delete** `/quickbooks-desktop/custom-field-definitions/{id}`\n\nDeletes a custom field definition, so QuickBooks stops returning the custom field.\n\n**IMPORTANT**: Deleting a public custom field does not erase its values. QuickBooks keeps them on the records, and a public custom field created later for the same kind of record (customers, vendors, and employees, or items) can show them under its own name. To remove the values for good, clear them with each record type's set-custom-fields endpoint before deleting the definition. A deleted private custom field's values do not come back under another name, but its owner cannot create another custom field with the same name.\n\n### Parameters\n\n- `id: string`\n  The `id` of the custom field definition, which is its name. QuickBooks matches the name without regard to letter case.\n\n- `Conductor-End-User-Id: string`\n  The ID of the End-User to receive this request.\n\n- `ownerId?: string`\n  The owner of the custom field. Defaults to `\"0\"`, the owner of public custom fields, which QuickBooks users define and see. Any other owner is an application's GUID in braces, such as `\"{6B063959-81B0-4622-85D6-F548C8CCB517}\"`, whose private custom fields appear only in requests that name it.\n\n### Returns\n\n- `{ id: string; deleted: boolean; name: string; objectType: 'qbd_custom_field_definition'; ownerId: string; }`\n\n  - `id: string`\n  - `deleted: boolean`\n  - `name: string`\n  - `objectType: 'qbd_custom_field_definition'`\n  - `ownerId: string`\n\n### Example\n\n```typescript\nimport Conductor from 'conductor-node';\n\nconst client = new Conductor();\n\nconst customFieldDefinition = await conductor.qbd.customFieldDefinitions.delete('Customer Rating', { conductorEndUserId: 'end_usr_1234567abcdefg' });\n\nconsole.log(customFieldDefinition);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.qbd.customFieldDefinitions.delete',
+        example:
+          "import Conductor from 'conductor-node';\n\nconst conductor = new Conductor({\n  apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted\n});\n\nconst customFieldDefinition = await conductor.qbd.customFieldDefinitions.delete('Customer Rating', {\n  conductorEndUserId: 'end_usr_1234567abcdefg',\n});\n\nconsole.log(customFieldDefinition.id);",
+      },
+      python: {
+        method: 'qbd.custom_field_definitions.delete',
+        example:
+          'import os\nfrom conductor import Conductor\n\nconductor = Conductor(\n    api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted\n)\ncustom_field_definition = conductor.qbd.custom_field_definitions.delete(\n    id="Customer Rating",\n    conductor_end_user_id="end_usr_1234567abcdefg",\n)\nprint(custom_field_definition.id)',
+      },
+      http: {
+        example:
+          'curl https://api.conductor.is/v1/quickbooks-desktop/custom-field-definitions/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $CONDUCTOR_SECRET_KEY"',
+      },
+    },
+  },
+  {
+    name: 'create',
     endpoint: '/quickbooks-desktop/customer-types',
     httpMethod: 'post',
     summary: 'Create a customer type',
