@@ -51,8 +51,9 @@ export class NonInventoryItems extends APIResource {
     params: NonInventoryItemRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<NonInventoryItem> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/non-inventory-items/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -843,9 +844,19 @@ export namespace NonInventoryItemCreateParams {
 
 export interface NonInventoryItemRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on non-inventory items.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for non-inventory items.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface NonInventoryItemUpdateParams {
@@ -1142,6 +1153,16 @@ export interface NonInventoryItemListParams extends CursorPageParams {
    * end-users can categorize non-inventory items in QuickBooks.
    */
   classIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on non-inventory items.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for non-inventory items.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific non-inventory items by their full-name(s),

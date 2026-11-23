@@ -43,8 +43,9 @@ export class OtherNames extends APIResource {
    * ```
    */
   retrieve(id: string, params: OtherNameRetrieveParams, options?: RequestOptions): APIPromise<OtherName> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/other-names/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -566,9 +567,19 @@ export namespace OtherNameCreateParams {
 
 export interface OtherNameRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on other-names. Defaults
+   * to `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * other-names.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface OtherNameUpdateParams {
@@ -791,6 +802,16 @@ export interface OtherNameListParams {
    * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on other-names. Defaults
+   * to `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * other-names.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific other-names by their QuickBooks-assigned unique

@@ -53,8 +53,9 @@ export class SalesReceipts extends APIResource {
     params: SalesReceiptRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<SalesReceipt> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/sales-receipts/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -3296,9 +3297,19 @@ export namespace SalesReceiptCreateParams {
 
 export interface SalesReceiptRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on sales receipts.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for sales receipts.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface SalesReceiptUpdateParams {
@@ -4167,6 +4178,16 @@ export interface SalesReceiptListParams extends CursorPageParams {
    * Query param: Filter for sales receipts created for these customers.
    */
   customerIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on sales receipts.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for sales receipts.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific sales receipts by their QuickBooks-assigned

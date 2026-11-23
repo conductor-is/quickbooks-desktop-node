@@ -71,6 +71,7 @@ describe('resource otherChargeItems', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.otherChargeItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -142,6 +143,7 @@ describe('resource otherChargeItems', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
       classIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      customFieldOwnerIds: ['0'],
       fullNames: ['Shipping Charges:Overnight Delivery'],
       ids: ['80000001-1234567890'],
       limit: 150,

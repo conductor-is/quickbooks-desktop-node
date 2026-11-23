@@ -58,6 +58,7 @@ describe('resource buildAssemblies', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.buildAssemblies.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -110,6 +111,7 @@ describe('resource buildAssemblies', () => {
     const response = await conductor.qbd.buildAssemblies.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      customFieldOwnerIds: ['0'],
       ids: ['123ABC-1234567890'],
       includeComponentLineItems: true,
       itemIds: ['80000001-1234567890'],

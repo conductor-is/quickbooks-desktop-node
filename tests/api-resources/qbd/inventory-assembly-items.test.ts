@@ -74,6 +74,7 @@ describe('resource inventoryAssemblyItems', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.inventoryAssemblyItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -143,6 +144,7 @@ describe('resource inventoryAssemblyItems', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
       classIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      customFieldOwnerIds: ['0'],
       fullNames: ['Assemblies:Deluxe Kit'],
       ids: ['80000001-1234567890'],
       limit: 150,

@@ -56,8 +56,9 @@ export class ReceivePayments extends APIResource {
     params: ReceivePaymentRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<ReceivePayment> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/receive-payments/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -1220,9 +1221,19 @@ export namespace ReceivePaymentCreateParams {
 
 export interface ReceivePaymentRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on receive-payments.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for receive-payments.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface ReceivePaymentUpdateParams {
@@ -1614,6 +1625,16 @@ export interface ReceivePaymentListParams extends CursorPageParams {
    * Query param: Filter for receive-payments received from these customers.
    */
   customerIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on receive-payments.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for receive-payments.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific receive-payments by their QuickBooks-assigned

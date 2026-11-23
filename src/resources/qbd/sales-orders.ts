@@ -47,8 +47,9 @@ export class SalesOrders extends APIResource {
    * ```
    */
   retrieve(id: string, params: SalesOrderRetrieveParams, options?: RequestOptions): APIPromise<SalesOrder> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/sales-orders/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -2354,9 +2355,19 @@ export namespace SalesOrderCreateParams {
 
 export interface SalesOrderRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on sales orders. Defaults
+   * to `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * sales orders.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface SalesOrderUpdateParams {
@@ -3198,6 +3209,16 @@ export interface SalesOrderListParams extends CursorPageParams {
    * Query param: Filter for sales orders created for these customers.
    */
   customerIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on sales orders. Defaults
+   * to `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * sales orders.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific sales orders by their QuickBooks-assigned

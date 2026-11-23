@@ -48,8 +48,9 @@ export class Deposits extends APIResource {
    * ```
    */
   retrieve(id: string, params: DepositRetrieveParams, options?: RequestOptions): APIPromise<Deposit> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/deposits/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -804,9 +805,19 @@ export namespace DepositCreateParams {
 
 export interface DepositRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on deposits. Defaults to
+   * `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * deposits.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface DepositUpdateParams {
@@ -1023,6 +1034,16 @@ export interface DepositListParams extends CursorPageParams {
    * Query param: Filter for deposits in these currencies.
    */
   currencyIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on deposits. Defaults to
+   * `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * deposits.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for deposits associated with these entities (customers,

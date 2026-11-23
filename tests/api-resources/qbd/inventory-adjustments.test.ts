@@ -84,6 +84,7 @@ describe('resource inventoryAdjustments', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.inventoryAdjustments.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -146,6 +147,7 @@ describe('resource inventoryAdjustments', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountIds: ['80000001-1234567890'],
       customerIds: ['80000001-1234567890'],
+      customFieldOwnerIds: ['0'],
       ids: ['123ABC-1234567890'],
       includeLineItems: true,
       itemIds: ['80000001-1234567890'],

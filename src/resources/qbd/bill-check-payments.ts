@@ -58,8 +58,9 @@ export class BillCheckPayments extends APIResource {
     params: BillCheckPaymentRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<BillCheckPayment> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/bill-check-payments/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -926,9 +927,19 @@ export namespace BillCheckPaymentCreateParams {
 
 export interface BillCheckPaymentRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on bill check payments.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for bill check payments.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface BillCheckPaymentUpdateParams {
@@ -1104,6 +1115,16 @@ export interface BillCheckPaymentListParams extends CursorPageParams {
    * Query param: Filter for bill check payments in these currencies.
    */
   currencyIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on bill check payments.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for bill check payments.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific bill check payments by their

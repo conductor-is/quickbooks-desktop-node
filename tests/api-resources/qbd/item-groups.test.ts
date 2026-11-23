@@ -63,6 +63,7 @@ describe('resource itemGroups', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.itemGroups.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -121,6 +122,7 @@ describe('resource itemGroups', () => {
     const response = await conductor.qbd.itemGroups.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      customFieldOwnerIds: ['0'],
       ids: ['80000001-1234567890'],
       limit: 150,
       nameContains: 'ABC',

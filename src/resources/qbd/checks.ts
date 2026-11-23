@@ -49,8 +49,9 @@ export class Checks extends APIResource {
    * ```
    */
   retrieve(id: string, params: CheckRetrieveParams, options?: RequestOptions): APIPromise<Check> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/checks/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -2358,9 +2359,19 @@ export namespace CheckCreateParams {
 
 export interface CheckRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on checks. Defaults to
+   * `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * checks.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface CheckUpdateParams {
@@ -3100,6 +3111,16 @@ export interface CheckListParams extends CursorPageParams {
    * Query param: Filter for checks in these currencies.
    */
   currencyIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on checks. Defaults to
+   * `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * checks.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific checks by their QuickBooks-assigned unique

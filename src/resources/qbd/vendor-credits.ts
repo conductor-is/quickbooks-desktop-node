@@ -54,8 +54,9 @@ export class VendorCredits extends APIResource {
     params: VendorCreditRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<VendorCredit> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/vendor-credits/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -2206,9 +2207,19 @@ export namespace VendorCreditCreateParams {
 
 export interface VendorCreditRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on vendor credits.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for vendor credits.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface VendorCreditUpdateParams {
@@ -2829,6 +2840,16 @@ export interface VendorCreditListParams extends CursorPageParams {
    * Query param: Filter for vendor credits in these currencies.
    */
   currencyIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on vendor credits.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for vendor credits.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific vendor credits by their QuickBooks-assigned
