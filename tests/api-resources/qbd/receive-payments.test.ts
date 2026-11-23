@@ -236,4 +236,30 @@ describe('resource receivePayments', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
+
+  test('setCustomFields: only required params', async () => {
+    const responsePromise = conductor.qbd.receivePayments.setCustomFields('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('setCustomFields: required and optional params', async () => {
+    const response = await conductor.qbd.receivePayments.setCustomFields('123ABC-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFields: [
+        {
+          name: 'Customer Rating',
+          value: 'Gold',
+          ownerId: '0',
+        },
+      ],
+    });
+  });
 });

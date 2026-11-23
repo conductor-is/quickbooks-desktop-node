@@ -128,6 +128,38 @@ export class Estimates extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Sets or clears custom field values on an estimate and its lines. A value
+   * replaces any current one, an empty string clears it, and fields you leave out
+   * are not changed. Item custom fields go on lines; customer, vendor, and employee
+   * custom fields go on the estimate itself.
+   *
+   * No `revisionNumber` is needed, but your next update needs the new one from the
+   * response. If QuickBooks does not save a value, the request fails without undoing
+   * the others, and retrying is safe.
+   *
+   * @example
+   * ```ts
+   * const estimate =
+   *   await conductor.qbd.estimates.setCustomFields(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: EstimateSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<Estimate> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/estimates/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type EstimatesCursorPage = CursorPage<Estimate>;
@@ -177,8 +209,12 @@ export interface Estimate {
   customerMessage: Estimate.CustomerMessage | null;
 
   /**
-   * The custom fields for the estimate object, added as user-defined data
-   * extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this estimate, for the owners named in
+   * the request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<Estimate.CustomField>;
 
@@ -573,8 +609,14 @@ export namespace Estimate {
     id: string;
 
     /**
-     * The custom fields for the estimate line group object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this estimate line group, for the owners
+     * named in the request's `customFieldOwnerIds` (by default, the public custom
+     * fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<LineGroup.CustomField>;
 
@@ -728,8 +770,13 @@ export namespace Estimate {
       class: Line.Class | null;
 
       /**
-       * The custom fields for the estimate line object, added as user-defined data
-       * extensions, not included in the standard QuickBooks object.
+       * The custom fields that have a value on this estimate line, for the owners named
+       * in the request's `customFieldOwnerIds` (by default, the public custom fields).
+       *
+       * **NOTE**: To set or clear custom field values, use the set-custom-fields
+       * endpoint of the transaction. An update cannot change them, and its response
+       * returns this as an empty array even when values exist; retrieve the transaction
+       * to see them.
        */
       customFields: Array<Line.CustomField>;
 
@@ -1088,8 +1135,13 @@ export namespace Estimate {
     class: Line.Class | null;
 
     /**
-     * The custom fields for the estimate line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this estimate line, for the owners named
+     * in the request's `customFieldOwnerIds` (by default, the public custom fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<Line.CustomField>;
 
@@ -1900,8 +1952,8 @@ export namespace EstimateCreateParams {
     itemGroupId: string;
 
     /**
-     * The custom fields for the estimate line group object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this estimate line group when it is created.
+     * To change them afterward, use the set-custom-fields endpoint of the transaction.
      */
     customFields?: Array<LineGroup.CustomField>;
 
@@ -1986,8 +2038,8 @@ export namespace EstimateCreateParams {
     classId?: string;
 
     /**
-     * The custom fields for the estimate line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this estimate line when it is created. To
+     * change them afterward, use the set-custom-fields endpoint of the transaction.
      */
     customFields?: Array<Line.CustomField>;
 
@@ -3208,6 +3260,95 @@ export interface EstimateDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface EstimateSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the estimate itself, not
+   * on its lines. Custom fields you leave out keep their values.
+   */
+  customFields?: Array<EstimateSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Body param: The lines of the estimate whose custom field values to set or clear.
+   * Lines you leave out are not changed.
+   */
+  lines?: Array<EstimateSetCustomFieldsParams.Line>;
+}
+
+export namespace EstimateSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+
+  export interface Line {
+    /**
+     * The QuickBooks-assigned unique identifier of the estimate line, line group, or
+     * line inside a line group.
+     */
+    id: string;
+
+    /**
+     * The custom field values to set or clear on this line. Custom fields you leave
+     * out keep their values.
+     */
+    customFields: Array<Line.CustomField>;
+  }
+
+  export namespace Line {
+    export interface CustomField {
+      /**
+       * The name of the custom field, as its definition and a record's `customFields`
+       * show it. The custom field must already be defined for this type of record; to
+       * list or create definitions, use the custom-field-definitions endpoint.
+       * QuickBooks matches the name without regard to letter case.
+       */
+      name: string;
+
+      /**
+       * The value to set, which replaces the custom field's current value if it has one.
+       * Send an empty string (`""`) to clear the custom field. A public custom field's
+       * value can have at most 30 characters.
+       */
+      value: string;
+
+      /**
+       * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+       * fields, which QuickBooks users define and see. Any other owner is an
+       * application's GUID in braces, such as
+       * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+       * only in requests that name it.
+       */
+      ownerId?: string;
+    }
+  }
+}
+
 export declare namespace Estimates {
   export {
     type Estimate as Estimate,
@@ -3218,5 +3359,6 @@ export declare namespace Estimates {
     type EstimateUpdateParams as EstimateUpdateParams,
     type EstimateListParams as EstimateListParams,
     type EstimateDeleteParams as EstimateDeleteParams,
+    type EstimateSetCustomFieldsParams as EstimateSetCustomFieldsParams,
   };
 }
