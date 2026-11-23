@@ -628,8 +628,7 @@ export namespace Invoice {
       | 'string_255_type';
 
     /**
-     * The value of this custom field. The maximum length depends on the field's data
-     * type.
+     * The value of this custom field.
      */
     value: string;
   }
@@ -769,8 +768,7 @@ export namespace Invoice {
         | 'string_255_type';
 
       /**
-       * The value of this custom field. The maximum length depends on the field's data
-       * type.
+       * The value of this custom field.
        */
       value: string;
     }
@@ -1011,8 +1009,7 @@ export namespace Invoice {
           | 'string_255_type';
 
         /**
-         * The value of this custom field. The maximum length depends on the field's data
-         * type.
+         * The value of this custom field.
          */
         value: string;
       }
@@ -1381,8 +1378,7 @@ export namespace Invoice {
         | 'string_255_type';
 
       /**
-       * The value of this custom field. The maximum length depends on the field's data
-       * type.
+       * The value of this custom field.
        */
       value: string;
     }
@@ -2268,8 +2264,8 @@ export namespace InvoiceCreateParams {
       ownerId: string;
 
       /**
-       * The value of this custom field. The maximum length depends on the field's data
-       * type.
+       * The value of this custom field. A public custom field's value can have at most
+       * 30 characters.
        */
       value: string;
     }
@@ -2493,8 +2489,8 @@ export namespace InvoiceCreateParams {
       ownerId: string;
 
       /**
-       * The value of this custom field. The maximum length depends on the field's data
-       * type.
+       * The value of this custom field. A public custom field's value can have at most
+       * 30 characters.
        */
       value: string;
     }

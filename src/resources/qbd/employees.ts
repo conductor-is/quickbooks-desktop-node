@@ -565,8 +565,7 @@ export namespace Employee {
       | 'string_255_type';
 
     /**
-     * The value of this custom field. The maximum length depends on the field's data
-     * type.
+     * The value of this custom field.
      */
     value: string;
   }
