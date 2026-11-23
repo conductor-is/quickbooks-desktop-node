@@ -1669,7 +1669,13 @@ paths:
                   maxLength: 36
                 isQueuedForPrint:
                   type: boolean
-                  description: Indicates whether this bill check payment is included in the queue of documents for QuickBooks to print.
+                  description: >-
+                    Indicates whether this bill check payment is included in the
+                    queue of documents for QuickBooks to print.
+
+
+                    **IMPORTANT**: You cannot specify both `isQueuedForPrint`
+                    and `refNumber` for a bill check payment.
                   example: true
                 refNumber:
                   description: >-
@@ -1683,6 +1689,10 @@ paths:
 
 
                     **IMPORTANT**: For checks, this field is the check number.
+
+
+                    **IMPORTANT**: You cannot specify both `isQueuedForPrint`
+                    and `refNumber` for a bill check payment.
 
 
                     Maximum length: 11 characters.
@@ -2085,9 +2095,13 @@ paths:
               this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -2096,9 +2110,13 @@ paths:
             this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -2107,9 +2125,13 @@ paths:
               this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -2118,9 +2140,13 @@ paths:
             this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: vendorIds
           schema:
@@ -2437,7 +2463,13 @@ paths:
                   type: number
                 isQueuedForPrint:
                   type: boolean
-                  description: Indicates whether this bill check payment is included in the queue of documents for QuickBooks to print.
+                  description: >-
+                    Indicates whether this bill check payment is included in the
+                    queue of documents for QuickBooks to print.
+
+
+                    **IMPORTANT**: You cannot specify both `isQueuedForPrint`
+                    and `refNumber` for a bill check payment.
                   example: true
                 refNumber:
                   description: >-
@@ -2449,6 +2481,10 @@ paths:
 
 
                     **IMPORTANT**: For checks, this field is the check number.
+
+
+                    **IMPORTANT**: You cannot specify both `isQueuedForPrint`
+                    and `refNumber` for a bill check payment.
 
 
                     Maximum length: 11 characters.
@@ -3521,9 +3557,13 @@ paths:
               after this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -3532,9 +3572,13 @@ paths:
             after this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -3543,9 +3587,13 @@ paths:
               before this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -3554,9 +3602,13 @@ paths:
             before this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: vendorIds
           schema:
@@ -5167,9 +5219,13 @@ paths:
               ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -5178,9 +5234,13 @@ paths:
             8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -5189,9 +5249,13 @@ paths:
               ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -5200,9 +5264,13 @@ paths:
             ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: vendorIds
           schema:
@@ -7341,9 +7409,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -7352,9 +7424,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -7363,9 +7439,13 @@ paths:
               this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -7374,9 +7454,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: itemIds
           schema:
@@ -9012,9 +9096,13 @@ paths:
               ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -9023,9 +9111,13 @@ paths:
             ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -9034,9 +9126,13 @@ paths:
               ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -9045,9 +9141,13 @@ paths:
             ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: payeeIds
           schema:
@@ -12218,9 +12318,13 @@ paths:
               this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -12229,9 +12333,13 @@ paths:
             this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -12240,9 +12348,13 @@ paths:
               this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -12251,9 +12363,13 @@ paths:
             this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: payeeIds
           schema:
@@ -14538,9 +14654,13 @@ paths:
               this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -14549,9 +14669,13 @@ paths:
             this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -14560,9 +14684,13 @@ paths:
               this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -14571,9 +14699,13 @@ paths:
             this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: payeeIds
           schema:
@@ -16786,9 +16918,13 @@ paths:
               this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -16797,9 +16933,13 @@ paths:
             this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -16808,9 +16948,13 @@ paths:
               this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -16819,9 +16963,13 @@ paths:
             this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: customerIds
           schema:
@@ -18451,9 +18599,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -18462,9 +18614,13 @@ paths:
             in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -18473,9 +18629,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -18484,9 +18644,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: customerIds
           schema:
@@ -26008,9 +26172,13 @@ paths:
               in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -26019,9 +26187,13 @@ paths:
             ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -26030,9 +26202,13 @@ paths:
               in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -26041,9 +26217,13 @@ paths:
             ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: entityIds
           schema:
@@ -31096,9 +31276,13 @@ paths:
               in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -31107,9 +31291,13 @@ paths:
             ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -31118,9 +31306,13 @@ paths:
               in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -31129,9 +31321,13 @@ paths:
             in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: customerIds
           schema:
@@ -33248,9 +33444,13 @@ paths:
               this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -33259,9 +33459,13 @@ paths:
             this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -33270,9 +33474,13 @@ paths:
               before this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -33281,9 +33489,13 @@ paths:
             this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: customerIds
           schema:
@@ -35140,7 +35352,7 @@ paths:
                   example: 200
                   type: number
                 clearItemLines:
-                  description: When `true`, removes all existing item lines associated with this inventory assembly item. To modify or add individual item lines, use the field `itemLines` instead.
+                  description: When `true`, removes all existing item lines associated with this inventory assembly item. To modify or add individual item lines, use the field `lines` instead.
                   example: false
                   type: boolean
                 lines:
@@ -38629,9 +38841,13 @@ paths:
               in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -38640,9 +38856,13 @@ paths:
             ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -38651,9 +38871,13 @@ paths:
               in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -38662,9 +38886,13 @@ paths:
             ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: customerIds
           schema:
@@ -41243,7 +41471,7 @@ paths:
                   example: true
                   type: boolean
                 clearItemLines:
-                  description: When `true`, removes all existing item lines associated with this item group. To modify or add individual item lines, use the field `itemLines` instead.
+                  description: When `true`, removes all existing item lines associated with this item group. To modify or add individual item lines, use the field `lines` instead.
                   example: false
                   type: boolean
                 lines:
@@ -42369,9 +42597,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -42380,9 +42612,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -42391,9 +42627,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -42402,9 +42642,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: vendorIds
           schema:
@@ -44051,9 +44295,8 @@ paths:
               Filter for item sites that match this item type.
 
 
-              **NOTE:** QuickBooks Desktop only supports `itemType` or item/site
-              filters for item-sites requests, not both. Do not use `itemType`
-              together with `itemIds` or `siteIds`.
+              **NOTE**: If you use this parameter, you cannot also use `itemIds`
+              or `siteIds`.
             example: inventory
             type: string
             enum:
@@ -44073,9 +44316,8 @@ paths:
             Filter for item sites that match this item type.
 
 
-            **NOTE:** QuickBooks Desktop only supports `itemType` or item/site
-            filters for item-sites requests, not both. Do not use `itemType`
-            together with `itemIds` or `siteIds`.
+            **NOTE**: If you use this parameter, you cannot also use `itemIds`
+            or `siteIds`.
         - in: query
           name: itemIds
           schema:
@@ -44083,21 +44325,17 @@ paths:
               Filter for item sites for these items.
 
 
-              **NOTE:** QuickBooks Desktop only supports `itemType` or item/site
-              filters for item-sites requests, not both. Do not use `itemType`
-              together with `itemIds` or `siteIds`.
+              **NOTE**: If you use this parameter, you cannot also use
+              `itemType`.
             example:
               - 80000001-1234567890
             type: array
             items:
               type: string
-          description: >-
+          description: |-
             Filter for item sites for these items.
 
-
-            **NOTE:** QuickBooks Desktop only supports `itemType` or item/site
-            filters for item-sites requests, not both. Do not use `itemType`
-            together with `itemIds` or `siteIds`.
+            **NOTE**: If you use this parameter, you cannot also use `itemType`.
         - in: query
           name: siteIds
           schema:
@@ -44106,9 +44344,8 @@ paths:
               location, such as a warehouse or store.
 
 
-              **NOTE:** QuickBooks Desktop only supports `itemType` or item/site
-              filters for item-sites requests, not both. Do not use `itemType`
-              together with `itemIds` or `siteIds`.
+              **NOTE**: If you use this parameter, you cannot also use
+              `itemType`.
             example:
               - 80000001-1234567890
             type: array
@@ -44119,9 +44356,7 @@ paths:
             location, such as a warehouse or store.
 
 
-            **NOTE:** QuickBooks Desktop only supports `itemType` or item/site
-            filters for item-sites requests, not both. Do not use `itemType`
-            together with `itemIds` or `siteIds`.
+            **NOTE**: If you use this parameter, you cannot also use `itemType`.
         - in: query
           name: limit
           schema:
@@ -44732,9 +44967,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -44743,9 +44982,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -44754,9 +44997,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -44765,9 +45012,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: entityIds
           schema:
@@ -50857,7 +51108,7 @@ paths:
                           calculation in the price level.
 
 
-                          **NOTE:** The price level must use either a fixed
+                          **NOTE**: The price level must use either a fixed
                           pricing approach (`customPrice` or
                           `customPricePercent`) or a relative adjustment
                           approach (`adjustPercentage` with `adjustRelativeTo`)
@@ -51451,7 +51702,7 @@ paths:
                           calculation in the price level.
 
 
-                          **NOTE:** The price level must use either a fixed
+                          **NOTE**: The price level must use either a fixed
                           pricing approach (`customPrice` or
                           `customPricePercent`) or a relative adjustment
                           approach (`adjustPercentage` with `adjustRelativeTo`)
@@ -52515,9 +52766,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -52526,9 +52781,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -52537,9 +52796,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -52548,9 +52811,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: vendorIds
           schema:
@@ -54539,7 +54806,7 @@ paths:
                     found".
 
 
-                    **NOTE**: You must specify either `isAutoApply` or
+                    **IMPORTANT**: You must specify either `isAutoApply` or
                     `applyToTransactions` when creating a receive-payment, but
                     never both.
                   minItems: 1
@@ -54891,9 +55158,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -54902,9 +55173,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -54913,9 +55188,13 @@ paths:
               this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -54924,9 +55203,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: customerIds
           schema:
@@ -61502,9 +61785,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -61513,9 +61800,13 @@ paths:
             in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -61524,9 +61815,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -61535,9 +61830,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: customerIds
           schema:
@@ -64585,9 +64884,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -64596,9 +64899,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -64607,9 +64914,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -64618,9 +64929,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: customerIds
           schema:
@@ -69680,7 +69995,13 @@ paths:
                   maxLength: 36
                 isQueuedForPrint:
                   type: boolean
-                  description: Indicates whether this sales-tax payment check is included in the queue of documents for QuickBooks to print.
+                  description: >-
+                    Indicates whether this sales-tax payment check is included
+                    in the queue of documents for QuickBooks to print.
+
+
+                    **IMPORTANT**: You cannot specify both `isQueuedForPrint`
+                    and `refNumber` for a sales-tax payment check.
                   example: true
                 refNumber:
                   description: >-
@@ -69694,6 +70015,10 @@ paths:
 
 
                     **IMPORTANT**: For checks, this field is the check number.
+
+
+                    **IMPORTANT**: You cannot specify both `isQueuedForPrint`
+                    and `refNumber` for a sales-tax payment check.
 
 
                     Maximum length: 11 characters.
@@ -70103,9 +70428,13 @@ paths:
               after this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -70114,9 +70443,13 @@ paths:
             after this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -70125,9 +70458,13 @@ paths:
               before this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -70136,9 +70473,13 @@ paths:
             before this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: vendorIds
           schema:
@@ -70439,7 +70780,13 @@ paths:
                   maxLength: 36
                 isQueuedForPrint:
                   type: boolean
-                  description: Indicates whether this sales-tax payment check is included in the queue of documents for QuickBooks to print.
+                  description: >-
+                    Indicates whether this sales-tax payment check is included
+                    in the queue of documents for QuickBooks to print.
+
+
+                    **IMPORTANT**: You cannot specify both `isQueuedForPrint`
+                    and `refNumber` for a sales-tax payment check.
                   example: true
                 refNumber:
                   description: >-
@@ -70451,6 +70798,10 @@ paths:
 
 
                     **IMPORTANT**: For checks, this field is the check number.
+
+
+                    **IMPORTANT**: You cannot specify both `isQueuedForPrint`
+                    and `refNumber` for a sales-tax payment check.
 
 
                     Maximum length: 11 characters.
@@ -74761,9 +75112,13 @@ paths:
               after this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -74772,9 +75127,13 @@ paths:
             after this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -74783,9 +75142,13 @@ paths:
               before this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -74794,9 +75157,13 @@ paths:
             before this date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: entityIds
           schema:
@@ -75651,7 +76018,7 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
             example: "2025-01-01"
@@ -75662,7 +76029,7 @@ paths:
             in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
         - in: query
@@ -75673,7 +76040,7 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
             example: "2025-02-01"
@@ -75684,7 +76051,7 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
         - in: query
@@ -76258,9 +76625,13 @@ paths:
               in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -76269,9 +76640,13 @@ paths:
             ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -76280,9 +76655,13 @@ paths:
               in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -76291,9 +76670,13 @@ paths:
             in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
       responses:
         "200":
           description: Returns a list of transfers.
@@ -78079,9 +78462,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **start
+              **NOTE**: QuickBooks Desktop interprets this date as the **start
               of the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-01-01"
             type: string
             format: date
@@ -78090,9 +78477,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **start of
+            **NOTE**: QuickBooks Desktop interprets this date as the **start of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T00:00:00`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: transactionDateTo
           schema:
@@ -78101,9 +78492,13 @@ paths:
               date, in ISO 8601 format (YYYY-MM-DD).
 
 
-              **NOTE:** QuickBooks Desktop interprets this date as the **end of
+              **NOTE**: QuickBooks Desktop interprets this date as the **end of
               the specified day** in the local timezone of the end-user's
               computer (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+              **NOTE**: If you use this parameter, you cannot also use
+              `updatedAfter` or `updatedBefore`.
             example: "2025-02-01"
             type: string
             format: date
@@ -78112,9 +78507,13 @@ paths:
             date, in ISO 8601 format (YYYY-MM-DD).
 
 
-            **NOTE:** QuickBooks Desktop interprets this date as the **end of
+            **NOTE**: QuickBooks Desktop interprets this date as the **end of
             the specified day** in the local timezone of the end-user's computer
             (e.g., `2025-01-01` → `2025-01-01T23:59:59`).
+
+
+            **NOTE**: If you use this parameter, you cannot also use
+            `updatedAfter` or `updatedBefore`.
         - in: query
           name: vendorIds
           schema:
