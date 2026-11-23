@@ -563,13 +563,9 @@ export namespace SalesOrder {
     name: string;
 
     /**
-     * The identifier of the owner of the custom field, which QuickBooks internally
-     * calls a "data extension". For public custom fields visible in the UI, such as
-     * those added by the QuickBooks user, this is always "0". For private custom
-     * fields that are only visible to the application that created them, this is a
-     * valid GUID identifying the owning application. Internally, Conductor always
-     * fetches all public custom fields (those with an `ownerId` of "0") for all
-     * objects.
+     * The owner of this custom field: `"0"` for a public custom field, which
+     * QuickBooks users define and see, or an application's GUID in braces for a
+     * private custom field, which appears only in requests that name that owner.
      */
     ownerId: string;
 
@@ -701,13 +697,9 @@ export namespace SalesOrder {
       name: string;
 
       /**
-       * The identifier of the owner of the custom field, which QuickBooks internally
-       * calls a "data extension". For public custom fields visible in the UI, such as
-       * those added by the QuickBooks user, this is always "0". For private custom
-       * fields that are only visible to the application that created them, this is a
-       * valid GUID identifying the owning application. Internally, Conductor always
-       * fetches all public custom fields (those with an `ownerId` of "0") for all
-       * objects.
+       * The owner of this custom field: `"0"` for a public custom field, which
+       * QuickBooks users define and see, or an application's GUID in braces for a
+       * private custom field, which appears only in requests that name that owner.
        */
       ownerId: string;
 
@@ -953,13 +945,9 @@ export namespace SalesOrder {
         name: string;
 
         /**
-         * The identifier of the owner of the custom field, which QuickBooks internally
-         * calls a "data extension". For public custom fields visible in the UI, such as
-         * those added by the QuickBooks user, this is always "0". For private custom
-         * fields that are only visible to the application that created them, this is a
-         * valid GUID identifying the owning application. Internally, Conductor always
-         * fetches all public custom fields (those with an `ownerId` of "0") for all
-         * objects.
+         * The owner of this custom field: `"0"` for a public custom field, which
+         * QuickBooks users define and see, or an application's GUID in braces for a
+         * private custom field, which appears only in requests that name that owner.
          */
         ownerId: string;
 
@@ -1333,13 +1321,9 @@ export namespace SalesOrder {
       name: string;
 
       /**
-       * The identifier of the owner of the custom field, which QuickBooks internally
-       * calls a "data extension". For public custom fields visible in the UI, such as
-       * those added by the QuickBooks user, this is always "0". For private custom
-       * fields that are only visible to the application that created them, this is a
-       * valid GUID identifying the owning application. Internally, Conductor always
-       * fetches all public custom fields (those with an `ownerId` of "0") for all
-       * objects.
+       * The owner of this custom field: `"0"` for a public custom field, which
+       * QuickBooks users define and see, or an application's GUID in braces for a
+       * private custom field, which appears only in requests that name that owner.
        */
       ownerId: string;
 
@@ -2091,13 +2075,9 @@ export namespace SalesOrderCreateParams {
       name: string;
 
       /**
-       * The identifier of the owner of the custom field, which QuickBooks internally
-       * calls a "data extension". For public custom fields visible in the UI, such as
-       * those added by the QuickBooks user, this is always "0". For private custom
-       * fields that are only visible to the application that created them, this is a
-       * valid GUID identifying the owning application. Internally, Conductor always
-       * fetches all public custom fields (those with an `ownerId` of "0") for all
-       * objects.
+       * The owner of this custom field: `"0"` for a public custom field, which
+       * QuickBooks users define and see, or an application's GUID in braces for a
+       * private custom field, which appears only in requests that name that owner.
        */
       ownerId: string;
 
@@ -2280,13 +2260,9 @@ export namespace SalesOrderCreateParams {
       name: string;
 
       /**
-       * The identifier of the owner of the custom field, which QuickBooks internally
-       * calls a "data extension". For public custom fields visible in the UI, such as
-       * those added by the QuickBooks user, this is always "0". For private custom
-       * fields that are only visible to the application that created them, this is a
-       * valid GUID identifying the owning application. Internally, Conductor always
-       * fetches all public custom fields (those with an `ownerId` of "0") for all
-       * objects.
+       * The owner of this custom field: `"0"` for a public custom field, which
+       * QuickBooks users define and see, or an application's GUID in braces for a
+       * private custom field, which appears only in requests that name that owner.
        */
       ownerId: string;
 
