@@ -258,6 +258,21 @@ Methods:
 - <code title="post /quickbooks-desktop/currencies/{id}">client.qbd.currencies.<a href="./src/resources/qbd/currencies.ts">update</a>(id, { ...params }) -> Currency</code>
 - <code title="get /quickbooks-desktop/currencies">client.qbd.currencies.<a href="./src/resources/qbd/currencies.ts">list</a>({ ...params }) -> CurrencyListResponse</code>
 
+## CustomFieldDefinitions
+
+Types:
+
+- <code><a href="./src/resources/qbd/custom-field-definitions.ts">CustomFieldDefinition</a></code>
+- <code><a href="./src/resources/qbd/custom-field-definitions.ts">CustomFieldDefinitionListResponse</a></code>
+- <code><a href="./src/resources/qbd/custom-field-definitions.ts">CustomFieldDefinitionDeleteResponse</a></code>
+
+Methods:
+
+- <code title="post /quickbooks-desktop/custom-field-definitions">client.qbd.customFieldDefinitions.<a href="./src/resources/qbd/custom-field-definitions.ts">create</a>({ ...params }) -> CustomFieldDefinition</code>
+- <code title="post /quickbooks-desktop/custom-field-definitions/{id}">client.qbd.customFieldDefinitions.<a href="./src/resources/qbd/custom-field-definitions.ts">update</a>(id, { ...params }) -> CustomFieldDefinition</code>
+- <code title="get /quickbooks-desktop/custom-field-definitions">client.qbd.customFieldDefinitions.<a href="./src/resources/qbd/custom-field-definitions.ts">list</a>({ ...params }) -> CustomFieldDefinitionListResponse</code>
+- <code title="delete /quickbooks-desktop/custom-field-definitions/{id}">client.qbd.customFieldDefinitions.<a href="./src/resources/qbd/custom-field-definitions.ts">delete</a>(id, { ...params }) -> CustomFieldDefinitionDeleteResponse</code>
+
 ## CustomerTypes
 
 Types:
