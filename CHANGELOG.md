@@ -1,5 +1,25 @@
 # Changelog
 
+## [16.3.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.2.0...v16.3.0) (2026-11-23)
+
+
+### Features
+
+* **api:** choose whose custom fields list and retrieve return ([ed12c1e](https://github.com/conductor-is/quickbooks-desktop-node/commit/ed12c1e4b27568b860abfc5fcceffee2747b13c2))
+* **api:** set custom field values on records and their lines ([45422c6](https://github.com/conductor-is/quickbooks-desktop-node/commit/45422c6454e67a4e888f4382651e5cfa9eabbf18))
+
+
+### Bug Fixes
+
+* **api:** refuse over-long public custom field values on create ([51689e0](https://github.com/conductor-is/quickbooks-desktop-node/commit/51689e0dff4c269d9dc3c5f8faad4377199e8d8f))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([2037171](https://github.com/conductor-is/quickbooks-desktop-node/commit/2037171404f16bea1d1c3878f9033f61498b54c4))
+* **api:** update documented OpenAPI spec for download ([d217ea6](https://github.com/conductor-is/quickbooks-desktop-node/commit/d217ea6d09e98040e01ed19e92f47444f300d8b1))
+* **api:** update documented OpenAPI spec for download ([8f1625a](https://github.com/conductor-is/quickbooks-desktop-node/commit/8f1625a1c11d8fa24e536544d53d3c7633d3d752))
+
 ## [16.2.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.1.4...v16.2.0) (2026-11-23)
 
 
