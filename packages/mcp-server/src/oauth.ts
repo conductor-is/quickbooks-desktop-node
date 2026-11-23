@@ -9,12 +9,9 @@
 // envelope says so (api.conductor.is sits behind Cloudflare; an edge 401/403
 // page must fail open). Every gate decision and every probe is logged as one
 // structured line because http.ts redacts www-authenticate from Render logs.
-// The authorization server URL is hardcoded. The resource URL defaults to the
-// listed hostname and can be moved with CONDUCTOR_MCP_RESOURCE_URL (the
-// developer code-mode hostname runs this same package at another origin); it
-// is read per request like the rest of the config, which comes from
-// non-MCP_SERVER_ env names (see code-tool.ts for why) with production
-// defaults baked in.
+// The authorization server URL and the resource URL are hardcoded. The rest of
+// the config is read per request from non-MCP_SERVER_ env names (see
+// code-tool.ts for why) with production defaults baked in.
 import cors from 'cors';
 import { createHash } from 'node:crypto';
 import express from 'express';
@@ -23,10 +20,9 @@ import { sdkMethods } from './methods';
 import { rpcMethodProps, sanitizeUserAgent } from './telemetry';
 import { readEnv } from './util';
 
-// A local end-to-end run edits AUTHORIZATION_SERVER_URL temporarily and sets CONDUCTOR_MCP_RESOURCE_URL
-// (see the dashboard's src/lib/oauth/README.md).
+// A local end-to-end run edits AUTHORIZATION_SERVER_URL and RESOURCE_URL temporarily.
 const AUTHORIZATION_SERVER_URL = 'https://dashboard.conductor.is';
-const DEFAULT_RESOURCE_URL = 'https://mcp.conductor.is/';
+const RESOURCE_URL = 'https://mcp.conductor.is/';
 const DEFAULT_API_BASE_URL = 'https://api.conductor.is/v1'; // conductor-node's own default (src/client.ts)
 const PROTECTED_RESOURCE_METADATA_PATH = '/.well-known/oauth-protected-resource';
 // The read-only connector URL. POST /read-only (Express also matches /read-only/) allows only reads (see
@@ -61,7 +57,7 @@ export type OAuthResource = 'root' | 'read-only';
 
 export interface OAuthResourceConfig {
   authorizationServerUrl: string; // no trailing slash
-  resourceUrl: string; // root: getRootResourceUrl(), trailing slash kept; read-only: `${origin}/read-only`, no slash
+  resourceUrl: string; // root: RESOURCE_URL, trailing slash kept; read-only: `${origin}/read-only`, no slash
   resourceMetadataUrl: string; // `${origin}/.well-known/oauth-protected-resource`, plus READ_ONLY_PATH for read-only
   apiBaseUrl: string; // no trailing slash
   keyProbeEnabled: boolean;
@@ -93,15 +89,14 @@ type KeyProbeResult = { verdict: KeyProbeVerdict; code?: string; error?: string 
 // The read-only resource is derived from the root.
 export function getOAuthResourceConfig(resource: OAuthResource = 'root'): OAuthResourceConfig {
   const isReadOnly = resource === 'read-only';
-  const rootResourceUrl = getRootResourceUrl();
   // Absolute paths resolved against the root, so the identifier and the path-inserted RFC 9728 metadata URL
   // both come from READ_ONLY_PATH; http.ts's '/read-only' route literals must match it (the seal test pins them).
   return {
     authorizationServerUrl: AUTHORIZATION_SERVER_URL,
-    resourceUrl: isReadOnly ? new URL(READ_ONLY_PATH, rootResourceUrl).href : rootResourceUrl,
+    resourceUrl: isReadOnly ? new URL(READ_ONLY_PATH, RESOURCE_URL).href : RESOURCE_URL,
     resourceMetadataUrl: new URL(
       PROTECTED_RESOURCE_METADATA_PATH + (isReadOnly ? READ_ONLY_PATH : ''),
-      rootResourceUrl,
+      RESOURCE_URL,
     ).href,
     apiBaseUrl: (readEnv('CONDUCTOR_BASE_URL') ?? DEFAULT_API_BASE_URL).replace(/\/+$/, ''),
     keyProbeEnabled: !['off', 'false', '0', 'no'].includes(
@@ -109,39 +104,6 @@ export function getOAuthResourceConfig(resource: OAuthResource = 'root'): OAuthR
     ),
   };
 }
-
-// The root resource identifier: CONDUCTOR_MCP_RESOURCE_URL when it is an absolute http(s) origin (any path,
-// query or fragment is dropped and the trailing slash kept, the form hosted Claude connects with), else the
-// listed hostname. The read-only identifier and both RFC 9728 documents derive from it.
-export function getRootResourceUrl(): string {
-  const configured = readEnv('CONDUCTOR_MCP_RESOURCE_URL');
-  if (configured === undefined) return DEFAULT_RESOURCE_URL;
-  if (configured === resourceUrlMemo.raw) return resourceUrlMemo.resolved;
-  let resolved = DEFAULT_RESOURCE_URL;
-  let rejected: string | undefined;
-  try {
-    const url = new URL(configured);
-    if (url.protocol === 'https:' || url.protocol === 'http:') resolved = `${url.origin}/`;
-    else rejected = `unsupported protocol ${url.protocol}`;
-  } catch {
-    rejected = 'not an absolute URL';
-  }
-  if (rejected !== undefined) {
-    // Logged once per distinct value: the variable is deployment config, and a silent fallback would leave
-    // a server at another hostname advertising the listed resource with nothing in the logs to say why.
-    getLogger().warn(
-      { configured, fallback: DEFAULT_RESOURCE_URL },
-      `Ignoring CONDUCTOR_MCP_RESOURCE_URL (${rejected}); advertising the default resource`,
-    );
-  }
-  resourceUrlMemo = { raw: configured, resolved };
-  return resolved;
-}
-
-let resourceUrlMemo: { raw: string | undefined; resolved: string } = {
-  raw: undefined,
-  resolved: DEFAULT_RESOURCE_URL,
-};
 
 // No scopes_supported: read-only is decided by the URL the client POSTs to, never by the token, and listing
 // none keeps Claude from requesting offline_access (a refresh token this server never issues).

@@ -77,3 +77,9 @@ The service is blueprint-managed from the conductor repo's `render.yaml` and aut
 - Docs: conductor repo main a7f1c8399 and df85a49fc (Copilot Studio tabs under Setup and Read-only mode in docs.conductor.is/usage/mcp with server URL `https://mcp.conductor.is/mcp`, API key in a header named `Authorization`, value `Bearer` plus the key; a troubleshooting entry for its 404 and 401 messages; a tip on the dashboard's Other clients entry; changelog; TODO.md).
 - Logs: `render logs -r srv-da3mnkbbc2fs73acu8t0 --text x-ms-apim-referrer` lists every Copilot Studio request (the referrer's last segment is the connector's operation path, and the prefix slug names the connector); `--text credentialShape` now tells a pasted header line (`scheme:colon`) from a quoted value (`scheme:quoted`). A Copilot Studio tool that works shows `POST /mcp` 200 for `initialize`, then `tools/list`, then `tools/call` with a `keyProbe` line.
 - stlc: the three `/mcp` route lines sit in the sealed hunk of the generated `src/http.ts` next to the `/read-only` ones and are pinned by `tests/conductor-patches.test.ts`; `src/oauth.ts` stays a custom file.
+
+## 2026-11-23: service deleted
+
+- The conductor-mcp Render service (srv-da3mnkbbc2fs73acu8t0) is deleted, with its custom domain code.mcp.conductor.is, that domain's DNS record and its block in the conductor repo's `render.yaml`. The `render logs` commands in the entries above no longer work.
+- `CONDUCTOR_MCP_RESOURCE_URL` is removed from `src/oauth.ts`: it existed so this package could serve code.mcp.conductor.is, and Conductor's dashboard now accepts only `https://mcp.conductor.is` as an OAuth resource.
+- The same image keeps running as the private service conductor-code-runner, the backend of the `execute` tool on `https://mcp.conductor.is/` (the conductor repo's `apps/server/src/mcp/code-runner.ts`), which deploys every commit on this repo's main after CI passes.
