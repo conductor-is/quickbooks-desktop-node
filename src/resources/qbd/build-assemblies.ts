@@ -55,15 +55,17 @@ export class BuildAssemblies extends APIResource {
     params: BuildAssemblyRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<BuildAssembly> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/build-assemblies/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
 
   /**
-   * Updates an existing build assembly.
+   * Updates an existing build assembly. To set or clear custom field values, use the
+   * set-custom-fields endpoint.
    *
    * @example
    * ```ts
@@ -136,6 +138,42 @@ export class BuildAssemblies extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Sets or clears custom field values on a build assembly. A value replaces the
+   * custom field's current value if it has one, and an empty string clears it.
+   * Custom fields you leave out keep their values, and no `revisionNumber` is
+   * needed.
+   *
+   * If QuickBooks does not save every value, or the build assembly cannot be
+   * returned, the request fails with an error that names the custom fields
+   * QuickBooks did not save and any whose outcome could not be confirmed. The values
+   * QuickBooks did save stay saved. Sending the same request again is safe.
+   *
+   * **NOTE**: This request changes the build assembly's `revisionNumber`, so use the
+   * one in its response for your next update.
+   *
+   * @example
+   * ```ts
+   * const buildAssembly =
+   *   await conductor.qbd.buildAssemblies.setCustomFields(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: BuildAssemblySetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<BuildAssembly> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/build-assemblies/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type BuildAssembliesCursorPage = CursorPage<BuildAssembly>;
@@ -155,8 +193,12 @@ export interface BuildAssembly {
   createdAt: string;
 
   /**
-   * The custom fields for the build assembly object, added as user-defined data
-   * extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this build assembly, for the owners named
+   * in the request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<BuildAssembly.CustomField>;
 
@@ -305,8 +347,10 @@ export namespace BuildAssembly {
       | 'string_255_type';
 
     /**
-     * The value of this custom field. The maximum length depends on the field's data
-     * type.
+     * The value of this custom field. QuickBooks keeps at most 30 characters of a
+     * public custom field's value: it refuses a longer one on a customer or item, and
+     * on a transaction or line it stores only the first 30 without an error. A private
+     * custom field's limit depends on its type.
      */
     value: string;
   }
@@ -616,9 +660,19 @@ export interface BuildAssemblyCreateParams {
 
 export interface BuildAssemblyRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on build assemblies.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for build assemblies.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface BuildAssemblyUpdateParams {
@@ -720,6 +774,16 @@ export interface BuildAssemblyListParams extends CursorPageParams {
    * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on build assemblies.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for build assemblies.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific build assemblies by their QuickBooks-assigned
@@ -867,6 +931,47 @@ export interface BuildAssemblyDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface BuildAssemblySetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the build assembly
+   * itself, not on its lines. Custom fields you leave out keep their values.
+   */
+  customFields?: Array<BuildAssemblySetCustomFieldsParams.CustomField>;
+}
+
+export namespace BuildAssemblySetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters, the most QuickBooks keeps.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+}
+
 export declare namespace BuildAssemblies {
   export {
     type BuildAssembly as BuildAssembly,
@@ -877,5 +982,6 @@ export declare namespace BuildAssemblies {
     type BuildAssemblyUpdateParams as BuildAssemblyUpdateParams,
     type BuildAssemblyListParams as BuildAssemblyListParams,
     type BuildAssemblyDeleteParams as BuildAssemblyDeleteParams,
+    type BuildAssemblySetCustomFieldsParams as BuildAssemblySetCustomFieldsParams,
   };
 }

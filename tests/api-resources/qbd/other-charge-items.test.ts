@@ -71,6 +71,7 @@ describe('resource otherChargeItems', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.otherChargeItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -142,6 +143,7 @@ describe('resource otherChargeItems', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
       classIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      customFieldOwnerIds: ['0'],
       fullNames: ['Shipping Charges:Overnight Delivery'],
       ids: ['80000001-1234567890'],
       limit: 150,
@@ -153,6 +155,32 @@ describe('resource otherChargeItems', () => {
       status: 'active',
       updatedAfter: '2025-01-01T12:34:56+00:00',
       updatedBefore: '2025-02-01T12:34:56+00:00',
+    });
+  });
+
+  test('setCustomFields: only required params', async () => {
+    const responsePromise = conductor.qbd.otherChargeItems.setCustomFields('80000001-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('setCustomFields: required and optional params', async () => {
+    const response = await conductor.qbd.otherChargeItems.setCustomFields('80000001-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFields: [
+        {
+          name: 'Customer Rating',
+          value: 'Gold',
+          ownerId: '0',
+        },
+      ],
     });
   });
 });
