@@ -46,8 +46,9 @@ export class Accounts extends APIResource {
    * ```
    */
   retrieve(id: string, params: AccountRetrieveParams, options?: RequestOptions): APIPromise<Account> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/accounts/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -56,7 +57,8 @@ export class Accounts extends APIResource {
   /**
    * Updates an existing financial account. You can rename the account, adjust
    * numbering, or change supported attributes, but QuickBooks won’t let you convert
-   * it to a non-posting type via the API.
+   * it to a non-posting type via the API. To set or clear custom field values, use
+   * the set-custom-fields endpoint.
    *
    * @example
    * ```ts
@@ -95,6 +97,41 @@ export class Accounts extends APIResource {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/accounts', {
       query,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
+
+  /**
+   * Sets or clears custom field values on an account. A value replaces the custom
+   * field's current value if it has one, and an empty string clears it. Custom
+   * fields you leave out keep their values, and no `revisionNumber` is needed.
+   *
+   * If QuickBooks does not save every value, or the account cannot be returned, the
+   * request fails with an error that names the custom fields QuickBooks did not save
+   * and any whose outcome could not be confirmed. The values QuickBooks did save
+   * stay saved. Sending the same request again is safe.
+   *
+   * **NOTE**: This request changes the account's `revisionNumber`, so use the one in
+   * its response for your next update.
+   *
+   * @example
+   * ```ts
+   * const account =
+   *   await conductor.qbd.accounts.setCustomFields(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: AccountSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<Account> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/accounts/${id}/set-custom-fields`, {
+      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -180,8 +217,12 @@ export interface Account {
   currency: Account.Currency | null;
 
   /**
-   * The custom fields for the account object, added as user-defined data extensions,
-   * not included in the standard QuickBooks object.
+   * The custom fields that have a value on this account, for the owners named in the
+   * request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<Account.CustomField>;
 
@@ -364,8 +405,10 @@ export namespace Account {
       | 'string_255_type';
 
     /**
-     * The value of this custom field. The maximum length depends on the field's data
-     * type.
+     * The value of this custom field. QuickBooks keeps at most 30 characters of a
+     * public custom field's value: it refuses a longer one on a customer or item, and
+     * on a transaction or line it stores only the first 30 without an error. A private
+     * custom field's limit depends on its type.
      */
     value: string;
   }
@@ -585,9 +628,19 @@ export interface AccountCreateParams {
 
 export interface AccountRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on accounts. Defaults to
+   * `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * accounts.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface AccountUpdateParams {
@@ -759,6 +812,16 @@ export interface AccountListParams {
   currencyIds?: Array<string>;
 
   /**
+   * Query param: The owners whose custom fields to return on accounts. Defaults to
+   * `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * accounts.
+   */
+  customFieldOwnerIds?: Array<string>;
+
+  /**
    * Query param: Filter for specific accounts by their full-name(s),
    * case-insensitive. Like `id`, `fullName` is a unique identifier for an account,
    * formed by by combining the names of its parent objects with its own `name`,
@@ -888,6 +951,47 @@ export interface AccountListParams {
   updatedBefore?: string;
 }
 
+export interface AccountSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the account. Custom
+   * fields you leave out keep their values.
+   */
+  customFields?: Array<AccountSetCustomFieldsParams.CustomField>;
+}
+
+export namespace AccountSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters, the most QuickBooks keeps.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+}
+
 export declare namespace Accounts {
   export {
     type Account as Account,
@@ -896,5 +1000,6 @@ export declare namespace Accounts {
     type AccountRetrieveParams as AccountRetrieveParams,
     type AccountUpdateParams as AccountUpdateParams,
     type AccountListParams as AccountListParams,
+    type AccountSetCustomFieldsParams as AccountSetCustomFieldsParams,
   };
 }
