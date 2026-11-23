@@ -165,7 +165,12 @@ export class ReceivePayments extends APIResource {
    * const receivePayment =
    *   await conductor.qbd.receivePayments.setCustomFields(
    *     '123ABC-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -1813,15 +1818,15 @@ export interface ReceivePaymentDeleteParams {
 
 export interface ReceivePaymentSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the receive-payment
    * itself, not on its lines. Custom fields you leave out keep their values.
    */
-  customFields?: Array<ReceivePaymentSetCustomFieldsParams.CustomField>;
+  customFields: Array<ReceivePaymentSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace ReceivePaymentSetCustomFieldsParams {

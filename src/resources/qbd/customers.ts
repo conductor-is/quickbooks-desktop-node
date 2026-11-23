@@ -121,7 +121,12 @@ export class Customers extends APIResource {
    * const customer =
    *   await conductor.qbd.customers.setCustomFields(
    *     '80000001-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -2805,15 +2810,15 @@ export interface CustomerListParams extends CursorPageParams {
 
 export interface CustomerSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the customer. Custom
    * fields you leave out keep their values.
    */
-  customFields?: Array<CustomerSetCustomFieldsParams.CustomField>;
+  customFields: Array<CustomerSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace CustomerSetCustomFieldsParams {

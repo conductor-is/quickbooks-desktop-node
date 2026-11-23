@@ -161,7 +161,12 @@ export class JournalEntries extends APIResource {
    * const journalEntry =
    *   await conductor.qbd.journalEntries.setCustomFields(
    *     '123ABC-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -1263,15 +1268,15 @@ export interface JournalEntryDeleteParams {
 
 export interface JournalEntrySetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the journal entry itself,
    * not on its lines. Custom fields you leave out keep their values.
    */
-  customFields?: Array<JournalEntrySetCustomFieldsParams.CustomField>;
+  customFields: Array<JournalEntrySetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace JournalEntrySetCustomFieldsParams {

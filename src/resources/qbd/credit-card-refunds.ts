@@ -139,7 +139,12 @@ export class CreditCardRefunds extends APIResource {
    * const creditCardRefund =
    *   await conductor.qbd.creditCardRefunds.setCustomFields(
    *     '123ABC-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -1401,15 +1406,15 @@ export interface CreditCardRefundDeleteParams {
 
 export interface CreditCardRefundSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the credit card refund
    * itself, not on its lines. Custom fields you leave out keep their values.
    */
-  customFields?: Array<CreditCardRefundSetCustomFieldsParams.CustomField>;
+  customFields: Array<CreditCardRefundSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace CreditCardRefundSetCustomFieldsParams {

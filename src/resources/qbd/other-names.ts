@@ -115,7 +115,12 @@ export class OtherNames extends APIResource {
    * const otherName =
    *   await conductor.qbd.otherNames.setCustomFields(
    *     '80000001-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -981,15 +986,15 @@ export interface OtherNameListParams {
 
 export interface OtherNameSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the other-name. Custom
    * fields you leave out keep their values.
    */
-  customFields?: Array<OtherNameSetCustomFieldsParams.CustomField>;
+  customFields: Array<OtherNameSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace OtherNameSetCustomFieldsParams {

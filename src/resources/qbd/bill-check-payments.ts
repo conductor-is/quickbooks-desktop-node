@@ -168,7 +168,12 @@ export class BillCheckPayments extends APIResource {
    * const billCheckPayment =
    *   await conductor.qbd.billCheckPayments.setCustomFields(
    *     '123ABC-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -1311,15 +1316,15 @@ export interface BillCheckPaymentDeleteParams {
 
 export interface BillCheckPaymentSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the bill check payment
    * itself, not on its lines. Custom fields you leave out keep their values.
    */
-  customFields?: Array<BillCheckPaymentSetCustomFieldsParams.CustomField>;
+  customFields: Array<BillCheckPaymentSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace BillCheckPaymentSetCustomFieldsParams {
