@@ -449,6 +449,30 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/currencies',
   },
   {
+    clientCallName: 'conductor.qbd.customFieldDefinitions.create',
+    fullyQualifiedName: 'qbd.customFieldDefinitions.create',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/custom-field-definitions',
+  },
+  {
+    clientCallName: 'conductor.qbd.customFieldDefinitions.update',
+    fullyQualifiedName: 'qbd.customFieldDefinitions.update',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/custom-field-definitions/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.customFieldDefinitions.list',
+    fullyQualifiedName: 'qbd.customFieldDefinitions.list',
+    httpMethod: 'get',
+    httpPath: '/quickbooks-desktop/custom-field-definitions',
+  },
+  {
+    clientCallName: 'conductor.qbd.customFieldDefinitions.delete',
+    fullyQualifiedName: 'qbd.customFieldDefinitions.delete',
+    httpMethod: 'delete',
+    httpPath: '/quickbooks-desktop/custom-field-definitions/{id}',
+  },
+  {
     clientCallName: 'conductor.qbd.customerTypes.create',
     fullyQualifiedName: 'qbd.customerTypes.create',
     httpMethod: 'post',

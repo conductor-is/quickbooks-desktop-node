@@ -164,6 +164,17 @@ import {
   CurrencyRetrieveParams,
   CurrencyUpdateParams,
 } from './currencies';
+import * as CustomFieldDefinitionsAPI from './custom-field-definitions';
+import {
+  CustomFieldDefinition,
+  CustomFieldDefinitionCreateParams,
+  CustomFieldDefinitionDeleteParams,
+  CustomFieldDefinitionDeleteResponse,
+  CustomFieldDefinitionListParams,
+  CustomFieldDefinitionListResponse,
+  CustomFieldDefinitionUpdateParams,
+  CustomFieldDefinitions,
+} from './custom-field-definitions';
 import * as CustomerTypesAPI from './customer-types';
 import {
   CustomerType,
@@ -674,6 +685,8 @@ export class Qbd extends APIResource {
   );
   creditMemos: CreditMemosAPI.CreditMemos = new CreditMemosAPI.CreditMemos(this._client);
   currencies: CurrenciesAPI.Currencies = new CurrenciesAPI.Currencies(this._client);
+  customFieldDefinitions: CustomFieldDefinitionsAPI.CustomFieldDefinitions =
+    new CustomFieldDefinitionsAPI.CustomFieldDefinitions(this._client);
   customerTypes: CustomerTypesAPI.CustomerTypes = new CustomerTypesAPI.CustomerTypes(this._client);
   customers: CustomersAPI.Customers = new CustomersAPI.Customers(this._client);
   dateDrivenTerms: DateDrivenTermsAPI.DateDrivenTerms = new DateDrivenTermsAPI.DateDrivenTerms(this._client);
@@ -800,6 +813,7 @@ Qbd.CreditCardCredits = CreditCardCredits;
 Qbd.CreditCardRefunds = CreditCardRefunds;
 Qbd.CreditMemos = CreditMemos;
 Qbd.Currencies = Currencies;
+Qbd.CustomFieldDefinitions = CustomFieldDefinitions;
 Qbd.CustomerTypes = CustomerTypes;
 Qbd.Customers = Customers;
 Qbd.DateDrivenTerms = DateDrivenTerms;
@@ -1023,6 +1037,17 @@ export declare namespace Qbd {
     type CurrencyRetrieveParams as CurrencyRetrieveParams,
     type CurrencyUpdateParams as CurrencyUpdateParams,
     type CurrencyListParams as CurrencyListParams,
+  };
+
+  export {
+    CustomFieldDefinitions as CustomFieldDefinitions,
+    type CustomFieldDefinition as CustomFieldDefinition,
+    type CustomFieldDefinitionListResponse as CustomFieldDefinitionListResponse,
+    type CustomFieldDefinitionDeleteResponse as CustomFieldDefinitionDeleteResponse,
+    type CustomFieldDefinitionCreateParams as CustomFieldDefinitionCreateParams,
+    type CustomFieldDefinitionUpdateParams as CustomFieldDefinitionUpdateParams,
+    type CustomFieldDefinitionListParams as CustomFieldDefinitionListParams,
+    type CustomFieldDefinitionDeleteParams as CustomFieldDefinitionDeleteParams,
   };
 
   export {
