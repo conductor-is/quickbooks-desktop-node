@@ -127,7 +127,12 @@ export class ServiceItems extends APIResource {
    * const serviceItem =
    *   await conductor.qbd.serviceItems.setCustomFields(
    *     '80000001-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -1281,15 +1286,15 @@ export interface ServiceItemListParams extends CursorPageParams {
 
 export interface ServiceItemSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the service item. Custom
    * fields you leave out keep their values.
    */
-  customFields?: Array<ServiceItemSetCustomFieldsParams.CustomField>;
+  customFields: Array<ServiceItemSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace ServiceItemSetCustomFieldsParams {

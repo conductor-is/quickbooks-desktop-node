@@ -168,7 +168,12 @@ export class SalesTaxPaymentChecks extends APIResource {
    * const salesTaxPaymentCheck =
    *   await conductor.qbd.salesTaxPaymentChecks.setCustomFields(
    *     '123ABC-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -1074,15 +1079,15 @@ export interface SalesTaxPaymentCheckDeleteParams {
 
 export interface SalesTaxPaymentCheckSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the sales-tax payment
    * check itself, not on its lines. Custom fields you leave out keep their values.
    */
-  customFields?: Array<SalesTaxPaymentCheckSetCustomFieldsParams.CustomField>;
+  customFields: Array<SalesTaxPaymentCheckSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace SalesTaxPaymentCheckSetCustomFieldsParams {

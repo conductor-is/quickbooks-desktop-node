@@ -129,6 +129,7 @@ describe('resource salesTaxItems', () => {
 
   test('setCustomFields: only required params', async () => {
     const responsePromise = conductor.qbd.salesTaxItems.setCustomFields('80000001-1234567890', {
+      customFields: [{ name: 'Customer Rating', value: 'Gold' }],
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -142,7 +143,6 @@ describe('resource salesTaxItems', () => {
 
   test('setCustomFields: required and optional params', async () => {
     const response = await conductor.qbd.salesTaxItems.setCustomFields('80000001-1234567890', {
-      conductorEndUserId: 'end_usr_1234567abcdefg',
       customFields: [
         {
           name: 'Customer Rating',
@@ -150,6 +150,7 @@ describe('resource salesTaxItems', () => {
           ownerId: '0',
         },
       ],
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

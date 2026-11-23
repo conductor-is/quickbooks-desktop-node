@@ -118,7 +118,12 @@ export class ItemGroups extends APIResource {
    * const itemGroup =
    *   await conductor.qbd.itemGroups.setCustomFields(
    *     '80000001-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -760,15 +765,15 @@ export interface ItemGroupListParams extends CursorPageParams {
 
 export interface ItemGroupSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the item group. Custom
    * fields you leave out keep their values.
    */
-  customFields?: Array<ItemGroupSetCustomFieldsParams.CustomField>;
+  customFields: Array<ItemGroupSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace ItemGroupSetCustomFieldsParams {

@@ -132,7 +132,12 @@ export class OtherChargeItems extends APIResource {
    * const otherChargeItem =
    *   await conductor.qbd.otherChargeItems.setCustomFields(
    *     '80000001-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -1230,15 +1235,15 @@ export interface OtherChargeItemListParams extends CursorPageParams {
 
 export interface OtherChargeItemSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the other charge item.
    * Custom fields you leave out keep their values.
    */
-  customFields?: Array<OtherChargeItemSetCustomFieldsParams.CustomField>;
+  customFields: Array<OtherChargeItemSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace OtherChargeItemSetCustomFieldsParams {
