@@ -66,8 +66,7 @@ export interface Company {
   companyType: string | null;
 
   /**
-   * The custom fields for the company object, added as user-defined data extensions,
-   * not included in the standard QuickBooks object.
+   * The public custom fields that have a value on this company.
    */
   customFields: Array<Company.CustomField>;
 
@@ -359,8 +358,10 @@ export namespace Company {
       | 'string_255_type';
 
     /**
-     * The value of this custom field. The maximum length depends on the field's data
-     * type.
+     * The value of this custom field. QuickBooks keeps at most 30 characters of a
+     * public custom field's value: it refuses a longer one on a customer or item, and
+     * on a transaction or line it stores only the first 30 without an error. A private
+     * custom field's limit depends on its type.
      */
     value: string;
   }
