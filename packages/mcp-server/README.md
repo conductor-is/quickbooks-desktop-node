@@ -77,7 +77,7 @@ and repeatably.
 
 ## Running remotely
 
-Launching the package with `--transport=http` runs the actual MCP server (the mode `https://mcp.conductor.is/` runs) using Streamable HTTP transport. The `--port` setting can choose the port it will run on, and the `--socket` setting allows it to run on a Unix socket. Code execution in this mode needs [Deno](https://deno.land) on the server.
+Launching the package with `--transport=http` runs the actual MCP server (the mode Conductor runs as the private code runner behind `execute` on `https://mcp.conductor.is/`) using Streamable HTTP transport. The `--port` setting can choose the port it will run on, and the `--socket` setting allows it to run on a Unix socket. Code execution in this mode needs [Deno](https://deno.land) on the server.
 
 Authorization can be provided via the `Authorization` header using the Bearer scheme.
 

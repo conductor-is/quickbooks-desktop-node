@@ -1,11 +1,12 @@
-# Dockerfile for the hosted Conductor MCP server (https://mcp.conductor.is/)
+# Dockerfile for the package's HTTP server, which Conductor runs as the
+# private code runner behind the `execute` tool on https://mcp.conductor.is/
 #
-# This image is the server that executes the `execute` and `search_docs`
-# tools. Render runs it with --transport=http (see render.yaml in the
-# conductor repo); clients reach it over Streamable HTTP with their secret key
-# in the Authorization header. The package's stdio transport is only a bridge
-# to this hosted server (src/bridge.ts), so the container is never run over
-# stdio.
+# Render runs this image with --transport=http as conductor-code-runner (see
+# render.yaml in the conductor repo). It has no public hostname: conductor-api
+# relays each `execute` call to it over Render's private network with the
+# caller's key in the Authorization header. The package's stdio transport is
+# only a bridge to https://mcp.conductor.is/ (src/bridge.ts), so the container
+# is never run over stdio.
 #
 # To build the image locally:
 #   docker build -f packages/mcp-server/Dockerfile -t conductor-node-mcp:local .
