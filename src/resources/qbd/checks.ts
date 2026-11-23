@@ -130,6 +130,37 @@ export class Checks extends APIResource {
   }
 
   /**
+   * Sets or clears custom field values on a check and its lines. A value replaces
+   * any current one, an empty string clears it, and fields you leave out are not
+   * changed. Item custom fields go on lines; customer, vendor, and employee custom
+   * fields go on the check itself.
+   *
+   * No `revisionNumber` is needed, but your next update needs the new one from the
+   * response. If QuickBooks does not save a value, the request fails without undoing
+   * the others, and retrying is safe.
+   *
+   * @example
+   * ```ts
+   * const check = await conductor.qbd.checks.setCustomFields(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: CheckSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<Check> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/checks/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
+
+  /**
    * Voids a check by setting its amount to zero while keeping a record of it in
    * QuickBooks. The void will fail if the check is currently in use or has any
    * linked transactions that are in use.
@@ -199,8 +230,12 @@ export interface Check {
   currency: Check.Currency | null;
 
   /**
-   * The custom fields for the check object, added as user-defined data extensions,
-   * not included in the standard QuickBooks object.
+   * The custom fields that have a value on this check, for the owners named in the
+   * request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<Check.CustomField>;
 
@@ -483,8 +518,13 @@ export namespace Check {
     class: ExpenseLine.Class | null;
 
     /**
-     * The custom fields for the expense line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this expense line, for the owners named
+     * in the request's `customFieldOwnerIds` (by default, the public custom fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<ExpenseLine.CustomField>;
 
@@ -681,8 +721,14 @@ export namespace Check {
     id: string;
 
     /**
-     * The custom fields for the item group line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this item group line, for the owners
+     * named in the request's `customFieldOwnerIds` (by default, the public custom
+     * fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<ItemGroupLine.CustomField>;
 
@@ -842,8 +888,13 @@ export namespace Check {
       customer: ItemLine.Customer | null;
 
       /**
-       * The custom fields for the item line object, added as user-defined data
-       * extensions, not included in the standard QuickBooks object.
+       * The custom fields that have a value on this item line, for the owners named in
+       * the request's `customFieldOwnerIds` (by default, the public custom fields).
+       *
+       * **NOTE**: To set or clear custom field values, use the set-custom-fields
+       * endpoint of the transaction. An update cannot change them, and its response
+       * returns this as an empty array even when values exist; retrieve the transaction
+       * to see them.
        */
       customFields: Array<ItemLine.CustomField>;
 
@@ -1234,8 +1285,13 @@ export namespace Check {
     customer: ItemLine.Customer | null;
 
     /**
-     * The custom fields for the item line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this item line, for the owners named in
+     * the request's `customFieldOwnerIds` (by default, the public custom fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<ItemLine.CustomField>;
 
@@ -1973,8 +2029,8 @@ export namespace CheckCreateParams {
     classId?: string;
 
     /**
-     * The custom fields for the expense line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this expense line when it is created. To
+     * change them afterward, use the set-custom-fields endpoint of the transaction.
      */
     customFields?: Array<ExpenseLine.CustomField>;
 
@@ -2045,8 +2101,8 @@ export namespace CheckCreateParams {
     itemGroupId: string;
 
     /**
-     * The custom fields for the item group line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this item group line when it is created. To
+     * change them afterward, use the set-custom-fields endpoint of the transaction.
      */
     customFields?: Array<ItemGroupLine.CustomField>;
 
@@ -2148,8 +2204,8 @@ export namespace CheckCreateParams {
     customerId?: string;
 
     /**
-     * The custom fields for the item line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this item line when it is created. To change
+     * them afterward, use the set-custom-fields endpoint of the transaction.
      */
     customFields?: Array<ItemLine.CustomField>;
 
@@ -3264,6 +3320,95 @@ export interface CheckDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface CheckSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the check itself, not on
+   * its lines. Custom fields you leave out keep their values.
+   */
+  customFields?: Array<CheckSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Body param: The lines of the check whose custom field values to set or clear.
+   * Lines you leave out are not changed.
+   */
+  lines?: Array<CheckSetCustomFieldsParams.Line>;
+}
+
+export namespace CheckSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+
+  export interface Line {
+    /**
+     * The QuickBooks-assigned unique identifier of the check line, line group, or line
+     * inside a line group.
+     */
+    id: string;
+
+    /**
+     * The custom field values to set or clear on this line. Custom fields you leave
+     * out keep their values.
+     */
+    customFields: Array<Line.CustomField>;
+  }
+
+  export namespace Line {
+    export interface CustomField {
+      /**
+       * The name of the custom field, as its definition and a record's `customFields`
+       * show it. The custom field must already be defined for this type of record; to
+       * list or create definitions, use the custom-field-definitions endpoint.
+       * QuickBooks matches the name without regard to letter case.
+       */
+      name: string;
+
+      /**
+       * The value to set, which replaces the custom field's current value if it has one.
+       * Send an empty string (`""`) to clear the custom field. A public custom field's
+       * value can have at most 30 characters.
+       */
+      value: string;
+
+      /**
+       * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+       * fields, which QuickBooks users define and see. Any other owner is an
+       * application's GUID in braces, such as
+       * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+       * only in requests that name it.
+       */
+      ownerId?: string;
+    }
+  }
+}
+
 export interface CheckVoidParams {
   /**
    * The ID of the End-User to receive this request.
@@ -3282,6 +3427,7 @@ export declare namespace Checks {
     type CheckUpdateParams as CheckUpdateParams,
     type CheckListParams as CheckListParams,
     type CheckDeleteParams as CheckDeleteParams,
+    type CheckSetCustomFieldsParams as CheckSetCustomFieldsParams,
     type CheckVoidParams as CheckVoidParams,
   };
 }
