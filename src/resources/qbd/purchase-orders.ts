@@ -138,6 +138,44 @@ export class PurchaseOrders extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Sets or clears custom field values on a purchase order and its lines. Custom
+   * fields defined for items go on the lines, and those defined for customers,
+   * vendors, and employees go on the purchase order itself. Each value you send
+   * replaces the existing value of its custom field. To clear a custom field's
+   * existing value, send an empty string. Custom fields you omit from your request
+   * keep their existing values.
+   *
+   * If the request fails, QuickBooks may still have saved some of the values you
+   * sent, because it saves each value separately. The error names the custom fields
+   * QuickBooks did not save. You can safely send the same request again.
+   *
+   * **NOTE**: This request has no `revisionNumber` parameter, but it still updates
+   * the purchase order's `revisionNumber`. Use the `revisionNumber` returned in the
+   * response for your next update.
+   *
+   * @example
+   * ```ts
+   * const purchaseOrder =
+   *   await conductor.qbd.purchaseOrders.setCustomFields(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: PurchaseOrderSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<PurchaseOrder> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/purchase-orders/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type PurchaseOrdersCursorPage = CursorPage<PurchaseOrder>;
@@ -173,8 +211,12 @@ export interface PurchaseOrder {
   currency: PurchaseOrder.Currency | null;
 
   /**
-   * The custom fields for the purchase order object, added as user-defined data
-   * extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this purchase order, for the owners named
+   * in the request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<PurchaseOrder.CustomField>;
 
@@ -521,8 +563,14 @@ export namespace PurchaseOrder {
     id: string;
 
     /**
-     * The custom fields for the purchase order line group object, added as
-     * user-defined data extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this purchase order line group, for the
+     * owners named in the request's `customFieldOwnerIds` (by default, the public
+     * custom fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the purchase order's
+     * set-custom-fields endpoint. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the purchase
+     * order to see them.
      */
     customFields: Array<LineGroup.CustomField>;
 
@@ -680,8 +728,14 @@ export namespace PurchaseOrder {
       class: Line.Class | null;
 
       /**
-       * The custom fields for the purchase order line object, added as user-defined data
-       * extensions, not included in the standard QuickBooks object.
+       * The custom fields that have a value on this purchase order line, for the owners
+       * named in the request's `customFieldOwnerIds` (by default, the public custom
+       * fields).
+       *
+       * **NOTE**: To set or clear custom field values, use the purchase order's
+       * set-custom-fields endpoint. An update cannot change them, and its response
+       * returns this as an empty array even when values exist; retrieve the purchase
+       * order to see them.
        */
       customFields: Array<Line.CustomField>;
 
@@ -1057,8 +1111,14 @@ export namespace PurchaseOrder {
     class: Line.Class | null;
 
     /**
-     * The custom fields for the purchase order line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this purchase order line, for the owners
+     * named in the request's `customFieldOwnerIds` (by default, the public custom
+     * fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the purchase order's
+     * set-custom-fields endpoint. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the purchase
+     * order to see them.
      */
     customFields: Array<Line.CustomField>;
 
@@ -1905,8 +1965,9 @@ export namespace PurchaseOrderCreateParams {
     itemGroupId: string;
 
     /**
-     * The custom fields for the purchase order line group object, added as
-     * user-defined data extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this purchase order line group when it is
+     * created. To change them afterward, use the purchase order's set-custom-fields
+     * endpoint.
      */
     customFields?: Array<LineGroup.CustomField>;
 
@@ -1989,8 +2050,8 @@ export namespace PurchaseOrderCreateParams {
     classId?: string;
 
     /**
-     * The custom fields for the purchase order line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this purchase order line when it is created.
+     * To change them afterward, use the purchase order's set-custom-fields endpoint.
      */
     customFields?: Array<Line.CustomField>;
 
@@ -3280,6 +3341,95 @@ export interface PurchaseOrderDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface PurchaseOrderSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the purchase order
+   * itself, not on its lines. Custom fields you leave out keep their values.
+   */
+  customFields?: Array<PurchaseOrderSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Body param: The lines of the purchase order whose custom field values to set or
+   * clear. Lines you leave out are not changed.
+   */
+  lines?: Array<PurchaseOrderSetCustomFieldsParams.Line>;
+}
+
+export namespace PurchaseOrderSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+
+  export interface Line {
+    /**
+     * The QuickBooks-assigned unique identifier of the purchase order line, line
+     * group, or line inside a line group.
+     */
+    id: string;
+
+    /**
+     * The custom field values to set or clear on this line. Custom fields you leave
+     * out keep their values.
+     */
+    customFields: Array<Line.CustomField>;
+  }
+
+  export namespace Line {
+    export interface CustomField {
+      /**
+       * The name of the custom field, as its definition and a record's `customFields`
+       * show it. The custom field must already be defined for this type of record; to
+       * list or create definitions, use the custom-field-definitions endpoint.
+       * QuickBooks matches the name without regard to letter case.
+       */
+      name: string;
+
+      /**
+       * The value to set, which replaces the custom field's current value if it has one.
+       * Send an empty string (`""`) to clear the custom field. A public custom field's
+       * value can have at most 30 characters.
+       */
+      value: string;
+
+      /**
+       * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+       * fields, which QuickBooks users define and see. Any other owner is an
+       * application's GUID in braces, such as
+       * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+       * only in requests that name it.
+       */
+      ownerId?: string;
+    }
+  }
+}
+
 export declare namespace PurchaseOrders {
   export {
     type PurchaseOrder as PurchaseOrder,
@@ -3290,5 +3440,6 @@ export declare namespace PurchaseOrders {
     type PurchaseOrderUpdateParams as PurchaseOrderUpdateParams,
     type PurchaseOrderListParams as PurchaseOrderListParams,
     type PurchaseOrderDeleteParams as PurchaseOrderDeleteParams,
+    type PurchaseOrderSetCustomFieldsParams as PurchaseOrderSetCustomFieldsParams,
   };
 }
