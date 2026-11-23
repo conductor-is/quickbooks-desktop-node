@@ -514,7 +514,7 @@ export interface ItemGroupUpdateParams {
 
   /**
    * Body param: When `true`, removes all existing item lines associated with this
-   * item group. To modify or add individual item lines, use the field `itemLines`
+   * item group. To modify or add individual item lines, use the field `lines`
    * instead.
    */
   clearItemLines?: boolean;
