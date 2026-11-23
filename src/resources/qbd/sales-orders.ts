@@ -56,7 +56,8 @@ export class SalesOrders extends APIResource {
   }
 
   /**
-   * Updates an existing sales order.
+   * Updates an existing sales order. To set or clear custom field values, use the
+   * set-custom-fields endpoint.
    *
    * **NOTE:** If you include `lines` or `lineGroups`, QuickBooks Desktop replaces
    * each included line list with the array you send, so include unchanged lines you
@@ -131,6 +132,44 @@ export class SalesOrders extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Sets or clears custom field values on a sales order and its lines. A value
+   * replaces the custom field's current value if it has one, and an empty string
+   * clears it. Custom fields you leave out keep their values, and no
+   * `revisionNumber` is needed. Item custom fields go on lines, and customer,
+   * vendor, and employee custom fields on the sales order itself, each only if its
+   * definition's `objectTypes` includes this type of transaction.
+   *
+   * If QuickBooks does not save every value, or the sales order cannot be returned,
+   * the request fails with an error that names the custom fields QuickBooks did not
+   * save and any whose outcome could not be confirmed. The values QuickBooks did
+   * save stay saved. Sending the same request again is safe.
+   *
+   * **NOTE**: This request changes the sales order's `revisionNumber`, so use the
+   * one in its response for your next update.
+   *
+   * @example
+   * ```ts
+   * const salesOrder =
+   *   await conductor.qbd.salesOrders.setCustomFields(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: SalesOrderSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<SalesOrder> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/sales-orders/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type SalesOrdersCursorPage = CursorPage<SalesOrder>;
@@ -181,8 +220,12 @@ export interface SalesOrder {
   customerMessage: SalesOrder.CustomerMessage | null;
 
   /**
-   * The custom fields for the sales order object, added as user-defined data
-   * extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this sales order, for the owners named in
+   * the request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<SalesOrder.CustomField>;
 
@@ -617,8 +660,14 @@ export namespace SalesOrder {
     id: string;
 
     /**
-     * The custom fields for the sales order line group object, added as user-defined
-     * data extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this sales order line group, for the
+     * owners named in the request's `customFieldOwnerIds` (by default, the public
+     * custom fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<LineGroup.CustomField>;
 
@@ -769,8 +818,14 @@ export namespace SalesOrder {
       class: Line.Class | null;
 
       /**
-       * The custom fields for the sales order line object, added as user-defined data
-       * extensions, not included in the standard QuickBooks object.
+       * The custom fields that have a value on this sales order line, for the owners
+       * named in the request's `customFieldOwnerIds` (by default, the public custom
+       * fields).
+       *
+       * **NOTE**: To set or clear custom field values, use the set-custom-fields
+       * endpoint of the transaction. An update cannot change them, and its response
+       * returns this as an empty array even when values exist; retrieve the transaction
+       * to see them.
        */
       customFields: Array<Line.CustomField>;
 
@@ -1144,8 +1199,14 @@ export namespace SalesOrder {
     class: Line.Class | null;
 
     /**
-     * The custom fields for the sales order line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this sales order line, for the owners
+     * named in the request's `customFieldOwnerIds` (by default, the public custom
+     * fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<Line.CustomField>;
 
@@ -2026,8 +2087,9 @@ export namespace SalesOrderCreateParams {
     itemGroupId: string;
 
     /**
-     * The custom fields for the sales order line group object, added as user-defined
-     * data extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this sales order line group when it is
+     * created. To change them afterward, use the set-custom-fields endpoint of the
+     * transaction.
      */
     customFields?: Array<LineGroup.CustomField>;
 
@@ -2109,8 +2171,8 @@ export namespace SalesOrderCreateParams {
     classId?: string;
 
     /**
-     * The custom fields for the sales order line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this sales order line when it is created. To
+     * change them afterward, use the set-custom-fields endpoint of the transaction.
      */
     customFields?: Array<Line.CustomField>;
 
@@ -3355,6 +3417,95 @@ export interface SalesOrderDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface SalesOrderSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the sales order itself,
+   * not on its lines. Custom fields you leave out keep their values.
+   */
+  customFields?: Array<SalesOrderSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Body param: The lines of the sales order whose custom field values to set or
+   * clear. Lines you leave out are not changed.
+   */
+  lines?: Array<SalesOrderSetCustomFieldsParams.Line>;
+}
+
+export namespace SalesOrderSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+
+  export interface Line {
+    /**
+     * The QuickBooks-assigned unique identifier of the sales order line, line group,
+     * or line inside a line group.
+     */
+    id: string;
+
+    /**
+     * The custom field values to set or clear on this line. Custom fields you leave
+     * out keep their values.
+     */
+    customFields: Array<Line.CustomField>;
+  }
+
+  export namespace Line {
+    export interface CustomField {
+      /**
+       * The name of the custom field, as its definition and a record's `customFields`
+       * show it. The custom field must already be defined for this type of record; to
+       * list or create definitions, use the custom-field-definitions endpoint.
+       * QuickBooks matches the name without regard to letter case.
+       */
+      name: string;
+
+      /**
+       * The value to set, which replaces the custom field's current value if it has one.
+       * Send an empty string (`""`) to clear the custom field. A public custom field's
+       * value can have at most 30 characters.
+       */
+      value: string;
+
+      /**
+       * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+       * fields, which QuickBooks users define and see. Any other owner is an
+       * application's GUID in braces, such as
+       * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+       * only in requests that name it.
+       */
+      ownerId?: string;
+    }
+  }
+}
+
 export declare namespace SalesOrders {
   export {
     type SalesOrder as SalesOrder,
@@ -3365,5 +3516,6 @@ export declare namespace SalesOrders {
     type SalesOrderUpdateParams as SalesOrderUpdateParams,
     type SalesOrderListParams as SalesOrderListParams,
     type SalesOrderDeleteParams as SalesOrderDeleteParams,
+    type SalesOrderSetCustomFieldsParams as SalesOrderSetCustomFieldsParams,
   };
 }

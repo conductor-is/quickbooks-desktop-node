@@ -64,7 +64,8 @@ export class SalesReceipts extends APIResource {
   /**
    * Updates an existing sales receipt. Credit card payments still have to use a
    * credit-card payment method and remain deposited to Undeposited Funds, so don’t
-   * switch the deposit account in those scenarios.
+   * switch the deposit account in those scenarios. To set or clear custom field
+   * values, use the set-custom-fields endpoint.
    *
    * **NOTE:** If you include `lines` or `lineGroups`, QuickBooks Desktop replaces
    * each included line list with the array you send, so include unchanged lines you
@@ -137,6 +138,44 @@ export class SalesReceipts extends APIResource {
   ): APIPromise<SalesReceiptDeleteResponse> {
     const { conductorEndUserId } = params;
     return this._client.delete(path`/quickbooks-desktop/sales-receipts/${id}`, {
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
+
+  /**
+   * Sets or clears custom field values on a sales receipt and its lines. A value
+   * replaces the custom field's current value if it has one, and an empty string
+   * clears it. Custom fields you leave out keep their values, and no
+   * `revisionNumber` is needed. Item custom fields go on lines, and customer,
+   * vendor, and employee custom fields on the sales receipt itself, each only if its
+   * definition's `objectTypes` includes this type of transaction.
+   *
+   * If QuickBooks does not save every value, or the sales receipt cannot be
+   * returned, the request fails with an error that names the custom fields
+   * QuickBooks did not save and any whose outcome could not be confirmed. The values
+   * QuickBooks did save stay saved. Sending the same request again is safe.
+   *
+   * **NOTE**: This request changes the sales receipt's `revisionNumber`, so use the
+   * one in its response for your next update.
+   *
+   * @example
+   * ```ts
+   * const salesReceipt =
+   *   await conductor.qbd.salesReceipts.setCustomFields(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: SalesReceiptSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<SalesReceipt> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/sales-receipts/${id}/set-custom-fields`, {
+      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -228,8 +267,12 @@ export interface SalesReceipt {
   customerMessage: SalesReceipt.CustomerMessage | null;
 
   /**
-   * The custom fields for the sales receipt object, added as user-defined data
-   * extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this sales receipt, for the owners named
+   * in the request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<SalesReceipt.CustomField>;
 
@@ -832,8 +875,14 @@ export namespace SalesReceipt {
     id: string;
 
     /**
-     * The custom fields for the sales receipt line group object, added as user-defined
-     * data extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this sales receipt line group, for the
+     * owners named in the request's `customFieldOwnerIds` (by default, the public
+     * custom fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<LineGroup.CustomField>;
 
@@ -997,8 +1046,14 @@ export namespace SalesReceipt {
       creditCardTransaction: Line.CreditCardTransaction | null;
 
       /**
-       * The custom fields for the sales receipt line object, added as user-defined data
-       * extensions, not included in the standard QuickBooks object.
+       * The custom fields that have a value on this sales receipt line, for the owners
+       * named in the request's `customFieldOwnerIds` (by default, the public custom
+       * fields).
+       *
+       * **NOTE**: To set or clear custom field values, use the set-custom-fields
+       * endpoint of the transaction. An update cannot change them, and its response
+       * returns this as an empty array even when values exist; retrieve the transaction
+       * to see them.
        */
       customFields: Array<Line.CustomField>;
 
@@ -1539,8 +1594,14 @@ export namespace SalesReceipt {
     creditCardTransaction: Line.CreditCardTransaction | null;
 
     /**
-     * The custom fields for the sales receipt line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this sales receipt line, for the owners
+     * named in the request's `customFieldOwnerIds` (by default, the public custom
+     * fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<Line.CustomField>;
 
@@ -2758,8 +2819,9 @@ export namespace SalesReceiptCreateParams {
     itemGroupId: string;
 
     /**
-     * The custom fields for the sales receipt line group object, added as user-defined
-     * data extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this sales receipt line group when it is
+     * created. To change them afterward, use the set-custom-fields endpoint of the
+     * transaction.
      */
     customFields?: Array<LineGroup.CustomField>;
 
@@ -2855,8 +2917,8 @@ export namespace SalesReceiptCreateParams {
     creditCardTransaction?: Line.CreditCardTransaction;
 
     /**
-     * The custom fields for the sales receipt line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this sales receipt line when it is created. To
+     * change them afterward, use the set-custom-fields endpoint of the transaction.
      */
     customFields?: Array<Line.CustomField>;
 
@@ -4320,6 +4382,95 @@ export interface SalesReceiptDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface SalesReceiptSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the sales receipt itself,
+   * not on its lines. Custom fields you leave out keep their values.
+   */
+  customFields?: Array<SalesReceiptSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Body param: The lines of the sales receipt whose custom field values to set or
+   * clear. Lines you leave out are not changed.
+   */
+  lines?: Array<SalesReceiptSetCustomFieldsParams.Line>;
+}
+
+export namespace SalesReceiptSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+
+  export interface Line {
+    /**
+     * The QuickBooks-assigned unique identifier of the sales receipt line, line group,
+     * or line inside a line group.
+     */
+    id: string;
+
+    /**
+     * The custom field values to set or clear on this line. Custom fields you leave
+     * out keep their values.
+     */
+    customFields: Array<Line.CustomField>;
+  }
+
+  export namespace Line {
+    export interface CustomField {
+      /**
+       * The name of the custom field, as its definition and a record's `customFields`
+       * show it. The custom field must already be defined for this type of record; to
+       * list or create definitions, use the custom-field-definitions endpoint.
+       * QuickBooks matches the name without regard to letter case.
+       */
+      name: string;
+
+      /**
+       * The value to set, which replaces the custom field's current value if it has one.
+       * Send an empty string (`""`) to clear the custom field. A public custom field's
+       * value can have at most 30 characters.
+       */
+      value: string;
+
+      /**
+       * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+       * fields, which QuickBooks users define and see. Any other owner is an
+       * application's GUID in braces, such as
+       * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+       * only in requests that name it.
+       */
+      ownerId?: string;
+    }
+  }
+}
+
 export interface SalesReceiptVoidParams {
   /**
    * The ID of the End-User to receive this request.
@@ -4338,6 +4489,7 @@ export declare namespace SalesReceipts {
     type SalesReceiptUpdateParams as SalesReceiptUpdateParams,
     type SalesReceiptListParams as SalesReceiptListParams,
     type SalesReceiptDeleteParams as SalesReceiptDeleteParams,
+    type SalesReceiptSetCustomFieldsParams as SalesReceiptSetCustomFieldsParams,
     type SalesReceiptVoidParams as SalesReceiptVoidParams,
   };
 }
