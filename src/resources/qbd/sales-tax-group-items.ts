@@ -52,8 +52,9 @@ export class SalesTaxGroupItems extends APIResource {
     params: SalesTaxGroupItemRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<SalesTaxGroupItem> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/sales-tax-group-items/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -337,9 +338,19 @@ export namespace SalesTaxGroupItemCreateParams {
 
 export interface SalesTaxGroupItemRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on sales-tax group items.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for sales-tax group items.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface SalesTaxGroupItemUpdateParams {
@@ -425,6 +436,16 @@ export interface SalesTaxGroupItemListParams extends CursorPageParams {
    * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on sales-tax group items.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for sales-tax group items.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific sales-tax group items by their

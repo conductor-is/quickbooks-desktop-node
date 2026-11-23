@@ -44,8 +44,9 @@ export class Vendors extends APIResource {
    * ```
    */
   retrieve(id: string, params: VendorRetrieveParams, options?: RequestOptions): APIPromise<Vendor> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/vendors/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -1451,9 +1452,19 @@ export namespace VendorCreateParams {
 
 export interface VendorRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on vendors. Defaults to
+   * `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * vendors.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface VendorUpdateParams {
@@ -2057,6 +2068,16 @@ export interface VendorListParams extends CursorPageParams {
    * Query param: Filter for vendors in these currencies.
    */
   currencyIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on vendors. Defaults to
+   * `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * vendors.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific vendors by their QuickBooks-assigned unique

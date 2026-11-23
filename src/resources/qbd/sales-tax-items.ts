@@ -50,8 +50,9 @@ export class SalesTaxItems extends APIResource {
     params: SalesTaxItemRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<SalesTaxItem> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/sales-tax-items/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -418,9 +419,19 @@ export namespace SalesTaxItemCreateParams {
 
 export interface SalesTaxItemRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on sales-tax items.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for sales-tax items.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface SalesTaxItemUpdateParams {
@@ -534,6 +545,16 @@ export interface SalesTaxItemListParams extends CursorPageParams {
    * end-users can categorize sales-tax items in QuickBooks.
    */
   classIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on sales-tax items.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for sales-tax items.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific sales-tax items by their QuickBooks-assigned

@@ -102,6 +102,7 @@ describe('resource receivePayments', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.receivePayments.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -200,6 +201,7 @@ describe('resource receivePayments', () => {
       currencyIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
       customerIds: ['80000001-1234567890'],
+      customFieldOwnerIds: ['0'],
       ids: ['123ABC-1234567890'],
       includeLineItems: true,
       limit: 150,

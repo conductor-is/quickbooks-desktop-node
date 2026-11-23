@@ -58,6 +58,7 @@ describe('resource accounts', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.accounts.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -111,6 +112,7 @@ describe('resource accounts', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountType: 'income',
       currencyIds: ['80000001-1234567890'],
+      customFieldOwnerIds: ['0'],
       fullNames: ['Corporate:Accounts-Payable'],
       ids: ['80000001-1234567890'],
       limit: 10,

@@ -53,6 +53,7 @@ describe('resource subtotalItems', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.subtotalItems.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -102,6 +103,7 @@ describe('resource subtotalItems', () => {
     const response = await conductor.qbd.subtotalItems.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      customFieldOwnerIds: ['0'],
       ids: ['80000001-1234567890'],
       limit: 150,
       nameContains: 'ABC',

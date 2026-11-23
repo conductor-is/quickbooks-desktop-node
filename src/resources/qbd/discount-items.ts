@@ -54,8 +54,9 @@ export class DiscountItems extends APIResource {
     params: DiscountItemRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<DiscountItem> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/discount-items/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -522,9 +523,19 @@ export namespace DiscountItemCreateParams {
 
 export interface DiscountItemRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on discount items.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for discount items.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface DiscountItemUpdateParams {
@@ -675,6 +686,16 @@ export interface DiscountItemListParams extends CursorPageParams {
    * end-users can categorize discount items in QuickBooks.
    */
   classIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on discount items.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for discount items.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific discount items by their full-name(s),

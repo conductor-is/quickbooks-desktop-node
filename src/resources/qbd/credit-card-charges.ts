@@ -52,8 +52,9 @@ export class CreditCardCharges extends APIResource {
     params: CreditCardChargeRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<CreditCardCharge> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/credit-card-charges/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -2110,9 +2111,19 @@ export namespace CreditCardChargeCreateParams {
 
 export interface CreditCardChargeRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on credit card charges.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for credit card charges.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface CreditCardChargeUpdateParams {
@@ -2731,6 +2742,16 @@ export interface CreditCardChargeListParams extends CursorPageParams {
    * Query param: Filter for credit card charges in these currencies.
    */
   currencyIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on credit card charges.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for credit card charges.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific credit card charges by their

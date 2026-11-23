@@ -57,8 +57,9 @@ export class InventoryAssemblyItems extends APIResource {
     params: InventoryAssemblyItemRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<InventoryAssemblyItem> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/inventory-assembly-items/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -860,9 +861,19 @@ export namespace InventoryAssemblyItemCreateParams {
 
 export interface InventoryAssemblyItemRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on inventory assembly
+   * items. Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for inventory assembly items.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface InventoryAssemblyItemUpdateParams {
@@ -1118,6 +1129,16 @@ export interface InventoryAssemblyItemListParams extends CursorPageParams {
    * way end-users can categorize inventory assembly items in QuickBooks.
    */
   classIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on inventory assembly
+   * items. Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for inventory assembly items.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific inventory assembly items by their full-name(s),

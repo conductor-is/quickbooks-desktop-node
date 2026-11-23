@@ -51,8 +51,9 @@ export class OtherChargeItems extends APIResource {
     params: OtherChargeItemRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<OtherChargeItem> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/other-charge-items/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -782,9 +783,19 @@ export namespace OtherChargeItemCreateParams {
 
 export interface OtherChargeItemRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on other charge items.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for other charge items.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface OtherChargeItemUpdateParams {
@@ -1046,6 +1057,16 @@ export interface OtherChargeItemListParams extends CursorPageParams {
    * end-users can categorize other charge items in QuickBooks.
    */
   classIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on other charge items.
+   * Defaults to `["0"]`, the public custom fields people create and see in
+   * QuickBooks. For an application's private custom fields, list its owner ID, a
+   * GUID in braces. Only listed owners are returned, so keep `"0"` for the public
+   * ones. QuickBooks rejects the whole request if a listed private owner has no
+   * custom fields for other charge items.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific other charge items by their full-name(s),

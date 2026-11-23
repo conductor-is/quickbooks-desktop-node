@@ -47,8 +47,9 @@ export class CreditMemos extends APIResource {
    * ```
    */
   retrieve(id: string, params: CreditMemoRetrieveParams, options?: RequestOptions): APIPromise<CreditMemo> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/credit-memos/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -2435,9 +2436,19 @@ export namespace CreditMemoCreateParams {
 
 export interface CreditMemoRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on credit memos. Defaults
+   * to `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * credit memos.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface CreditMemoUpdateParams {
@@ -3281,6 +3292,16 @@ export interface CreditMemoListParams extends CursorPageParams {
    * customers who are owed money.
    */
   customerIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on credit memos. Defaults
+   * to `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * credit memos.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific credit memos by their QuickBooks-assigned

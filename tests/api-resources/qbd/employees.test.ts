@@ -136,6 +136,7 @@ describe('resource employees', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.employees.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -267,6 +268,7 @@ describe('resource employees', () => {
   test('list: required and optional params', async () => {
     const response = await conductor.qbd.employees.list({
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
       ids: ['80000001-1234567890'],
       limit: 10,
       nameContains: 'ABC',

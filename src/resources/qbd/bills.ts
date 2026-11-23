@@ -49,8 +49,9 @@ export class Bills extends APIResource {
    * ```
    */
   retrieve(id: string, params: BillRetrieveParams, options?: RequestOptions): APIPromise<Bill> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/bills/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -2424,9 +2425,19 @@ export namespace BillCreateParams {
 
 export interface BillRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on bills. Defaults to
+   * `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * bills.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface BillUpdateParams {
@@ -3144,6 +3155,16 @@ export interface BillListParams extends CursorPageParams {
    * Query param: Filter for bills in these currencies.
    */
   currencyIds?: Array<string>;
+
+  /**
+   * Query param: The owners whose custom fields to return on bills. Defaults to
+   * `["0"]`, the public custom fields people create and see in QuickBooks. For an
+   * application's private custom fields, list its owner ID, a GUID in braces. Only
+   * listed owners are returned, so keep `"0"` for the public ones. QuickBooks
+   * rejects the whole request if a listed private owner has no custom fields for
+   * bills.
+   */
+  customFieldOwnerIds?: Array<string>;
 
   /**
    * Query param: Filter for specific bills by their QuickBooks-assigned unique

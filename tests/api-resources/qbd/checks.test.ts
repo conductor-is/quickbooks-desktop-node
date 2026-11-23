@@ -134,6 +134,7 @@ describe('resource checks', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.checks.retrieve('123ABC-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -266,6 +267,7 @@ describe('resource checks', () => {
       accountIds: ['80000001-1234567890'],
       currencyIds: ['80000001-1234567890'],
       cursor: '12345678-abcd-abcd-example-1234567890ab',
+      customFieldOwnerIds: ['0'],
       ids: ['123ABC-1234567890'],
       includeLineItems: true,
       includeLinkedTransactions: false,
