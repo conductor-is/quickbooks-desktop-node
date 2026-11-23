@@ -4605,7 +4605,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -4856,7 +4856,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -4932,7 +4932,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -8107,7 +8107,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -8358,7 +8358,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -8434,7 +8434,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -11107,7 +11107,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -11358,7 +11358,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -11434,7 +11434,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -13230,7 +13230,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -13481,7 +13481,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -13557,7 +13557,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -17041,7 +17041,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -17128,7 +17128,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -19277,6 +19277,524 @@ paths:
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(currency.id)
+  /quickbooks-desktop/custom-field-definitions:
+    get:
+      summary: List all custom field definitions
+      description: "Returns the company file's custom field definitions: each custom field's name, the type of its values, and the types of records it applies to. A record's `customFields` include only the custom fields that have a value on that record, so use this list to find every custom field you can set."
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: header
+          name: Conductor-End-User-Id
+          schema:
+            type: string
+            description: The ID of the End-User to receive this request.
+            example: end_usr_1234567abcdefg
+            x-stainless-naming:
+              typescript:
+                method_argument: conductorEndUserId
+              mcp:
+                method_argument: conductorEndUserId
+          required: true
+          description: The ID of the End-User to receive this request.
+        - in: query
+          name: ownerIds
+          schema:
+            description: The owners whose custom field definitions to return. Defaults to `["0"]`, the owner of public custom fields, which QuickBooks users define and see. To get an application's private custom fields, add its owner ID, a GUID in braces. Only the owners you list are returned, so keep `"0"` in the list to also get the public ones.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom field definitions to return. Defaults to `["0"]`, the owner of public custom fields, which QuickBooks users define and see. To get an application's private custom fields, add its owner ID, a GUID in braces. Only the owners you list are returned, so keep `"0"` in the list to also get the public ones.
+      responses:
+        "200":
+          description: Returns a list of custom field definitions.
+          headers:
+            Conductor-Request-Id:
+              required: true
+              description: The unique identifier for this API request.
+              schema:
+                type: string
+                description: The unique identifier for this API request.
+                example: req_1234567abcdefg
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  objectType:
+                    description: The type of object. This value is always `"list"`.
+                    example: list
+                    type: string
+                    const: list
+                  url:
+                    type: string
+                    description: The endpoint URL where this list can be accessed.
+                    example: /v1/quickbooks-desktop/custom-field-definitions
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/qbd_custom_field_definition"
+                    description: The array of custom field definitions.
+                required:
+                  - objectType
+                  - url
+                  - data
+                additionalProperties: false
+      x-codeSamples:
+        - lang: JavaScript
+          source: |-
+            import Conductor from 'conductor-node';
+
+            const conductor = new Conductor({
+              apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted
+            });
+
+            const customFieldDefinitions = await conductor.qbd.customFieldDefinitions.list({
+              conductorEndUserId: 'end_usr_1234567abcdefg',
+            });
+
+            console.log(customFieldDefinitions.data);
+        - lang: Python
+          source: |-
+            import os
+            from conductor import Conductor
+
+            conductor = Conductor(
+                api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted
+            )
+            custom_field_definitions = conductor.qbd.custom_field_definitions.list(
+                conductor_end_user_id="end_usr_1234567abcdefg",
+            )
+            print(custom_field_definitions.data)
+    post:
+      summary: Create a custom field definition
+      description: Creates a custom field and assigns it to the types of records you list. To give it a value on a record, use the set-custom-fields endpoint of that record's type.
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: header
+          name: Conductor-End-User-Id
+          schema:
+            type: string
+            description: The ID of the End-User to receive this request.
+            example: end_usr_1234567abcdefg
+            x-stainless-naming:
+              typescript:
+                method_argument: conductorEndUserId
+              mcp:
+                method_argument: conductorEndUserId
+          required: true
+          description: The ID of the End-User to receive this request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ownerId:
+                  description: The owner of the custom field. Defaults to `"0"`, the owner of public custom fields, which QuickBooks users define and see. Any other owner is an application's GUID in braces, such as `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear only in requests that name it.
+                  example: "0"
+                  default: "0"
+                  type: string
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 31
+                  description: The name of the custom field, unique among the custom fields of its owner. For a public custom field, this is the label QuickBooks shows.
+                  example: Customer Rating
+                type:
+                  description: The data type of the custom field's values. Defaults to `"string_255_type"`, the only type QuickBooks accepts for a public custom field.
+                  example: string_255_type
+                  default: string_255_type
+                  type: string
+                  enum:
+                    - amount_type
+                    - date_time_type
+                    - integer_type
+                    - percent_type
+                    - price_type
+                    - quantity_type
+                    - string_1024_type
+                    - string_255_type
+                objectTypes:
+                  minItems: 1
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - account
+                      - ar_refund_credit_card
+                      - bill
+                      - bill_payment_check
+                      - bill_payment_credit_card
+                      - build_assembly
+                      - charge
+                      - check
+                      - company
+                      - credit_card_charge
+                      - credit_card_credit
+                      - credit_memo
+                      - customer
+                      - deposit
+                      - employee
+                      - estimate
+                      - inventory_adjustment
+                      - invoice
+                      - item
+                      - item_receipt
+                      - journal_entry
+                      - other_name
+                      - purchase_order
+                      - receive_payment
+                      - sales_order
+                      - sales_receipt
+                      - sales_tax_payment_check
+                      - vendor
+                      - vendor_credit
+                  description: "The types of records the custom field applies to. A public custom field takes either `\"item\"` or any of `\"customer\"`, `\"vendor\"`, and `\"employee\"`, and QuickBooks adds transaction types itself, which the returned definition's `objectTypes` lists: a customer, vendor, or employee custom field applies to those transactions themselves, and an item custom field to their lines. A private custom field takes any of these types."
+                  example:
+                    - customer
+              required:
+                - name
+                - objectTypes
+              additionalProperties: false
+      responses:
+        "200":
+          description: Returns the newly created custom field definition.
+          headers:
+            Conductor-Request-Id:
+              required: true
+              description: The unique identifier for this API request.
+              schema:
+                type: string
+                description: The unique identifier for this API request.
+                example: req_1234567abcdefg
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/qbd_custom_field_definition"
+      x-codeSamples:
+        - lang: JavaScript
+          source: |-
+            import Conductor from 'conductor-node';
+
+            const conductor = new Conductor({
+              apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted
+            });
+
+            const customFieldDefinition = await conductor.qbd.customFieldDefinitions.create({
+              name: 'Customer Rating',
+              objectTypes: ['customer'],
+              conductorEndUserId: 'end_usr_1234567abcdefg',
+            });
+
+            console.log(customFieldDefinition.id);
+        - lang: Python
+          source: |-
+            import os
+            from conductor import Conductor
+
+            conductor = Conductor(
+                api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted
+            )
+            custom_field_definition = conductor.qbd.custom_field_definitions.create(
+                name="Customer Rating",
+                object_types=["customer"],
+                conductor_end_user_id="end_usr_1234567abcdefg",
+            )
+            print(custom_field_definition.id)
+  /quickbooks-desktop/custom-field-definitions/{id}:
+    post:
+      summary: Update a custom field definition
+      description: Renames a custom field or changes the types of records it applies to. The `id` in the path is the custom field's current name.
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: header
+          name: Conductor-End-User-Id
+          schema:
+            type: string
+            description: The ID of the End-User to receive this request.
+            example: end_usr_1234567abcdefg
+            x-stainless-naming:
+              typescript:
+                method_argument: conductorEndUserId
+              mcp:
+                method_argument: conductorEndUserId
+          required: true
+          description: The ID of the End-User to receive this request.
+        - in: path
+          name: id
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 31
+            description: The `id` of the custom field definition, which is its name. QuickBooks matches the name without regard to letter case.
+            example: Customer Rating
+          required: true
+          description: The `id` of the custom field definition, which is its name. QuickBooks matches the name without regard to letter case.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ownerId:
+                  description: The owner of the custom field. Defaults to `"0"`, the owner of public custom fields, which QuickBooks users define and see. Any other owner is an application's GUID in braces, such as `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear only in requests that name it.
+                  example: "0"
+                  default: "0"
+                  type: string
+                name:
+                  description: The new name of the custom field. Its values stay with it, and the definition's `id` becomes the new name.
+                  example: Customer Tier
+                  type: string
+                  minLength: 1
+                  maxLength: 31
+                addObjectTypes:
+                  description: The types of records to also apply the custom field to. A public custom field takes only `"customer"`, `"vendor"`, `"employee"`, or `"item"`, and QuickBooks adds the matching transaction types itself.
+                  example:
+                    - vendor
+                  minItems: 1
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - account
+                      - ar_refund_credit_card
+                      - bill
+                      - bill_payment_check
+                      - bill_payment_credit_card
+                      - build_assembly
+                      - charge
+                      - check
+                      - company
+                      - credit_card_charge
+                      - credit_card_credit
+                      - credit_memo
+                      - customer
+                      - deposit
+                      - employee
+                      - estimate
+                      - inventory_adjustment
+                      - invoice
+                      - item
+                      - item_receipt
+                      - journal_entry
+                      - other_name
+                      - purchase_order
+                      - receive_payment
+                      - sales_order
+                      - sales_receipt
+                      - sales_tax_payment_check
+                      - vendor
+                      - vendor_credit
+                removeObjectTypes:
+                  description: The types of records to stop applying the custom field to. A public custom field takes only `"customer"`, `"vendor"`, `"employee"`, or `"item"`, and QuickBooks removes the matching transaction types itself. Removing a type hides the custom field's values on its records without erasing them, and adding the type back with `addObjectTypes` restores them unchanged.
+                  example:
+                    - employee
+                  minItems: 1
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - account
+                      - ar_refund_credit_card
+                      - bill
+                      - bill_payment_check
+                      - bill_payment_credit_card
+                      - build_assembly
+                      - charge
+                      - check
+                      - company
+                      - credit_card_charge
+                      - credit_card_credit
+                      - credit_memo
+                      - customer
+                      - deposit
+                      - employee
+                      - estimate
+                      - inventory_adjustment
+                      - invoice
+                      - item
+                      - item_receipt
+                      - journal_entry
+                      - other_name
+                      - purchase_order
+                      - receive_payment
+                      - sales_order
+                      - sales_receipt
+                      - sales_tax_payment_check
+                      - vendor
+                      - vendor_credit
+              additionalProperties: false
+      responses:
+        "200":
+          description: Returns the updated custom field definition.
+          headers:
+            Conductor-Request-Id:
+              required: true
+              description: The unique identifier for this API request.
+              schema:
+                type: string
+                description: The unique identifier for this API request.
+                example: req_1234567abcdefg
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/qbd_custom_field_definition"
+      x-codeSamples:
+        - lang: JavaScript
+          source: |-
+            import Conductor from 'conductor-node';
+
+            const conductor = new Conductor({
+              apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted
+            });
+
+            const customFieldDefinition = await conductor.qbd.customFieldDefinitions.update('Customer Rating', {
+              conductorEndUserId: 'end_usr_1234567abcdefg',
+            });
+
+            console.log(customFieldDefinition.id);
+        - lang: Python
+          source: |-
+            import os
+            from conductor import Conductor
+
+            conductor = Conductor(
+                api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted
+            )
+            custom_field_definition = conductor.qbd.custom_field_definitions.update(
+                id="Customer Rating",
+                conductor_end_user_id="end_usr_1234567abcdefg",
+            )
+            print(custom_field_definition.id)
+    delete:
+      summary: Delete a custom field definition
+      description: >-
+        Deletes a custom field definition, so QuickBooks stops returning the
+        custom field. Intuit's reference describes this request for private
+        custom fields, and Conductor has confirmed it deletes public ones on
+        QuickBooks Enterprise.
+
+
+        **IMPORTANT**: Deleting a public custom field does not erase its values.
+        QuickBooks keeps them on the records, and a public custom field created
+        later for the same kind of record (customers, vendors, and employees, or
+        items) can show them under its own name. To remove the values for good,
+        clear them with each record type's set-custom-fields endpoint before
+        deleting the definition. A deleted private custom field's values do not
+        come back under another name, but its owner cannot create another custom
+        field with the same name.
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: header
+          name: Conductor-End-User-Id
+          schema:
+            type: string
+            description: The ID of the End-User to receive this request.
+            example: end_usr_1234567abcdefg
+            x-stainless-naming:
+              typescript:
+                method_argument: conductorEndUserId
+              mcp:
+                method_argument: conductorEndUserId
+          required: true
+          description: The ID of the End-User to receive this request.
+        - in: path
+          name: id
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 31
+            description: The `id` of the custom field definition, which is its name. QuickBooks matches the name without regard to letter case.
+            example: Customer Rating
+          required: true
+          description: The `id` of the custom field definition, which is its name. QuickBooks matches the name without regard to letter case.
+        - in: query
+          name: ownerId
+          schema:
+            description: The owner of the custom field. Defaults to `"0"`, the owner of public custom fields, which QuickBooks users define and see. Any other owner is an application's GUID in braces, such as `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear only in requests that name it.
+            example: "0"
+            default: "0"
+            type: string
+          description: The owner of the custom field. Defaults to `"0"`, the owner of public custom fields, which QuickBooks users define and see. Any other owner is an application's GUID in braces, such as `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear only in requests that name it.
+      responses:
+        "200":
+          description: Returns a confirmation of the deletion with the name of the deleted custom field definition.
+          headers:
+            Conductor-Request-Id:
+              required: true
+              description: The unique identifier for this API request.
+              schema:
+                type: string
+                description: The unique identifier for this API request.
+                example: req_1234567abcdefg
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The identifier of the deleted custom field definition, which is its `name`.
+                    example: Customer Rating
+                  objectType:
+                    description: The type of object. This value is always `"qbd_custom_field_definition"`.
+                    example: qbd_custom_field_definition
+                    type: string
+                    const: qbd_custom_field_definition
+                  ownerId:
+                    type: string
+                    description: The owner of the deleted custom field definition.
+                    example: "0"
+                  name:
+                    type: string
+                    description: The name of the deleted custom field definition.
+                    example: Customer Rating
+                  deleted:
+                    type: boolean
+                    description: Indicates whether the custom field definition was deleted.
+                    example: true
+                required:
+                  - id
+                  - objectType
+                  - ownerId
+                  - name
+                  - deleted
+                additionalProperties: false
+      x-codeSamples:
+        - lang: JavaScript
+          source: |-
+            import Conductor from 'conductor-node';
+
+            const conductor = new Conductor({
+              apiKey: process.env['CONDUCTOR_SECRET_KEY'], // This is the default and can be omitted
+            });
+
+            const customFieldDefinition = await conductor.qbd.customFieldDefinitions.delete('Customer Rating', {
+              conductorEndUserId: 'end_usr_1234567abcdefg',
+            });
+
+            console.log(customFieldDefinition.id);
+        - lang: Python
+          source: |-
+            import os
+            from conductor import Conductor
+
+            conductor = Conductor(
+                api_key=os.environ.get("CONDUCTOR_SECRET_KEY"),  # This is the default and can be omitted
+            )
+            custom_field_definition = conductor.qbd.custom_field_definitions.delete(
+                id="Customer Rating",
+                conductor_end_user_id="end_usr_1234567abcdefg",
+            )
+            print(custom_field_definition.id)
   /quickbooks-desktop/customer-types:
     get:
       summary: List all customer types
@@ -28394,7 +28912,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -28476,7 +28994,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -35301,7 +35819,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -35382,7 +35900,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -38447,7 +38965,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -38698,7 +39216,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -38774,7 +39292,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -48057,7 +48575,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -48140,7 +48658,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -56672,7 +57190,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -56754,7 +57272,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -59577,7 +60095,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -59665,7 +60183,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -71906,7 +72424,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -72157,7 +72675,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -72233,7 +72751,7 @@ paths:
                           properties:
                             ownerId:
                               type: string
-                              description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+                              description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
                               example: "0"
                             name:
                               type: string
@@ -75961,7 +76479,7 @@ components:
       properties:
         ownerId:
           type: string
-          description: The identifier of the owner of the custom field, which QuickBooks internally calls a "data extension". For public custom fields visible in the UI, such as those added by the QuickBooks user, this is always "0". For private custom fields that are only visible to the application that created them, this is a valid GUID identifying the owning application. Internally, Conductor always fetches all public custom fields (those with an `ownerId` of "0") for all objects.
+          description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
           example: "0"
         name:
           type: string
@@ -80992,6 +81510,110 @@ components:
       additionalProperties: false
       title: The Currency Format object
       x-conductor-object-type: nested
+    qbd_custom_field_definition:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of this custom field definition, which is its `name`, so it changes when the definition is renamed.
+          example: Customer Rating
+        objectType:
+          description: The type of object. This value is always `"qbd_custom_field_definition"`.
+          example: qbd_custom_field_definition
+          type: string
+          const: qbd_custom_field_definition
+        ownerId:
+          type: string
+          description: "The owner of this custom field: `\"0\"` for a public custom field, which QuickBooks users define and see, or an application's GUID in braces for a private custom field, which appears only in requests that name that owner."
+          example: "0"
+        name:
+          type: string
+          description: The name of this custom field, unique among the custom fields of its owner. For a public custom field, this is the label QuickBooks shows.
+          example: Customer Rating
+        type:
+          type: string
+          enum:
+            - amount_type
+            - date_time_type
+            - integer_type
+            - percent_type
+            - price_type
+            - quantity_type
+            - string_1024_type
+            - string_255_type
+          description: The data type of this custom field's values. Public custom fields are always `string_255_type`.
+          example: string_255_type
+        objectTypes:
+          type: array
+          items:
+            type: string
+            enum:
+              - account
+              - ar_refund_credit_card
+              - bill
+              - bill_payment_check
+              - bill_payment_credit_card
+              - build_assembly
+              - charge
+              - check
+              - company
+              - credit_card_charge
+              - credit_card_credit
+              - credit_memo
+              - customer
+              - deposit
+              - employee
+              - estimate
+              - inventory_adjustment
+              - invoice
+              - item
+              - item_receipt
+              - journal_entry
+              - other_name
+              - purchase_order
+              - receive_payment
+              - sales_order
+              - sales_receipt
+              - sales_tax_payment_check
+              - vendor
+              - vendor_credit
+          description: "The types of records this custom field applies to. For a public custom field, this includes the transaction types QuickBooks adds itself: a customer, vendor, or employee custom field applies to the listed transactions themselves, and an item custom field to their lines."
+          example:
+            - customer
+            - invoice
+            - sales_order
+        isRequiredForListObjects:
+          anyOf:
+            - type: boolean
+            - type: "null"
+          description: Indicates whether QuickBooks requires a value for this custom field on list objects, such as customers and items. QuickBooks does not report this for private custom fields.
+          example: false
+        isRequiredForTransactions:
+          anyOf:
+            - type: boolean
+            - type: "null"
+          description: Indicates whether QuickBooks requires a value for this custom field on transactions. QuickBooks does not report this for private custom fields.
+          example: false
+        format:
+          anyOf:
+            - type: string
+            - type: "null"
+          description: The format QuickBooks applies to this custom field's values, as QuickBooks names it. QuickBooks does not report this for private custom fields.
+          example: Any text
+      required:
+        - id
+        - objectType
+        - ownerId
+        - name
+        - type
+        - objectTypes
+        - isRequiredForListObjects
+        - isRequiredForTransactions
+        - format
+      additionalProperties: false
+      title: The Custom Field Definition object
+      x-conductor-object-type: other
+      summary: "A custom field definition describes a custom field: its owner, its name, the type of its values, and the types of records it applies to. The values themselves are in each record's `customFields`. QuickBooks calls custom fields data extensions."
     qbd_customer_type:
       type: object
       properties:
