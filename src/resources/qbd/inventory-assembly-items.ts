@@ -966,7 +966,7 @@ export interface InventoryAssemblyItemUpdateParams {
   /**
    * Body param: When `true`, removes all existing item lines associated with this
    * inventory assembly item. To modify or add individual item lines, use the field
-   * `itemLines` instead.
+   * `lines` instead.
    */
   clearItemLines?: boolean;
 
