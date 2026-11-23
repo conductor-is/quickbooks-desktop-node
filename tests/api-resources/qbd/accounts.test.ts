@@ -58,6 +58,7 @@ describe('resource accounts', () => {
   test('retrieve: required and optional params', async () => {
     const response = await conductor.qbd.accounts.retrieve('80000001-1234567890', {
       conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFieldOwnerIds: ['0'],
     });
   });
 
@@ -111,6 +112,7 @@ describe('resource accounts', () => {
       conductorEndUserId: 'end_usr_1234567abcdefg',
       accountType: 'income',
       currencyIds: ['80000001-1234567890'],
+      customFieldOwnerIds: ['0'],
       fullNames: ['Corporate:Accounts-Payable'],
       ids: ['80000001-1234567890'],
       limit: 10,
@@ -122,6 +124,32 @@ describe('resource accounts', () => {
       status: 'active',
       updatedAfter: '2025-01-01T12:34:56+00:00',
       updatedBefore: '2025-02-01T12:34:56+00:00',
+    });
+  });
+
+  test('setCustomFields: only required params', async () => {
+    const responsePromise = conductor.qbd.accounts.setCustomFields('80000001-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('setCustomFields: required and optional params', async () => {
+    const response = await conductor.qbd.accounts.setCustomFields('80000001-1234567890', {
+      conductorEndUserId: 'end_usr_1234567abcdefg',
+      customFields: [
+        {
+          name: 'Customer Rating',
+          value: 'Gold',
+          ownerId: '0',
+        },
+      ],
     });
   });
 });
