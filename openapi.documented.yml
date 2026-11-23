@@ -1529,7 +1529,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the account. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -1553,6 +1552,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the account. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -1579,6 +1581,7 @@ paths:
             });
 
             const account = await conductor.qbd.accounts.setCustomFields('80000001-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -1593,6 +1596,10 @@ paths:
             )
             account = conductor.qbd.accounts.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(account.id)
@@ -2849,7 +2856,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the bill check payment itself, not on its lines. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -2873,6 +2879,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the bill check payment itself, not on its lines. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -2900,7 +2909,10 @@ paths:
 
             const billCheckPayment = await conductor.qbd.billCheckPayments.setCustomFields(
               '123ABC-1234567890',
-              { conductorEndUserId: 'end_usr_1234567abcdefg' },
+              {
+                customFields: [{ name: 'Customer Rating', value: 'Gold' }],
+                conductorEndUserId: 'end_usr_1234567abcdefg',
+              },
             );
 
             console.log(billCheckPayment.id);
@@ -2914,6 +2926,10 @@ paths:
             )
             bill_check_payment = conductor.qbd.bill_check_payments.set_custom_fields(
                 id="123ABC-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(bill_check_payment.id)
@@ -4027,7 +4043,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the bill credit card payment itself, not on its lines. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -4051,6 +4066,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the bill credit card payment itself, not on its lines. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -4078,7 +4096,10 @@ paths:
 
             const billCreditCardPayment = await conductor.qbd.billCreditCardPayments.setCustomFields(
               '123ABC-1234567890',
-              { conductorEndUserId: 'end_usr_1234567abcdefg' },
+              {
+                customFields: [{ name: 'Customer Rating', value: 'Gold' }],
+                conductorEndUserId: 'end_usr_1234567abcdefg',
+              },
             );
 
             console.log(billCreditCardPayment.id);
@@ -4092,6 +4113,10 @@ paths:
             )
             bill_credit_card_payment = conductor.qbd.bill_credit_card_payments.set_custom_fields(
                 id="123ABC-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(bill_credit_card_payment.id)
@@ -6580,7 +6605,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the bill itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the bill itself,
+                    not on its lines. Custom fields you leave out keep their
+                    values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a bill.
                   minItems: 1
                   type: array
                   items:
@@ -6605,7 +6637,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the bill whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the bill whose custom field values to set or
+                    clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a bill.
                   minItems: 1
                   type: array
                   items:
@@ -7974,7 +8012,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the build assembly itself, not on its lines. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -7998,6 +8035,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the build assembly itself, not on its lines. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -8024,6 +8064,7 @@ paths:
             });
 
             const buildAssembly = await conductor.qbd.buildAssemblies.setCustomFields('123ABC-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -8038,6 +8079,10 @@ paths:
             )
             build_assembly = conductor.qbd.build_assemblies.set_custom_fields(
                 id="123ABC-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(build_assembly.id)
@@ -10425,7 +10470,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the check itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the check itself,
+                    not on its lines. Custom fields you leave out keep their
+                    values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a check.
                   minItems: 1
                   type: array
                   items:
@@ -10450,7 +10502,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the check whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the check whose custom field values to set or
+                    clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a check.
                   minItems: 1
                   type: array
                   items:
@@ -13461,7 +13519,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the credit card charge itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the credit card
+                    charge itself, not on its lines. Custom fields you leave out
+                    keep their values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a credit card charge.
                   minItems: 1
                   type: array
                   items:
@@ -13486,7 +13551,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the credit card charge whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the credit card charge whose custom field
+                    values to set or clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a credit card charge.
                   minItems: 1
                   type: array
                   items:
@@ -15766,7 +15837,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the credit card credit itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the credit card
+                    credit itself, not on its lines. Custom fields you leave out
+                    keep their values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a credit card credit.
                   minItems: 1
                   type: array
                   items:
@@ -15791,7 +15869,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the credit card credit whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the credit card credit whose custom field
+                    values to set or clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a credit card credit.
                   minItems: 1
                   type: array
                   items:
@@ -17220,7 +17304,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the credit card refund itself, not on its lines. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -17244,6 +17327,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the credit card refund itself, not on its lines. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -17271,7 +17357,10 @@ paths:
 
             const creditCardRefund = await conductor.qbd.creditCardRefunds.setCustomFields(
               '123ABC-1234567890',
-              { conductorEndUserId: 'end_usr_1234567abcdefg' },
+              {
+                customFields: [{ name: 'Customer Rating', value: 'Gold' }],
+                conductorEndUserId: 'end_usr_1234567abcdefg',
+              },
             );
 
             console.log(creditCardRefund.id);
@@ -17285,6 +17374,10 @@ paths:
             )
             credit_card_refund = conductor.qbd.credit_card_refunds.set_custom_fields(
                 id="123ABC-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(credit_card_refund.id)
@@ -19916,7 +20009,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the credit memo itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the credit memo
+                    itself, not on its lines. Custom fields you leave out keep
+                    their values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a credit memo.
                   minItems: 1
                   type: array
                   items:
@@ -19941,7 +20041,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the credit memo whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the credit memo whose custom field values to
+                    set or clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a credit memo.
                   minItems: 1
                   type: array
                   items:
@@ -24417,7 +24523,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the customer. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -24441,6 +24546,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the customer. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -24467,6 +24575,7 @@ paths:
             });
 
             const customer = await conductor.qbd.customers.setCustomFields('80000001-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -24481,6 +24590,10 @@ paths:
             )
             customer = conductor.qbd.customers.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(customer.id)
@@ -26577,7 +26690,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the deposit itself, not on its lines. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -26601,6 +26713,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the deposit itself, not on its lines. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -26627,6 +26742,7 @@ paths:
             });
 
             const deposit = await conductor.qbd.deposits.setCustomFields('123ABC-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -26641,6 +26757,10 @@ paths:
             )
             deposit = conductor.qbd.deposits.set_custom_fields(
                 id="123ABC-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(deposit.id)
@@ -27735,7 +27855,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the discount item. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -27759,6 +27878,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the discount item. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -27785,6 +27907,7 @@ paths:
             });
 
             const discountItem = await conductor.qbd.discountItems.setCustomFields('80000001-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -27799,6 +27922,10 @@ paths:
             )
             discount_item = conductor.qbd.discount_items.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(discount_item.id)
@@ -29968,7 +30095,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the employee. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -29992,6 +30118,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the employee. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -30018,6 +30147,7 @@ paths:
             });
 
             const employee = await conductor.qbd.employees.setCustomFields('80000001-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -30032,6 +30162,10 @@ paths:
             )
             employee = conductor.qbd.employees.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(employee.id)
@@ -32482,7 +32616,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the estimate itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the estimate
+                    itself, not on its lines. Custom fields you leave out keep
+                    their values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on an estimate.
                   minItems: 1
                   type: array
                   items:
@@ -32507,7 +32648,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the estimate whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the estimate whose custom field values to set
+                    or clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on an estimate.
                   minItems: 1
                   type: array
                   items:
@@ -33829,7 +33976,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the inventory adjustment itself, not on its lines. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -33853,6 +33999,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the inventory adjustment itself, not on its lines. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -33880,7 +34029,10 @@ paths:
 
             const inventoryAdjustment = await conductor.qbd.inventoryAdjustments.setCustomFields(
               '123ABC-1234567890',
-              { conductorEndUserId: 'end_usr_1234567abcdefg' },
+              {
+                customFields: [{ name: 'Customer Rating', value: 'Gold' }],
+                conductorEndUserId: 'end_usr_1234567abcdefg',
+              },
             );
 
             console.log(inventoryAdjustment.id);
@@ -33894,6 +34046,10 @@ paths:
             )
             inventory_adjustment = conductor.qbd.inventory_adjustments.set_custom_fields(
                 id="123ABC-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(inventory_adjustment.id)
@@ -35198,7 +35354,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the inventory assembly item. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -35222,6 +35377,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the inventory assembly item. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -35249,7 +35407,10 @@ paths:
 
             const inventoryAssemblyItem = await conductor.qbd.inventoryAssemblyItems.setCustomFields(
               '80000001-1234567890',
-              { conductorEndUserId: 'end_usr_1234567abcdefg' },
+              {
+                customFields: [{ name: 'Customer Rating', value: 'Gold' }],
+                conductorEndUserId: 'end_usr_1234567abcdefg',
+              },
             );
 
             console.log(inventoryAssemblyItem.id);
@@ -35263,6 +35424,10 @@ paths:
             )
             inventory_assembly_item = conductor.qbd.inventory_assembly_items.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(inventory_assembly_item.id)
@@ -36410,7 +36575,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the inventory item. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -36434,6 +36598,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the inventory item. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -36460,6 +36627,7 @@ paths:
             });
 
             const inventoryItem = await conductor.qbd.inventoryItems.setCustomFields('80000001-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -36474,6 +36642,10 @@ paths:
             )
             inventory_item = conductor.qbd.inventory_items.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(inventory_item.id)
@@ -40101,7 +40273,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the invoice itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the invoice
+                    itself, not on its lines. Custom fields you leave out keep
+                    their values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on an invoice.
                   minItems: 1
                   type: array
                   items:
@@ -40126,7 +40305,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the invoice whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the invoice whose custom field values to set or
+                    clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on an invoice.
                   minItems: 1
                   type: array
                   items:
@@ -41281,7 +41466,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the item group. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -41305,6 +41489,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the item group. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -41331,6 +41518,7 @@ paths:
             });
 
             const itemGroup = await conductor.qbd.itemGroups.setCustomFields('80000001-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -41345,6 +41533,10 @@ paths:
             )
             item_group = conductor.qbd.item_groups.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(item_group.id)
@@ -43492,7 +43684,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the item receipt itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the item receipt
+                    itself, not on its lines. Custom fields you leave out keep
+                    their values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on an item receipt.
                   minItems: 1
                   type: array
                   items:
@@ -43517,7 +43716,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the item receipt whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the item receipt whose custom field values to
+                    set or clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on an item receipt.
                   minItems: 1
                   type: array
                   items:
@@ -45268,7 +45473,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the journal entry itself, not on its lines. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -45292,6 +45496,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the journal entry itself, not on its lines. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -45318,6 +45525,7 @@ paths:
             });
 
             const journalEntry = await conductor.qbd.journalEntries.setCustomFields('123ABC-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -45332,6 +45540,10 @@ paths:
             )
             journal_entry = conductor.qbd.journal_entries.set_custom_fields(
                 id="123ABC-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(journal_entry.id)
@@ -46661,7 +46873,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the non-inventory item. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -46685,6 +46896,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the non-inventory item. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -46712,7 +46926,10 @@ paths:
 
             const nonInventoryItem = await conductor.qbd.nonInventoryItems.setCustomFields(
               '80000001-1234567890',
-              { conductorEndUserId: 'end_usr_1234567abcdefg' },
+              {
+                customFields: [{ name: 'Customer Rating', value: 'Gold' }],
+                conductorEndUserId: 'end_usr_1234567abcdefg',
+              },
             );
 
             console.log(nonInventoryItem.id);
@@ -46726,6 +46943,10 @@ paths:
             )
             non_inventory_item = conductor.qbd.non_inventory_items.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(non_inventory_item.id)
@@ -47880,7 +48101,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the other charge item. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -47904,6 +48124,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the other charge item. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -47931,7 +48154,10 @@ paths:
 
             const otherChargeItem = await conductor.qbd.otherChargeItems.setCustomFields(
               '80000001-1234567890',
-              { conductorEndUserId: 'end_usr_1234567abcdefg' },
+              {
+                customFields: [{ name: 'Customer Rating', value: 'Gold' }],
+                conductorEndUserId: 'end_usr_1234567abcdefg',
+              },
             );
 
             console.log(otherChargeItem.id);
@@ -47945,6 +48171,10 @@ paths:
             )
             other_charge_item = conductor.qbd.other_charge_items.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(other_charge_item.id)
@@ -49108,7 +49338,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the other-name. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -49132,6 +49361,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the other-name. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -49158,6 +49390,7 @@ paths:
             });
 
             const otherName = await conductor.qbd.otherNames.setCustomFields('80000001-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -49172,6 +49405,10 @@ paths:
             )
             other_name = conductor.qbd.other_names.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(other_name.id)
@@ -53804,7 +54041,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the purchase order itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the purchase
+                    order itself, not on its lines. Custom fields you leave out
+                    keep their values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a purchase order.
                   minItems: 1
                   type: array
                   items:
@@ -53829,7 +54073,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the purchase order whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the purchase order whose custom field values to
+                    set or clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a purchase order.
                   minItems: 1
                   type: array
                   items:
@@ -55634,7 +55884,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the receive-payment itself, not on its lines. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -55658,6 +55907,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the receive-payment itself, not on its lines. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -55684,6 +55936,7 @@ paths:
             });
 
             const receivePayment = await conductor.qbd.receivePayments.setCustomFields('123ABC-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -55698,6 +55951,10 @@ paths:
             )
             receive_payment = conductor.qbd.receive_payments.set_custom_fields(
                 id="123ABC-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(receive_payment.id)
@@ -62793,7 +63050,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the sales order itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the sales order
+                    itself, not on its lines. Custom fields you leave out keep
+                    their values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a sales order.
                   minItems: 1
                   type: array
                   items:
@@ -62818,7 +63082,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the sales order whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the sales order whose custom field values to
+                    set or clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a sales order.
                   minItems: 1
                   type: array
                   items:
@@ -65900,7 +66170,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the sales receipt itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the sales receipt
+                    itself, not on its lines. Custom fields you leave out keep
+                    their values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a sales receipt.
                   minItems: 1
                   type: array
                   items:
@@ -65925,7 +66202,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the sales receipt whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the sales receipt whose custom field values to
+                    set or clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a sales receipt.
                   minItems: 1
                   type: array
                   items:
@@ -68316,7 +68599,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the sales-tax group item. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -68340,6 +68622,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the sales-tax group item. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -68367,7 +68652,10 @@ paths:
 
             const salesTaxGroupItem = await conductor.qbd.salesTaxGroupItems.setCustomFields(
               '80000001-1234567890',
-              { conductorEndUserId: 'end_usr_1234567abcdefg' },
+              {
+                customFields: [{ name: 'Customer Rating', value: 'Gold' }],
+                conductorEndUserId: 'end_usr_1234567abcdefg',
+              },
             );
 
             console.log(salesTaxGroupItem.id);
@@ -68381,6 +68669,10 @@ paths:
             )
             sales_tax_group_item = conductor.qbd.sales_tax_group_items.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(sales_tax_group_item.id)
@@ -69270,7 +69562,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the sales-tax item. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -69294,6 +69585,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the sales-tax item. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -69320,6 +69614,7 @@ paths:
             });
 
             const salesTaxItem = await conductor.qbd.salesTaxItems.setCustomFields('80000001-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -69334,6 +69629,10 @@ paths:
             )
             sales_tax_item = conductor.qbd.sales_tax_items.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(sales_tax_item.id)
@@ -70549,7 +70848,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the sales-tax payment check itself, not on its lines. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -70573,6 +70871,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the sales-tax payment check itself, not on its lines. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -70600,7 +70901,10 @@ paths:
 
             const salesTaxPaymentCheck = await conductor.qbd.salesTaxPaymentChecks.setCustomFields(
               '123ABC-1234567890',
-              { conductorEndUserId: 'end_usr_1234567abcdefg' },
+              {
+                customFields: [{ name: 'Customer Rating', value: 'Gold' }],
+                conductorEndUserId: 'end_usr_1234567abcdefg',
+              },
             );
 
             console.log(salesTaxPaymentCheck.id);
@@ -70614,6 +70918,10 @@ paths:
             )
             sales_tax_payment_check = conductor.qbd.sales_tax_payment_checks.set_custom_fields(
                 id="123ABC-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(sales_tax_payment_check.id)
@@ -71921,7 +72229,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the service item. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -71945,6 +72252,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the service item. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -71971,6 +72281,7 @@ paths:
             });
 
             const serviceItem = await conductor.qbd.serviceItems.setCustomFields('80000001-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -71985,6 +72296,10 @@ paths:
             )
             service_item = conductor.qbd.service_items.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(service_item.id)
@@ -73938,7 +74253,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the subtotal item. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -73962,6 +74276,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the subtotal item. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -73988,6 +74305,7 @@ paths:
             });
 
             const subtotalItem = await conductor.qbd.subtotalItems.setCustomFields('80000001-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -74002,6 +74320,10 @@ paths:
             )
             subtotal_item = conductor.qbd.subtotal_items.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(subtotal_item.id)
@@ -79074,7 +79396,14 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the vendor credit itself, not on its lines. Custom fields you leave out keep their values.
+                  description: >-
+                    The custom field values to set or clear on the vendor credit
+                    itself, not on its lines. Custom fields you leave out keep
+                    their values.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a vendor credit.
                   minItems: 1
                   type: array
                   items:
@@ -79099,7 +79428,13 @@ paths:
                       - value
                     additionalProperties: false
                 lines:
-                  description: The lines of the vendor credit whose custom field values to set or clear. Lines you leave out are not changed.
+                  description: >-
+                    The lines of the vendor credit whose custom field values to
+                    set or clear. Lines you leave out are not changed.
+
+
+                    **IMPORTANT**: You must specify `customFields`, `lines`, or
+                    both when setting custom fields on a vendor credit.
                   minItems: 1
                   type: array
                   items:
@@ -81348,7 +81683,6 @@ paths:
               type: object
               properties:
                 customFields:
-                  description: The custom field values to set or clear on the vendor. Custom fields you leave out keep their values.
                   minItems: 1
                   type: array
                   items:
@@ -81372,6 +81706,9 @@ paths:
                       - name
                       - value
                     additionalProperties: false
+                  description: The custom field values to set or clear on the vendor. Custom fields you leave out keep their values.
+              required:
+                - customFields
               additionalProperties: false
       responses:
         "200":
@@ -81398,6 +81735,7 @@ paths:
             });
 
             const vendor = await conductor.qbd.vendors.setCustomFields('80000001-1234567890', {
+              customFields: [{ name: 'Customer Rating', value: 'Gold' }],
               conductorEndUserId: 'end_usr_1234567abcdefg',
             });
 
@@ -81412,6 +81750,10 @@ paths:
             )
             vendor = conductor.qbd.vendors.set_custom_fields(
                 id="80000001-1234567890",
+                custom_fields=[{
+                    "name": "Customer Rating",
+                    "value": "Gold",
+                }],
                 conductor_end_user_id="end_usr_1234567abcdefg",
             )
             print(vendor.id)
