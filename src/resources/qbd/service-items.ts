@@ -107,6 +107,42 @@ export class ServiceItems extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
+
+  /**
+   * Sets or clears custom field values on a service item. Each value you send
+   * replaces the existing value of its custom field. To clear a custom field's
+   * existing value, send an empty string. Custom fields you omit from your request
+   * keep their existing values.
+   *
+   * If the request fails, QuickBooks may still have saved some of the values you
+   * sent, because it saves each value separately. The error names the custom fields
+   * QuickBooks did not save. You can safely send the same request again.
+   *
+   * **NOTE**: This request has no `revisionNumber` parameter, but it still updates
+   * the service item's `revisionNumber`. Use the `revisionNumber` returned in the
+   * response for your next update.
+   *
+   * @example
+   * ```ts
+   * const serviceItem =
+   *   await conductor.qbd.serviceItems.setCustomFields(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: ServiceItemSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<ServiceItem> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/service-items/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
 }
 
 export type ServiceItemsCursorPage = CursorPage<ServiceItem>;
@@ -139,8 +175,12 @@ export interface ServiceItem {
   createdAt: string;
 
   /**
-   * The custom fields for the service item object, added as user-defined data
-   * extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this service item, for the owners named
+   * in the request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<ServiceItem.CustomField>;
 
@@ -1239,6 +1279,47 @@ export interface ServiceItemListParams extends CursorPageParams {
   updatedBefore?: string;
 }
 
+export interface ServiceItemSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the service item. Custom
+   * fields you leave out keep their values.
+   */
+  customFields?: Array<ServiceItemSetCustomFieldsParams.CustomField>;
+}
+
+export namespace ServiceItemSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+}
+
 export declare namespace ServiceItems {
   export {
     type ServiceItem as ServiceItem,
@@ -1247,5 +1328,6 @@ export declare namespace ServiceItems {
     type ServiceItemRetrieveParams as ServiceItemRetrieveParams,
     type ServiceItemUpdateParams as ServiceItemUpdateParams,
     type ServiceItemListParams as ServiceItemListParams,
+    type ServiceItemSetCustomFieldsParams as ServiceItemSetCustomFieldsParams,
   };
 }
