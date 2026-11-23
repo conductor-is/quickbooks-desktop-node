@@ -44,8 +44,9 @@ export class Employees extends APIResource {
    * ```
    */
   retrieve(id: string, params: EmployeeRetrieveParams, options?: RequestOptions): APIPromise<Employee> {
-    const { conductorEndUserId } = params;
+    const { conductorEndUserId, ...query } = params;
     return this._client.get(path`/quickbooks-desktop/employees/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -54,7 +55,8 @@ export class Employees extends APIResource {
   /**
    * Updates an employee record, allowing you to revise contact details, employment
    * status dates, supervisory assignments, payroll configuration, and additional
-   * notes to keep workforce data current.
+   * notes to keep workforce data current. To set or clear custom field values, use
+   * the set-custom-fields endpoint.
    *
    * @example
    * ```ts
@@ -93,6 +95,41 @@ export class Employees extends APIResource {
     const { conductorEndUserId, ...query } = params;
     return this._client.get('/quickbooks-desktop/employees', {
       query,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
+
+  /**
+   * Sets or clears custom field values on an employee. A value replaces the custom
+   * field's current value if it has one, and an empty string clears it. Custom
+   * fields you leave out keep their values, and no `revisionNumber` is needed.
+   *
+   * If QuickBooks does not save every value, or the employee cannot be returned, the
+   * request fails with an error that names the custom fields QuickBooks did not save
+   * and any whose outcome could not be confirmed. The values QuickBooks did save
+   * stay saved. Sending the same request again is safe.
+   *
+   * **NOTE**: This request changes the employee's `revisionNumber`, so use the one
+   * in its response for your next update.
+   *
+   * @example
+   * ```ts
+   * const employee =
+   *   await conductor.qbd.employees.setCustomFields(
+   *     '80000001-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: EmployeeSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<Employee> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/employees/${id}/set-custom-fields`, {
+      body,
       ...options,
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
@@ -167,8 +204,12 @@ export interface Employee {
   customContactFields: Array<Employee.CustomContactField>;
 
   /**
-   * The custom fields for the employee object, added as user-defined data
-   * extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this employee, for the owners named in
+   * the request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<Employee.CustomField>;
 
@@ -564,8 +605,10 @@ export namespace Employee {
       | 'string_255_type';
 
     /**
-     * The value of this custom field. The maximum length depends on the field's data
-     * type.
+     * The value of this custom field. QuickBooks keeps at most 30 characters of a
+     * public custom field's value: it refuses a longer one on a customer or item, and
+     * on a transaction or line it stores only the first 30 without an error. A private
+     * custom field's limit depends on its type.
      */
     value: string;
   }
@@ -1630,9 +1673,20 @@ export namespace EmployeeCreateParams {
 
 export interface EmployeeRetrieveParams {
   /**
-   * The ID of the End-User to receive this request.
+   * Header param: The ID of the End-User to receive this request.
    */
   conductorEndUserId: string;
+
+  /**
+   * Query param: The owners whose custom fields to return on employees. Defaults to
+   * `["0"]`, the owner of public custom fields, which QuickBooks users define and
+   * see. To get an application's private custom fields, add its owner ID, a GUID in
+   * braces. Only the owners you list are returned, so keep `"0"` in the list to also
+   * get the public ones. QuickBooks refuses the whole request if a private owner you
+   * list has no custom field defined for employees, so list an owner only for record
+   * types that have its custom fields.
+   */
+  customFieldOwnerIds?: Array<string>;
 }
 
 export interface EmployeeUpdateParams {
@@ -2386,6 +2440,17 @@ export interface EmployeeListParams {
   conductorEndUserId: string;
 
   /**
+   * Query param: The owners whose custom fields to return on employees. Defaults to
+   * `["0"]`, the owner of public custom fields, which QuickBooks users define and
+   * see. To get an application's private custom fields, add its owner ID, a GUID in
+   * braces. Only the owners you list are returned, so keep `"0"` in the list to also
+   * get the public ones. QuickBooks refuses the whole request if a private owner you
+   * list has no custom field defined for employees, so list an owner only for record
+   * types that have its custom fields.
+   */
+  customFieldOwnerIds?: Array<string>;
+
+  /**
    * Query param: Filter for specific employees by their QuickBooks-assigned unique
    * identifier(s).
    *
@@ -2512,6 +2577,47 @@ export interface EmployeeListParams {
   updatedBefore?: string;
 }
 
+export interface EmployeeSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the employee. Custom
+   * fields you leave out keep their values.
+   */
+  customFields?: Array<EmployeeSetCustomFieldsParams.CustomField>;
+}
+
+export namespace EmployeeSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters, the most QuickBooks keeps.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+}
+
 export declare namespace Employees {
   export {
     type Employee as Employee,
@@ -2520,5 +2626,6 @@ export declare namespace Employees {
     type EmployeeRetrieveParams as EmployeeRetrieveParams,
     type EmployeeUpdateParams as EmployeeUpdateParams,
     type EmployeeListParams as EmployeeListParams,
+    type EmployeeSetCustomFieldsParams as EmployeeSetCustomFieldsParams,
   };
 }
