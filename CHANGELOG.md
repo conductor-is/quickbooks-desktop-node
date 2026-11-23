@@ -1,5 +1,17 @@
 # Changelog
 
+## [16.2.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.1.4...v16.2.0) (2026-11-23)
+
+
+### Features
+
+* **api:** manage custom field definitions ([b3f663f](https://github.com/conductor-is/quickbooks-desktop-node/commit/b3f663f827151123901440f6599fcacee8c06ed3))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([7d966aa](https://github.com/conductor-is/quickbooks-desktop-node/commit/7d966aa42845182165f06ab831e3572cff4e0a52))
+
 ## [16.1.4](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.1.3...v16.1.4) (2026-11-19)
 
 
