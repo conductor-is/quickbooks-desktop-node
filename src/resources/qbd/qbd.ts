@@ -15,6 +15,7 @@ import {
   AccountListParams,
   AccountListResponse,
   AccountRetrieveParams,
+  AccountSetCustomFieldsParams,
   AccountUpdateParams,
   Accounts,
 } from './accounts';
@@ -26,6 +27,7 @@ import {
   BillCheckPaymentDeleteResponse,
   BillCheckPaymentListParams,
   BillCheckPaymentRetrieveParams,
+  BillCheckPaymentSetCustomFieldsParams,
   BillCheckPaymentUpdateParams,
   BillCheckPaymentVoidParams,
   BillCheckPaymentVoidResponse,
@@ -40,6 +42,7 @@ import {
   BillCreditCardPaymentDeleteResponse,
   BillCreditCardPaymentListParams,
   BillCreditCardPaymentRetrieveParams,
+  BillCreditCardPaymentSetCustomFieldsParams,
   BillCreditCardPaymentVoidParams,
   BillCreditCardPaymentVoidResponse,
   BillCreditCardPayments,
@@ -53,6 +56,7 @@ import {
   BillDeleteResponse,
   BillListParams,
   BillRetrieveParams,
+  BillSetCustomFieldsParams,
   BillUpdateParams,
   BillVoidParams,
   BillVoidResponse,
@@ -71,6 +75,7 @@ import {
   BuildAssemblyDeleteResponse,
   BuildAssemblyListParams,
   BuildAssemblyRetrieveParams,
+  BuildAssemblySetCustomFieldsParams,
   BuildAssemblyUpdateParams,
 } from './build-assemblies';
 import * as ChecksAPI from './checks';
@@ -81,6 +86,7 @@ import {
   CheckDeleteResponse,
   CheckListParams,
   CheckRetrieveParams,
+  CheckSetCustomFieldsParams,
   CheckUpdateParams,
   CheckVoidParams,
   CheckVoidResponse,
@@ -107,6 +113,7 @@ import {
   CreditCardChargeDeleteResponse,
   CreditCardChargeListParams,
   CreditCardChargeRetrieveParams,
+  CreditCardChargeSetCustomFieldsParams,
   CreditCardChargeUpdateParams,
   CreditCardChargeVoidParams,
   CreditCardChargeVoidResponse,
@@ -121,6 +128,7 @@ import {
   CreditCardCreditDeleteResponse,
   CreditCardCreditListParams,
   CreditCardCreditRetrieveParams,
+  CreditCardCreditSetCustomFieldsParams,
   CreditCardCreditUpdateParams,
   CreditCardCreditVoidParams,
   CreditCardCreditVoidResponse,
@@ -135,6 +143,7 @@ import {
   CreditCardRefundDeleteResponse,
   CreditCardRefundListParams,
   CreditCardRefundRetrieveParams,
+  CreditCardRefundSetCustomFieldsParams,
   CreditCardRefundVoidParams,
   CreditCardRefundVoidResponse,
   CreditCardRefunds,
@@ -148,6 +157,7 @@ import {
   CreditMemoDeleteResponse,
   CreditMemoListParams,
   CreditMemoRetrieveParams,
+  CreditMemoSetCustomFieldsParams,
   CreditMemoUpdateParams,
   CreditMemoVoidParams,
   CreditMemoVoidResponse,
@@ -190,6 +200,7 @@ import {
   CustomerCreateParams,
   CustomerListParams,
   CustomerRetrieveParams,
+  CustomerSetCustomFieldsParams,
   CustomerUpdateParams,
   Customers,
   CustomersCursorPage,
@@ -225,6 +236,7 @@ import {
   DepositDeleteResponse,
   DepositListParams,
   DepositRetrieveParams,
+  DepositSetCustomFieldsParams,
   DepositUpdateParams,
   DepositVoidParams,
   DepositVoidResponse,
@@ -237,6 +249,7 @@ import {
   DiscountItemCreateParams,
   DiscountItemListParams,
   DiscountItemRetrieveParams,
+  DiscountItemSetCustomFieldsParams,
   DiscountItemUpdateParams,
   DiscountItems,
   DiscountItemsCursorPage,
@@ -248,6 +261,7 @@ import {
   EmployeeListParams,
   EmployeeListResponse,
   EmployeeRetrieveParams,
+  EmployeeSetCustomFieldsParams,
   EmployeeUpdateParams,
   Employees,
 } from './employees';
@@ -259,6 +273,7 @@ import {
   EstimateDeleteResponse,
   EstimateListParams,
   EstimateRetrieveParams,
+  EstimateSetCustomFieldsParams,
   EstimateUpdateParams,
   Estimates,
   EstimatesCursorPage,
@@ -272,6 +287,7 @@ import {
   InventoryAdjustmentListParams,
   InventoryAdjustmentListResponse,
   InventoryAdjustmentRetrieveParams,
+  InventoryAdjustmentSetCustomFieldsParams,
   InventoryAdjustmentUpdateParams,
   InventoryAdjustmentVoidParams,
   InventoryAdjustmentVoidResponse,
@@ -283,6 +299,7 @@ import {
   InventoryAssemblyItemCreateParams,
   InventoryAssemblyItemListParams,
   InventoryAssemblyItemRetrieveParams,
+  InventoryAssemblyItemSetCustomFieldsParams,
   InventoryAssemblyItemUpdateParams,
   InventoryAssemblyItems,
   InventoryAssemblyItemsCursorPage,
@@ -293,6 +310,7 @@ import {
   InventoryItemCreateParams,
   InventoryItemListParams,
   InventoryItemRetrieveParams,
+  InventoryItemSetCustomFieldsParams,
   InventoryItemUpdateParams,
   InventoryItems,
   InventoryItemsCursorPage,
@@ -315,6 +333,7 @@ import {
   InvoiceDeleteResponse,
   InvoiceListParams,
   InvoiceRetrieveParams,
+  InvoiceSetCustomFieldsParams,
   InvoiceUpdateParams,
   InvoiceVoidParams,
   InvoiceVoidResponse,
@@ -327,6 +346,7 @@ import {
   ItemGroupCreateParams,
   ItemGroupListParams,
   ItemGroupRetrieveParams,
+  ItemGroupSetCustomFieldsParams,
   ItemGroupUpdateParams,
   ItemGroups,
   ItemGroupsCursorPage,
@@ -339,6 +359,7 @@ import {
   ItemReceiptDeleteResponse,
   ItemReceiptListParams,
   ItemReceiptRetrieveParams,
+  ItemReceiptSetCustomFieldsParams,
   ItemReceiptUpdateParams,
   ItemReceiptVoidParams,
   ItemReceiptVoidResponse,
@@ -363,6 +384,7 @@ import {
   JournalEntryDeleteResponse,
   JournalEntryListParams,
   JournalEntryRetrieveParams,
+  JournalEntrySetCustomFieldsParams,
   JournalEntryUpdateParams,
   JournalEntryVoidParams,
   JournalEntryVoidResponse,
@@ -373,6 +395,7 @@ import {
   NonInventoryItemCreateParams,
   NonInventoryItemListParams,
   NonInventoryItemRetrieveParams,
+  NonInventoryItemSetCustomFieldsParams,
   NonInventoryItemUpdateParams,
   NonInventoryItems,
   NonInventoryItemsCursorPage,
@@ -383,6 +406,7 @@ import {
   OtherChargeItemCreateParams,
   OtherChargeItemListParams,
   OtherChargeItemRetrieveParams,
+  OtherChargeItemSetCustomFieldsParams,
   OtherChargeItemUpdateParams,
   OtherChargeItems,
   OtherChargeItemsCursorPage,
@@ -394,6 +418,7 @@ import {
   OtherNameListParams,
   OtherNameListResponse,
   OtherNameRetrieveParams,
+  OtherNameSetCustomFieldsParams,
   OtherNameUpdateParams,
   OtherNames,
 } from './other-names';
@@ -442,6 +467,7 @@ import {
   PurchaseOrderDeleteResponse,
   PurchaseOrderListParams,
   PurchaseOrderRetrieveParams,
+  PurchaseOrderSetCustomFieldsParams,
   PurchaseOrderUpdateParams,
   PurchaseOrders,
   PurchaseOrdersCursorPage,
@@ -454,6 +480,7 @@ import {
   ReceivePaymentDeleteResponse,
   ReceivePaymentListParams,
   ReceivePaymentRetrieveParams,
+  ReceivePaymentSetCustomFieldsParams,
   ReceivePaymentUpdateParams,
   ReceivePayments,
   ReceivePaymentsCursorPage,
@@ -481,6 +508,7 @@ import {
   SalesOrderDeleteResponse,
   SalesOrderListParams,
   SalesOrderRetrieveParams,
+  SalesOrderSetCustomFieldsParams,
   SalesOrderUpdateParams,
   SalesOrders,
   SalesOrdersCursorPage,
@@ -493,6 +521,7 @@ import {
   SalesReceiptDeleteResponse,
   SalesReceiptListParams,
   SalesReceiptRetrieveParams,
+  SalesReceiptSetCustomFieldsParams,
   SalesReceiptUpdateParams,
   SalesReceiptVoidParams,
   SalesReceiptVoidResponse,
@@ -525,6 +554,7 @@ import {
   SalesTaxGroupItemCreateParams,
   SalesTaxGroupItemListParams,
   SalesTaxGroupItemRetrieveParams,
+  SalesTaxGroupItemSetCustomFieldsParams,
   SalesTaxGroupItemUpdateParams,
   SalesTaxGroupItems,
   SalesTaxGroupItemsCursorPage,
@@ -535,6 +565,7 @@ import {
   SalesTaxItemCreateParams,
   SalesTaxItemListParams,
   SalesTaxItemRetrieveParams,
+  SalesTaxItemSetCustomFieldsParams,
   SalesTaxItemUpdateParams,
   SalesTaxItems,
   SalesTaxItemsCursorPage,
@@ -547,6 +578,7 @@ import {
   SalesTaxPaymentCheckDeleteResponse,
   SalesTaxPaymentCheckListParams,
   SalesTaxPaymentCheckRetrieveParams,
+  SalesTaxPaymentCheckSetCustomFieldsParams,
   SalesTaxPaymentCheckUpdateParams,
   SalesTaxPaymentCheckVoidParams,
   SalesTaxPaymentCheckVoidResponse,
@@ -559,6 +591,7 @@ import {
   ServiceItemCreateParams,
   ServiceItemListParams,
   ServiceItemRetrieveParams,
+  ServiceItemSetCustomFieldsParams,
   ServiceItemUpdateParams,
   ServiceItems,
   ServiceItemsCursorPage,
@@ -587,6 +620,7 @@ import {
   SubtotalItemCreateParams,
   SubtotalItemListParams,
   SubtotalItemRetrieveParams,
+  SubtotalItemSetCustomFieldsParams,
   SubtotalItemUpdateParams,
   SubtotalItems,
   SubtotalItemsCursorPage,
@@ -640,6 +674,7 @@ import {
   VendorCreditDeleteResponse,
   VendorCreditListParams,
   VendorCreditRetrieveParams,
+  VendorCreditSetCustomFieldsParams,
   VendorCreditUpdateParams,
   VendorCreditVoidParams,
   VendorCreditVoidResponse,
@@ -652,6 +687,7 @@ import {
   VendorCreateParams,
   VendorListParams,
   VendorRetrieveParams,
+  VendorSetCustomFieldsParams,
   VendorUpdateParams,
   Vendors,
   VendorsCursorPage,
@@ -882,6 +918,7 @@ export declare namespace Qbd {
     type AccountRetrieveParams as AccountRetrieveParams,
     type AccountUpdateParams as AccountUpdateParams,
     type AccountListParams as AccountListParams,
+    type AccountSetCustomFieldsParams as AccountSetCustomFieldsParams,
   };
 
   export {
@@ -895,6 +932,7 @@ export declare namespace Qbd {
     type BillCheckPaymentUpdateParams as BillCheckPaymentUpdateParams,
     type BillCheckPaymentListParams as BillCheckPaymentListParams,
     type BillCheckPaymentDeleteParams as BillCheckPaymentDeleteParams,
+    type BillCheckPaymentSetCustomFieldsParams as BillCheckPaymentSetCustomFieldsParams,
     type BillCheckPaymentVoidParams as BillCheckPaymentVoidParams,
   };
 
@@ -908,6 +946,7 @@ export declare namespace Qbd {
     type BillCreditCardPaymentRetrieveParams as BillCreditCardPaymentRetrieveParams,
     type BillCreditCardPaymentListParams as BillCreditCardPaymentListParams,
     type BillCreditCardPaymentDeleteParams as BillCreditCardPaymentDeleteParams,
+    type BillCreditCardPaymentSetCustomFieldsParams as BillCreditCardPaymentSetCustomFieldsParams,
     type BillCreditCardPaymentVoidParams as BillCreditCardPaymentVoidParams,
   };
 
@@ -922,6 +961,7 @@ export declare namespace Qbd {
     type BillUpdateParams as BillUpdateParams,
     type BillListParams as BillListParams,
     type BillDeleteParams as BillDeleteParams,
+    type BillSetCustomFieldsParams as BillSetCustomFieldsParams,
     type BillVoidParams as BillVoidParams,
   };
 
@@ -942,6 +982,7 @@ export declare namespace Qbd {
     type BuildAssemblyUpdateParams as BuildAssemblyUpdateParams,
     type BuildAssemblyListParams as BuildAssemblyListParams,
     type BuildAssemblyDeleteParams as BuildAssemblyDeleteParams,
+    type BuildAssemblySetCustomFieldsParams as BuildAssemblySetCustomFieldsParams,
   };
 
   export {
@@ -955,6 +996,7 @@ export declare namespace Qbd {
     type CheckUpdateParams as CheckUpdateParams,
     type CheckListParams as CheckListParams,
     type CheckDeleteParams as CheckDeleteParams,
+    type CheckSetCustomFieldsParams as CheckSetCustomFieldsParams,
     type CheckVoidParams as CheckVoidParams,
   };
 
@@ -985,6 +1027,7 @@ export declare namespace Qbd {
     type CreditCardChargeUpdateParams as CreditCardChargeUpdateParams,
     type CreditCardChargeListParams as CreditCardChargeListParams,
     type CreditCardChargeDeleteParams as CreditCardChargeDeleteParams,
+    type CreditCardChargeSetCustomFieldsParams as CreditCardChargeSetCustomFieldsParams,
     type CreditCardChargeVoidParams as CreditCardChargeVoidParams,
   };
 
@@ -999,6 +1042,7 @@ export declare namespace Qbd {
     type CreditCardCreditUpdateParams as CreditCardCreditUpdateParams,
     type CreditCardCreditListParams as CreditCardCreditListParams,
     type CreditCardCreditDeleteParams as CreditCardCreditDeleteParams,
+    type CreditCardCreditSetCustomFieldsParams as CreditCardCreditSetCustomFieldsParams,
     type CreditCardCreditVoidParams as CreditCardCreditVoidParams,
   };
 
@@ -1012,6 +1056,7 @@ export declare namespace Qbd {
     type CreditCardRefundRetrieveParams as CreditCardRefundRetrieveParams,
     type CreditCardRefundListParams as CreditCardRefundListParams,
     type CreditCardRefundDeleteParams as CreditCardRefundDeleteParams,
+    type CreditCardRefundSetCustomFieldsParams as CreditCardRefundSetCustomFieldsParams,
     type CreditCardRefundVoidParams as CreditCardRefundVoidParams,
   };
 
@@ -1026,6 +1071,7 @@ export declare namespace Qbd {
     type CreditMemoUpdateParams as CreditMemoUpdateParams,
     type CreditMemoListParams as CreditMemoListParams,
     type CreditMemoDeleteParams as CreditMemoDeleteParams,
+    type CreditMemoSetCustomFieldsParams as CreditMemoSetCustomFieldsParams,
     type CreditMemoVoidParams as CreditMemoVoidParams,
   };
 
@@ -1067,6 +1113,7 @@ export declare namespace Qbd {
     type CustomerRetrieveParams as CustomerRetrieveParams,
     type CustomerUpdateParams as CustomerUpdateParams,
     type CustomerListParams as CustomerListParams,
+    type CustomerSetCustomFieldsParams as CustomerSetCustomFieldsParams,
   };
 
   export {
@@ -1103,6 +1150,7 @@ export declare namespace Qbd {
     type DepositUpdateParams as DepositUpdateParams,
     type DepositListParams as DepositListParams,
     type DepositDeleteParams as DepositDeleteParams,
+    type DepositSetCustomFieldsParams as DepositSetCustomFieldsParams,
     type DepositVoidParams as DepositVoidParams,
   };
 
@@ -1114,6 +1162,7 @@ export declare namespace Qbd {
     type DiscountItemRetrieveParams as DiscountItemRetrieveParams,
     type DiscountItemUpdateParams as DiscountItemUpdateParams,
     type DiscountItemListParams as DiscountItemListParams,
+    type DiscountItemSetCustomFieldsParams as DiscountItemSetCustomFieldsParams,
   };
 
   export {
@@ -1124,6 +1173,7 @@ export declare namespace Qbd {
     type EmployeeRetrieveParams as EmployeeRetrieveParams,
     type EmployeeUpdateParams as EmployeeUpdateParams,
     type EmployeeListParams as EmployeeListParams,
+    type EmployeeSetCustomFieldsParams as EmployeeSetCustomFieldsParams,
   };
 
   export {
@@ -1136,6 +1186,7 @@ export declare namespace Qbd {
     type EstimateUpdateParams as EstimateUpdateParams,
     type EstimateListParams as EstimateListParams,
     type EstimateDeleteParams as EstimateDeleteParams,
+    type EstimateSetCustomFieldsParams as EstimateSetCustomFieldsParams,
   };
 
   export {
@@ -1149,6 +1200,7 @@ export declare namespace Qbd {
     type InventoryAdjustmentUpdateParams as InventoryAdjustmentUpdateParams,
     type InventoryAdjustmentListParams as InventoryAdjustmentListParams,
     type InventoryAdjustmentDeleteParams as InventoryAdjustmentDeleteParams,
+    type InventoryAdjustmentSetCustomFieldsParams as InventoryAdjustmentSetCustomFieldsParams,
     type InventoryAdjustmentVoidParams as InventoryAdjustmentVoidParams,
   };
 
@@ -1160,6 +1212,7 @@ export declare namespace Qbd {
     type InventoryAssemblyItemRetrieveParams as InventoryAssemblyItemRetrieveParams,
     type InventoryAssemblyItemUpdateParams as InventoryAssemblyItemUpdateParams,
     type InventoryAssemblyItemListParams as InventoryAssemblyItemListParams,
+    type InventoryAssemblyItemSetCustomFieldsParams as InventoryAssemblyItemSetCustomFieldsParams,
   };
 
   export {
@@ -1170,6 +1223,7 @@ export declare namespace Qbd {
     type InventoryItemRetrieveParams as InventoryItemRetrieveParams,
     type InventoryItemUpdateParams as InventoryItemUpdateParams,
     type InventoryItemListParams as InventoryItemListParams,
+    type InventoryItemSetCustomFieldsParams as InventoryItemSetCustomFieldsParams,
   };
 
   export {
@@ -1193,6 +1247,7 @@ export declare namespace Qbd {
     type InvoiceUpdateParams as InvoiceUpdateParams,
     type InvoiceListParams as InvoiceListParams,
     type InvoiceDeleteParams as InvoiceDeleteParams,
+    type InvoiceSetCustomFieldsParams as InvoiceSetCustomFieldsParams,
     type InvoiceVoidParams as InvoiceVoidParams,
   };
 
@@ -1204,6 +1259,7 @@ export declare namespace Qbd {
     type ItemGroupRetrieveParams as ItemGroupRetrieveParams,
     type ItemGroupUpdateParams as ItemGroupUpdateParams,
     type ItemGroupListParams as ItemGroupListParams,
+    type ItemGroupSetCustomFieldsParams as ItemGroupSetCustomFieldsParams,
   };
 
   export {
@@ -1217,6 +1273,7 @@ export declare namespace Qbd {
     type ItemReceiptUpdateParams as ItemReceiptUpdateParams,
     type ItemReceiptListParams as ItemReceiptListParams,
     type ItemReceiptDeleteParams as ItemReceiptDeleteParams,
+    type ItemReceiptSetCustomFieldsParams as ItemReceiptSetCustomFieldsParams,
     type ItemReceiptVoidParams as ItemReceiptVoidParams,
   };
 
@@ -1239,6 +1296,7 @@ export declare namespace Qbd {
     type JournalEntryUpdateParams as JournalEntryUpdateParams,
     type JournalEntryListParams as JournalEntryListParams,
     type JournalEntryDeleteParams as JournalEntryDeleteParams,
+    type JournalEntrySetCustomFieldsParams as JournalEntrySetCustomFieldsParams,
     type JournalEntryVoidParams as JournalEntryVoidParams,
   };
 
@@ -1250,6 +1308,7 @@ export declare namespace Qbd {
     type NonInventoryItemRetrieveParams as NonInventoryItemRetrieveParams,
     type NonInventoryItemUpdateParams as NonInventoryItemUpdateParams,
     type NonInventoryItemListParams as NonInventoryItemListParams,
+    type NonInventoryItemSetCustomFieldsParams as NonInventoryItemSetCustomFieldsParams,
   };
 
   export {
@@ -1260,6 +1319,7 @@ export declare namespace Qbd {
     type OtherChargeItemRetrieveParams as OtherChargeItemRetrieveParams,
     type OtherChargeItemUpdateParams as OtherChargeItemUpdateParams,
     type OtherChargeItemListParams as OtherChargeItemListParams,
+    type OtherChargeItemSetCustomFieldsParams as OtherChargeItemSetCustomFieldsParams,
   };
 
   export {
@@ -1270,6 +1330,7 @@ export declare namespace Qbd {
     type OtherNameRetrieveParams as OtherNameRetrieveParams,
     type OtherNameUpdateParams as OtherNameUpdateParams,
     type OtherNameListParams as OtherNameListParams,
+    type OtherNameSetCustomFieldsParams as OtherNameSetCustomFieldsParams,
   };
 
   export {
@@ -1319,6 +1380,7 @@ export declare namespace Qbd {
     type PurchaseOrderUpdateParams as PurchaseOrderUpdateParams,
     type PurchaseOrderListParams as PurchaseOrderListParams,
     type PurchaseOrderDeleteParams as PurchaseOrderDeleteParams,
+    type PurchaseOrderSetCustomFieldsParams as PurchaseOrderSetCustomFieldsParams,
   };
 
   export {
@@ -1331,6 +1393,7 @@ export declare namespace Qbd {
     type ReceivePaymentUpdateParams as ReceivePaymentUpdateParams,
     type ReceivePaymentListParams as ReceivePaymentListParams,
     type ReceivePaymentDeleteParams as ReceivePaymentDeleteParams,
+    type ReceivePaymentSetCustomFieldsParams as ReceivePaymentSetCustomFieldsParams,
   };
 
   export {
@@ -1358,6 +1421,7 @@ export declare namespace Qbd {
     type SalesOrderUpdateParams as SalesOrderUpdateParams,
     type SalesOrderListParams as SalesOrderListParams,
     type SalesOrderDeleteParams as SalesOrderDeleteParams,
+    type SalesOrderSetCustomFieldsParams as SalesOrderSetCustomFieldsParams,
   };
 
   export {
@@ -1371,6 +1435,7 @@ export declare namespace Qbd {
     type SalesReceiptUpdateParams as SalesReceiptUpdateParams,
     type SalesReceiptListParams as SalesReceiptListParams,
     type SalesReceiptDeleteParams as SalesReceiptDeleteParams,
+    type SalesReceiptSetCustomFieldsParams as SalesReceiptSetCustomFieldsParams,
     type SalesReceiptVoidParams as SalesReceiptVoidParams,
   };
 
@@ -1402,6 +1467,7 @@ export declare namespace Qbd {
     type SalesTaxGroupItemRetrieveParams as SalesTaxGroupItemRetrieveParams,
     type SalesTaxGroupItemUpdateParams as SalesTaxGroupItemUpdateParams,
     type SalesTaxGroupItemListParams as SalesTaxGroupItemListParams,
+    type SalesTaxGroupItemSetCustomFieldsParams as SalesTaxGroupItemSetCustomFieldsParams,
   };
 
   export {
@@ -1412,6 +1478,7 @@ export declare namespace Qbd {
     type SalesTaxItemRetrieveParams as SalesTaxItemRetrieveParams,
     type SalesTaxItemUpdateParams as SalesTaxItemUpdateParams,
     type SalesTaxItemListParams as SalesTaxItemListParams,
+    type SalesTaxItemSetCustomFieldsParams as SalesTaxItemSetCustomFieldsParams,
   };
 
   export {
@@ -1425,6 +1492,7 @@ export declare namespace Qbd {
     type SalesTaxPaymentCheckUpdateParams as SalesTaxPaymentCheckUpdateParams,
     type SalesTaxPaymentCheckListParams as SalesTaxPaymentCheckListParams,
     type SalesTaxPaymentCheckDeleteParams as SalesTaxPaymentCheckDeleteParams,
+    type SalesTaxPaymentCheckSetCustomFieldsParams as SalesTaxPaymentCheckSetCustomFieldsParams,
     type SalesTaxPaymentCheckVoidParams as SalesTaxPaymentCheckVoidParams,
   };
 
@@ -1436,6 +1504,7 @@ export declare namespace Qbd {
     type ServiceItemRetrieveParams as ServiceItemRetrieveParams,
     type ServiceItemUpdateParams as ServiceItemUpdateParams,
     type ServiceItemListParams as ServiceItemListParams,
+    type ServiceItemSetCustomFieldsParams as ServiceItemSetCustomFieldsParams,
   };
 
   export {
@@ -1464,6 +1533,7 @@ export declare namespace Qbd {
     type SubtotalItemRetrieveParams as SubtotalItemRetrieveParams,
     type SubtotalItemUpdateParams as SubtotalItemUpdateParams,
     type SubtotalItemListParams as SubtotalItemListParams,
+    type SubtotalItemSetCustomFieldsParams as SubtotalItemSetCustomFieldsParams,
   };
 
   export {
@@ -1523,6 +1593,7 @@ export declare namespace Qbd {
     type VendorCreditUpdateParams as VendorCreditUpdateParams,
     type VendorCreditListParams as VendorCreditListParams,
     type VendorCreditDeleteParams as VendorCreditDeleteParams,
+    type VendorCreditSetCustomFieldsParams as VendorCreditSetCustomFieldsParams,
     type VendorCreditVoidParams as VendorCreditVoidParams,
   };
 
@@ -1534,5 +1605,6 @@ export declare namespace Qbd {
     type VendorRetrieveParams as VendorRetrieveParams,
     type VendorUpdateParams as VendorUpdateParams,
     type VendorListParams as VendorListParams,
+    type VendorSetCustomFieldsParams as VendorSetCustomFieldsParams,
   };
 }

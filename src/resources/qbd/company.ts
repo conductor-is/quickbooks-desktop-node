@@ -66,8 +66,7 @@ export interface Company {
   companyType: string | null;
 
   /**
-   * The custom fields for the company object, added as user-defined data extensions,
-   * not included in the standard QuickBooks object.
+   * The public custom fields that have a value on this company.
    */
   customFields: Array<Company.CustomField>;
 
