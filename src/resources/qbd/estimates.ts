@@ -3275,12 +3275,18 @@ export interface EstimateSetCustomFieldsParams {
   /**
    * Body param: The custom field values to set or clear on the estimate itself, not
    * on its lines. Custom fields you leave out keep their values.
+   *
+   * **IMPORTANT**: You must specify `customFields`, `lines`, or both when setting
+   * custom fields on an estimate.
    */
   customFields?: Array<EstimateSetCustomFieldsParams.CustomField>;
 
   /**
    * Body param: The lines of the estimate whose custom field values to set or clear.
    * Lines you leave out are not changed.
+   *
+   * **IMPORTANT**: You must specify `customFields`, `lines`, or both when setting
+   * custom fields on an estimate.
    */
   lines?: Array<EstimateSetCustomFieldsParams.Line>;
 }

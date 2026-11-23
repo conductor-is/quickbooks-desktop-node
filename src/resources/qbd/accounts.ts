@@ -120,7 +120,12 @@ export class Accounts extends APIResource {
    * const account =
    *   await conductor.qbd.accounts.setCustomFields(
    *     '80000001-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -950,15 +955,15 @@ export interface AccountListParams {
 
 export interface AccountSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the account. Custom
    * fields you leave out keep their values.
    */
-  customFields?: Array<AccountSetCustomFieldsParams.CustomField>;
+  customFields: Array<AccountSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace AccountSetCustomFieldsParams {

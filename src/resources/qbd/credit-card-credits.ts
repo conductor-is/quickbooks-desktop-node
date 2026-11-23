@@ -2958,12 +2958,18 @@ export interface CreditCardCreditSetCustomFieldsParams {
   /**
    * Body param: The custom field values to set or clear on the credit card credit
    * itself, not on its lines. Custom fields you leave out keep their values.
+   *
+   * **IMPORTANT**: You must specify `customFields`, `lines`, or both when setting
+   * custom fields on a credit card credit.
    */
   customFields?: Array<CreditCardCreditSetCustomFieldsParams.CustomField>;
 
   /**
    * Body param: The lines of the credit card credit whose custom field values to set
    * or clear. Lines you leave out are not changed.
+   *
+   * **IMPORTANT**: You must specify `customFields`, `lines`, or both when setting
+   * custom fields on a credit card credit.
    */
   lines?: Array<CreditCardCreditSetCustomFieldsParams.Line>;
 }

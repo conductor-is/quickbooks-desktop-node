@@ -137,7 +137,12 @@ export class NonInventoryItems extends APIResource {
    * const nonInventoryItem =
    *   await conductor.qbd.nonInventoryItems.setCustomFields(
    *     '80000001-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -1326,15 +1331,15 @@ export interface NonInventoryItemListParams extends CursorPageParams {
 
 export interface NonInventoryItemSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the non-inventory item.
    * Custom fields you leave out keep their values.
    */
-  customFields?: Array<NonInventoryItemSetCustomFieldsParams.CustomField>;
+  customFields: Array<NonInventoryItemSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace NonInventoryItemSetCustomFieldsParams {

@@ -144,7 +144,12 @@ export class InventoryAssemblyItems extends APIResource {
    * const inventoryAssemblyItem =
    *   await conductor.qbd.inventoryAssemblyItems.setCustomFields(
    *     '80000001-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -1303,15 +1308,15 @@ export interface InventoryAssemblyItemListParams extends CursorPageParams {
 
 export interface InventoryAssemblyItemSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the inventory assembly
    * item. Custom fields you leave out keep their values.
    */
-  customFields?: Array<InventoryAssemblyItemSetCustomFieldsParams.CustomField>;
+  customFields: Array<InventoryAssemblyItemSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace InventoryAssemblyItemSetCustomFieldsParams {

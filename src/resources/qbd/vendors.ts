@@ -116,7 +116,12 @@ export class Vendors extends APIResource {
    * ```ts
    * const vendor = await conductor.qbd.vendors.setCustomFields(
    *   '80000001-1234567890',
-   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   {
+   *     customFields: [
+   *       { name: 'Customer Rating', value: 'Gold' },
+   *     ],
+   *     conductorEndUserId: 'end_usr_1234567abcdefg',
+   *   },
    * );
    * ```
    */
@@ -2268,15 +2273,15 @@ export interface VendorListParams extends CursorPageParams {
 
 export interface VendorSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the vendor. Custom fields
    * you leave out keep their values.
    */
-  customFields?: Array<VendorSetCustomFieldsParams.CustomField>;
+  customFields: Array<VendorSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace VendorSetCustomFieldsParams {
