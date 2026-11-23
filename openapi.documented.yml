@@ -894,6 +894,16 @@ paths:
             items:
               type: string
           description: Filter for accounts in these currencies.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on accounts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for accounts.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on accounts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for accounts.
       responses:
         "200":
           description: Returns a list of accounts.
@@ -1198,6 +1208,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the account to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on accounts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for accounts.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on accounts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for accounts.
       responses:
         "200":
           description: Returns the specified account.
@@ -1843,6 +1863,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on bill check payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bill check payments.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on bill check payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bill check payments.
       responses:
         "200":
           description: Returns a list of bill check payments.
@@ -2250,6 +2280,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the bill check payment to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on bill check payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bill check payments.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on bill check payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bill check payments.
       responses:
         "200":
           description: Returns the specified bill check payment.
@@ -3136,6 +3176,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on bill credit card payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bill credit card payments.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on bill credit card payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bill credit card payments.
       responses:
         "200":
           description: Returns a list of bill credit card payments.
@@ -3536,6 +3586,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the bill credit card payment to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on bill credit card payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bill credit card payments.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on bill credit card payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bill credit card payments.
       responses:
         "200":
           description: Returns the specified bill credit card payment.
@@ -4183,6 +4243,16 @@ paths:
             type: boolean
             default: false
           description: Whether to include linked transactions in the response. Defaults to `false`. For example, a payment linked to the corresponding bill.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on bills. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bills.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on bills. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bills.
       responses:
         "200":
           description: Returns a list of bills.
@@ -5047,6 +5117,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the bill to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on bills. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bills.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on bills. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for bills.
       responses:
         "200":
           description: Returns the specified bill.
@@ -6704,6 +6784,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include component line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on build assemblies. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for build assemblies.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on build assemblies. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for build assemblies.
       responses:
         "200":
           description: Returns a list of build assemblies.
@@ -7002,6 +7092,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the build assembly to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on build assemblies. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for build assemblies.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on build assemblies. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for build assemblies.
       responses:
         "200":
           description: Returns the specified build assembly.
@@ -7695,6 +7795,16 @@ paths:
             type: boolean
             default: false
           description: Whether to include linked transactions in the response. Defaults to `false`. For example, a payment linked to the corresponding check.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on checks. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for checks.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on checks. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for checks.
       responses:
         "200":
           description: Returns a list of checks.
@@ -8549,6 +8659,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the check to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on checks. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for checks.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on checks. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for checks.
       responses:
         "200":
           description: Returns the specified check.
@@ -10835,6 +10955,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on credit card charges. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card charges.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on credit card charges. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card charges.
       responses:
         "200":
           description: Returns a list of credit card charges.
@@ -11546,6 +11676,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the credit card charge to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on credit card charges. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card charges.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on credit card charges. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card charges.
       responses:
         "200":
           description: Returns the specified credit card charge.
@@ -12958,6 +13098,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on credit card credits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card credits.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on credit card credits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card credits.
       responses:
         "200":
           description: Returns a list of credit card credits.
@@ -13669,6 +13819,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the credit card credit to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on credit card credits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card credits.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on credit card credits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card credits.
       responses:
         "200":
           description: Returns the specified credit card credit.
@@ -15079,6 +15239,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on credit card refunds. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card refunds.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on credit card refunds. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card refunds.
       responses:
         "200":
           description: Returns a list of credit card refunds.
@@ -15720,6 +15890,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the credit card refund to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on credit card refunds. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card refunds.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on credit card refunds. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit card refunds.
       responses:
         "200":
           description: Returns the specified credit card refund.
@@ -16356,6 +16536,16 @@ paths:
             type: boolean
             default: false
           description: Whether to include linked transactions in the response. Defaults to `false`. For example, a payment linked to the corresponding credit memo.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on credit memos. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit memos.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on credit memos. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit memos.
       responses:
         "200":
           description: Returns a list of credit memos.
@@ -17243,6 +17433,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the credit memo to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on credit memos. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit memos.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on credit memos. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for credit memos.
       responses:
         "200":
           description: Returns the specified credit memo.
@@ -20762,6 +20962,16 @@ paths:
             type: boolean
             default: false
           description: Excludes alternate shipping addresses from each customer returned by the list request. When true, the response returns `alternateShippingAddresses` as `null` instead of fetching the address array. Use this when your integration does not need alternate shipping addresses. This significantly improves performance for company files where some customers have many saved shipping addresses (sometimes dozens or hundreds).
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on customers. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for customers.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on customers. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for customers.
       responses:
         "200":
           description: Returns a list of customers.
@@ -21789,6 +21999,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the customer to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on customers. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for customers.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on customers. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for customers.
       responses:
         "200":
           description: Returns the specified customer.
@@ -23979,6 +24199,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on deposits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for deposits.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on deposits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for deposits.
       responses:
         "200":
           description: Returns a list of deposits.
@@ -24349,6 +24579,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the deposit to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on deposits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for deposits.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on deposits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for deposits.
       responses:
         "200":
           description: Returns the specified deposit.
@@ -25201,6 +25441,16 @@ paths:
             items:
               type: string
           description: Filter for discount items of these classes. A class is a way end-users can categorize discount items in QuickBooks.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on discount items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for discount items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on discount items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for discount items.
       responses:
         "200":
           description: Returns a list of discount items.
@@ -25531,6 +25781,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the discount item to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on discount items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for discount items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on discount items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for discount items.
       responses:
         "200":
           description: Returns the specified discount item.
@@ -26090,6 +26350,16 @@ paths:
 
             **NOTE**: If you use this parameter, you cannot also use
             `nameContains`, `nameStartsWith`, or `nameEndsWith`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on employees. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for employees.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on employees. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for employees.
       responses:
         "200":
           description: Returns a list of employees.
@@ -27000,6 +27270,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the employee to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on employees. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for employees.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on employees. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for employees.
       responses:
         "200":
           description: Returns the specified employee.
@@ -28254,6 +28534,16 @@ paths:
             type: boolean
             default: false
           description: Whether to include linked transactions in the response. Defaults to `false`. For example, a payment linked to the corresponding estimate.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on estimates. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for estimates.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on estimates. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for estimates.
       responses:
         "200":
           description: Returns a list of estimates.
@@ -29109,6 +29399,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the estimate to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on estimates. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for estimates.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on estimates. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for estimates.
       responses:
         "200":
           description: Returns the specified estimate.
@@ -30624,6 +30924,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on inventory adjustments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory adjustments.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on inventory adjustments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory adjustments.
       responses:
         "200":
           description: Returns a list of inventory adjustments.
@@ -31032,6 +31342,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the inventory adjustment to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on inventory adjustments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory adjustments.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on inventory adjustments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory adjustments.
       responses:
         "200":
           description: Returns the specified inventory adjustment.
@@ -31864,6 +32184,16 @@ paths:
             items:
               type: string
           description: Filter for inventory assembly items of these classes. A class is a way end-users can categorize inventory assembly items in QuickBooks.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on inventory assembly items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory assembly items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on inventory assembly items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory assembly items.
       responses:
         "200":
           description: Returns a list of inventory assembly items.
@@ -32293,6 +32623,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the inventory assembly item to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on inventory assembly items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory assembly items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on inventory assembly items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory assembly items.
       responses:
         "200":
           description: Returns the specified inventory assembly item.
@@ -32979,6 +33319,16 @@ paths:
             items:
               type: string
           description: Filter for inventory items of these classes. A class is a way end-users can categorize inventory items in QuickBooks.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on inventory items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on inventory items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory items.
       responses:
         "200":
           description: Returns a list of inventory items.
@@ -33392,6 +33742,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the inventory item to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on inventory items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on inventory items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for inventory items.
       responses:
         "200":
           description: Returns the specified inventory item.
@@ -34960,6 +35320,16 @@ paths:
             type: boolean
             default: false
           description: Whether to include linked transactions in the response. Defaults to `false`. For example, a payment linked to the corresponding invoice.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on invoices. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for invoices.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on invoices. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for invoices.
       responses:
         "200":
           description: Returns a list of invoices.
@@ -36015,6 +36385,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the invoice to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on invoices. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for invoices.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on invoices. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for invoices.
       responses:
         "200":
           description: Returns the specified invoice.
@@ -37688,6 +38068,16 @@ paths:
 
             **NOTE**: If you use this parameter, you cannot also use
             `nameContains`, `nameStartsWith`, or `nameEndsWith`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on item groups. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for item groups.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on item groups. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for item groups.
       responses:
         "200":
           description: Returns a list of item groups.
@@ -38008,6 +38398,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the item group to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on item groups. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for item groups.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on item groups. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for item groups.
       responses:
         "200":
           description: Returns the specified item group.
@@ -38650,6 +39050,16 @@ paths:
             type: boolean
             default: false
           description: Whether to include linked transactions in the response. Defaults to `false`. For example, a payment linked to the corresponding item receipt.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on item receipts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for item receipts.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on item receipts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for item receipts.
       responses:
         "200":
           description: Returns a list of item receipts.
@@ -39407,6 +39817,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the item receipt to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on item receipts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for item receipts.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on item receipts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for item receipts.
       responses:
         "200":
           description: Returns the specified item receipt.
@@ -41174,6 +41594,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on journal entries. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for journal entries.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on journal entries. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for journal entries.
       responses:
         "200":
           description: Returns a list of journal entries.
@@ -41566,6 +41996,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the journal entry to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on journal entries. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for journal entries.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on journal entries. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for journal entries.
       responses:
         "200":
           description: Returns the specified journal entry.
@@ -42380,6 +42820,16 @@ paths:
             items:
               type: string
           description: Filter for non-inventory items of these classes. A class is a way end-users can categorize non-inventory items in QuickBooks.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on non-inventory items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for non-inventory items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on non-inventory items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for non-inventory items.
       responses:
         "200":
           description: Returns a list of non-inventory items.
@@ -42811,6 +43261,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the non-inventory item to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on non-inventory items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for non-inventory items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on non-inventory items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for non-inventory items.
       responses:
         "200":
           description: Returns the specified non-inventory item.
@@ -43523,6 +43983,16 @@ paths:
             items:
               type: string
           description: Filter for other charge items of these classes. A class is a way end-users can categorize other charge items in QuickBooks.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on other charge items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for other charge items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on other charge items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for other charge items.
       responses:
         "200":
           description: Returns a list of other charge items.
@@ -43931,6 +44401,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the other charge item to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on other charge items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for other charge items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on other charge items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for other charge items.
       responses:
         "200":
           description: Returns the specified other charge item.
@@ -44575,6 +45055,16 @@ paths:
 
             **NOTE**: If you use this parameter, you cannot also use
             `nameContains`, `nameStartsWith`, or `nameEndsWith`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on other-names. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for other-names.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on other-names. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for other-names.
       responses:
         "200":
           description: Returns a list of other-names.
@@ -44989,6 +45479,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the other-name to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on other-names. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for other-names.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on other-names. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for other-names.
       responses:
         "200":
           description: Returns the specified other-name.
@@ -47921,6 +48421,16 @@ paths:
             type: boolean
             default: false
           description: Whether to include linked transactions in the response. Defaults to `false`. For example, a payment linked to the corresponding purchase order.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on purchase orders. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for purchase orders.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on purchase orders. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for purchase orders.
       responses:
         "200":
           description: Returns a list of purchase orders.
@@ -48770,6 +49280,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the purchase order to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on purchase orders. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for purchase orders.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on purchase orders. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for purchase orders.
       responses:
         "200":
           description: Returns the specified purchase order.
@@ -50286,6 +50806,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on receive-payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for receive-payments.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on receive-payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for receive-payments.
       responses:
         "200":
           description: Returns a list of receive-payments.
@@ -50940,6 +51470,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the receive-payment to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on receive-payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for receive-payments.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on receive-payments. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for receive-payments.
       responses:
         "200":
           description: Returns the specified receive-payment.
@@ -56519,6 +57059,16 @@ paths:
             type: boolean
             default: false
           description: Whether to include linked transactions in the response. Defaults to `false`. For example, a payment linked to the corresponding sales order.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on sales orders. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales orders.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on sales orders. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales orders.
       responses:
         "200":
           description: Returns a list of sales orders.
@@ -57402,6 +57952,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the sales order to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on sales orders. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales orders.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on sales orders. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales orders.
       responses:
         "200":
           description: Returns the specified sales order.
@@ -58953,6 +59513,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on sales receipts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales receipts.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on sales receipts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales receipts.
       responses:
         "200":
           description: Returns a list of sales receipts.
@@ -60292,6 +60862,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the sales receipt to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on sales receipts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales receipts.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on sales receipts. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales receipts.
       responses:
         "200":
           description: Returns the specified sales receipt.
@@ -63263,6 +63843,16 @@ paths:
 
             **NOTE**: If you use this parameter, you cannot also use
             `nameContains`, `nameStartsWith`, or `nameEndsWith`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on sales-tax group items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax group items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on sales-tax group items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax group items.
       responses:
         "200":
           description: Returns a list of sales-tax group items.
@@ -63542,6 +64132,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the sales-tax group item to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on sales-tax group items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax group items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on sales-tax group items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax group items.
       responses:
         "200":
           description: Returns the specified sales-tax group item.
@@ -64060,6 +64660,16 @@ paths:
             items:
               type: string
           description: Filter for sales-tax items of these classes. A class is a way end-users can categorize sales-tax items in QuickBooks.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on sales-tax items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on sales-tax items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax items.
       responses:
         "200":
           description: Returns a list of sales-tax items.
@@ -64346,6 +64956,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the sales-tax item to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on sales-tax items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on sales-tax items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax items.
       responses:
         "200":
           description: Returns the specified sales-tax item.
@@ -64932,6 +65552,16 @@ paths:
             type: boolean
             default: true
           description: Whether to include line items in the response. Defaults to `true`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on sales-tax payment checks. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax payment checks.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on sales-tax payment checks. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax payment checks.
       responses:
         "200":
           description: Returns a list of sales-tax payment checks.
@@ -65323,6 +65953,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the sales-tax payment check to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on sales-tax payment checks. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax payment checks.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on sales-tax payment checks. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for sales-tax payment checks.
       responses:
         "200":
           description: Returns the specified sales-tax payment check.
@@ -66137,6 +66777,16 @@ paths:
             items:
               type: string
           description: Filter for service items of these classes. A class is a way end-users can categorize service items in QuickBooks.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on service items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for service items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on service items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for service items.
       responses:
         "200":
           description: Returns a list of service items.
@@ -66558,6 +67208,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the service item to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on service items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for service items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on service items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for service items.
       responses:
         "200":
           description: Returns the specified service item.
@@ -68348,6 +69008,16 @@ paths:
 
             **NOTE**: If you use this parameter, you cannot also use
             `nameContains`, `nameStartsWith`, or `nameEndsWith`.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on subtotal items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for subtotal items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on subtotal items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for subtotal items.
       responses:
         "200":
           description: Returns a list of subtotal items.
@@ -68615,6 +69285,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the subtotal item to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on subtotal items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for subtotal items.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on subtotal items. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for subtotal items.
       responses:
         "200":
           description: Returns the specified subtotal item.
@@ -72144,6 +72824,16 @@ paths:
             type: boolean
             default: false
           description: Whether to include linked transactions in the response. Defaults to `false`. For example, a payment linked to the corresponding vendor credit.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on vendor credits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for vendor credits.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on vendor credits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for vendor credits.
       responses:
         "200":
           description: Returns a list of vendor credits.
@@ -72866,6 +73556,16 @@ paths:
             example: 123ABC-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the vendor credit to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on vendor credits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for vendor credits.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on vendor credits. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for vendor credits.
       responses:
         "200":
           description: Returns the specified vendor credit.
@@ -74272,6 +74972,16 @@ paths:
             items:
               type: string
           description: Filter for vendors of these classes. A class is a way end-users can categorize vendors in QuickBooks.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on vendors. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for vendors.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on vendors. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for vendors.
       responses:
         "200":
           description: Returns a list of vendors.
@@ -75117,6 +75827,16 @@ paths:
             example: 80000001-1234567890
           required: true
           description: The QuickBooks-assigned unique identifier of the vendor to retrieve.
+        - in: query
+          name: customFieldOwnerIds
+          schema:
+            description: The owners whose custom fields to return on vendors. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for vendors.
+            example:
+              - "0"
+            type: array
+            items:
+              type: string
+          description: The owners whose custom fields to return on vendors. Defaults to `["0"]`, the public custom fields people create and see in QuickBooks. For an application's private custom fields, list its owner ID, a GUID in braces. Only listed owners are returned, so keep `"0"` for the public ones. QuickBooks rejects the whole request if a listed private owner has no custom fields for vendors.
       responses:
         "200":
           description: Returns the specified vendor.
