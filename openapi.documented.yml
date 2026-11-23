@@ -4691,7 +4691,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -4942,7 +4942,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -5018,7 +5018,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -8233,7 +8233,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -8484,7 +8484,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -8560,7 +8560,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -11253,7 +11253,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -11504,7 +11504,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -11580,7 +11580,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -13396,7 +13396,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -13647,7 +13647,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -13723,7 +13723,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -17247,7 +17247,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -17334,7 +17334,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -29218,7 +29218,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -29300,7 +29300,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -36205,7 +36205,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -36286,7 +36286,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -39391,7 +39391,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -39642,7 +39642,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -39718,7 +39718,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -49101,7 +49101,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -49184,7 +49184,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -57756,7 +57756,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -57838,7 +57838,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -60681,7 +60681,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -60769,7 +60769,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -73130,7 +73130,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -73381,7 +73381,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -73457,7 +73457,7 @@ paths:
                               example: Customer Rating
                             value:
                               type: string
-                              description: The value of this custom field. The maximum length depends on the field's data type.
+                              description: The value of this custom field. A public custom field's value can have at most 30 characters.
                               example: Premium
                           required:
                             - ownerId
@@ -77220,7 +77220,7 @@ components:
           example: string_1024_type
         value:
           type: string
-          description: The value of this custom field. The maximum length depends on the field's data type.
+          description: The value of this custom field.
           example: Premium
       required:
         - ownerId
