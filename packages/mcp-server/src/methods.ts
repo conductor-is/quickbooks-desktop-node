@@ -83,6 +83,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/accounts',
   },
   {
+    clientCallName: 'conductor.qbd.accounts.setCustomFields',
+    fullyQualifiedName: 'qbd.accounts.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/accounts/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.billCheckPayments.create',
     fullyQualifiedName: 'qbd.billCheckPayments.create',
     httpMethod: 'post',
@@ -113,6 +119,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/bill-check-payments/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.billCheckPayments.setCustomFields',
+    fullyQualifiedName: 'qbd.billCheckPayments.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/bill-check-payments/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.billCheckPayments.void',
     fullyQualifiedName: 'qbd.billCheckPayments.void',
     httpMethod: 'post',
@@ -141,6 +153,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.billCreditCardPayments.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/bill-credit-card-payments/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.billCreditCardPayments.setCustomFields',
+    fullyQualifiedName: 'qbd.billCreditCardPayments.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/bill-credit-card-payments/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.billCreditCardPayments.void',
@@ -177,6 +195,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.bills.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/bills/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.bills.setCustomFields',
+    fullyQualifiedName: 'qbd.bills.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/bills/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.bills.void',
@@ -221,6 +245,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/build-assemblies/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.buildAssemblies.setCustomFields',
+    fullyQualifiedName: 'qbd.buildAssemblies.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/build-assemblies/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.checks.create',
     fullyQualifiedName: 'qbd.checks.create',
     httpMethod: 'post',
@@ -249,6 +279,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.checks.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/checks/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.checks.setCustomFields',
+    fullyQualifiedName: 'qbd.checks.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/checks/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.checks.void',
@@ -317,6 +353,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/credit-card-charges/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.creditCardCharges.setCustomFields',
+    fullyQualifiedName: 'qbd.creditCardCharges.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/credit-card-charges/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.creditCardCharges.void',
     fullyQualifiedName: 'qbd.creditCardCharges.void',
     httpMethod: 'post',
@@ -353,6 +395,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/credit-card-credits/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.creditCardCredits.setCustomFields',
+    fullyQualifiedName: 'qbd.creditCardCredits.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/credit-card-credits/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.creditCardCredits.void',
     fullyQualifiedName: 'qbd.creditCardCredits.void',
     httpMethod: 'post',
@@ -381,6 +429,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.creditCardRefunds.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/credit-card-refunds/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.creditCardRefunds.setCustomFields',
+    fullyQualifiedName: 'qbd.creditCardRefunds.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/credit-card-refunds/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.creditCardRefunds.void',
@@ -417,6 +471,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.creditMemos.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/credit-memos/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.creditMemos.setCustomFields',
+    fullyQualifiedName: 'qbd.creditMemos.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/credit-memos/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.creditMemos.void',
@@ -515,6 +575,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/customers',
   },
   {
+    clientCallName: 'conductor.qbd.customers.setCustomFields',
+    fullyQualifiedName: 'qbd.customers.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/customers/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.dateDrivenTerms.create',
     fullyQualifiedName: 'qbd.dateDrivenTerms.create',
     httpMethod: 'post',
@@ -575,6 +641,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/deposits/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.deposits.setCustomFields',
+    fullyQualifiedName: 'qbd.deposits.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/deposits/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.deposits.void',
     fullyQualifiedName: 'qbd.deposits.void',
     httpMethod: 'post',
@@ -605,6 +677,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/discount-items',
   },
   {
+    clientCallName: 'conductor.qbd.discountItems.setCustomFields',
+    fullyQualifiedName: 'qbd.discountItems.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/discount-items/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.employees.create',
     fullyQualifiedName: 'qbd.employees.create',
     httpMethod: 'post',
@@ -627,6 +705,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.employees.list',
     httpMethod: 'get',
     httpPath: '/quickbooks-desktop/employees',
+  },
+  {
+    clientCallName: 'conductor.qbd.employees.setCustomFields',
+    fullyQualifiedName: 'qbd.employees.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/employees/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.estimates.create',
@@ -659,6 +743,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/estimates/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.estimates.setCustomFields',
+    fullyQualifiedName: 'qbd.estimates.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/estimates/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.inventoryAdjustments.create',
     fullyQualifiedName: 'qbd.inventoryAdjustments.create',
     httpMethod: 'post',
@@ -687,6 +777,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.inventoryAdjustments.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/inventory-adjustments/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.inventoryAdjustments.setCustomFields',
+    fullyQualifiedName: 'qbd.inventoryAdjustments.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/inventory-adjustments/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.inventoryAdjustments.void',
@@ -719,6 +815,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/inventory-assembly-items',
   },
   {
+    clientCallName: 'conductor.qbd.inventoryAssemblyItems.setCustomFields',
+    fullyQualifiedName: 'qbd.inventoryAssemblyItems.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/inventory-assembly-items/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.inventoryItems.create',
     fullyQualifiedName: 'qbd.inventoryItems.create',
     httpMethod: 'post',
@@ -741,6 +843,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.inventoryItems.list',
     httpMethod: 'get',
     httpPath: '/quickbooks-desktop/inventory-items',
+  },
+  {
+    clientCallName: 'conductor.qbd.inventoryItems.setCustomFields',
+    fullyQualifiedName: 'qbd.inventoryItems.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/inventory-items/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.inventorySites.create',
@@ -797,6 +905,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/invoices/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.invoices.setCustomFields',
+    fullyQualifiedName: 'qbd.invoices.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/invoices/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.invoices.void',
     fullyQualifiedName: 'qbd.invoices.void',
     httpMethod: 'post',
@@ -827,6 +941,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/item-groups',
   },
   {
+    clientCallName: 'conductor.qbd.itemGroups.setCustomFields',
+    fullyQualifiedName: 'qbd.itemGroups.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/item-groups/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.itemReceipts.create',
     fullyQualifiedName: 'qbd.itemReceipts.create',
     httpMethod: 'post',
@@ -855,6 +975,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.itemReceipts.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/item-receipts/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.itemReceipts.setCustomFields',
+    fullyQualifiedName: 'qbd.itemReceipts.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/item-receipts/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.itemReceipts.void',
@@ -905,6 +1031,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/journal-entries/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.journalEntries.setCustomFields',
+    fullyQualifiedName: 'qbd.journalEntries.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/journal-entries/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.journalEntries.void',
     fullyQualifiedName: 'qbd.journalEntries.void',
     httpMethod: 'post',
@@ -935,6 +1067,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/non-inventory-items',
   },
   {
+    clientCallName: 'conductor.qbd.nonInventoryItems.setCustomFields',
+    fullyQualifiedName: 'qbd.nonInventoryItems.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/non-inventory-items/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.otherChargeItems.create',
     fullyQualifiedName: 'qbd.otherChargeItems.create',
     httpMethod: 'post',
@@ -959,6 +1097,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/other-charge-items',
   },
   {
+    clientCallName: 'conductor.qbd.otherChargeItems.setCustomFields',
+    fullyQualifiedName: 'qbd.otherChargeItems.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/other-charge-items/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.otherNames.create',
     fullyQualifiedName: 'qbd.otherNames.create',
     httpMethod: 'post',
@@ -981,6 +1125,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.otherNames.list',
     httpMethod: 'get',
     httpPath: '/quickbooks-desktop/other-names',
+  },
+  {
+    clientCallName: 'conductor.qbd.otherNames.setCustomFields',
+    fullyQualifiedName: 'qbd.otherNames.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/other-names/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.paymentMethods.create',
@@ -1085,6 +1235,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/purchase-orders/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.purchaseOrders.setCustomFields',
+    fullyQualifiedName: 'qbd.purchaseOrders.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/purchase-orders/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.receivePayments.create',
     fullyQualifiedName: 'qbd.receivePayments.create',
     httpMethod: 'post',
@@ -1113,6 +1269,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.receivePayments.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/receive-payments/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.receivePayments.setCustomFields',
+    fullyQualifiedName: 'qbd.receivePayments.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/receive-payments/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.reports.aging',
@@ -1205,6 +1367,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/sales-orders/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.salesOrders.setCustomFields',
+    fullyQualifiedName: 'qbd.salesOrders.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/sales-orders/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.salesReceipts.create',
     fullyQualifiedName: 'qbd.salesReceipts.create',
     httpMethod: 'post',
@@ -1233,6 +1401,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.salesReceipts.delete',
     httpMethod: 'delete',
     httpPath: '/quickbooks-desktop/sales-receipts/{id}',
+  },
+  {
+    clientCallName: 'conductor.qbd.salesReceipts.setCustomFields',
+    fullyQualifiedName: 'qbd.salesReceipts.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/sales-receipts/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.salesReceipts.void',
@@ -1313,6 +1487,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/sales-tax-group-items',
   },
   {
+    clientCallName: 'conductor.qbd.salesTaxGroupItems.setCustomFields',
+    fullyQualifiedName: 'qbd.salesTaxGroupItems.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/sales-tax-group-items/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.salesTaxItems.create',
     fullyQualifiedName: 'qbd.salesTaxItems.create',
     httpMethod: 'post',
@@ -1335,6 +1515,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.salesTaxItems.list',
     httpMethod: 'get',
     httpPath: '/quickbooks-desktop/sales-tax-items',
+  },
+  {
+    clientCallName: 'conductor.qbd.salesTaxItems.setCustomFields',
+    fullyQualifiedName: 'qbd.salesTaxItems.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/sales-tax-items/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.salesTaxPaymentChecks.create',
@@ -1367,6 +1553,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/sales-tax-payment-checks/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.salesTaxPaymentChecks.setCustomFields',
+    fullyQualifiedName: 'qbd.salesTaxPaymentChecks.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/sales-tax-payment-checks/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.salesTaxPaymentChecks.void',
     fullyQualifiedName: 'qbd.salesTaxPaymentChecks.void',
     httpMethod: 'post',
@@ -1395,6 +1587,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.serviceItems.list',
     httpMethod: 'get',
     httpPath: '/quickbooks-desktop/service-items',
+  },
+  {
+    clientCallName: 'conductor.qbd.serviceItems.setCustomFields',
+    fullyQualifiedName: 'qbd.serviceItems.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/service-items/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.shippingMethods.create',
@@ -1455,6 +1653,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.subtotalItems.list',
     httpMethod: 'get',
     httpPath: '/quickbooks-desktop/subtotal-items',
+  },
+  {
+    clientCallName: 'conductor.qbd.subtotalItems.setCustomFields',
+    fullyQualifiedName: 'qbd.subtotalItems.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/subtotal-items/{id}/set-custom-fields',
   },
   {
     clientCallName: 'conductor.qbd.templates.list',
@@ -1577,6 +1781,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/vendor-credits/{id}',
   },
   {
+    clientCallName: 'conductor.qbd.vendorCredits.setCustomFields',
+    fullyQualifiedName: 'qbd.vendorCredits.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/vendor-credits/{id}/set-custom-fields',
+  },
+  {
     clientCallName: 'conductor.qbd.vendorCredits.void',
     fullyQualifiedName: 'qbd.vendorCredits.void',
     httpMethod: 'post',
@@ -1605,6 +1815,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'qbd.vendors.list',
     httpMethod: 'get',
     httpPath: '/quickbooks-desktop/vendors',
+  },
+  {
+    clientCallName: 'conductor.qbd.vendors.setCustomFields',
+    fullyQualifiedName: 'qbd.vendors.setCustomFields',
+    httpMethod: 'post',
+    httpPath: '/quickbooks-desktop/vendors/{id}/set-custom-fields',
   },
 ];
 
