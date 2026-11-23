@@ -133,6 +133,42 @@ export class CreditMemos extends APIResource {
   }
 
   /**
+   * Sets or clears custom field values on a credit memo and its lines. Custom fields
+   * defined for items go on the lines, and those defined for customers, vendors, and
+   * employees go on the credit memo itself. Each value you send replaces the custom
+   * field's current one, and an empty string clears it. Custom fields you leave out
+   * keep their values.
+   *
+   * If QuickBooks does not save every value, the request fails with an error naming
+   * the custom fields that were not saved. The others stay saved, because QuickBooks
+   * saves each value separately. Sending the same request again is safe.
+   *
+   * **NOTE**: This request takes no `revisionNumber` but changes the credit memo's,
+   * so use the one in the response for your next update.
+   *
+   * @example
+   * ```ts
+   * const creditMemo =
+   *   await conductor.qbd.creditMemos.setCustomFields(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: CreditMemoSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<CreditMemo> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/credit-memos/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
+
+  /**
    * Voids a credit memo by setting its amount to zero while keeping a record of it
    * in QuickBooks. The void will fail if the credit memo is currently in use or has
    * any linked transactions that are in use.
@@ -218,8 +254,12 @@ export interface CreditMemo {
   customerMessage: CreditMemo.CustomerMessage | null;
 
   /**
-   * The custom fields for the credit memo object, added as user-defined data
-   * extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this credit memo, for the owners named in
+   * the request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<CreditMemo.CustomField>;
 
@@ -638,8 +678,14 @@ export namespace CreditMemo {
     id: string;
 
     /**
-     * The custom fields for the credit memo line group object, added as user-defined
-     * data extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this credit memo line group, for the
+     * owners named in the request's `customFieldOwnerIds` (by default, the public
+     * custom fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the credit memo's
+     * set-custom-fields endpoint. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the credit memo
+     * to see them.
      */
     customFields: Array<LineGroup.CustomField>;
 
@@ -797,8 +843,14 @@ export namespace CreditMemo {
       class: Line.Class | null;
 
       /**
-       * The custom fields for the credit memo line object, added as user-defined data
-       * extensions, not included in the standard QuickBooks object.
+       * The custom fields that have a value on this credit memo line, for the owners
+       * named in the request's `customFieldOwnerIds` (by default, the public custom
+       * fields).
+       *
+       * **NOTE**: To set or clear custom field values, use the credit memo's
+       * set-custom-fields endpoint. An update cannot change them, and its response
+       * returns this as an empty array even when values exist; retrieve the credit memo
+       * to see them.
        */
       customFields: Array<Line.CustomField>;
 
@@ -1167,8 +1219,14 @@ export namespace CreditMemo {
     class: Line.Class | null;
 
     /**
-     * The custom fields for the credit memo line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this credit memo line, for the owners
+     * named in the request's `customFieldOwnerIds` (by default, the public custom
+     * fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the credit memo's
+     * set-custom-fields endpoint. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the credit memo
+     * to see them.
      */
     customFields: Array<Line.CustomField>;
 
@@ -2099,8 +2157,9 @@ export namespace CreditMemoCreateParams {
     itemGroupId: string;
 
     /**
-     * The custom fields for the credit memo line group object, added as user-defined
-     * data extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this credit memo line group when it is
+     * created. To change them afterward, use the credit memo's set-custom-fields
+     * endpoint.
      */
     customFields?: Array<LineGroup.CustomField>;
 
@@ -2189,8 +2248,8 @@ export namespace CreditMemoCreateParams {
     classId?: string;
 
     /**
-     * The custom fields for the credit memo line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this credit memo line when it is created. To
+     * change them afterward, use the credit memo's set-custom-fields endpoint.
      */
     customFields?: Array<Line.CustomField>;
 
@@ -3438,6 +3497,95 @@ export interface CreditMemoDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface CreditMemoSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the credit memo itself,
+   * not on its lines. Custom fields you leave out keep their values.
+   */
+  customFields?: Array<CreditMemoSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Body param: The lines of the credit memo whose custom field values to set or
+   * clear. Lines you leave out are not changed.
+   */
+  lines?: Array<CreditMemoSetCustomFieldsParams.Line>;
+}
+
+export namespace CreditMemoSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+
+  export interface Line {
+    /**
+     * The QuickBooks-assigned unique identifier of the credit memo line, line group,
+     * or line inside a line group.
+     */
+    id: string;
+
+    /**
+     * The custom field values to set or clear on this line. Custom fields you leave
+     * out keep their values.
+     */
+    customFields: Array<Line.CustomField>;
+  }
+
+  export namespace Line {
+    export interface CustomField {
+      /**
+       * The name of the custom field, as its definition and a record's `customFields`
+       * show it. The custom field must already be defined for this type of record; to
+       * list or create definitions, use the custom-field-definitions endpoint.
+       * QuickBooks matches the name without regard to letter case.
+       */
+      name: string;
+
+      /**
+       * The value to set, which replaces the custom field's current value if it has one.
+       * Send an empty string (`""`) to clear the custom field. A public custom field's
+       * value can have at most 30 characters.
+       */
+      value: string;
+
+      /**
+       * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+       * fields, which QuickBooks users define and see. Any other owner is an
+       * application's GUID in braces, such as
+       * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+       * only in requests that name it.
+       */
+      ownerId?: string;
+    }
+  }
+}
+
 export interface CreditMemoVoidParams {
   /**
    * The ID of the End-User to receive this request.
@@ -3456,6 +3604,7 @@ export declare namespace CreditMemos {
     type CreditMemoUpdateParams as CreditMemoUpdateParams,
     type CreditMemoListParams as CreditMemoListParams,
     type CreditMemoDeleteParams as CreditMemoDeleteParams,
+    type CreditMemoSetCustomFieldsParams as CreditMemoSetCustomFieldsParams,
     type CreditMemoVoidParams as CreditMemoVoidParams,
   };
 }

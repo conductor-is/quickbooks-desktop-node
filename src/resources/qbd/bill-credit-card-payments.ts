@@ -126,6 +126,40 @@ export class BillCreditCardPayments extends APIResource {
   }
 
   /**
+   * Sets or clears custom field values on a bill credit card payment. Each value you
+   * send replaces the custom field's current one, and an empty string clears it.
+   * Custom fields you leave out keep their values.
+   *
+   * If QuickBooks does not save every value, the request fails with an error naming
+   * the custom fields that were not saved. The others stay saved, because QuickBooks
+   * saves each value separately. Sending the same request again is safe.
+   *
+   * **NOTE**: This request takes no `revisionNumber` but changes the bill credit
+   * card payment's, so use the one in the response for your next update.
+   *
+   * @example
+   * ```ts
+   * const billCreditCardPayment =
+   *   await conductor.qbd.billCreditCardPayments.setCustomFields(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: BillCreditCardPaymentSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<BillCreditCardPayment> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/bill-credit-card-payments/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
+
+  /**
    * Voids a bill credit card payment by setting its amount to zero while keeping a
    * record of it in QuickBooks. The void will fail if the bill credit card payment
    * is currently in use or has any linked transactions that are in use.
@@ -199,8 +233,13 @@ export interface BillCreditCardPayment {
   currency: BillCreditCardPayment.Currency | null;
 
   /**
-   * The custom fields for the bill credit card payment object, added as user-defined
-   * data extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this bill credit card payment, for the
+   * owners named in the request's `customFieldOwnerIds` (by default, the public
+   * custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<BillCreditCardPayment.CustomField>;
 
@@ -1017,6 +1056,47 @@ export interface BillCreditCardPaymentDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface BillCreditCardPaymentSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the bill credit card
+   * payment itself, not on its lines. Custom fields you leave out keep their values.
+   */
+  customFields?: Array<BillCreditCardPaymentSetCustomFieldsParams.CustomField>;
+}
+
+export namespace BillCreditCardPaymentSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+}
+
 export interface BillCreditCardPaymentVoidParams {
   /**
    * The ID of the End-User to receive this request.
@@ -1034,6 +1114,7 @@ export declare namespace BillCreditCardPayments {
     type BillCreditCardPaymentRetrieveParams as BillCreditCardPaymentRetrieveParams,
     type BillCreditCardPaymentListParams as BillCreditCardPaymentListParams,
     type BillCreditCardPaymentDeleteParams as BillCreditCardPaymentDeleteParams,
+    type BillCreditCardPaymentSetCustomFieldsParams as BillCreditCardPaymentSetCustomFieldsParams,
     type BillCreditCardPaymentVoidParams as BillCreditCardPaymentVoidParams,
   };
 }
