@@ -338,7 +338,7 @@ export namespace PriceLevelCreateParams {
      * Specifies which price to use as the starting point for the adjustment
      * calculation in the price level.
      *
-     * **NOTE:** The price level must use either a fixed pricing approach
+     * **NOTE**: The price level must use either a fixed pricing approach
      * (`customPrice` or `customPricePercent`) or a relative adjustment approach
      * (`adjustPercentage` with `adjustRelativeTo`) when configuring per-item price
      * levels.
@@ -452,7 +452,7 @@ export namespace PriceLevelUpdateParams {
      * Specifies which price to use as the starting point for the adjustment
      * calculation in the price level.
      *
-     * **NOTE:** The price level must use either a fixed pricing approach
+     * **NOTE**: The price level must use either a fixed pricing approach
      * (`customPrice` or `customPricePercent`) or a relative adjustment approach
      * (`adjustPercentage` with `adjustRelativeTo`) when configuring per-item price
      * levels.

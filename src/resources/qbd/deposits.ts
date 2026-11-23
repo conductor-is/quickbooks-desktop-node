@@ -1117,9 +1117,12 @@ export interface DepositListParams extends CursorPageParams {
    * Query param: Filter for deposits whose `date` field is on or after this date, in
    * ISO 8601 format (YYYY-MM-DD).
    *
-   * **NOTE:** QuickBooks Desktop interprets this date as the **start of the
+   * **NOTE**: QuickBooks Desktop interprets this date as the **start of the
    * specified day** in the local timezone of the end-user's computer (e.g.,
    * `2025-01-01` → `2025-01-01T00:00:00`).
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `updatedAfter` or
+   * `updatedBefore`.
    */
   transactionDateFrom?: string;
 
@@ -1127,9 +1130,12 @@ export interface DepositListParams extends CursorPageParams {
    * Query param: Filter for deposits whose `date` field is on or before this date,
    * in ISO 8601 format (YYYY-MM-DD).
    *
-   * **NOTE:** QuickBooks Desktop interprets this date as the **end of the specified
+   * **NOTE**: QuickBooks Desktop interprets this date as the **end of the specified
    * day** in the local timezone of the end-user's computer (e.g., `2025-01-01` →
    * `2025-01-01T23:59:59`).
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `updatedAfter` or
+   * `updatedBefore`.
    */
   transactionDateTo?: string;
 

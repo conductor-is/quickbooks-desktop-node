@@ -862,6 +862,9 @@ export interface BillCheckPaymentCreateParams {
   /**
    * Body param: Indicates whether this bill check payment is included in the queue
    * of documents for QuickBooks to print.
+   *
+   * **IMPORTANT**: You cannot specify both `isQueuedForPrint` and `refNumber` for a
+   * bill check payment.
    */
   isQueuedForPrint?: boolean;
 
@@ -890,6 +893,9 @@ export interface BillCheckPaymentCreateParams {
    * QuickBooks (i.e., it does _not_ auto-increment).
    *
    * **IMPORTANT**: For checks, this field is the check number.
+   *
+   * **IMPORTANT**: You cannot specify both `isQueuedForPrint` and `refNumber` for a
+   * bill check payment.
    *
    * Maximum length: 11 characters.
    */
@@ -1042,6 +1048,9 @@ export interface BillCheckPaymentUpdateParams {
   /**
    * Body param: Indicates whether this bill check payment is included in the queue
    * of documents for QuickBooks to print.
+   *
+   * **IMPORTANT**: You cannot specify both `isQueuedForPrint` and `refNumber` for a
+   * bill check payment.
    */
   isQueuedForPrint?: boolean;
 
@@ -1059,6 +1068,9 @@ export interface BillCheckPaymentUpdateParams {
    * user.
    *
    * **IMPORTANT**: For checks, this field is the check number.
+   *
+   * **IMPORTANT**: You cannot specify both `isQueuedForPrint` and `refNumber` for a
+   * bill check payment.
    *
    * Maximum length: 11 characters.
    */
@@ -1256,9 +1268,12 @@ export interface BillCheckPaymentListParams extends CursorPageParams {
    * Query param: Filter for bill check payments whose `date` field is on or after
    * this date, in ISO 8601 format (YYYY-MM-DD).
    *
-   * **NOTE:** QuickBooks Desktop interprets this date as the **start of the
+   * **NOTE**: QuickBooks Desktop interprets this date as the **start of the
    * specified day** in the local timezone of the end-user's computer (e.g.,
    * `2025-01-01` → `2025-01-01T00:00:00`).
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `updatedAfter` or
+   * `updatedBefore`.
    */
   transactionDateFrom?: string;
 
@@ -1266,9 +1281,12 @@ export interface BillCheckPaymentListParams extends CursorPageParams {
    * Query param: Filter for bill check payments whose `date` field is on or before
    * this date, in ISO 8601 format (YYYY-MM-DD).
    *
-   * **NOTE:** QuickBooks Desktop interprets this date as the **end of the specified
+   * **NOTE**: QuickBooks Desktop interprets this date as the **end of the specified
    * day** in the local timezone of the end-user's computer (e.g., `2025-01-01` →
    * `2025-01-01T23:59:59`).
+   *
+   * **NOTE**: If you use this parameter, you cannot also use `updatedAfter` or
+   * `updatedBefore`.
    */
   transactionDateTo?: string;
 

@@ -272,18 +272,14 @@ export interface ItemSiteListParams extends CursorPageParams {
   /**
    * Query param: Filter for item sites for these items.
    *
-   * **NOTE:** QuickBooks Desktop only supports `itemType` or item/site filters for
-   * item-sites requests, not both. Do not use `itemType` together with `itemIds` or
-   * `siteIds`.
+   * **NOTE**: If you use this parameter, you cannot also use `itemType`.
    */
   itemIds?: Array<string>;
 
   /**
    * Query param: Filter for item sites that match this item type.
    *
-   * **NOTE:** QuickBooks Desktop only supports `itemType` or item/site filters for
-   * item-sites requests, not both. Do not use `itemType` together with `itemIds` or
-   * `siteIds`.
+   * **NOTE**: If you use this parameter, you cannot also use `itemIds` or `siteIds`.
    */
   itemType?:
     | 'all_except_fixed_asset'
@@ -303,9 +299,7 @@ export interface ItemSiteListParams extends CursorPageParams {
    * Query param: Filter for item sites at these sites. A site represents a physical
    * location, such as a warehouse or store.
    *
-   * **NOTE:** QuickBooks Desktop only supports `itemType` or item/site filters for
-   * item-sites requests, not both. Do not use `itemType` together with `itemIds` or
-   * `siteIds`.
+   * **NOTE**: If you use this parameter, you cannot also use `itemType`.
    */
   siteIds?: Array<string>;
 
