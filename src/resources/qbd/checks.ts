@@ -3335,12 +3335,18 @@ export interface CheckSetCustomFieldsParams {
   /**
    * Body param: The custom field values to set or clear on the check itself, not on
    * its lines. Custom fields you leave out keep their values.
+   *
+   * **IMPORTANT**: You must specify `customFields`, `lines`, or both when setting
+   * custom fields on a check.
    */
   customFields?: Array<CheckSetCustomFieldsParams.CustomField>;
 
   /**
    * Body param: The lines of the check whose custom field values to set or clear.
    * Lines you leave out are not changed.
+   *
+   * **IMPORTANT**: You must specify `customFields`, `lines`, or both when setting
+   * custom fields on a check.
    */
   lines?: Array<CheckSetCustomFieldsParams.Line>;
 }

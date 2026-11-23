@@ -157,7 +157,12 @@ export class BuildAssemblies extends APIResource {
    * const buildAssembly =
    *   await conductor.qbd.buildAssemblies.setCustomFields(
    *     '123ABC-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -929,15 +934,15 @@ export interface BuildAssemblyDeleteParams {
 
 export interface BuildAssemblySetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the build assembly
    * itself, not on its lines. Custom fields you leave out keep their values.
    */
-  customFields?: Array<BuildAssemblySetCustomFieldsParams.CustomField>;
+  customFields: Array<BuildAssemblySetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace BuildAssemblySetCustomFieldsParams {

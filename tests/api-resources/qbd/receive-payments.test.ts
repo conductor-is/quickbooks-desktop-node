@@ -239,6 +239,7 @@ describe('resource receivePayments', () => {
 
   test('setCustomFields: only required params', async () => {
     const responsePromise = conductor.qbd.receivePayments.setCustomFields('123ABC-1234567890', {
+      customFields: [{ name: 'Customer Rating', value: 'Gold' }],
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -252,7 +253,6 @@ describe('resource receivePayments', () => {
 
   test('setCustomFields: required and optional params', async () => {
     const response = await conductor.qbd.receivePayments.setCustomFields('123ABC-1234567890', {
-      conductorEndUserId: 'end_usr_1234567abcdefg',
       customFields: [
         {
           name: 'Customer Rating',
@@ -260,6 +260,7 @@ describe('resource receivePayments', () => {
           ownerId: '0',
         },
       ],
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

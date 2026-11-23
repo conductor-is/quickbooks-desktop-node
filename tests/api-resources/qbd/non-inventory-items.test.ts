@@ -165,6 +165,7 @@ describe('resource nonInventoryItems', () => {
 
   test('setCustomFields: only required params', async () => {
     const responsePromise = conductor.qbd.nonInventoryItems.setCustomFields('80000001-1234567890', {
+      customFields: [{ name: 'Customer Rating', value: 'Gold' }],
       conductorEndUserId: 'end_usr_1234567abcdefg',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -178,7 +179,6 @@ describe('resource nonInventoryItems', () => {
 
   test('setCustomFields: required and optional params', async () => {
     const response = await conductor.qbd.nonInventoryItems.setCustomFields('80000001-1234567890', {
-      conductorEndUserId: 'end_usr_1234567abcdefg',
       customFields: [
         {
           name: 'Customer Rating',
@@ -186,6 +186,7 @@ describe('resource nonInventoryItems', () => {
           ownerId: '0',
         },
       ],
+      conductorEndUserId: 'end_usr_1234567abcdefg',
     });
   });
 });

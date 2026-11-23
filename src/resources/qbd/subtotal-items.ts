@@ -127,7 +127,12 @@ export class SubtotalItems extends APIResource {
    * const subtotalItem =
    *   await conductor.qbd.subtotalItems.setCustomFields(
    *     '80000001-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -558,15 +563,15 @@ export interface SubtotalItemListParams extends CursorPageParams {
 
 export interface SubtotalItemSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the subtotal item. Custom
    * fields you leave out keep their values.
    */
-  customFields?: Array<SubtotalItemSetCustomFieldsParams.CustomField>;
+  customFields: Array<SubtotalItemSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace SubtotalItemSetCustomFieldsParams {

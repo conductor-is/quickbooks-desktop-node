@@ -127,7 +127,12 @@ export class SalesTaxItems extends APIResource {
    * const salesTaxItem =
    *   await conductor.qbd.salesTaxItems.setCustomFields(
    *     '80000001-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *     {
+   *       customFields: [
+   *         { name: 'Customer Rating', value: 'Gold' },
+   *       ],
+   *       conductorEndUserId: 'end_usr_1234567abcdefg',
+   *     },
    *   );
    * ```
    */
@@ -711,15 +716,15 @@ export interface SalesTaxItemListParams extends CursorPageParams {
 
 export interface SalesTaxItemSetCustomFieldsParams {
   /**
-   * Header param: The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-
-  /**
    * Body param: The custom field values to set or clear on the sales-tax item.
    * Custom fields you leave out keep their values.
    */
-  customFields?: Array<SalesTaxItemSetCustomFieldsParams.CustomField>;
+  customFields: Array<SalesTaxItemSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
 }
 
 export namespace SalesTaxItemSetCustomFieldsParams {
