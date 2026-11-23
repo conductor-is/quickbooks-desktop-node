@@ -1,5 +1,31 @@
 # Changelog
 
+## [16.3.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.3.0...v16.3.1) (2026-11-23)
+
+
+### Bug Fixes
+
+* **api:** require customFields where set-custom-fields takes no lines ([7e7ddb9](https://github.com/conductor-is/quickbooks-desktop-node/commit/7e7ddb94a9651bc978a619a7f7e3bc2ff4e1a908))
+* **api:** word multi-field rules the same way in errors and docs ([a06ccbb](https://github.com/conductor-is/quickbooks-desktop-node/commit/a06ccbb3f49d9b39b89fb34ed0e9faa569549f25))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([efccb59](https://github.com/conductor-is/quickbooks-desktop-node/commit/efccb59d61bd3bd72775bddbce9d912dbed7bdc4))
+* **api:** update documented OpenAPI spec for download ([48e160c](https://github.com/conductor-is/quickbooks-desktop-node/commit/48e160c96920b8a10d3e7d4bd276c0d8cbe989fe))
+* **api:** update documented OpenAPI spec for download ([e7a9b60](https://github.com/conductor-is/quickbooks-desktop-node/commit/e7a9b6009b5359a266fcb49a720f0134b6e23540))
+* **api:** use one order for a resource's operations ([bad3984](https://github.com/conductor-is/quickbooks-desktop-node/commit/bad3984fd32019dc03d3fff9824fb8ef8cdc8035))
+
+
+### Documentation
+
+* **mcp:** describe the HTTP server as the private code runner ([33a47a9](https://github.com/conductor-is/quickbooks-desktop-node/commit/33a47a9a7d6d817a56d0b8e3c5251da437fd1e4a))
+
+
+### Refactors
+
+* **mcp:** remove CONDUCTOR_MCP_RESOURCE_URL and code.mcp references ([ef12b60](https://github.com/conductor-is/quickbooks-desktop-node/commit/ef12b60e8341a0e7f0ea28a4a3a8a5a66f7415f1))
+
 ## [16.3.0](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.2.0...v16.3.0) (2026-11-23)
 
 
