@@ -62,7 +62,8 @@ export class InventoryAdjustments extends APIResource {
   }
 
   /**
-   * Updates an existing inventory adjustment.
+   * Updates an existing inventory adjustment. To set or clear custom field values,
+   * use the set-custom-fields endpoint.
    *
    * **NOTE:** If you include `lines`, QuickBooks Desktop replaces that line list
    * with the array you send, so include unchanged lines you want to keep and use
@@ -147,6 +148,42 @@ export class InventoryAdjustments extends APIResource {
   }
 
   /**
+   * Sets or clears custom field values on an inventory adjustment. A value replaces
+   * the custom field's current value if it has one, and an empty string clears it.
+   * Custom fields you leave out keep their values, and no `revisionNumber` is
+   * needed.
+   *
+   * If QuickBooks does not save every value, or the inventory adjustment cannot be
+   * returned, the request fails with an error that names the custom fields
+   * QuickBooks did not save and any whose outcome could not be confirmed. The values
+   * QuickBooks did save stay saved. Sending the same request again is safe.
+   *
+   * **NOTE**: This request changes the inventory adjustment's `revisionNumber`, so
+   * use the one in its response for your next update.
+   *
+   * @example
+   * ```ts
+   * const inventoryAdjustment =
+   *   await conductor.qbd.inventoryAdjustments.setCustomFields(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: InventoryAdjustmentSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<InventoryAdjustment> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/inventory-adjustments/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
+
+  /**
    * Voids an inventory adjustment by setting its amount to zero while keeping a
    * record of it in QuickBooks. The void will fail if the inventory adjustment is
    * currently in use or has any linked transactions that are in use.
@@ -208,8 +245,13 @@ export interface InventoryAdjustment {
   customer: InventoryAdjustment.Customer | null;
 
   /**
-   * The custom fields for the inventory adjustment object, added as user-defined
-   * data extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this inventory adjustment, for the owners
+   * named in the request's `customFieldOwnerIds` (by default, the public custom
+   * fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<InventoryAdjustment.CustomField>;
 
@@ -361,8 +403,7 @@ export namespace InventoryAdjustment {
       | 'string_255_type';
 
     /**
-     * The value of this custom field. The maximum length depends on the field's data
-     * type.
+     * The value of this custom field.
      */
     value: string;
   }
@@ -1192,6 +1233,47 @@ export interface InventoryAdjustmentDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface InventoryAdjustmentSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the inventory adjustment
+   * itself, not on its lines. Custom fields you leave out keep their values.
+   */
+  customFields?: Array<InventoryAdjustmentSetCustomFieldsParams.CustomField>;
+}
+
+export namespace InventoryAdjustmentSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters, the most QuickBooks keeps.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+}
+
 export interface InventoryAdjustmentVoidParams {
   /**
    * The ID of the End-User to receive this request.
@@ -1210,6 +1292,7 @@ export declare namespace InventoryAdjustments {
     type InventoryAdjustmentUpdateParams as InventoryAdjustmentUpdateParams,
     type InventoryAdjustmentListParams as InventoryAdjustmentListParams,
     type InventoryAdjustmentDeleteParams as InventoryAdjustmentDeleteParams,
+    type InventoryAdjustmentSetCustomFieldsParams as InventoryAdjustmentSetCustomFieldsParams,
     type InventoryAdjustmentVoidParams as InventoryAdjustmentVoidParams,
   };
 }

@@ -61,7 +61,8 @@ export class Bills extends APIResource {
    * Updates an existing vendor bill while keeping the required references intact.
    * QuickBooks does not let this update request add new purchase order links, and
    * you must continue to supply the vendor, accounts payable account, and at least
-   * one expense or item line when you resubmit the bill.
+   * one expense or item line when you resubmit the bill. To set or clear custom
+   * field values, use the set-custom-fields endpoint.
    *
    * **NOTE:** If you include `expenseLines`, `itemLines`, or `itemGroupLines`,
    * QuickBooks Desktop replaces each included line list with the array you send, so
@@ -131,6 +132,39 @@ export class Bills extends APIResource {
   }
 
   /**
+   * Sets or clears custom field values on a bill and its lines. A value replaces the
+   * custom field's current value if it has one, and an empty string clears it.
+   * Custom fields you leave out keep their values, and no `revisionNumber` is
+   * needed. Item custom fields go on lines, and customer, vendor, and employee
+   * custom fields on the bill itself, each only if its definition's `objectTypes`
+   * includes this type of transaction.
+   *
+   * If QuickBooks does not save every value, or the bill cannot be returned, the
+   * request fails with an error that names the custom fields QuickBooks did not save
+   * and any whose outcome could not be confirmed. The values QuickBooks did save
+   * stay saved. Sending the same request again is safe.
+   *
+   * **NOTE**: This request changes the bill's `revisionNumber`, so use the one in
+   * its response for your next update.
+   *
+   * @example
+   * ```ts
+   * const bill = await conductor.qbd.bills.setCustomFields(
+   *   '123ABC-1234567890',
+   *   { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   * );
+   * ```
+   */
+  setCustomFields(id: string, params: BillSetCustomFieldsParams, options?: RequestOptions): APIPromise<Bill> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/bills/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
+
+  /**
    * Voids a bill by setting its amount to zero while keeping a record of it in
    * QuickBooks. The void will fail if the bill is currently in use or has any linked
    * transactions that are in use.
@@ -189,8 +223,12 @@ export interface Bill {
   currency: Bill.Currency | null;
 
   /**
-   * The custom fields for the bill object, added as user-defined data extensions,
-   * not included in the standard QuickBooks object.
+   * The custom fields that have a value on this bill, for the owners named in the
+   * request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<Bill.CustomField>;
 
@@ -405,8 +443,7 @@ export namespace Bill {
       | 'string_255_type';
 
     /**
-     * The value of this custom field. The maximum length depends on the field's data
-     * type.
+     * The value of this custom field.
      */
     value: string;
   }
@@ -447,8 +484,13 @@ export namespace Bill {
     class: ExpenseLine.Class | null;
 
     /**
-     * The custom fields for the expense line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this expense line, for the owners named
+     * in the request's `customFieldOwnerIds` (by default, the public custom fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<ExpenseLine.CustomField>;
 
@@ -563,8 +605,7 @@ export namespace Bill {
         | 'string_255_type';
 
       /**
-       * The value of this custom field. The maximum length depends on the field's data
-       * type.
+       * The value of this custom field.
        */
       value: string;
     }
@@ -646,8 +687,14 @@ export namespace Bill {
     id: string;
 
     /**
-     * The custom fields for the item group line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this item group line, for the owners
+     * named in the request's `customFieldOwnerIds` (by default, the public custom
+     * fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<ItemGroupLine.CustomField>;
 
@@ -739,8 +786,7 @@ export namespace Bill {
         | 'string_255_type';
 
       /**
-       * The value of this custom field. The maximum length depends on the field's data
-       * type.
+       * The value of this custom field.
        */
       value: string;
     }
@@ -808,8 +854,13 @@ export namespace Bill {
       customer: ItemLine.Customer | null;
 
       /**
-       * The custom fields for the item line object, added as user-defined data
-       * extensions, not included in the standard QuickBooks object.
+       * The custom fields that have a value on this item line, for the owners named in
+       * the request's `customFieldOwnerIds` (by default, the public custom fields).
+       *
+       * **NOTE**: To set or clear custom field values, use the set-custom-fields
+       * endpoint of the transaction. An update cannot change them, and its response
+       * returns this as an empty array even when values exist; retrieve the transaction
+       * to see them.
        */
       customFields: Array<ItemLine.CustomField>;
 
@@ -983,8 +1034,7 @@ export namespace Bill {
           | 'string_255_type';
 
         /**
-         * The value of this custom field. The maximum length depends on the field's data
-         * type.
+         * The value of this custom field.
          */
         value: string;
       }
@@ -1201,8 +1251,13 @@ export namespace Bill {
     customer: ItemLine.Customer | null;
 
     /**
-     * The custom fields for the item line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this item line, for the owners named in
+     * the request's `customFieldOwnerIds` (by default, the public custom fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the set-custom-fields
+     * endpoint of the transaction. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<ItemLine.CustomField>;
 
@@ -1376,8 +1431,7 @@ export namespace Bill {
         | 'string_255_type';
 
       /**
-       * The value of this custom field. The maximum length depends on the field's data
-       * type.
+       * The value of this custom field.
        */
       value: string;
     }
@@ -1967,8 +2021,8 @@ export namespace BillCreateParams {
     classId?: string;
 
     /**
-     * The custom fields for the expense line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this expense line when it is created. To
+     * change them afterward, use the set-custom-fields endpoint of the transaction.
      */
     customFields?: Array<ExpenseLine.CustomField>;
 
@@ -2024,8 +2078,8 @@ export namespace BillCreateParams {
       ownerId: string;
 
       /**
-       * The value of this custom field. The maximum length depends on the field's data
-       * type.
+       * The value of this custom field. A public custom field's value can have at most
+       * 30 characters.
        */
       value: string;
     }
@@ -2039,8 +2093,8 @@ export namespace BillCreateParams {
     itemGroupId: string;
 
     /**
-     * The custom fields for the item group line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this item group line when it is created. To
+     * change them afterward, use the set-custom-fields endpoint of the transaction.
      */
     customFields?: Array<ItemGroupLine.CustomField>;
 
@@ -2092,8 +2146,8 @@ export namespace BillCreateParams {
       ownerId: string;
 
       /**
-       * The value of this custom field. The maximum length depends on the field's data
-       * type.
+       * The value of this custom field. A public custom field's value can have at most
+       * 30 characters.
        */
       value: string;
     }
@@ -2142,8 +2196,8 @@ export namespace BillCreateParams {
     customerId?: string;
 
     /**
-     * The custom fields for the item line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this item line when it is created. To change
+     * them afterward, use the set-custom-fields endpoint of the transaction.
      */
     customFields?: Array<ItemLine.CustomField>;
 
@@ -2293,8 +2347,8 @@ export namespace BillCreateParams {
       ownerId: string;
 
       /**
-       * The value of this custom field. The maximum length depends on the field's data
-       * type.
+       * The value of this custom field. A public custom field's value can have at most
+       * 30 characters.
        */
       value: string;
     }
@@ -3314,6 +3368,95 @@ export interface BillDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface BillSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the bill itself, not on
+   * its lines. Custom fields you leave out keep their values.
+   */
+  customFields?: Array<BillSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Body param: The lines of the bill whose custom field values to set or clear.
+   * Lines you leave out are not changed.
+   */
+  lines?: Array<BillSetCustomFieldsParams.Line>;
+}
+
+export namespace BillSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters, the most QuickBooks keeps.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+
+  export interface Line {
+    /**
+     * The QuickBooks-assigned unique identifier of the bill line, line group, or line
+     * inside a line group.
+     */
+    id: string;
+
+    /**
+     * The custom field values to set or clear on this line. Custom fields you leave
+     * out keep their values.
+     */
+    customFields: Array<Line.CustomField>;
+  }
+
+  export namespace Line {
+    export interface CustomField {
+      /**
+       * The name of the custom field, as its definition and a record's `customFields`
+       * show it. The custom field must already be defined for this type of record; to
+       * list or create definitions, use the custom-field-definitions endpoint.
+       * QuickBooks matches the name without regard to letter case.
+       */
+      name: string;
+
+      /**
+       * The value to set, which replaces the custom field's current value if it has one.
+       * Send an empty string (`""`) to clear the custom field. A public custom field's
+       * value can have at most 30 characters, the most QuickBooks keeps.
+       */
+      value: string;
+
+      /**
+       * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+       * fields, which QuickBooks users define and see. Any other owner is an
+       * application's GUID in braces, such as
+       * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+       * only in requests that name it.
+       */
+      ownerId?: string;
+    }
+  }
+}
+
 export interface BillVoidParams {
   /**
    * The ID of the End-User to receive this request.
@@ -3332,6 +3475,7 @@ export declare namespace Bills {
     type BillUpdateParams as BillUpdateParams,
     type BillListParams as BillListParams,
     type BillDeleteParams as BillDeleteParams,
+    type BillSetCustomFieldsParams as BillSetCustomFieldsParams,
     type BillVoidParams as BillVoidParams,
   };
 }
