@@ -1,5 +1,21 @@
 # Changelog
 
+## [16.1.4](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.1.3...v16.1.4) (2026-11-19)
+
+
+### Bug Fixes
+
+* **qbd:** handle estimates without a customer ([357ce35](https://github.com/conductor-is/quickbooks-desktop-node/commit/357ce3525349fb2dd5833815d7c20712d4dd47dd))
+* **qbd:** refuse an estimate returned without its customer ([10da78e](https://github.com/conductor-is/quickbooks-desktop-node/commit/10da78e8f2879d2b6b4b543843bd4c1146e476f3))
+* **qbd:** refuse responses that drop a record's customer or entity ([fe06013](https://github.com/conductor-is/quickbooks-desktop-node/commit/fe060138680f9fb0ef7c999dbd04bd4c48295257))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([7d23c10](https://github.com/conductor-is/quickbooks-desktop-node/commit/7d23c10329e1473fd31bc328838440f74015886a))
+* **api:** update documented OpenAPI spec for download ([0dffe2d](https://github.com/conductor-is/quickbooks-desktop-node/commit/0dffe2d375c554c635d44e4eec1e28565842efba))
+* **api:** update documented OpenAPI spec for download ([6f8ad52](https://github.com/conductor-is/quickbooks-desktop-node/commit/6f8ad52bd49790b80229253d3575134d3c12c8fd))
+
 ## [16.1.3](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.1.2...v16.1.3) (2026-11-17)
 
 
