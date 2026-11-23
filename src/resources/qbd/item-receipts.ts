@@ -139,6 +139,44 @@ export class ItemReceipts extends APIResource {
   }
 
   /**
+   * Sets or clears custom field values on an item receipt and its lines. Custom
+   * fields defined for items go on the lines, and those defined for customers,
+   * vendors, and employees go on the item receipt itself. Each value you send
+   * replaces the existing value of its custom field. To clear a custom field's
+   * existing value, send an empty string. Custom fields you omit from your request
+   * keep their existing values.
+   *
+   * If the request fails, QuickBooks may still have saved some of the values you
+   * sent, because it saves each value separately. The error names the custom fields
+   * QuickBooks did not save. You can safely send the same request again.
+   *
+   * **NOTE**: This request has no `revisionNumber` parameter, but it still updates
+   * the item receipt's `revisionNumber`. Use the `revisionNumber` returned in the
+   * response for your next update.
+   *
+   * @example
+   * ```ts
+   * const itemReceipt =
+   *   await conductor.qbd.itemReceipts.setCustomFields(
+   *     '123ABC-1234567890',
+   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
+   *   );
+   * ```
+   */
+  setCustomFields(
+    id: string,
+    params: ItemReceiptSetCustomFieldsParams,
+    options?: RequestOptions,
+  ): APIPromise<ItemReceipt> {
+    const { conductorEndUserId, ...body } = params;
+    return this._client.post(path`/quickbooks-desktop/item-receipts/${id}/set-custom-fields`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
+    });
+  }
+
+  /**
    * Voids an item receipt by setting its amount to zero while keeping a record of it
    * in QuickBooks. The void will fail if the item receipt is currently in use or has
    * any linked transactions that are in use.
@@ -188,8 +226,12 @@ export interface ItemReceipt {
   currency: ItemReceipt.Currency | null;
 
   /**
-   * The custom fields for the item receipt object, added as user-defined data
-   * extensions, not included in the standard QuickBooks object.
+   * The custom fields that have a value on this item receipt, for the owners named
+   * in the request's `customFieldOwnerIds` (by default, the public custom fields).
+   *
+   * **NOTE**: To set or clear custom field values, use the set-custom-fields
+   * endpoint. An update cannot change them, and its response returns this as an
+   * empty array even when values exist; retrieve the record to see them.
    */
   customFields: Array<ItemReceipt.CustomField>;
 
@@ -409,8 +451,13 @@ export namespace ItemReceipt {
     class: ExpenseLine.Class | null;
 
     /**
-     * The custom fields for the expense line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this expense line, for the owners named
+     * in the request's `customFieldOwnerIds` (by default, the public custom fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the transaction's
+     * set-custom-fields endpoint. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<ExpenseLine.CustomField>;
 
@@ -607,8 +654,14 @@ export namespace ItemReceipt {
     id: string;
 
     /**
-     * The custom fields for the item group line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this item group line, for the owners
+     * named in the request's `customFieldOwnerIds` (by default, the public custom
+     * fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the transaction's
+     * set-custom-fields endpoint. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<ItemGroupLine.CustomField>;
 
@@ -768,8 +821,13 @@ export namespace ItemReceipt {
       customer: ItemLine.Customer | null;
 
       /**
-       * The custom fields for the item line object, added as user-defined data
-       * extensions, not included in the standard QuickBooks object.
+       * The custom fields that have a value on this item line, for the owners named in
+       * the request's `customFieldOwnerIds` (by default, the public custom fields).
+       *
+       * **NOTE**: To set or clear custom field values, use the transaction's
+       * set-custom-fields endpoint. An update cannot change them, and its response
+       * returns this as an empty array even when values exist; retrieve the transaction
+       * to see them.
        */
       customFields: Array<ItemLine.CustomField>;
 
@@ -1160,8 +1218,13 @@ export namespace ItemReceipt {
     customer: ItemLine.Customer | null;
 
     /**
-     * The custom fields for the item line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom fields that have a value on this item line, for the owners named in
+     * the request's `customFieldOwnerIds` (by default, the public custom fields).
+     *
+     * **NOTE**: To set or clear custom field values, use the transaction's
+     * set-custom-fields endpoint. An update cannot change them, and its response
+     * returns this as an empty array even when values exist; retrieve the transaction
+     * to see them.
      */
     customFields: Array<ItemLine.CustomField>;
 
@@ -1851,8 +1914,8 @@ export namespace ItemReceiptCreateParams {
     classId?: string;
 
     /**
-     * The custom fields for the expense line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this expense line when it is created. To
+     * change them afterward, use the transaction's set-custom-fields endpoint.
      */
     customFields?: Array<ExpenseLine.CustomField>;
 
@@ -1923,8 +1986,8 @@ export namespace ItemReceiptCreateParams {
     itemGroupId: string;
 
     /**
-     * The custom fields for the item group line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this item group line when it is created. To
+     * change them afterward, use the transaction's set-custom-fields endpoint.
      */
     customFields?: Array<ItemGroupLine.CustomField>;
 
@@ -2026,8 +2089,8 @@ export namespace ItemReceiptCreateParams {
     customerId?: string;
 
     /**
-     * The custom fields for the item line object, added as user-defined data
-     * extensions, not included in the standard QuickBooks object.
+     * The custom field values to set on this item line when it is created. To change
+     * them afterward, use the transaction's set-custom-fields endpoint.
      */
     customFields?: Array<ItemLine.CustomField>;
 
@@ -3021,6 +3084,95 @@ export interface ItemReceiptDeleteParams {
   conductorEndUserId: string;
 }
 
+export interface ItemReceiptSetCustomFieldsParams {
+  /**
+   * Header param: The ID of the End-User to receive this request.
+   */
+  conductorEndUserId: string;
+
+  /**
+   * Body param: The custom field values to set or clear on the item receipt itself,
+   * not on its lines. Custom fields you leave out keep their values.
+   */
+  customFields?: Array<ItemReceiptSetCustomFieldsParams.CustomField>;
+
+  /**
+   * Body param: The lines of the item receipt whose custom field values to set or
+   * clear. Lines you leave out are not changed.
+   */
+  lines?: Array<ItemReceiptSetCustomFieldsParams.Line>;
+}
+
+export namespace ItemReceiptSetCustomFieldsParams {
+  export interface CustomField {
+    /**
+     * The name of the custom field, as its definition and a record's `customFields`
+     * show it. The custom field must already be defined for this type of record; to
+     * list or create definitions, use the custom-field-definitions endpoint.
+     * QuickBooks matches the name without regard to letter case.
+     */
+    name: string;
+
+    /**
+     * The value to set, which replaces the custom field's current value if it has one.
+     * Send an empty string (`""`) to clear the custom field. A public custom field's
+     * value can have at most 30 characters.
+     */
+    value: string;
+
+    /**
+     * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+     * fields, which QuickBooks users define and see. Any other owner is an
+     * application's GUID in braces, such as
+     * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+     * only in requests that name it.
+     */
+    ownerId?: string;
+  }
+
+  export interface Line {
+    /**
+     * The QuickBooks-assigned unique identifier of the item receipt line, line group,
+     * or line inside a line group.
+     */
+    id: string;
+
+    /**
+     * The custom field values to set or clear on this line. Custom fields you leave
+     * out keep their values.
+     */
+    customFields: Array<Line.CustomField>;
+  }
+
+  export namespace Line {
+    export interface CustomField {
+      /**
+       * The name of the custom field, as its definition and a record's `customFields`
+       * show it. The custom field must already be defined for this type of record; to
+       * list or create definitions, use the custom-field-definitions endpoint.
+       * QuickBooks matches the name without regard to letter case.
+       */
+      name: string;
+
+      /**
+       * The value to set, which replaces the custom field's current value if it has one.
+       * Send an empty string (`""`) to clear the custom field. A public custom field's
+       * value can have at most 30 characters.
+       */
+      value: string;
+
+      /**
+       * The owner of the custom field. Defaults to `"0"`, the owner of public custom
+       * fields, which QuickBooks users define and see. Any other owner is an
+       * application's GUID in braces, such as
+       * `"{6B063959-81B0-4622-85D6-F548C8CCB517}"`, whose private custom fields appear
+       * only in requests that name it.
+       */
+      ownerId?: string;
+    }
+  }
+}
+
 export interface ItemReceiptVoidParams {
   /**
    * The ID of the End-User to receive this request.
@@ -3039,6 +3191,7 @@ export declare namespace ItemReceipts {
     type ItemReceiptUpdateParams as ItemReceiptUpdateParams,
     type ItemReceiptListParams as ItemReceiptListParams,
     type ItemReceiptDeleteParams as ItemReceiptDeleteParams,
+    type ItemReceiptSetCustomFieldsParams as ItemReceiptSetCustomFieldsParams,
     type ItemReceiptVoidParams as ItemReceiptVoidParams,
   };
 }
