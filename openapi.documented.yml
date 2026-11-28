@@ -82148,7 +82148,7 @@ paths:
           description: The ID of the End-User to receive this request.
       responses:
         "200":
-          description: Returns an object with the duration of the health check in milliseconds. If the health check fails, returns the standard Conductor error response. For end-user UI, prefer `error.userFacingMessage`; use `error.message` for logs, developer/admin surfaces, and test projects.
+          description: Returns an object with the duration of the health check in milliseconds. If the health check fails, returns the standard Conductor error response. Its `error.message` says what went wrong and, for a QuickBooks Desktop connection problem, how the end-user can fix it.
           headers:
             Conductor-Request-Id:
               required: true
@@ -82206,19 +82206,12 @@ components:
       properties:
         message:
           type: string
-          description: The primary error message. Use this for logs, developer/admin surfaces, and debugging.
+          description: Describes what went wrong. For a QuickBooks Desktop connection error, it is written for the end-user and says how to fix it.
           example: "Invalid API key provided: 'sk_live_...1234'"
         userFacingMessage:
           type: string
-          description: >-
-            The user-friendly error message intended for end-user UI.
-
-
-            This value exists for _every_ error. It may match `error.message`,
-            or it may mask details that are only useful to developers or
-            administrators, such as invalid API keys, billing issues, or setup
-            problems. In masked cases, it may say _"An internal server error
-            occurred. Please try again."_
+          deprecated: true
+          description: 'Deprecated: use `error.message` instead. This field is still returned on every error. For most errors, it holds the same text as `error.message`. For an error about your request or API key, it is always _"An internal server error occurred. Please try again."_'
           example: An internal server error occurred. Please try again.
         type:
           type: string
