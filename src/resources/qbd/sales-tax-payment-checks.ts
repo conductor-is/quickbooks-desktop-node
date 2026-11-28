@@ -189,32 +189,6 @@ export class SalesTaxPaymentChecks extends APIResource {
       headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
     });
   }
-
-  /**
-   * Voids a sales-tax payment check by setting its amount to zero while keeping a
-   * record of it in QuickBooks. The void will fail if the sales-tax payment check is
-   * currently in use or has any linked transactions that are in use.
-   *
-   * @example
-   * ```ts
-   * const response =
-   *   await conductor.qbd.salesTaxPaymentChecks.void(
-   *     '123ABC-1234567890',
-   *     { conductorEndUserId: 'end_usr_1234567abcdefg' },
-   *   );
-   * ```
-   */
-  void(
-    id: string,
-    params: SalesTaxPaymentCheckVoidParams,
-    options?: RequestOptions,
-  ): APIPromise<SalesTaxPaymentCheckVoidResponse> {
-    const { conductorEndUserId } = params;
-    return this._client.post(path`/quickbooks-desktop/sales-tax-payment-checks/${id}/void`, {
-      ...options,
-      headers: buildHeaders([{ 'Conductor-End-User-Id': conductorEndUserId }, options?.headers]),
-    });
-  }
 }
 
 export type SalesTaxPaymentChecksCursorPage = CursorPage<SalesTaxPaymentCheck>;
@@ -540,43 +514,6 @@ export interface SalesTaxPaymentCheckDeleteResponse {
    * payment check.
    */
   refNumber: string | null;
-}
-
-export interface SalesTaxPaymentCheckVoidResponse {
-  /**
-   * The QuickBooks-assigned unique identifier of the voided sales-tax payment check.
-   */
-  id: string;
-
-  /**
-   * The date and time when this sales-tax payment check was created, in ISO 8601
-   * format (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in the
-   * local timezone of the end-user's computer.
-   */
-  createdAt: string | null;
-
-  /**
-   * The type of object. This value is always `"qbd_sales_tax_payment_check"`.
-   */
-  objectType: 'qbd_sales_tax_payment_check';
-
-  /**
-   * The case-sensitive user-defined reference number of the voided sales-tax payment
-   * check.
-   */
-  refNumber: string | null;
-
-  /**
-   * The date and time when this sales-tax payment check was last updated, in ISO
-   * 8601 format (YYYY-MM-DDThh:mm:ss+hh:mm), which QuickBooks Desktop interprets in
-   * the local timezone of the end-user's computer.
-   */
-  updatedAt: string | null;
-
-  /**
-   * Indicates whether the sales-tax payment check was voided.
-   */
-  voided: boolean;
 }
 
 export interface SalesTaxPaymentCheckCreateParams {
@@ -1136,18 +1073,10 @@ export namespace SalesTaxPaymentCheckSetCustomFieldsParams {
   }
 }
 
-export interface SalesTaxPaymentCheckVoidParams {
-  /**
-   * The ID of the End-User to receive this request.
-   */
-  conductorEndUserId: string;
-}
-
 export declare namespace SalesTaxPaymentChecks {
   export {
     type SalesTaxPaymentCheck as SalesTaxPaymentCheck,
     type SalesTaxPaymentCheckDeleteResponse as SalesTaxPaymentCheckDeleteResponse,
-    type SalesTaxPaymentCheckVoidResponse as SalesTaxPaymentCheckVoidResponse,
     type SalesTaxPaymentChecksCursorPage as SalesTaxPaymentChecksCursorPage,
     type SalesTaxPaymentCheckCreateParams as SalesTaxPaymentCheckCreateParams,
     type SalesTaxPaymentCheckRetrieveParams as SalesTaxPaymentCheckRetrieveParams,
@@ -1155,6 +1084,5 @@ export declare namespace SalesTaxPaymentChecks {
     type SalesTaxPaymentCheckListParams as SalesTaxPaymentCheckListParams,
     type SalesTaxPaymentCheckDeleteParams as SalesTaxPaymentCheckDeleteParams,
     type SalesTaxPaymentCheckSetCustomFieldsParams as SalesTaxPaymentCheckSetCustomFieldsParams,
-    type SalesTaxPaymentCheckVoidParams as SalesTaxPaymentCheckVoidParams,
   };
 }

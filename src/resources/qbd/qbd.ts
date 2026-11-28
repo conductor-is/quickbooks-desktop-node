@@ -580,8 +580,6 @@ import {
   SalesTaxPaymentCheckRetrieveParams,
   SalesTaxPaymentCheckSetCustomFieldsParams,
   SalesTaxPaymentCheckUpdateParams,
-  SalesTaxPaymentCheckVoidParams,
-  SalesTaxPaymentCheckVoidResponse,
   SalesTaxPaymentChecks,
   SalesTaxPaymentChecksCursorPage,
 } from './sales-tax-payment-checks';
@@ -1485,7 +1483,6 @@ export declare namespace Qbd {
     SalesTaxPaymentChecks as SalesTaxPaymentChecks,
     type SalesTaxPaymentCheck as SalesTaxPaymentCheck,
     type SalesTaxPaymentCheckDeleteResponse as SalesTaxPaymentCheckDeleteResponse,
-    type SalesTaxPaymentCheckVoidResponse as SalesTaxPaymentCheckVoidResponse,
     type SalesTaxPaymentChecksCursorPage as SalesTaxPaymentChecksCursorPage,
     type SalesTaxPaymentCheckCreateParams as SalesTaxPaymentCheckCreateParams,
     type SalesTaxPaymentCheckRetrieveParams as SalesTaxPaymentCheckRetrieveParams,
@@ -1493,7 +1490,6 @@ export declare namespace Qbd {
     type SalesTaxPaymentCheckListParams as SalesTaxPaymentCheckListParams,
     type SalesTaxPaymentCheckDeleteParams as SalesTaxPaymentCheckDeleteParams,
     type SalesTaxPaymentCheckSetCustomFieldsParams as SalesTaxPaymentCheckSetCustomFieldsParams,
-    type SalesTaxPaymentCheckVoidParams as SalesTaxPaymentCheckVoidParams,
   };
 
   export {

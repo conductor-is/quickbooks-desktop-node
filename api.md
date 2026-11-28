@@ -799,7 +799,6 @@ Types:
 
 - <code><a href="./src/resources/qbd/sales-tax-payment-checks.ts">SalesTaxPaymentCheck</a></code>
 - <code><a href="./src/resources/qbd/sales-tax-payment-checks.ts">SalesTaxPaymentCheckDeleteResponse</a></code>
-- <code><a href="./src/resources/qbd/sales-tax-payment-checks.ts">SalesTaxPaymentCheckVoidResponse</a></code>
 
 Methods:
 
@@ -809,7 +808,6 @@ Methods:
 - <code title="get /quickbooks-desktop/sales-tax-payment-checks">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">list</a>({ ...params }) -> SalesTaxPaymentChecksCursorPage</code>
 - <code title="delete /quickbooks-desktop/sales-tax-payment-checks/{id}">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">delete</a>(id, { ...params }) -> SalesTaxPaymentCheckDeleteResponse</code>
 - <code title="post /quickbooks-desktop/sales-tax-payment-checks/{id}/set-custom-fields">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">setCustomFields</a>(id, { ...params }) -> SalesTaxPaymentCheck</code>
-- <code title="post /quickbooks-desktop/sales-tax-payment-checks/{id}/void">client.qbd.salesTaxPaymentChecks.<a href="./src/resources/qbd/sales-tax-payment-checks.ts">void</a>(id, { ...params }) -> SalesTaxPaymentCheckVoidResponse</code>
 
 ## ServiceItems
 

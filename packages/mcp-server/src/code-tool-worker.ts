@@ -367,7 +367,6 @@ const fuse = new Fuse(
     'conductor.qbd.salesTaxPaymentChecks.retrieve',
     'conductor.qbd.salesTaxPaymentChecks.setCustomFields',
     'conductor.qbd.salesTaxPaymentChecks.update',
-    'conductor.qbd.salesTaxPaymentChecks.void',
     'conductor.qbd.serviceItems.create',
     'conductor.qbd.serviceItems.list',
     'conductor.qbd.serviceItems.retrieve',
