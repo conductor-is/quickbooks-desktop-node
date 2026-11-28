@@ -1036,11 +1036,15 @@ export interface VendorCreateParams {
   /**
    * Body param: Additional custom contact fields for this vendor, such as phone
    * numbers or email addresses.
+   *
+   * Maximum: 8 items.
    */
   customContactFields?: Array<VendorCreateParams.CustomContactField>;
 
   /**
    * Body param: The expense accounts to prefill when entering bills for this vendor.
+   *
+   * Maximum: 3 items.
    */
   defaultExpenseAccountIds?: Array<string>;
 
@@ -1262,6 +1266,8 @@ export namespace VendorCreateParams {
     /**
      * Additional custom contact fields for this contact, such as phone numbers or
      * email addresses.
+     *
+     * Maximum: 5 items.
      */
     customContactFields?: Array<AdditionalContact.CustomContactField>;
 
@@ -1624,11 +1630,15 @@ export interface VendorUpdateParams {
   /**
    * Body param: Additional custom contact fields for this vendor, such as phone
    * numbers or email addresses.
+   *
+   * Maximum: 8 items.
    */
   customContactFields?: Array<VendorUpdateParams.CustomContactField>;
 
   /**
    * Body param: The expense accounts to prefill when entering bills for this vendor.
+   *
+   * Maximum: 3 items.
    */
   defaultExpenseAccountIds?: Array<string>;
 
@@ -1846,6 +1856,8 @@ export namespace VendorUpdateParams {
     /**
      * Additional custom contact fields for this contact, such as phone numbers or
      * email addresses.
+     *
+     * Maximum: 5 items.
      */
     customContactFields?: Array<AdditionalContact.CustomContactField>;
 

@@ -1179,6 +1179,8 @@ export interface CustomerCreateParams {
   /**
    * Body param: A list of additional shipping addresses for this customer. Useful
    * when the customer has multiple shipping locations.
+   *
+   * Maximum: 50 items.
    */
   alternateShippingAddresses?: Array<CustomerCreateParams.AlternateShippingAddress>;
 
@@ -1243,6 +1245,8 @@ export interface CustomerCreateParams {
   /**
    * Body param: Additional custom contact fields for this customer, such as phone
    * numbers or email addresses.
+   *
+   * Maximum: 8 items.
    */
   customContactFields?: Array<CustomerCreateParams.CustomContactField>;
 
@@ -1488,6 +1492,8 @@ export namespace CustomerCreateParams {
     /**
      * Additional custom contact fields for this contact, such as phone numbers or
      * email addresses.
+     *
+     * Maximum: 5 items.
      */
     customContactFields?: Array<AdditionalContact.CustomContactField>;
 
@@ -1924,6 +1930,8 @@ export interface CustomerUpdateParams {
   /**
    * Body param: A list of additional shipping addresses for this customer. Useful
    * when the customer has multiple shipping locations.
+   *
+   * Maximum: 50 items.
    */
   alternateShippingAddresses?: Array<CustomerUpdateParams.AlternateShippingAddress>;
 
@@ -1991,6 +1999,8 @@ export interface CustomerUpdateParams {
   /**
    * Body param: Additional custom contact fields for this customer, such as phone
    * numbers or email addresses.
+   *
+   * Maximum: 8 items.
    */
   customContactFields?: Array<CustomerUpdateParams.CustomContactField>;
 
@@ -2232,6 +2242,8 @@ export namespace CustomerUpdateParams {
     /**
      * Additional custom contact fields for this contact, such as phone numbers or
      * email addresses.
+     *
+     * Maximum: 5 items.
      */
     customContactFields?: Array<AdditionalContact.CustomContactField>;
 

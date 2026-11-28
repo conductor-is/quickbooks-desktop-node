@@ -1005,6 +1005,8 @@ export interface EmployeeCreateParams {
   /**
    * Body param: Additional custom contact fields for this employee, such as phone
    * numbers or email addresses.
+   *
+   * Maximum: 8 items.
    */
   customContactFields?: Array<EmployeeCreateParams.CustomContactField>;
 
@@ -1758,6 +1760,8 @@ export interface EmployeeUpdateParams {
   /**
    * Body param: Additional custom contact fields for this employee, such as phone
    * numbers or email addresses.
+   *
+   * Maximum: 8 items.
    */
   customContactFields?: Array<EmployeeUpdateParams.CustomContactField>;
 
