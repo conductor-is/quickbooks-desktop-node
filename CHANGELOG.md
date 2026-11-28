@@ -1,5 +1,17 @@
 # Changelog
 
+## [16.3.3](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.3.2...v16.3.3) (2026-11-28)
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([da040f6](https://github.com/conductor-is/quickbooks-desktop-node/commit/da040f6f0c6a17537efc2ac01719e0b8628a873e))
+
+
+### Documentation
+
+* **api:** deprecate error.userFacingMessage in favor of error.message ([aa64f73](https://github.com/conductor-is/quickbooks-desktop-node/commit/aa64f7389287e4219ae932b16d6031e2e7b19a76))
+
 ## [16.3.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.3.1...v16.3.2) (2026-11-28)
 
 
