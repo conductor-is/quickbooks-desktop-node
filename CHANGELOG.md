@@ -1,5 +1,20 @@
 # Changelog
 
+## [16.3.2](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.3.1...v16.3.2) (2026-11-28)
+
+
+### Bug Fixes
+
+* **api:** accept more than 50 alternate shipping addresses per request ([266f66f](https://github.com/conductor-is/quickbooks-desktop-node/commit/266f66fd798065619b6d320aeabdf5774c6372e4))
+* **api:** enforce QuickBooks count limits on three array fields ([d7905fe](https://github.com/conductor-is/quickbooks-desktop-node/commit/d7905fec3959649fb21441192565aac80bfa48d0))
+* **api:** remove the sales-tax payment check void endpoint ([266f66f](https://github.com/conductor-is/quickbooks-desktop-node/commit/266f66fd798065619b6d320aeabdf5774c6372e4))
+
+
+### Chores
+
+* **api:** update documented OpenAPI spec for download ([e90dec7](https://github.com/conductor-is/quickbooks-desktop-node/commit/e90dec704e89129eb4712322980767bdead6dd2f))
+* **api:** update documented OpenAPI spec for download ([d3e8cf4](https://github.com/conductor-is/quickbooks-desktop-node/commit/d3e8cf480c036e33b243cceb5656948593888ec2))
+
 ## [16.3.1](https://github.com/conductor-is/quickbooks-desktop-node/compare/v16.3.0...v16.3.1) (2026-11-23)
 
 
