@@ -22541,8 +22541,14 @@ paths:
                       maxLength: 41
                   additionalProperties: false
                 alternateShippingAddresses:
-                  description: A list of additional shipping addresses for this customer. Useful when the customer has multiple shipping locations.
+                  description: >-
+                    A list of additional shipping addresses for this customer.
+                    Useful when the customer has multiple shipping locations.
+
+
+                    Maximum: 50 items.
                   minItems: 1
+                  maxItems: 50
                   type: array
                   items:
                     type: object
@@ -22720,8 +22726,14 @@ paths:
                   type: string
                   maxLength: 41
                 customContactFields:
-                  description: Additional custom contact fields for this customer, such as phone numbers or email addresses.
+                  description: >-
+                    Additional custom contact fields for this customer, such as
+                    phone numbers or email addresses.
+
+
+                    Maximum: 8 items.
                   minItems: 1
+                  maxItems: 8
                   type: array
                   items:
                     type: object
@@ -22798,8 +22810,14 @@ paths:
                         type: string
                         maxLength: 41
                       customContactFields:
-                        description: Additional custom contact fields for this contact, such as phone numbers or email addresses.
+                        description: >-
+                          Additional custom contact fields for this contact,
+                          such as phone numbers or email addresses.
+
+
+                          Maximum: 5 items.
                         minItems: 1
+                        maxItems: 5
                         type: array
                         items:
                           type: object
@@ -23965,8 +23983,14 @@ paths:
                       maxLength: 41
                   additionalProperties: false
                 alternateShippingAddresses:
-                  description: A list of additional shipping addresses for this customer. Useful when the customer has multiple shipping locations.
+                  description: >-
+                    A list of additional shipping addresses for this customer.
+                    Useful when the customer has multiple shipping locations.
+
+
+                    Maximum: 50 items.
                   minItems: 1
+                  maxItems: 50
                   type: array
                   items:
                     type: object
@@ -24144,8 +24168,14 @@ paths:
                   type: string
                   maxLength: 41
                 customContactFields:
-                  description: Additional custom contact fields for this customer, such as phone numbers or email addresses.
+                  description: >-
+                    Additional custom contact fields for this customer, such as
+                    phone numbers or email addresses.
+
+
+                    Maximum: 8 items.
                   minItems: 1
+                  maxItems: 8
                   type: array
                   items:
                     type: object
@@ -24231,8 +24261,14 @@ paths:
                         type: string
                         maxLength: 41
                       customContactFields:
-                        description: Additional custom contact fields for this contact, such as phone numbers or email addresses.
+                        description: >-
+                          Additional custom contact fields for this contact,
+                          such as phone numbers or email addresses.
+
+
+                          Maximum: 5 items.
                         minItems: 1
+                        maxItems: 5
                         type: array
                         items:
                           type: object
@@ -28445,8 +28481,14 @@ paths:
                   type: string
                   maxLength: 1023
                 customContactFields:
-                  description: Additional custom contact fields for this employee, such as phone numbers or email addresses.
+                  description: >-
+                    Additional custom contact fields for this employee, such as
+                    phone numbers or email addresses.
+
+
+                    Maximum: 8 items.
                   minItems: 1
+                  maxItems: 8
                   type: array
                   items:
                     type: object
@@ -29641,8 +29683,14 @@ paths:
                   type: string
                   maxLength: 1023
                 customContactFields:
-                  description: Additional custom contact fields for this employee, such as phone numbers or email addresses.
+                  description: >-
+                    Additional custom contact fields for this employee, such as
+                    phone numbers or email addresses.
+
+
+                    Maximum: 8 items.
                   minItems: 1
+                  maxItems: 8
                   type: array
                   items:
                     type: object
@@ -80381,8 +80429,14 @@ paths:
                   type: string
                   maxLength: 41
                 customContactFields:
-                  description: Additional custom contact fields for this vendor, such as phone numbers or email addresses.
+                  description: >-
+                    Additional custom contact fields for this vendor, such as
+                    phone numbers or email addresses.
+
+
+                    Maximum: 8 items.
                   minItems: 1
+                  maxItems: 8
                   type: array
                   items:
                     type: object
@@ -80459,8 +80513,14 @@ paths:
                         type: string
                         maxLength: 41
                       customContactFields:
-                        description: Additional custom contact fields for this contact, such as phone numbers or email addresses.
+                        description: >-
+                          Additional custom contact fields for this contact,
+                          such as phone numbers or email addresses.
+
+
+                          Maximum: 5 items.
                         minItems: 1
+                        maxItems: 5
                         type: array
                         items:
                           type: object
@@ -80686,10 +80746,16 @@ paths:
                   example: false
                   type: boolean
                 defaultExpenseAccountIds:
-                  description: The expense accounts to prefill when entering bills for this vendor.
+                  description: >-
+                    The expense accounts to prefill when entering bills for this
+                    vendor.
+
+
+                    Maximum: 3 items.
                   example:
                     - 80000001-1234567890
                   minItems: 1
+                  maxItems: 3
                   type: array
                   items:
                     type: string
@@ -81592,8 +81658,14 @@ paths:
                   type: string
                   maxLength: 41
                 customContactFields:
-                  description: Additional custom contact fields for this vendor, such as phone numbers or email addresses.
+                  description: >-
+                    Additional custom contact fields for this vendor, such as
+                    phone numbers or email addresses.
+
+
+                    Maximum: 8 items.
                   minItems: 1
+                  maxItems: 8
                   type: array
                   items:
                     type: object
@@ -81679,8 +81751,14 @@ paths:
                         type: string
                         maxLength: 41
                       customContactFields:
-                        description: Additional custom contact fields for this contact, such as phone numbers or email addresses.
+                        description: >-
+                          Additional custom contact fields for this contact,
+                          such as phone numbers or email addresses.
+
+
+                          Maximum: 5 items.
                         minItems: 1
+                        maxItems: 5
                         type: array
                         items:
                           type: object
@@ -81883,10 +81961,16 @@ paths:
                   example: false
                   type: boolean
                 defaultExpenseAccountIds:
-                  description: The expense accounts to prefill when entering bills for this vendor.
+                  description: >-
+                    The expense accounts to prefill when entering bills for this
+                    vendor.
+
+
+                    Maximum: 3 items.
                   example:
                     - 80000001-1234567890
                   minItems: 1
+                  maxItems: 3
                   type: array
                   items:
                     type: string
