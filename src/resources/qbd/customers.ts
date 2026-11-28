@@ -1179,8 +1179,6 @@ export interface CustomerCreateParams {
   /**
    * Body param: A list of additional shipping addresses for this customer. Useful
    * when the customer has multiple shipping locations.
-   *
-   * Maximum: 50 items.
    */
   alternateShippingAddresses?: Array<CustomerCreateParams.AlternateShippingAddress>;
 
@@ -1931,7 +1929,10 @@ export interface CustomerUpdateParams {
    * Body param: A list of additional shipping addresses for this customer. Useful
    * when the customer has multiple shipping locations.
    *
-   * Maximum: 50 items.
+   * **NOTE**: Addresses are matched to the stored ones by `name`: an address with a
+   * new `name` is added, one whose `name` matches replaces that stored address's
+   * fields, and stored addresses you omit are kept. To add or change one address,
+   * send only that address.
    */
   alternateShippingAddresses?: Array<CustomerUpdateParams.AlternateShippingAddress>;
 

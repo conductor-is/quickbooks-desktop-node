@@ -528,14 +528,12 @@ export {
   SalesTaxPaymentChecks,
   type SalesTaxPaymentCheck,
   type SalesTaxPaymentCheckDeleteResponse,
-  type SalesTaxPaymentCheckVoidResponse,
   type SalesTaxPaymentCheckCreateParams,
   type SalesTaxPaymentCheckRetrieveParams,
   type SalesTaxPaymentCheckUpdateParams,
   type SalesTaxPaymentCheckListParams,
   type SalesTaxPaymentCheckDeleteParams,
   type SalesTaxPaymentCheckSetCustomFieldsParams,
-  type SalesTaxPaymentCheckVoidParams,
   type SalesTaxPaymentChecksCursorPage,
 } from './sales-tax-payment-checks';
 export {

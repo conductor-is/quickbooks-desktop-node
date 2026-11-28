@@ -1559,12 +1559,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quickbooks-desktop/sales-tax-payment-checks/{id}/set-custom-fields',
   },
   {
-    clientCallName: 'conductor.qbd.salesTaxPaymentChecks.void',
-    fullyQualifiedName: 'qbd.salesTaxPaymentChecks.void',
-    httpMethod: 'post',
-    httpPath: '/quickbooks-desktop/sales-tax-payment-checks/{id}/void',
-  },
-  {
     clientCallName: 'conductor.qbd.serviceItems.create',
     fullyQualifiedName: 'qbd.serviceItems.create',
     httpMethod: 'post',
